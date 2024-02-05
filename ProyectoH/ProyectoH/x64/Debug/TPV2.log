@@ -1,0 +1,22 @@
+﻿C:\Program Files\Microsoft Visual Studio\2022\Community\MSBuild\Microsoft\VC\v170\Microsoft.CppBuild.targets(517,5): warning MSB8004: El directorio Output no termina con una barra diagonal final. Esta instancia de compilación agregará la barra diagonal porque es necesaria para que se pueda evaluar correctamente el directorio Output.
+  JSON.cpp
+  JSONValue.cpp
+  json_demo.cpp
+  main.cpp
+  SDLUtils.cpp
+  sdlutils_demo.cpp
+  SoundEffect.cpp
+C:\Users\Pedro\Desktop\repo\Proyectos2\NineandoCorp\TPV2\TPV2\src\sdlutils\SDLUtils.h(50,32): warning C4101: 'e': variable local sin referencia
+  (compilando archivo de origen "src/sdlutils/sdlutils_demo.cpp")
+  C:\Users\Pedro\Desktop\repo\Proyectos2\NineandoCorp\TPV2\TPV2\src\sdlutils\SDLUtils.h(50,32):
+  el contexto de creación de instancias de la plantilla (el más antiguo primero) es
+  	C:\Users\Pedro\Desktop\repo\Proyectos2\NineandoCorp\TPV2\TPV2\src\sdlutils\SDLUtils.h(192,30):
+  	Vea la referencia a la creación de una instancia de clase plantilla "SDLUtils::map_access_wrapper<Texture>" que se está compilando
+  	C:\Users\Pedro\Desktop\repo\Proyectos2\NineandoCorp\TPV2\TPV2\src\sdlutils\SDLUtils.h(47,16):
+  	al compilar la función del miembro clase plantilla "Texture &SDLUtils::map_access_wrapper<Texture>::at(std::string)"
+  
+  Texture.cpp
+  Collisions.cpp
+  Vector2D.cpp
+  Generando código...
+  TPV2.vcxproj -> C:\Users\Pedro\Desktop\repo\Proyectos2\NineandoCorp\TPV2\bin\TPV2Debug.exe
