@@ -29,11 +29,6 @@ bld/
 [Oo]bj/
 [Ll]og/
 [Ll]ogs/
-x64/
-!/SDL-2.0.7/x64
-x86/
-!/SDL-2.0.7/x86
-
 
 # Visual Studio 2015/2017 cache/options directory
 .vs/
