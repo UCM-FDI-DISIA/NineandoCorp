@@ -23,7 +23,7 @@ mono_crash.*
 [Rr]eleases/
 x64/
 x86/
-!SDL-2.0.7/*
+!SDL-2.0.7/lib
 [Ww][Ii][Nn]32/
 [Aa][Rr][Mm]/
 [Aa][Rr][Mm]64/
