@@ -56,17 +56,14 @@ nav ul li:hover {
     line-height: normal;
     background: linear-gradient(to bottom, #a77cf2 0%, #936adb 50%);/*igual cambiar el color oscura a #7d4cdb*/
 }
-nav ul li::before {
+nav ul li:hover::before {
     content: ''; 
     position: absolute; 
     top: -15px; 
     left: 0;
     width: 100%;
-    height: 15px; 
-}
-
-nav ul li:hover::before {
-    pointer-events: auto; /* Habilitamos la interacción de puntero */
+    height: 15px;
+    pointer-events: auto; 
 }
 
 nav ul li a {
@@ -77,11 +74,17 @@ nav ul li a:hover{
     text-align: center;
 }
 
+.button-container {
+    text-align: center; /* Centrar el contenido del contenedor */
+    margin-top: 10px; /* Ajusta el margen superior del contenedor del botón */
+}
+
 .download-btn {
     background-color: #7d4cdb; /* Morado oscuro */
     color: #fff;
     padding: 10px 20px;
     border-radius: 5px;
+    display: inline-block; /* Asegurar que el botón se muestre como bloque en línea */
 }
 
 .download-btn:hover {
@@ -93,15 +96,53 @@ nav ul li a:hover{
     padding: 20px;
 }
 
+.section h2 {
+    background-color: rgba(81, 65, 65, 0.264);
+    padding: 10px;
+    border-radius: 10px;
+    cursor: pointer;
+}
+.section p {
+    margin-left: 20px;
+    margin-top: 20px;
+}
+
+@keyframes slideDown {
+    from {
+        transform: translateY(-20%);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+.section .content {
+    /* padding: 10px; */
+    border: 1px solid rgba(81, 65, 65, 0.264);
+    border-radius: 10px;
+    margin-top: 10px;
+    display:block; /* Ocultamos el contenido por defecto */
+    animation: slideDown 0.5s forwards; /* Animación de deslizamiento hacia abajo */
+
+}
+
+.content-container {
+    min-height: calc(100vh - 70px); /* Calculamos la altura como el 100% del alto de la ventana menos la altura del footer */
+    padding-bottom: 70px; /* Asegura que el footer no se superponga al contenido */
+    overflow-y: auto; /* Agregamos desplazamiento vertical si el contenido es más largo que la altura */
+}
+
 footer {
     background: linear-gradient(to top, #441698 0%,  #7d4cdb 50%); 
-    color: #fff; /* Texto en color blanco */
+    color: #fff;
     text-align: center;
     padding: 10px;
+    width: 100%;
     position: fixed;
     bottom: 0;
-    width: 100%;
 }
+
 footer p {
     display: inline-block; /* Hacer que el párrafo se muestre en línea */
     vertical-align: middle; /* Alinear verticalmente la imagen con el texto */
