@@ -15,7 +15,22 @@ document.addEventListener("DOMContentLoaded", function() {
                 } else {
                     section.style.display = "none";
                 }
+                hideSection(section.id);
             });
         });
     });
 });
+function toggleSection(sectionId) {
+    var section = document.getElementById(sectionId);
+    var content = section.querySelector('.content');
+    if (content.style.display === 'none') {
+        content.style.display = 'block';
+    } else {
+        content.style.display = 'none';
+    }
+}
+function hideSection(sectionId) {
+    var section = document.getElementById(sectionId);
+    var content = section.querySelector('.content');
+    content.style.display = 'none';
+};

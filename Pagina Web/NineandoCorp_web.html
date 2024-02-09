@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Juego Morado - Descarga Gratuita</title>
+    <title>Project H Defense</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -19,17 +19,28 @@
         </ul>
     </nav>
     <section id="inicio" class="section">
-        <h2>Inicio</h2>
-        <p>Contenido de la sección de Inicio.</p>
-        <a href="#" class="download-btn">Descargar Juego</a>
+        <h2 onclick="toggleSection('inicio')">INFO SOBRE EL JUEGO</h2>
+        <div class="content" style="display: none;">
+            <p>Contenido de la sección de Inicio.</p>
+            <br>
+            <div class="button-container">
+                <a href="#" class="download-btn">Descargar Juego</a>
+            </div>
+            <br>
+            <p>Mas contenido de inicio</p>
+        </div>
     </section>
     <section id="acerca" class="section">
-        <h2>Acerca de</h2>
-        <p>Contenido de la sección Acerca de.</p>
+        <h2 onclick="toggleSection('acerca')">Acerca de</h2>
+        <div class="content" style="display: none;">
+            Contenido de la sección Acerca de.
+        </div>
     </section>
     <section id="contacto" class="section">
-        <h2>Contacto</h2>
-        <p>Contenido de la sección de Contacto.</p>
+        <h2 onclick="toggleSection('contacto')">Contacto</h2>
+        <div class="content" style="display: none;">
+            Contenido de la sección de Contacto.
+        </div>
     </section>
 <script src="script.js"></script>
     <footer>
