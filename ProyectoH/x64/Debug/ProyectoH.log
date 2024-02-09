@@ -1,1 +1,23 @@
-﻿
+﻿D:\Program Files\Microsoft Visual Studio\2022\Community\MSBuild\Microsoft\VC\v170\Microsoft.CppBuild.targets(517,5): warning MSB8004: Output Directory does not end with a trailing slash.  This build instance will add the slash as it is required to allow proper evaluation of the Output Directory.
+D:\Program Files\Microsoft Visual Studio\2022\Community\MSBuild\Microsoft\VC\v170\Microsoft.CppBuild.targets(531,5): warning MSB8028: The intermediate directory (x64\Debug\) contains files shared from another project (TPV2.vcxproj).  This can lead to incorrect clean and rebuild behavior.
+  JSON.cpp
+  JSONValue.cpp
+  json_demo.cpp
+  main.cpp
+  SDLUtils.cpp
+  sdlutils_demo.cpp
+  SoundEffect.cpp
+  Texture.cpp
+D:\Marcos Pérez\Escritorio\UCM\VdD_2º\Proyectos II\NineandoCorp\ProyectoH\src\sdlutils\SDLUtils.h(50,32): warning C4101: 'e': unreferenced local variable
+  (compiling source file 'src/sdlutils/sdlutils_demo.cpp')
+  D:\Marcos Pérez\Escritorio\UCM\VdD_2º\Proyectos II\NineandoCorp\ProyectoH\src\sdlutils\SDLUtils.h(50,32):
+  the template instantiation context (the oldest one first) is
+  	D:\Marcos Pérez\Escritorio\UCM\VdD_2º\Proyectos II\NineandoCorp\ProyectoH\src\sdlutils\SDLUtils.h(192,30):
+  	see reference to class template instantiation 'SDLUtils::map_access_wrapper<Texture>' being compiled
+  	D:\Marcos Pérez\Escritorio\UCM\VdD_2º\Proyectos II\NineandoCorp\ProyectoH\src\sdlutils\SDLUtils.h(47,16):
+  	while compiling class template member function 'Texture &SDLUtils::map_access_wrapper<Texture>::at(std::string)'
+  
+  Collisions.cpp
+  Vector2D.cpp
+  Generating Code...
+  ProyectoH.vcxproj -> D:\Marcos Pérez\Escritorio\UCM\VdD_2º\Proyectos II\NineandoCorp\bin\ProyectoHDebug.exe
