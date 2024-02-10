@@ -113,3 +113,14 @@ Nos encontraremos con los siguientes tipos de enemigos:
 | ENEMIGO | FOTO | HABILIDADES | ESTADÍSTICAS |
 | :---: | :---: | :---: | :---: |
 | Maestro de las Almas | FOTO | Habilidad especial: Provoca ceguera a la torre que golpea(impide a la torre atacar durante un tiempo específico).| Tipo de tropa: terrestre Vida: 200 Daño: 10 Tiempo de ataque: 1s Tipo de ataque: cercano Velocidad: 3 Objetivo: torres |
+| Acechante Eléctrico | FOTO | Habilidad especial: En un tiempo específico la tropa ejecuta una descarga que potencia la velocidad de los aliados cercanos(Se queda quieto para hacerlo y luego sigue corriendo). Si golpea el escudo del nexo lo inhabilita.| Tipo de tropa: terrestre Vida: 150 Daño: 20 Tiempo de ataque: 1s Tipo de ataque: cercano Velocidad: 7 Objetivo: nexo |
+| Caballero Maldito | FOTO | Habilidad especial: Al morir genera 10 malditos.| Tipo de tropa: terrestre Vida: 100 Daño: 10 Tiempo de ataque: 1s Tipo de ataque: cercano Velocidad: 3 Objetivo: torres |
+| Maldito | FOTO | Ninguna.| Tipo de tropa: terrestre Vida: 100 Daño: 10 Tiempo de ataque: 1s Tipo de ataque: cercano Velocidad: 3 Objetivo: torres |
+| Golem | FOTO | Habilidad especial: Regenera 10  de vida por segundo.| Tipo de tropa: terrestre Vida: 2500 Daño: 60 Tiempo de ataque: 3s Tipo de ataque: cercano Velocidad: 2 Objetivo: nexo |
+| Demonio alado | FOTO | Ninguna.| Tipo de tropa: aérea Vida: 25 Daño: 5 Tiempo de ataque: 1s Tipo de ataque: muy cercano Velocidad: 4 Objetivo: torres |
+| Goblin | FOTO | Ninguna.| Tipo de tropa: terrestre Vida: 40 Daño: 15 Tiempo de ataque: 1s Tipo de ataque: cercano Velocidad: 6 Objetivo: nexo |
+| Esqueleto | FOTO | Ninguna.| Tipo de tropa: terrestre Vida: 100 Daño: 10 Tiempo de ataque: 2s Tipo de ataque: cercano Velocidad: 2 Objetivo: torres |
+| Mensajero de la muerte | FOTO | Habilidad especial: Se desplaza en forma fantasmal siendo invisible a las torres, cuando llega a una torre aparece y la golpea. El muro y el nexo también lo hacen aparecer.| Tipo de tropa: terrestre Vida: 100 Daño: 15 Tiempo de ataque: 1s Tipo de ataque: cercano Velocidad: 3 Objetivo: torres |
+| Angel | FOTO | En un área alrededor de ella cura a sus aliados 1% de vida por segundo. No ataca, cuando llega al nexo se desvanece.| Tipo de tropa: aérea Vida: 400 Daño: 0 Tiempo de ataque:  Tipo de ataque: areA (distancia o cercano?) Velocidad: 3 Objetivo: nexo |
+| Demonio infernal | FOTO | Ninguna.| Tipo de tropa: aérea Vida: 1500 Daño: 40 Tiempo de ataque: 2s Tipo de ataque: cercano Velocidad: 3 Objetivo: nexo |
+| Defensor real | FOTO | Habilidad especial: al morir invoca un campo de fuerza que se queda donde a muerto de forma que no se puede dañar a los enemigos en su interior durante 5 segundos.| Tipo de tropa: terrestre Vida: 200 Daño: 10 Tiempo de ataque: 1s Tipo de ataque: cercano Velocidad: 3 Objetivo: torres|
