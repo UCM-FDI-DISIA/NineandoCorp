@@ -104,3 +104,12 @@ Estas zonas son:
 | Pradera | Suelen ser las zonas más próximas a los caminos. En ella solo se pueden situar torres de poco alcance o que necesiten situarse al lado del camino.|
 |Montaña| Son zonas más alejadas de los caminos. En ella solo se pueden poner torres de gran alcance o torres que ataque a enemigos aéreos|
 |Lagos|Estas zonas imposibilitan poner todo tipo de torres.|
+
+#### 4.4 Enemigos
+Encima de cada enemigo se muestra su barra de vida.
+Los enemigos se detendrán al encontrarse con una torre si es su objetivo, sin embargo los que tienen como objetivo el nexo no se detendrán.
+
+Nos encontraremos con los siguientes tipos de enemigos:
+| ENEMIGO | FOTO | HABILIDADES | ESTADÍSTICAS |
+| :---: | :---: | :---: | :---: |
+| Maestro de las Almas | FOTO | Habilidad especial: Provoca ceguera a la torre que golpea(impide a la torre atacar durante un tiempo específico).| Tipo de tropa: terrestre Vida: 200 Daño: 10 Tiempo de ataque: 1s Tipo de ataque: cercano Velocidad: 3 Objetivo: torres |
