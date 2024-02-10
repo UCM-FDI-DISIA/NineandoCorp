@@ -1,6 +1,4 @@
 <h1 align="center"><b>H DEFENSE</b></h1>
-
-## Logo:
 ![logo](/ProyectoH/resources/images/LogodeHDefense.png)
 <h2 align="center"><b> NineandoCorp</b></h2>
 
@@ -60,13 +58,13 @@ Asimismo, la cámara se puede desplazar en el eje x e y para explorar el mapa.
 #### 4.2. Mecánicas del jugador
 El jugador será capaz de realizar diferentes acciones, desde interactuar con el mapa hasta gestionar toda la partida (pausar, acelerar…). Dichas acciones se podrán manejar con el ratón, excepto algunas que tendrán atajos de teclado. A continuación, se explican más detalladamente:
 
-#### 4.2.1 Interacción con el mapa
+##### 4.2.1 Interacción con el mapa
 - Manteniendo el click izquierdo sobre el icono de la torre deseada en la barra inferior, arrastrar hasta la posición en la que se quiere colocar. Dicha torre no se puede mover una vez haya sido colocada.
 - Las torres se podrán quitar sin recuperar ni perder dinero o cambiar de posición a cambio de dinero.
 - Haciendo click sobre las torres colocadas, aparecerá un pop-up con información de la torre y tendremos la opción de mejorarla.
 - Si has arrastrado una torreta y no la has colocado puedes cancelar la selección con click derecho.
 
-#### 4.2.2 Gestión de la partida
+##### 4.2.2 Gestión de la partida
 - Pause: se podrá hacer click en un botón (parte superior derecha de la pantalla) o pulsar la tecla “ESCAPE” para pausar la partida. 
 - Multiplicador de velocidad: se podrá hacer click en un botón en la parte superior derecha de la pantalla (>>) o pulsar la tecla “SPACE” para reproducir más rápido el transcurso de la partida (X2), si volvemos a darle al botón o presionar la tecla, la velocidad del transcurso del tiempo volverá a la normalidad (X1).
 - Empezar: para empezar la ronda se podrá hacer click en dicho botón (parte inferior derecha de la pantalla) o pulsar la tecla “ENTER”.
@@ -75,7 +73,7 @@ El jugador será capaz de realizar diferentes acciones, desde interactuar con el
 
 El escenario está diseñado en 2D pero dando una sensación tridimensional con vista isométrica.
 
-#### 4.3.1 Caminos
+##### 4.3.1 Caminos
 Para entender mejor el diseño del escenario es necesario diferenciar entre puntos de spawneo (lugares donde aparecen los enemigos) y destinos de los caminos. 
 
 Los puntos de spawneo se encuentran en los límites del mapa. De cada spawn puede salir un grupo de enemigos con una ruta preestablecida de la cual saldrá por pantalla una sola vez justo antes de salir el primer enemigo. Los enemigos aparecerán de 1 en 1 hasta no haber más y con un intervalo que puede ser irregular. Esto da como resultado una sensación de progresión en la dificultad durante las rondas.
@@ -91,7 +89,7 @@ La evolución del escenario va en base a esta tabla:
 | 3| 3 | 2 |
 | 4| 5 | 2 |
 
-#### 4.3.2 Zonas del escenario
+##### 4.3.2 Zonas del escenario
 Una de las mecánicas más características del escenario son las zonas del mismo, 	puesto que estas limitan el tipo de torre que se pueden situar sobre ellas.
 
 Estas zonas son: 
