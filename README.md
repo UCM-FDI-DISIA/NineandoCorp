@@ -7,7 +7,9 @@
 
   [![IG](/ProyectoH/resources/images/IG.png)](https://www.instagram.com/nineandocorp/)
   [![X](/ProyectoH/resources/images/X.png)](https://twitter.com/NineandoCorp)
+  
 </p>
+
 ## Enlaces:
 [Web del juego](https://pokoli0.github.io/PVLI-Taxistas/)
 
