@@ -21,15 +21,7 @@ void Game::run() {
 		currentTime = SDL_GetPerformanceCounter();
 		deltaTime = (double)((currentTime - startTime) / (double)SDL_GetPerformanceFrequency());
 
-#ifdef Version_1_0
-		gameStateMachine->handleInput();
-#endif
 		gameStateMachine->update();
-#ifdef Version_1_0
-		sdlutils().clearRenderer();
-		gameStateMachine->render();
-		sdlutils().presentRenderer();
-#endif
 
 		// Allows to exit if the window is closed in any moment
 		if (ih().closeWindowEvent() || ih().isKeyDown(SDLK_ESCAPE)) {
