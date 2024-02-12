@@ -39,7 +39,7 @@
     - [4.2 Mecánicas del jugador](#42-mecánicas-del-jugador)
     - [4.3 Mecánicas del escenario](#43-mécanicas-del-escenario)
     - [4.4 Enemigos](#44-enemigos)
-    - [4.5 Torretas](#44-torretas)
+    - [4.5 Torretas](#45-torretas)
 - [5. Economía](#5-economía)
 - [6. Niveles](#6-niveles)
 - [7. Dinámica](#7-dinámica)
