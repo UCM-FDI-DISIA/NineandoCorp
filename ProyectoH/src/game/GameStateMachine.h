@@ -1,25 +1,36 @@
-#pragma once
+#ifndef GAME_STATE_MACHINE_H_
+#define GAME_STATE_MACHINE_H_
+#include <list>
 #include "GameState.h"
+using namespace std;
 
-
-class GameStateMachine
-{
+class GameStateMachine {
 private:
-	// Estado Actual 
-	GameState* current_state;
-
-	// Diferentes Estados del Juego
-	GameState* running_state;
-	GameState* pausedmenu_state;
-	GameState* mainmanu_state;
-	GameState* gameover_state;
-	GameState* default_state;
+    list<GameState*> gameStates;
+    list<GameState*> gameStatesToErase;
 public:
-	enum State {
-		RUNNING, PAUSEDMENU, MAINMENU, GAMEOVER, DEFAULT
-	};
-	
-	inline void setState(State s) {};
-private:
-};
+    // Constructor
+    GameStateMachine();
+    // Destructor
+    ~GameStateMachine();
+    // Adds state
+    void pushState(GameState* newState);
+    // Erases state
+    void popState();
+    // Erases every state on the stack
+    void clearStates();
+    // Return current state
+    GameState* currentState();
+    // Changes the current state
+    void changeState(GameState* newState);
+    // Clears the game states to erase stack
+    void clearStatesToErase();
 
+    // Calls current state handleInput method
+    void handleInput();
+    // Calls current state update method
+    void update();
+    // Calls every stacked state render method
+    void render() const;
+};
+#endif
