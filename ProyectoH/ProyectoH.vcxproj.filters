@@ -120,6 +120,9 @@
     <ClInclude Include="src\ecs\System.h">
       <Filter>Header Files\ecs</Filter>
     </ClInclude>
+    <ClInclude Include="src\game\enemies\MovementComponent.h">
+      <Filter>Header Files\enemies</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\json\JSONValue.cpp">
@@ -157,6 +160,9 @@
     </ClCompile>
     <ClCompile Include="src\ecs\System.cpp">
       <Filter>Source Files\ecs</Filter>
+    </ClCompile>
+    <ClCompile Include="MovementComponent.cpp">
+      <Filter>Source Files\enemies</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
