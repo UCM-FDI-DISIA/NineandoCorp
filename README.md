@@ -2,13 +2,15 @@
 
 ![logo](ProyectoH/resources/images/LogodeHDefense.png)
 <h2 align="center"><b> NineandoCorp</b></h2>
-
-<p align="center">
+<div align="center">
+    <p align="center">
 
   [![IG](/ProyectoH/resources/images/IG.png)](https://www.instagram.com/nineandocorp/)
   [![X](/ProyectoH/resources/images/X.png)](https://twitter.com/NineandoCorp)
   
-</p>
+</p> 
+</div>
+
 
 ## Enlaces:
 [Web del juego](https://pokoli0.github.io/PVLI-Taxistas/)
