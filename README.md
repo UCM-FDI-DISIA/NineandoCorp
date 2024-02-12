@@ -1,6 +1,6 @@
 <h1 align="center"><b>H DEFENSE</b></h1>
 
-![logo](/ProyectoH/resources/images/LogodeHDefense.png)
+![logo](ProyectoH/resources/images/LogodeHDefense.png)
 <h2 align="center"><b> NineandoCorp</b></h2>
 
 <p align="center">
@@ -13,7 +13,7 @@
 ## Enlaces:
 [Web del juego](https://pokoli0.github.io/PVLI-Taxistas/)
 
-[Presentaciones](/Presentaciones/)
+[Presentaciones](#Presentaciones)
 
 [UML]()
 
@@ -24,6 +24,26 @@
 ## GDD
 ---
 ### Índice
+
+- [1. Ficha Técnica](#1-ficha-técnica)
+- [2. Descripción](#2-descripción)
+- [3. Estética](#3-estética)
+    - [3.1 Estética del escenario](#31-estética-del-escenario)
+    - [3.2 Estética de enemigos](#32-estética-de-enemigos)
+    - [3.3 Estética de torres](#33-estética-de-torres)
+    - [3.4 Estética de UI y menús](#34-estética-de-ui-y-menús)
+- [4. Jugabilidad](#4-jugabilidad)
+    - [4.1 Cámara](#41-cámara)
+    - [4.2 Mecánicas del jugador](#42-mecánicas-del-jugador)
+    - [4.3 Mecánicas del escenario](#43-mécanicas-del-escenario)
+    - [4.4 Enemigos](#44-enemigos)
+    - [4.5 Torretas](#44-torretas)
+- [5. Economía](#5-economía)
+- [6. Niveles](#6-niveles)
+- [7. Dinámica](#7-dinámica)
+- [8. Interfaces](#8-interfaces)
+- [9. Guardado](#9-guardado)
+- [10. Contenido](#10-contenido)
 
 ### 1. Ficha técnica
 - **Título**: H Defense
@@ -44,18 +64,20 @@ Además, puesto que el elemento principal del juego es la magia, esta se represe
 La perspectiva del juego es isométrica. Sin embargo, algunos de los assets, principalmente enemigos y torres están en 2D, por tanto, se puede considerar un juego 2.5D. 
 
 #### 3.1 Estética del escenario
-El escenario está ambientado en un prado mágico  entre montañas. Así, el escenario cuenta con zonas donde predomina el color verde (prado) y zonas donde predomina el color gris (montaña). 
+    El escenario está ambientado en un prado mágico  entre montañas. Así, el escenario cuenta con zonas donde predomina el color verde (prado) y zonas donde predomina el color gris (montaña). 
 
 #### 3.2 Estética de enemigos
-En los enemigos, en contraste al escenario, destacan colores más oscuros, con un aspecto más tenebroso.
+    En los enemigos, en contraste al escenario, destacan colores más oscuros, con un aspecto más tenebroso.
 
 #### 3.3 Estética de torres
-Puesto que el juego está ambientado en  un mundo de fantasía, las torres cuentan con ciertos artefactos mágicos, y, por lo tanto, cada cual tiene los colores de los elementos que empleen. Por ejemplo, la torre Llama de Fénix cuenta, en su mayoría, con elementos de tono rojizo y naranja. 
-Por otra parte, el resto de torres que no cuentan con un elemento en específico  contarán con diversos elementos con aspecto morado, puesto que es el color principal que representa a la magia.
+    Puesto que el juego está ambientado en  un mundo de fantasía, las torres cuentan con ciertos artefactos mágicos, y, por lo tanto, cada cual tiene los colores de los elementos que empleen. Por ejemplo, la torre Llama de Fénix cuenta, en su mayoría, con elementos de tono rojizo y naranja. 
+
+    Por otra parte, el resto de torres que no cuentan con un elemento en específico  contarán con diversos elementos con aspecto morado, puesto que es el color principal que representa a la magia.
 
 #### 3.4 Estética de UI y menús
-Al  igual que las torres, la estética de las distintas interfaces cuentan con el morado como color principal. 
-No obstante, en contraste con la estética del escenario, estas interfaces van a tender a tonos más oscuros, puesto que así será más sencillo para el jugador reconocerlas durante la partida. 
+    Al  igual que las torres, la estética de las distintas interfaces cuentan con el morado como color principal. 
+
+    No obstante, en contraste con la estética del escenario, estas interfaces van a tender a tonos más oscuros, puesto que así será más sencillo para el jugador reconocerlas durante la partida. 
 
 ### 4. Jugabilidad
 En este apartado definiremos las mecánicas del juego, las cuales podemos dividir en 5 apartados principales: cámara, las mecánicas únicas del jugador y las mecánicas del escenario, enemigos y torres. Con todo esto englobamos las propiedades que harán jugable nuestro juego. 
@@ -305,7 +327,7 @@ La Torre de Eternia fue erigida hace milenios por los sabios magos y guerreros m
 En respuesta a la inminente amenaza de las fuerzas oscuras, el Consejo de la Luz convoca a los héroes para que lideren la construcción de una red de torres mágicas defensivas alrededor de la Torre de Eternia. Estas torres, conocidas como Torres de Vigilia, se convertirán en la clave para repeler la invasión enemiga y proteger la barrera mágica que resguarda al Planeta H.
 
 
-## 11. Presentaciones
+## Presentaciones
 - Hito 0: https://www.canva.com/design/DAF77q2_lN4/kAq_e8tkWTQHgje6bMVrdA/edit?utm_content=DAF77q2_lN4&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton
 
 ## 12. Referencias
