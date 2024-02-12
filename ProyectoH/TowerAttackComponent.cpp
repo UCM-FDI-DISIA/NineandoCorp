@@ -1,1 +1,9 @@
-#include "TowerAttackComponent.h"
+//#include "TowerAttackComponent.h"
+//
+//TowerAttackComponent::TowerAttackComponent() {
+//
+//}
+//
+//void TowerAttackComponent::update() {
+//
+//}
