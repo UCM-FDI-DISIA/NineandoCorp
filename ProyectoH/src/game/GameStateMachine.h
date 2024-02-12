@@ -20,6 +20,8 @@ public:
 	};
 	
 	inline void setState(State s) {};
+
+	void popState
 private:
 };
 

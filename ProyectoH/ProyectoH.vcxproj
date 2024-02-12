@@ -24,7 +24,11 @@
     <ClInclude Include="src\ecs\Entity.h" />
     <ClInclude Include="src\ecs\Manager.h" />
     <ClInclude Include="src\ecs\System.h" />
-    <ClInclude Include="src\game\enemies\MovementComponent.h" />
+    <ClInclude Include="src\enemies\MovementComponent.h" />
+    <ClInclude Include="src\enemies\Transform.h" />
+    <ClInclude Include="src\game\Game.h" />
+    <ClInclude Include="src\game\GameState.h" />
+    <ClInclude Include="src\game\GameStateMachine.h" />
     <ClInclude Include="src\json\JSON.h" />
     <ClInclude Include="src\json\JSONValue.h" />
     <ClInclude Include="src\json\json_demo.h" />
@@ -43,12 +47,14 @@
     <ClInclude Include="src\utils\mpl.h" />
     <ClInclude Include="src\utils\Singleton.h" />
     <ClInclude Include="src\utils\Vector2D.h" />
-    <ClInclude Include="TowerAttackComponent.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="MovementComponent.cpp" />
     <ClCompile Include="src\ecs\Manager.cpp" />
     <ClCompile Include="src\ecs\System.cpp" />
+    <ClCompile Include="src\enemies\MovementComponent.cpp" />
+    <ClCompile Include="src\enemies\Transform.cpp" />
+    <ClCompile Include="src\game\Game.cpp" />
+    <ClCompile Include="src\game\GameStateMachine.cpp" />
     <ClCompile Include="src\json\JSON.cpp" />
     <ClCompile Include="src\json\JSONValue.cpp" />
     <ClCompile Include="src\json\json_demo.cpp" />
@@ -59,7 +65,6 @@
     <ClCompile Include="src\sdlutils\Texture.cpp" />
     <ClCompile Include="src\utils\Collisions.cpp" />
     <ClCompile Include="src\utils\Vector2D.cpp" />
-    <ClCompile Include="TowerAttackComponent.cpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>
