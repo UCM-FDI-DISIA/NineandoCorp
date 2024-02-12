@@ -2,23 +2,15 @@
 #define GAME_H_
 #include "../sdlutils/SDLUtils.h"
 
-/*
-#include "../errors/SDLError.h"
-#include "../errors/FileNotFoundError.h"
-#include "../errors/FileFormatError.h"
-*/
-
 #include "GameStateMachine.h"
 
 #include "../sdlutils/InputHandler.h"
 #include "../utils/Singleton.h"
 
-#include "../gameStates/PlayState.h"
-#include "../gameStates/PauseState.h"
-#include "../gameStates/GameOverState.h"
-#include "../gameStates/MainMenuState.h"
-#include "../gameStates/MultiplayerState.h"
-#include "../gameStates/ClientConexionState.h"
+//#include "../gameStates/PlayState.h"
+//#include "../gameStates/PauseState.h"
+//#include "../gameStates/GameOverState.h"
+//#include "../gameStates/MainMenuState.h"
 
 class Game : public Singleton<Game> {
 	friend Singleton<Game>;
