@@ -5,7 +5,7 @@
 class MovementComponent:public Component
 {
 public:
-	MovementComponent(int v, bool l,Vector2D r, Entity* ent, Manager* mngr) : velocity_(v), right_(l), r_(r){};
+	MovementComponent(int v, bool l, Vector2D r, Entity* ent, Manager* mngr) : velocity_(v), right_(l), r_(r) { Component::setContext(ent, mngr); };
 	void update();
 	void Move();
 private:
