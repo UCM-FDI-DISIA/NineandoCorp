@@ -141,6 +141,9 @@
     <ClInclude Include="src\game\GameStateMachine.h">
       <Filter>Header Files\Game</Filter>
     </ClInclude>
+    <ClInclude Include="src\towers\TowerAttackComponent.h">
+      <Filter>Header Files\towers</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\json\JSONValue.cpp">
@@ -190,6 +193,9 @@
     </ClCompile>
     <ClCompile Include="src\game\GameStateMachine.cpp">
       <Filter>Source Files\Game</Filter>
+    </ClCompile>
+    <ClCompile Include="src\towers\TowerAttackComponent.cpp">
+      <Filter>Source Files\towers</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
