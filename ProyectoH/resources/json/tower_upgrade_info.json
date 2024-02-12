@@ -1,0 +1,61 @@
+{
+  "Cristal": [
+    {
+      "escudo": 50, //Aumenta el escudo en 50 puntos
+      "explosion": 30 //Al romperse el escudo crea una explosion alrededor de 30 de dano
+    }
+  ],
+  "Slime": [
+    {
+      "recarga": 0.5, //Disminuye tiempo de recarga 0.5s
+      "ralentizacion": 0.3, //Aumenta el efecto de ralentizacion un 30%
+      "tiempoSlime": 0.5, //El slime se mantiene 0.5s mas
+      "dps": 1 //El area del slime hace 1 de dano por segundo
+    }
+  ],
+  "Balas": [
+    {
+      "dano1": 10,  //Aumenta el dano 10 puntos
+      "dano2": 20,
+      "dano3": 35,
+      "dobleObj": 1 //La torre puede apuntar a dos objetivos
+    }
+  ],
+  "Diego": [
+    {
+      "dano": 75,
+      "critico": 0.2, //Probabilidad del 20% de realizar un critico, que hace 150% de dano
+      "recarga": 0.5, //Se reduce en 0.5 el tiempo de recarga
+      "recargaYCritico": [0.3, 1] //Probabilidad de 30% de critico y se reduce 1 segundo el tiempo de recarga
+    }
+  ],
+  "Fenix": [
+    {
+      "dps": 4,//El dps aumenta a 4 puntos/medio segundo
+      "enfriamiento": 1.5, //Se reduce el enfriamiento a 1.5
+      "dpsYEnfriamiento": [5, 1],
+      "area": 15, //El cono de ataque aumenta de area 15 grados
+      "dano": 2.5,
+      "enfriamientoCero": 0//El ataque es continuo, no tiene enfriamiento
+    }
+  ],
+  "Arcilla": [
+    {
+      "vida1": 750,
+      "vida2": 1000,
+      "vida3": 1250,
+      "vida4": [ 1500, 3 ] //Refleja 3 puntos de dano por cada ataque
+    }
+  ],
+  "Potenciadora": [
+    {
+      "dano1": 0.1, //Mejora el dano un 10% en vez de un 5%
+      "vida1": 30, //Anade 30 puntos de vida a las torres cercanas
+      "dano2": 0.15,
+      "dano3": 0.2,
+      "vida2": 50
+    }
+  ]
+
+
+}
