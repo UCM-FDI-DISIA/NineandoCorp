@@ -31,6 +31,24 @@
     <Filter Include="Source Files\json">
       <UniqueIdentifier>{f050c7fb-d995-4366-9eaf-e78d399a13f9}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\enemies">
+      <UniqueIdentifier>{c5a8d5e0-a9a6-47cf-8953-5e8ced68daed}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\enemies">
+      <UniqueIdentifier>{0ddfe4af-bdc1-4e82-83a4-13cd82b4b278}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\towers">
+      <UniqueIdentifier>{ed4e06e4-1062-4fe6-bd08-dbbcd80a9297}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\towers">
+      <UniqueIdentifier>{0ecb6083-5fec-45d6-9d7f-0d17ad475395}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\ecs">
+      <UniqueIdentifier>{2d420a98-37ba-4c26-9178-e4e5fbeb940c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\ecs">
+      <UniqueIdentifier>{c59e50c0-5bf1-46f7-a58c-c432ad0a0480}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\json\JSONValue.h">
@@ -87,6 +105,21 @@
     <ClInclude Include="src\sdlutils\SDLNetUtils.h">
       <Filter>Header Files\sdlutil</Filter>
     </ClInclude>
+    <ClInclude Include="src\ecs\Component.h">
+      <Filter>Header Files\ecs</Filter>
+    </ClInclude>
+    <ClInclude Include="src\ecs\ecs.h">
+      <Filter>Header Files\ecs</Filter>
+    </ClInclude>
+    <ClInclude Include="src\ecs\Entity.h">
+      <Filter>Header Files\ecs</Filter>
+    </ClInclude>
+    <ClInclude Include="src\ecs\Manager.h">
+      <Filter>Header Files\ecs</Filter>
+    </ClInclude>
+    <ClInclude Include="src\ecs\System.h">
+      <Filter>Header Files\ecs</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\json\JSONValue.cpp">
@@ -118,6 +151,12 @@
     </ClCompile>
     <ClCompile Include="src\main.cpp">
       <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\ecs\Manager.cpp">
+      <Filter>Source Files\ecs</Filter>
+    </ClCompile>
+    <ClCompile Include="src\ecs\System.cpp">
+      <Filter>Source Files\ecs</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
