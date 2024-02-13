@@ -1,7 +1,6 @@
 #pragma once
 
 #include "ecs.h"
-#ifdef Version_2_0
 class System {
 public:
 	virtual ~System() { }
@@ -16,4 +15,3 @@ protected:
 	Manager* mngr_;
 };
 
-#endif

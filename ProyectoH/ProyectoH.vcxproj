@@ -51,7 +51,6 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\ecs\Manager.cpp" />
-    <ClCompile Include="src\ecs\System.cpp" />
     <ClCompile Include="src\enemies\MovementComponent.cpp" />
     <ClCompile Include="src\enemies\Transform.cpp" />
     <ClCompile Include="src\game\Game.cpp" />

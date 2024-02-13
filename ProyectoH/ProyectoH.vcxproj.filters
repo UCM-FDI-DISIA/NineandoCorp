@@ -120,9 +120,6 @@
     <ClInclude Include="src\ecs\Entity.h">
       <Filter>Header Files\ecs</Filter>
     </ClInclude>
-    <ClInclude Include="src\ecs\Manager.h">
-      <Filter>Header Files\ecs</Filter>
-    </ClInclude>
     <ClInclude Include="src\ecs\System.h">
       <Filter>Header Files\ecs</Filter>
     </ClInclude>
@@ -143,6 +140,9 @@
     </ClInclude>
     <ClInclude Include="src\towers\TowerAttackComponent.h">
       <Filter>Header Files\towers</Filter>
+    </ClInclude>
+    <ClInclude Include="src\ecs\Manager.h">
+      <Filter>Header Files\ecs</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -176,12 +176,6 @@
     <ClCompile Include="src\main.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\ecs\Manager.cpp">
-      <Filter>Source Files\ecs</Filter>
-    </ClCompile>
-    <ClCompile Include="src\ecs\System.cpp">
-      <Filter>Source Files\ecs</Filter>
-    </ClCompile>
     <ClCompile Include="src\enemies\MovementComponent.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -196,6 +190,9 @@
     </ClCompile>
     <ClCompile Include="src\towers\TowerAttackComponent.cpp">
       <Filter>Source Files\towers</Filter>
+    </ClCompile>
+    <ClCompile Include="src\ecs\Manager.cpp">
+      <Filter>Source Files\ecs</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

@@ -2,9 +2,7 @@
 #include <vector>
 #include <array>
 #include "ecs.h"
-#ifdef Version_2_0
 #include "System.h"
-#endif
 #include "Entity.h"
 
 
@@ -12,11 +10,9 @@ class Manager {
 private:
 	std::array<std::vector<Entity*>, maxGroupId> entsByGroup_;
 	std::array<Entity*, maxHdlrId> hdlrs_;
-#ifdef Version_2_0
 	std::array<System*, maxSystemId> sys_; 
 	std::vector<Message> msgs_;
 	std::vector<Message> aux_msgs_;
-#endif
 
 public:
 	Manager();
@@ -33,7 +29,6 @@ public:
 		return hdlrs_[hId];
 	}
 
-#ifdef Version_2_0
 	// Components
 	template<typename T, typename ...Ts>
 	inline T* addComponent(Entity* e, Ts&& ...args) {
@@ -127,7 +122,6 @@ public:
 		}
 		aux_msgs_.clear();
 	}
-#endif
 
 	const std::vector<Entity*>& getEntities(grpId_type gId = _grp_GENERAL);
 	void addToGroupList(grpId_type gId, Entity* e);

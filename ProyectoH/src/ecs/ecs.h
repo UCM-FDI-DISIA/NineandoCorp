@@ -1,7 +1,6 @@
 #pragma once
 #ifndef ECS_H_
 #define ECS_H_
-#define Version_2_0
 
 #include "../checkML.h"
 #include "../utils/Vector2D.h"
@@ -52,7 +51,6 @@ enum grpId : grpId_type {
 };
 constexpr grpId_type maxGroupId = _LAST_GRP_ID;
 
-#ifdef Version_2_0
 using gmSttId_type = uint8_t;
 enum gmSttId : gmSttId_type {
 	_gmStt_PLAY,
@@ -195,5 +193,4 @@ msgId_type id;
 	} multiplayer_start_data;
 
 };
-#endif
 #endif // !ECS_H_

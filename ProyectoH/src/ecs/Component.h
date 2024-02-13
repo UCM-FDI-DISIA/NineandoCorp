@@ -4,11 +4,7 @@
 
 #include "ecs.h"
 
-#ifdef Version_1_0
-class Component 
-#else
 struct Component 
-#endif
 {
 protected:
 	Entity* ent_;
