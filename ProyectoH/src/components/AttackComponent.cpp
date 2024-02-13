@@ -12,7 +12,7 @@ void AttackComponent::update() {
 	elapsedTime_ = timer_.currTime();
 	if (elapsedTime_ > timeToShoot_) {
 		timeToShoot_ += reloadTime_;
-		shoot();//Dispara si esta recargado
+		if (target_ != nullptr) { shoot(target_); }//Dispara si esta recargado y tiene target
 	}	
 }
 

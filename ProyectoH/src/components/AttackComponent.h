@@ -13,7 +13,7 @@ public:
 protected:
 	void targetEnemy(const std::vector<Entity*>& targetGroup, Entity* targetToLock);
 private:
-	virtual void shoot() {};
+	virtual void shoot(Entity* targetToShoot) {};
 	float getDistance(Vector2D targetPos);
 	float elapsedTime_;
 	float range_;
