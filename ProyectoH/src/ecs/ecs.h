@@ -23,6 +23,7 @@ enum cmpId : cmpId_type {
 	_GENERATIONS,
 	_FOLLOW,
 	_DISABLEONEXIT,
+	_BULLET,
 	// ... (compoment ids)
 
 	// do not remove this

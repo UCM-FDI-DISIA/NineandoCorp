@@ -138,9 +138,6 @@
     <ClInclude Include="src\game\GameStateMachine.h">
       <Filter>Header Files\Game</Filter>
     </ClInclude>
-    <ClInclude Include="src\towers\AttackComponent.h">
-      <Filter>Header Files\towers</Filter>
-    </ClInclude>
     <ClInclude Include="src\ecs\Manager.h">
       <Filter>Header Files\ecs</Filter>
     </ClInclude>
@@ -153,11 +150,17 @@
     <ClInclude Include="src\components\MovementComponent.h">
       <Filter>Header Files\components</Filter>
     </ClInclude>
-    <ClInclude Include="src\components\TowerAttackComponent.h">
-      <Filter>Header Files\components</Filter>
-    </ClInclude>
     <ClInclude Include="src\components\Transform.h">
       <Filter>Header Files\components</Filter>
+    </ClInclude>
+    <ClInclude Include="src\components\AttackComponent.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\components\BulletTower.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="BulletComponent.h">
+      <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -212,8 +215,14 @@
     <ClCompile Include="src\components\MovementComponent.cpp">
       <Filter>Source Files\components</Filter>
     </ClCompile>
-    <ClCompile Include="src\components\TowerAttackComponent.cpp">
-      <Filter>Source Files\components</Filter>
+    <ClCompile Include="src\components\AttackComponent.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\components\BulletTower.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="BulletComponent.cpp">
+      <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
