@@ -10,5 +10,6 @@ public:
 	void shoot(Entity* targetToShoot) override;
 private:
 	Entity* secondTarget_;
+	float timeToShoot2_;
 };
 

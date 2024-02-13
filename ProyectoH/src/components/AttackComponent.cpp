@@ -4,15 +4,19 @@
 #include "..//components/Transform.h"
 
 AttackComponent::AttackComponent(float range, float reloadTime, int damage) : range_(range), reloadTime_(reloadTime), damage_(damage){
-	target_ = nullptr; elapsedTime_ = 0; timeToShoot_ = reloadTime; 
+	target_ = nullptr; elapsedTime_ = 0; timeToShoot_ = reloadTime; loaded_ = false;
 }
 
 void AttackComponent::update() {
 	//targetEnemy(mngr_->targetGroup, target_);//fija una entidad como target
 	elapsedTime_ = timer_.currTime();
 	if (elapsedTime_ > timeToShoot_) {
-		timeToShoot_ += reloadTime_;
-		if (target_ != nullptr) { shoot(target_); }//Dispara si esta recargado y tiene target
+		loaded_ = true;		
+		if (loaded_ && target_ != nullptr) { 
+			shoot(target_); 
+			timeToShoot_ += reloadTime_;
+			loaded_ = false;
+		}//Dispara si esta recargado y tiene target
 	}	
 }
 

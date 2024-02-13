@@ -12,13 +12,14 @@ public:
 	virtual void update() override;
 protected:
 	void targetEnemy(const std::vector<Entity*>& targetGroup, Entity* targetToLock);
+	float reloadTime_;
+	float elapsedTime_;
 private:
 	virtual void shoot(Entity* targetToShoot) {};
 	float getDistance(Vector2D targetPos);
-	float elapsedTime_;
 	float range_;
-	float reloadTime_;
 	float timeToShoot_;
+	bool loaded_;
 	int damage_;
 	Entity* target_;//target principal
 	VirtualTimer timer_;//contador para tiempo de ataque
