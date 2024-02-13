@@ -20,19 +20,19 @@ void AttackComponent::targetEnemy() {
 	if (target_ == nullptr) {//Si no hay enemigo targeteado se busca uno
 		float closestEnemy = INT32_MAX;
 		Entity* target = nullptr;
-		for (auto enemy : mngr_->enemigos)
+	/*	for (auto enemy : mngr_->enemigos)
 		{
 			float distance = getDistance(enemy->getComponent<Transform>().);
 			if(distance < range_ && distance < closestEnemy){
 				target = enemy;
 				closestEnemy = distance;
 			}
-		}		
+		}*/		
 	}	
 	else {
-		if (getDistance(target_->getComponent<Transform>().getPosition()) > range_) {
+		/*if (getDistance(target_->getComponent<Transform>().getPosition()) > range_) {
 			target_ = nullptr;
-		}
+		}*/
 	}
 }
 
