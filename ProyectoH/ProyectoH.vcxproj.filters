@@ -138,7 +138,7 @@
     <ClInclude Include="src\game\GameStateMachine.h">
       <Filter>Header Files\Game</Filter>
     </ClInclude>
-    <ClInclude Include="src\towers\TowerAttackComponent.h">
+    <ClInclude Include="src\towers\AttackComponent.h">
       <Filter>Header Files\towers</Filter>
     </ClInclude>
     <ClInclude Include="src\ecs\Manager.h">
@@ -188,7 +188,7 @@
     <ClCompile Include="src\game\GameStateMachine.cpp">
       <Filter>Source Files\Game</Filter>
     </ClCompile>
-    <ClCompile Include="src\towers\TowerAttackComponent.cpp">
+    <ClCompile Include="src\towers\AttackComponent.cpp">
       <Filter>Source Files\towers</Filter>
     </ClCompile>
     <ClCompile Include="src\ecs\Manager.cpp">
