@@ -11,6 +11,6 @@ public:
 	HealthComponent(Manager* manager_, Entity* ent_ ,float l);
 	float getHealth() { return health_; };
 	void addHealth(float health);
-	void damage(int damage_);
+	void subtractHealth(float health);
 };
 
