@@ -2,6 +2,7 @@
 #include "..//ecs/Component.h"
 #include "..//sdlutils/VirtualTimer.h"
 #include "..//utils/Vector2D.h"
+#include <vector>
 
 class Entity;
 class AttackComponent : public Component
@@ -9,10 +10,11 @@ class AttackComponent : public Component
 public:
 	AttackComponent(float range, float reloadTime, int damage);
 	virtual void update() override;
+protected:
+	void targetEnemy(const std::vector<Entity*>& targetGroup, Entity* targetToLock);
 private:
 	virtual void shoot() {};
 	float getDistance(Vector2D targetPos);
-	void targetEnemy();
 	float elapsedTime_;
 	float range_;
 	float reloadTime_;

@@ -8,7 +8,7 @@ AttackComponent::AttackComponent(float range, float reloadTime, int damage) : ra
 }
 
 void AttackComponent::update() {
-	targetEnemy();
+	//targetEnemy(mngr_->targetGroup, target_);//fija una entidad como target
 	elapsedTime_ = timer_.currTime();
 	if (elapsedTime_ > timeToShoot_) {
 		timeToShoot_ += reloadTime_;
@@ -16,22 +16,22 @@ void AttackComponent::update() {
 	}	
 }
 
-void AttackComponent::targetEnemy() {//Busca un target
-	if (target_ == nullptr) {//Si no hay enemigo targeteado se busca uno
+void AttackComponent::targetEnemy(const std::vector<Entity*>& targetGroup, Entity* targetToLock) {//Busca un target
+	if (targetToLock == nullptr) {//Si no hay enemigo targeteado se busca uno
 		double closestEnemy = INT32_MAX;
 		Entity* target = nullptr;
-	/*	for (auto enemy : mngr_->enemigos)
+	/*	for (auto enemy : targetGroup)
 		{
 			float distance = getDistance(enemy->getComponent<Transform>().);
 			if(distance < range_ && distance < closestEnemy){
-				target = enemy;
+				targetToLock = enemy;
 				closestEnemy = distance;
 			}
 		}*/		
 	}	
 	else {
 		/*if (getDistance(target_->getComponent<Transform>().getPosition()) > range_) {
-			target_ = nullptr;
+			targetToLock_ = nullptr;
 		}*/
 	}
 }
