@@ -18,7 +18,7 @@ private:
 	float reloadTime_;
 	float timeToShoot_;
 	int damage_;
-	Entity* target_;
-	VirtualTimer timer_;
+	Entity* target_;//target principal
+	VirtualTimer timer_;//contador para tiempo de ataque
 };
 

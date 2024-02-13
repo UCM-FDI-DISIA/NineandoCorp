@@ -8,17 +8,17 @@ AttackComponent::AttackComponent(float range, float reloadTime, int damage) : ra
 }
 
 void AttackComponent::update() {
+	targetEnemy();
 	elapsedTime_ = timer_.currTime();
 	if (elapsedTime_ > timeToShoot_) {
 		timeToShoot_ += reloadTime_;
 		shoot();//Dispara si esta recargado
-	}
-	targetEnemy();
+	}	
 }
 
-void AttackComponent::targetEnemy() {
+void AttackComponent::targetEnemy() {//Busca un target
 	if (target_ == nullptr) {//Si no hay enemigo targeteado se busca uno
-		float closestEnemy = INT32_MAX;
+		double closestEnemy = INT32_MAX;
 		Entity* target = nullptr;
 	/*	for (auto enemy : mngr_->enemigos)
 		{
@@ -36,9 +36,9 @@ void AttackComponent::targetEnemy() {
 	}
 }
 
-float AttackComponent::getDistance(Vector2D enemyPos) {
+float AttackComponent::getDistance(Vector2D targetPos) {
 	Vector2D myPos = { 0,0 };//ent_->getComponent<Transform>().getPosition();
-	return sqrt(pow(myPos.getX() - enemyPos.getX(), 2) + pow(myPos.getY() - enemyPos.getY(), 2));
+	return sqrt(pow(myPos.getX() - targetPos.getX(), 2) + pow(myPos.getY() - targetPos.getY(), 2));
 }
 
 
