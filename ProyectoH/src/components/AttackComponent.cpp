@@ -16,12 +16,22 @@ void AttackComponent::update() {
 	//targetEnemy(mngr_->targetGroup, target_);//fija una entidad como target
 	elapsedTime_ = timer_.currTime();
 	if (elapsedTime_ > timeToShoot_) {
-		loaded_ = true;		
-		if (loaded_ && target_ != nullptr) { 
-			shoot(target_); 
-			timeToShoot_ += reloadTime_;
-			loaded_ = false;
-		}//Dispara si esta recargado y tiene target
+		if (shootBullets_) {
+			loaded_ = true;
+			if (loaded_ && target_ != nullptr) {
+				shoot(target_);
+				timeToShoot_ += reloadTime_;
+				loaded_ = false;
+			}//Dispara si esta recargado y tiene target
+		}
+		else {
+			loaded_ = true;
+			if (loaded_ && target_ != nullptr) {
+				doDamageTo(mngr_->getComponent<HealthComponent>(target_));
+				timeToShoot_ += reloadTime_;
+				loaded_ = false;
+			}//Dispara si esta recargado y tiene target
+		}
 	}	
 }
 
