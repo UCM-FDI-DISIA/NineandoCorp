@@ -52,8 +52,14 @@
     <Filter Include="Source Files\systems">
       <UniqueIdentifier>{9a3ddc5d-452e-4957-ad90-79c0b965c443}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\gameStates">
+      <UniqueIdentifier>{f0346f67-8f3a-42dd-bbef-3f4a03f22810}</UniqueIdentifier>
+    </Filter>
     <Filter Include="Header Files\systems">
       <UniqueIdentifier>{d8ac687c-98d3-49ae-897a-53149a9e8090}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\gameStates">
+      <UniqueIdentifier>{a2c9c20a-81e0-47e1-9779-c0b50fd92145}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -148,34 +154,13 @@
       <Filter>Header Files\components</Filter>
     </ClInclude>
     <ClInclude Include="src\components\AttackComponent.h">
-      <Filter>Header Files\components</Filter>
+      <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="src\components\BulletTower.h">
-      <Filter>Header Files\components</Filter>
-    </ClInclude>
-    <ClInclude Include="src\game\PlayState.h">
-      <Filter>Header Files\Game</Filter>
-    </ClInclude>
-    <ClInclude Include="src\game\MainMenuState.h">
-      <Filter>Header Files\Game</Filter>
-    </ClInclude>
-    <ClInclude Include="src\game\GameOverState.h">
-      <Filter>Header Files\Game</Filter>
-    </ClInclude>
-    <ClInclude Include="PauseState.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\game\PauseState.h">
-      <Filter>Header Files\Game</Filter>
-    </ClInclude>
-    <ClInclude Include="U:\hlocal\NineandoCorp\ProyectoH\src\components\DirtTower.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="src\components\BulletComponent.h">
+    <ClInclude Include="src\components\RouteComponent.h">
       <Filter>Header Files\components</Filter>
-    </ClInclude>
-    <ClInclude Include="TowerSystem.h">
-      <Filter>Header Files\systems</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -231,34 +216,13 @@
       <Filter>Source Files\components</Filter>
     </ClCompile>
     <ClCompile Include="src\components\AttackComponent.cpp">
-      <Filter>Source Files\components</Filter>
+      <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="src\components\BulletTower.cpp">
-      <Filter>Source Files\components</Filter>
-    </ClCompile>
-    <ClCompile Include="src\game\PlayState.cpp">
-      <Filter>Source Files\Game</Filter>
-    </ClCompile>
-    <ClCompile Include="src\game\MainMenuState.cpp">
-      <Filter>Source Files\Game</Filter>
-    </ClCompile>
-    <ClCompile Include="src\game\GameOverState.cpp">
-      <Filter>Source Files\Game</Filter>
-    </ClCompile>
-    <ClCompile Include="PauseState.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\game\PauseState.cpp">
-      <Filter>Source Files\Game</Filter>
-    </ClCompile>
-    <ClCompile Include="U:\hlocal\NineandoCorp\ProyectoH\src\components\DirtTower.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\components\BulletComponent.cpp">
+    <ClCompile Include="src\components\RouteComponent.cpp">
       <Filter>Source Files\components</Filter>
-    </ClCompile>
-    <ClCompile Include="TowerSystem.cpp">
-      <Filter>Source Files\systems</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

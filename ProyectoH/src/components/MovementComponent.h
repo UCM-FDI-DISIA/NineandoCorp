@@ -1,17 +1,15 @@
 #pragma once
-#include "..//utils/Vector2D.h"
+#include "..//ecs/Manager.h"
 #include "Transform.h"
 #include "..//ecs/Component.h"
 class MovementComponent:public Component
 {
 public:
-	MovementComponent(int v, bool l, Vector2D r, Entity* ent, Manager* mngr) : velocity_(v), right_(l), r_(r) { Component::setContext(ent, mngr); };
+	MovementComponent() :transform_(nullptr) {};
 	void update();
-	void Move();
+	void MoveTo(Vector2D destino);
+	void rotate(float rotation);
+	void initComponent();
 private:
-	int velocity_;
-	bool right_;
-	bool stop_;
-	Vector2D r_;
 	Transform* transform_;
 };
