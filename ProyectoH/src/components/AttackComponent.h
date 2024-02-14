@@ -1,5 +1,6 @@
 #pragma once
 #include "..//ecs/Component.h"
+#include "..//ecs/Manager.h"
 #include "..//sdlutils/VirtualTimer.h"
 #include "..//utils/Vector2D.h"
 #include <vector>
@@ -14,6 +15,7 @@ public:
 	virtual void initComponent();
 	float getDamage() const;
 	float getRange() const;
+	Entity* getTarget() const;
 	void setDamage();
 	void setRange();
 	void doDamageTo(HealthComponent* healthcmp);

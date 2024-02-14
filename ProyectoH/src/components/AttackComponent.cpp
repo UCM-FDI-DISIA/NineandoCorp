@@ -2,7 +2,6 @@
 #include "SDL.h"
 #include "algorithm"
 #include "..//components/Transform.h"
-#include "..//ecs/Manager.h"
 #include "..//components/HealthComponent.h"
 
 AttackComponent::AttackComponent(float range, float reloadTime, int damage, bool shootBullets) : range_(range), reloadTime_(reloadTime), damage_(damage), shootBullets_(shootBullets){
@@ -43,7 +42,7 @@ void AttackComponent::targetEnemy(const std::vector<Entity*>& targetGroup, Entit
 		}	*/	
 	}	
 	else {
-		if (getDistance(mngr_->getComponent<Transform>(target_)->getPosition()) > range_) {
+		if (getDistance(mngr_->getComponent<Transform>(target_)->getPosition()) > range_) {//el target ha salido de rango luego lo pierde
 			targetToLock = nullptr;
 		}
 	}
@@ -57,5 +56,7 @@ float AttackComponent::getDistance(Vector2D targetPos) {//Distancia al target
 float AttackComponent::getDamage() const { return damage_; }
 
 float AttackComponent::getRange() const { return range_; }
+
+Entity* AttackComponent::getTarget() const { return target_; }
 
 
