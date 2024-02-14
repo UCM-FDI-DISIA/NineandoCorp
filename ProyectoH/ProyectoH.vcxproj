@@ -56,6 +56,7 @@
     <ClInclude Include="src\utils\mpl.h" />
     <ClInclude Include="src\utils\Singleton.h" />
     <ClInclude Include="src\utils\Vector2D.h" />
+    <ClInclude Include="U:\hlocal\NineandoCorp\ProyectoH\src\components\DirtTower.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="PauseState.cpp" />
@@ -82,6 +83,7 @@
     <ClCompile Include="src\sdlutils\Texture.cpp" />
     <ClCompile Include="src\utils\Collisions.cpp" />
     <ClCompile Include="src\utils\Vector2D.cpp" />
+    <ClCompile Include="U:\hlocal\NineandoCorp\ProyectoH\src\components\DirtTower.cpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>
