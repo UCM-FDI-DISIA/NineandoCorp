@@ -187,12 +187,14 @@ private:
 	sdl_resource_table<Texture> msgs_; // textures map (string -> texture)
 	sdl_resource_table<SoundEffect> sounds_; // sounds map (string -> sound)
 	sdl_resource_table<Music> musics_; // musics map (string -> music)
+	sdl_resource_table<int> intConst;
 
 	map_access_wrapper<Font> fontsAccessWrapper_;
 	map_access_wrapper<Texture> imagesAccessWrapper_;
 	map_access_wrapper<Texture> msgsAccessWrapper_;
 	map_access_wrapper<SoundEffect> soundsAccessWrapper_;
 	map_access_wrapper<Music> musicsAccessWrapper_;
+	map_access_wrapper<int> intConstAccessWrapper_;
 
 	RandomNumberGenerator random_; // (pseudo) random numbers generator
 	VirtualTimer timer_; // virtual timer

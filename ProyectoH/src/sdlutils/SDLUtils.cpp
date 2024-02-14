@@ -12,14 +12,15 @@ SDLUtils::SDLUtils() :
 }
 
 SDLUtils::SDLUtils(std::string windowTitle, int width, int height) :
-		windowTitle_(windowTitle), //
-		width_(width), //
-		height_(height), //
-		fontsAccessWrapper_(fonts_, "Fonts Table"), //
-		imagesAccessWrapper_(images_, "Images Table"), //
-		msgsAccessWrapper_(msgs_, "Messages Table"), //
-		soundsAccessWrapper_(sounds_, "Sounds Table"), //
-		musicsAccessWrapper_(musics_, "Musics Table") ///
+	windowTitle_(windowTitle), //
+	width_(width), //
+	height_(height), //
+	fontsAccessWrapper_(fonts_, "Fonts Table"), //
+	imagesAccessWrapper_(images_, "Images Table"), //
+	msgsAccessWrapper_(msgs_, "Messages Table"), //
+	soundsAccessWrapper_(sounds_, "Sounds Table"), //
+	musicsAccessWrapper_(musics_, "Musics Table") ///
+	intConstAccessWrapper_(intConst, "Int Constant Table");
 {
 
 	initWindow();
