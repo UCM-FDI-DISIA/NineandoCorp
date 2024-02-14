@@ -1,5 +1,5 @@
 #pragma once
-#include "AttackComponent.h"
+#include "..//components/AttackComponent.h"
 
 class DirtTower : public AttackComponent
 {

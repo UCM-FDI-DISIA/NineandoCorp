@@ -3,7 +3,7 @@
 
 
 BulletTower::BulletTower(float range, float reloadTime, int damage) 
-	: AttackComponent::AttackComponent(range, reloadTime, damage){}
+	: AttackComponent::AttackComponent(range, reloadTime, damage, true){}
 
 void BulletTower::update() {
 	AttackComponent::update();
@@ -20,7 +20,8 @@ void BulletTower::update() {
 }
 
 void BulletTower::shoot(Entity* targetToShoot) {
-	Entity* bullet;
-    //mngr_->addEntity(bullet);
+	Entity* bullet = mngr_->addEntity(_grp_BULLETS);
+	mngr_->addComponent<BulletComponent>(bullet)->setTarget(getTarget());
+	mngr_->addComponent<Transform>(bullet);
 }
 

@@ -2,7 +2,6 @@
 #include "SDL.h"
 #include "algorithm"
 #include "..//components/Transform.h"
-#include "..//ecs/Manager.h"
 #include "..//components/HealthComponent.h"
 
 AttackComponent::AttackComponent(float range, float reloadTime, int damage, bool shootBullets) : range_(range), reloadTime_(reloadTime), damage_(damage), shootBullets_(shootBullets){
@@ -17,12 +16,22 @@ void AttackComponent::update() {
 	//targetEnemy(mngr_->targetGroup, target_);//fija una entidad como target
 	elapsedTime_ = timer_.currTime();
 	if (elapsedTime_ > timeToShoot_) {
-		loaded_ = true;		
-		if (loaded_ && target_ != nullptr) { 
-			shoot(target_); 
-			timeToShoot_ += reloadTime_;
-			loaded_ = false;
-		}//Dispara si esta recargado y tiene target
+		if (shootBullets_) {
+			loaded_ = true;
+			if (loaded_ && target_ != nullptr) {
+				shoot(target_);
+				timeToShoot_ += reloadTime_;
+				loaded_ = false;
+			}//Dispara si esta recargado y tiene target
+		}
+		else {
+			loaded_ = true;
+			if (loaded_ && target_ != nullptr) {
+				doDamageTo(mngr_->getComponent<HealthComponent>(target_));
+				timeToShoot_ += reloadTime_;
+				loaded_ = false;
+			}//Dispara si esta recargado y tiene target
+		}
 	}	
 }
 
@@ -43,7 +52,7 @@ void AttackComponent::targetEnemy(const std::vector<Entity*>& targetGroup, Entit
 		}	*/	
 	}	
 	else {
-		if (getDistance(mngr_->getComponent<Transform>(target_)->getPosition()) > range_) {
+		if (getDistance(mngr_->getComponent<Transform>(target_)->getPosition()) > range_) {//el target ha salido de rango luego lo pierde
 			targetToLock = nullptr;
 		}
 	}
@@ -58,4 +67,5 @@ float AttackComponent::getDamage() const { return damage_; }
 
 float AttackComponent::getRange() const { return range_; }
 
+Entity* AttackComponent::getTarget() const { return target_; }
 
