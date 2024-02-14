@@ -3,7 +3,7 @@
 
 
 BulletTower::BulletTower(float range, float reloadTime, int damage) 
-	: AttackComponent::AttackComponent(range, reloadTime, damage){}
+	: AttackComponent::AttackComponent(range, reloadTime, damage, true){}
 
 void BulletTower::update() {
 	AttackComponent::update();
