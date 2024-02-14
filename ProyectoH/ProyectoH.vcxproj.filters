@@ -144,7 +144,7 @@
     <ClInclude Include="src\components\FramedImage.h">
       <Filter>Header Files\components</Filter>
     </ClInclude>
-    <ClInclude Include="src\components\LifeComponent.h">
+    <ClInclude Include="src\components\HealthComponent.h">
       <Filter>Header Files\components</Filter>
     </ClInclude>
     <ClInclude Include="src\components\MovementComponent.h">
@@ -158,12 +158,6 @@
     </ClInclude>
     <ClInclude Include="src\components\BulletTower.h">
       <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="BulletComponent.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="src\systems\mapSystem.h">
-      <Filter>Header Files\systems</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -212,7 +206,7 @@
     <ClCompile Include="src\components\FramedImage.cpp">
       <Filter>Source Files\components</Filter>
     </ClCompile>
-    <ClCompile Include="src\components\LifeComponent.cpp">
+    <ClCompile Include="src\components\HealthComponent.cpp">
       <Filter>Source Files\components</Filter>
     </ClCompile>
     <ClCompile Include="src\components\MovementComponent.cpp">
@@ -223,12 +217,6 @@
     </ClCompile>
     <ClCompile Include="src\components\BulletTower.cpp">
       <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="BulletComponent.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\systems\mapSystem.cpp">
-      <Filter>Source Files\systems</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
