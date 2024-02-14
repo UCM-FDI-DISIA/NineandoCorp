@@ -1,203 +1,96 @@
-﻿c:\software\programacion\MSVStudio2022\MSBuild\Microsoft\VC\v170\Microsoft.CppBuild.targets(517,5): warning MSB8004: El directorio Output no termina con una barra diagonal final. Esta instancia de compilación agregará la barra diagonal porque es necesaria para que se pueda evaluar correctamente el directorio Output.
-c:\software\programacion\MSVStudio2022\MSBuild\Microsoft\VC\v170\Microsoft.CppBuild.targets(531,5): warning MSB8028: El directorio intermedio (x64\Debug\) contiene archivos compartidos de otro proyecto (TPV2.vcxproj). Esto puede dar lugar a un comportamiento incorrecto de limpieza y recompilación.
-c:\software\programacion\MSVStudio2022\MSBuild\Microsoft\VC\v170\Microsoft.CppBuild.targets(1119,5): warning MSB8027: Dos o más archivos con el mismo nombre de PauseState.cpp producirán salidas en la misma ubicación. Esto puede dar lugar a un resultado de compilación incorrecto. Los archivos implicados son PauseState.cpp, src\game\PauseState.cpp.
-  PauseState.cpp
-/PauseState.cpp(1,1): error C1083: No se puede abrir el archivo origen: 'PauseState.cpp': No such file or directory
-  (compilando archivo de origen "/PauseState.cpp")
-  
-  AttackComponent.cpp
-C:\Users\usuario_local\Documents\GitHub\NineandoCorp\ProyectoH\src\components\AttackComponent.cpp(18,32): warning C4244: '=': conversión de 'Uint32' a 'float'; posible pérdida de datos
-C:\Users\usuario_local\Documents\GitHub\NineandoCorp\ProyectoH\src\components\AttackComponent.cpp(54,13): warning C4244: 'return': conversión de 'double' a 'float'; posible pérdida de datos
-C:\Users\usuario_local\Documents\GitHub\NineandoCorp\ProyectoH\src\components\AttackComponent.cpp(57,51): warning C4244: 'return': conversión de 'const int' a 'float'; posible pérdida de datos
+﻿C:\Program Files\Microsoft Visual Studio\2022\Community\MSBuild\Microsoft\VC\v170\Microsoft.CppBuild.targets(517,5): warning MSB8004: El directorio Output no termina con una barra diagonal final. Esta instancia de compilación agregará la barra diagonal porque es necesaria para que se pueda evaluar correctamente el directorio Output.
+C:\Program Files\Microsoft Visual Studio\2022\Community\MSBuild\Microsoft\VC\v170\Microsoft.CppBuild.targets(531,5): warning MSB8028: El directorio intermedio (x64\Debug\) contiene archivos compartidos de otro proyecto (TPV2.vcxproj). Esto puede dar lugar a un comportamiento incorrecto de limpieza y recompilación.
   BulletComponent.cpp
-C:\Users\usuario_local\Documents\GitHub\NineandoCorp\ProyectoH\src\components\BulletComponent.cpp(5,19): error C2228: el operando izquierdo de '.getPosition' debe tener class/struct/union
-  C:\Users\usuario_local\Documents\GitHub\NineandoCorp\ProyectoH\src\components\BulletComponent.cpp(5,19):
-  el tipo es 'Transform *'
-  C:\Users\usuario_local\Documents\GitHub\NineandoCorp\ProyectoH\src\components\BulletComponent.cpp(5,19):
-  ¿deseaba utilizar '->' en su lugar?
-  
-C:\Users\usuario_local\Documents\GitHub\NineandoCorp\ProyectoH\src\components\BulletComponent.cpp(5,35): error C2027: uso del tipo 'Manager' sin definir
-  C:\Users\usuario_local\Documents\GitHub\NineandoCorp\ProyectoH\src\ecs\Entity.h(10,7):
-  vea la declaración de 'Manager'
-  
-C:\Users\usuario_local\Documents\GitHub\NineandoCorp\ProyectoH\src\components\BulletComponent.cpp(10,6): error C2027: uso del tipo 'Manager' sin definir
-  C:\Users\usuario_local\Documents\GitHub\NineandoCorp\ProyectoH\src\ecs\Entity.h(10,7):
-  vea la declaración de 'Manager'
-  
-C:\Users\usuario_local\Documents\GitHub\NineandoCorp\ProyectoH\src\components\BulletComponent.cpp(18,58): error C2039: "getPosition": no es un miembro de "Entity"
-  C:\Users\usuario_local\Documents\GitHub\NineandoCorp\ProyectoH\src\ecs\Entity.h(12,7):
-  vea la declaración de 'Entity'
-  
-C:\Users\usuario_local\Documents\GitHub\NineandoCorp\ProyectoH\src\components\BulletComponent.cpp(24,2): error C2027: uso del tipo 'Manager' sin definir
-  C:\Users\usuario_local\Documents\GitHub\NineandoCorp\ProyectoH\src\ecs\Entity.h(10,7):
-  vea la declaración de 'Manager'
-  
+C:\Users\Javi\Desktop\NineandoCorp\ProyectoH\src\components\BulletComponent.cpp(5,19): error C2228: el operando izquierdo de '.getPosition' debe tener class/struct/union
+C:\Users\Javi\Desktop\NineandoCorp\ProyectoH\src\components\BulletComponent.cpp(5,19): message : el tipo es 'Transform *'
+C:\Users\Javi\Desktop\NineandoCorp\ProyectoH\src\components\BulletComponent.cpp(5,19): message : ¿deseaba utilizar '->' en su lugar?
+C:\Users\Javi\Desktop\NineandoCorp\ProyectoH\src\components\BulletComponent.cpp(5,35): error C2027: uso del tipo 'Manager' sin definir
+C:\Users\Javi\Desktop\NineandoCorp\ProyectoH\src\ecs\Entity.h(10,7): message : vea la declaración de 'Manager'
+C:\Users\Javi\Desktop\NineandoCorp\ProyectoH\src\components\BulletComponent.cpp(10,6): error C2027: uso del tipo 'Manager' sin definir
+C:\Users\Javi\Desktop\NineandoCorp\ProyectoH\src\ecs\Entity.h(10,7): message : vea la declaración de 'Manager'
+C:\Users\Javi\Desktop\NineandoCorp\ProyectoH\src\components\BulletComponent.cpp(18,58): error C2039: "getPosition": no es un miembro de "Entity"
+C:\Users\Javi\Desktop\NineandoCorp\ProyectoH\src\ecs\Entity.h(12,7): message : vea la declaración de 'Entity'
+C:\Users\Javi\Desktop\NineandoCorp\ProyectoH\src\components\BulletComponent.cpp(24,2): error C2027: uso del tipo 'Manager' sin definir
+C:\Users\Javi\Desktop\NineandoCorp\ProyectoH\src\ecs\Entity.h(10,7): message : vea la declaración de 'Manager'
   BulletTower.cpp
-C:\Users\usuario_local\Documents\GitHub\NineandoCorp\ProyectoH\src\components\BulletTower.cpp(6,36): error C2661: 'AttackComponent::AttackComponent': ninguna función sobrecargada acepta 3 argumentos
-  C:\Users\usuario_local\Documents\GitHub\NineandoCorp\ProyectoH\src\components\BulletTower.cpp(6,36):
-  al hacer coincidir la lista de argumentos '(float, float, int)'
-  
+C:\Users\Javi\Desktop\NineandoCorp\ProyectoH\src\components\BulletTower.cpp(6,36): error C2661: 'AttackComponent::AttackComponent': ninguna función sobrecargada acepta 3 argumentos
+C:\Users\Javi\Desktop\NineandoCorp\ProyectoH\src\components\BulletTower.cpp(6,36): message : al hacer coincidir la lista de argumentos '(float, float, int)'
   FramedImage.cpp
-C:\Users\usuario_local\Documents\GitHub\NineandoCorp\ProyectoH\src\components\FramedImage.h(7,29): error C2504: 'Component': clase base sin definir
-  (compilando archivo de origen "src/components/FramedImage.cpp")
-  
-C:\Users\usuario_local\Documents\GitHub\NineandoCorp\ProyectoH\src\components\FramedImage.h(19,23): error C2248: 'SDLUtils::intConst': no se puede obtener acceso al miembro private miembro declarado en la clase 'SDLUtils'
-  (compilando archivo de origen "src/components/FramedImage.cpp")
-  C:\Users\usuario_local\Documents\GitHub\NineandoCorp\ProyectoH\src\sdlutils\SDLUtils.h(190,26):
-  vea la declaración de 'SDLUtils::intConst'
-  C:\Users\usuario_local\Documents\GitHub\NineandoCorp\ProyectoH\src\sdlutils\SDLUtils.h(17,7):
-  vea la declaración de 'SDLUtils'
-  
-C:\Users\usuario_local\Documents\GitHub\NineandoCorp\ProyectoH\src\components\FramedImage.h(19,23): error C2064: el término no se evalúa como una función con 0 argumentos
-  (compilando archivo de origen "src/components/FramedImage.cpp")
-  
-C:\Users\usuario_local\Documents\GitHub\NineandoCorp\ProyectoH\src\components\FramedImage.h(20,26): error C2248: 'SDLUtils::intConst': no se puede obtener acceso al miembro private miembro declarado en la clase 'SDLUtils'
-  (compilando archivo de origen "src/components/FramedImage.cpp")
-  C:\Users\usuario_local\Documents\GitHub\NineandoCorp\ProyectoH\src\sdlutils\SDLUtils.h(190,26):
-  vea la declaración de 'SDLUtils::intConst'
-  C:\Users\usuario_local\Documents\GitHub\NineandoCorp\ProyectoH\src\sdlutils\SDLUtils.h(17,7):
-  vea la declaración de 'SDLUtils'
-  
-C:\Users\usuario_local\Documents\GitHub\NineandoCorp\ProyectoH\src\components\FramedImage.h(20,26): error C2064: el término no se evalúa como una función con 0 argumentos
-  (compilando archivo de origen "src/components/FramedImage.cpp")
-  
-C:\Users\usuario_local\Documents\GitHub\NineandoCorp\ProyectoH\src\components\FramedImage.h(21,23): error C2248: 'SDLUtils::intConst': no se puede obtener acceso al miembro private miembro declarado en la clase 'SDLUtils'
-  (compilando archivo de origen "src/components/FramedImage.cpp")
-  C:\Users\usuario_local\Documents\GitHub\NineandoCorp\ProyectoH\src\sdlutils\SDLUtils.h(190,26):
-  vea la declaración de 'SDLUtils::intConst'
-  C:\Users\usuario_local\Documents\GitHub\NineandoCorp\ProyectoH\src\sdlutils\SDLUtils.h(17,7):
-  vea la declaración de 'SDLUtils'
-  
-C:\Users\usuario_local\Documents\GitHub\NineandoCorp\ProyectoH\src\components\FramedImage.h(21,23): error C2064: el término no se evalúa como una función con 0 argumentos
-  (compilando archivo de origen "src/components/FramedImage.cpp")
-  
-C:\Users\usuario_local\Documents\GitHub\NineandoCorp\ProyectoH\src\components\FramedImage.h(22,24): error C2248: 'SDLUtils::intConst': no se puede obtener acceso al miembro private miembro declarado en la clase 'SDLUtils'
-  (compilando archivo de origen "src/components/FramedImage.cpp")
-  C:\Users\usuario_local\Documents\GitHub\NineandoCorp\ProyectoH\src\sdlutils\SDLUtils.h(190,26):
-  vea la declaración de 'SDLUtils::intConst'
-  C:\Users\usuario_local\Documents\GitHub\NineandoCorp\ProyectoH\src\sdlutils\SDLUtils.h(17,7):
-  vea la declaración de 'SDLUtils'
-  
-C:\Users\usuario_local\Documents\GitHub\NineandoCorp\ProyectoH\src\components\FramedImage.h(22,24): error C2064: el término no se evalúa como una función con 0 argumentos
-  (compilando archivo de origen "src/components/FramedImage.cpp")
-  
-C:\Users\usuario_local\Documents\GitHub\NineandoCorp\ProyectoH\src\components\FramedImage.h(23,25): error C2248: 'SDLUtils::intConst': no se puede obtener acceso al miembro private miembro declarado en la clase 'SDLUtils'
-  (compilando archivo de origen "src/components/FramedImage.cpp")
-  C:\Users\usuario_local\Documents\GitHub\NineandoCorp\ProyectoH\src\sdlutils\SDLUtils.h(190,26):
-  vea la declaración de 'SDLUtils::intConst'
-  C:\Users\usuario_local\Documents\GitHub\NineandoCorp\ProyectoH\src\sdlutils\SDLUtils.h(17,7):
-  vea la declaración de 'SDLUtils'
-  
-C:\Users\usuario_local\Documents\GitHub\NineandoCorp\ProyectoH\src\components\FramedImage.h(23,25): error C2064: el término no se evalúa como una función con 0 argumentos
-  (compilando archivo de origen "src/components/FramedImage.cpp")
-  
-C:\Users\usuario_local\Documents\GitHub\NineandoCorp\ProyectoH\src\components\FramedImage.h(18,29): warning C4244: 'inicializando': conversión de 'double' a 'float'; posible pérdida de datos
-  (compilando archivo de origen "src/components/FramedImage.cpp")
-  
-C:\Users\usuario_local\Documents\GitHub\NineandoCorp\ProyectoH\src\components\FramedImage.cpp(11,36): warning C4244: '+=': conversión de 'double' a 'float'; posible pérdida de datos
-C:\Users\usuario_local\Documents\GitHub\NineandoCorp\ProyectoH\src\components\FramedImage.cpp(19,3): warning C4244: 'argumento': conversión de 'const int' a 'float'; posible pérdida de datos
-C:\Users\usuario_local\Documents\GitHub\NineandoCorp\ProyectoH\src\components\FramedImage.cpp(18,3): warning C4244: 'argumento': conversión de 'const int' a 'float'; posible pérdida de datos
-C:\Users\usuario_local\Documents\GitHub\NineandoCorp\ProyectoH\src\components\FramedImage.cpp(17,47): warning C4244: 'argumento': conversión de 'int' a 'float'; posible pérdida de datos
-C:\Users\usuario_local\Documents\GitHub\NineandoCorp\ProyectoH\src\components\FramedImage.cpp(16,33): warning C4244: 'argumento': conversión de 'int' a 'float'; posible pérdida de datos
-  HealthComponent.cpp
-  MovementComponent.cpp
-  RouteComponent.cpp
+C:\Users\Javi\Desktop\NineandoCorp\ProyectoH\src\components\FramedImage.h(7,29): error C2504: 'Component': clase base sin definir
+C:\Users\Javi\Desktop\NineandoCorp\ProyectoH\src\components\FramedImage.h(19,23): error C2248: 'SDLUtils::intConst': no se puede obtener acceso al miembro private miembro declarado en la clase 'SDLUtils'
+C:\Users\Javi\Desktop\NineandoCorp\ProyectoH\src\sdlutils\SDLUtils.h(190,26): message : vea la declaración de 'SDLUtils::intConst'
+C:\Users\Javi\Desktop\NineandoCorp\ProyectoH\src\sdlutils\SDLUtils.h(17,7): message : vea la declaración de 'SDLUtils'
+C:\Users\Javi\Desktop\NineandoCorp\ProyectoH\src\components\FramedImage.h(19,23): error C2064: el término no se evalúa como una función con 0 argumentos
+C:\Users\Javi\Desktop\NineandoCorp\ProyectoH\src\components\FramedImage.h(20,26): error C2248: 'SDLUtils::intConst': no se puede obtener acceso al miembro private miembro declarado en la clase 'SDLUtils'
+C:\Users\Javi\Desktop\NineandoCorp\ProyectoH\src\sdlutils\SDLUtils.h(190,26): message : vea la declaración de 'SDLUtils::intConst'
+C:\Users\Javi\Desktop\NineandoCorp\ProyectoH\src\sdlutils\SDLUtils.h(17,7): message : vea la declaración de 'SDLUtils'
+C:\Users\Javi\Desktop\NineandoCorp\ProyectoH\src\components\FramedImage.h(20,26): error C2064: el término no se evalúa como una función con 0 argumentos
+C:\Users\Javi\Desktop\NineandoCorp\ProyectoH\src\components\FramedImage.h(21,23): error C2248: 'SDLUtils::intConst': no se puede obtener acceso al miembro private miembro declarado en la clase 'SDLUtils'
+C:\Users\Javi\Desktop\NineandoCorp\ProyectoH\src\sdlutils\SDLUtils.h(190,26): message : vea la declaración de 'SDLUtils::intConst'
+C:\Users\Javi\Desktop\NineandoCorp\ProyectoH\src\sdlutils\SDLUtils.h(17,7): message : vea la declaración de 'SDLUtils'
+C:\Users\Javi\Desktop\NineandoCorp\ProyectoH\src\components\FramedImage.h(21,23): error C2064: el término no se evalúa como una función con 0 argumentos
+C:\Users\Javi\Desktop\NineandoCorp\ProyectoH\src\components\FramedImage.h(22,24): error C2248: 'SDLUtils::intConst': no se puede obtener acceso al miembro private miembro declarado en la clase 'SDLUtils'
+C:\Users\Javi\Desktop\NineandoCorp\ProyectoH\src\sdlutils\SDLUtils.h(190,26): message : vea la declaración de 'SDLUtils::intConst'
+C:\Users\Javi\Desktop\NineandoCorp\ProyectoH\src\sdlutils\SDLUtils.h(17,7): message : vea la declaración de 'SDLUtils'
+C:\Users\Javi\Desktop\NineandoCorp\ProyectoH\src\components\FramedImage.h(22,24): error C2064: el término no se evalúa como una función con 0 argumentos
+C:\Users\Javi\Desktop\NineandoCorp\ProyectoH\src\components\FramedImage.h(23,25): error C2248: 'SDLUtils::intConst': no se puede obtener acceso al miembro private miembro declarado en la clase 'SDLUtils'
+C:\Users\Javi\Desktop\NineandoCorp\ProyectoH\src\sdlutils\SDLUtils.h(190,26): message : vea la declaración de 'SDLUtils::intConst'
+C:\Users\Javi\Desktop\NineandoCorp\ProyectoH\src\sdlutils\SDLUtils.h(17,7): message : vea la declaración de 'SDLUtils'
+C:\Users\Javi\Desktop\NineandoCorp\ProyectoH\src\components\FramedImage.h(23,25): error C2064: el término no se evalúa como una función con 0 argumentos
+C:\Users\Javi\Desktop\NineandoCorp\ProyectoH\src\components\FramedImage.h(18,29): warning C4244: 'inicializando': conversión de 'double' a 'float'; posible pérdida de datos
+C:\Users\Javi\Desktop\NineandoCorp\ProyectoH\src\components\FramedImage.cpp(11,36): warning C4244: '+=': conversión de 'double' a 'float'; posible pérdida de datos
+C:\Users\Javi\Desktop\NineandoCorp\ProyectoH\src\components\FramedImage.cpp(19,3): warning C4244: 'argumento': conversión de 'const int' a 'float'; posible pérdida de datos
+C:\Users\Javi\Desktop\NineandoCorp\ProyectoH\src\components\FramedImage.cpp(18,3): warning C4244: 'argumento': conversión de 'const int' a 'float'; posible pérdida de datos
+C:\Users\Javi\Desktop\NineandoCorp\ProyectoH\src\components\FramedImage.cpp(17,47): warning C4244: 'argumento': conversión de 'int' a 'float'; posible pérdida de datos
+C:\Users\Javi\Desktop\NineandoCorp\ProyectoH\src\components\FramedImage.cpp(16,33): warning C4244: 'argumento': conversión de 'int' a 'float'; posible pérdida de datos
   Transform.cpp
-C:\Users\usuario_local\Documents\GitHub\NineandoCorp\ProyectoH\src\components\Transform.cpp(51,57): warning C4244: 'argumento': conversión de 'double' a 'float'; posible pérdida de datos
-C:\Users\usuario_local\Documents\GitHub\NineandoCorp\ProyectoH\src\utils\Singleton.h(57,24): error C2661: 'SDLUtils::SDLUtils': ninguna función sobrecargada acepta 5 argumentos
-  (compilando archivo de origen "src/components/Transform.cpp")
-  C:\Users\usuario_local\Documents\GitHub\NineandoCorp\ProyectoH\src\utils\Singleton.h(57,24):
-  al hacer coincidir la lista de argumentos '(const char [9], _Ty, _Ty, const char [41], const char [38])'
+C:\Users\Javi\Desktop\NineandoCorp\ProyectoH\src\components\Transform.cpp(51,57): warning C4244: 'argumento': conversión de 'double' a 'float'; posible pérdida de datos
+C:\Users\Javi\Desktop\NineandoCorp\ProyectoH\src\utils\Singleton.h(57,24): error C2661: 'SDLUtils::SDLUtils': ninguna función sobrecargada acepta 5 argumentos
+C:\Users\Javi\Desktop\NineandoCorp\ProyectoH\src\utils\Singleton.h(57,24): message : al hacer coincidir la lista de argumentos '(const char [10], _Ty, _Ty, const char [44], const char [38])'
           with
           [
               _Ty=int
           ]
-  C:\Users\usuario_local\Documents\GitHub\NineandoCorp\ProyectoH\src\utils\Singleton.h(57,24):
-  el contexto de creación de instancias de la plantilla (el más antiguo primero) es
-  	C:\Users\usuario_local\Documents\GitHub\NineandoCorp\ProyectoH\src\game\Game.h(24,13):
-  	Vea la referencia a la creación de una instancia de la función plantilla "T *Singleton<T>::init<const char(&)[9],int,int,const char(&)[41],const char(&)[38]>(const char (&)[9],int &&,int &&,const char (&)[41],const char (&)[38])" que se está compilando
+C:\Users\Javi\Desktop\NineandoCorp\ProyectoH\src\game\Game.h(24,13): message : Vea la referencia a la creación de una instancia de la función plantilla "T *Singleton<T>::init<const char(&)[10],int,int,const char(&)[44],const char(&)[38]>(const char (&)[10],int &&,int &&,const char (&)[44],const char (&)[38])" que se está compilando
           with
           [
               T=SDLUtils
           ]
-  		C:\Users\usuario_local\Documents\GitHub\NineandoCorp\ProyectoH\src\game\Game.h(24,17):
-  		vea la primera referencia a “Singleton<SDLUtils>::init” en “Game::Game”
-  
-  Manager.cpp
+C:\Users\Javi\Desktop\NineandoCorp\ProyectoH\src\game\Game.h(24,17): message : vea la primera referencia a “Singleton<SDLUtils>::init” en “Game::Game”
   Game.cpp
-C:\Users\usuario_local\Documents\GitHub\NineandoCorp\ProyectoH\src\utils\Singleton.h(57,24): error C2661: 'SDLUtils::SDLUtils': ninguna función sobrecargada acepta 5 argumentos
-  (compilando archivo de origen "src/game/Game.cpp")
-  C:\Users\usuario_local\Documents\GitHub\NineandoCorp\ProyectoH\src\utils\Singleton.h(57,24):
-  al hacer coincidir la lista de argumentos '(const char [9], _Ty, _Ty, const char [41], const char [38])'
+C:\Users\Javi\Desktop\NineandoCorp\ProyectoH\src\utils\Singleton.h(57,24): error C2661: 'SDLUtils::SDLUtils': ninguna función sobrecargada acepta 5 argumentos
+C:\Users\Javi\Desktop\NineandoCorp\ProyectoH\src\utils\Singleton.h(57,24): message : al hacer coincidir la lista de argumentos '(const char [10], _Ty, _Ty, const char [44], const char [38])'
           with
           [
               _Ty=int
           ]
-  C:\Users\usuario_local\Documents\GitHub\NineandoCorp\ProyectoH\src\utils\Singleton.h(57,24):
-  el contexto de creación de instancias de la plantilla (el más antiguo primero) es
-  	C:\Users\usuario_local\Documents\GitHub\NineandoCorp\ProyectoH\src\game\Game.h(24,13):
-  	Vea la referencia a la creación de una instancia de la función plantilla "T *Singleton<T>::init<const char(&)[9],int,int,const char(&)[41],const char(&)[38]>(const char (&)[9],int &&,int &&,const char (&)[41],const char (&)[38])" que se está compilando
+C:\Users\Javi\Desktop\NineandoCorp\ProyectoH\src\game\Game.h(24,13): message : Vea la referencia a la creación de una instancia de la función plantilla "T *Singleton<T>::init<const char(&)[10],int,int,const char(&)[44],const char(&)[38]>(const char (&)[10],int &&,int &&,const char (&)[44],const char (&)[38])" que se está compilando
           with
           [
               T=SDLUtils
           ]
-  		C:\Users\usuario_local\Documents\GitHub\NineandoCorp\ProyectoH\src\game\Game.h(24,17):
-  		vea la primera referencia a “Singleton<SDLUtils>::init” en “Game::Game”
-  
-C:\Users\usuario_local\Documents\GitHub\NineandoCorp\ProyectoH\src\game\Game.h(39,36): error C2280: 'PlayState::PlayState(void)': se está intentando hacer referencia a una función eliminada.
-  (compilando archivo de origen "src/game/Game.cpp")
-  C:\Users\usuario_local\Documents\GitHub\NineandoCorp\ProyectoH\src\game\PlayState.h(9,1):
-  el compilador generó 'PlayState::PlayState' aquí
-  C:\Users\usuario_local\Documents\GitHub\NineandoCorp\ProyectoH\src\game\PlayState.h(9,1):
-  "PlayState::PlayState(void)": la función se eliminó implícitamente porque un objeto "GameState" clase base no tiene ningún elemento constructor predeterminado adecuado o la resolución de sobrecarga era ambigua.
-  C:\Users\usuario_local\Documents\GitHub\NineandoCorp\ProyectoH\src\game\GameState.h(9,7):
-  vea la declaración de 'GameState'
-  C:\Users\usuario_local\Documents\GitHub\NineandoCorp\ProyectoH\src\game\Game.h(39,36):
-  el contexto de creación de instancias de la plantilla (el más antiguo primero) es
-  	C:\Users\usuario_local\Documents\GitHub\NineandoCorp\ProyectoH\src\game\Game.cpp(11,2):
-  	Vea la referencia a la creación de una instancia de la función plantilla "void Game::pushState<PlayState,>(void)" que se está compilando
-  
-C:\Users\usuario_local\Documents\GitHub\NineandoCorp\ProyectoH\src\game\Game.h(39,36): error C2280: 'MainMenuState::MainMenuState(void)': se está intentando hacer referencia a una función eliminada.
-  (compilando archivo de origen "src/game/Game.cpp")
-  C:\Users\usuario_local\Documents\GitHub\NineandoCorp\ProyectoH\src\game\MainMenuState.h(8,1):
-  el compilador generó 'MainMenuState::MainMenuState' aquí
-  C:\Users\usuario_local\Documents\GitHub\NineandoCorp\ProyectoH\src\game\MainMenuState.h(8,1):
-  "MainMenuState::MainMenuState(void)": la función se eliminó implícitamente porque un objeto "GameState" clase base no tiene ningún elemento constructor predeterminado adecuado o la resolución de sobrecarga era ambigua.
-  C:\Users\usuario_local\Documents\GitHub\NineandoCorp\ProyectoH\src\game\GameState.h(9,7):
-  vea la declaración de 'GameState'
-  C:\Users\usuario_local\Documents\GitHub\NineandoCorp\ProyectoH\src\game\Game.h(39,36):
-  el contexto de creación de instancias de la plantilla (el más antiguo primero) es
-  	C:\Users\usuario_local\Documents\GitHub\NineandoCorp\ProyectoH\src\game\Game.cpp(12,2):
-  	Vea la referencia a la creación de una instancia de la función plantilla "void Game::pushState<MainMenuState,>(void)" que se está compilando
-  
-  GameOverState.cpp
-  GameStateMachine.cpp
+C:\Users\Javi\Desktop\NineandoCorp\ProyectoH\src\game\Game.h(24,17): message : vea la primera referencia a “Singleton<SDLUtils>::init” en “Game::Game”
+  GameState.cpp
+C:\Users\Javi\Desktop\NineandoCorp\ProyectoH\src\utils\Singleton.h(57,24): error C2661: 'SDLUtils::SDLUtils': ninguna función sobrecargada acepta 5 argumentos
+C:\Users\Javi\Desktop\NineandoCorp\ProyectoH\src\utils\Singleton.h(57,24): message : al hacer coincidir la lista de argumentos '(const char [10], _Ty, _Ty, const char [44], const char [38])'
+          with
+          [
+              _Ty=int
+          ]
+C:\Users\Javi\Desktop\NineandoCorp\ProyectoH\src\game\Game.h(24,13): message : Vea la referencia a la creación de una instancia de la función plantilla "T *Singleton<T>::init<const char(&)[10],int,int,const char(&)[44],const char(&)[38]>(const char (&)[10],int &&,int &&,const char (&)[44],const char (&)[38])" que se está compilando
+          with
+          [
+              T=SDLUtils
+          ]
+C:\Users\Javi\Desktop\NineandoCorp\ProyectoH\src\game\Game.h(24,17): message : vea la primera referencia a “Singleton<SDLUtils>::init” en “Game::Game”
   MainMenuState.cpp
-  PauseState.cpp
   PlayState.cpp
-  main.cpp
-  SDLUtils.cpp
   sdlutils_demo.cpp
-C:\Users\usuario_local\Documents\GitHub\NineandoCorp\ProyectoH\src\sdlutils\SDLUtils.h(50,32): warning C4101: 'e': variable local sin referencia
-  (compilando archivo de origen "src/sdlutils/sdlutils_demo.cpp")
-  C:\Users\usuario_local\Documents\GitHub\NineandoCorp\ProyectoH\src\sdlutils\SDLUtils.h(50,32):
-  el contexto de creación de instancias de la plantilla (el más antiguo primero) es
-  	C:\Users\usuario_local\Documents\GitHub\NineandoCorp\ProyectoH\src\sdlutils\SDLUtils.h(193,30):
-  	Vea la referencia a la creación de una instancia de clase plantilla "SDLUtils::map_access_wrapper<Texture>" que se está compilando
-  	C:\Users\usuario_local\Documents\GitHub\NineandoCorp\ProyectoH\src\sdlutils\SDLUtils.h(47,16):
-  	al compilar la función del miembro clase plantilla "Texture &SDLUtils::map_access_wrapper<Texture>::at(std::string)"
-  
-  Texture.cpp
-  Generando código...
-  Compilando...
-  Collisions.cpp
-  Vector2D.cpp
+C:\Users\Javi\Desktop\NineandoCorp\ProyectoH\src\sdlutils\SDLUtils.h(50,32): warning C4101: 'e': variable local sin referencia
+C:\Users\Javi\Desktop\NineandoCorp\ProyectoH\src\sdlutils\SDLUtils.h(47,16): message : al compilar la función del miembro clase plantilla "Texture &SDLUtils::map_access_wrapper<Texture>::at(std::string)"
+C:\Users\Javi\Desktop\NineandoCorp\ProyectoH\src\sdlutils\SDLUtils.h(193,30): message : Vea la referencia a la creación de una instancia de clase plantilla "SDLUtils::map_access_wrapper<Texture>" que se está compilando
   TowerSystem.cpp
-/TowerSystem.cpp(1,1): error C1083: No se puede abrir el archivo origen: 'TowerSystem.cpp': No such file or directory
-  (compilando archivo de origen "/TowerSystem.cpp")
-  
+c1xx : fatal  error C1083: No se puede abrir el archivo origen: 'TowerSystem.cpp': No such file or directory
   DirtTower.cpp
-U:\hlocal\NineandoCorp\ProyectoH\src\components\DirtTower.cpp(1,1): error C1083: No se puede abrir el archivo origen: 'U:\hlocal\NineandoCorp\ProyectoH\src\components\DirtTower.cpp': No such file or directory
-  (compilando archivo de origen "U:/hlocal/NineandoCorp/ProyectoH/src/components/DirtTower.cpp")
-  
+c1xx : fatal  error C1083: No se puede abrir el archivo origen: 'U:\hlocal\NineandoCorp\ProyectoH\src\components\DirtTower.cpp': No such file or directory
   Generando código...

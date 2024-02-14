@@ -1,9 +1,9 @@
 #include "BulletComponent.h"
 
-BulletComponent::BulletComponent(Entity* target): targetEntity_(target){
+BulletComponent::BulletComponent(): targetEntity_(nullptr){
 	initComponent();
-	Vector2D vel = t.getPosition() - mngr_->getComponent<Transform>(targetEntity_).getPosition();
-	t.setVelocity(vel);
+	Vector2D vel = *(t->getPosition()) - *(mngr_->getComponent<Transform>(targetEntity_)->getPosition());
+	t->setVelocity(vel);
 }
 
 void BulletComponent::initComponent() {
@@ -15,7 +15,7 @@ void BulletComponent::update() {
 	if (targetEntity_ == nullptr) {
 		onTravelEnds();
 	}
-	else if (t->getPosition()->normalize() - targetEntity_->getPosition().normalize() <= 0) {
+	else if ((*(t->getPosition()) - *(mngr_->getComponent<Transform>(targetEntity_)->getPosition())).magnitude() <= 0.1f) {
 		onTravelEnds();
 	}
 }

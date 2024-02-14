@@ -5,7 +5,7 @@ class PlayState : public GameState
 {
 public:
 	PlayState();
-	~PlayState();
+	virtual ~PlayState();
 
 	void handleInput() override;
 	void update() override;
