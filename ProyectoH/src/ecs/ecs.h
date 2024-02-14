@@ -55,11 +55,9 @@ constexpr grpId_type maxGroupId = _LAST_GRP_ID;
 using gmSttId_type = uint8_t;
 enum gmSttId : gmSttId_type {
 	_gmStt_PLAY,
-	_gmStt_MULTIPLAYER,
 	_gmStt_PAUSE,
 	_gmStt_GAMEOVER,
 	_gmStt_MAINMENU,
-	_gmStt_CLIENT_CONECTION,
 
 	// do not remove this
 	_LAST_GMSTT_ID
