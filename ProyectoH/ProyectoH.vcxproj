@@ -19,6 +19,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="PauseState.h" />
     <ClInclude Include="src\components\AttackComponent.h" />
     <ClInclude Include="src\components\BulletTower.h" />
     <ClInclude Include="src\components\FramedImage.h" />
@@ -31,9 +32,11 @@
     <ClInclude Include="src\ecs\Manager.h" />
     <ClInclude Include="src\ecs\System.h" />
     <ClInclude Include="src\game\Game.h" />
+    <ClInclude Include="src\game\GameOverState.h" />
     <ClInclude Include="src\game\GameState.h" />
     <ClInclude Include="src\game\GameStateMachine.h" />
     <ClInclude Include="src\game\MainMenuState.h" />
+    <ClInclude Include="src\game\PauseState.h" />
     <ClInclude Include="src\game\PlayState.h" />
     <ClInclude Include="src\json\JSON.h" />
     <ClInclude Include="src\json\JSONValue.h" />
@@ -56,6 +59,7 @@
     <ClInclude Include="U:\hlocal\NineandoCorp\ProyectoH\src\components\DirtTower.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="PauseState.cpp" />
     <ClCompile Include="src\components\AttackComponent.cpp" />
     <ClCompile Include="src\components\BulletTower.cpp" />
     <ClCompile Include="src\components\FramedImage.cpp" />
@@ -64,8 +68,10 @@
     <ClCompile Include="src\components\Transform.cpp" />
     <ClCompile Include="src\ecs\Manager.cpp" />
     <ClCompile Include="src\game\Game.cpp" />
+    <ClCompile Include="src\game\GameOverState.cpp" />
     <ClCompile Include="src\game\GameStateMachine.cpp" />
     <ClCompile Include="src\game\MainMenuState.cpp" />
+    <ClCompile Include="src\game\PauseState.cpp" />
     <ClCompile Include="src\game\PlayState.cpp" />
     <ClCompile Include="src\json\JSON.cpp" />
     <ClCompile Include="src\json\JSONValue.cpp" />
