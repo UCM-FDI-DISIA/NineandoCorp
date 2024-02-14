@@ -19,8 +19,8 @@ SDLUtils::SDLUtils(std::string windowTitle, int width, int height) :
 	imagesAccessWrapper_(images_, "Images Table"), //
 	msgsAccessWrapper_(msgs_, "Messages Table"), //
 	soundsAccessWrapper_(sounds_, "Sounds Table"), //
-	musicsAccessWrapper_(musics_, "Musics Table") ///
-	intConstAccessWrapper_(intConst, "Int Constant Table");
+	musicsAccessWrapper_(musics_, "Musics Table"), ///
+	intConstAccessWrapper_(intConst, "Int Constant Table")
 {
 
 	initWindow();
