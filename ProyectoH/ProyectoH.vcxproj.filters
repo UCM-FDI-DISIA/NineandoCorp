@@ -159,6 +159,9 @@
     <ClInclude Include="src\components\BulletTower.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="src\components\RouteComponent.h">
+      <Filter>Header Files\components</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\json\JSONValue.cpp">
@@ -217,6 +220,9 @@
     </ClCompile>
     <ClCompile Include="src\components\BulletTower.cpp">
       <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\components\RouteComponent.cpp">
+      <Filter>Source Files\components</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
