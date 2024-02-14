@@ -7,10 +7,10 @@
 #include "../sdlutils/InputHandler.h"
 #include "../utils/Singleton.h"
 
-//#include "../gameStates/PlayState.h"
+#include "../game/PlayState.h"
 //#include "../gameStates/PauseState.h"
 //#include "../gameStates/GameOverState.h"
-//#include "../gameStates/MainMenuState.h"
+#include "../game/MainMenuState.h"
 
 class Game : public Singleton<Game> {
 	friend Singleton<Game>;

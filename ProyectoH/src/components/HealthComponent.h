@@ -5,12 +5,18 @@
 class HealthComponent : public Component
 {
 private:
-	float health_;
+	float currentHealth_;
+	float maxHealth_;
 
 public:
-	HealthComponent(Manager* manager_, Entity* ent_ ,float l);
-	float getHealth() { return health_; };
+	HealthComponent(float l);
+	float getHealth() { return currentHealth_; };
 	void addHealth(float health);
 	void subtractHealth(float health);
+	void initComponent();
+	void resetHealth();
+	void setHealth(float health);
+	Entity* getHealthBar() { return ent_; };
+
 };
 
