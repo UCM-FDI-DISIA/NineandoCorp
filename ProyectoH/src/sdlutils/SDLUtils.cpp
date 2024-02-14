@@ -20,7 +20,7 @@ SDLUtils::SDLUtils(std::string windowTitle, int width, int height) :
 	msgsAccessWrapper_(msgs_, "Messages Table"), //
 	soundsAccessWrapper_(sounds_, "Sounds Table"), //
 	musicsAccessWrapper_(musics_, "Musics Table"), ///
-	intConstAccessWrapper_(intConst, "Int Constant Table")
+	intConstAccessWrapper_(intConst_, "Int Constant Table")
 {
 
 	initWindow();
@@ -268,7 +268,57 @@ void SDLUtils::loadReasources(std::string filename) {
 			throw "'musics' is not an array";
 		}
 	}
+}
 
+void SDLUtils::loadConstants(std::string filename) {
+	// TODO check the correctness of values and issue a corresponding
+	// exception. Now we just do some simple checks, and assume input
+	// is correct.
+
+	// Load JSON configuration file. We use a unique pointer since we
+	// can exit the method in different ways, this way we guarantee that
+	// it is always deleted
+	std::unique_ptr<JSONValue> jValueRoot(JSON::ParseFromFile(filename));
+
+	// check it was loaded correctly
+	// the root must be a JSON object
+	if (jValueRoot == nullptr || !jValueRoot->IsObject()) {
+		throw "Something went wrong while load/parsing '" + filename + "'";
+	}
+
+	// we know the root is JSONObject
+	JSONObject root = jValueRoot->AsObject();
+	JSONValue* jValue = nullptr;
+
+	// TODO improve syntax error checks below, now we do not check
+	//      validity of keys with values as sting or integer
+
+	// load ints
+	jValue = root["intConst"];
+	if (jValue != nullptr) {
+		if (jValue->IsArray()) {
+			msgs_.reserve(jValue->AsArray().size()); // reserve enough space to avoid resizing
+			for (auto& v : jValue->AsArray()) {
+				if (v->IsObject()) {
+					JSONObject vObj = v->AsObject();
+					std::string key = vObj["id"]->AsString();
+					int val = static_cast<int>(vObj["value"]->AsNumber());
+#ifdef _DEBUG
+					std::cout << "Loading int with id: " << key
+						<< std::endl;
+#endif
+					intConst_.emplace(key, val);
+				}
+				else {
+					throw "'intConst' array in '" + filename
+						+ "' includes and invalid value";
+				}
+			}
+		}
+		else {
+			throw "'intConst' is not an array in '" + filename + "'";
+		}
+	}
 }
 
 void SDLUtils::closeSDLExtensions() {

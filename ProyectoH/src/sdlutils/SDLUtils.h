@@ -145,6 +145,11 @@ public:
 		return musicsAccessWrapper_;
 	}
 
+// int constants maps
+	inline auto& intConst() {
+		return intConstAccessWrapper_;
+	}
+
 // Access to the random number generator. It is important to always
 // use this generator, this way you can regenerate the same sequence
 // if you start from the same seed
@@ -174,6 +179,7 @@ private:
 	void initSDLExtensions(); // initialize resources (fonts, textures, audio, etc.)
 	void closeSDLExtensions(); // free resources the
 	void loadReasources(std::string filename); // load resources from the json file
+	void loadConstants(std::string filename);
 
 	std::string windowTitle_; // window title
 	int width_; // window width
@@ -187,7 +193,7 @@ private:
 	sdl_resource_table<Texture> msgs_; // textures map (string -> texture)
 	sdl_resource_table<SoundEffect> sounds_; // sounds map (string -> sound)
 	sdl_resource_table<Music> musics_; // musics map (string -> music)
-	sdl_resource_table<int> intConst;
+	sdl_resource_table<int> intConst_;
 
 	map_access_wrapper<Font> fontsAccessWrapper_;
 	map_access_wrapper<Texture> imagesAccessWrapper_;
