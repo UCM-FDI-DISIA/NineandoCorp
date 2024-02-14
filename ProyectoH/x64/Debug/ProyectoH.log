@@ -1,30 +1,242 @@
-﻿c:\software\programacion\MSVStudio2022\MSBuild\Microsoft\VC\v170\Microsoft.CppBuild.targets(517,5): warning MSB8004: El directorio Output no termina con una barra diagonal final. Esta instancia de compilación agregará la barra diagonal porque es necesaria para que se pueda evaluar correctamente el directorio Output.
-c:\software\programacion\MSVStudio2022\MSBuild\Microsoft\VC\v170\Microsoft.CppBuild.targets(531,5): warning MSB8028: El directorio intermedio (x64\Debug\) contiene archivos compartidos de otro proyecto (TPV2.vcxproj). Esto puede dar lugar a un comportamiento incorrecto de limpieza y recompilación.
-  AttackComponent.cpp
-C:\Users\usuario_local\Documents\GitHub\NineandoCorp\ProyectoH\src\components\AttackComponent.cpp(11,32): warning C4244: '=': conversión de 'Uint32' a 'float'; posible pérdida de datos
-C:\Users\usuario_local\Documents\GitHub\NineandoCorp\ProyectoH\src\components\AttackComponent.cpp(41,13): warning C4244: 'return': conversión de 'double' a 'float'; posible pérdida de datos
+﻿C:\Program Files\Microsoft Visual Studio\2022\Community\MSBuild\Microsoft\VC\v170\Microsoft.CppBuild.targets(517,5): warning MSB8004: El directorio Output no termina con una barra diagonal final. Esta instancia de compilación agregará la barra diagonal porque es necesaria para que se pueda evaluar correctamente el directorio Output.
+C:\Program Files\Microsoft Visual Studio\2022\Community\MSBuild\Microsoft\VC\v170\Microsoft.CppBuild.targets(531,5): warning MSB8028: El directorio intermedio (x64\Debug\) contiene archivos compartidos de otro proyecto (TPV2.vcxproj). Esto puede dar lugar a un comportamiento incorrecto de limpieza y recompilación.
+  BulletComponent.cpp
   FramedImage.cpp
-C:\Users\usuario_local\Documents\GitHub\NineandoCorp\ProyectoH\src\components\FramedImage.h(6,10): fatal  error C1083: No se puede abrir el archivo incluir: 'Image.h': No such file or directory
+C:\Users\usuario\Desktop\2ºUniversidad\P2\NineandoCorp\ProyectoH\BulletComponent.cpp(1,10): error C1083: No se puede abrir el archivo incluir: 'BulletComponent.h': No such file or directory
+C:\Users\usuario\Desktop\2ºUniversidad\P2\NineandoCorp\ProyectoH\src\components\FramedImage.h(6,10): error C1083: No se puede abrir el archivo incluir: 'Image.h': No such file or directory
+  (compilando archivo de origen "src/components/FramedImage.cpp")
+  
   LifeComponent.cpp
+/src/components/LifeComponent.cpp(1,1): error C1083: No se puede abrir el archivo origen: 'src\components\LifeComponent.cpp': No such file or directory
+  (compilando archivo de origen "/src/components/LifeComponent.cpp")
+  
   MovementComponent.cpp
   Transform.cpp
-C:\Users\usuario_local\Documents\GitHub\NineandoCorp\ProyectoH\src\game\GameState.h(6,10): fatal  error C1083: No se puede abrir el archivo incluir: '../systems/GameCtrlSystem.h': No such file or directory
+C:\Users\usuario\Desktop\2ºUniversidad\P2\NineandoCorp\ProyectoH\src\game\GameState.h(6,10): error C1083: No se puede abrir el archivo incluir: '../systems/GameCtrlSystem.h': No such file or directory
+  (compilando archivo de origen "src/components/Transform.cpp")
+  
   Manager.cpp
   Game.cpp
-C:\Users\usuario_local\Documents\GitHub\NineandoCorp\ProyectoH\src\game\GameState.h(6,10): fatal  error C1083: No se puede abrir el archivo incluir: '../systems/GameCtrlSystem.h': No such file or directory
+C:\Users\usuario\Desktop\2ºUniversidad\P2\NineandoCorp\ProyectoH\src\game\GameState.h(6,10): error C1083: No se puede abrir el archivo incluir: '../systems/GameCtrlSystem.h': No such file or directory
+  (compilando archivo de origen "src/game/Game.cpp")
+  
   GameStateMachine.cpp
-C:\Users\usuario_local\Documents\GitHub\NineandoCorp\ProyectoH\src\game\GameState.h(6,10): fatal  error C1083: No se puede abrir el archivo incluir: '../systems/GameCtrlSystem.h': No such file or directory
+C:\Users\usuario\Desktop\2ºUniversidad\P2\NineandoCorp\ProyectoH\src\game\GameState.h(6,10): error C1083: No se puede abrir el archivo incluir: '../systems/GameCtrlSystem.h': No such file or directory
+  (compilando archivo de origen "src/game/GameStateMachine.cpp")
+  
   JSON.cpp
-  JSONValue.cpp
-  json_demo.cpp
-  main.cpp
-  SDLUtils.cpp
-  sdlutils_demo.cpp
-C:\Users\usuario_local\Documents\GitHub\NineandoCorp\ProyectoH\src\sdlutils\SDLUtils.h(50,32): warning C4101: 'e': variable local sin referencia
-C:\Users\usuario_local\Documents\GitHub\NineandoCorp\ProyectoH\src\sdlutils\SDLUtils.h(47,16): message : al compilar la función del miembro clase plantilla "Texture &SDLUtils::map_access_wrapper<Texture>::at(std::string)"
-C:\Users\usuario_local\Documents\GitHub\NineandoCorp\ProyectoH\src\sdlutils\SDLUtils.h(192,30): message : Vea la referencia a la creación de una instancia de clase plantilla "SDLUtils::map_access_wrapper<Texture>" que se está compilando
-  SoundEffect.cpp
-  Texture.cpp
+  mapSystem.cpp
+C:\Users\usuario\Desktop\2ºUniversidad\P2\NineandoCorp\ProyectoH\src\systems\mapSystem.cpp(41,32): warning C4244: 'inicializando': conversión de 'double' a 'int'; posible pérdida de datos
+C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.38.33130\include\xmemory(723,82): error C2665: 'std::pair<const std::basic_string<char,std::char_traits<char>,std::allocator<char>>,size_t>::pair':ninguna función sobrecargada pudo convertir todos los tipos de argumento
+  (compilando archivo de origen "src/systems/mapSystem.cpp")
+  C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.38.33130\include\utility(254,5):
+  puede ser 'std::pair<const std::basic_string<char,std::char_traits<char>,std::allocator<char>>,size_t>::pair(std::pair<const std::basic_string<char,std::char_traits<char>,std::allocator<char>>,size_t> &&)'
+  	C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.38.33130\include\xmemory(723,82):
+  	'std::pair<const std::basic_string<char,std::char_traits<char>,std::allocator<char>>,size_t>::pair(std::pair<const std::basic_string<char,std::char_traits<char>,std::allocator<char>>,size_t> &&)': el argumento 1 no puede convertirse de '_Ty' a 'std::pair<const std::basic_string<char,std::char_traits<char>,std::allocator<char>>,size_t> &&'
+          with
+          [
+              _Ty=unsigned __int64
+          ]
+  		C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.38.33130\include\xmemory(723,103):
+  		Razón: no se puede realizar la conversión de '_Ty' a 'std::pair<const std::basic_string<char,std::char_traits<char>,std::allocator<char>>,size_t>'
+          with
+          [
+              _Ty=unsigned __int64
+          ]
+  C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.38.33130\include\utility(253,5):
+  o       'std::pair<const std::basic_string<char,std::char_traits<char>,std::allocator<char>>,size_t>::pair(const std::pair<const std::basic_string<char,std::char_traits<char>,std::allocator<char>>,size_t> &)'
+  	C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.38.33130\include\xmemory(723,82):
+  	'std::pair<const std::basic_string<char,std::char_traits<char>,std::allocator<char>>,size_t>::pair(const std::pair<const std::basic_string<char,std::char_traits<char>,std::allocator<char>>,size_t> &)': el argumento 1 no puede convertirse de '_Ty' a 'const std::pair<const std::basic_string<char,std::char_traits<char>,std::allocator<char>>,size_t> &'
+          with
+          [
+              _Ty=unsigned __int64
+          ]
+  		C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.38.33130\include\xmemory(723,103):
+  		Razón: no se puede realizar la conversión de '_Ty' a 'const std::pair<const std::basic_string<char,std::char_traits<char>,std::allocator<char>>,size_t>'
+          with
+          [
+              _Ty=unsigned __int64
+          ]
+  C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.38.33130\include\utility(312,5):
+  o       'std::pair<const std::basic_string<char,std::char_traits<char>,std::allocator<char>>,size_t>::pair(std::piecewise_construct_t,std::tuple<_Types1...>,std::tuple<_Types2...>)'
+  	C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.38.33130\include\xmemory(723,82):
+  	"std::pair<const std::basic_string<char,std::char_traits<char>,std::allocator<char>>,size_t>::pair(std::piecewise_construct_t,std::tuple<_Types1...>,std::tuple<_Types2...>)": espera 3 argumentos - 1 proporcionado
+  C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.38.33130\include\utility(308,5):
+  o       'std::pair<const std::basic_string<char,std::char_traits<char>,std::allocator<char>>,size_t>::pair(_Tuple1 &,_Tuple2 &,std::integer_sequence<size_t,_Indices1...>,std::integer_sequence<size_t,_Indices2...>)'
+  	C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.38.33130\include\xmemory(723,82):
+  	"std::pair<const std::basic_string<char,std::char_traits<char>,std::allocator<char>>,size_t>::pair(_Tuple1 &,_Tuple2 &,std::integer_sequence<size_t,_Indices1...>,std::integer_sequence<size_t,_Indices2...>)": espera 4 argumentos - 1 proporcionado
+  C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.38.33130\include\utility(275,5):
+  o       'std::pair<const std::basic_string<char,std::char_traits<char>,std::allocator<char>>,size_t>::pair(std::pair<_Other1,_Other2> &&) noexcept(<expr>)'
+  	C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.38.33130\include\xmemory(723,82):
+  	"std::pair<const std::basic_string<char,std::char_traits<char>,std::allocator<char>>,size_t>::pair(std::pair<_Other1,_Other2> &&) noexcept(<expr>)": no se pudo deducir el argumento plantilla para "std::pair<_Other1,_Other2> &&" de "_Ty"
+          with
+          [
+              _Ty=unsigned __int64
+          ]
+  C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.38.33130\include\utility(268,5):
+  o       'std::pair<const std::basic_string<char,std::char_traits<char>,std::allocator<char>>,size_t>::pair(const std::pair<_Other1,_Other2> &) noexcept(<expr>)'
+  	C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.38.33130\include\xmemory(723,82):
+  	"std::pair<const std::basic_string<char,std::char_traits<char>,std::allocator<char>>,size_t>::pair(const std::pair<_Other1,_Other2> &) noexcept(<expr>)": no se pudo deducir el argumento plantilla para "const std::pair<_Other1,_Other2> &" de "_Ty"
+          with
+          [
+              _Ty=unsigned __int64
+          ]
+  C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.38.33130\include\utility(247,5):
+  o       'std::pair<const std::basic_string<char,std::char_traits<char>,std::allocator<char>>,size_t>::pair(_Other1 &&,_Other2 &&) noexcept(<expr>)'
+  	C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.38.33130\include\xmemory(723,82):
+  	"std::pair<const std::basic_string<char,std::char_traits<char>,std::allocator<char>>,size_t>::pair(_Other1 &&,_Other2 &&) noexcept(<expr>)": espera 2 argumentos - 1 proporcionado
+  C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.38.33130\include\utility(236,5):
+  o       'std::pair<const std::basic_string<char,std::char_traits<char>,std::allocator<char>>,size_t>::pair(_Ty1 &,const _Ty2 &) noexcept(<expr>)'
+          with
+          [
+              _Ty1=const std::basic_string<char,std::char_traits<char>,std::allocator<char>>,
+              _Ty2=size_t
+          ]
+  	C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.38.33130\include\xmemory(723,82):
+  	"std::pair<const std::basic_string<char,std::char_traits<char>,std::allocator<char>>,size_t>::pair(_Ty1 &,const _Ty2 &) noexcept(<expr>)": espera 2 argumentos - 1 proporcionado
+          with
+          [
+              _Ty1=const std::basic_string<char,std::char_traits<char>,std::allocator<char>>,
+              _Ty2=size_t
+          ]
+  C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.38.33130\include\utility(228,5):
+  o       'std::pair<const std::basic_string<char,std::char_traits<char>,std::allocator<char>>,size_t>::pair(void) noexcept(<expr>)'
+  	C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.38.33130\include\xmemory(723,82):
+  	"std::pair<const std::basic_string<char,std::char_traits<char>,std::allocator<char>>,size_t>::pair(void) noexcept(<expr>)": espera 0 argumentos - 1 proporcionado
+  C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.38.33130\include\xmemory(723,82):
+  al hacer coincidir la lista de argumentos '(_Ty)'
+          with
+          [
+              _Ty=unsigned __int64
+          ]
+  C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.38.33130\include\xmemory(723,82):
+  el contexto de creación de instancias de la plantilla (el más antiguo primero) es
+  	C:\Users\usuario\Desktop\2ºUniversidad\P2\NineandoCorp\ProyectoH\src\systems\mapSystem.cpp(29,19):
+  	Vea la referencia a la creación de una instancia de la función plantilla "std::pair<std::_List_iterator<std::_List_val<std::_List_simple_types<_Ty>>>,bool> std::_Hash<std::_Umap_traits<_Kty,unsigned __int64,std::_Uhash_compare<_Kty,_Hasher,_Keyeq>,_Alloc,false>>::emplace<unsigned __int64>(unsigned __int64 &&)" que se está compilando
+          with
+          [
+              _Ty=std::pair<const std::basic_string<char,std::char_traits<char>,std::allocator<char>>,size_t>,
+              _Kty=std::basic_string<char,std::char_traits<char>,std::allocator<char>>,
+              _Hasher=std::hash<std::string>,
+              _Keyeq=std::equal_to<std::string>,
+              _Alloc=std::allocator<std::pair<const std::basic_string<char,std::char_traits<char>,std::allocator<char>>,size_t>>
+          ]
+  		C:\Users\usuario\Desktop\2ºUniversidad\P2\NineandoCorp\ProyectoH\src\systems\mapSystem.cpp(29,27):
+  		vea la primera referencia a “std::_Hash<std::_Umap_traits<_Kty,_Ty,std::_Uhash_compare<_Kty,_Hasher,_Keyeq>,_Alloc,false>>::emplace” en “mapSystem::loadMap”
+          with
+          [
+              _Kty=std::basic_string<char,std::char_traits<char>,std::allocator<char>>,
+              _Ty=size_t,
+              _Hasher=std::hash<std::string>,
+              _Keyeq=std::equal_to<std::string>,
+              _Alloc=std::allocator<std::pair<const std::basic_string<char,std::char_traits<char>,std::allocator<char>>,size_t>>
+          ]
+  	C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.38.33130\include\xhash(619,53):
+  	Vea la referencia a la creación de una instancia de la función plantilla "std::_List_node_emplace_op2<std::allocator<std::_List_node<_Ty,std::_Default_allocator_traits<_Alloc>::void_pointer>>>::_List_node_emplace_op2<unsigned __int64>(_Alnode &,unsigned __int64 &&)" que se está compilando
+          with
+          [
+              _Ty=std::pair<const std::basic_string<char,std::char_traits<char>,std::allocator<char>>,size_t>,
+              _Alloc=std::allocator<std::pair<const std::basic_string<char,std::char_traits<char>,std::allocator<char>>,size_t>>,
+              _Alnode=std::allocator<std::_List_node<std::pair<const std::basic_string<char,std::char_traits<char>,std::allocator<char>>,size_t>,std::_Default_allocator_traits<std::allocator<std::pair<const std::basic_string<char,std::char_traits<char>,std::allocator<char>>,size_t>>>::void_pointer>>
+          ]
+  	C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.38.33130\include\list(585,25):
+  	Vea la referencia a la creación de una instancia de la función plantilla "void std::_Default_allocator_traits<_Alloc>::construct<_Ty,unsigned __int64>(_Alloc &,_Objty *const ,unsigned __int64 &&)" que se está compilando
+          with
+          [
+              _Alloc=std::allocator<std::_List_node<std::pair<const std::basic_string<char,std::char_traits<char>,std::allocator<char>>,size_t>,std::_Default_allocator_traits<std::allocator<std::pair<const std::basic_string<char,std::char_traits<char>,std::allocator<char>>,size_t>>>::void_pointer>>,
+              _Ty=std::pair<const std::basic_string<char,std::char_traits<char>,std::allocator<char>>,size_t>,
+              _Objty=std::pair<const std::basic_string<char,std::char_traits<char>,std::allocator<char>>,size_t>
+          ]
+  
+C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.38.33130\include\xmemory(723,82): error C2661: 'std::pair<const std::basic_string<char,std::char_traits<char>,std::allocator<char>>,size_t>::pair': ninguna función sobrecargada acepta 2 argumentos
+  (compilando archivo de origen "src/systems/mapSystem.cpp")
+  C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.38.33130\include\utility(312,5):
+  puede ser 'std::pair<const std::basic_string<char,std::char_traits<char>,std::allocator<char>>,size_t>::pair(std::piecewise_construct_t,std::tuple<_Types1...>,std::tuple<_Types2...>)'
+  	C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.38.33130\include\xmemory(723,82):
+  	"std::pair<const std::basic_string<char,std::char_traits<char>,std::allocator<char>>,size_t>::pair(std::piecewise_construct_t,std::tuple<_Types1...>,std::tuple<_Types2...>)": espera 3 argumentos - 2 proporcionado
+  C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.38.33130\include\utility(308,5):
+  o       'std::pair<const std::basic_string<char,std::char_traits<char>,std::allocator<char>>,size_t>::pair(_Tuple1 &,_Tuple2 &,std::integer_sequence<size_t,_Indices1...>,std::integer_sequence<size_t,_Indices2...>)'
+  	C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.38.33130\include\xmemory(723,82):
+  	"std::pair<const std::basic_string<char,std::char_traits<char>,std::allocator<char>>,size_t>::pair(_Tuple1 &,_Tuple2 &,std::integer_sequence<size_t,_Indices1...>,std::integer_sequence<size_t,_Indices2...>)": espera 4 argumentos - 2 proporcionado
+  C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.38.33130\include\utility(275,5):
+  o       'std::pair<const std::basic_string<char,std::char_traits<char>,std::allocator<char>>,size_t>::pair(std::pair<_Other1,_Other2> &&) noexcept(<expr>)'
+  	C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.38.33130\include\xmemory(723,82):
+  	"std::pair<const std::basic_string<char,std::char_traits<char>,std::allocator<char>>,size_t>::pair(std::pair<_Other1,_Other2> &&) noexcept(<expr>)": espera 1 argumentos - 2 proporcionado
+  C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.38.33130\include\utility(268,5):
+  o       'std::pair<const std::basic_string<char,std::char_traits<char>,std::allocator<char>>,size_t>::pair(const std::pair<_Other1,_Other2> &) noexcept(<expr>)'
+  	C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.38.33130\include\xmemory(723,82):
+  	"std::pair<const std::basic_string<char,std::char_traits<char>,std::allocator<char>>,size_t>::pair(const std::pair<_Other1,_Other2> &) noexcept(<expr>)": espera 1 argumentos - 2 proporcionado
+  C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.38.33130\include\utility(247,5):
+  o       'std::pair<const std::basic_string<char,std::char_traits<char>,std::allocator<char>>,size_t>::pair(_Other1 &&,_Other2 &&) noexcept(<expr>)'
+  	C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.38.33130\include\xmemory(723,82):
+  	"std::pair<const std::basic_string<char,std::char_traits<char>,std::allocator<char>>,size_t>::pair(_Other1 &&,_Other2 &&) noexcept(<expr>)": no se pudo deducir el argumento plantilla para "__formal"
+  		C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.38.33130\include\utility(246,9):
+  		'std::enable_if_t<false,int>': no se pudo especializar la plantilla de alias
+  C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.38.33130\include\utility(236,5):
+  o       'std::pair<const std::basic_string<char,std::char_traits<char>,std::allocator<char>>,size_t>::pair(_Ty1 &,const _Ty2 &) noexcept(<expr>)'
+          with
+          [
+              _Ty1=const std::basic_string<char,std::char_traits<char>,std::allocator<char>>,
+              _Ty2=size_t
+          ]
+  	C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.38.33130\include\xmemory(723,103):
+  	'inicializando': no se puede realizar la conversión de 'JSONArray' a 'const _Ty2 &'
+          with
+          [
+              _Ty2=size_t
+          ]
+  		C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.38.33130\include\xmemory(723,103):
+  		Razón: no se puede realizar la conversión de 'JSONArray' a 'const _Ty2'
+          with
+          [
+              _Ty2=size_t
+          ]
+  		C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.38.33130\include\xmemory(723,103):
+  		No hay disponible ningún operador de conversión definido por el usuario que pueda realizar esta conversión, o bien no se puede llamar al operador
+  C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.38.33130\include\utility(228,5):
+  o       'std::pair<const std::basic_string<char,std::char_traits<char>,std::allocator<char>>,size_t>::pair(void) noexcept(<expr>)'
+  	C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.38.33130\include\xmemory(723,82):
+  	"std::pair<const std::basic_string<char,std::char_traits<char>,std::allocator<char>>,size_t>::pair(void) noexcept(<expr>)": espera 0 argumentos - 2 proporcionado
+  C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.38.33130\include\xmemory(723,82):
+  al hacer coincidir la lista de argumentos '(std::string, JSONArray)'
+  C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.38.33130\include\xmemory(723,82):
+  el contexto de creación de instancias de la plantilla (el más antiguo primero) es
+  	C:\Users\usuario\Desktop\2ºUniversidad\P2\NineandoCorp\ProyectoH\src\systems\mapSystem.cpp(45,27):
+  	Vea la referencia a la creación de una instancia de la función plantilla "std::pair<std::_List_iterator<std::_List_val<std::_List_simple_types<_Ty>>>,bool> std::_Hash<std::_Umap_traits<_Kty,unsigned __int64,std::_Uhash_compare<_Kty,_Hasher,_Keyeq>,_Alloc,false>>::emplace<std::string&,JSONArray&>(std::string &,JSONArray &)" que se está compilando
+          with
+          [
+              _Ty=std::pair<const std::basic_string<char,std::char_traits<char>,std::allocator<char>>,size_t>,
+              _Kty=std::basic_string<char,std::char_traits<char>,std::allocator<char>>,
+              _Hasher=std::hash<std::string>,
+              _Keyeq=std::equal_to<std::string>,
+              _Alloc=std::allocator<std::pair<const std::basic_string<char,std::char_traits<char>,std::allocator<char>>,size_t>>
+          ]
+  		C:\Users\usuario\Desktop\2ºUniversidad\P2\NineandoCorp\ProyectoH\src\systems\mapSystem.cpp(45,35):
+  		vea la primera referencia a “std::_Hash<std::_Umap_traits<_Kty,_Ty,std::_Uhash_compare<_Kty,_Hasher,_Keyeq>,_Alloc,false>>::emplace” en “mapSystem::loadMap”
+          with
+          [
+              _Kty=std::basic_string<char,std::char_traits<char>,std::allocator<char>>,
+              _Ty=size_t,
+              _Hasher=std::hash<std::string>,
+              _Keyeq=std::equal_to<std::string>,
+              _Alloc=std::allocator<std::pair<const std::basic_string<char,std::char_traits<char>,std::allocator<char>>,size_t>>
+          ]
+  	C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.38.33130\include\xhash(610,53):
+  	Vea la referencia a la creación de una instancia de la función plantilla "std::_List_node_emplace_op2<std::allocator<std::_List_node<_Ty,std::_Default_allocator_traits<_Alloc>::void_pointer>>>::_List_node_emplace_op2<std::string&,JSONArray&>(_Alnode &,std::string &,JSONArray &)" que se está compilando
+          with
+          [
+              _Ty=std::pair<const std::basic_string<char,std::char_traits<char>,std::allocator<char>>,size_t>,
+              _Alloc=std::allocator<std::pair<const std::basic_string<char,std::char_traits<char>,std::allocator<char>>,size_t>>,
+              _Alnode=std::allocator<std::_List_node<std::pair<const std::basic_string<char,std::char_traits<char>,std::allocator<char>>,size_t>,std::_Default_allocator_traits<std::allocator<std::pair<const std::basic_string<char,std::char_traits<char>,std::allocator<char>>,size_t>>>::void_pointer>>
+          ]
+  	C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.38.33130\include\list(585,25):
+  	Vea la referencia a la creación de una instancia de la función plantilla "void std::_Default_allocator_traits<_Alloc>::construct<_Ty,std::string&,JSONArray&>(_Alloc &,_Objty *const ,std::string &,JSONArray &)" que se está compilando
+          with
+          [
+              _Alloc=std::allocator<std::_List_node<std::pair<const std::basic_string<char,std::char_traits<char>,std::allocator<char>>,size_t>,std::_Default_allocator_traits<std::allocator<std::pair<const std::basic_string<char,std::char_traits<char>,std::allocator<char>>,size_t>>>::void_pointer>>,
+              _Ty=std::pair<const std::basic_string<char,std::char_traits<char>,std::allocator<char>>,size_t>,
+              _Objty=std::pair<const std::basic_string<char,std::char_traits<char>,std::allocator<char>>,size_t>
+          ]
+  
   Collisions.cpp
-  Vector2D.cpp
   Generando código...
