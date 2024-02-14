@@ -21,7 +21,7 @@ private:
 
 	// Constructor
 	Game() : exit(false), deltaTime(0), gameStateMachine(new GameStateMachine()) {
-		SDLUtils::init("Tremendo", 1200, 900, "resources/config/asteroid.resources.json",
+		SDLUtils::init("Proyect H", 1200, 900, "resources/config/towerDefenseResources.json",
 											 "resources/config/asteroid.config.json");
 	}
 

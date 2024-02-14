@@ -61,7 +61,6 @@
     <ClInclude Include="U:\hlocal\NineandoCorp\ProyectoH\src\components\DirtTower.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="PauseState.cpp" />
     <ClCompile Include="src\components\AttackComponent.cpp" />
     <ClCompile Include="src\components\BulletComponent.cpp" />
     <ClCompile Include="src\components\BulletTower.cpp" />
@@ -72,6 +71,7 @@
     <ClCompile Include="src\ecs\Manager.cpp" />
     <ClCompile Include="src\game\Game.cpp" />
     <ClCompile Include="src\game\GameOverState.cpp" />
+    <ClCompile Include="src\game\GameState.cpp" />
     <ClCompile Include="src\game\GameStateMachine.cpp" />
     <ClCompile Include="src\game\MainMenuState.cpp" />
     <ClCompile Include="src\game\PauseState.cpp" />

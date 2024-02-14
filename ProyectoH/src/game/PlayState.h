@@ -4,6 +4,9 @@
 class PlayState : public GameState
 {
 public:
+	PlayState();
+	~PlayState();
+
 	void handleInput() override;
 	void update() override;
 };
