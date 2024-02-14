@@ -1,5 +1,5 @@
 #include "mapSystem.h"
-
+#include <tmxlite/Map.hpp>
 mapSystem::mapSystem(){}
 
 mapSystem::~mapSystem() {
@@ -15,7 +15,7 @@ void mapSystem::receive(const Message& m) {
 
 void mapSystem::update(){}
 void mapSystem::loadMap( std::string filename){
-    std::unique_ptr<JSONValue> jValueRoot(JSON::ParseFromFile(filename));
+    /*std::unique_ptr<JSONValue> jValueRoot(JSON::ParseFromFile(filename));
     if (jValueRoot == nullptr || !jValueRoot->IsObject()) {
         throw "Something went wrong while load/parsing '" + filename + "'";
     }
@@ -53,7 +53,9 @@ void mapSystem::loadMap( std::string filename){
         else {
             throw "'layers' is not an array in '" + filename + "'";
         }
-    }
+    }*/
+
+
 }
 void mapSystem::loadTile(int id){}
 
