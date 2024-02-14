@@ -3,5 +3,7 @@
 
 class GameOverState : public GameState
 {
+public:
+	void handleInput() override;
 };
 
