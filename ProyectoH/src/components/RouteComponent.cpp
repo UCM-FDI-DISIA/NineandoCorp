@@ -10,7 +10,7 @@ RouteComponent::initComponent() {
 }
 void
 RouteComponent::checkdestiny() {
-	if (*(transform_->getPosition())==route_[destiny_]) {
+	if (*(transform_->getPosition())==route_[destiny_]&&destiny_<route_.size()) {
 		destiny_++;
 		changevelocity(route_[destiny_]);
 	}
