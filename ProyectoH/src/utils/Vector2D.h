@@ -142,6 +142,11 @@ public:
 		return d.x_ * x_ + d.y_ * y_;
 	}
 
+	inline bool operator==(const Vector2D& v) {
+		return (v.getX() == x_ && v.getY() == y_);
+
+	}
+
 private:
 	float x_;  // first coordinate
 	float y_;  // second coordinate
@@ -150,3 +155,4 @@ private:
 // needed for printing a value of tyep Vector2D with std::cout.
 // The definition is in .cpp
 std::ostream& operator<<(std::ostream &os, const Vector2D &v);
+

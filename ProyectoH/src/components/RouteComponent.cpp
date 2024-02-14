@@ -10,12 +10,12 @@ RouteComponent::initComponent() {
 }
 void
 RouteComponent::checkdestiny() {
-	if (transform_->getPosition() == &route_[destiny_]) {
+	if (*(transform_->getPosition())==route_[destiny_]) {
 		destiny_++;
 		changevelocity(route_[destiny_]);
 	}
 }
 void
 RouteComponent::changevelocity(Vector2D destino) {
-	transform_->setVelocity(destino - transform_->getPosition());
+	transform_->setVelocity(destino - *(transform_->getPosition()));
 }
