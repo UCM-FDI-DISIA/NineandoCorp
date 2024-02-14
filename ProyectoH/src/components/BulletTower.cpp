@@ -20,7 +20,7 @@ void BulletTower::update() {
 }
 
 void BulletTower::shoot(Entity* targetToShoot) {
-	//Entity* bullet = new Entity();
+	Entity* bullet;
     //mngr_->addEntity(bullet);
 }
 
