@@ -15,12 +15,6 @@ void mapSystem::receive(const Message& m) {
 
 void mapSystem::update(){}
 void mapSystem::loadMap( std::string filename){
-	/*std::ifstream file(filename);
-    if (!file.is_open()) {
-        std::cerr << "No se pudo abrir el archivo JSON." << std::endl;
-        return;
-    }*/
-    
     std::unique_ptr<JSONValue> jValueRoot(JSON::ParseFromFile(filename));
     if (jValueRoot == nullptr || !jValueRoot->IsObject()) {
         throw "Something went wrong while load/parsing '" + filename + "'";
