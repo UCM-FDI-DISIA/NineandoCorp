@@ -10,6 +10,11 @@ class AttackComponent : public Component
 public:
 	AttackComponent(float range, float reloadTime, int damage);
 	virtual void update() override;
+	void initComponent();
+	float getDamage() const;
+	float getRange() const;
+	void setDamage();
+	void setRange();
 protected:
 	void targetEnemy(const std::vector<Entity*>& targetGroup, Entity* targetToLock);
 	float reloadTime_;

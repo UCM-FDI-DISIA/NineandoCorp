@@ -3,7 +3,6 @@
 #define FRAMEDIMAGE_H_
 
 #include "../sdlutils/SDLUtils.h"
-#include "Image.h"
 
 struct FramedImage : public Component {
 private:
