@@ -21,6 +21,7 @@
   <ItemGroup>
     <ClInclude Include="PauseState.h" />
     <ClInclude Include="src\components\AttackComponent.h" />
+    <ClInclude Include="src\components\BulletComponent.h" />
     <ClInclude Include="src\components\BulletTower.h" />
     <ClInclude Include="src\components\FramedImage.h" />
     <ClInclude Include="src\components\HealthComponent.h" />
@@ -56,11 +57,13 @@
     <ClInclude Include="src\utils\mpl.h" />
     <ClInclude Include="src\utils\Singleton.h" />
     <ClInclude Include="src\utils\Vector2D.h" />
+    <ClInclude Include="TowerSystem.h" />
     <ClInclude Include="U:\hlocal\NineandoCorp\ProyectoH\src\components\DirtTower.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="PauseState.cpp" />
     <ClCompile Include="src\components\AttackComponent.cpp" />
+    <ClCompile Include="src\components\BulletComponent.cpp" />
     <ClCompile Include="src\components\BulletTower.cpp" />
     <ClCompile Include="src\components\FramedImage.cpp" />
     <ClCompile Include="src\components\HealthComponent.cpp" />
@@ -83,6 +86,7 @@
     <ClCompile Include="src\sdlutils\Texture.cpp" />
     <ClCompile Include="src\utils\Collisions.cpp" />
     <ClCompile Include="src\utils\Vector2D.cpp" />
+    <ClCompile Include="TowerSystem.cpp" />
     <ClCompile Include="U:\hlocal\NineandoCorp\ProyectoH\src\components\DirtTower.cpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">

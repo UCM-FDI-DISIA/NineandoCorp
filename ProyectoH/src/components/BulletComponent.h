@@ -4,15 +4,14 @@
 
 class BulletComponent : public Component {
 protected:
-	Transform* transform;
+	Transform* t;
+	Entity* targetEntity_;
 	static cmpId id;
 
 public:
-	BulletComponent(): transform(nullptr), id();
-	BulletComponent(Transform* transform, Entity* ent, Manager* mngr) :transform(transform) { setContext(ent, mngr); };
+	BulletComponent(Entity* target);
 	
 	void initComponent() override;
-	void render() override();
 	void update() override;
 	void onTravelEnds();
 		
