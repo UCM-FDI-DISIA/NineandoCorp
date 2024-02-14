@@ -1,7 +1,9 @@
 #pragma once
 #include "GameState.h"
 
-class MainMenuState
+class MainMenuState : public GameState
 {
+public:
+	void handleInput() override;
 };
 

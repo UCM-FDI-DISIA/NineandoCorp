@@ -3,8 +3,9 @@
 #include "algorithm"
 #include "..//components/Transform.h"
 #include "..//ecs/Manager.h"
+#include "..//components/HealthComponent.h"
 
-AttackComponent::AttackComponent(float range, float reloadTime, int damage) : range_(range), reloadTime_(reloadTime), damage_(damage){
+AttackComponent::AttackComponent(float range, float reloadTime, int damage, bool shootBullets) : range_(range), reloadTime_(reloadTime), damage_(damage), shootBullets_(shootBullets){
 	target_ = nullptr; elapsedTime_ = 0; timeToShoot_ = reloadTime; loaded_ = false;
 }
 
@@ -25,27 +26,31 @@ void AttackComponent::update() {
 	}	
 }
 
+void AttackComponent::doDamageTo(HealthComponent* healthcmp) {//Causa un daño a una entidad
+	healthcmp->setHealth(healthcmp->getHealth() - damage_);
+}
+
 void AttackComponent::targetEnemy(const std::vector<Entity*>& targetGroup, Entity* targetToLock) {//Busca un target
 	if (targetToLock == nullptr) {//Si no hay enemigo targeteado se busca uno
 		double closestEnemy = INT32_MAX;
-	/*	for (auto enemy : targetGroup)
+		/*for (auto enemy : targetgroup)
 		{
-			float distance = getDistance(enemy->getComponent<Transform>().);
+			float distance = getDistance(mngr_->getComponent<Transform>(enemy)->getPosition());
 			if(distance < range_ && distance < closestEnemy){
 				targetToLock = enemy;
 				closestEnemy = distance;
 			}
-		}*/		
+		}	*/	
 	}	
 	else {
-		/*if (getDistance(target_->getComponent<Transform>().getPosition()) > range_) {
-			targetToLock_ = nullptr;
-		}*/
+		if (getDistance(mngr_->getComponent<Transform>(target_)->getPosition()) > range_) {
+			targetToLock = nullptr;
+		}
 	}
 }
 
-float AttackComponent::getDistance(Vector2D targetPos) {
-	Vector2D myPos = { 0,0 };//ent_->getComponent<Transform>().getPosition();
+float AttackComponent::getDistance(Vector2D targetPos) {//Distancia al target
+	Vector2D myPos = mngr_->getComponent<Transform>(ent_)->getPosition();
 	return sqrt(pow(myPos.getX() - targetPos.getX(), 2) + pow(myPos.getY() - targetPos.getY(), 2));
 }
 
