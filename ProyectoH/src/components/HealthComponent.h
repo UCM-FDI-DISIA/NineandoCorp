@@ -9,7 +9,7 @@ private:
 	float maxHealth_;
 
 public:
-	HealthComponent(Manager* manager_, Entity* ent_ ,float l);
+	HealthComponent(float l);
 	float getHealth() { return currentHealth_; };
 	void addHealth(float health);
 	void subtractHealth(float health);
