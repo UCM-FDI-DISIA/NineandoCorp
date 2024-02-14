@@ -83,7 +83,6 @@ C:\Users\Javi\Desktop\NineandoCorp\ProyectoH\src\game\Game.h(24,13): message : V
               T=SDLUtils
           ]
 C:\Users\Javi\Desktop\NineandoCorp\ProyectoH\src\game\Game.h(24,17): message : vea la primera referencia a “Singleton<SDLUtils>::init” en “Game::Game”
-  GameStateMachine.cpp
   MainMenuState.cpp
   PlayState.cpp
   sdlutils_demo.cpp
