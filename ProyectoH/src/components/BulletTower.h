@@ -1,5 +1,6 @@
 #pragma once
 #include "..//components/AttackComponent.h"
+#include "BulletComponent.h"
 
 class Entity;
 class BulletTower : public AttackComponent

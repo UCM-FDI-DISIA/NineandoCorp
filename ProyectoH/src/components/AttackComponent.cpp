@@ -69,4 +69,3 @@ float AttackComponent::getRange() const { return range_; }
 
 Entity* AttackComponent::getTarget() const { return target_; }
 
-
