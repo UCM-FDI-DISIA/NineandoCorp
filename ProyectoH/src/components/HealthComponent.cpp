@@ -1,6 +1,6 @@
 #include "HealthComponent.h"
 
-HealthComponent::HealthComponent(Manager* m, Entity* e, float l) : maxHealth_(l) {};
+HealthComponent::HealthComponent(float l) : maxHealth_(l) { };
 
 
 void
