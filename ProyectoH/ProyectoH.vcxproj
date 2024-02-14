@@ -23,6 +23,7 @@
     <ClInclude Include="src\components\AttackComponent.h" />
     <ClInclude Include="src\components\BulletComponent.h" />
     <ClInclude Include="src\components\BulletTower.h" />
+    <ClInclude Include="src\components\DragAndDrop.h" />
     <ClInclude Include="src\components\FramedImage.h" />
     <ClInclude Include="src\components\HealthComponent.h" />
     <ClInclude Include="src\components\MovementComponent.h" />
@@ -65,6 +66,7 @@
     <ClCompile Include="src\components\AttackComponent.cpp" />
     <ClCompile Include="src\components\BulletComponent.cpp" />
     <ClCompile Include="src\components\BulletTower.cpp" />
+    <ClCompile Include="src\components\DragAndDrop.cpp" />
     <ClCompile Include="src\components\FramedImage.cpp" />
     <ClCompile Include="src\components\HealthComponent.cpp" />
     <ClCompile Include="src\components\MovementComponent.cpp" />
