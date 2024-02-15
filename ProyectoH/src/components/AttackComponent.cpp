@@ -66,6 +66,3 @@ float AttackComponent::getDistance(Vector2D targetPos) {//Distancia al target
 float AttackComponent::getDamage() const { return damage_; }
 
 float AttackComponent::getRange() const { return range_; }
-
-Entity* AttackComponent::getTarget() const { return target_; }
-

@@ -15,7 +15,6 @@ public:
 	virtual void initComponent();
 	float getDamage() const;
 	float getRange() const;
-	Entity* getTarget() const;
 	void setDamage();
 	void setRange();
 	void doDamageTo(HealthComponent* healthcmp);
@@ -23,6 +22,8 @@ protected:
 	void targetEnemy(const std::vector<Entity*>& targetGroup, Entity* targetToLock);
 	float reloadTime_;
 	float elapsedTime_;
+	int damage_;
+	Entity* target_;//target principal
 private:
 	virtual void shoot(Entity* targetToShoot) {};
 	float getDistance(Vector2D targetPos);
@@ -30,8 +31,6 @@ private:
 	float timeToShoot_;
 	bool loaded_;
 	bool shootBullets_;
-	int damage_;
-	Entity* target_;//target principal
 	VirtualTimer timer_;//contador para tiempo de ataque
 };
 

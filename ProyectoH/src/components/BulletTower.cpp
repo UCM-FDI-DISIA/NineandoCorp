@@ -21,7 +21,7 @@ void BulletTower::update() {
 
 void BulletTower::shoot(Entity* targetToShoot) {
 	Entity* bullet = mngr_->addEntity(_grp_BULLETS);
-	mngr_->addComponent<BulletComponent>(bullet)->setTarget(getTarget());
+	mngr_->addComponent<BulletComponent>(bullet)->setBullet(target_, damage_);
 	mngr_->addComponent<Transform>(bullet);
 }
 
