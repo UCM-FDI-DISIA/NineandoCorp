@@ -50,6 +50,14 @@ enum grpId : grpId_type {
 	// do not remove this
 	_LAST_GRP_ID
 };
+using tileId_type = int;
+enum tileId : tileId_type {
+	_idPRADERA,
+	_idLAGOS,
+	_idBORDELAGOS,
+	_idMONTANA,
+	_idCAMINOS
+};
 constexpr grpId_type maxGroupId = _LAST_GRP_ID;
 
 using gmSttId_type = uint8_t;
