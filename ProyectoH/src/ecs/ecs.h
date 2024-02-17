@@ -83,6 +83,17 @@ enum msgId : msgId_type {
 	_m_RESUME,
 };
 
+using twrId_type = uint8_t;
+enum twrId : twrId_type {
+	_twr_BULLET,
+	_twr_CRISTAL,
+	_twr_SLIME,
+	_twr_DIEGO,
+	_twr_FENIX,
+	_twr_DIRT,
+	_twr_POWER,
+};
+
 inline Uint16 sdlnet_hton(Uint16 v) {
 	Uint16 nv;
 	SDLNet_Write16(v, &nv);
