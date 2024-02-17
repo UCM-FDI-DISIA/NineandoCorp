@@ -153,52 +153,46 @@
     <ClInclude Include="src\components\Transform.h">
       <Filter>Header Files\components</Filter>
     </ClInclude>
-    <ClInclude Include="src\components\AttackComponent.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="src\components\BulletTower.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="src\components\RouteComponent.h">
       <Filter>Header Files\components</Filter>
     </ClInclude>
-    <ClInclude Include="PauseState.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="src\components\BulletComponent.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="src\components\DragAndDrop.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="src\game\GameOverState.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="src\game\MainMenuState.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="src\game\PauseState.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="src\game\PlayState.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="TowerSystem.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="U:\hlocal\NineandoCorp\ProyectoH\src\components\DirtTower.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="src\systems\mapSystem.h">
       <Filter>Header Files\systems</Filter>
-    </ClInclude>
-    <ClInclude Include="src\systems\IsometricLayer.h">
-      <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="src\systems\RenderSystem.h">
       <Filter>Header Files\systems</Filter>
     </ClInclude>
     <ClInclude Include="src\components\RenderComponent.h">
+      <Filter>Header Files\components</Filter>
+    </ClInclude>
+    <ClInclude Include="src\components\AttackComponent.h">
+      <Filter>Header Files\components</Filter>
+    </ClInclude>
+    <ClInclude Include="src\components\BulletComponent.h">
+      <Filter>Header Files\components</Filter>
+    </ClInclude>
+    <ClInclude Include="src\components\BulletTower.h">
+      <Filter>Header Files\components</Filter>
+    </ClInclude>
+    <ClInclude Include="src\components\DragAndDrop.h">
+      <Filter>Header Files\components</Filter>
+    </ClInclude>
+    <ClInclude Include="src\game\GameOverState.h">
+      <Filter>Header Files\gameStates</Filter>
+    </ClInclude>
+    <ClInclude Include="src\game\MainMenuState.h">
+      <Filter>Header Files\gameStates</Filter>
+    </ClInclude>
+    <ClInclude Include="src\game\PauseState.h">
+      <Filter>Header Files\gameStates</Filter>
+    </ClInclude>
+    <ClInclude Include="src\game\PlayState.h">
+      <Filter>Header Files\gameStates</Filter>
+    </ClInclude>
+    <ClInclude Include="src\systems\TowerSystem.h">
+      <Filter>Header Files\systems</Filter>
+    </ClInclude>
+    <ClInclude Include="src\components\DirtTower.h">
       <Filter>Header Files\components</Filter>
     </ClInclude>
   </ItemGroup>
@@ -254,41 +248,8 @@
     <ClCompile Include="src\components\MovementComponent.cpp">
       <Filter>Source Files\components</Filter>
     </ClCompile>
-    <ClCompile Include="src\components\AttackComponent.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\components\BulletTower.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="src\components\RouteComponent.cpp">
       <Filter>Source Files\components</Filter>
-    </ClCompile>
-    <ClCompile Include="src\components\BulletComponent.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\components\DragAndDrop.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\game\GameOverState.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\game\GameState.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\game\MainMenuState.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\game\PauseState.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\game\PlayState.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="TowerSystem.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="U:\hlocal\NineandoCorp\ProyectoH\src\components\DirtTower.cpp">
-      <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="src\systems\mapSystem.cpp">
       <Filter>Source Files\systems</Filter>
@@ -298,6 +259,36 @@
     </ClCompile>
     <ClCompile Include="src\components\RenderComponent.cpp">
       <Filter>Source Files\components</Filter>
+    </ClCompile>
+    <ClCompile Include="src\components\AttackComponent.cpp">
+      <Filter>Source Files\components</Filter>
+    </ClCompile>
+    <ClCompile Include="src\components\BulletComponent.cpp">
+      <Filter>Source Files\components</Filter>
+    </ClCompile>
+    <ClCompile Include="src\components\BulletTower.cpp">
+      <Filter>Source Files\components</Filter>
+    </ClCompile>
+    <ClCompile Include="src\components\DragAndDrop.cpp">
+      <Filter>Source Files\components</Filter>
+    </ClCompile>
+    <ClCompile Include="src\game\GameOverState.cpp">
+      <Filter>Source Files\gameStates</Filter>
+    </ClCompile>
+    <ClCompile Include="src\game\GameState.cpp">
+      <Filter>Source Files\gameStates</Filter>
+    </ClCompile>
+    <ClCompile Include="src\game\MainMenuState.cpp">
+      <Filter>Source Files\gameStates</Filter>
+    </ClCompile>
+    <ClCompile Include="src\game\PauseState.cpp">
+      <Filter>Source Files\gameStates</Filter>
+    </ClCompile>
+    <ClCompile Include="src\game\PlayState.cpp">
+      <Filter>Source Files\gameStates</Filter>
+    </ClCompile>
+    <ClCompile Include="src\systems\TowerSystem.cpp">
+      <Filter>Source Files\systems</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
