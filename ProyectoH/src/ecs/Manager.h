@@ -20,8 +20,8 @@ public:
 	Entity* addEntity(grpId_type gId = _grp_GENERAL);
 	void refresh();
 	void update();
-	void render();
-	void handleInput();
+	/*void render();
+	void handleInput();*/
 	inline void setHandler(hdlrId_type hId, Entity* e) {
 		hdlrs_[hId] = e;
 	}

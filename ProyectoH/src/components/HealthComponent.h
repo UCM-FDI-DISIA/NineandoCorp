@@ -9,6 +9,7 @@ private:
 	float maxHealth_;
 
 public:
+	static const cmpId id = cmpId::_HEALTH;
 	HealthComponent(float l);
 	float getHealth() { return currentHealth_; };
 	void addHealth(float health);

@@ -8,15 +8,15 @@ class BulletComponent : public Component {
 protected:
 	Transform* t;
 	Entity* targetEntity_;
-	static cmpId id;
 	int damage_;
 
 public:
+	static const cmpId id = cmpId::_BULLET;
+
 	BulletComponent();
 	
 	void initComponent() override;
 	void setBullet(Entity* target, int damage) { targetEntity_ = target; damage_ = damage; };
-	void update() override;
 	void doDamageTo(HealthComponent* healthcmp);
 	void onTravelEnds();
 		

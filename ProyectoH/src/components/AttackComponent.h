@@ -10,8 +10,9 @@ class HealthComponent;
 class AttackComponent : public Component
 {
 public:
+	static const cmpId id = cmpId::_ATTACK;
+
 	AttackComponent(float range, float reloadTime, int damage, bool shootBullets);
-	virtual void update() override;
 	virtual void initComponent();
 	float getDamage() const;
 	float getRange() const;

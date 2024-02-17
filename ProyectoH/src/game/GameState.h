@@ -18,9 +18,9 @@ public:
     // Updates scene's objects
     virtual void update();
     // Draws the scene on screen
-    virtual void render() const;
+    virtual void render() {}
     // Handles the event
-    virtual void handleInput();
+    virtual void handleInput() {}
     // Clears every non alive Entity
     void refresh();
     // Sends a message to the manager

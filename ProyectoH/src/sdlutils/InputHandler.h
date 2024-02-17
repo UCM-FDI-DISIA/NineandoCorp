@@ -84,12 +84,28 @@ public:
 		return isKeyUpEvent_;
 	}
 
+	inline bool isKeyJustDown(SDL_Scancode key) {
+		return keyDownEvent() && kbState_[key] == 1;
+	}
+
+	inline bool isKeyJustDown(SDL_Keycode key) {
+		return isKeyJustDown(SDL_GetScancodeFromKey(key));
+	}
+
 	inline bool isKeyDown(SDL_Scancode key) {
 		return keyDownEvent() && kbState_[key] == 1;
 	}
 
 	inline bool isKeyDown(SDL_Keycode key) {
 		return isKeyDown(SDL_GetScancodeFromKey(key));
+	}
+
+	inline bool isKeyJustUp(SDL_Scancode key) {
+		return keyUpEvent() && kbState_[key] == 0;
+	}
+
+	inline bool isKeyJustUp(SDL_Keycode key) {
+		return isKeyJustUp(SDL_GetScancodeFromKey(key));
 	}
 
 	inline bool isKeyUp(SDL_Scancode key) {

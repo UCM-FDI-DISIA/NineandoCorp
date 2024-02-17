@@ -4,22 +4,9 @@
 
 // Constructorss
 RenderSystem::RenderSystem() :
-	winner_(0),
-	fighterTr(nullptr),
-	currStTxt(stateText::startText),
-	enemyFighterTr(nullptr)
+	winner_(0)
 {
-	textTextures[startText] = &sdlutils().msgs().at("Start");
-	textTextures[pauseText] = &sdlutils().msgs().at("Continue");
-	textTextures[winText] = &sdlutils().msgs().at("Win");
-	textTextures[loseText] = &sdlutils().msgs().at("Lose");
-	
-	textTr[startText] = nullptr;
-	textTr[pauseText] = nullptr;
-	textTr[winText] = nullptr;
-	textTr[loseText] = nullptr;
-
-	textures[bulletTexture] = &sdlutils().images().at("Fire");
+	//textures[bulletTexture] = &sdlutils().images().at("Fire");
 }
 
 
@@ -48,10 +35,6 @@ void RenderSystem::receive(const Message& m) {
 }
 // Inicializar el sistema, etc.
 void RenderSystem::initSystem() {
-	addText(startText);
-	addText(pauseText);
-	addText(winText);
-	addText(loseText);
 }
 
 //Renderiza cada entity por grupos
@@ -108,16 +91,16 @@ void RenderSystem::update() {
 	}
 	
 	//HUD BACKGROUND
-	const auto& hud = mngr_->getEntities(_grp_HUD_BACKGROUND);
-	for (auto& h : hud) {
+	const auto& hudB = mngr_->getEntities(_grp_HUD_BACKGROUND);
+	for (auto& h : hudB) {
 		Transform* tr = mngr_->getComponent<Transform>(h);
 		gameTextures textureId = mngr_->getComponent<RenderComponent>(h)->getTexture();
 		textures[textureId]->render(tr->getRect(), tr->getRotation());
 	}
 
 	//HUD FOREGROUND
-	const auto& hud = mngr_->getEntities(_grp_HUD_FOREGROUND);
-	for (auto& h : hud) {
+	const auto& hudF = mngr_->getEntities(_grp_HUD_FOREGROUND);
+	for (auto& h : hudF) {
 		Transform* tr = mngr_->getComponent<Transform>(h);
 		gameTextures textureId = mngr_->getComponent<RenderComponent>(h)->getTexture();
 		textures[textureId]->render(tr->getRect(), tr->getRotation());
@@ -156,23 +139,15 @@ void RenderSystem::addText(stateText stt) {
 // Para gestionar los mensajes correspondientes y actualizar los atributos
 // winner_ y state_.
 void RenderSystem::onRoundStart() {
-	currStTxt = stateText::sttTxtSize;
 }
 void RenderSystem::onGameStart() {
-	currStTxt = stateText::startText;
-	update();
 }
 void RenderSystem::onGameOver(Uint8 winner) {
-	winner_ = winner;
-	currStTxt = (winner_ == 1) ? stateText::loseText : stateText::winText;
 }
 
 // Displays pause message
 void RenderSystem::onPause() {
-	currStTxt = stateText::pauseText;
-	update();
 }
 // Hides pause message
 void RenderSystem::onResume() {
-	currStTxt = stateText::sttTxtSize;
 }

@@ -7,7 +7,6 @@ class BulletTower : public AttackComponent
 {
 public:
 	BulletTower(float range, float reloadTime, int damage);
-	void update() override;
 	void shoot(Entity* targetToShoot) override;
 	void levelUp(int level);
 private:

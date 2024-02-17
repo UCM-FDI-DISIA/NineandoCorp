@@ -1,19 +1,21 @@
 {
-  "Cristal": [
+
+    "Cristal"
+    :
     {
       "escudo": 50, //Aumenta el escudo en 50 puntos (Niveles 1 a 3)
       "explosion": 30 //Al romperse el escudo crea una explosion alrededor de 30 de dano (Nivel 4)
-    }
-  ],
-  "Slime": [
+    },
+    "Slime"
+    :
     {
       "recarga": 0.5, //Disminuye tiempo de recarga 0.5s (Nivel 1)
       "ralentizacion": 0.3, //Aumenta el efecto de ralentizacion un 30%  (Nivel 2)
       "tiempoSlime": 0.5, //El slime se mantiene 0.5s mas (Nivel 3)
       "dps": 1 //El area del slime hace 1 de dano por segundo (Nivel 4)
-    }
-  ],
-  "Balas": [
+    },
+    "Balas"
+    :
     {
       "dano1": 10, //Aumenta el dano a 10 puntos (Nivel 1)
       "dano2": 20, //Aumenta el dano a 20 puntos (Nivel 2)
@@ -55,6 +57,4 @@
       "vida2": 50 //(Nivel 4)
     }
   ]
-
-
 }

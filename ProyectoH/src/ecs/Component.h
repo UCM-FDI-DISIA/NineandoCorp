@@ -17,8 +17,5 @@ public:
 		mngr_ = mngr;
 	}
 	virtual void initComponent() { }
-	virtual void update() { }
-	virtual void render() { }
-	virtual void handleInput() { }
 };
 #endif
