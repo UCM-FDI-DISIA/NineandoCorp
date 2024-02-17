@@ -4,6 +4,8 @@
 #include <tmxlite/TileLayer.hpp>
 #include <tmxlite/Types.hpp>
 #include "../ecs/Entity.h"
+#include "../ecs/Manager.h"
+#include "../components/RenderComponent.h"
 
 #include <memory>
 #include <vector>
@@ -47,17 +49,18 @@ public:
 			for (auto tile : layerIDs)
 			{
 				if (tile.ID == 2) {
-					tyleMap.push_back(new Entity(tileId::_idPRADERA));
+					Entity* tile = mngr_(_grp_TILES_L2);
 				}
-				else if(tile.ID == 4)
-					tyleMap.push_back(new Entity(tileId::_idMONTANA));
+				else if (tile.ID == 4) {
+					tyleMap.push_back(new Entity(_grp_TILES_L3));
+				}
 				else if (tile.ID == 133)
-					tyleMap.push_back(new Entity(tileId::_idCAMINOS));
+					tyleMap.push_back(new Entity(_grp_TILES_L2));
 				else if (tile.ID == 85) {
-					tyleMap.push_back(new Entity(tileId::_idLAGOS));
+					tyleMap.push_back(new Entity(_grp_TILES_L1));
 				}
 				else if (tile.ID > 80 && tile.ID < 101)
-					tyleMap.push_back(new Entity(tileId::_idBORDELAGOS));
+					tyleMap.push_back(new Entity(_grp_TILES_L1));
 				
 			}
 		}
@@ -67,7 +70,5 @@ private:
 	tmx::Vector2f m_chunkSize = tmx::Vector2f(64.f, 64.f);
 	tmx::Vector2u m_MapTileSize;
 	tmx::FloatRect m_globalBounds;
-
-	std::vector<Entity*> tyleMap;
 };
 

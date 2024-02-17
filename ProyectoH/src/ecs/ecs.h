@@ -13,17 +13,9 @@ using uint8_t = unsigned char;
 
 using cmpId_type = int;
 enum cmpId : cmpId_type {
-	_TRANSFORM = 0,
-	_IMAGE,
-	_DeAcceleration,
-	_Health,
-	_FIGHTERCTRL,
-	_GUN,
-	_SHOWATOPPOSITESIDE,
-	_GENERATIONS,
-	_FOLLOW,
-	_DISABLEONEXIT,
-	_BULLET,
+	_TRANSFORM = 0, 
+	_RENDER,
+	_FRAMEDIMAGE,
 	// ... (compoment ids)
 
 	// do not remove this
@@ -33,8 +25,6 @@ constexpr cmpId_type maxComponentId = _LAST_CMP_ID;
 
 using hdlrId_type = int;
 enum hdlrId : hdlrId_type { 
-	_hdlr_FIGHTER,
-	_hdlr_ENEMY_FIGHTER,
 	
 	// do not remove this
 	_LAST_HDLR_ID };
@@ -43,20 +33,17 @@ constexpr hdlrId_type maxHdlrId = _LAST_HDLR_ID;
 using grpId_type = int;
 enum grpId : grpId_type {
 	_grp_GENERAL,
-	_grp_ASTEROIDS,
+	_grp_TILES_L1,
+	_grp_TILES_L2,
+	_grp_TILES_L3, 
+	_grp_TOWERS_AND_ENEMIES,
 	_grp_BULLETS,
-	_grp_ENEMY_BULLETS,
+	_grp_HUD_BACKGROUND,
+	_grp_HUD_FOREGROUND,
+	_grp_HUD_DRAG_AND_DROP,
 	
 	// do not remove this
 	_LAST_GRP_ID
-};
-using tileId_type = int;
-enum tileId : tileId_type {
-	_idPRADERA,
-	_idLAGOS,
-	_idBORDELAGOS,
-	_idMONTANA,
-	_idCAMINOS
 };
 constexpr grpId_type maxGroupId = _LAST_GRP_ID;
 
@@ -75,12 +62,6 @@ constexpr gmSttId_type maxGameStateId = _LAST_GMSTT_ID;
 using sysId_type = uint8_t;
 enum sysId : sysId_type {
 	_sys_GAMECNTRL = 0,
-	_sys_ASTEROIDS,
-	_sys_MULTIPLAYER,
-	_sys_SERVER,
-	_sys_CLIENT,
-	_sys_BULLET,
-	_sys_FIGHTER,
 	_sys_COLLISIONS,
 	_sys_RENDER,
 
@@ -93,20 +74,11 @@ using msgId_type = uint8_t;
 enum msgId : msgId_type {
 	_m_ROUND_START, //
 	_m_ROUND_OVER,
-	_m_COLLISION_ASTEROIDBULLET,
-	_m_COLLISION_FIGHTERASTEROID,
-	_m_COLLISION_BULLETBULLET,
-	_m_ASTEROIDS_EXTINCTION,
 	_m_SHOOT,
 	_m_GAMEOVER,
-	_m_GAMEOVER_MULTIPLAYER,
 	_m_GAMESTART,
 	_m_PAUSE,
 	_m_RESUME,
-	_m_MULTIPLAYER_START,
-	_m_RECEIVE_PACKAGE,
-	_m_SEND_PACKAGE,
-	_m_MULTIPLAYERACTIVE
 };
 
 inline Uint16 sdlnet_hton(Uint16 v) {

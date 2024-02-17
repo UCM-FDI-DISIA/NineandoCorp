@@ -1,16 +1,21 @@
 #pragma once
 #include "../ecs/System.h"
-#include <iostream>
-#include <fstream>
-#include "../json/JSON.h"
-#include "../sdlutils/SDLUtils.h"
+
 #include <tmxlite/Map.hpp>
-#include <tmxlite/Layer.hpp>
 #include <tmxlite/TileLayer.hpp>
-#include <tmxlite/ObjectGroup.hpp>
-#include <SDL.h>
-#include <fstream>   
-#include "../systems/IsometricLayer.h"
+#include <tmxlite/Types.hpp>
+#include "../ecs/Entity.h"
+#include "../ecs/Manager.h"
+#include "../components/RenderComponent.h"
+
+#include <memory>
+#include <vector>
+#include <array>
+#include <map>
+#include <string>
+#include <limits>
+#include <iostream>
+#include <cmath>
 
  
 
@@ -18,8 +23,9 @@ class mapSystem : public System {
 private:
 	static sysId_type id;
 	uint8_t winner_;
-
-	std::vector<MapLayer> m_layers;
+	tmx::Vector2f m_chunkSize = tmx::Vector2f(64.f, 64.f);
+	tmx::Vector2u m_MapTileSize;
+	tmx::FloatRect m_globalBounds;
 	
 public:
 	mapSystem(std::string filename);
@@ -29,5 +35,5 @@ public:
 	void update() override;
 
 	void loadMap(std::string filename);
-	void loadTile(int id);
+	void loadTile(const tmx::Map& map, const tmx::TileLayer& layer);
 };

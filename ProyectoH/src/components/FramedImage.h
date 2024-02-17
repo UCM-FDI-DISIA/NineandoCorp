@@ -13,6 +13,7 @@ private:
 	const int frameColumns, frameRows;
 	const int frameWidth, frameHeight;
 public:
+	static const cmpId id = cmpId::_FRAMEDIMAGE;
 	// Constructor
 	//IMPORTANTE: cambiar los strings de referencia al json
 	FramedImage();
