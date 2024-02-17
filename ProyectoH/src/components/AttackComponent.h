@@ -16,8 +16,8 @@ public:
 	virtual void initComponent();
 	float getDamage() const;
 	float getRange() const;
-	void setDamage();
-	void setRange();
+	void setDamage(int dmg);
+	void setRange(float rng);
 	void doDamageTo(HealthComponent* healthcmp);
 protected:
 	void targetEnemy(const std::vector<Entity*>& targetGroup, Entity* targetToLock);

@@ -3,7 +3,7 @@
 
 
 BulletTower::BulletTower(float range, float reloadTime, int damage) 
-	: AttackComponent::AttackComponent(range, reloadTime, damage, true){}
+	: AttackComponent::AttackComponent(range, reloadTime, damage, true), isMaxLevel_(false){}
 
 /*void BulletTower::update() {
 	AttackComponent::update();
@@ -11,7 +11,7 @@ BulletTower::BulletTower(float range, float reloadTime, int damage)
 	//	targetEnemy(mngr_->targetGroup, secondTarget_);
 	//	//Si esta a nivel maximo lockea otro target y dispara dos balas
 	//}
-	if (elapsedTime_ > timeToShoot2_) {
+	if (elapsedTime_ > timeToShoot2_ && isMaxLevel_) {
 		if ( secondTarget_ != nullptr) {
 			shoot(secondTarget_);
 			timeToShoot2_ += reloadTime_;
@@ -25,3 +25,21 @@ void BulletTower::shoot(Entity* targetToShoot) {
 	mngr_->addComponent<Transform>(bullet);
 }
 
+void BulletTower::levelUp(int level) {
+	switch (level) {
+	case 1:
+		setDamage(10);
+		break;
+	case 2:
+		setDamage(20);
+		break;
+	case 3:
+		setDamage(35);
+		break;
+	case 4:
+		isMaxLevel_ = true;
+		break;
+	default:
+		break;
+	}
+}
