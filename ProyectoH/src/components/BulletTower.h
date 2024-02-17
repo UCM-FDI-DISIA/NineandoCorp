@@ -9,8 +9,10 @@ public:
 	BulletTower(float range, float reloadTime, int damage);
 	void update() override;
 	void shoot(Entity* targetToShoot) override;
+	void levelUp(int level);
 private:
 	Entity* secondTarget_;
 	float timeToShoot2_;
+	bool isMaxLevel_;
 };
 

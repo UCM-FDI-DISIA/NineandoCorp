@@ -39,6 +39,14 @@ void AttackComponent::doDamageTo(HealthComponent* healthcmp) {//Causa un daño a 
 	healthcmp->setHealth(healthcmp->getHealth() - damage_);
 }
 
+void AttackComponent::setDamage(int dmg) {
+	damage_ = dmg;
+}
+void AttackComponent::setRange(float rng) {
+	range_ = rng;
+}
+
+
 void AttackComponent::targetEnemy(const std::vector<Entity*>& targetGroup, Entity* targetToLock) {//Busca un target
 	if (targetToLock == nullptr) {//Si no hay enemigo targeteado se busca uno
 		double closestEnemy = INT32_MAX;
