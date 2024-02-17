@@ -1,52 +1,54 @@
 {
-  "Cristal": [
+
+    "Cristal"
+    :
     {
       "escudo": 50, //Aumenta el escudo en 50 puntos (Niveles 1 a 3)
       "explosion": 30 //Al romperse el escudo crea una explosion alrededor de 30 de dano (Nivel 4)
-    }
-  ],
-  "Slime": [
+    },
+    "Slime"
+    :
     {
       "recarga": 0.5, //Disminuye tiempo de recarga 0.5s (Nivel 1)
       "ralentizacion": 0.3, //Aumenta el efecto de ralentizacion un 30%  (Nivel 2)
       "tiempoSlime": 0.5, //El slime se mantiene 0.5s mas (Nivel 3)
       "dps": 1 //El area del slime hace 1 de dano por segundo (Nivel 4)
-    }
-  ],
-  "Balas": [
+    },
+    "Balas"
+    :
     {
-      "dano1": 10,  //Aumenta el dano 10 puntos
+      "dano1": 10, //Aumenta el dano 10 puntos
       "dano2": 20,
       "dano3": 35,
       "dobleObj": 1 //La torre puede apuntar a dos objetivos
-    }
-  ],
-  "Diego": [
+    },
+    "Diego"
+    :
     {
       "dano": 75,
       "critico": 0.2, //Probabilidad del 20% de realizar un critico, que hace 150% de dano
       "recarga": 0.5, //Se reduce en 0.5 el tiempo de recarga
-      "recargaYCritico": [0.3, 1] //Probabilidad de 30% de critico y se reduce 1 segundo el tiempo de recarga
-    }
-  ],
-  "Fenix": [
+      "recargaYCritico": [ 0.3, 1 ] //Probabilidad de 30% de critico y se reduce 1 segundo el tiempo de recarga
+    },
+    "Fenix"
+    :
     {
-      "dps": 4,//El dps aumenta a 4 puntos/medio segundo
+      "dps": 4, //El dps aumenta a 4 puntos/medio segundo
       "enfriamiento": 1.5, //Se reduce el enfriamiento a 1.5
-      "dpsYEnfriamiento": [5, 1],
+      //"dpsYEnfriamiento": [5, 1],
       "area": 15, //El cono de ataque aumenta de area 15 grados
-      "enfriamientoCero": 0//El ataque es continuo, no tiene enfriamiento
-    }
-  ],
-  "Arcilla": [
+      "enfriamientoCero": 0 //El ataque es continuo, no tiene enfriamiento
+    },
+    "Arcilla"
+    :
     {
       "vida1": 750,
       "vida2": 1000,
       "vida3": 1250,
       "vida4": [ 1500, 3 ] //Refleja 3 puntos de dano por cada ataque
-    }
-  ],
-  "Potenciadora": [
+    },
+    "Potenciadora"
+    :
     {
       "dano1": 0.1, //Mejora el dano un 10% en vez de un 5%
       "vida1": 30, //Anade 30 puntos de vida a las torres cercanas
@@ -55,6 +57,4 @@
       "vida2": 50
     }
   ]
-
-
 }

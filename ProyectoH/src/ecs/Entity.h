@@ -30,21 +30,6 @@ public:
 			delete c;
 		}
 	}
-	inline void update() {
-		auto n = currCmps_.size();
-		for (auto i = 0u; i < n; i++)
-			currCmps_[i]->update();
-	}
-	inline void render() {
-		auto n = currCmps_.size();
-		for (auto i = 0u; i < n; i++)
-			currCmps_[i]->render();
-	}
-	inline void handleInput() {
-		auto n = currCmps_.size();
-		for (auto i = 0u; i < n; i++)
-			currCmps_[i]->handleInput();
-	}
 };
 
 

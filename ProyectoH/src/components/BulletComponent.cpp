@@ -10,7 +10,7 @@ void BulletComponent::initComponent() {
 	t = mngr_->getComponent<Transform>(ent_);
 }
 
-void BulletComponent::update() {
+/*void BulletComponent::update() {
 	t->translate();
 	if (targetEntity_ == nullptr) {
 		onTravelEnds();
@@ -19,7 +19,7 @@ void BulletComponent::update() {
 		doDamageTo(mngr_->getComponent<HealthComponent>(targetEntity_));
 		onTravelEnds();
 	}
-}
+}*/
 
 void BulletComponent::doDamageTo(HealthComponent* healthCmp){
 	healthCmp->setHealth(healthCmp->getHealth() - damage_);

@@ -1,6 +1,5 @@
 #pragma once
 #include "../ecs/Component.h"
-#include "..//..//resources/config/tower_upgrade_info.json"
 
 
 class UpgradeTowerComponent : public Component

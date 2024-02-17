@@ -1,12 +1,14 @@
 // This file is part of the course TPV2@UCM - Samir Genaim
 
 #include <iostream>
-
-#include "sdlutils/sdlutils_demo.h"
+#include "game/Game.h"
+#include "checkML.h"
 
 int main(int ac, char **av) {
+	_CrtSetDbgFlag(_CRTDBG_ALLOC_MEM_DF | _CRTDBG_LEAK_CHECK_DF); // Check Memory Leaks
+
 	try {
-		sdlutils_basic_demo();
+		game().run();
 	} catch (const std::string &e) { // catch exceptions thrown as strings
 		std::cerr << e << std::endl;
 	} catch (const char *e) { // catch exceptions thrown as char*

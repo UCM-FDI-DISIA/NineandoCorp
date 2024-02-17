@@ -19,7 +19,7 @@ void DragAndDrop::initComponent() {
 	assert(tr_ != nullptr);
 }
 
-void DragAndDrop::update() {
+/*void DragAndDrop::update() {
 	auto& ihdlr = ih();
 	float mouseX = ihdlr.getMousePos().first;
 
@@ -27,9 +27,9 @@ void DragAndDrop::update() {
 
 	tr_->getPosition()->set(mouseX, mouseY);
 	
-}
+}*/
 
-void DragAndDrop::handleInput() {
+/*void DragAndDrop::handleInput() {
 	auto& ihdlr = ih();
 
 	if (ihdlr.mouseButtonEvent()) {
@@ -37,4 +37,4 @@ void DragAndDrop::handleInput() {
 			drop();
 		}
 	}
-}
+}*/

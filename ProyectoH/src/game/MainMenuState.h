@@ -5,7 +5,7 @@ class MainMenuState : public GameState
 {
 public:
 	MainMenuState();
-	~MainMenuState();
+	virtual ~MainMenuState() {};
 
 	void handleInput() override;
 };

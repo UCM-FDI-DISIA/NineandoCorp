@@ -11,7 +11,6 @@ public:
 	virtual ~TowerSystem();
 
 	void initSystem() override;
-	void update() override;//Llama al update de las torres
 	void receive(const Message& m) override;
 	void onRoundOver();
 	void onRoundStart();

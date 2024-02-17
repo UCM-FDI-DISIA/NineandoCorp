@@ -5,7 +5,7 @@
 BulletTower::BulletTower(float range, float reloadTime, int damage) 
 	: AttackComponent::AttackComponent(range, reloadTime, damage, true){}
 
-void BulletTower::update() {
+/*void BulletTower::update() {
 	AttackComponent::update();
 	//if (ent_->getComponent<TowerInfo>().info_.level == ent_->getComponent<TowerInfo>().info_.maxlevel) {
 	//	targetEnemy(mngr_->targetGroup, secondTarget_);
@@ -17,7 +17,7 @@ void BulletTower::update() {
 			timeToShoot2_ += reloadTime_;
 		}//Dispara si esta recargado y tiene target
 	}
-}
+}*/
 
 void BulletTower::shoot(Entity* targetToShoot) {
 	Entity* bullet = mngr_->addEntity(_grp_BULLETS);

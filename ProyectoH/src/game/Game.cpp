@@ -9,7 +9,6 @@ Game::~Game() {
 void Game::run() {
 	
 	pushState<PlayState>();
-	pushState<MainMenuState>();
 
 	Uint64 currentTime = SDL_GetPerformanceCounter();
 	Uint64 startTime = 0;

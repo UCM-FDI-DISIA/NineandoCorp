@@ -12,7 +12,7 @@ void AttackComponent::initComponent() {
 	// Añadir mas cosas de init 
 }
 
-void AttackComponent::update() {
+/*void AttackComponent::update() {
 	//targetEnemy(mngr_->targetGroup, target_);//fija una entidad como target
 	elapsedTime_ = timer_.currTime();
 	if (elapsedTime_ > timeToShoot_) {
@@ -33,7 +33,7 @@ void AttackComponent::update() {
 			}//Dispara si esta recargado y tiene target
 		}
 	}	
-}
+}*/
 
 void AttackComponent::doDamageTo(HealthComponent* healthcmp) {//Causa un daño a una entidad
 	healthcmp->setHealth(healthcmp->getHealth() - damage_);

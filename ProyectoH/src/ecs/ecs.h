@@ -15,8 +15,10 @@ using cmpId_type = int;
 enum cmpId : cmpId_type {
 	_TRANSFORM = 0, 
 	_RENDER,
-	_FRAMEDIMAGE,
-	// ... (compoment ids)
+	_FRAMEDIMAGE, 
+	_ATTACK,
+	_HEALTH, 
+	_BULLET,
 
 	// do not remove this
 	_LAST_CMP_ID
@@ -65,6 +67,7 @@ enum sysId : sysId_type {
 	_sys_GAMECNTRL = 0,
 	_sys_COLLISIONS,
 	_sys_RENDER,
+	_sys_MAP,
 	_sys_TOWERS,
 
 	// do not remove this
