@@ -1,12 +1,14 @@
 #include "mapSystem.h"
-#include <tmxlite/Map.hpp>
-mapSystem::mapSystem(){}
+
+mapSystem::mapSystem(std::string filename){
+    loadMap(filename);
+}
 
 mapSystem::~mapSystem() {
 }
 
 void mapSystem::initSystem(){
-    SDLUtils::init("Map", 800, 600, "resources/config/nivelPrueba.json");
+    
 }
 
 void mapSystem::receive(const Message& m) {
@@ -14,48 +16,59 @@ void mapSystem::receive(const Message& m) {
 }
 
 void mapSystem::update(){}
-void mapSystem::loadMap( std::string filename){
-    /*std::unique_ptr<JSONValue> jValueRoot(JSON::ParseFromFile(filename));
-    if (jValueRoot == nullptr || !jValueRoot->IsObject()) {
-        throw "Something went wrong while load/parsing '" + filename + "'";
-    }
-    JSONObject root = jValueRoot->AsObject();
-    JSONValue* jValue = nullptr;
 
-    jValue = root["layers"];
-    if (jValue != nullptr) {
-        if (jValue->IsArray()) {
-            sdl_resource_table<size_t> layers;
-            layers.emplace(jValue->AsArray().size());
-            for (auto& v : jValue->AsArray()) {
-                if (v->IsObject()) {
-                    JSONObject vObj = v->AsObject();
-                    JSONArray data = vObj["data"]->AsArray();
-                    std::string name = vObj["name"]->AsString();
+void mapSystem::loadMap(std::string filename) {
 
-                    std::cout << "Loading font with id: " << name << std::endl;
+    tmx::Map map;
+    map.load(filename);
 
+	const auto& layers = map.getLayers();
+	for (std::size_t i = 0; i < layers.size(); ++i) {
+		if (map.getOrientation() == tmx::Orientation::Isometric && layers[i]->getType() == tmx::Layer::Type::Tile) {
+			const auto tileSize = map.getTileSize();
+			m_chunkSize.x = std::floor(m_chunkSize.x / tileSize.x) * tileSize.x;
+			m_chunkSize.y = std::floor(m_chunkSize.y / tileSize.y) * tileSize.y;
+			m_MapTileSize.x = map.getTileSize().x;
+			m_MapTileSize.y = map.getTileSize().y;
+			const auto& layer = layers[i]->getLayerAs<tmx::TileLayer>();
 
-                    for (size_t i = 0; i < data.size(); i++)
-                    {
-                        int id = data[i]->AsNumber();
-                        loadTile(id);
-                    }
+			loadTile(map, layer);
 
-                    layers.emplace(name, data);
-                }
-                else {
-                    throw "'layers' array in '" + filename
-                        + "' includes and invalid value";
-                }
-            }
-        }
-        else {
-            throw "'layers' is not an array in '" + filename + "'";
-        }
-    }*/
-
+			auto mapSize = map.getBounds();
+			m_globalBounds.width = mapSize.width;
+			m_globalBounds.height = mapSize.height;
+		}
+	}
 
 }
-void mapSystem::loadTile(int id){}
+void mapSystem::loadTile(const tmx::Map& map, const tmx::TileLayer& layer){
+	const auto& tileSets = map.getTilesets();
+	const auto& layerIDs = layer.getTiles();
+
+	for (auto tile : layerIDs)
+	{
+		if (tile.ID == 2) {
+			Entity* tile = mngr_->addEntity(_grp_TILES_L2);
+			mngr_->addComponent<RenderComponent>(tile, gameTextures::hillTexture);
+		}
+		else if (tile.ID == 4) {
+			Entity* tile = mngr_->addEntity(_grp_TILES_L3);
+			mngr_->addComponent<RenderComponent>(tile, gameTextures::mountainTexture);
+		}
+		else if (tile.ID == 133) {
+			Entity* tile = mngr_->addEntity(_grp_TILES_L2);
+			mngr_->addComponent<RenderComponent>(tile, gameTextures::roadTexture);
+		}
+		else if (tile.ID == 85) {
+			Entity* tile = mngr_->addEntity(_grp_TILES_L1);
+			mngr_->addComponent<RenderComponent>(tile, gameTextures::lakeTexture);
+		}
+		//Hay que dividir cada tile del borde a su respectiva textura (mas if)
+		else if (tile.ID > 80 && tile.ID < 101) {
+			Entity* tile = mngr_->addEntity(_grp_TILES_L1);
+			mngr_->addComponent<RenderComponent>(tile, gameTextures::lakeEdgeTexture);
+		}
+
+	}
+}
 
