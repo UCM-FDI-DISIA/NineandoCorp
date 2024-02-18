@@ -20,4 +20,6 @@ public:
 	void doDamageTo(HealthComponent* healthcmp);
 	void onTravelEnds();
 		
+	Entity* getTarget()const { return targetEntity_; }
+
 };

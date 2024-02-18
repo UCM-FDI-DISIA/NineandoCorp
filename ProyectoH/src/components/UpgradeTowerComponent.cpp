@@ -18,7 +18,6 @@ void UpgradeTowerComponent::LevelUp() {
 		case _twr_CRISTAL:
 
 			break;
-
 		case _twr_SLIME:
 
 			break;

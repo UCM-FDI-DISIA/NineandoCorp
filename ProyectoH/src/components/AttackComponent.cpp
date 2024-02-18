@@ -77,6 +77,9 @@ bool AttackComponent::shouldShoot()const { return shootBullets_; }
 
 float AttackComponent::getReloadTime()const { return reloadTime_; }
 
+float AttackComponent::getElapsedTime()const { return elapsedTime_; }
+
+
 void AttackComponent::setDamage(int dmg) {
 	damage_ = dmg;
 }
@@ -90,4 +93,8 @@ void AttackComponent::setLoaded(bool ld) {
 
 void AttackComponent::setTimeToShoot(float t) {
 	timeToShoot_ = t;
+}
+
+void AttackComponent::setElapsedTime(float elapsed) {
+	elapsedTime_ = elapsed;
 }

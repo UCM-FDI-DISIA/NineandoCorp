@@ -26,24 +26,26 @@ public:
 	bool isLoaded()const;
 	Entity* getTarget() const;
 	float getTimeToShoot()const;
-	bool shouldShoot() const;
 	float getReloadTime()const;
+	float getElapsedTime()const;
 
 	//Setters
 	void setDamage(int dmg);
 	void setRange(float rng);
 	void setLoaded(bool ld);
 	void setTimeToShoot(float t);
+	void setElapsedTime(float elapsed);
+
 protected:
 	
 	float reloadTime_;
 	int damage_;
 	Entity* target_;//target principal
-private:
 
 	float getDistance(Vector2D targetPos);
 	float range_;
 	float timeToShoot_;
+	float elapsedTime_;
 	bool loaded_;
 	bool shootBullets_;
 };

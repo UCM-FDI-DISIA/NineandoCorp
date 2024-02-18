@@ -43,3 +43,22 @@ void BulletTower::levelUp(int level) {
 		break;
 	}
 }
+
+void BulletTower::targetSecondEnemy(const std::vector<Entity*>& targetGroup) {
+	if (secondTarget_ == nullptr) {//Si no hay enemigo targeteado se busca uno
+		double closestEnemy = INT32_MAX;
+		for (auto enemy : targetGroup)
+		{
+			float distance = getDistance(mngr_->getComponent<Transform>(enemy)->getPosition());
+			if (distance < range_ && distance < closestEnemy) {
+				secondTarget_ = enemy;
+				closestEnemy = distance;
+			}
+		}
+	}
+	else {
+		if (getDistance(mngr_->getComponent<Transform>(secondTarget_)->getPosition()) > range_) {//el target ha salido de rango luego lo pierde
+			secondTarget_ = nullptr;
+		}
+	}
+}
