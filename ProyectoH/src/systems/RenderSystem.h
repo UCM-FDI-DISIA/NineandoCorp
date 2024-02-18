@@ -1,6 +1,7 @@
 #pragma once
 #include "../ecs/System.h"
 #include "../components/Transform.h"
+#include "../components/MovementComponent.h"
 #include "../components/FramedImage.h"
 #include "../components/RenderComponent.h"
 
@@ -39,9 +40,6 @@ private:
 	void onResume();
 
 	uint8_t winner_; // 0 - None, 1 - Asteroid, 2- Fighter
-	
-	// Tower
-	Transform* fighterTr;
 
 	// Texts
 	stateText currStTxt;
@@ -52,6 +50,4 @@ private:
 	Texture* textures[gameTextures::gmTxtrSize];
 
 	// Doing a texture array so we do not need to access sdlutils' map every time
-
-	Transform* enemyFighterTr;
 };

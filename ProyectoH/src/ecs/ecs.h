@@ -19,6 +19,7 @@ enum cmpId : cmpId_type {
 	_ATTACK,
 	_HEALTH, 
 	_BULLET,
+	_MOVEMENT,
 
 	// do not remove this
 	_LAST_CMP_ID
@@ -27,6 +28,8 @@ constexpr cmpId_type maxComponentId = _LAST_CMP_ID;
 
 using hdlrId_type = int;
 enum hdlrId : hdlrId_type { 
+	_hdlr_DRAG_AND_DROP,
+	_hdlr_BUTTON,
 	
 	// do not remove this
 	_LAST_HDLR_ID };

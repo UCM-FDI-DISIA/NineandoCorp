@@ -21,7 +21,7 @@ private:
 
 	// Constructor
 	Game() : exit(false), deltaTime(0), gameStateMachine(new GameStateMachine()) {
-		SDLUtils::init("Proyect H", 1200, 900);
+		SDLUtils::init("Proyect H", 1200, 900, "resources/config/towerDefenseResources.json");
 		auto& sdl = *SDLUtils::instance();
 
 		//show the cursor

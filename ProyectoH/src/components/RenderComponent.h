@@ -3,7 +3,7 @@
 
 // Correspondant texture to each type of entity
 enum gameTextures {
-	hillTexture, roadTexture, mountainTexture, lakeTexture, lakeEdgeTexture, bulletTexture, gmTxtrSize
+	hillTexture, roadTexture, mountainTexture, lakeTexture, lakeEdgeTexture, bulletTexture, square, gmTxtrSize
 };
 
 class RenderComponent : public Component

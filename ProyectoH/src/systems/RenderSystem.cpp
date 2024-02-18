@@ -6,7 +6,7 @@
 RenderSystem::RenderSystem() :
 	winner_(0)
 {
-	//textures[bulletTexture] = &sdlutils().images().at("Fire");
+	textures[square] = &sdlutils().images().at("square");
 }
 
 
@@ -115,9 +115,9 @@ void RenderSystem::update() {
 	}
 
 	// TEXTS
-	if (currStTxt != stateText::sttTxtSize) {
+	/*if (currStTxt != stateText::sttTxtSize) {
 		textTextures[currStTxt]->render(textTr[currStTxt]->getRect());
-	}
+	}*/
 
 
 	sdlutils().presentRenderer();

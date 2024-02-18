@@ -5,6 +5,8 @@
 class MovementComponent:public Component
 {
 public:
+	static const cmpId id = cmpId::_MOVEMENT;
+
 	MovementComponent() :transform_(nullptr) {};
 	void update();
 	void MoveTo(Vector2D destino);

@@ -35,7 +35,7 @@
     },
     {
       "id": "Demonio_Alado_Run",
-      "file": "resources/images/Enemies/Demonio Alado/Run.png"
+      "file": "resources/images/Enemies/Demonio Alado/Flight.png"
     },
     {
       "id": "Esqueleto_Attack",
@@ -76,6 +76,10 @@
     {
       "id": "Mensajero_de_la_muerte",
       "file": "resources/images/Enemies/Mensajero de la Muerte/Maestro de las AlmasSpritesheet.png"
+    },
+    {
+      "id": "square",
+      "file": "resources/images/Enemies/Angel/angel1.png"
     }
 
   ],
