@@ -4,7 +4,7 @@
 #include "..//components/Transform.h"
 #include "..//components/HealthComponent.h"
 
-AttackComponent::AttackComponent(float range, float reloadTime, int damage, bool shootBullets) : range_(range), reloadTime_(reloadTime), damage_(damage), shootBullets_(shootBullets){
+AttackComponent::AttackComponent(float range, float reloadTime, int damage, bool shootBullets) : range_(range), reloadTime_(reloadTime), damage_(damage){
 	target_ = nullptr; timeToShoot_ = reloadTime; loaded_ = false;
 }
 
@@ -58,6 +58,12 @@ void AttackComponent::targetEnemy(const std::vector<Entity*>& targetGroup) {//Bu
 	}
 }
 
+void AttackComponent::shoot(Entity* targetEntity) {
+	Entity* bullet = mngr_->addEntity(_grp_BULLETS);
+	mngr_->addComponent<BulletComponent>(bullet)->setBullet(target_, damage_);
+	mngr_->addComponent<Transform>(bullet);
+}
+
 float AttackComponent::getDistance(Vector2D targetPos) {//Distancia al target
 	Vector2D myPos = mngr_->getComponent<Transform>(ent_)->getPosition();
 	return sqrt(pow(myPos.getX() - targetPos.getX(), 2) + pow(myPos.getY() - targetPos.getY(), 2));
@@ -72,8 +78,6 @@ bool AttackComponent::isLoaded() const { return loaded_; }
 Entity* AttackComponent::getTarget()const { return target_; }
 
 float AttackComponent::getTimeToShoot()const { return timeToShoot_; }
-
-bool AttackComponent::shouldShoot()const { return shootBullets_; }
 
 float AttackComponent::getReloadTime()const { return reloadTime_; }
 

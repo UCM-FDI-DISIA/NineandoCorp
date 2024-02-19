@@ -1,14 +1,14 @@
 #pragma once
 #include "..//ecs/System.h"
 #include "..//components/Transform.h"
-
+#include "..//sdlutils/VirtualTimer.h"
 
 class TowerSystem : public System
 {
 public:
 	static constexpr sysId_type id = _sys_TOWERS;
 	TowerSystem();
-	virtual ~TowerSystem();
+	~TowerSystem();
 
 	void initSystem() override;
 	void receive(const Message& m) override;

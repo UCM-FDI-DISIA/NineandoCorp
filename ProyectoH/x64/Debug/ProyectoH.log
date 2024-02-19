@@ -1,32 +1,24 @@
-﻿C:\Program Files\Microsoft Visual Studio\2022\Community\MSBuild\Microsoft\VC\v170\Microsoft.CppBuild.targets(517,5): warning MSB8004: El directorio Output no termina con una barra diagonal final. Esta instancia de compilación agregará la barra diagonal porque es necesaria para que se pueda evaluar correctamente el directorio Output.
-C:\Program Files\Microsoft Visual Studio\2022\Community\MSBuild\Microsoft\VC\v170\Microsoft.CppBuild.targets(531,5): warning MSB8028: El directorio intermedio (x64\Debug\) contiene archivos compartidos de otro proyecto (TPV2.vcxproj). Esto puede dar lugar a un comportamiento incorrecto de limpieza y recompilación.
+﻿c:\software\programacion\MSVStudio2022\MSBuild\Microsoft\VC\v170\Microsoft.CppBuild.targets(517,5): warning MSB8004: El directorio Output no termina con una barra diagonal final. Esta instancia de compilación agregará la barra diagonal porque es necesaria para que se pueda evaluar correctamente el directorio Output.
+c:\software\programacion\MSVStudio2022\MSBuild\Microsoft\VC\v170\Microsoft.CppBuild.targets(531,5): warning MSB8028: El directorio intermedio (x64\Debug\) contiene archivos compartidos de otro proyecto (TPV2.vcxproj). Esto puede dar lugar a un comportamiento incorrecto de limpieza y recompilación.
   AttackComponent.cpp
-C:\Users\jesus\OneDrive\Documentos\Universidad\Curso 2023-2024\Proyectos 2\NineandoCorp\ProyectoH\src\components\AttackComponent.cpp(63,13): warning C4244: 'return': conversión de 'double' a 'float'; posible pérdida de datos
-C:\Users\jesus\OneDrive\Documentos\Universidad\Curso 2023-2024\Proyectos 2\NineandoCorp\ProyectoH\src\components\AttackComponent.cpp(66,51): warning C4244: 'return': conversión de 'const int' a 'float'; posible pérdida de datos
-C:\Users\jesus\OneDrive\Documentos\Universidad\Curso 2023-2024\Proyectos 2\NineandoCorp\ProyectoH\src\components\AttackComponent.cpp(76,23): error C2039: "shouldShoot": no es un miembro de "AttackComponent"
-  C:\Users\jesus\OneDrive\Documentos\Universidad\Curso 2023-2024\Proyectos 2\NineandoCorp\ProyectoH\src\components\AttackComponent.h(10,7):
-  vea la declaración de 'AttackComponent'
-  
-C:\Users\jesus\OneDrive\Documentos\Universidad\Curso 2023-2024\Proyectos 2\NineandoCorp\ProyectoH\src\components\AttackComponent.cpp(76,23): error C2270: 'shouldShoot': modificadores no permitidos en funciones que no sean miembro
-C:\Users\jesus\OneDrive\Documentos\Universidad\Curso 2023-2024\Proyectos 2\NineandoCorp\ProyectoH\src\components\AttackComponent.cpp(76,51): error C2065: 'shootBullets_': identificador no declarado
-  mapSystem.cpp
-C:\Users\jesus\OneDrive\Documentos\Universidad\Curso 2023-2024\Proyectos 2\NineandoCorp\ProyectoH\src\systems\mapSystem.cpp(54,26): warning C4244: 'argumento': conversión de 'int' a 'float'; posible pérdida de datos
-C:\Users\jesus\OneDrive\Documentos\Universidad\Curso 2023-2024\Proyectos 2\NineandoCorp\ProyectoH\src\systems\mapSystem.cpp(53,47): warning C4244: 'argumento': conversión de 'int' a 'float'; posible pérdida de datos
-C:\Users\jesus\OneDrive\Documentos\Universidad\Curso 2023-2024\Proyectos 2\NineandoCorp\ProyectoH\src\systems\mapSystem.cpp(62,26): warning C4244: 'argumento': conversión de 'int' a 'float'; posible pérdida de datos
-C:\Users\jesus\OneDrive\Documentos\Universidad\Curso 2023-2024\Proyectos 2\NineandoCorp\ProyectoH\src\systems\mapSystem.cpp(61,47): warning C4244: 'argumento': conversión de 'int' a 'float'; posible pérdida de datos
-C:\Users\jesus\OneDrive\Documentos\Universidad\Curso 2023-2024\Proyectos 2\NineandoCorp\ProyectoH\src\systems\mapSystem.cpp(69,26): warning C4244: 'argumento': conversión de 'int' a 'float'; posible pérdida de datos
-C:\Users\jesus\OneDrive\Documentos\Universidad\Curso 2023-2024\Proyectos 2\NineandoCorp\ProyectoH\src\systems\mapSystem.cpp(68,47): warning C4244: 'argumento': conversión de 'int' a 'float'; posible pérdida de datos
-C:\Users\jesus\OneDrive\Documentos\Universidad\Curso 2023-2024\Proyectos 2\NineandoCorp\ProyectoH\src\systems\mapSystem.cpp(76,26): warning C4244: 'argumento': conversión de 'int' a 'float'; posible pérdida de datos
-C:\Users\jesus\OneDrive\Documentos\Universidad\Curso 2023-2024\Proyectos 2\NineandoCorp\ProyectoH\src\systems\mapSystem.cpp(75,47): warning C4244: 'argumento': conversión de 'int' a 'float'; posible pérdida de datos
-C:\Users\jesus\OneDrive\Documentos\Universidad\Curso 2023-2024\Proyectos 2\NineandoCorp\ProyectoH\src\systems\mapSystem.cpp(84,26): warning C4244: 'argumento': conversión de 'int' a 'float'; posible pérdida de datos
-C:\Users\jesus\OneDrive\Documentos\Universidad\Curso 2023-2024\Proyectos 2\NineandoCorp\ProyectoH\src\systems\mapSystem.cpp(83,47): warning C4244: 'argumento': conversión de 'int' a 'float'; posible pérdida de datos
+C:\Users\usuario_local\Documents\NineandoCorp\ProyectoH\src\components\AttackComponent.cpp(69,13): warning C4244: 'return': conversión de 'double' a 'float'; posible pérdida de datos
+C:\Users\usuario_local\Documents\NineandoCorp\ProyectoH\src\components\AttackComponent.cpp(72,51): warning C4244: 'return': conversión de 'const int' a 'float'; posible pérdida de datos
+  BulletTower.cpp
+  UpgradeTowerComponent.cpp
+  MainControlSystem.cpp
   TowerSystem.cpp
-C:\Users\jesus\OneDrive\Documentos\Universidad\Curso 2023-2024\Proyectos 2\NineandoCorp\ProyectoH\src\systems\TowerSystem.h(24,15): error C3646: 'timer_': especificador de invalidación desconocido
-  (compilando archivo de origen "src/systems/TowerSystem.cpp")
-  
-C:\Users\jesus\OneDrive\Documentos\Universidad\Curso 2023-2024\Proyectos 2\NineandoCorp\ProyectoH\src\systems\TowerSystem.h(24,21): error C4430: falta el especificador de tipo; se presupone int. Nota: C++ no admite default-int
-  (compilando archivo de origen "src/systems/TowerSystem.cpp")
-  
-C:\Users\jesus\OneDrive\Documentos\Universidad\Curso 2023-2024\Proyectos 2\NineandoCorp\ProyectoH\src\systems\TowerSystem.cpp(6,28): error C2614: 'TowerSystem': inicialización de miembro no válida: 'timer_' no es una base o miembro
-C:\Users\jesus\OneDrive\Documentos\Universidad\Curso 2023-2024\Proyectos 2\NineandoCorp\ProyectoH\src\systems\TowerSystem.cpp(38,23): error C2065: 'timer_': identificador no declarado
+C:\Users\usuario_local\Documents\NineandoCorp\ProyectoH\src\systems\TowerSystem.cpp(37,38): warning C4244: 'argumento': conversión de 'Uint32' a 'float'; posible pérdida de datos
   Generando código...
+libtmxlite-s-d.lib(Property.obj) : warning LNK4099: no se encontró PDB '' con 'libtmxlite-s-d.lib(Property.obj)' o en ''; se vinculará el objeto sin tener en cuenta información de depuración
+libtmxlite-s-d.lib(ObjectGroup.obj) : warning LNK4099: no se encontró PDB '' con 'libtmxlite-s-d.lib(ObjectGroup.obj)' o en ''; se vinculará el objeto sin tener en cuenta información de depuración
+libtmxlite-s-d.lib(Tileset.obj) : warning LNK4099: no se encontró PDB '' con 'libtmxlite-s-d.lib(Tileset.obj)' o en ''; se vinculará el objeto sin tener en cuenta información de depuración
+libtmxlite-s-d.lib(TileLayer.obj) : warning LNK4099: no se encontró PDB '' con 'libtmxlite-s-d.lib(TileLayer.obj)' o en ''; se vinculará el objeto sin tener en cuenta información de depuración
+libtmxlite-s-d.lib(Map.obj) : warning LNK4099: no se encontró PDB '' con 'libtmxlite-s-d.lib(Map.obj)' o en ''; se vinculará el objeto sin tener en cuenta información de depuración
+libtmxlite-s-d.lib(pugixml.obj) : warning LNK4099: no se encontró PDB '' con 'libtmxlite-s-d.lib(pugixml.obj)' o en ''; se vinculará el objeto sin tener en cuenta información de depuración
+libtmxlite-s-d.lib(Object.obj) : warning LNK4099: no se encontró PDB '' con 'libtmxlite-s-d.lib(Object.obj)' o en ''; se vinculará el objeto sin tener en cuenta información de depuración
+libtmxlite-s-d.lib(FreeFuncs.obj) : warning LNK4099: no se encontró PDB '' con 'libtmxlite-s-d.lib(FreeFuncs.obj)' o en ''; se vinculará el objeto sin tener en cuenta información de depuración
+libtmxlite-s-d.lib(ImageLayer.obj) : warning LNK4099: no se encontró PDB '' con 'libtmxlite-s-d.lib(ImageLayer.obj)' o en ''; se vinculará el objeto sin tener en cuenta información de depuración
+libtmxlite-s-d.lib(LayerGroup.obj) : warning LNK4099: no se encontró PDB '' con 'libtmxlite-s-d.lib(LayerGroup.obj)' o en ''; se vinculará el objeto sin tener en cuenta información de depuración
+libtmxlite-s-d.lib(miniz.obj) : warning LNK4099: no se encontró PDB '' con 'libtmxlite-s-d.lib(miniz.obj)' o en ''; se vinculará el objeto sin tener en cuenta información de depuración
+     Creando biblioteca C:\Users\usuario_local\Documents\NineandoCorp\bin\ProyectoHDebug.lib y objeto C:\Users\usuario_local\Documents\NineandoCorp\bin\ProyectoHDebug.exp
+  ProyectoH.vcxproj -> C:\Users\usuario_local\Documents\NineandoCorp\bin\ProyectoHDebug.exe
