@@ -35,10 +35,6 @@ void AttackComponent::initComponent() {
 	}	
 }*/
 
-void
-AttackComponent::shoot(Entity* targetToShoot){}
-
-
 void AttackComponent::doDamageTo(HealthComponent* healthcmp) {//Causa un daño a una entidad
 	healthcmp->setHealth(healthcmp->getHealth() - damage_);
 }
@@ -77,7 +73,7 @@ Entity* AttackComponent::getTarget()const { return target_; }
 
 float AttackComponent::getTimeToShoot()const { return timeToShoot_; }
 
-//bool AttackComponent::shouldShoot()const { return shootBullets_; }
+bool AttackComponent::shouldShoot()const { return shootBullets_; }
 
 float AttackComponent::getReloadTime()const { return reloadTime_; }
 
