@@ -26,11 +26,7 @@ public:
     // Clears the game states to erase stack
     void clearStatesToErase();
 
-    // Calls current state handleInput method
-    void handleInput();
     // Calls current state update method
     void update();
-    // Calls every stacked state render method
-    void render() const;
 };
 #endif

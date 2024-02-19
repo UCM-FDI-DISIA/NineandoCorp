@@ -55,9 +55,3 @@ void GameStateMachine::update() {
         state->refresh();
     }
 }
-// Calls every stacked state render method
-void GameStateMachine::render() const {
-    for (GameState* state : gameStates) {
-        state->render();
-    }
-}

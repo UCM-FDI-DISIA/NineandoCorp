@@ -4,6 +4,5 @@
 class PauseState : public GameState
 {
 public:
-	void handleInput() override;
 };
 

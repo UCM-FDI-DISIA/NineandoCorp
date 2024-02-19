@@ -7,10 +7,6 @@ PlayState::PlayState() : GameState(_gmStt_PLAY) {
 	//mngr_->addSystem<mapSystem>("../ProyectoH/resources/tileMap/nivelPrueba.tmx");
 }
 
-void PlayState::handleInput() {
-	
-}
-
 void PlayState::update() {
 	GameState::update();
 }
