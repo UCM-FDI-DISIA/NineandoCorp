@@ -6,6 +6,7 @@
 class RouteComponent :public Component
 {
 public:
+	static const cmpId id = cmpId::_ROUTE;
 	RouteComponent(std::vector<Vector2D> route	) :transform_(nullptr), route_(route),destiny_(1){};
 	void initComponent();
 	void update();

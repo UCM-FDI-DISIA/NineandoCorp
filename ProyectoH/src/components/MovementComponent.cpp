@@ -1,6 +1,6 @@
 #include "MovementComponent.h"
 void
-MovementComponent::update() {
+MovementComponent::Move() {
 	transform_->translate();
 }
 void

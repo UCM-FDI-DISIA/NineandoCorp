@@ -20,6 +20,7 @@ enum cmpId : cmpId_type {
 	_HEALTH, 
 	_BULLET,
 	_MOVEMENT,
+	_ROUTE,
 
 	// do not remove this
 	_LAST_CMP_ID
@@ -72,6 +73,7 @@ enum sysId : sysId_type {
 	_sys_RENDER,
 	_sys_MAP,
 	_sys_TOWERS,
+	_sys_ENEMY,
 
 	// do not remove this
 	_LAST_SYS_ID

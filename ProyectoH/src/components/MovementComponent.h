@@ -8,7 +8,7 @@ public:
 	static const cmpId id = cmpId::_MOVEMENT;
 
 	MovementComponent() :transform_(nullptr) {};
-	void update();
+	void Move();
 	void MoveTo(Vector2D destino);
 	void rotate(float rotation);
 	void initComponent();
