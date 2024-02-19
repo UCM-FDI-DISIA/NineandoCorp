@@ -21,6 +21,6 @@ protected:
 
 	std::vector<Transform*> towerTransforms;
 	bool active_;
-	VirtualTimer timer_;
+	//VirtualTimer timer_;
 };
 

@@ -3,7 +3,7 @@
 #include "../components/AttackComponent.h"
 #include "../components/BulletTower.h"
 
-TowerSystem::TowerSystem():timer_() {
+TowerSystem::TowerSystem() {
 }
 
 TowerSystem::~TowerSystem() {
@@ -35,7 +35,7 @@ void TowerSystem::update() {
 		AttackComponent* ac = mngr_->getComponent<AttackComponent>(t);
 		if (ac != nullptr) {
 			ac->targetEnemy(enemies);
-			ac->setElapsedTime(timer_.currTime());
+			//ac->setElapsedTime(timer_.currTime());
 			if (ac->getElapsedTime() > ac->getTimeToShoot()) {
 				ac->setLoaded(true);
 				if (ac->getTarget() != nullptr) {

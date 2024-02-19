@@ -7,10 +7,10 @@ enum ButtonTypes {
 
 class ButtonComponent : public Component
 {
-	//constructora
-	//desrtuctora
-	//metodo ifpressed
+	
 public:
+	static const cmpId id = cmpId::_BUTTON;
+
 	ButtonComponent( ButtonTypes id) : id_(id), tr_(nullptr) {}
 	~ButtonComponent() {}
 
