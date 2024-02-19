@@ -1,26 +1,26 @@
 #pragma once
-#include "../ecs/Component.h"
+#include "Transform.h"
+
 enum ButtonTypes {
 	pruebaButton,backButton
 };
-class ButtonComponent :public Component
+
+class ButtonComponent : public Component
 {
 	//constructora
 	//desrtuctora
 	//metodo ifpressed
 public:
-	SDL_Texture* texture;
-	ButtonComponent() {}
-	//get the x and y of the top left corner sprite 
-	ButtonComponent(int x, int y);
-	ButtonComponent::ButtonComponent(int x, int y)
-	{
-		static SDL_Texture* t = IMG_LoadTexture(ren, "Buttons.png")
-			texture = t;
-
-	}
+	ButtonComponent( ButtonTypes id) : id_(id), tr_(nullptr) {}
 	~ButtonComponent() {}
 
+	void initComponent() override;
+
+	ButtonTypes isPressed(Vector2D mousePos);
+
+private:
+	Transform* tr_;
+	ButtonTypes id_;
 
 };
 
