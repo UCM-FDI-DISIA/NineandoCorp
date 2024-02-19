@@ -2,7 +2,7 @@
 #include "Transform.h"
 
 enum ButtonTypes {
-	pruebaButton,backButton
+	pruebaButton,backButton,none
 };
 
 class ButtonComponent : public Component

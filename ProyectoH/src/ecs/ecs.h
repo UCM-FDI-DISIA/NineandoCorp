@@ -20,6 +20,7 @@ enum cmpId : cmpId_type {
 	_HEALTH, 
 	_BULLET,
 	_MOVEMENT,
+	_BUTTON,
 
 	// do not remove this
 	_LAST_CMP_ID
