@@ -198,6 +198,9 @@
     <ClInclude Include="src\components\UpgradeTowerComponent.h">
       <Filter>Header Files\components</Filter>
     </ClInclude>
+    <ClInclude Include="src\systems\MainControlSystem.h">
+      <Filter>Header Files\systems</Filter>
+    </ClInclude>
     <ClInclude Include="src\systems\MainMenuSystem.h">
       <Filter>Header Files\systems</Filter>
     </ClInclude>
@@ -298,6 +301,9 @@
     </ClCompile>
     <ClCompile Include="src\components\UpgradeTowerComponent.cpp">
       <Filter>Source Files\components</Filter>
+    </ClCompile>
+    <ClCompile Include="src\systems\MainControlSystem.cpp">
+      <Filter>Source Files\systems</Filter>
     </ClCompile>
     <ClCompile Include="src\systems\MainMenuSystem.cpp">
       <Filter>Source Files\systems</Filter>
