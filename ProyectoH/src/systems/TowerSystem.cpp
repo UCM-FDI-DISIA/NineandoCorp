@@ -3,7 +3,7 @@
 #include "../components/AttackComponent.h"
 #include "../components/BulletTower.h"
 
-TowerSystem::TowerSystem():timer_() {
+TowerSystem::TowerSystem() :timer_(), active_(true) {
 }
 
 TowerSystem::~TowerSystem() {
