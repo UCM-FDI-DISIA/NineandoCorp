@@ -45,10 +45,12 @@ void TowerSystem::update() {
 				}		
 			}
 		}
-		BulletTower* bt = mngr_->getComponent<BulletTower>(t);
-		
+		BulletTower* bt = mngr_->getComponent<BulletTower>(t);	
 		if (bt != nullptr) {
-
+			if (bt->getElapsedTime() > bt->getTimeToShoot()) {
+				bt->targetSecondEnemy(enemies);
+				if (bt->getTarget() != nullptr) { bt->shoot(bt->getTarget()); }
+			}
 		}
 	}
 
