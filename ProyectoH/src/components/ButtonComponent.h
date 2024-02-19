@@ -10,14 +10,16 @@ class ButtonComponent :public Component
 	//metodo ifpressed
 public:
 	SDL_Texture* texture;
-	Button() {}
+	ButtonComponent() {}
 	//get the x and y of the top left corner sprite 
-	Button(int x, int y);
-	Button::Button(int x, int y)
+	ButtonComponent(int x, int y);
+	ButtonComponent::ButtonComponent(int x, int y)
 	{
-		static SDL_Texture * t = IMG_LoadTexture(ren, "Buttons.png")
+		static SDL_Texture* t = IMG_LoadTexture(ren, "Buttons.png")
+			texture = t;
+
 	}
-	~Button() {}
+	~ButtonComponent() {}
 
 
 };
