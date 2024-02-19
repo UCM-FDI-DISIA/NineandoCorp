@@ -1,12 +1,12 @@
 {
   "floatConst": [
     //1.Torres
-    //1.3Balas
+    //1.3 Balas
     {
       "id": "BalasRecarga",
       "value": 0.5
     },
-    //1.5Fenix
+    //1.5 Fenix
     {
       "id": "FenixDano",
       "value": 2.5
@@ -15,7 +15,7 @@
 
   "intConst": [
     //1.Torres
-    //1.1Cristal
+    //1.1 Cristal
     {
       "id": "CristalVida",
       "value": 50
@@ -40,7 +40,7 @@
       "id": "CristalElevacion",
       "value": 0
     },
-    //1.2Slime
+    //1.2 Slime
     {
       "id": "SlimeVida",
       "value": 100
@@ -65,7 +65,7 @@
       "id": "SlimeElevacion",
       "value": 0
     },
-    //1.3Balas
+    //1.3 Balas
     {
       "id": "BalasVida",
       "value": 25
@@ -86,7 +86,7 @@
       "id": "BalasElevacion",
       "value": 0
     },
-    //1.4DiegoSniper
+    //1.4 DiegoSniper
     {
       "id": "DiegoSniperVida",
       "value": 50
@@ -111,7 +111,7 @@
       "id": "DiegoSniperElevacion",
       "value": 1
     },
-    //1.5Fenix
+    //1.5 Fenix
     {
       "id": "FenixVida",
       "value": 50
@@ -131,8 +131,67 @@
     {
       "id": "FenixElevacion",
       "value": 1
+    },
+    //1.6 Arcilla
+    {
+      "id": "ArcillaVida",
+      "value": 500
+    },
+    {
+      "id": "ArcillaRango",
+      "value": 0
+    },
+    {
+      "id": "ArcillaPrecio",
+      "value": 200
+    },
+    {
+      "id": "ArcillaRecarga",
+      "value": 0
+    },
+    {
+      "id": "ArcillaDano",
+      "value": 0
+    },
+    {
+      "id": "ArcillaElevacion",
+      "value": 0
+    },
+    //1.7 Potenciadora
+    {
+      "id": "PotenciadoraVida",
+      "value": 75
+    },
+    {
+      "id": "PotenciadoraRango",
+      "value": 100
+    },
+    {
+      "id": "PotenciadoraPrecio",
+      "value": 400
+    },
+    {
+      "id": "PotenciadoraRecarga",
+      "value": 0
+    },
+    {
+      "id": "PotenciadoraDano",
+      "value": 0
+    },
+    {
+      "id": "PotenciadoraElevacion",
+      "value": 2
+    },
+    //2. Tower Upgrades
+    //2.1 Cristal
+    {
+      "id": "CristalEscudo",
+      "value": 50
     }
-    //1.6Arcilla
+    {
+      "id": "CristalExplosion",
+      "value": 30
+    }
   ],
 
 }
