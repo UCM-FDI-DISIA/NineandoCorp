@@ -57,6 +57,7 @@
     <ClInclude Include="src\sdlutils\SoundEffect.h" />
     <ClInclude Include="src\sdlutils\Texture.h" />
     <ClInclude Include="src\sdlutils\VirtualTimer.h" />
+    <ClInclude Include="src\systems\MainMenuSystem.h" />
     <ClInclude Include="src\systems\mapSystem.h" />
     <ClInclude Include="src\systems\RenderSystem.h" />
     <ClInclude Include="src\systems\TowerSystem.h" />
@@ -93,6 +94,7 @@
     <ClCompile Include="src\sdlutils\sdlutils_demo.cpp" />
     <ClCompile Include="src\sdlutils\SoundEffect.cpp" />
     <ClCompile Include="src\sdlutils\Texture.cpp" />
+    <ClCompile Include="src\systems\MainMenuSystem.cpp" />
     <ClCompile Include="src\systems\mapSystem.cpp" />
     <ClCompile Include="src\systems\RenderSystem.cpp" />
     <ClCompile Include="src\systems\TowerSystem.cpp" />

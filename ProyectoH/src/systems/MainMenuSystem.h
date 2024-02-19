@@ -1,8 +1,10 @@
 #pragma once
 #include "..//ecs/System.h"
+#include "../components/RenderComponent.h"
+#include "../components/Transform.h"
 //#include "../systems/RenderSystem.h"
 
-class MainMenuSystem
+class MainMenuSystem : public System
 {
 public:
 	static constexpr sysId_type id = _sys_MAINMENU;
