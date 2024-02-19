@@ -1,62 +1,32 @@
 ﻿C:\Program Files\Microsoft Visual Studio\2022\Community\MSBuild\Microsoft\VC\v170\Microsoft.CppBuild.targets(517,5): warning MSB8004: El directorio Output no termina con una barra diagonal final. Esta instancia de compilación agregará la barra diagonal porque es necesaria para que se pueda evaluar correctamente el directorio Output.
 C:\Program Files\Microsoft Visual Studio\2022\Community\MSBuild\Microsoft\VC\v170\Microsoft.CppBuild.targets(531,5): warning MSB8028: El directorio intermedio (x64\Debug\) contiene archivos compartidos de otro proyecto (TPV2.vcxproj). Esto puede dar lugar a un comportamiento incorrecto de limpieza y recompilación.
   AttackComponent.cpp
-C:\Users\Pedro\Desktop\repo\Proyectos2\NineandoCorp\ProyectoH\src\components\AttackComponent.cpp(63,13): warning C4244: 'return': conversión de 'double' a 'float'; posible pérdida de datos
-C:\Users\Pedro\Desktop\repo\Proyectos2\NineandoCorp\ProyectoH\src\components\AttackComponent.cpp(66,51): warning C4244: 'return': conversión de 'const int' a 'float'; posible pérdida de datos
-C:\Users\Pedro\Desktop\repo\Proyectos2\NineandoCorp\ProyectoH\src\components\AttackComponent.cpp(76,23): error C2039: "shouldShoot": no es un miembro de "AttackComponent"
-  C:\Users\Pedro\Desktop\repo\Proyectos2\NineandoCorp\ProyectoH\src\components\AttackComponent.h(10,7):
+C:\Users\jesus\OneDrive\Documentos\Universidad\Curso 2023-2024\Proyectos 2\NineandoCorp\ProyectoH\src\components\AttackComponent.cpp(63,13): warning C4244: 'return': conversión de 'double' a 'float'; posible pérdida de datos
+C:\Users\jesus\OneDrive\Documentos\Universidad\Curso 2023-2024\Proyectos 2\NineandoCorp\ProyectoH\src\components\AttackComponent.cpp(66,51): warning C4244: 'return': conversión de 'const int' a 'float'; posible pérdida de datos
+C:\Users\jesus\OneDrive\Documentos\Universidad\Curso 2023-2024\Proyectos 2\NineandoCorp\ProyectoH\src\components\AttackComponent.cpp(76,23): error C2039: "shouldShoot": no es un miembro de "AttackComponent"
+  C:\Users\jesus\OneDrive\Documentos\Universidad\Curso 2023-2024\Proyectos 2\NineandoCorp\ProyectoH\src\components\AttackComponent.h(10,7):
   vea la declaración de 'AttackComponent'
   
-C:\Users\Pedro\Desktop\repo\Proyectos2\NineandoCorp\ProyectoH\src\components\AttackComponent.cpp(76,23): error C2270: 'shouldShoot': modificadores no permitidos en funciones que no sean miembro
-C:\Users\Pedro\Desktop\repo\Proyectos2\NineandoCorp\ProyectoH\src\components\AttackComponent.cpp(76,51): error C2065: 'shootBullets_': identificador no declarado
-  BulletComponent.cpp
-  BulletTower.cpp
-  FramedImage.cpp
-C:\Users\Pedro\Desktop\repo\Proyectos2\NineandoCorp\ProyectoH\src\components\FramedImage.cpp(11,36): warning C4244: '+=': conversión de 'double' a 'float'; posible pérdida de datos
-C:\Users\Pedro\Desktop\repo\Proyectos2\NineandoCorp\ProyectoH\src\components\FramedImage.cpp(19,3): warning C4244: 'argumento': conversión de 'const int' a 'float'; posible pérdida de datos
-C:\Users\Pedro\Desktop\repo\Proyectos2\NineandoCorp\ProyectoH\src\components\FramedImage.cpp(18,3): warning C4244: 'argumento': conversión de 'const int' a 'float'; posible pérdida de datos
-C:\Users\Pedro\Desktop\repo\Proyectos2\NineandoCorp\ProyectoH\src\components\FramedImage.cpp(17,47): warning C4244: 'argumento': conversión de 'int' a 'float'; posible pérdida de datos
-C:\Users\Pedro\Desktop\repo\Proyectos2\NineandoCorp\ProyectoH\src\components\FramedImage.cpp(16,33): warning C4244: 'argumento': conversión de 'int' a 'float'; posible pérdida de datos
-  Transform.cpp
-C:\Users\Pedro\Desktop\repo\Proyectos2\NineandoCorp\ProyectoH\src\components\Transform.cpp(51,57): warning C4244: 'argumento': conversión de 'double' a 'float'; posible pérdida de datos
-  UpgradeTowerComponent.cpp
-  Game.cpp
-  GameState.cpp
-  PlayState.cpp
-  main.cpp
-  RenderSystem.cpp
-C:\Users\Pedro\Desktop\repo\Proyectos2\NineandoCorp\ProyectoH\src\sdlutils\SDLUtils.h(50,32): warning C4101: 'e': variable local sin referencia
-  (compilando archivo de origen "src/systems/RenderSystem.cpp")
-  C:\Users\Pedro\Desktop\repo\Proyectos2\NineandoCorp\ProyectoH\src\sdlutils\SDLUtils.h(50,32):
-  el contexto de creación de instancias de la plantilla (el más antiguo primero) es
-  	C:\Users\Pedro\Desktop\repo\Proyectos2\NineandoCorp\ProyectoH\src\sdlutils\SDLUtils.h(200,30):
-  	Vea la referencia a la creación de una instancia de clase plantilla "SDLUtils::map_access_wrapper<Texture>" que se está compilando
-  	C:\Users\Pedro\Desktop\repo\Proyectos2\NineandoCorp\ProyectoH\src\sdlutils\SDLUtils.h(47,16):
-  	al compilar la función del miembro clase plantilla "Texture &SDLUtils::map_access_wrapper<Texture>::at(std::string)"
-  
-C:\Users\Pedro\Desktop\repo\Proyectos2\NineandoCorp\ProyectoH\src\systems\RenderSystem.cpp(130,92): warning C4244: 'argumento': conversión de 'int' a 'float'; posible pérdida de datos
-C:\Users\Pedro\Desktop\repo\Proyectos2\NineandoCorp\ProyectoH\src\systems\RenderSystem.cpp(130,57): warning C4244: 'argumento': conversión de 'int' a 'float'; posible pérdida de datos
-C:\Users\Pedro\Desktop\repo\Proyectos2\NineandoCorp\ProyectoH\src\systems\RenderSystem.cpp(130,98): warning C4244: 'argumento': conversión de 'int' a 'float'; posible pérdida de datos
-C:\Users\Pedro\Desktop\repo\Proyectos2\NineandoCorp\ProyectoH\src\systems\RenderSystem.cpp(133,60): warning C4244: 'argumento': conversión de 'int' a 'float'; posible pérdida de datos
-C:\Users\Pedro\Desktop\repo\Proyectos2\NineandoCorp\ProyectoH\src\systems\RenderSystem.cpp(133,31): warning C4244: 'argumento': conversión de 'int' a 'float'; posible pérdida de datos
-  TowerSystem.cpp
-C:\Users\Pedro\Desktop\repo\Proyectos2\NineandoCorp\ProyectoH\src\systems\TowerSystem.h(24,15): error C3646: 'timer_': especificador de invalidación desconocido
-  (compilando archivo de origen "src/systems/TowerSystem.cpp")
-  
-C:\Users\Pedro\Desktop\repo\Proyectos2\NineandoCorp\ProyectoH\src\systems\TowerSystem.h(24,21): error C4430: falta el especificador de tipo; se presupone int. Nota: C++ no admite default-int
-  (compilando archivo de origen "src/systems/TowerSystem.cpp")
-  
-C:\Users\Pedro\Desktop\repo\Proyectos2\NineandoCorp\ProyectoH\src\systems\TowerSystem.cpp(6,28): error C2614: 'TowerSystem': inicialización de miembro no válida: 'timer_' no es una base o miembro
-C:\Users\Pedro\Desktop\repo\Proyectos2\NineandoCorp\ProyectoH\src\systems\TowerSystem.cpp(38,23): error C2065: 'timer_': identificador no declarado
+C:\Users\jesus\OneDrive\Documentos\Universidad\Curso 2023-2024\Proyectos 2\NineandoCorp\ProyectoH\src\components\AttackComponent.cpp(76,23): error C2270: 'shouldShoot': modificadores no permitidos en funciones que no sean miembro
+C:\Users\jesus\OneDrive\Documentos\Universidad\Curso 2023-2024\Proyectos 2\NineandoCorp\ProyectoH\src\components\AttackComponent.cpp(76,51): error C2065: 'shootBullets_': identificador no declarado
   mapSystem.cpp
-C:\Users\Pedro\Desktop\repo\Proyectos2\NineandoCorp\ProyectoH\src\systems\mapSystem.cpp(54,26): warning C4244: 'argumento': conversión de 'int' a 'float'; posible pérdida de datos
-C:\Users\Pedro\Desktop\repo\Proyectos2\NineandoCorp\ProyectoH\src\systems\mapSystem.cpp(53,47): warning C4244: 'argumento': conversión de 'int' a 'float'; posible pérdida de datos
-C:\Users\Pedro\Desktop\repo\Proyectos2\NineandoCorp\ProyectoH\src\systems\mapSystem.cpp(62,26): warning C4244: 'argumento': conversión de 'int' a 'float'; posible pérdida de datos
-C:\Users\Pedro\Desktop\repo\Proyectos2\NineandoCorp\ProyectoH\src\systems\mapSystem.cpp(61,47): warning C4244: 'argumento': conversión de 'int' a 'float'; posible pérdida de datos
-C:\Users\Pedro\Desktop\repo\Proyectos2\NineandoCorp\ProyectoH\src\systems\mapSystem.cpp(69,26): warning C4244: 'argumento': conversión de 'int' a 'float'; posible pérdida de datos
-C:\Users\Pedro\Desktop\repo\Proyectos2\NineandoCorp\ProyectoH\src\systems\mapSystem.cpp(68,47): warning C4244: 'argumento': conversión de 'int' a 'float'; posible pérdida de datos
-C:\Users\Pedro\Desktop\repo\Proyectos2\NineandoCorp\ProyectoH\src\systems\mapSystem.cpp(76,26): warning C4244: 'argumento': conversión de 'int' a 'float'; posible pérdida de datos
-C:\Users\Pedro\Desktop\repo\Proyectos2\NineandoCorp\ProyectoH\src\systems\mapSystem.cpp(75,47): warning C4244: 'argumento': conversión de 'int' a 'float'; posible pérdida de datos
-C:\Users\Pedro\Desktop\repo\Proyectos2\NineandoCorp\ProyectoH\src\systems\mapSystem.cpp(84,26): warning C4244: 'argumento': conversión de 'int' a 'float'; posible pérdida de datos
-C:\Users\Pedro\Desktop\repo\Proyectos2\NineandoCorp\ProyectoH\src\systems\mapSystem.cpp(83,47): warning C4244: 'argumento': conversión de 'int' a 'float'; posible pérdida de datos
+C:\Users\jesus\OneDrive\Documentos\Universidad\Curso 2023-2024\Proyectos 2\NineandoCorp\ProyectoH\src\systems\mapSystem.cpp(54,26): warning C4244: 'argumento': conversión de 'int' a 'float'; posible pérdida de datos
+C:\Users\jesus\OneDrive\Documentos\Universidad\Curso 2023-2024\Proyectos 2\NineandoCorp\ProyectoH\src\systems\mapSystem.cpp(53,47): warning C4244: 'argumento': conversión de 'int' a 'float'; posible pérdida de datos
+C:\Users\jesus\OneDrive\Documentos\Universidad\Curso 2023-2024\Proyectos 2\NineandoCorp\ProyectoH\src\systems\mapSystem.cpp(62,26): warning C4244: 'argumento': conversión de 'int' a 'float'; posible pérdida de datos
+C:\Users\jesus\OneDrive\Documentos\Universidad\Curso 2023-2024\Proyectos 2\NineandoCorp\ProyectoH\src\systems\mapSystem.cpp(61,47): warning C4244: 'argumento': conversión de 'int' a 'float'; posible pérdida de datos
+C:\Users\jesus\OneDrive\Documentos\Universidad\Curso 2023-2024\Proyectos 2\NineandoCorp\ProyectoH\src\systems\mapSystem.cpp(69,26): warning C4244: 'argumento': conversión de 'int' a 'float'; posible pérdida de datos
+C:\Users\jesus\OneDrive\Documentos\Universidad\Curso 2023-2024\Proyectos 2\NineandoCorp\ProyectoH\src\systems\mapSystem.cpp(68,47): warning C4244: 'argumento': conversión de 'int' a 'float'; posible pérdida de datos
+C:\Users\jesus\OneDrive\Documentos\Universidad\Curso 2023-2024\Proyectos 2\NineandoCorp\ProyectoH\src\systems\mapSystem.cpp(76,26): warning C4244: 'argumento': conversión de 'int' a 'float'; posible pérdida de datos
+C:\Users\jesus\OneDrive\Documentos\Universidad\Curso 2023-2024\Proyectos 2\NineandoCorp\ProyectoH\src\systems\mapSystem.cpp(75,47): warning C4244: 'argumento': conversión de 'int' a 'float'; posible pérdida de datos
+C:\Users\jesus\OneDrive\Documentos\Universidad\Curso 2023-2024\Proyectos 2\NineandoCorp\ProyectoH\src\systems\mapSystem.cpp(84,26): warning C4244: 'argumento': conversión de 'int' a 'float'; posible pérdida de datos
+C:\Users\jesus\OneDrive\Documentos\Universidad\Curso 2023-2024\Proyectos 2\NineandoCorp\ProyectoH\src\systems\mapSystem.cpp(83,47): warning C4244: 'argumento': conversión de 'int' a 'float'; posible pérdida de datos
+  TowerSystem.cpp
+C:\Users\jesus\OneDrive\Documentos\Universidad\Curso 2023-2024\Proyectos 2\NineandoCorp\ProyectoH\src\systems\TowerSystem.h(24,15): error C3646: 'timer_': especificador de invalidación desconocido
+  (compilando archivo de origen "src/systems/TowerSystem.cpp")
+  
+C:\Users\jesus\OneDrive\Documentos\Universidad\Curso 2023-2024\Proyectos 2\NineandoCorp\ProyectoH\src\systems\TowerSystem.h(24,21): error C4430: falta el especificador de tipo; se presupone int. Nota: C++ no admite default-int
+  (compilando archivo de origen "src/systems/TowerSystem.cpp")
+  
+C:\Users\jesus\OneDrive\Documentos\Universidad\Curso 2023-2024\Proyectos 2\NineandoCorp\ProyectoH\src\systems\TowerSystem.cpp(6,28): error C2614: 'TowerSystem': inicialización de miembro no válida: 'timer_' no es una base o miembro
+C:\Users\jesus\OneDrive\Documentos\Universidad\Curso 2023-2024\Proyectos 2\NineandoCorp\ProyectoH\src\systems\TowerSystem.cpp(38,23): error C2065: 'timer_': identificador no declarado
   Generando código...

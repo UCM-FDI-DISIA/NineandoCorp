@@ -1,0 +1,138 @@
+{
+  "floatConst": [
+    //1.Torres
+    //1.3Balas
+    {
+      "id": "BalasRecarga",
+      "value": 0.5
+    },
+    //1.5Fenix
+    {
+      "id": "FenixDano",
+      "value": 2.5
+    }
+  ],
+
+  "intConst": [
+    //1.Torres
+    //1.1Cristal
+    {
+      "id": "CristalVida",
+      "value": 50
+    },
+    {
+      "id": "CristalRango",
+      "value": 0
+    },
+    {
+      "id": "CristalPrecio",
+      "value": 200
+    },
+    {
+      "id": "CristalRecarga",
+      "value": 20
+    },
+    {
+      "id": "CristalDano",
+      "value": 0
+    },
+    {
+      "id": "CristalElevacion",
+      "value": 0
+    },
+    //1.2Slime
+    {
+      "id": "SlimeVida",
+      "value": 100
+    },
+    {
+      "id": "SlimeRango",
+      "value": 100
+    },
+    {
+      "id": "SlimePrecio",
+      "value": 400
+    },
+    {
+      "id": "SlimeRecarga",
+      "value": 5
+    },
+    {
+      "id": "SlimeDano",
+      "value": 0
+    },
+    {
+      "id": "SlimeElevacion",
+      "value": 0
+    },
+    //1.3Balas
+    {
+      "id": "BalasVida",
+      "value": 25
+    },
+    {
+      "id": "BalasRango",
+      "value": 100
+    },
+    {
+      "id": "BalasPrecio",
+      "value": 100
+    },
+    {
+      "id": "BalasDano",
+      "value": 5
+    },
+    {
+      "id": "BalasElevacion",
+      "value": 0
+    },
+    //1.4DiegoSniper
+    {
+      "id": "DiegoSniperVida",
+      "value": 50
+    },
+    {
+      "id": "DiegoSniperRango",
+      "value": 300
+    },
+    {
+      "id": "DiegoSniperPrecio",
+      "value": 500
+    },
+    {
+      "id": "DiegoSniperRecarga",
+      "value": 3
+    },
+    {
+      "id": "DiegoSniperDano",
+      "value": 50
+    },
+    {
+      "id": "DiegoSniperElevacion",
+      "value": 1
+    },
+    //1.5Fenix
+    {
+      "id": "FenixVida",
+      "value": 50
+    },
+    {
+      "id": "FenixRango",
+      "value": 100
+    },
+    {
+      "id": "FenixPrecio",
+      "value": 500
+    },
+    {
+      "id": "FenixRecarga",
+      "value": 2
+    },
+    {
+      "id": "FenixElevacion",
+      "value": 1
+    }
+    //1.6Arcilla
+  ],
+
+}
