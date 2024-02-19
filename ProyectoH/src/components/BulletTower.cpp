@@ -50,7 +50,7 @@ void BulletTower::targetSecondEnemy(const std::vector<Entity*>& targetGroup) {
 		for (auto enemy : targetGroup)
 		{
 			float distance = getDistance(mngr_->getComponent<Transform>(enemy)->getPosition());
-			if (distance < range_ && distance < closestEnemy) {
+			if (enemy != target_ && distance < range_ && distance < closestEnemy) {
 				secondTarget_ = enemy;
 				closestEnemy = distance;
 			}
