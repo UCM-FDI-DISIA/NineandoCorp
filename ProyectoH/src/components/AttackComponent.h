@@ -1,8 +1,8 @@
 #pragma once
 #include "..//ecs/Component.h"
 #include "..//ecs/Manager.h"
-#include "..//sdlutils/VirtualTimer.h"
 #include "..//utils/Vector2D.h"
+#include "BulletComponent.h"
 #include <vector>
 
 class Entity;
@@ -47,6 +47,5 @@ protected:
 	float timeToShoot_;
 	float elapsedTime_;
 	bool loaded_;
-	bool shootBullets_;
 };
 
