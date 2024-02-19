@@ -7,6 +7,20 @@ RenderSystem::RenderSystem() :
 	winner_(0)
 {
 	textures[square] = &sdlutils().images().at("square");
+	textures[hillTexture] = &sdlutils().images().at("map1");
+	textures[roadTexture] = &sdlutils().images().at("map133");
+	textures[mountainTexture] = &sdlutils().images().at("map3");
+	textures[lakeTexture1] = &sdlutils().images().at("map81");
+	textures[lakeTexture2] = &sdlutils().images().at("map82");
+	textures[lakeTexture3] = &sdlutils().images().at("map83");
+	textures[lakeTexture4] = &sdlutils().images().at("map84");
+	textures[lakeTexture5] = &sdlutils().images().at("map85");
+	textures[lakeTexture6] = &sdlutils().images().at("map87");
+	textures[lakeTexture7] = &sdlutils().images().at("map88");
+	textures[lakeTexture8] = &sdlutils().images().at("map89");
+	textures[lakeTexture9] = &sdlutils().images().at("map90");
+	textures[lakeTexture10] = &sdlutils().images().at("map98");
+	textures[lakeTexture11] = &sdlutils().images().at("map99");
 }
 
 

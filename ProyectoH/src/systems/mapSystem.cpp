@@ -70,26 +70,88 @@ void mapSystem::loadTile(const tmx::Map& map, const tmx::TileLayer& layer){
 			mngr_->addComponent<Transform>(tile)->setPosition(tilePosition);
 			mngr_->addComponent<RenderComponent>(tile, gameTextures::roadTexture);
 		}
+		else if (tile.ID == 81) {
+			Entity* tile = mngr_->addEntity(_grp_TILES_L1);
+			Vector2D tilePosition((layer.getOffset().x + i),
+				(layer.getOffset().y + j));
+			mngr_->addComponent<Transform>(tile)->setPosition(tilePosition);
+			mngr_->addComponent<RenderComponent>(tile, gameTextures::lakeTexture1);
+		}
+		else if (tile.ID == 82) {
+			Entity* tile = mngr_->addEntity(_grp_TILES_L1);
+			Vector2D tilePosition((layer.getOffset().x + i),
+				(layer.getOffset().y + j));
+			mngr_->addComponent<Transform>(tile)->setPosition(tilePosition);
+			mngr_->addComponent<RenderComponent>(tile, gameTextures::lakeTexture2);
+		}
+		else if (tile.ID == 83) {
+			Entity* tile = mngr_->addEntity(_grp_TILES_L1);
+			Vector2D tilePosition((layer.getOffset().x + i),
+				(layer.getOffset().y + j));
+			mngr_->addComponent<Transform>(tile)->setPosition(tilePosition);
+			mngr_->addComponent<RenderComponent>(tile, gameTextures::lakeTexture3);
+		}
+		else if (tile.ID == 84) {
+			Entity* tile = mngr_->addEntity(_grp_TILES_L1);
+			Vector2D tilePosition((layer.getOffset().x + i),
+				(layer.getOffset().y + j));
+			mngr_->addComponent<Transform>(tile)->setPosition(tilePosition);
+			mngr_->addComponent<RenderComponent>(tile, gameTextures::lakeTexture4);
+		}
 		else if (tile.ID == 85) {
 			Entity* tile = mngr_->addEntity(_grp_TILES_L1);
 			Vector2D tilePosition((layer.getOffset().x + i),
 				(layer.getOffset().y + j));
 			mngr_->addComponent<Transform>(tile)->setPosition(tilePosition);
-			mngr_->addComponent<RenderComponent>(tile, gameTextures::lakeTexture);
+			mngr_->addComponent<RenderComponent>(tile, gameTextures::lakeTexture5);
 		}
-		//Hay que dividir cada tile del borde a su respectiva textura (mas if)
-		else if (tile.ID > 80 && tile.ID < 101) {
+		else if (tile.ID == 87) {
 			Entity* tile = mngr_->addEntity(_grp_TILES_L1);
 			Vector2D tilePosition((layer.getOffset().x + i),
 				(layer.getOffset().y + j));
 			mngr_->addComponent<Transform>(tile)->setPosition(tilePosition);
-			mngr_->addComponent<RenderComponent>(tile, gameTextures::lakeEdgeTexture);
+			mngr_->addComponent<RenderComponent>(tile, gameTextures::lakeTexture6);
 		}
-		i++;
+		else if (tile.ID == 88) {
+			Entity* tile = mngr_->addEntity(_grp_TILES_L1);
+			Vector2D tilePosition((layer.getOffset().x + i),
+				(layer.getOffset().y + j));
+			mngr_->addComponent<Transform>(tile)->setPosition(tilePosition);
+			mngr_->addComponent<RenderComponent>(tile, gameTextures::lakeTexture7);
+		}
+		else if (tile.ID == 89) {
+			Entity* tile = mngr_->addEntity(_grp_TILES_L1);
+			Vector2D tilePosition((layer.getOffset().x + i),
+				(layer.getOffset().y + j));
+			mngr_->addComponent<Transform>(tile)->setPosition(tilePosition);
+			mngr_->addComponent<RenderComponent>(tile, gameTextures::lakeTexture8);
+		}
+		else if (tile.ID == 90) {
+			Entity* tile = mngr_->addEntity(_grp_TILES_L1);
+			Vector2D tilePosition((layer.getOffset().x + i),
+				(layer.getOffset().y + j));
+			mngr_->addComponent<Transform>(tile)->setPosition(tilePosition);
+			mngr_->addComponent<RenderComponent>(tile, gameTextures::lakeTexture9);
+		}
+		else if (tile.ID == 98) {
+			Entity* tile = mngr_->addEntity(_grp_TILES_L1);
+			Vector2D tilePosition((layer.getOffset().x + i),
+				(layer.getOffset().y + j));
+			mngr_->addComponent<Transform>(tile)->setPosition(tilePosition);
+			mngr_->addComponent<RenderComponent>(tile, gameTextures::lakeTexture10);
+		}
+		else if (tile.ID == 99) {
+			Entity* tile = mngr_->addEntity(_grp_TILES_L1);
+			Vector2D tilePosition((layer.getOffset().x + i),
+				(layer.getOffset().y + j));
+			mngr_->addComponent<Transform>(tile)->setPosition(tilePosition);
+			mngr_->addComponent<RenderComponent>(tile, gameTextures::lakeTexture11);
+		}
+		i += 64;
 		if (i % 32 == 0)
 		{
 			i = 0;
-			j++;
+			j+=64;
 		}
 	}
 }
