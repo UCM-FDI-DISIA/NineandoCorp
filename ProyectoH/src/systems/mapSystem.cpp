@@ -44,14 +44,14 @@ void mapSystem::loadMap(std::string filename) {
 void mapSystem::loadTile(const tmx::Map& map, const tmx::TileLayer& layer){
 	const auto& tileSets = map.getTilesets();
 	const auto& layerIDs = layer.getTiles();
-	int i = 0;
+	int i = 1300 / 2;
 	int j = 0;
 	float sep = 1.34;
 	const auto tileSize = map.getTileSize();
 	for (auto tile : layerIDs)
 	{
 		Entity* entityTile = nullptr;
-		Vector2D tilePosition(((layer.getOffset().x + i - j) / sep),
+		Vector2D tilePosition(((layer.getOffset().x + i - j)/ sep ),
 			((layer.getOffset().y + (i + j) / 2)) / sep);
 		if (tile.ID == 2) {
 			entityTile = mngr_->addEntity(_grp_TILES_L1);
@@ -113,8 +113,8 @@ void mapSystem::loadTile(const tmx::Map& map, const tmx::TileLayer& layer){
 			mngr_->addComponent<Transform>(entityTile)->setPosition(tilePosition);
 		
 		i += m_chunkSize.x;
-		if (i >= layer.getSize().x * m_chunkSize.x) {
-			i = 0;
+		if (i >= (layer.getSize().x * m_chunkSize.x) + 650) {
+			i = 1300 / 2;
 			j += m_chunkSize.y;
 		}
 	}
