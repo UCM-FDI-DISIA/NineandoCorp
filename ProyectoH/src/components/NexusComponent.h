@@ -7,8 +7,11 @@ public:
 	NexusComponent();
 	void activateShield();
 	void inactivateShield();
-	bool isShieldActive();
+	int getShieldHitpoints() const;
+	void setShieldHitpoints(int hitpoints);
+	bool isShieldActive() const;
 private:
 	bool shieldActive_;
+	int shieldCurrentHitpoints_;
 };
 
