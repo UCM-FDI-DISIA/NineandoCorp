@@ -70,9 +70,7 @@ void TowerSystem::update() {
 }
 
 void TowerSystem::onRoundStart() {
-	const auto& towers = mngr_->getEntities(_grp_TOWERS);
-
-	for (auto& t : towers) {
+	for (auto& t : mngr_->getEntities(_grp_TOWERS)) {
 		towerTransforms.push_back(mngr_->getComponent<Transform>(t));
 	}
 }
