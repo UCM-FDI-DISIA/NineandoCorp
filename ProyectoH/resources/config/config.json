@@ -14,25 +14,47 @@
     //2.Tower Upgrades
     //2.2 Slime Upgrades
     {
-      "id": "SlimeRecargaUpgrade",
+      "id": "SlimeRecargaUpgrade", //Disminuye tiempo de recarga 0.5s (Nivel 1)
       "value": 0.5
     },
     {
-      "id": "SlimeRalentizacion",
+      "id": "SlimeRalentizacion", //Aumenta el efecto de ralentizacion un 30%  (Nivel 2)
       "value": 0.3
     },
     {
-      "id": "SlimeTiempoSlime",
+      "id": "SlimeTiempoSlime", //El slime se mantiene 0.5s mas (Nivel 3)
       "value": 0.5
-    }
+    },
     //2.4 Diego Sniper Upgrades
     {
-      "id": "DiegoSniperCritico",
+      "id": "DiegoSniperCritico1", //Probabilidad del 20% de realizar un critico, que hace 150% de dano (Nivel 2)
       "value": 0.2
-    }
+    },
     {
-      "id": "DiegoSniperRecargaUpgrade",
+      "id": "DiegoSniperRecargaUpgrade1", //Se reduce en 0.5 el tiempo de recarga (Nivel 3)
       "value": 0.5
+    },
+    {
+      "id": "DiegoSniperCritico2", //Probabilidad de 30% de critico (Nivel 4)
+      "value": 0.3
+    },
+    //2.5 Fenix
+    {
+      "id": "FenixEnfriamiento1", //Se reduce el enfriamiento a 1.5 (Nivel 2)
+      "value": 1.5
+    },
+    //2.7 Potenciadora
+    {
+      "id": "PotenciadoraDano1", //Mejora el dano un 10% en vez de un 5% (Nivel 1)
+      "value": 0.1
+    },
+    {
+      "id": "PotenciadoraDano2", //Mejora el dano un 15% en vez de un 5% (Nivel 1)
+      "value": 0.15
+    },
+    {
+      "id": "PotenciadoraDano3", //Mejora el dano un 20% en vez de un 5% (Nivel 1)
+      "value": 0.2
     }
   ],
 
@@ -208,39 +230,94 @@
     //2. Tower Upgrades
     //2.1 Cristal Upgrades
     {
-      "id": "CristalEscudo",
+      "id": "CristalEscudo", //Aumenta el escudo en 50 puntos (Niveles 1 a 3)
       "value": 50
     },
     {
-      "id": "CristalExplosion",
+      "id": "CristalExplosion", //Al romperse el escudo crea una explosion alrededor de 30 de dano (Nivel 4)
       "value": 30
     },
     //2.2 Slime Upgrades
     {
-      "id": "SlimeDPS",
+      "id": "SlimeDPS", //El area del slime hace 1 de dano por segundo (Nivel 4)
       "value": 1
     },
     //2.3 Balas Upgrades
     {
-      "id": "BalasDano1",
+      "id": "BalasDano1", //Aumenta el dano a 10 puntos (Nivel 1)
       "value": 10
     },
     {
-      "id": "BalasDano2",
+      "id": "BalasDano2", //Aumenta el dano a 20 puntos (Nivel 2)
       "value": 20
     },
     {
-      "id": "BalasDano3",
+      "id": "BalasDano3", //Aumenta el dano a 35 puntos (Nivel 3)
       "value": 35
     },
     {
-      "id": "BalasDobleObj",
+      "id": "BalasDobleObj", //La torre puede apuntar a dos objetivos (Nivel 4)
       "value": 1
     },
     //2.4 Diego Sniper Upgrades
     {
-      "id": "DiegoSniperDano",
+      "id": "DiegoSniperDano", //Aumenta el dano a 75 (Nivel 1)
       "value": 75
+    },
+    {
+      "id": "DiegoSniperRecargaUpgrade2", //Se reduce en 1 el tiempo de recarga (Nivel 4)
+      "value": 1
+    },
+    //2.5 Fenix
+    {
+      "id": "FenixDPS1", //El dps aumenta a 4 puntos/medio segundo (Nivel 1)
+      "value": 4
+    },
+    {
+      "id": "FenixDPS2", //El dps aumenta a 5 puntos/medio segundo (Nivel 3)
+      "value": 5
+    },
+    {
+      "id": "FenixEnfriamiento2", //Se reduce el enfriamiento a 1 (Nivel 3)
+      "value": 1
+    },
+    {
+      "id": "FenixArea", //El cono de ataque aumenta de area 15 grados (Nivel 4)
+      "value": 15
+    },
+    {
+      "id": "FenixEnfriamientoCero", //El ataque es continuo, no tiene enfriamiento (Nivel 4)
+      "value": 0
+    },
+    //2.6 Arcilla
+    {
+      "id": "ArcillaVida1", //(Nivel 1)
+      "value": 750
+    },
+    {
+      "id": "ArcillaVida2", //(Nivel 2)
+      "value": 1000
+    },
+    {
+      "id": "ArcillaVida3", //(Nivel 3)
+      "value": 1250
+    },
+    {
+      "id": "ArcillaVida4", //(Nivel 4)
+      "value": 1500
+    },
+    {
+      "id": "ArcillaDanoReflejado", //Refleja 3 puntos de dano por cada ataque (Nivel 4)
+      "value": 3
+    },
+    //2.7 Potenciadora
+    {
+      "id": "PotenciadoraVida1", //Anade 30 puntos de vida a las torres cercanas (Nivel 2)
+      "value": 30
+    },
+    {
+      "id": "PotenciadoraVida2", //Anade 50 puntos de vida a las torres cercanas (Nivel 4)
+      "value": 50
     }
   ],
 
