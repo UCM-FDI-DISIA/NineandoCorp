@@ -4,11 +4,7 @@
 PlayState::PlayState() : GameState(_gmStt_PLAY) {
 	// Sistemas requeridos para que funcione el juego
 	mngr_->addSystem<RenderSystem>();
-	//mngr_->addSystem<mapSystem>("../ProyectoH/resources/tileMap/nivelPrueba.tmx");
-}
-
-void PlayState::handleInput() {
-	
+	mngr_->addSystem<mapSystem>("../ProyectoH/resources/tileMap/nivelPrueba.tmx");
 }
 
 void PlayState::update() {

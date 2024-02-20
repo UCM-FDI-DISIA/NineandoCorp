@@ -3,7 +3,7 @@
 #include "../components/AttackComponent.h"
 #include "../components/BulletTower.h"
 
-TowerSystem::TowerSystem():timer_() {
+TowerSystem::TowerSystem() :timer_(), active_(true) {
 }
 
 TowerSystem::~TowerSystem() {
@@ -33,11 +33,11 @@ void TowerSystem::update() {
 
 	for (auto& t : towers) {
 		AttackComponent* ac = mngr_->getComponent<AttackComponent>(t);
-		if (ac != nullptr) {
-			ac->targetEnemy(enemies);
+		if (ac != nullptr) {		
 			ac->setElapsedTime(timer_.currTime());
 			if (ac->getElapsedTime() > ac->getTimeToShoot()) {
 				ac->setLoaded(true);
+				ac->targetEnemy(enemies);
 				if (ac->getTarget() != nullptr) {
 					ac->shoot(ac->getTarget());
 					ac->setTimeToShoot(ac->getTimeToShoot() + ac->getReloadTime());
@@ -45,10 +45,12 @@ void TowerSystem::update() {
 				}		
 			}
 		}
-		BulletTower* bt = mngr_->getComponent<BulletTower>(t);
-		
+		BulletTower* bt = mngr_->getComponent<BulletTower>(t);	
 		if (bt != nullptr) {
-
+			if (bt->getElapsedTime() > bt->getTimeToShoot()) {
+				bt->targetSecondEnemy(enemies);
+				if (bt->getTarget() != nullptr) { bt->shoot(bt->getTarget()); }
+			}
 		}
 	}
 

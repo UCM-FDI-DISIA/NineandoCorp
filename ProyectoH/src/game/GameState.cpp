@@ -16,16 +16,6 @@ void GameState::update() {
     mngr_->flushMessages();
 }
 
-// Draws the scene on screen
-/*void GameState::render() const {
-    mngr_->render();
-}*/
-
-// Handles the event
-/*void GameState::handleInput() {
-    mngr_->handleInput();
-}*/
-
 // Clears every non alive Entity
 void GameState::refresh() {
     mngr_->refresh();

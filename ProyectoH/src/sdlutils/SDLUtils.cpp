@@ -20,6 +20,7 @@ SDLUtils::SDLUtils(std::string windowTitle, int width, int height) :
 	msgsAccessWrapper_(msgs_, "Messages Table"), //
 	soundsAccessWrapper_(sounds_, "Sounds Table"), //
 	musicsAccessWrapper_(musics_, "Musics Table"), ///
+	floatConstAccessWrapper_(floatConst_, "Float Constant Table"),
 	intConstAccessWrapper_(intConst_, "Int Constant Table")
 {
 
@@ -292,6 +293,31 @@ void SDLUtils::loadConstants(std::string filename) {
 
 	// TODO improve syntax error checks below, now we do not check
 	//      validity of keys with values as sting or integer
+	// load floats
+	jValue = root["floatConst"];
+	if (jValue != nullptr) {
+		if (jValue->IsArray()) {
+			images_.reserve(jValue->AsArray().size()); // reserve enough space to avoid resizing
+			for (auto& v : jValue->AsArray()) {
+				if (v->IsObject()) {
+					JSONObject vObj = v->AsObject();
+					std::string key = vObj["id"]->AsString();
+					float val = static_cast<float>(vObj["value"]->AsNumber());
+#ifdef _DEBUG
+					std::cout << "Loading float with id: " << key << std::endl;
+#endif
+					floatConst_.emplace(key, val);
+				}
+				else {
+					throw "'floatConst' array in '" + filename
+						+ "' includes and invalid value";
+				}
+			}
+		}
+		else {
+			throw "'floatConst' is not an array in '" + filename + "'";
+		}
+	}
 
 	// load ints
 	jValue = root["intConst"];

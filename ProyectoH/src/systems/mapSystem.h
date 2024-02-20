@@ -7,6 +7,8 @@
 #include "../ecs/Entity.h"
 #include "../ecs/Manager.h"
 #include "../components/RenderComponent.h"
+#include "../components/Transform.h"
+
 
 #include <memory>
 #include <vector>
@@ -25,6 +27,8 @@ private:
 	tmx::Vector2f m_chunkSize = tmx::Vector2f(64.f, 64.f);
 	tmx::Vector2u m_MapTileSize;
 	tmx::FloatRect m_globalBounds;
+
+	std::string filename;
 	
 public:
 	static constexpr sysId_type id = _sys_MAP;

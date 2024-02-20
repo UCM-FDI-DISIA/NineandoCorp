@@ -74,7 +74,8 @@ enum sysId : sysId_type {
 	_sys_MAP,
 	_sys_TOWERS,
 	_sys_HUD,
-
+	_sys_MAINMENU,
+	_sys_MAINCONTROL,
 	// do not remove this
 	_LAST_SYS_ID
 };

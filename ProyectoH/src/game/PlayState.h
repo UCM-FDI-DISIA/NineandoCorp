@@ -9,7 +9,6 @@ public:
 	PlayState();
 	virtual ~PlayState() {};
 
-	void handleInput() override;
 	void update() override;
 };
 
