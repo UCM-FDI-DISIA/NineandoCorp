@@ -2,6 +2,10 @@
 #include "..//ecs/System.h"
 #include "..//components/Transform.h"
 #include "..//sdlutils/VirtualTimer.h"
+#include "../components/AttackComponent.h"
+#include "../components/BulletTower.h"
+#include "../ecs/Manager.h"
+
 
 class TowerSystem : public System
 {

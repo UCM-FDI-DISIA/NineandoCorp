@@ -1,7 +1,5 @@
 #include "TowerSystem.h"
-#include "../ecs/Manager.h"
-#include "../components/AttackComponent.h"
-#include "../components/BulletTower.h"
+
 
 TowerSystem::TowerSystem() :timer_(), active_(true) {
 }
@@ -47,9 +45,10 @@ void TowerSystem::update() {
 		}
 		BulletTower* bt = mngr_->getComponent<BulletTower>(t);	
 		if (bt != nullptr) {
-			if (bt->getElapsedTime() > bt->getTimeToShoot()) {
+			if (bt->getElapsedTime() > bt->getTimeToShoot() && bt->isMaxLevel()) {
 				bt->targetSecondEnemy(enemies);
 				if (bt->getTarget() != nullptr) { bt->shoot(bt->getTarget()); }
+				bt->setElapsedTime(0);
 			}
 		}
 	}
@@ -70,9 +69,7 @@ void TowerSystem::update() {
 }
 
 void TowerSystem::onRoundStart() {
-	const auto& towers = mngr_->getEntities(_grp_TOWERS);
-
-	for (auto& t : towers) {
+	for (auto& t : mngr_->getEntities(_grp_TOWERS)) {
 		towerTransforms.push_back(mngr_->getComponent<Transform>(t));
 	}
 }

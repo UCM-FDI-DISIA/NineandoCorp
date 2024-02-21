@@ -10,6 +10,8 @@ public:
 	void shoot(Entity* targetToShoot) override;
 	void levelUp(int level);
 	void targetSecondEnemy(const std::vector<Entity*>& targetGroup);
+
+	bool isMaxLevel() { return isMaxLevel_; }
 private:
 	Entity* secondTarget_;
 	float timeToShoot2_;

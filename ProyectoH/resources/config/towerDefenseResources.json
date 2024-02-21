@@ -10,67 +10,6 @@
       "file": "resources/images/Map/terrain_0.png"
     },
     {
-      "id": "map1",
-      "file": "resources/images/Map/1.png"
-    },
-    {
-      "id": "map3",
-      "file": "resources/images/Map/3.png"
-    },
-    {
-      "id": "map81",
-      "file": "resources/images/Map/81.png"
-    },
-    {
-      "id": "map82",
-      "file": "resources/images/Map/82.png"
-    },
-    {
-      "id": "map83",
-      "file": "resources/images/Map/83.png"
-    },
-    {
-      "id": "map84",
-      "file": "resources/images/Map/84.png"
-    },
-    {
-      "id": "map85",
-      "file": "resources/images/Map/85.png"
-    },
-    {
-      "id": "map87",
-      "file": "resources/images/Map/87.png"
-    },
-    {
-      "id": "map88",
-      "file": "resources/images/Map/88.png"
-    },
-    {
-      "id": "map89",
-      "file": "resources/images/Map/89.png"
-    },
-    {
-      "id": "map90",
-      "file": "resources/images/Map/90.png"
-    },
-    {
-      "id": "map98",
-      "file": "resources/images/Map/98.png"
-    },
-    {
-      "id": "map99",
-      "file": "resources/images/Map/99.png"
-    },
-    {
-      "id": "map133",
-      "file": "resources/images/Map/133.png"
-    },
-
-
-
-
-
-    {
       "id": "Acechante_Electrico_Attack",
       "file": "resources/images/Enemies/Acechante Electrico/Attack.png"
     },
@@ -96,7 +35,7 @@
     },
     {
       "id": "Demonio_Alado_Run",
-      "file": "resources/images/Enemies/Demonio Alado/Flight.png"
+      "file": "resources/images/Enemies/Demonio Alado/Run.png"
     },
     {
       "id": "Esqueleto_Attack",
@@ -139,8 +78,16 @@
       "file": "resources/images/Enemies/Mensajero de la Muerte/Maestro de las AlmasSpritesheet.png"
     },
     {
-      "id": "square",
-      "file": "resources/images/Enemies/Angel/angel1.png"
+      "id": "Bullet_Tower",
+      "file": "resources/images/towers/bullet_tower.png"
+    },
+    {
+      "id": "Diego_Tower",
+      "file": "resources/images/towers/phoenix_tower.png"
+    },
+    {
+      "id": "Phoenix_Tower",
+      "file": "resources/images/towers/diego_tower.png"
     }
 
   ],
