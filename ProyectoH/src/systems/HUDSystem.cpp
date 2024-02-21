@@ -15,9 +15,20 @@ void HUDSystem::receive(const Message& m) {
 
 }
 void HUDSystem::update() {
+	//Posicion actual del mouse
+	Vector2D pos = { (float)ih().getMousePos().first, (float)ih().getMousePos().second };
+
+	//hover 
+	for (auto en : mngr_->getEntities(_grp_HUD_FOREGROUND)) {
+
+		ButtonComponent* bC = mngr_->getComponent<ButtonComponent>(en);
+		RenderComponent* rC = mngr_->getComponent<RenderComponent>(en);
+		if (bC->hover(pos)) rC->setTexture(bC->getHover());
+		else rC->setTexture(bC->getTexture());
+	}
+
+
 	if (ih().mouseButtonEvent()) {
-		//Posicion actual del mouse
-		Vector2D pos = { (float)ih().getMousePos().first, (float)ih().getMousePos().second };
 
 		if (ih().getMouseButtonState(InputHandler::MOUSEBUTTON::LEFT) == 1) { 
 
@@ -38,9 +49,12 @@ void HUDSystem::callFunction(ButtonTypes type, Transform* en) {
 	switch (type)
 	{
 	case pruebaButton:
-		funcionPrueba(en);
 		break;
 	case backButton:
+		break;
+	case playButtonMenu:
+		playGame();
+		funcionPrueba(en);
 		break;
 	default:
 		break;
@@ -49,4 +63,10 @@ void HUDSystem::callFunction(ButtonTypes type, Transform* en) {
 
 void HUDSystem::funcionPrueba(Transform* tr) {
 	tr->addRotation(90.0);
+}
+
+void HUDSystem::playGame() {
+	Message m; 
+	m.id = _m_START_GAME;
+	mngr_->send(m);
 }
