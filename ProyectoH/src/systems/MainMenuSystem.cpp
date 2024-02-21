@@ -15,6 +15,15 @@ void MainMenuSystem::initSystem() {
 	Vector2D v = new Vector2D(1200, 800);
 	tr->setScale(v);
 	mngr_->addComponent<RenderComponent>(e, gameTextures::square);*/
+
+	Entity* b = mngr_->addEntity(_grp_HUD_FOREGROUND);
+	Transform* tr = mngr_->addComponent<Transform>(b);
+	
+	mngr_->addComponent<RenderComponent>(b, play);
+	ButtonComponent* bC = mngr_->addComponent<ButtonComponent>(b, pruebaButton);
+	bC->setHover(gameTextures::playHover);
+	bC->setTexture(gameTextures::play);
+
 }
 
 void MainMenuSystem::receive(const Message& m) {

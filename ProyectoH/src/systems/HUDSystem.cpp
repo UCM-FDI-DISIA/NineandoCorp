@@ -1,6 +1,7 @@
 #include "HUDSystem.h"
 #include "../sdlutils/InputHandler.h"
 #include "../ecs/Manager.h"
+#include "../components/RenderComponent.h"
 
 HUDSystem::HUDSystem() {
 
@@ -15,9 +16,18 @@ void HUDSystem::receive(const Message& m) {
 
 }
 void HUDSystem::update() {
+	Vector2D pos = { (float)ih().getMousePos().first, (float)ih().getMousePos().second };
+	//hover 
+	for (auto en : mngr_->getEntities(_grp_HUD_FOREGROUND)) {
+		ButtonComponent* bC = mngr_->getComponent<ButtonComponent>(en);
+		if (bC->hover(pos)) mngr_->getComponent<RenderComponent>(en)->setTexture(bC->getHover());
+		else  mngr_->getComponent<RenderComponent>(en)->setTexture(bC->getTexture());
+	}
+
+
 	if (ih().mouseButtonEvent()) {
 		//Posicion actual del mouse
-		Vector2D pos = { (float)ih().getMousePos().first, (float)ih().getMousePos().second };
+		
 
 		if (ih().getMouseButtonState(InputHandler::MOUSEBUTTON::LEFT) == 1) { 
 
