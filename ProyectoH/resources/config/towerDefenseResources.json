@@ -134,6 +134,10 @@
             "file": "resources/images/Enemies/Mensajero de la Muerte/Maestro de las AlmasSpritesheet.png"
         },
         {
+            "id": "square",
+            "file": "resources/images/Enemies/Angel/angel1.png"
+        },
+        {
             "id": "Bullet_Tower",
             "file": "resources/images/towers/bullet_tower.png"
         },
