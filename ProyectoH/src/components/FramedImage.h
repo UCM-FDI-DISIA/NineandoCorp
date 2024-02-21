@@ -9,20 +9,15 @@ struct FramedImage : public Component {
 private:
 	int currentFrame;
 	float startTime, currentTime;
-	const int frameRate;
-	const int frameColumns, frameRows;
-	const int frameWidth, frameHeight;
+	int frameRate;
+	int frameColumns, frameRows;
+	int frameWidth, frameHeight;
 public:
 	static const cmpId id = cmpId::_FRAMEDIMAGE;
 	// Constructor
 	//IMPORTANTE: cambiar los strings de referencia al json
-	FramedImage();
-		/*currentFrame(0), startTime(SDL_GetTicks() / 1000.0), currentTime(startTime),
-		frameRate(sdlutils().intConst().at("asteroidAnimFrameRate")),
-		frameColumns(sdlutils().intConst().at("asteroidFrameColumns")),
-		frameRows(sdlutils().intConst().at("asteroidFrameRows")),
-		frameWidth(sdlutils().intConst().at("asteroidFrameWidth")),
-		frameHeight(sdlutils().intConst().at("asteroidFrameHeight"))*/
+	FramedImage(int frameColumns = 1, int frameRows = 1, int frameWidth = 0, int frameHeight = 0, int currentFrame = 0, int frameRate = 0) :
+		frameColumns(frameColumns), frameRows(frameRows), frameWidth(frameWidth), frameHeight(frameHeight), currentTime(0), currentFrame(currentFrame), frameRate(frameRate), startTime(0){};
 	
 	// Changes the current frame
 	void updateCurrentFrame();

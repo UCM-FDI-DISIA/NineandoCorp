@@ -56,16 +56,16 @@ void RenderSystem::update() {
 	sdlutils().clearRenderer();
 
 	if (ih().isKeyDown(SDLK_UP)) {
-		offset.setY(offset.getY() + 50);
+		offset.y += 50;
 	}
 	else if (ih().isKeyDown(SDLK_LEFT)) {
-		offset.setX(offset.getX() + 50);
+		offset.x += 50;
 	}
 	else if (ih().isKeyDown(SDLK_RIGHT)) {
-		offset.setX(offset.getX() - 50);
+		offset.x -= 50;
 	}
 	else if (ih().isKeyDown(SDLK_DOWN)) {
-		offset.setY(offset.getY() - 50);
+		offset.y -= 50;
 	}
 
 	//LAYER 1 TILEMAP
@@ -73,10 +73,11 @@ void RenderSystem::update() {
 	for (auto& t : tilesl1) {
 		Transform* tr = mngr_->getComponent<Transform>(t);
 		gameTextures textureId = mngr_->getComponent<RenderComponent>(t)->getTexture();
-		SDL_Rect rect = tr->getRect();
-		rect.x += offset.getX();
-		rect.y += offset.getY();
-		textures[textureId]->render(rect, tr->getRotation());
+		SDL_Rect srcRect = mngr_->getComponent<FramedImage>(t)->getSrcRect();
+		SDL_Rect trRect = tr->getRect();
+		trRect.x += offset.x;
+		trRect.y += offset.y;
+		textures[textureId]->render(srcRect,trRect);
 	}
 
 	//LAYER 2 TILEMAP
@@ -84,10 +85,11 @@ void RenderSystem::update() {
 	for (auto& t : tilesl2) {
 		Transform* tr = mngr_->getComponent<Transform>(t);
 		gameTextures textureId = mngr_->getComponent<RenderComponent>(t)->getTexture();
-		SDL_Rect rect = tr->getRect();
-		rect.x += offset.getX();
-		rect.y += offset.getY();
-		textures[textureId]->render(rect, tr->getRotation());
+		SDL_Rect srcRect = mngr_->getComponent<FramedImage>(t)->getSrcRect();
+		SDL_Rect trRect = tr->getRect();
+		trRect.x += offset.x;
+		trRect.y += offset.y;
+		textures[textureId]->render(srcRect, trRect);
 	}
 
 	//LAYER 3 TILEMAP
@@ -95,22 +97,24 @@ void RenderSystem::update() {
 	for (auto& t : tilesl3) {
 		Transform* tr = mngr_->getComponent<Transform>(t);
 		gameTextures textureId = mngr_->getComponent<RenderComponent>(t)->getTexture();
-		SDL_Rect rect = tr->getRect();
-		rect.x += offset.getX();
-		rect.y += offset.getY();
-		textures[textureId]->render(rect, tr->getRotation());
+		SDL_Rect srcRect = mngr_->getComponent<FramedImage>(t)->getSrcRect();
+		SDL_Rect trRect = tr->getRect();
+		trRect.x += offset.x;
+		trRect.y += offset.y;
+		textures[textureId]->render(srcRect, trRect);
 	}
 
 	//Este grupo tiene que estar ordenado de arriba a abajo de la pantalla segun su transform (posicion y)
+	// NO CAMBIAR LECHES
 	//TOWERS AND ENEMIES
 	const auto& towers = mngr_->getEntities(_grp_TOWERS_AND_ENEMIES);
 	for (auto& t : towers) {
 		Transform* tr = mngr_->getComponent<Transform>(t);
 		gameTextures textureId = mngr_->getComponent<RenderComponent>(t)->getTexture();
-		SDL_Rect rect = tr->getRect();
-		rect.x += offset.getX();
-		rect.y += offset.getY();
-		textures[textureId]->render(rect, tr->getRotation());
+		SDL_Rect trRect = tr->getRect();
+		trRect.x += offset.x;
+		trRect.y += offset.y;
+		textures[textureId]->render(trRect, tr->getRotation());
 	}
 
 	// BULLETS
@@ -118,10 +122,10 @@ void RenderSystem::update() {
 	for (auto& b : buls) {
 		Transform* tr = mngr_->getComponent<Transform>(b);
 		gameTextures textureId = mngr_->getComponent<RenderComponent>(b)->getTexture();
-		SDL_Rect rect = tr->getRect();
-		rect.x += offset.getX();
-		rect.y += offset.getY();
-		textures[textureId]->render(rect, tr->getRotation());
+		SDL_Rect trRect = tr->getRect();
+		trRect.x += offset.x;
+		trRect.y += offset.y;
+		textures[textureId]->render(trRect, tr->getRotation());
 	}
 	
 	//HUD BACKGROUND
