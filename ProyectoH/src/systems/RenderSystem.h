@@ -48,6 +48,7 @@ private:
 
 	// Textures
 	Texture* textures[gameTextures::gmTxtrSize];
+	Texture* cursorTexture;
 
 	// Doing a texture array so we do not need to access sdlutils' map every time
 };

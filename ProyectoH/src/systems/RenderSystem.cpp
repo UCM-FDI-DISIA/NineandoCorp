@@ -21,6 +21,7 @@ RenderSystem::RenderSystem() :
 	textures[lakeTexture9] = &sdlutils().images().at("map90");
 	textures[lakeTexture10] = &sdlutils().images().at("map98");
 	textures[lakeTexture11] = &sdlutils().images().at("map99");
+	cursorTexture = &sdlutils().images().at("cursor");
 }
 
 
@@ -133,6 +134,12 @@ void RenderSystem::update() {
 		textTextures[currStTxt]->render(textTr[currStTxt]->getRect());
 	}*/
 
+	//Renderizar cursor
+	int x, y;
+	SDL_GetMouseState(&x, &y);
+
+	SDL_Rect cursorRect = { x, y, 20, 20 };
+	cursorTexture->render(cursorRect);
 
 	sdlutils().presentRenderer();
 }

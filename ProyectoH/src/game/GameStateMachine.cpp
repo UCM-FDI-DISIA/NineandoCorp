@@ -43,6 +43,7 @@ void GameStateMachine::clearStatesToErase() {
 }
 
 
+
 // Calls current state handleInput method
 /*void GameStateMachine::handleInput() {
     currentState()->handleInput();

@@ -145,10 +145,14 @@
             "id": "Diego_Tower",
             "file": "resources/images/towers/phoenix_tower.png"
         },
-        {
-            "id": "Phoenix_Tower",
-            "file": "resources/images/towers/diego_tower.png"
-        }
+      {
+        "id": "Phoenix_Tower",
+        "file": "resources/images/towers/diego_tower.png"
+      },
+      {
+        "id": "cursor",
+        "file": "resources/images/Enemies/Angel/angel1.png"
+      }
 
     ],
   

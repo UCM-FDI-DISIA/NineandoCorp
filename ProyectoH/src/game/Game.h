@@ -11,6 +11,10 @@
 //#include "../gameStates/PauseState.h"
 //#include "../gameStates/GameOverState.h"
 #include "../game/MainMenuState.h"
+#include "../systems/RenderSystem.h"
+
+#include <SDL.h>
+#include <SDL_image.h>
 
 class Game : public Singleton<Game> {
 	friend Singleton<Game>;
@@ -29,6 +33,7 @@ private:
 	}
 
 public:
+
 	// Destructor
 	~Game();
 	// Executes the game

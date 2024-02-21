@@ -5,7 +5,7 @@
 enum gameTextures {
 	hillTexture, roadTexture, mountainTexture, lakeTexture1, lakeTexture2, lakeTexture3, lakeTexture4,
 	lakeTexture5, lakeTexture6, lakeTexture7, lakeTexture8, lakeTexture9, lakeTexture10,
-	lakeTexture11, bulletTexture, square, gmTxtrSize
+	lakeTexture11, bulletTexture, square, cursor ,gmTxtrSize
 };
 
 class RenderComponent : public Component
