@@ -6,7 +6,7 @@
 RenderSystem::RenderSystem() :
 	winner_(0)
 {
-	textures[square] = &sdlutils().images().at("square");
+	/*textures[square] = &sdlutils().images().at("square");*/
 	textures[hillTexture] = &sdlutils().images().at("map1");
 	textures[roadTexture] = &sdlutils().images().at("map133");
 	textures[mountainTexture] = &sdlutils().images().at("map3");
