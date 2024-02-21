@@ -5,7 +5,7 @@
 enum gameTextures {
 	hillTexture, roadTexture, mountainTexture, lakeTexture1, lakeTexture2, lakeTexture3, lakeTexture4,
 	lakeTexture5, lakeTexture6, lakeTexture7, lakeTexture8, lakeTexture9, lakeTexture10,
-	lakeTexture11, bulletTexture, square, gmTxtrSize
+	lakeTexture11, bulletTexture, play, playHover,square, gmTxtrSize
 };
 
 class RenderComponent : public Component
@@ -18,5 +18,8 @@ public:
 	RenderComponent(gameTextures texture) : texture(texture) {};
 
 	gameTextures getTexture() { return texture; };
+	inline void setTexture(gameTextures t) {
+		texture = t;
+	}
 };
 
