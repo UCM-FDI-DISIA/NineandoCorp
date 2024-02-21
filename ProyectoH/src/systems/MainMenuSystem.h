@@ -4,11 +4,6 @@
 #include "../components/RenderComponent.h"
 #include "../components/Transform.h"
 #include "../components/ButtonComponent.h"
-<<<<<<< Updated upstream
-=======
-
-//#include "../systems/RenderSystem.h"
->>>>>>> Stashed changes
 
 class MainMenuSystem : public System
 {
