@@ -55,12 +55,28 @@ void RenderSystem::initSystem() {
 void RenderSystem::update() {
 	sdlutils().clearRenderer();
 
+	if (ih().isKeyDown(SDLK_UP)) {
+		offset.setY(offset.getY() + 50);
+	}
+	else if (ih().isKeyDown(SDLK_LEFT)) {
+		offset.setX(offset.getX() + 50);
+	}
+	else if (ih().isKeyDown(SDLK_RIGHT)) {
+		offset.setX(offset.getX() - 50);
+	}
+	else if (ih().isKeyDown(SDLK_DOWN)) {
+		offset.setY(offset.getY() - 50);
+	}
+
 	//LAYER 1 TILEMAP
 	const auto& tilesl1 = mngr_->getEntities(_grp_TILES_L1);
 	for (auto& t : tilesl1) {
 		Transform* tr = mngr_->getComponent<Transform>(t);
 		gameTextures textureId = mngr_->getComponent<RenderComponent>(t)->getTexture();
-		textures[textureId]->render(tr->getRect(), tr->getRotation());
+		SDL_Rect rect = tr->getRect();
+		rect.x += offset.getX();
+		rect.y += offset.getY();
+		textures[textureId]->render(rect, tr->getRotation());
 	}
 
 	//LAYER 2 TILEMAP
@@ -68,7 +84,10 @@ void RenderSystem::update() {
 	for (auto& t : tilesl2) {
 		Transform* tr = mngr_->getComponent<Transform>(t);
 		gameTextures textureId = mngr_->getComponent<RenderComponent>(t)->getTexture();
-		textures[textureId]->render(tr->getRect(), tr->getRotation());
+		SDL_Rect rect = tr->getRect();
+		rect.x += offset.getX();
+		rect.y += offset.getY();
+		textures[textureId]->render(rect, tr->getRotation());
 	}
 
 	//LAYER 3 TILEMAP
@@ -76,32 +95,33 @@ void RenderSystem::update() {
 	for (auto& t : tilesl3) {
 		Transform* tr = mngr_->getComponent<Transform>(t);
 		gameTextures textureId = mngr_->getComponent<RenderComponent>(t)->getTexture();
-		textures[textureId]->render(tr->getRect(), tr->getRotation());
+		SDL_Rect rect = tr->getRect();
+		rect.x += offset.getX();
+		rect.y += offset.getY();
+		textures[textureId]->render(rect, tr->getRotation());
 	}
 
 	//Este grupo tiene que estar ordenado de arriba a abajo de la pantalla segun su transform (posicion y)
-	//TOWERS
-	const auto& towers = mngr_->getEntities(_grp_TOWERS);
+	//TOWERS AND ENEMIES
+	const auto& towers = mngr_->getEntities(_grp_TOWERS_AND_ENEMIES);
 	for (auto& t : towers) {
 		Transform* tr = mngr_->getComponent<Transform>(t);
 		gameTextures textureId = mngr_->getComponent<RenderComponent>(t)->getTexture();
-		textures[textureId]->render(tr->getRect(), tr->getRotation());
-	}
-
-	//ENEMIES
-	const auto& enemies = mngr_->getEntities(_grp_ENEMIES);
-	for (auto& t : enemies) {
-		Transform* tr = mngr_->getComponent<Transform>(t);
-		gameTextures textureId = mngr_->getComponent<RenderComponent>(t)->getTexture();
-		textures[textureId]->render(tr->getRect(), tr->getRotation());
+		SDL_Rect rect = tr->getRect();
+		rect.x += offset.getX();
+		rect.y += offset.getY();
+		textures[textureId]->render(rect, tr->getRotation());
 	}
 
 	// BULLETS
 	const auto& buls = mngr_->getEntities(_grp_BULLETS);
 	for (auto& b : buls) {
 		Transform* tr = mngr_->getComponent<Transform>(b);
-		gameTextures texture = mngr_->getComponent<RenderComponent>(b)->getTexture();
-		textures[texture]->render(tr->getRect(), tr->getRotation());
+		gameTextures textureId = mngr_->getComponent<RenderComponent>(b)->getTexture();
+		SDL_Rect rect = tr->getRect();
+		rect.x += offset.getX();
+		rect.y += offset.getY();
+		textures[textureId]->render(rect, tr->getRotation());
 	}
 	
 	//HUD BACKGROUND

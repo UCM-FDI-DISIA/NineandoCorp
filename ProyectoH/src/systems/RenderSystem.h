@@ -41,6 +41,8 @@ private:
 
 	uint8_t winner_; // 0 - None, 1 - Asteroid, 2- Fighter
 
+	Vector2D offset = Vector2D(0,0);
+
 	// Texts
 	stateText currStTxt;
 	Texture* textTextures[stateText::sttTxtSize];

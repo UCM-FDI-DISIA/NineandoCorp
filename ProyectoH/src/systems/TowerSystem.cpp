@@ -25,8 +25,8 @@ void TowerSystem::receive(const Message& m) {
 
 
 void TowerSystem::update() {
-	const auto& towers = mngr_->getEntities(_grp_TOWERS);
-	const auto& enemies = mngr_->getEntities(_grp_ENEMIES);
+	const auto& towers = mngr_->getEntities(_grp_TOWERS_AND_ENEMIES);
+	const auto& enemies = mngr_->getEntities(_grp_TOWERS_AND_ENEMIES);
 	const auto& bullets = mngr_->getEntities(_grp_BULLETS);
 
 	for (auto& t : towers) {
@@ -69,7 +69,7 @@ void TowerSystem::update() {
 }
 
 void TowerSystem::onRoundStart() {
-	for (auto& t : mngr_->getEntities(_grp_TOWERS)) {
+	for (auto& t : mngr_->getEntities(_grp_TOWERS_AND_ENEMIES)) {
 		towerTransforms.push_back(mngr_->getComponent<Transform>(t));
 	}
 }
