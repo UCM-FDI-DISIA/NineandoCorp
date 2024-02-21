@@ -6,8 +6,9 @@
 class RouteComponent :public Component
 {
 public:
+	const float epsilon = 2.5;
 	static const cmpId id = cmpId::_ROUTE;
-	RouteComponent(std::vector<Vector2D> route	) :transform_(nullptr), route_(route),destiny_(1){};
+	RouteComponent(std::vector<Vector2D> route	) :transform_(nullptr), route_(route),destiny_(0){};
 	void initComponent();
 	void update();
 	void checkdestiny();

@@ -11,5 +11,6 @@ public:
 
 	void handleInput() override;
 	void update() override;
+	Entity* enemy = mngr_->addEntity(_grp_ENEMIES);
 };
 

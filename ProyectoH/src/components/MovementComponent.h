@@ -7,11 +7,13 @@ class MovementComponent:public Component
 public:
 	static const cmpId id = cmpId::_MOVEMENT;
 
-	MovementComponent() :transform_(nullptr) {};
+	MovementComponent() :transform_(nullptr),stop_(false) {};
 	void Move();
 	void MoveTo(Vector2D destino);
 	void rotate(float rotation);
 	void initComponent();
+	void Stop();
 private:
+	bool stop_;
 	Transform* transform_;
 };

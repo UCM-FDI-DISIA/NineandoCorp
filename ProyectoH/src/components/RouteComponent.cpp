@@ -1,4 +1,5 @@
 #include "RouteComponent.h"
+#include"MovementComponent.h"
 void
 RouteComponent::update() {
 	checkdestiny();
@@ -10,12 +11,17 @@ RouteComponent::initComponent() {
 }
 void
 RouteComponent::checkdestiny() {
-	if (*(transform_->getPosition())==route_[destiny_]) {
-		if (destiny_ >= route_.size()) {
-			transform_->setVelocity({ 0,0 });
+	
+	if (*(transform_->getPosition()) - route_[destiny_] <=epsilon) {
+		if (destiny_ >= route_.size() -1) {
+			transform_->setVelocity({0,0});
+			mngr_->getComponent<MovementComponent>(ent_)->Stop();
 		}
-		destiny_++;
-		changevelocity(route_[destiny_]);
+		else {
+			destiny_++;
+			changevelocity(route_[destiny_]);
+		}
+
 	}
 }
 void
