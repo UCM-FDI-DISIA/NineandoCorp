@@ -9,6 +9,9 @@ PlayState::PlayState() : GameState(_gmStt_PLAY) {
 	//mngr_->addComponent<AttackComponent>(t);
 	//mngr_->addComponent<RenderComponent>(t);
 
+	mngr_->addSystem<RenderSystem>();
+	mngr_->addSystem<mapSystem>("../ProyectoH/resources/tileMap/nivelPrueba.tmx");
+
 }
 
 void PlayState::update() {

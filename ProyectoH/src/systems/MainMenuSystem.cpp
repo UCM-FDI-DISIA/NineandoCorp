@@ -10,11 +10,19 @@ MainMenuSystem::~MainMenuSystem() {
 }
 
 void MainMenuSystem::initSystem() {
-	/*Entity* e = mngr_->addEntity(_grp_HUD_BACKGROUND);
-	Transform* tr = mngr_->addComponent<Transform>(e);
+
+	// Creación de la Imagen del Background del Menu
+	Entity* background = mngr_->addEntity(_grp_HUD_BACKGROUND);
+	Transform* tr = mngr_->addComponent<Transform>(background);
 	Vector2D v = new Vector2D(1200, 800);
 	tr->setScale(v);
-	mngr_->addComponent<RenderComponent>(e, gameTextures::square);*/
+	mngr_->addComponent<RenderComponent>(background, gameTextures::square);
+
+	Entity* e = mngr_->addEntity(_grp_HUD_BACKGROUND);
+	Transform* tr = mngr_->addComponent<Transform>(background);
+	Vector2D v = new Vector2D(1200, 800);
+	tr->setScale(v);
+	mngr_->addComponent<RenderComponent>(background, gameTextures::square);
 }
 
 void MainMenuSystem::receive(const Message& m) {

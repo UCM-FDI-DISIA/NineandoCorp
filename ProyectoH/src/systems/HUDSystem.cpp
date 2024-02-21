@@ -42,6 +42,9 @@ void HUDSystem::callFunction(ButtonTypes type, Transform* en) {
 		break;
 	case backButton:
 		break;
+	case playButtonMenu:
+		// Cargar PlayState
+		break;
 	default:
 		break;
 	}
