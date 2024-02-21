@@ -13,9 +13,9 @@ protected:
 public:
 	static const cmpId id = cmpId::_BULLET;
 
-	BulletComponent();
-	
-	void initComponent() override;
+	BulletComponent(Transform* tr, Entity* target, int damage);
+	BulletComponent() {};
+	//void initComponent() override;
 	void setBullet(Entity* target, int damage) { targetEntity_ = target; damage_ = damage; };
 	void doDamageTo(HealthComponent* healthcmp);
 	void onTravelEnds();

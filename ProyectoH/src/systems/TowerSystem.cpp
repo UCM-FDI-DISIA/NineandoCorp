@@ -32,10 +32,12 @@ void TowerSystem::update() {
 	for (auto& t : towers) {
 		AttackComponent* ac = mngr_->getComponent<AttackComponent>(t);
 		if (ac != nullptr) {		
-			ac->setElapsedTime(timer_.currTime());
+			ac->setElapsedTime(timer_.currTime()/1000);
 			if (ac->getElapsedTime() > ac->getTimeToShoot()) {
 				ac->setLoaded(true);
 				ac->targetEnemy(enemies);
+					//std::cout <<  "Elapsed: " << timer_.currTime() << "\n";
+					//std::cout << "TTS: " << ac->getTimeToShoot() << "\n";
 				if (ac->getTarget() != nullptr) {
 					ac->shoot(ac->getTarget());
 					ac->setTimeToShoot(ac->getTimeToShoot() + ac->getReloadTime());

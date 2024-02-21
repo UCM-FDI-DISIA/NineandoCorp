@@ -3,6 +3,7 @@
 #include "..//ecs/Manager.h"
 #include "..//utils/Vector2D.h"
 #include "BulletComponent.h"
+#include "RenderComponent.h"
 #include <vector>
 
 class Entity;

@@ -60,8 +60,11 @@ void AttackComponent::targetEnemy(const std::vector<Entity*>& targetGroup) {//Bu
 
 void AttackComponent::shoot(Entity* targetEntity) {
 	Entity* bullet = mngr_->addEntity(_grp_BULLETS);
-	mngr_->addComponent<BulletComponent>(bullet)->setBullet(target_, damage_);
-	mngr_->addComponent<Transform>(bullet);
+	Transform* t = mngr_->addComponent<Transform>(bullet);
+	mngr_->addComponent<BulletComponent>(bullet, t, target_, damage_);
+	mngr_->addComponent<RenderComponent>(bullet, towerTexture);
+
+
 }
 
 float AttackComponent::getDistance(Vector2D targetPos) {//Distancia al target
