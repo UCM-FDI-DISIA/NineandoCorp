@@ -21,7 +21,6 @@ RenderSystem::RenderSystem() :
 	textures[lakeTexture9] = &sdlutils().images().at("map90");
 	textures[lakeTexture10] = &sdlutils().images().at("map98");
 	textures[lakeTexture11] = &sdlutils().images().at("map99");
-	textures[towerTexture] = &sdlutils().images().at("Bullet_Tower");
 }
 
 
