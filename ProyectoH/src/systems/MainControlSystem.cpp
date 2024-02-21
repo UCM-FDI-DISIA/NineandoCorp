@@ -1,7 +1,7 @@
 #include "MainControlSystem.h"
 
 MainControlSystem::MainControlSystem(int doradasIniciales, int doradasPorSegundo, int numOleadas, float tiempoEntreOleadas) :
-	numDoradasIniciales(doradasIniciales), numDoradasPorSegundo(doradasPorSegundo), numOleadas(numOleadas), tiempoEntreOleadas(tiempoEntreOleadas), numDoradasActuales(0), oleadaActual(0), active_(false) {
+	numDoradasIniciales(doradasIniciales), numDoradasPorSegundo(doradasPorSegundo), numOleadas(numOleadas), tiempoEntreOleadas(tiempoEntreOleadas), numDoradasActuales(0), oleadaActual(0), active_(false), elapsedTime_(0) {
 
 }
 

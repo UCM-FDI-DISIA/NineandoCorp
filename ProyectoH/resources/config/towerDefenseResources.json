@@ -76,6 +76,18 @@
     {
       "id": "Mensajero_de_la_muerte",
       "file": "resources/images/Enemies/Mensajero de la Muerte/Maestro de las AlmasSpritesheet.png"
+    },
+    {
+      "id": "Bullet_Tower",
+      "file": "resources/images/towers/bullet_tower.png"
+    },
+    {
+      "id": "Diego_Tower",
+      "file": "resources/images/towers/phoenix_tower.png"
+    },
+    {
+      "id": "Phoenix_Tower",
+      "file": "resources/images/towers/diego_tower.png"
     }
 
   ],

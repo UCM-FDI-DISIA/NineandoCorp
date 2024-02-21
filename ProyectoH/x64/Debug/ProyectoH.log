@@ -1,81 +1,9 @@
-﻿c:\software\programacion\MSVStudio2022\MSBuild\Microsoft\VC\v170\Microsoft.CppBuild.targets(517,5): warning MSB8004: El directorio Output no termina con una barra diagonal final. Esta instancia de compilación agregará la barra diagonal porque es necesaria para que se pueda evaluar correctamente el directorio Output.
-c:\software\programacion\MSVStudio2022\MSBuild\Microsoft\VC\v170\Microsoft.CppBuild.targets(531,5): warning MSB8028: El directorio intermedio (x64\Debug\) contiene archivos compartidos de otro proyecto (TPV2.vcxproj). Esto puede dar lugar a un comportamiento incorrecto de limpieza y recompilación.
+﻿C:\Program Files\Microsoft Visual Studio\2022\Community\MSBuild\Microsoft\VC\v170\Microsoft.CppBuild.targets(503,5): warning MSB8004: El directorio Output no termina con una barra diagonal final. Esta instancia de compilación agregará la barra diagonal porque es necesaria para que se pueda evaluar correctamente el directorio Output.
+C:\Program Files\Microsoft Visual Studio\2022\Community\MSBuild\Microsoft\VC\v170\Microsoft.CppBuild.targets(517,5): warning MSB8028: El directorio intermedio (x64\Debug\) contiene archivos compartidos de otro proyecto (TPV2.vcxproj). Esto puede dar lugar a un comportamiento incorrecto de limpieza y recompilación.
   AttackComponent.cpp
-C:\Users\usuario_local\Documents\NineandoCorp\ProyectoH\src\components\AttackComponent.cpp(69,13): warning C4244: 'return': conversión de 'double' a 'float'; posible pérdida de datos
-C:\Users\usuario_local\Documents\NineandoCorp\ProyectoH\src\components\AttackComponent.cpp(72,51): warning C4244: 'return': conversión de 'const int' a 'float'; posible pérdida de datos
-  BulletComponent.cpp
-  BulletTower.cpp
-  DragAndDrop.cpp
-C:\Users\usuario_local\Documents\NineandoCorp\ProyectoH\src\components\Transform.h(10,8): warning C4099: 'Transform': nombre de tipo visto anteriormente usando 'class' ahora se ve usando 'struct'
-  (compilando archivo de origen "src/components/DragAndDrop.cpp")
-  C:\Users\usuario_local\Documents\NineandoCorp\ProyectoH\src\components\Transform.h(10,8):
-  vea la declaración de 'Transform'
-  
-  FramedImage.cpp
-C:\Users\usuario_local\Documents\NineandoCorp\ProyectoH\src\components\FramedImage.cpp(11,36): warning C4244: '+=': conversión de 'double' a 'float'; posible pérdida de datos
-C:\Users\usuario_local\Documents\NineandoCorp\ProyectoH\src\components\FramedImage.cpp(19,3): warning C4244: 'argumento': conversión de 'const int' a 'float'; posible pérdida de datos
-C:\Users\usuario_local\Documents\NineandoCorp\ProyectoH\src\components\FramedImage.cpp(18,3): warning C4244: 'argumento': conversión de 'const int' a 'float'; posible pérdida de datos
-C:\Users\usuario_local\Documents\NineandoCorp\ProyectoH\src\components\FramedImage.cpp(17,47): warning C4244: 'argumento': conversión de 'int' a 'float'; posible pérdida de datos
-C:\Users\usuario_local\Documents\NineandoCorp\ProyectoH\src\components\FramedImage.cpp(16,33): warning C4244: 'argumento': conversión de 'int' a 'float'; posible pérdida de datos
-  HealthComponent.cpp
-  MovementComponent.cpp
-  RenderComponent.cpp
-  RouteComponent.cpp
-  Transform.cpp
-C:\Users\usuario_local\Documents\NineandoCorp\ProyectoH\src\components\Transform.cpp(51,57): warning C4244: 'argumento': conversión de 'double' a 'float'; posible pérdida de datos
-  UpgradeTowerComponent.cpp
-  Manager.cpp
-  Game.cpp
-  GameOverState.cpp
-  GameState.cpp
-  GameStateMachine.cpp
-  MainMenuState.cpp
-  PauseState.cpp
+C:\Users\javie\Proyecto1\NineandoCorp\ProyectoH\src\components\AttackComponent.cpp(69,13): warning C4244: 'return': conversión de 'double' a 'float'; posible pérdida de datos
+C:\Users\javie\Proyecto1\NineandoCorp\ProyectoH\src\components\AttackComponent.cpp(72,51): warning C4244: 'return': conversión de 'const int' a 'float'; posible pérdida de datos
   PlayState.cpp
-  main.cpp
-  Generando código...
-  Compilando...
-  SDLUtils.cpp
-  sdlutils_demo.cpp
-C:\Users\usuario_local\Documents\NineandoCorp\ProyectoH\src\sdlutils\SDLUtils.h(50,32): warning C4101: 'e': variable local sin referencia
-  (compilando archivo de origen "src/sdlutils/sdlutils_demo.cpp")
-  C:\Users\usuario_local\Documents\NineandoCorp\ProyectoH\src\sdlutils\SDLUtils.h(50,32):
-  el contexto de creación de instancias de la plantilla (el más antiguo primero) es
-  	C:\Users\usuario_local\Documents\NineandoCorp\ProyectoH\src\sdlutils\SDLUtils.h(199,30):
-  	Vea la referencia a la creación de una instancia de clase plantilla "SDLUtils::map_access_wrapper<Texture>" que se está compilando
-  	C:\Users\usuario_local\Documents\NineandoCorp\ProyectoH\src\sdlutils\SDLUtils.h(47,16):
-  	al compilar la función del miembro clase plantilla "Texture &SDLUtils::map_access_wrapper<Texture>::at(std::string)"
-  
-  MainControlSystem.cpp
-  RenderSystem.cpp
-C:\Users\usuario_local\Documents\NineandoCorp\ProyectoH\src\sdlutils\SDLUtils.h(50,32): warning C4101: 'e': variable local sin referencia
-  (compilando archivo de origen "src/systems/RenderSystem.cpp")
-  C:\Users\usuario_local\Documents\NineandoCorp\ProyectoH\src\sdlutils\SDLUtils.h(50,32):
-  el contexto de creación de instancias de la plantilla (el más antiguo primero) es
-  	C:\Users\usuario_local\Documents\NineandoCorp\ProyectoH\src\sdlutils\SDLUtils.h(203,26):
-  	Vea la referencia a la creación de una instancia de clase plantilla "SDLUtils::map_access_wrapper<int>" que se está compilando
-  	C:\Users\usuario_local\Documents\NineandoCorp\ProyectoH\src\sdlutils\SDLUtils.h(47,16):
-  	al compilar la función del miembro clase plantilla "int &SDLUtils::map_access_wrapper<int>::at(std::string)"
-  
-C:\Users\usuario_local\Documents\NineandoCorp\ProyectoH\src\systems\RenderSystem.cpp(130,92): warning C4244: 'argumento': conversión de 'int' a 'float'; posible pérdida de datos
-C:\Users\usuario_local\Documents\NineandoCorp\ProyectoH\src\systems\RenderSystem.cpp(130,57): warning C4244: 'argumento': conversión de 'int' a 'float'; posible pérdida de datos
-C:\Users\usuario_local\Documents\NineandoCorp\ProyectoH\src\systems\RenderSystem.cpp(130,98): warning C4244: 'argumento': conversión de 'int' a 'float'; posible pérdida de datos
-C:\Users\usuario_local\Documents\NineandoCorp\ProyectoH\src\systems\RenderSystem.cpp(133,60): warning C4244: 'argumento': conversión de 'int' a 'float'; posible pérdida de datos
-C:\Users\usuario_local\Documents\NineandoCorp\ProyectoH\src\systems\RenderSystem.cpp(133,31): warning C4244: 'argumento': conversión de 'int' a 'float'; posible pérdida de datos
-  TowerSystem.cpp
-C:\Users\usuario_local\Documents\NineandoCorp\ProyectoH\src\systems\TowerSystem.cpp(37,38): warning C4244: 'argumento': conversión de 'Uint32' a 'float'; posible pérdida de datos
   mapSystem.cpp
   Generando código...
-libtmxlite-s-d.lib(Property.obj) : warning LNK4099: no se encontró PDB '' con 'libtmxlite-s-d.lib(Property.obj)' o en ''; se vinculará el objeto sin tener en cuenta información de depuración
-libtmxlite-s-d.lib(ObjectGroup.obj) : warning LNK4099: no se encontró PDB '' con 'libtmxlite-s-d.lib(ObjectGroup.obj)' o en ''; se vinculará el objeto sin tener en cuenta información de depuración
-libtmxlite-s-d.lib(Tileset.obj) : warning LNK4099: no se encontró PDB '' con 'libtmxlite-s-d.lib(Tileset.obj)' o en ''; se vinculará el objeto sin tener en cuenta información de depuración
-libtmxlite-s-d.lib(TileLayer.obj) : warning LNK4099: no se encontró PDB '' con 'libtmxlite-s-d.lib(TileLayer.obj)' o en ''; se vinculará el objeto sin tener en cuenta información de depuración
-libtmxlite-s-d.lib(Map.obj) : warning LNK4099: no se encontró PDB '' con 'libtmxlite-s-d.lib(Map.obj)' o en ''; se vinculará el objeto sin tener en cuenta información de depuración
-libtmxlite-s-d.lib(pugixml.obj) : warning LNK4099: no se encontró PDB '' con 'libtmxlite-s-d.lib(pugixml.obj)' o en ''; se vinculará el objeto sin tener en cuenta información de depuración
-libtmxlite-s-d.lib(Object.obj) : warning LNK4099: no se encontró PDB '' con 'libtmxlite-s-d.lib(Object.obj)' o en ''; se vinculará el objeto sin tener en cuenta información de depuración
-libtmxlite-s-d.lib(FreeFuncs.obj) : warning LNK4099: no se encontró PDB '' con 'libtmxlite-s-d.lib(FreeFuncs.obj)' o en ''; se vinculará el objeto sin tener en cuenta información de depuración
-libtmxlite-s-d.lib(ImageLayer.obj) : warning LNK4099: no se encontró PDB '' con 'libtmxlite-s-d.lib(ImageLayer.obj)' o en ''; se vinculará el objeto sin tener en cuenta información de depuración
-libtmxlite-s-d.lib(LayerGroup.obj) : warning LNK4099: no se encontró PDB '' con 'libtmxlite-s-d.lib(LayerGroup.obj)' o en ''; se vinculará el objeto sin tener en cuenta información de depuración
-libtmxlite-s-d.lib(miniz.obj) : warning LNK4099: no se encontró PDB '' con 'libtmxlite-s-d.lib(miniz.obj)' o en ''; se vinculará el objeto sin tener en cuenta información de depuración
-     Creando biblioteca C:\Users\usuario_local\Documents\NineandoCorp\bin\ProyectoHDebug.lib y objeto C:\Users\usuario_local\Documents\NineandoCorp\bin\ProyectoHDebug.exp
-  ProyectoH.vcxproj -> C:\Users\usuario_local\Documents\NineandoCorp\bin\ProyectoHDebug.exe
+  ProyectoH.vcxproj -> C:\Users\javie\Proyecto1\NineandoCorp\bin\ProyectoHDebug.exe
