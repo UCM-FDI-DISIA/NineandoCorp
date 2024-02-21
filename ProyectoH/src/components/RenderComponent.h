@@ -1,5 +1,6 @@
 #pragma once
 #include "../ecs/Component.h"
+#include "../sdlutils/SDLUtils.h"
 
 // Correspondant texture to each type of entity
 enum gameTextures {
@@ -15,11 +16,12 @@ private:
 public:
 	static const cmpId id = cmpId::_RENDER;
 
-	RenderComponent(gameTextures texture) : texture(texture) {};
+	RenderComponent(gameTextures texture) : texture(texture){};
 
 	gameTextures getTexture() { return texture; };
 	inline void setTexture(gameTextures t) {
 		texture = t;
 	}
+
 };
 

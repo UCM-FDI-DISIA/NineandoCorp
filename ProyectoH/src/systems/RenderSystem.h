@@ -3,6 +3,7 @@
 #include "../components/Transform.h"
 #include "../components/MovementComponent.h"
 #include "../components/FramedImage.h"
+#include "../components/FramedImage.h"
 #include "../components/RenderComponent.h"
 
 
@@ -41,7 +42,7 @@ private:
 
 	uint8_t winner_; // 0 - None, 1 - Asteroid, 2- Fighter
 
-	Vector2D offset = Vector2D(0,0);
+	SDL_Rect offset = build_sdlrect(0,0,0,0);
 
 	// Texts
 	stateText currStTxt;
