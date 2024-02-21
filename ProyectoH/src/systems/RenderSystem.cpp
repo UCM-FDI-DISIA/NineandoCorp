@@ -6,7 +6,7 @@
 RenderSystem::RenderSystem() :
 	winner_(0)
 {
-	/*textures[square] = &sdlutils().images().at("square");*/
+	textures[square] = &sdlutils().images().at("square");
 	textures[hillTexture] = &sdlutils().images().at("map1");
 	textures[roadTexture] = &sdlutils().images().at("map133");
 	textures[mountainTexture] = &sdlutils().images().at("map3");
@@ -104,8 +104,18 @@ void RenderSystem::update() {
 
 	//Este grupo tiene que estar ordenado de arriba a abajo de la pantalla segun su transform (posicion y)
 	//TOWERS AND ENEMIES
-	const auto& towers = mngr_->getEntities(_grp_TOWERS_AND_ENEMIES);
+	const auto& towers = mngr_->getEntities(_grp_TOWERS);
 	for (auto& t : towers) {
+		Transform* tr = mngr_->getComponent<Transform>(t);
+		gameTextures textureId = mngr_->getComponent<RenderComponent>(t)->getTexture();
+		SDL_Rect rect = tr->getRect();
+		rect.x += offset.getX();
+		rect.y += offset.getY();
+		textures[textureId]->render(rect, tr->getRotation());
+	}
+
+	const auto& enemies = mngr_->getEntities(_grp_ENEMIES);
+	for (auto& t : enemies) {
 		Transform* tr = mngr_->getComponent<Transform>(t);
 		gameTextures textureId = mngr_->getComponent<RenderComponent>(t)->getTexture();
 		SDL_Rect rect = tr->getRect();

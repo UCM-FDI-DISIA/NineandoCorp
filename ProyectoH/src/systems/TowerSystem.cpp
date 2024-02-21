@@ -25,8 +25,8 @@ void TowerSystem::receive(const Message& m) {
 
 
 void TowerSystem::update() {
-	const auto& towers = mngr_->getEntities(_grp_TOWERS_AND_ENEMIES);
-	const auto& enemies = mngr_->getEntities(_grp_TOWERS_AND_ENEMIES);
+	const auto& towers = mngr_->getEntities(_grp_TOWERS);
+	const auto& enemies = mngr_->getEntities(_grp_ENEMIES);
 	const auto& bullets = mngr_->getEntities(_grp_BULLETS);
 
 	for (auto& t : towers) {
@@ -63,15 +63,17 @@ void TowerSystem::update() {
 		if (!mngr_->isAlive(bc->getTarget())) {//Si ha muerto por el camino
 			bc->onTravelEnds();
 		}
-		else if ((*(t->getPosition()) - *(mngr_->getComponent<Transform>(bc->getTarget())->getPosition())).magnitude() <= 0.1f) {//Si choca con el enemigo
-			bc->doDamageTo(mngr_->getComponent<HealthComponent>(bc->getTarget()));
-			bc->onTravelEnds();
+		else{ //Si choca con el enemigo
+			if (((*(t->getPosition()) - *(mngr_->getComponent<Transform>(bc->getTarget())->getPosition())).magnitude() <= 5.0f)) {
+				bc->doDamageTo(mngr_->getComponent<HealthComponent>(bc->getTarget()));
+				bc->onTravelEnds();
+			}
 		}
 	}
 }
 
 void TowerSystem::onRoundStart() {
-	for (auto& t : mngr_->getEntities(_grp_TOWERS_AND_ENEMIES)) {
+	for (auto& t : mngr_->getEntities(_grp_TOWERS)) {
 		towerTransforms.push_back(mngr_->getComponent<Transform>(t));
 	}
 }

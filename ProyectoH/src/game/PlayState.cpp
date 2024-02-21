@@ -3,14 +3,6 @@
 
 PlayState::PlayState() : GameState(_gmStt_PLAY) {
 	// Sistemas requeridos para que funcione el juego
-<<<<<<< Updated upstream
-	mngr_->addSystem<RenderSystem>();
-	//mngr_->addSystem<mapSystem>("../ProyectoH/resources/tileMap/nivelPrueba.tmx");
-	Entity* t = new Entity(_grp_TOWERS_AND_ENEMIES);
-	//mngr_->addComponent<AttackComponent>(t);
-	//mngr_->addComponent<RenderComponent>(t);
-=======
->>>>>>> Stashed changes
 
 	//mngr_->addSystem<mapSystem>("../ProyectoH/resources/tileMap/nivelPrueba.tmx");
 	//Entity* t = new Entity(_grp_TOWERS);
@@ -25,9 +17,12 @@ PlayState::PlayState() : GameState(_gmStt_PLAY) {
 	Entity* e = mngr_->addEntity(_grp_ENEMIES);
 	mngr_->addComponent<RenderComponent>(e, towerTexture);
 	Transform* tr2 = mngr_->addComponent<Transform>(e);
+	HealthComponent* h = mngr_->addComponent<HealthComponent>(e, 100.0f);
+	
 	tr2->setPosition({ 100,100 });
 }
 
 void PlayState::update() {
 	GameState::update();
+
 }

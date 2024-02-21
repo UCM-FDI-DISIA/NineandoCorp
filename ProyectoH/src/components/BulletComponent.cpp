@@ -11,7 +11,7 @@ BulletComponent::BulletComponent(Transform* tr, Entity* target, int damage):t(tr
 //}
 
 void BulletComponent::doDamageTo(HealthComponent* healthCmp){
-	healthCmp->setHealth(healthCmp->getHealth() - damage_);
+	healthCmp->subtractHealth(damage_);
 }
 
 void BulletComponent::onTravelEnds() {
