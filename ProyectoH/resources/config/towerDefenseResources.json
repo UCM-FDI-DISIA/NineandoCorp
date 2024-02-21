@@ -148,6 +148,14 @@
         {
             "id": "Phoenix_Tower",
             "file": "resources/images/towers/diego_tower.png"
+        },
+        {
+            "id": "play",
+            "file": "resources/images/Buttons/play/play01.png"
+        },
+        {
+            "id": "play_hover",
+            "file": "resources/images/Buttons/play/play03.png"
         }
 
     ],

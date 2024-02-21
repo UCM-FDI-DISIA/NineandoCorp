@@ -3,7 +3,11 @@
 #include "../sdlutils/SDLUtils.h"
 
 enum ButtonTypes {
+<<<<<<< Updated upstream
 	pruebaButton,backButton,none, playButtonMenu
+=======
+	pruebaButton, backButton, playButtonMenu, none
+>>>>>>> Stashed changes
 };
 
 class ButtonComponent : public Component

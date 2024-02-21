@@ -8,7 +8,7 @@ class MainControlSystem : public System
 public:
 	static constexpr sysId_type id = _sys_MAINCONTROL;
 
-	MainControlSystem(int doradasIniciales, int doradasPorSegundo, int numOleadas, float tiempoEntreOleadas);
+	MainControlSystem();
 	~MainControlSystem() {};
 
 	void initSystem() override {};

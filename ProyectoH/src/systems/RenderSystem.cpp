@@ -21,6 +21,8 @@ RenderSystem::RenderSystem() :
 	textures[lakeTexture9] = &sdlutils().images().at("map90");
 	textures[lakeTexture10] = &sdlutils().images().at("map98");
 	textures[lakeTexture11] = &sdlutils().images().at("map99");
+	textures[play] = &sdlutils().images().at("play");
+	textures[playHover] = &sdlutils().images().at("play_hover");
 }
 
 

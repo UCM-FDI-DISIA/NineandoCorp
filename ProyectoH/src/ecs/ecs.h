@@ -89,6 +89,7 @@ enum msgId : msgId_type {
 	_m_GAMESTART,
 	_m_PAUSE,
 	_m_RESUME,
+	_m_START_GAME
 };
 
 using twrId_type = uint8_t;
@@ -186,7 +187,15 @@ msgId_type id;
 	struct {
 		bool isEnemy;
 	} collision_fighterbullet_data;
+	
+	// _m_START_GAME
+	struct 
+	{
+		//nivel 
+	}start_game_data;
 
+
+	// Poned el nombre pishitas
 	struct {
 		std::string name; 
 		std::string enemyName; 

@@ -38,12 +38,16 @@ void HUDSystem::callFunction(ButtonTypes type, Transform* en) {
 	switch (type)
 	{
 	case pruebaButton:
-		funcionPrueba(en);
 		break;
 	case backButton:
 		break;
 	case playButtonMenu:
+<<<<<<< Updated upstream
 		// Cargar PlayState
+=======
+		playGame();
+		funcionPrueba(en);
+>>>>>>> Stashed changes
 		break;
 	default:
 		break;
@@ -52,4 +56,10 @@ void HUDSystem::callFunction(ButtonTypes type, Transform* en) {
 
 void HUDSystem::funcionPrueba(Transform* tr) {
 	tr->addRotation(90.0);
+}
+
+void HUDSystem::playGame() {
+	Message m; 
+	m.id = _m_START_GAME;
+	mngr_->send(m);
 }
