@@ -1,5 +1,6 @@
 #pragma once
 #include "Transform.h"
+#include "../sdlutils/SDLUtils.h"
 
 enum ButtonTypes {
 	pruebaButton,backButton,none, playButtonMenu
