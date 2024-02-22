@@ -14,13 +14,7 @@ public:
 	void initSystem() override {};
 	void receive(const Message& m) override;
 	void update();
-	void onRoundOver();
-	void onRoundStart();
-	void subtractCoins(int num);
 
-	int getOleadaActual() { return oleadaActual; }
-	int getDoradasActuales() { return numDoradasActuales; }
-	float getTiempoEntreOleadas() { return tiempoEntreOleadas; }
 protected:
 	bool active_;
 	int numDoradasActuales;
@@ -31,5 +25,9 @@ protected:
 	float tiempoEntreOleadas;
 	double elapsedTime_;
 	VirtualTimer timer_;
+
+	void onRoundOver();
+	void onRoundStart();
+	void subtractCoins(int num);
 };
 
