@@ -25,8 +25,6 @@ void TowerSystem::receive(const Message& m) {
 
 
 void TowerSystem::update() {
-	const auto& towers = mngr_->getEntities(_grp_TOWERS);
-	const auto& enemies = mngr_->getEntities(_grp_ENEMIES);
 	const auto& bullets = mngr_->getEntities(_grp_BULLETS);
 
 	for (auto& t : towers) {
@@ -37,19 +35,20 @@ void TowerSystem::update() {
 				ac->setLoaded(true);
 				ac->targetEnemy(enemies);
 					//std::cout <<  "Elapsed: " << timer_.currTime() << "\n";
-					//std::cout << "TTS: " << ac->getTimeToShoot() << "\n";
+					//std::cout << "TTS: " << ac->getTimeToShoot() << "\n";Per o
 				if (ac->getTarget() != nullptr) {
-					ac->shoot(ac->getTarget());
+					shootBullet(ac->getTarget(), ac->getDamage());
 					ac->setTimeToShoot(ac->getTimeToShoot() + ac->getReloadTime());
 					ac->setLoaded(false);
 				}		
 			}
 		}
 		BulletTower* bt = mngr_->getComponent<BulletTower>(t);	
-		if (bt != nullptr) {
-			if (bt->getElapsedTime() > bt->getTimeToShoot() && bt->isMaxLevel()) {
+		if (bt != nullptr && bt->isMaxLevel()) {
+			bt->setElapsedTime(timer_.currTime() / 1000);
+			if (bt->getElapsedTime() > bt->getTimeToShoot()) {
 				bt->targetSecondEnemy(enemies);
-				if (bt->getTarget() != nullptr) { bt->shoot(bt->getTarget()); }
+				if (bt->getTarget() != nullptr) { shootBullet(bt->getTarget(), bt->getDamage()); }
 				bt->setElapsedTime(0);
 			}
 		}
@@ -72,12 +71,22 @@ void TowerSystem::update() {
 	}
 }
 
+void TowerSystem::shootBullet(Entity* target, float damage) {
+	Entity* bullet = mngr_->addEntity(_grp_BULLETS);
+	Transform* t = mngr_->addComponent<Transform>(bullet);
+	mngr_->addComponent<BulletComponent>(bullet, t, target, damage);
+	mngr_->addComponent<RenderComponent>(bullet, square);
+}
+
+void TowerSystem::addTower() {
+	Entity* t = mngr_->addEntity(_grp_TOWERS_AND_ENEMIES);
+	towers.push_back(t);
+}
+
 void TowerSystem::onRoundStart() {
-	for (auto& t : mngr_->getEntities(_grp_TOWERS)) {
-		towerTransforms.push_back(mngr_->getComponent<Transform>(t));
-	}
+	
 }
 
 void TowerSystem::onRoundOver() {
-	towerTransforms.clear();
+	
 }

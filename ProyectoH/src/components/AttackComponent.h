@@ -19,7 +19,6 @@ public:
 ;
 	void doDamageTo(HealthComponent* healthcmp);
 	void targetEnemy(const std::vector<Entity*>& targetGroup);
-	virtual void shoot(Entity* targetToShoot);
 
 	//Getters
 	float getDamage() const;
