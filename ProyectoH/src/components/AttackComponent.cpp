@@ -51,17 +51,11 @@ void AttackComponent::targetEnemy(const std::vector<Entity*>& targetGroup) {//Bu
 			}
 		}		
 	}	
-	else {
+	else if(mngr_->isAlive(target_)){
 		if (getDistance(mngr_->getComponent<Transform>(target_)->getPosition()) > range_) {//el target ha salido de rango luego lo pierde
 			target_ = nullptr;
 		}
 	}
-}
-
-void AttackComponent::shoot(Entity* targetEntity) {
-	Entity* bullet = mngr_->addEntity(_grp_BULLETS);
-	mngr_->addComponent<BulletComponent>(bullet)->setBullet(target_, damage_);
-	mngr_->addComponent<Transform>(bullet);
 }
 
 float AttackComponent::getDistance(Vector2D targetPos) {//Distancia al target

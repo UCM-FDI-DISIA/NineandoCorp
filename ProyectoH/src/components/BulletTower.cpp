@@ -19,12 +19,6 @@ BulletTower::BulletTower(float range, float reloadTime, int damage)
 	}
 }*/
 
-void BulletTower::shoot(Entity* targetToShoot) {
-	Entity* bullet = mngr_->addEntity(_grp_BULLETS);
-	mngr_->addComponent<BulletComponent>(bullet)->setBullet(target_, damage_);
-	mngr_->addComponent<Transform>(bullet);
-}
-
 void BulletTower::levelUp(int level) {
 	switch (level) {
 	case 1:

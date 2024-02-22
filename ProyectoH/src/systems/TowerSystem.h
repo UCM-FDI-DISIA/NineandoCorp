@@ -5,7 +5,7 @@
 #include "../components/AttackComponent.h"
 #include "../components/BulletTower.h"
 #include "../ecs/Manager.h"
-
+#include <list>
 
 class TowerSystem : public System
 {
@@ -19,11 +19,14 @@ public:
 	void update();
 	void onRoundOver();
 	void onRoundStart();
+	void addTower();
+	void shootBullet(Entity* target, float damage);
 	//bool collidesWithEnemy();//Devuelve true si una torre colisiona con un enemigo
 
 protected:
 
-	std::vector<Transform*> towerTransforms;
+	std::vector<Entity*> towers;
+	std::vector<Entity*> enemies;//Falta el mensaje para acceder a los enemigos desde el receive
 	bool active_;
 	VirtualTimer timer_;
 };
