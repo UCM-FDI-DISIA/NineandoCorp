@@ -4,10 +4,13 @@
 #include <tmxlite/Map.hpp>
 #include <tmxlite/TileLayer.hpp>
 #include <tmxlite/Types.hpp>
+#include <tmxlite/Tileset.hpp>
 #include "../ecs/Entity.h"
 #include "../ecs/Manager.h"
 #include "../components/RenderComponent.h"
+#include "../components/FramedImage.h"
 #include "../components/Transform.h"
+#include "../game/Game.h"
 
 
 #include <memory>

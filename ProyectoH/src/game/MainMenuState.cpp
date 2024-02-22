@@ -6,6 +6,6 @@ MainMenuState::MainMenuState() : GameState(_gmStt_MAINMENU) {
 	mngr_->addSystem<MainMenuSystem>();
 
 	mngr_->addSystem<MainControlSystem>();
-	mngr_->addSystem<RenderSystem>(); 
+	mngr_->addSystem<RenderSystem>();
 	mngr_->addSystem<HUDSystem>();
 }
