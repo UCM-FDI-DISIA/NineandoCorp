@@ -7,7 +7,6 @@ class BulletTower : public AttackComponent
 {
 public:
 	BulletTower(float range, float reloadTime, int damage);
-	void shoot(Entity* targetToShoot) override;
 	void levelUp(int level);
 	void targetSecondEnemy(const std::vector<Entity*>& targetGroup);
 

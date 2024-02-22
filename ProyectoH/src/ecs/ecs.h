@@ -41,7 +41,7 @@ enum grpId : grpId_type {
 	_grp_GENERAL,
 	_grp_TILES_L1,
 	_grp_TILES_L2,
-	_grp_TILES_L3, 
+	_grp_TILES_L3,
 	_grp_TOWERS_AND_ENEMIES,
 	_grp_BULLETS,
 	_grp_HUD_BACKGROUND,
@@ -75,6 +75,7 @@ enum sysId : sysId_type {
 	_sys_HUD,
 	_sys_MAINMENU,
 	_sys_MAINCONTROL,
+	_sys_ENEMIES,
 	// do not remove this
 	_LAST_SYS_ID
 };
