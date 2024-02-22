@@ -104,7 +104,7 @@ void RenderSystem::update() {
 
 	//Este grupo tiene que estar ordenado de arriba a abajo de la pantalla segun su transform (posicion y)
 	//TOWERS AND ENEMIES
-	const auto& towers = mngr_->getEntities(_grp_TOWERS);
+	const auto& towers = mngr_->getEntities(_grp_TOWERS_AND_ENEMIES);
 	for (auto& t : towers) {
 		Transform* tr = mngr_->getComponent<Transform>(t);
 		gameTextures textureId = mngr_->getComponent<RenderComponent>(t)->getTexture();
@@ -113,17 +113,6 @@ void RenderSystem::update() {
 		rect.y += offset.getY();
 		textures[textureId]->render(rect, tr->getRotation());
 	}
-
-	const auto& enemies = mngr_->getEntities(_grp_ENEMIES);
-	for (auto& t : enemies) {
-		Transform* tr = mngr_->getComponent<Transform>(t);
-		gameTextures textureId = mngr_->getComponent<RenderComponent>(t)->getTexture();
-		SDL_Rect rect = tr->getRect();
-		rect.x += offset.getX();
-		rect.y += offset.getY();
-		textures[textureId]->render(rect, tr->getRotation());
-	}
-
 	// BULLETS
 	const auto& buls = mngr_->getEntities(_grp_BULLETS);
 	for (auto& b : buls) {
