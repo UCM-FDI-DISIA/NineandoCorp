@@ -9,7 +9,7 @@
 class Manager {
 private:
 	std::array<std::vector<Entity*>, maxGroupId> entsByGroup_;
-	std::array<Entity*, maxHdlrId> hdlrs_;
+	std::array<std::vector<Entity*>, maxHdlrId> hdlrs_;
 	std::array<System*, maxSystemId> sys_; 
 	std::vector<Message> msgs_;
 	std::vector<Message> aux_msgs_;
@@ -23,9 +23,9 @@ public:
 	/*void render();
 	void handleInput();*/
 	inline void setHandler(hdlrId_type hId, Entity* e) {
-		hdlrs_[hId] = e;
+		hdlrs_[hId].push_back(e);
 	}
-	inline Entity* getHandler(hdlrId_type hId) {
+	inline std::vector<Entity*> getHandler(hdlrId_type hId) {
 		return hdlrs_[hId];
 	}
 
