@@ -7,6 +7,9 @@
 #include "../ecs/Manager.h"
 #include <list>
 
+enum TowerType{FENIX, BULLET, WALL, ENHANCER, DIEGO, SLIME, SHIELD};
+enum Height{HIGH, LOW};
+
 class TowerSystem : public System
 {
 public:
@@ -19,13 +22,13 @@ public:
 	void update();
 	void onRoundOver();
 	void onRoundStart();
-	void addTower();
+	void addTower(TowerType type, Vector2D pos, Height height);
 	void shootBullet(Entity* target, float damage);
 	//bool collidesWithEnemy();//Devuelve true si una torre colisiona con un enemigo
 
 protected:
-
 	std::vector<Entity*> towers;
+	std::vector<Entity*> lowTowers;
 	std::vector<Entity*> enemies;//Falta el mensaje para acceder a los enemigos desde el receive
 	bool active_;
 	VirtualTimer timer_;
