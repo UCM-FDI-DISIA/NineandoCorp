@@ -74,7 +74,7 @@ void TowerSystem::update() {
 void TowerSystem::shootBullet(Entity* target, float damage) {
 	Entity* bullet = mngr_->addEntity(_grp_BULLETS);
 	Transform* t = mngr_->addComponent<Transform>(bullet);
-	mngr_->addComponent<BulletComponent>(bullet, t, target, damage);
+	//mngr_->addComponent<BulletComponent>(bullet, t, target, damage);
 	mngr_->addComponent<RenderComponent>(bullet, square);
 }
 

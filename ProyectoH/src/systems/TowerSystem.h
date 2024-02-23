@@ -4,6 +4,7 @@
 #include "..//sdlutils/VirtualTimer.h"
 #include "../components/AttackComponent.h"
 #include "../components/BulletTower.h"
+#include "../components/RenderComponent.h"
 #include "../ecs/Manager.h"
 #include <list>
 

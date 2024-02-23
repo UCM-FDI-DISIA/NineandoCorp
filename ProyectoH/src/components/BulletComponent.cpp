@@ -1,7 +1,6 @@
 #include "BulletComponent.h"
 
 BulletComponent::BulletComponent(): targetEntity_(nullptr){
-	initComponent();
 	Vector2D vel = *(t->getPosition()) - *(mngr_->getComponent<Transform>(targetEntity_)->getPosition());
 	t->setVelocity(vel);
 }

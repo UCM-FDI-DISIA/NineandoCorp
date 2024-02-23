@@ -38,7 +38,7 @@ private:
 	// Displays pause message
 	void onPause();
 	// Hides pause message
-	void onResume();
+	void onResume(); 
 
 	uint8_t winner_; // 0 - None, 1 - Asteroid, 2- Fighter
 
