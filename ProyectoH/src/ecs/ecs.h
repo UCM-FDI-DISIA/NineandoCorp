@@ -86,6 +86,7 @@ enum msgId : msgId_type {
 	_m_ROUND_START, //
 	_m_ROUND_OVER,
 	_m_SHOOT,
+	_m_TOWERS_TO_ATTACK,
 	_m_GAMEOVER,
 	_m_GAMESTART,
 	_m_PAUSE,
@@ -140,6 +141,10 @@ inline Uint8* _deserialize_(float& v, Uint8* buf) {
 }
 struct Message {
 msgId_type id;
+    // _m_TOWERS_TO_ATTACK
+    struct {
+		std::vector<Entity*> vector;
+	} towers_to_attack;
 	// _m_COLLISION_ASTEROIDBULLET
 	struct {
 		Entity* a;
@@ -187,6 +192,7 @@ msgId_type id;
 	struct {
 		bool isEnemy;
 	} collision_fighterbullet_data;
+
 
 	struct {
 		std::string name; 

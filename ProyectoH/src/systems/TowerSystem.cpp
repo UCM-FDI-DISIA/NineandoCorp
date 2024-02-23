@@ -70,6 +70,8 @@ void TowerSystem::update() {
 			}
 		}
 	}
+
+	mngr_->send({_m_TOWERS_TO_ATTACK, lowTowers});
 }
 
 void TowerSystem::shootBullet(Entity* target, float damage) {
