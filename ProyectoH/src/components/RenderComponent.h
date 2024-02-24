@@ -9,7 +9,7 @@ enum gameTextures {
 	lakeTexture5, lakeTexture6, lakeTexture7, lakeTexture8, lakeTexture9, lakeTexture10,
 	lakeTexture11,
 	//UI
-	play, playHover, box,
+	play, play_hover, box, box_hover,
 
 	// towers
 	square, bulletTowerTexture, 

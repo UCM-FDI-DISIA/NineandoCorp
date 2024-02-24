@@ -151,15 +151,19 @@
         },
         {
             "id": "play",
-            "file": "resources/images/Buttons/play/play01.png"
+            "file": "resources/images/UI/play_button.png"
         },
         {
             "id": "play_hover",
-            "file": "resources/images/Buttons/play/play03.png"
+            "file": "resources/images/UI/play_button_hover.png"
         },
         {
             "id": "box",
             "file": "resources/images/UI/box.png"
+        },
+        {
+            "id": "box_hover",
+            "file": "resources/images/UI/box_hover.png"
         }
 
     ],

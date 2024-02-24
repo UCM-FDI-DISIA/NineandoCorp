@@ -33,9 +33,10 @@ RenderSystem::RenderSystem() :
 	textures[lakeTexture10] = &sdlutils().images().at("map98");
 	textures[lakeTexture11] = &sdlutils().images().at("map99");
 	textures[play] = &sdlutils().images().at("play");
-	textures[playHover] = &sdlutils().images().at("play_hover");
+	textures[play_hover] = &sdlutils().images().at("play_hover");
 	textures[bulletTowerTexture] = &sdlutils().images().at("Bullet_Tower");
 	textures[box] = &sdlutils().images().at("box"); 
+	textures[box_hover] = &sdlutils().images().at("box_hover");
 
 }
 
