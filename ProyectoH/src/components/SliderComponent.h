@@ -7,8 +7,8 @@
 
 class SliderComponent : public Component {
 private:
-    int sliderRect;
-    int knobRect;
+    int sliderX;
+    int knobX;
     int value;
     bool isDragging;
 
