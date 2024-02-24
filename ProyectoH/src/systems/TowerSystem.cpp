@@ -26,6 +26,7 @@ void TowerSystem::receive(const Message& m) {
 
 void TowerSystem::update() {
 	const auto& bullets = mngr_->getEntities(_grp_BULLETS);
+	
 
 	for (auto& t : towers) {
 		AttackComponent* ac = mngr_->getComponent<AttackComponent>(t);
@@ -69,6 +70,8 @@ void TowerSystem::update() {
 			}
 		}
 	}
+
+	mngr_->send({_m_TOWERS_TO_ATTACK, lowTowers});
 }
 
 void TowerSystem::shootBullet(Entity* target, float damage) {
@@ -78,8 +81,33 @@ void TowerSystem::shootBullet(Entity* target, float damage) {
 	mngr_->addComponent<RenderComponent>(bullet, square);
 }
 
-void TowerSystem::addTower() {
+void TowerSystem::addTower(TowerType type, Vector2D pos, Height height) {
 	Entity* t = mngr_->addEntity(_grp_TOWERS_AND_ENEMIES);
+	mngr_->addComponent<Transform>(t)->setPosition(pos);
+	mngr_->addComponent<RenderComponent>(t, towerTexture);
+	if (height == LOW) { 
+		mngr_->addComponent<HealthComponent>(t); 
+		lowTowers.push_back(t);
+	}
+	switch (type)
+	{
+	case FENIX:
+		break;
+	case BULLET:
+		break;
+	case WALL:
+		break;
+	case ENHANCER:
+		break;
+	case DIEGO:
+		break;
+	case SLIME:
+		break;
+	case SHIELD:
+		break;
+	default:
+		break;
+	}
 	towers.push_back(t);
 }
 
