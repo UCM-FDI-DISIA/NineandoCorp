@@ -19,7 +19,7 @@ void HUDSystem::update() {
 	Vector2D pos = { (float)ih().getMousePos().first, (float)ih().getMousePos().second };
 
 	//hover 
-	for (auto en : mngr_->getEntities(_grp_HUD_FOREGROUND)) {
+	for (auto en : mngr_->getHandler(_hdlr_BUTTON)) {
 
 		ButtonComponent* bC = mngr_->getComponent<ButtonComponent>(en);
 		RenderComponent* rC = mngr_->getComponent<RenderComponent>(en);
@@ -33,7 +33,7 @@ void HUDSystem::update() {
 		if (ih().getMouseButtonState(InputHandler::MOUSEBUTTON::LEFT) == 1) { 
 
 			//Recorre lista de entities de tipo HUD_FOREGROUND
-			for (auto en : mngr_->getEntities(_grp_HUD_FOREGROUND)) { 
+			for (auto en : mngr_->getHandler(_hdlr_BUTTON)) {
 
 				//comprueba la id del button y si no es none llama a la funcion correspondiente
 				auto type = mngr_->getComponent<ButtonComponent>(en)->isPressed(pos);

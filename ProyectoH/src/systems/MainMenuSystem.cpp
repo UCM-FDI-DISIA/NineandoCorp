@@ -21,10 +21,10 @@ void MainMenuSystem::initSystem() {
 
 	// Creación del Botón de Play del Menu
 	Entity* playButton = mngr_->addEntity(_grp_HUD_FOREGROUND);
+	mngr_->setHandler(_hdlr_BUTTON, playButton);
 	Transform* tr = mngr_->addComponent<Transform>(playButton);
-	Vector2D v = new Vector2D(200, 200);
-	tr->setScale(v);
-	v = new Vector2D(sdlutils().width() / 2, sdlutils().height() / 2);
+	tr->setScale({200, 200});
+	Vector2D v = new Vector2D(sdlutils().width() / 2, sdlutils().height() / 2);
 	tr->setPosition(v);
 	mngr_->addComponent<RenderComponent>(playButton, gameTextures::play);
 	ButtonComponent* bC = mngr_->addComponent<ButtonComponent>(playButton, playButtonMenu);	
