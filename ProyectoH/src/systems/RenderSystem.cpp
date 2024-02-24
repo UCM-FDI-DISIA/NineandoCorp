@@ -35,6 +35,7 @@ RenderSystem::RenderSystem() :
 	textures[play] = &sdlutils().images().at("play");
 	textures[playHover] = &sdlutils().images().at("play_hover");
 	textures[bulletTowerTexture] = &sdlutils().images().at("Bullet_Tower");
+	textures[box] = &sdlutils().images().at("box"); 
 }
 
 

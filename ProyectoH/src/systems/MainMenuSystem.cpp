@@ -11,25 +11,19 @@ MainMenuSystem::~MainMenuSystem() {
 }
 
 void MainMenuSystem::initSystem() {
+	//play button
+	Vector2D pAux(sdlutils().width() / 2, sdlutils().height() / 2);
+	Vector2D sAux(200, 200);
+	addButton(pAux, sAux, gameTextures::play, gameTextures::playHover, ButtonTypes::playButtonMenu);
+	//-------//
+	pAux = { 200,  sdlutils().height() / 2.0f };
+	sAux = { sdlutils().height() - 100.0f , 400};
+	addImage(pAux, sAux, 90.0, gameTextures::box);
+	//-------//
+	pAux = { sdlutils().width() - 200.0f,  sdlutils().height() / 2.0f };
+	sAux = { sdlutils().height() - 100.0f , 400};
+	addImage(pAux, sAux, 90.0, gameTextures::box);
 
-	// Creación de la Imagen del Background del Menu
-	/*Entity* background = mngr_->addEntity(_grp_HUD_BACKGROUND);
-	Transform* tr = mngr_->addComponent<Transform>(background);
-	Vector2D v = new Vector2D(1200, 800);
-	tr->setScale(v);
-	mngr_->addComponent<RenderComponent>(background, gameTextures::square);*/
-
-	// Creación del Botón de Play del Menu
-	Entity* playButton = mngr_->addEntity(_grp_HUD_FOREGROUND);
-	mngr_->setHandler(_hdlr_BUTTON, playButton);
-	Transform* tr = mngr_->addComponent<Transform>(playButton);
-	tr->setScale({200, 200});
-	Vector2D v = new Vector2D(sdlutils().width() / 2, sdlutils().height() / 2);
-	tr->setPosition(v);
-	mngr_->addComponent<RenderComponent>(playButton, gameTextures::play);
-	ButtonComponent* bC = mngr_->addComponent<ButtonComponent>(playButton, playButtonMenu);	
-	bC->setHover(gameTextures::playHover);
-	bC->setTexture(gameTextures::play);
 }
 
 void MainMenuSystem::receive(const Message& m) {
@@ -42,4 +36,26 @@ void MainMenuSystem::receive(const Message& m) {
 
 void MainMenuSystem::update() {
 
+}
+void MainMenuSystem::addButton(Vector2D pos, Vector2D scale, gameTextures tex, gameTextures hov, ButtonTypes type) {
+	Entity* b = mngr_->addEntity(_grp_HUD_FOREGROUND);
+	mngr_->setHandler(_hdlr_BUTTON, b);
+	Transform* tr = mngr_->addComponent<Transform>(b);
+	tr->setScale(scale);
+	Vector2D aux =  tr->getScale();
+	tr->setPosition(pos - aux / 2);
+	mngr_->addComponent<RenderComponent>(b, tex);
+	ButtonComponent* bC = mngr_->addComponent<ButtonComponent>(b, type);
+	bC->setTexture(tex);
+	bC->setHover(hov);
+}
+
+void MainMenuSystem::addImage(Vector2D pos, Vector2D scale, double rot, gameTextures t) {
+	Entity* img = mngr_->addEntity(_grp_HUD_FOREGROUND);
+	Transform* tr = mngr_->addComponent<Transform>(img); 
+	tr->setScale(scale); 
+	Vector2D aux = tr->getScale(); 
+	tr->setPosition(pos - aux / 2); 
+	tr->setRotation(rot);
+	mngr_->addComponent<RenderComponent>(img, t);
 }

@@ -156,6 +156,10 @@
         {
             "id": "play_hover",
             "file": "resources/images/Buttons/play/play03.png"
+        },
+        {
+            "id": "box",
+            "file": "resources/images/UI/box.png"
         }
 
     ],
