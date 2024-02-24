@@ -12,7 +12,6 @@ private:
     int value;
     bool isDragging;
 
-    void updateKnobPosition();
 
 public:
     SliderComponent(RenderSystem& renderSystem, int x, int y, int width, int height);
