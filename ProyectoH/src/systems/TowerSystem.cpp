@@ -70,8 +70,10 @@ void TowerSystem::update() {
 			}
 		}
 	}
-
-	mngr_->send({_m_TOWERS_TO_ATTACK, lowTowers});
+	Message m;
+	m.id = _m_TOWERS_TO_ATTACK;
+	m.towers_to_attack_data.towers = lowTowers;
+	mngr_->send(m);
 }
 
 void TowerSystem::shootBullet(Entity* target, float damage) {
@@ -84,9 +86,9 @@ void TowerSystem::shootBullet(Entity* target, float damage) {
 void TowerSystem::addTower(TowerType type, Vector2D pos, Height height) {
 	Entity* t = mngr_->addEntity(_grp_TOWERS_AND_ENEMIES);
 	mngr_->addComponent<Transform>(t)->setPosition(pos);
-	mngr_->addComponent<RenderComponent>(t, towerTexture);
+	mngr_->addComponent<RenderComponent>(t, bulletTowerTexture);
 	if (height == LOW) { 
-		mngr_->addComponent<HealthComponent>(t); 
+		mngr_->addComponent<HealthComponent>(t, 10.0);  
 		lowTowers.push_back(t);
 	}
 	switch (type)

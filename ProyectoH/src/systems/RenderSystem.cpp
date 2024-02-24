@@ -51,7 +51,7 @@ void RenderSystem::receive(const Message& m) {
 		onGameStart();
 		break;
 	case _m_GAMEOVER:
-		onGameOver(m.winner_data.n);
+		//onGameOver(m.winner_data.n);
 		break;
 	case _m_PAUSE:
 		onPause();
@@ -83,7 +83,7 @@ void RenderSystem::update() {
 	else if (ih().isKeyDown(SDLK_DOWN)) {
 		offset.y -= 50;
 	}
-	tmp->update();
+	//tmp->update();
 
 	//LAYER 1 TILEMAP
 	const auto& tilesl1 = mngr_->getEntities(_grp_TILES_L1);
