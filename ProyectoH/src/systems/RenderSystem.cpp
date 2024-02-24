@@ -1,4 +1,4 @@
-#include "RenderSystem.h"
+﻿#include "RenderSystem.h"
 #include "../ecs/Manager.h"
 #include "../game/Game.h"
 
@@ -36,13 +36,14 @@ RenderSystem::RenderSystem() :
 	textures[playHover] = &sdlutils().images().at("play_hover");
 	textures[bulletTowerTexture] = &sdlutils().images().at("Bullet_Tower");
 	textures[box] = &sdlutils().images().at("box"); 
+
 }
 
 
 RenderSystem::~RenderSystem() {
 }
 
-// Reaccionar a los mensajes recibidos (llamando a m�todos correspondientes).
+// Reaccionar a los mensajes recibidos (llamando a métodos correspondientes).
 void RenderSystem::receive(const Message& m) {
 	switch (m.id) {
 	case _m_ROUND_START:
@@ -95,7 +96,7 @@ void RenderSystem::update() {
 		SDL_Rect trRect = tr->getRect();
 		trRect.x += offset.x;
 		trRect.y += offset.y;
-		textures[textureId]->render(srcRect,trRect);
+		textures[textureId]->render(srcRect, trRect);
 	}
 
 	//LAYER 2 TILEMAP
@@ -126,7 +127,7 @@ void RenderSystem::update() {
 	// NO CAMBIAR LECHES
 	//TOWERS AND ENEMIES
 	auto& towers = mngr_->getEntities(_grp_TOWERS_AND_ENEMIES);
-	sort(towers.begin(),towers.end(), cmpIsometricY(mngr_));
+	sort(towers.begin(), towers.end(), cmpIsometricY(mngr_));
 	for (auto& t : towers) {
 		Transform* tr = mngr_->getComponent<Transform>(t);
 		gameTextures textureId = mngr_->getComponent<RenderComponent>(t)->getTexture();
@@ -146,7 +147,7 @@ void RenderSystem::update() {
 		trRect.y += offset.y;
 		textures[textureId]->render(trRect, tr->getRotation());
 	}
-	
+
 	//HUD BACKGROUND
 	const auto& hudB = mngr_->getEntities(_grp_HUD_BACKGROUND);
 	for (auto& h : hudB) {
