@@ -22,6 +22,7 @@ public:
 
 	//Getters
 	float getDamage() const;
+	float getBaseDamage() const;
 	float getRange() const;
 	bool isLoaded()const;
 	Entity* getTarget() const;
@@ -39,6 +40,7 @@ public:
 protected:
 	
 	float reloadTime_;
+	int baseDamage_;
 	int damage_;
 	Entity* target_;//target principal
 

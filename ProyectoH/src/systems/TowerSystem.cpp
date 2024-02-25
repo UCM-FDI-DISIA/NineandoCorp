@@ -54,7 +54,18 @@ void TowerSystem::update() {
 				if (bt->getElapsedTime() > bt->getTimeToShoot()) {
 					bt->targetSecondEnemy(enemies);
 					if (bt->getTarget() != nullptr) { shootBullet(bt->getTarget(), bt->getDamage()); }
-					bt->setElapsedTime(0);
+				}
+			}
+			EnhancerTower* et = mngr_->getComponent<EnhancerTower>(t);
+			if (et != nullptr) {
+				for (size_t i = 0; i < towers.size(); i++)
+				{
+					if (true) {//enRango
+						AttackComponent* ac = mngr_->getComponent<AttackComponent>(towers[i]);
+						if (ac != nullptr) {ac->setDamage(ac->getBaseDamage() * (1 + et->getDamageIncreasePercentage()));}
+						HealthComponent* h = mngr_->getComponent<HealthComponent>(towers[i]);
+						if (h != nullptr) { h->setMaxHealth(h->getBaseHealth() + et->getTowersHPboost()); }
+					}
 				}
 			}
 
@@ -127,7 +138,7 @@ void TowerSystem::addTower(TowerType type, Vector2D pos, Height height) {
 		break;
 	case WALL:
 		break;
-	case ENHANCER:
+	case ENHANCER://Pasar rango, porcentaje incremento de ataque y vida extra
 		break;
 	case DIEGO:
 		break;

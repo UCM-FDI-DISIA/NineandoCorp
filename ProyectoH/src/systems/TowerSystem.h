@@ -1,10 +1,11 @@
 #pragma once
 #include "..//ecs/System.h"
-#include "..//components/Transform.h"
 #include "..//sdlutils/VirtualTimer.h"
+#include "../ecs/Manager.h"
+#include "..//components/Transform.h"
 #include "../components/AttackComponent.h"
 #include "../components/BulletTower.h"
-#include "../ecs/Manager.h"
+#include "..//components/EnhancerTower.h"
 #include <list>
 
 enum TowerType{FENIX, BULLET, WALL, ENHANCER, DIEGO, SLIME, SHIELD};
