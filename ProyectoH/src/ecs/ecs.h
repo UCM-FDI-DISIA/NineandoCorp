@@ -32,7 +32,8 @@ using hdlrId_type = int;
 enum hdlrId : hdlrId_type { 
 	_hdlr_DRAG_AND_DROP,
 	_hdlr_BUTTON,
-	
+	_hdlr_LOW_TOWERS,
+	_hdlr_ENEMIES,
 	// do not remove this
 	_LAST_HDLR_ID };
 constexpr hdlrId_type maxHdlrId = _LAST_HDLR_ID;
@@ -88,6 +89,7 @@ enum msgId : msgId_type {
 	_m_ROUND_OVER,
 	_m_SHOOT,
 	_m_TOWERS_TO_ATTACK,
+	_m_ENTITY_TO_ATTACK,
 	_m_GAMEOVER,
 	_m_GAMESTART,
 	_m_PAUSE,
@@ -146,6 +148,11 @@ msgId_type id;
     struct {
 		std::vector<Entity*> vector;
 	} towers_to_attack;
+	// _m_ENTITY_TO_ATTACK
+	struct {
+		Entity* e;
+		float damage;
+	} entity_to_attack;
 	// _m_COLLISION_ASTEROIDBULLET
 	struct {
 		Entity* a;

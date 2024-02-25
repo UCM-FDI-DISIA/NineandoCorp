@@ -6,8 +6,7 @@ TowerSystem::TowerSystem() :timer_(), active_(true) {
 
 TowerSystem::~TowerSystem() {
 	towers.clear();
-	lowTowers.clear();
-	enemies.clear();
+	//enemies.clear();
 }
 
 void TowerSystem::initSystem() {
@@ -38,7 +37,7 @@ void TowerSystem::update() {
 				ac->setElapsedTime(timer_.currTime() / 1000);
 				if (ac->getElapsedTime() > ac->getTimeToShoot()) {
 					ac->setLoaded(true);
-					ac->targetEnemy(enemies);
+					ac->targetEnemy(mngr_->getHandler(_hdlr_ENEMIES));
 					//std::cout << "Elapsed: " << timer_.currTime() << "\n";
 					//std::cout << "TTS: " << ac->getTimeToShoot() << "\n";
 					if (ac->getTarget() != nullptr) {
@@ -52,7 +51,7 @@ void TowerSystem::update() {
 			if (bt != nullptr && bt->isMaxLevel()) {
 				bt->setElapsedTime(timer_.currTime() / 1000);
 				if (bt->getElapsedTime() > bt->getTimeToShoot()) {
-					bt->targetSecondEnemy(enemies);
+					bt->targetSecondEnemy(mngr_->getHandler(_hdlr_ENEMIES));
 					if (bt->getTarget() != nullptr) { shootBullet(bt->getTarget(), bt->getDamage()); }
 				}
 			}
@@ -87,14 +86,12 @@ void TowerSystem::update() {
 			}
 		}
 	}
-
-	mngr_->send({_m_TOWERS_TO_ATTACK, lowTowers});
 }
 
 void TowerSystem::eliminateDestroyedTowers(Entity* t) {
 	bool found = false;
 	int i = 0;
-	while (i < lowTowers.size() && !found) {
+	/*while (i < lowTowers.size() && !found) {
 		if (t == lowTowers[i]) {
 			found = true;
 			lowTowers[i] = lowTowers[lowTowers.size()];
@@ -103,7 +100,7 @@ void TowerSystem::eliminateDestroyedTowers(Entity* t) {
 		i++;
 	}
 	found = false;
-	i = 0;
+	i = 0;*/
 	while (i < towers.size() && !found) {
 		if (t == towers[i]) {
 			found = true;
@@ -128,7 +125,8 @@ void TowerSystem::addTower(TowerType type, Vector2D pos, Height height) {
 	float health = 100.0f;
 	if (height == LOW) { 
 		mngr_->addComponent<HealthComponent>(t, health); 
-		lowTowers.push_back(t);
+		//lowTowers.push_back(t);
+		mngr_->setHandler(_hdlr_LOW_TOWERS, t);
 	}
 	switch (type)
 	{

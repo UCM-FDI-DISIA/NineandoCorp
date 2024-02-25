@@ -31,8 +31,8 @@ protected:
 	void shootBullet(Entity* target, float damage);
 	void eliminateDestroyedTowers(Entity* t);
 	std::vector<Entity*> towers;
-	std::vector<Entity*> lowTowers;
-	std::vector<Entity*> enemies;//Falta el mensaje para acceder a los enemigos desde el receive
+	//std::vector<Entity*> lowTowers;
+	//std::vector<Entity*> enemies;//Falta el mensaje para acceder a los enemigos desde el receive
 	bool active_;
 	VirtualTimer timer_;
 };

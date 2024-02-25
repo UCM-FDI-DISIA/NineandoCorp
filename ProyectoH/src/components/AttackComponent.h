@@ -5,6 +5,7 @@
 #include "BulletComponent.h"
 #include "RenderComponent.h"
 #include <vector>
+#include <list>
 
 class Entity;
 class HealthComponent;
@@ -17,8 +18,8 @@ public:
 	virtual void initComponent();
 	
 ;
-	void doDamageTo(HealthComponent* healthcmp);
-	void targetEnemy(const std::vector<Entity*>& targetGroup);
+	void doDamageTo(Entity* e, float damage);
+	void targetEnemy(const std::list<Entity*>& targetGroup);
 
 	//Getters
 	float getDamage() const;

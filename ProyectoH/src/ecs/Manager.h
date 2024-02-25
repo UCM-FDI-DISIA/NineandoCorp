@@ -1,5 +1,6 @@
 #pragma once
 #include <vector>
+#include <list>
 #include <array>
 #include "ecs.h"
 #include "System.h"
@@ -9,7 +10,7 @@
 class Manager {
 private:
 	std::array<std::vector<Entity*>, maxGroupId> entsByGroup_;
-	std::array<Entity*, maxHdlrId> hdlrs_;
+	std::array<std::list<Entity*>, maxHdlrId> hdlrs_;
 	std::array<System*, maxSystemId> sys_; 
 	std::vector<Message> msgs_;
 	std::vector<Message> aux_msgs_;
@@ -23,9 +24,9 @@ public:
 	/*void render();
 	void handleInput();*/
 	inline void setHandler(hdlrId_type hId, Entity* e) {
-		hdlrs_[hId] = e;
+		hdlrs_[hId].push_back(e);
 	}
-	inline Entity* getHandler(hdlrId_type hId) {
+	inline std::list<Entity*> getHandler(hdlrId_type hId) {
 		return hdlrs_[hId];
 	}
 

@@ -76,6 +76,7 @@
     <ClCompile Include="src\components\BulletComponent.cpp" />
     <ClCompile Include="src\components\BulletTower.cpp" />
     <ClCompile Include="src\components\ButtonComponent.cpp" />
+    <ClCompile Include="src\components\DirtTower.cpp" />
     <ClCompile Include="src\components\DragAndDrop.cpp" />
     <ClCompile Include="src\components\EnhancerTower.cpp" />
     <ClCompile Include="src\components\FramedImage.cpp" />
