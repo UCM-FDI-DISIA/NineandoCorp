@@ -5,7 +5,9 @@ TowerSystem::TowerSystem() :timer_(), active_(true) {
 }
 
 TowerSystem::~TowerSystem() {
-
+	towers.clear();
+	lowTowers.clear();
+	enemies.clear();
 }
 
 void TowerSystem::initSystem() {
