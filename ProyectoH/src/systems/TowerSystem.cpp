@@ -29,30 +29,33 @@ void TowerSystem::update() {
 	
 
 	for (auto& t : towers) {
-		AttackComponent* ac = mngr_->getComponent<AttackComponent>(t);
-		if (ac != nullptr) {		
-			ac->setElapsedTime(timer_.currTime()/1000);
-			if (ac->getElapsedTime() > ac->getTimeToShoot()) {
-				ac->setLoaded(true);
-				ac->targetEnemy(enemies);
-					//std::cout <<  "Elapsed: " << timer_.currTime() << "\n";
-					//std::cout << "TTS: " << ac->getTimeToShoot() << "\n";Per o
-				if (ac->getTarget() != nullptr) {
-					shootBullet(ac->getTarget(), ac->getDamage());
-					ac->setTimeToShoot(ac->getTimeToShoot() + ac->getReloadTime());
-					ac->setLoaded(false);
-				}		
+		if(!mngr_->isAlive(t)){ eliminateDestroyedTowers(t); }//Eliminamos la torre de los arrays si esta muerta
+		else {
+			AttackComponent* ac = mngr_->getComponent<AttackComponent>(t);
+			if (ac != nullptr) {
+				ac->setElapsedTime(timer_.currTime() / 1000);
+				if (ac->getElapsedTime() > ac->getTimeToShoot()) {
+					ac->setLoaded(true);
+					ac->targetEnemy(enemies);
+					//std::cout << "Elapsed: " << timer_.currTime() << "\n";
+					//std::cout << "TTS: " << ac->getTimeToShoot() << "\n";
+					if (ac->getTarget() != nullptr) {
+						shootBullet(ac->getTarget(), ac->getDamage());
+						ac->setTimeToShoot(ac->getTimeToShoot() + ac->getReloadTime());
+						ac->setLoaded(false);
+					}
+				}
 			}
-		}
-		BulletTower* bt = mngr_->getComponent<BulletTower>(t);	
-		if (bt != nullptr && bt->isMaxLevel()) {
-			bt->setElapsedTime(timer_.currTime() / 1000);
-			if (bt->getElapsedTime() > bt->getTimeToShoot()) {
-				bt->targetSecondEnemy(enemies);
-				if (bt->getTarget() != nullptr) { shootBullet(bt->getTarget(), bt->getDamage()); }
-				bt->setElapsedTime(0);
+			BulletTower* bt = mngr_->getComponent<BulletTower>(t);
+			if (bt != nullptr && bt->isMaxLevel()) {
+				bt->setElapsedTime(timer_.currTime() / 1000);
+				if (bt->getElapsedTime() > bt->getTimeToShoot()) {
+					bt->targetSecondEnemy(enemies);
+					if (bt->getTarget() != nullptr) { shootBullet(bt->getTarget(), bt->getDamage()); }
+					bt->setElapsedTime(0);
+				}
 			}
-		}
+		}	
 	}
 
 	for (auto& b : bullets) {
@@ -74,6 +77,29 @@ void TowerSystem::update() {
 	mngr_->send({_m_TOWERS_TO_ATTACK, lowTowers});
 }
 
+void TowerSystem::eliminateDestroyedTowers(Entity* t) {
+	bool found = false;
+	int i = 0;
+	while (i < lowTowers.size() && !found) {
+		if (t == lowTowers[i]) {
+			found = true;
+			lowTowers[i] = lowTowers[lowTowers.size()];
+			lowTowers.pop_back();
+		}
+		i++;
+	}
+	found = false;
+	i = 0;
+	while (i < towers.size() && !found) {
+		if (t == towers[i]) {
+			found = true;
+			towers[i] = towers[towers.size()];
+			towers.pop_back();
+		}
+		i++;
+	}
+}
+
 void TowerSystem::shootBullet(Entity* target, float damage) {
 	Entity* bullet = mngr_->addEntity(_grp_BULLETS);
 	Transform* t = mngr_->addComponent<Transform>(bullet);
@@ -85,8 +111,9 @@ void TowerSystem::addTower(TowerType type, Vector2D pos, Height height) {
 	Entity* t = mngr_->addEntity(_grp_TOWERS_AND_ENEMIES);
 	mngr_->addComponent<Transform>(t)->setPosition(pos);
 	mngr_->addComponent<RenderComponent>(t, towerTexture);
+	float health = 100.0f;
 	if (height == LOW) { 
-		mngr_->addComponent<HealthComponent>(t); 
+		mngr_->addComponent<HealthComponent>(t, health); 
 		lowTowers.push_back(t);
 	}
 	switch (type)

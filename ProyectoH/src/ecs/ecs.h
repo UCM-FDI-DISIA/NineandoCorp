@@ -5,6 +5,7 @@
 #include "../checkML.h"
 #include "../utils/Vector2D.h"
 #include "../sdlutils/SDLNetUtils.h"
+#include <vector>
 
 class Entity;
 class Manager;

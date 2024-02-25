@@ -23,10 +23,12 @@ public:
 	void onRoundOver();
 	void onRoundStart();
 	void addTower(TowerType type, Vector2D pos, Height height);
-	void shootBullet(Entity* target, float damage);
+	
 	//bool collidesWithEnemy();//Devuelve true si una torre colisiona con un enemigo
 
 protected:
+	void shootBullet(Entity* target, float damage);
+	void eliminateDestroyedTowers(Entity* t);
 	std::vector<Entity*> towers;
 	std::vector<Entity*> lowTowers;
 	std::vector<Entity*> enemies;//Falta el mensaje para acceder a los enemigos desde el receive
