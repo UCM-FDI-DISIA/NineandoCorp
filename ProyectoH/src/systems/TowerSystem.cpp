@@ -81,7 +81,7 @@ void TowerSystem::update() {
 		}
 		else{ //Si choca con el enemigo
 			if (((*(t->getPosition()) - *(mngr_->getComponent<Transform>(bc->getTarget())->getPosition())).magnitude() <= 5.0f)) {
-				bc->doDamageTo(mngr_->getComponent<HealthComponent>(bc->getTarget()));
+				bc->doDamageTo(bc->getTarget(), bc->getDamage());
 				bc->onTravelEnds();
 			}
 		}
@@ -121,7 +121,7 @@ void TowerSystem::shootBullet(Entity* target, float damage) {
 void TowerSystem::addTower(TowerType type, Vector2D pos, Height height) {
 	Entity* t = mngr_->addEntity(_grp_TOWERS_AND_ENEMIES);
 	mngr_->addComponent<Transform>(t)->setPosition(pos);
-	mngr_->addComponent<RenderComponent>(t, towerTexture);
+	mngr_->addComponent<RenderComponent>(t, square);
 	float health = 100.0f;
 	if (height == LOW) { 
 		mngr_->addComponent<HealthComponent>(t, health); 
