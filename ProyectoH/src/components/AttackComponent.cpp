@@ -4,7 +4,7 @@
 #include "../components/Transform.h"
 #include "../components/HealthComponent.h"
 
-AttackComponent::AttackComponent(float range, float reloadTime, int damage, bool shootBullets) : range_(range), reloadTime_(reloadTime), damage_(damage){
+AttackComponent::AttackComponent(float range, float reloadTime, int damage, bool shootBullets) : range_(range), reloadTime_(reloadTime), damage_(damage), baseDamage_(damage) {
 	target_ = nullptr; timeToShoot_ = reloadTime; loaded_ = false;
 }
 
@@ -35,11 +35,15 @@ void AttackComponent::initComponent() {
 	}	
 }*/
 
-void AttackComponent::doDamageTo(HealthComponent* healthcmp) {//Causa un daño a una entidad
-	healthcmp->setHealth(healthcmp->getHealth() - damage_);
+void AttackComponent::doDamageTo(Entity* e, float damage) {//Causa un daño a una entidad
+	Message m;
+	m.id = _m_ENTITY_TO_ATTACK;
+	m.entity_to_attack.e = e;
+	m.entity_to_attack.damage = damage;
+	mngr_->send(m);
 }
 
-void AttackComponent::targetEnemy(const std::vector<Entity*>& targetGroup) {//Busca un target
+void AttackComponent::targetEnemy(const std::list<Entity*>& targetGroup) {//Busca un target
 	if (target_ == nullptr) {//Si no hay enemigo targeteado se busca uno
 		double closestEnemy = INT32_MAX;
 		for (auto enemy : targetGroup)
@@ -64,6 +68,8 @@ float AttackComponent::getDistance(Vector2D targetPos) {//Distancia al target
 }
 
 float AttackComponent::getDamage() const { return damage_; }
+
+float AttackComponent::getBaseDamage() const { return baseDamage_; }
 
 float AttackComponent::getRange() const { return range_; }
 

@@ -1,6 +1,6 @@
 #include "HealthComponent.h"
 
-HealthComponent::HealthComponent(float l) : maxHealth_(l) { };
+HealthComponent::HealthComponent(float l) : maxHealth_(l), baseHealth_(l) { };
 
 
 void
@@ -31,4 +31,9 @@ HealthComponent::resetHealth() {
 void 
 HealthComponent::setHealth(float health) {
 	currentHealth_ = health;
+}
+
+void 
+HealthComponent::setMaxHealth(float health) {
+	maxHealth_ = health;
 }

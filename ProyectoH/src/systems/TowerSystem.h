@@ -1,11 +1,11 @@
 #pragma once
 #include "..//ecs/System.h"
-#include "..//components/Transform.h"
 #include "..//sdlutils/VirtualTimer.h"
+#include "../ecs/Manager.h"
+#include "..//components/Transform.h"
 #include "../components/AttackComponent.h"
 #include "../components/BulletTower.h"
-#include "../components/RenderComponent.h"
-#include "../ecs/Manager.h"
+#include "..//components/EnhancerTower.h"
 #include <list>
 
 enum TowerType{FENIX, BULLET, WALL, ENHANCER, DIEGO, SLIME, SHIELD};
@@ -24,13 +24,15 @@ public:
 	void onRoundOver();
 	void onRoundStart();
 	void addTower(TowerType type, Vector2D pos, Height height);
-	void shootBullet(Entity* target, float damage);
+	
 	//bool collidesWithEnemy();//Devuelve true si una torre colisiona con un enemigo
 
 protected:
+	void shootBullet(Entity* target, float damage);
+	void eliminateDestroyedTowers(Entity* t);
 	std::vector<Entity*> towers;
-	std::vector<Entity*> lowTowers;
-	std::vector<Entity*> enemies;//Falta el mensaje para acceder a los enemigos desde el receive
+	//std::vector<Entity*> lowTowers;
+	//std::vector<Entity*> enemies;//Falta el mensaje para acceder a los enemigos desde el receive
 	bool active_;
 	VirtualTimer timer_;
 };

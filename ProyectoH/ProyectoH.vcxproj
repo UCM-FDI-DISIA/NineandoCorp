@@ -25,6 +25,7 @@
     <ClInclude Include="src\components\ButtonComponent.h" />
     <ClInclude Include="src\components\DirtTower.h" />
     <ClInclude Include="src\components\DragAndDrop.h" />
+    <ClInclude Include="src\components\EnhancerTower.h" />
     <ClInclude Include="src\components\FramedImage.h" />
     <ClInclude Include="src\components\HealthComponent.h" />
     <ClInclude Include="src\components\MovementComponent.h" />
@@ -75,7 +76,9 @@
     <ClCompile Include="src\components\BulletComponent.cpp" />
     <ClCompile Include="src\components\BulletTower.cpp" />
     <ClCompile Include="src\components\ButtonComponent.cpp" />
+    <ClCompile Include="src\components\DirtTower.cpp" />
     <ClCompile Include="src\components\DragAndDrop.cpp" />
+    <ClCompile Include="src\components\EnhancerTower.cpp" />
     <ClCompile Include="src\components\FramedImage.cpp" />
     <ClCompile Include="src\components\HealthComponent.cpp" />
     <ClCompile Include="src\components\MovementComponent.cpp" />
@@ -209,6 +212,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
+      <LanguageStandard>stdcpp17</LanguageStandard>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>

@@ -1,8 +1,4 @@
 #include "DirtTower.h"
 
 DirtTower::DirtTower(float range, float reloadTime, int damage)
-	: AttackComponent::AttackComponent(range, reloadTime, damage) {}
-
-void DirtTower::update() {
-
-}
+	: AttackComponent::AttackComponent(range, reloadTime, damage, true) {}

@@ -38,7 +38,7 @@ void BulletTower::levelUp(int level) {
 	}
 }
 
-void BulletTower::targetSecondEnemy(const std::vector<Entity*>& targetGroup) {
+void BulletTower::targetSecondEnemy(const std::list<Entity*>& targetGroup) {
 	if (secondTarget_ == nullptr) {//Si no hay enemigo targeteado se busca uno
 		double closestEnemy = INT32_MAX;
 		for (auto enemy : targetGroup)

@@ -32,7 +32,8 @@ using hdlrId_type = int;
 enum hdlrId : hdlrId_type { 
 	_hdlr_DRAG_AND_DROP,
 	_hdlr_BUTTON,
-	
+	_hdlr_LOW_TOWERS,
+	_hdlr_ENEMIES,
 	// do not remove this
 	_LAST_HDLR_ID };
 constexpr hdlrId_type maxHdlrId = _LAST_HDLR_ID;
@@ -87,12 +88,12 @@ enum msgId : msgId_type {
 	_m_ROUND_START, //
 	_m_ROUND_OVER,
 	_m_SHOOT,
+	_m_TOWERS_TO_ATTACK,
+	_m_ENTITY_TO_ATTACK,
 	_m_GAMEOVER,
 	_m_GAMESTART,
 	_m_PAUSE,
 	_m_RESUME,
-	_m_START_GAME,
-	_m_TOWERS_TO_ATTACK
 };
 
 using twrId_type = uint8_t;
@@ -143,6 +144,24 @@ inline Uint8* _deserialize_(float& v, Uint8* buf) {
 }
 struct Message {
 msgId_type id;
+    // _m_TOWERS_TO_ATTACK
+    struct {
+		std::vector<Entity*> vector;
+	} towers_to_attack;
+	// _m_ENTITY_TO_ATTACK
+	struct {
+		Entity* e;
+		float damage;
+	} entity_to_attack;
+	// _m_COLLISION_ASTEROIDBULLET
+	struct {
+		Entity* a;
+		Entity* b;
+	} collision_asteroidbullet_data;
+	// _m_GAMEOVER
+	struct {
+		unsigned char n;
+	} winner_data;
 	// _m_SHOOT
 	struct {
 		Vector2D pos;
@@ -181,20 +200,8 @@ msgId_type id;
 	struct {
 		bool isEnemy;
 	} collision_fighterbullet_data;
-	
-	// _m_START_GAME
-	struct 
-	{
-		//nivel 
-	}start_game_data;
 
-	// _m_TOWERS_TO_ATTACK
-	struct
-	{
-		std::vector<Entity*> towers;
-	}towers_to_attack_data;
 
-	// Poned el nombre pishitas
 	struct {
 		std::string name; 
 		std::string enemyName; 
