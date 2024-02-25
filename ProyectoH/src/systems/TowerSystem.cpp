@@ -57,6 +57,7 @@ void TowerSystem::update() {
 					bt->setElapsedTime(0);
 				}
 			}
+
 		}	
 	}
 

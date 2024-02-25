@@ -213,7 +213,7 @@
     <ClInclude Include="src\components\NexusComponent.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="EnhancerTower.h">
+    <ClInclude Include="src\components\EnhancerTower.h">
       <Filter>Header Files\components</Filter>
     </ClInclude>
   </ItemGroup>
@@ -329,7 +329,7 @@
     <ClCompile Include="src\components\NexusComponent.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="EnhancerTower.cpp">
+    <ClCompile Include="src\components\EnhancerTower.cpp">
       <Filter>Source Files\components</Filter>
     </ClCompile>
   </ItemGroup>
