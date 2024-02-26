@@ -18,6 +18,7 @@ private:
 	//Ejecuta la funcion correspondiente a cada boton
 	void callFunction(ButtonTypes type, Transform* en);
 	void funcionPrueba(Transform* tr);
-	void playGame();
+	void loadLevelSelector();
+	void startLevel();
 };
 

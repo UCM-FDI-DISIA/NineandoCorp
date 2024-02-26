@@ -53,7 +53,7 @@ void HUDSystem::callFunction(ButtonTypes type, Transform* en) {
 	case backButton:
 		break;
 	case playButtonMenu:
-		playGame();
+		loadLevelSelector();
 		funcionPrueba(en);
 		break;
 	default:
@@ -65,8 +65,14 @@ void HUDSystem::funcionPrueba(Transform* tr) {
 	tr->addRotation(90.0);
 }
 
-void HUDSystem::playGame() {
+void HUDSystem::loadLevelSelector() {
 	Message m; 
+	m.id = _m_LEVEL_SELECTOR;
+	mngr_->send(m);
+}
+
+void HUDSystem::startLevel() {
+	Message m;
 	m.id = _m_START_GAME;
 	mngr_->send(m);
 }
