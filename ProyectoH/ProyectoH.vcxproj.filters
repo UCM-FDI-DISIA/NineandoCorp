@@ -213,9 +213,6 @@
     <ClInclude Include="src\components\NexusComponent.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\components\crosshairComponent.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\json\JSONValue.cpp">
@@ -327,9 +324,6 @@
       <Filter>Source Files\systems</Filter>
     </ClCompile>
     <ClCompile Include="src\components\NexusComponent.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\components\crosshairComponent.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

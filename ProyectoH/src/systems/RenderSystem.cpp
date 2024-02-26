@@ -138,7 +138,7 @@ void RenderSystem::update() {
 	int x, y;
 	SDL_GetMouseState(&x, &y);
 
-	SDL_Rect cursorRect = { x, y, 20, 20 };
+	SDL_Rect cursorRect = { x, y, 32, 32 };
 	cursorTexture->render(cursorRect);
 
 	sdlutils().presentRenderer();
