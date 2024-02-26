@@ -21,13 +21,14 @@ RenderSystem::RenderSystem() :
 	textures[play] = &sdlutils().images().at("play");
 	textures[playHover] = &sdlutils().images().at("play_hover");
 	textures[bulletTowerTexture] = &sdlutils().images().at("Bullet_Tower");
-	textures[cristalTowerTexture] = &sdlutils().images().at("Cristal_Tower");
+	textures[cristalTowerTexture] = &sdlutils().images().at("cristal_tower");
 	textures[phoenixTowerTexture] = &sdlutils().images().at("Phoenix_Tower");
-	textures[slimeTowerTexture] = &sdlutils().images().at("Slime_Tower");
-	textures[boosterTowerTexture] = &sdlutils().images().at("Booster_Tower");
-	textures[sniperTowerTexture] = &sdlutils().images().at("Sniper_Tower");
-	textures[clayTowerTexture] = &sdlutils().images().at("Clay_Tower");
+	/*textures[slimeTowerTexture] = &sdlutils().images().at("Slime_Tower");*/
+	textures[boosterTowerTexture] = &sdlutils().images().at("booster_tower");
+	/*textures[sniperTowerTexture] = &sdlutils().images().at("Sniper_Tower");
+	textures[clayTowerTexture] = &sdlutils().images().at("Clay_Tower");*/
 	cursorTexture = &sdlutils().images().at("cursor");
+	cursorTexture2 = &sdlutils().images().at("cursorpress");
 }
 
 
@@ -170,10 +171,24 @@ void RenderSystem::update() {
 
 	//Renderizar cursor
 	int x, y;
-	SDL_GetMouseState(&x, &y);
+	bool pointerdown = false;
+	Uint32 mouseState = SDL_GetMouseState(&x, &y);
+	if (mouseState & SDL_BUTTON(SDL_BUTTON_LEFT)) {
+		pointerdown = true;
+	}
+	else {
+		pointerdown = false;
+	}
 
-	SDL_Rect cursorRect = { x, y, 32, 32 };
-	cursorTexture->render(cursorRect);
+	SDL_Rect cursorRect = { x, y, 41, 64 };
+
+	if (pointerdown)
+	{
+		cursorTexture2->render(cursorRect);
+	}
+	else {
+		cursorTexture->render(cursorRect);
+	}
 
 	sdlutils().presentRenderer();
 }
