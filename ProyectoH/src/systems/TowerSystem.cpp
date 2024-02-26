@@ -34,7 +34,7 @@ void TowerSystem::update() {
 		else {
 			AttackComponent* ac = mngr_->getComponent<AttackComponent>(t);
 			if (ac != nullptr) {
-				ac->setElapsedTime(timer_.currTime() / 1000);
+				ac->setElapsedTime(timer_.currTime() / 1000);//Lo pasa a segundos
 				if (ac->getElapsedTime() > ac->getTimeToShoot()) {
 					ac->setLoaded(true);
 					ac->targetEnemy(mngr_->getHandler(_hdlr_ENEMIES));
@@ -71,6 +71,17 @@ void TowerSystem::update() {
 				}
 			}
 
+			CrystalTower* ct = mngr_->getComponent<CrystalTower>(t);
+			if (ct != nullptr) {
+				ct->setElapsedTime(timer_.currTime() / 1000);
+				if (ct->getElapsedTime() > ct->getTimeToShield()) {
+					Message m;
+					m.id = _m_SHIELD_NEXUS;
+					m.shield_data.shield = ct->getShieldVal();
+					mngr_->send(m);
+					ct->setElapsedTime(0);
+				}
+			}
 		}	
 	}
 

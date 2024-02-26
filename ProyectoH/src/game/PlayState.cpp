@@ -17,6 +17,7 @@ PlayState::PlayState() : GameState(_gmStt_PLAY) {
 
 	Entity* e = mngr_->addEntity(_grp_TOWERS_AND_ENEMIES);
 	mngr_->addComponent<RenderComponent>(e, towerTexture);
+	mngr_->setHandler(_hdlr_ENEMIES, e);
 	Transform* tr2 = mngr_->addComponent<Transform>(e);
 	HealthComponent* h = mngr_->addComponent<HealthComponent>(e, 100.0f);
 	

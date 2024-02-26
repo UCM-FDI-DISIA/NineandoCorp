@@ -90,6 +90,7 @@ enum msgId : msgId_type {
 	_m_SHOOT,
 	_m_TOWERS_TO_ATTACK,
 	_m_ENTITY_TO_ATTACK,
+	_m_SHIELD_NEXUS,
 	_m_GAMEOVER,
 	_m_GAMESTART,
 	_m_PAUSE,
@@ -153,6 +154,10 @@ msgId_type id;
 		Entity* e;
 		float damage;
 	} entity_to_attack;
+	//_m_SHIELD_NEXUS
+	struct {
+		int shield;
+	}shield_data;
 	// _m_COLLISION_ASTEROIDBULLET
 	struct {
 		Entity* a;
