@@ -57,9 +57,12 @@ void TowerSystem::update() {
 			}
 			EnhancerTower* et = mngr_->getComponent<EnhancerTower>(t);
 			if (et != nullptr) {
+				Vector2D myPos = mngr_->getComponent<Transform>(t)->getPosition();
 				for (size_t i = 0; i < towers.size(); i++)
 				{
-					if (true) {//enRango
+					Vector2D towerPos = mngr_->getComponent<Transform>(towers[i])->getPosition();
+					float distance = sqrt(pow(towerPos.getX() - myPos.getX(), 2) + pow(towerPos.getY() - myPos.getY(), 2));
+					if (distance <= et->getRange() && towers[i] != t) {//enRango
 						AttackComponent* ac = mngr_->getComponent<AttackComponent>(towers[i]);
 						if (ac != nullptr) {ac->setDamage(ac->getBaseDamage() * (1 + et->getDamageIncreasePercentage()));}
 						HealthComponent* h = mngr_->getComponent<HealthComponent>(towers[i]);
