@@ -14,7 +14,7 @@
 enum TowerType{FENIX, BULLET, WALL, ENHANCER, DIEGO, SLIME, SHIELD};
 enum Height{HIGH, LOW};
 
-const float BULLET_SPEED = 10.0f, FENIX_SPEED = 5.0f, DIEGO_SPEED = 20.0f, SLIME_SPEED = 5.0f;
+const float BULLET_SPEED = 200.0f, FENIX_SPEED = 100.0f, DIEGO_SPEED = 400.0f, SLIME_SPEED = 100.0f;
 
 class TowerSystem : public System
 {

@@ -38,13 +38,15 @@ void TowerSystem::update() {
 				if (ac->getElapsedTime() > ac->getTimeToShoot()) {
 					ac->setLoaded(true);
 					ac->targetEnemy(mngr_->getHandler(_hdlr_ENEMIES));
-					//std::cout << "Elapsed: " << timer_.currTime() << "\n";
-					//std::cout << "TTS: " << ac->getTimeToShoot() << "\n";
+					std::cout << "Elapsed: " << timer_.currTime() << "\n";
+					std::cout << "TTS: " << ac->getTimeToShoot() << "\n";
 					if (ac->getTarget() != nullptr) {
 						shootBullet(ac->getTarget(), ac->getDamage(), BULLET_SPEED);
+						//std::cout << "1bullet\n";
 						ac->setTimeToShoot(ac->getTimeToShoot() + ac->getReloadTime());
 						ac->setLoaded(false);
 					}
+					
 				}
 			}
 			BulletTower* bt = mngr_->getComponent<BulletTower>(t);
@@ -52,7 +54,7 @@ void TowerSystem::update() {
 				bt->setElapsedTime(timer_.currTime() / 1000);
 				if (bt->getElapsedTime() > bt->getTimeToShoot()) {
 					bt->targetSecondEnemy(mngr_->getHandler(_hdlr_ENEMIES));
-					if (bt->getTarget() != nullptr) { shootBullet(bt->getTarget(), bt->getDamage(), BULLET_SPEED); }
+					if (bt->getTarget() != nullptr) { shootBullet(bt->getTarget(), bt->getDamage(), BULLET_SPEED);}
 				}
 			}
 			EnhancerTower* et = mngr_->getComponent<EnhancerTower>(t);
@@ -141,8 +143,13 @@ void TowerSystem::eliminateDestroyedTowers(Entity* t) {//elimina delk array las 
 void TowerSystem::shootBullet(Entity* target, float damage, float speed) {
 	Entity* bullet = mngr_->addEntity(_grp_BULLETS);//crea bala
 	Transform* t = mngr_->addComponent<Transform>(bullet);//transform
+	t->setScale({ 100.0f, 100.0f });
+	Vector2D dir = *(mngr_->getComponent<Transform>(target)->getPosition()) - *(t->getPosition());
+	Vector2D norm = { 1, 0 };
+	float angle = atan2(dir.getY(), dir.getX());
+	t->addRotation(angle);
 	mngr_->addComponent<BulletComponent>(bullet, t, target, damage, speed);//bullet component
-	mngr_->addComponent<RenderComponent>(bullet, square);//habra que hacer switch
+	mngr_->addComponent<RenderComponent>(bullet, bulletTexture);//habra que hacer switch
 }
 
 void TowerSystem::addTower(TowerType type, Vector2D pos, Height height) {
@@ -160,7 +167,7 @@ void TowerSystem::addTower(TowerType type, Vector2D pos, Height height) {
 	case FENIX:
 		break;
 	case BULLET://Pasar rango, recarga, daño y si dispara
-		mngr_->addComponent<AttackComponent>(t, 50.0f, 0.5f, 5.0f, true);
+		mngr_->addComponent<AttackComponent>(t, 1000.0f, 0.5f, 5.0f, true);
 		break;
 	case WALL:
 		break;

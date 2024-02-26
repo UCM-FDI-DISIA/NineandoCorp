@@ -16,6 +16,8 @@ void MainControlSystem::receive(const Message& m) {
 	case _m_ROUND_OVER:
 		onRoundOver();
 		break;
+	case _m_SHIELD_NEXUS:
+		break;
 	}
 }
 

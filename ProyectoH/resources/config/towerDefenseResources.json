@@ -164,6 +164,10 @@
       {
         "id": "cursor",
         "file": "resources/images/Enemies/Angel/angel1.png"
+      },
+      {
+        "id": "Bullet",
+        "file": "resources/images/towers/bullet.png"
       }
 
     ],
