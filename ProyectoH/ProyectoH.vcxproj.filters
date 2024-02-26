@@ -213,11 +213,14 @@
     <ClInclude Include="src\components\NexusComponent.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\components\SliderComponent.h">
+    <ClInclude Include="src\components\EnhancerTower.h">
       <Filter>Header Files\components</Filter>
     </ClInclude>
+    <ClInclude Include="U:\hlocal\NineandoCorp\ProyectoH\src\game\LevelSelectorState.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
     <ClInclude Include="src\systems\LevelSelectorSystem.h">
-      <Filter>Header Files\systems</Filter>
+      <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -332,11 +335,14 @@
     <ClCompile Include="src\components\NexusComponent.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\components\SliderComponent.cpp">
-      <Filter>Source Files\components</Filter>
+    <ClCompile Include="src\components\DirtTower.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="U:\hlocal\NineandoCorp\ProyectoH\src\game\LevelSelectorState.cpp">
+      <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="src\systems\LevelSelectorSystem.cpp">
-      <Filter>Source Files\systems</Filter>
+      <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

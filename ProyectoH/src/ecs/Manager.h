@@ -7,7 +7,7 @@
 #include <list>
 
 
-class Manager {
+class Manager{
 private:
 	std::array<std::vector<Entity*>, maxGroupId> entsByGroup_;
 	std::array<std::list<Entity*>, maxHdlrId> hdlrs_;

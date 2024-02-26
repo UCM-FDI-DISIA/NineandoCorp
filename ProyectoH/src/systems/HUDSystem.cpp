@@ -50,11 +50,12 @@ void HUDSystem::callFunction(ButtonTypes type, Transform* en) {
 	{
 	case pruebaButton:
 		break;
-	case backButton:
-		break;
 	case playButtonMenu:
 		loadLevelSelector();
-		funcionPrueba(en);
+		std::cout << "ok" << std::endl;
+		break;
+	case backButton:
+		startLevel();
 		break;
 	default:
 		break;
@@ -76,3 +77,4 @@ void HUDSystem::startLevel() {
 	m.id = _m_START_GAME;
 	mngr_->send(m);
 }
+

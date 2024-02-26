@@ -15,7 +15,7 @@ void LevelSelectorSystem::initSystem()
 	//play button
 	Vector2D pAux(sdlutils().width() / 2, (sdlutils().height() / 2) + 150);
 	Vector2D sAux(350, 110);
-	addButton(pAux, sAux, gameTextures::play, gameTextures::play_hover, ButtonTypes::playButtonMenu);
+	addButton(pAux, sAux, gameTextures::play, gameTextures::play_hover, ButtonTypes::backButton);
 	//-------//
 	pAux = { 800,  800 };
 	sAux = { sdlutils().height() - 100.0f , 400 };

@@ -13,7 +13,7 @@ protected:
 public:
     const gmSttId_type id;
     // Constructor
-    GameState(gmSttId_type _id);
+    GameState(gmSttId_type _id, Manager* m = nullptr);
     // Destructor
     virtual ~GameState();
     // Updates scene's objects

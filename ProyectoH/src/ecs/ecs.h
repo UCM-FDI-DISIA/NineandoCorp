@@ -60,6 +60,7 @@ enum gmSttId : gmSttId_type {
 	_gmStt_PAUSE,
 	_gmStt_GAMEOVER,
 	_gmStt_MAINMENU,
+	_gmStt_LEVELSELECTOR, 
 
 	// do not remove this
 	_LAST_GMSTT_ID

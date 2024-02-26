@@ -25,13 +25,13 @@
     <ClInclude Include="src\components\ButtonComponent.h" />
     <ClInclude Include="src\components\DirtTower.h" />
     <ClInclude Include="src\components\DragAndDrop.h" />
+    <ClInclude Include="src\components\EnhancerTower.h" />
     <ClInclude Include="src\components\FramedImage.h" />
     <ClInclude Include="src\components\HealthComponent.h" />
     <ClInclude Include="src\components\MovementComponent.h" />
     <ClInclude Include="src\components\NexusComponent.h" />
     <ClInclude Include="src\components\RenderComponent.h" />
     <ClInclude Include="src\components\RouteComponent.h" />
-    <ClInclude Include="src\components\SliderComponent.h" />
     <ClInclude Include="src\components\Transform.h" />
     <ClInclude Include="src\components\UpgradeTowerComponent.h" />
     <ClInclude Include="src\ecs\Component.h" />
@@ -71,12 +71,14 @@
     <ClInclude Include="src\utils\mpl.h" />
     <ClInclude Include="src\utils\Singleton.h" />
     <ClInclude Include="src\utils\Vector2D.h" />
+    <ClInclude Include="U:\hlocal\NineandoCorp\ProyectoH\src\game\LevelSelectorState.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\components\AttackComponent.cpp" />
     <ClCompile Include="src\components\BulletComponent.cpp" />
     <ClCompile Include="src\components\BulletTower.cpp" />
     <ClCompile Include="src\components\ButtonComponent.cpp" />
+    <ClCompile Include="src\components\DirtTower.cpp" />
     <ClCompile Include="src\components\DragAndDrop.cpp" />
     <ClCompile Include="src\components\FramedImage.cpp" />
     <ClCompile Include="src\components\HealthComponent.cpp" />
@@ -84,7 +86,6 @@
     <ClCompile Include="src\components\NexusComponent.cpp" />
     <ClCompile Include="src\components\RenderComponent.cpp" />
     <ClCompile Include="src\components\RouteComponent.cpp" />
-    <ClCompile Include="src\components\SliderComponent.cpp" />
     <ClCompile Include="src\components\Transform.cpp" />
     <ClCompile Include="src\components\UpgradeTowerComponent.cpp" />
     <ClCompile Include="src\ecs\Manager.cpp" />
@@ -112,6 +113,7 @@
     <ClCompile Include="src\systems\TowerSystem.cpp" />
     <ClCompile Include="src\utils\Collisions.cpp" />
     <ClCompile Include="src\utils\Vector2D.cpp" />
+    <ClCompile Include="U:\hlocal\NineandoCorp\ProyectoH\src\game\LevelSelectorState.cpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>
@@ -213,6 +215,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
+      <LanguageStandard>stdcpp17</LanguageStandard>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>

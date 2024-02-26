@@ -5,7 +5,7 @@
 
 enum ButtonTypes {
 
-	pruebaButton, backButton, playButtonMenu, upgradeNexus, upgradeGlassTower,
+	pruebaButton, backButton, playButtonMenu ,upgradeNexus, upgradeGlassTower,
 	upgradeSlimeTower, upgradeBulletTower, upgradeSniperTower, upgradeFenixTower,
 	upgradeClayTower, upgradeEnhancerTower, none
 };

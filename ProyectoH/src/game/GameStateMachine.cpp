@@ -11,7 +11,7 @@ GameStateMachine::~GameStateMachine() {
 
 // Adds state
 void GameStateMachine::pushState(GameState* newState) { 
-    gameStates.push_back(newState); 
+     gameStates.push_back(newState); 
 }
 
 // Erases state

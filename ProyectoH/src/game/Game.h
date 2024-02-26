@@ -8,6 +8,7 @@
 #include "../utils/Singleton.h"
 
 #include "../game/PlayState.h"
+#include "../game/LevelSelectorState.h"
 //#include "../gameStates/PauseState.h"
 //#include "../gameStates/GameOverState.h"
 #include "../game/MainMenuState.h"
@@ -41,6 +42,7 @@ public:
 	template <typename T, typename ...Ts>
 	inline void pushState(Ts&& ...args) {
 		gameStateMachine->pushState(new T(std::forward<Ts>(args)...));
+
 	}
 	// Quits the current GameState
 	inline void popState() {
