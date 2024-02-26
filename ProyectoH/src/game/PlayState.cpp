@@ -21,10 +21,6 @@ PlayState::PlayState() : GameState(_gmStt_PLAY) {
 	mngr_->addComponent<RouteComponent>(enemy,v);
 	mngr_->addComponent<MovementComponent>(enemy);
 	mngr_->addComponent<RenderComponent>(enemy,square);
-	RouteComponent* rc = mngr_->getComponent<RouteComponent>(enemy);
-	MovementComponent* mc = mngr_->getComponent<MovementComponent>(enemy);
-	//rc->checkdestiny();
-	//mc->Move();
 	mngr_->addSystem<EnemySystem>();
 }
 
@@ -34,10 +30,5 @@ void PlayState::handleInput() {
 
 void PlayState::update() {
 	GameState::update();
-	/*MovementComponent* mc = mngr_->getComponent<MovementComponent>(enemy);
-	RouteComponent* rc = mngr_->getComponent<RouteComponent>(enemy);
-	rc->checkdestiny();
-	mc->Move();
-	rc->checkdestiny();*/
-	//cout << *(mngr_->getComponent<Transform>(enemy)->getPosition());
+
 }

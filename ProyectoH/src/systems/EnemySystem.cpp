@@ -46,6 +46,7 @@ void EnemySystem::update() {
 			if (mc != nullptr) {
 				mc->Move();
 			}
+
 		}		
 	}
 }
