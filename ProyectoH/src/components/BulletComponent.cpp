@@ -2,8 +2,7 @@
 
 BulletComponent::BulletComponent(Transform* tr, Entity* target, int damage):t(tr), targetEntity_(target), damage_(damage){
 	//initComponent();
-	Vector2D vel = *(mngr_->getComponent<Transform>(targetEntity_)->getPosition()) -*(t->getPosition());
-	t->setVelocity(vel);
+	
 }
 
 //void BulletComponent::initComponent() {
@@ -16,4 +15,9 @@ void BulletComponent::doDamageTo(HealthComponent* healthCmp){
 
 void BulletComponent::onTravelEnds() {
 	mngr_->setAlive(ent_, false);
+}
+
+void BulletComponent::setDir() {
+	Vector2D vel = *(mngr_->getComponent<Transform>(targetEntity_)->getPosition()) - *(t->getPosition());
+	t->setVelocity(vel);
 }

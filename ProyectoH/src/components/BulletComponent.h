@@ -18,6 +18,7 @@ public:
 	//void initComponent() override;
 	void setBullet(Entity* target, int damage) { targetEntity_ = target; damage_ = damage; };
 	void doDamageTo(HealthComponent* healthcmp);
+	void setDir();
 	void onTravelEnds();
 		
 	Entity* getTarget()const { return targetEntity_; }

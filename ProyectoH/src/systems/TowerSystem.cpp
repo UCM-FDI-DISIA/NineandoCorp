@@ -89,6 +89,7 @@ void TowerSystem::update() {
 		Transform* t = mngr_->getComponent<Transform>(b);
 		BulletComponent* bc = mngr_->getComponent<BulletComponent>(b);
 
+		bc->setDir();
 		t->translate();
 		if (!mngr_->isAlive(bc->getTarget())) {//Si ha muerto por el camino
 			bc->onTravelEnds();
