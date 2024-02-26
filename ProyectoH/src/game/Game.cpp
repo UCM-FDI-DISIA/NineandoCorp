@@ -4,7 +4,6 @@
 Game::~Game() {
 	delete gameStateMachine;
 }
-
 // Executes the game
 void Game::run() {
 	
@@ -12,9 +11,10 @@ void Game::run() {
 
 	Uint64 currentTime = SDL_GetPerformanceCounter();
 	Uint64 startTime = 0;
+	// Ocultar el cursor predeterminado de SDL
+	SDL_ShowCursor(SDL_DISABLE);
 	while (!exit) {
 		ih().refresh();	//Restarts inputs
-
 		// Calculate Delta Time
 		startTime = currentTime;
 		currentTime = SDL_GetPerformanceCounter();

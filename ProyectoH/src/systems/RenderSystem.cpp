@@ -35,13 +35,14 @@ RenderSystem::RenderSystem() :
 	textures[play] = &sdlutils().images().at("play");
 	textures[playHover] = &sdlutils().images().at("play_hover");
 	textures[bulletTowerTexture] = &sdlutils().images().at("Bullet_Tower");
+	cursorTexture = &sdlutils().images().at("cursor");
 }
 
 
 RenderSystem::~RenderSystem() {
 }
 
-// Reaccionar a los mensajes recibidos (llamando a métodos correspondientes).
+// Reaccionar a los mensajes recibidos (llamando a mï¿½todos correspondientes).
 void RenderSystem::receive(const Message& m) {
 	switch (m.id) {
 	case _m_ROUND_START:
@@ -175,6 +176,12 @@ void RenderSystem::update() {
 		textTextures[currStTxt]->render(textTr[currStTxt]->getRect());
 	}*/
 
+	//Renderizar cursor
+	int x, y;
+	SDL_GetMouseState(&x, &y);
+
+	SDL_Rect cursorRect = { x, y, 32, 32 };
+	cursorTexture->render(cursorRect);
 
 	sdlutils().presentRenderer();
 }

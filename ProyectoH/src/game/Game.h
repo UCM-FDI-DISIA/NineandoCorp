@@ -13,6 +13,11 @@
 #include "../game/MainMenuState.h"
 constexpr int WIN_WIDTH = 1200;
 constexpr int WIN_HEIGHT = 900;
+#include "../systems/RenderSystem.h"
+
+#include <SDL.h>
+#include <SDL_image.h>
+
 class Game : public Singleton<Game> {
 	friend Singleton<Game>;
 private:
@@ -30,6 +35,7 @@ private:
 	}
 
 public:
+
 	// Destructor
 	~Game();
 	// Executes the game
