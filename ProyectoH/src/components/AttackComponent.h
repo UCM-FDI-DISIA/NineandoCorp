@@ -49,6 +49,7 @@ protected:
 	float range_;
 	float timeToShoot_;
 	float elapsedTime_;
+
 	bool loaded_;
 };
 

@@ -41,7 +41,7 @@ void TowerSystem::update() {
 					//std::cout << "Elapsed: " << timer_.currTime() << "\n";
 					//std::cout << "TTS: " << ac->getTimeToShoot() << "\n";
 					if (ac->getTarget() != nullptr) {
-						shootBullet(ac->getTarget(), ac->getDamage());
+						shootBullet(ac->getTarget(), ac->getDamage(), BULLET_SPEED);
 						ac->setTimeToShoot(ac->getTimeToShoot() + ac->getReloadTime());
 						ac->setLoaded(false);
 					}
@@ -52,7 +52,7 @@ void TowerSystem::update() {
 				bt->setElapsedTime(timer_.currTime() / 1000);
 				if (bt->getElapsedTime() > bt->getTimeToShoot()) {
 					bt->targetSecondEnemy(mngr_->getHandler(_hdlr_ENEMIES));
-					if (bt->getTarget() != nullptr) { shootBullet(bt->getTarget(), bt->getDamage()); }
+					if (bt->getTarget() != nullptr) { shootBullet(bt->getTarget(), bt->getDamage(), BULLET_SPEED); }
 				}
 			}
 			EnhancerTower* et = mngr_->getComponent<EnhancerTower>(t);
@@ -96,7 +96,7 @@ void TowerSystem::update() {
 		}
 		else{ //Si choca con el enemigo
 			if (((*(t->getPosition()) - *(mngr_->getComponent<Transform>(bc->getTarget())->getPosition())).magnitude() <= 5.0f)) {
-				bc->doDamageTo(mngr_->getComponent<HealthComponent>(bc->getTarget()));
+				bc->doDamageTo(bc->getTarget(), bc->getDamage());
 				bc->onTravelEnds();
 			}
 		}
@@ -126,10 +126,10 @@ void TowerSystem::eliminateDestroyedTowers(Entity* t) {//elimina delk array las 
 	}
 }
 
-void TowerSystem::shootBullet(Entity* target, float damage) {
+void TowerSystem::shootBullet(Entity* target, float damage, float speed) {
 	Entity* bullet = mngr_->addEntity(_grp_BULLETS);//crea bala
 	Transform* t = mngr_->addComponent<Transform>(bullet);//transform
-	mngr_->addComponent<BulletComponent>(bullet, t, target, damage);//bullet component
+	mngr_->addComponent<BulletComponent>(bullet, t, target, damage, speed);//bullet component
 	mngr_->addComponent<RenderComponent>(bullet, square);//habra que hacer switch
 }
 
