@@ -5,7 +5,9 @@
 
 enum ButtonTypes {
 
-	pruebaButton, backButton, playButtonMenu, none
+	pruebaButton, backButton, playButtonMenu, upgradeNexus, upgradeGlassTower,
+	upgradeSlimeTower, upgradeBulletTower, upgradeSniperTower, upgradeFenixTower,
+	upgradeClayTower, upgradeEnhancerTower, none
 };
 
 class ButtonComponent : public Component

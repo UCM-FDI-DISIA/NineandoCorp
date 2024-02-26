@@ -92,7 +92,9 @@ enum msgId : msgId_type {
 	_m_PAUSE,
 	_m_RESUME,
 	_m_START_GAME,
-	_m_TOWERS_TO_ATTACK
+	_m_TOWERS_TO_ATTACK,
+	_m_UPGRADE_NEXUS,
+	_m_UPGRADE_TOWER
 };
 
 using twrId_type = uint8_t;
@@ -200,5 +202,15 @@ msgId_type id;
 		std::string enemyName; 
 	} multiplayer_start_data;
 
+	// _m_UPGRADE_TOWER
+	struct {
+		twrId_type towerId;
+		int lvl;
+	};
+
+	// _m_UPGRADE_NEXUS
+	struct {
+		int lvl;
+	};
 };
 #endif // !ECS_H_
