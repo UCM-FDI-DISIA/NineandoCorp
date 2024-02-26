@@ -6,6 +6,7 @@ class EnemySystem: public System
 
 public:
 
+	static constexpr sysId_type id = _sys_ENEMIES;
 	EnemySystem();
 	virtual ~EnemySystem();
 	void update() override;
@@ -17,7 +18,6 @@ public:
 
 protected:
 
-	static constexpr sysId_type id = _sys_ENEMY;
 	std::vector<Transform*> enemiesTransforms;
 	bool active_;
 };

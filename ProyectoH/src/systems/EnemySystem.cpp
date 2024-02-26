@@ -25,9 +25,9 @@ void  EnemySystem::receive(const Message& m) {
 	}
 }
 void EnemySystem::onRoundStart() {
-	const auto& towers = mngr_->getEntities(_grp_ENEMIES);
+	const auto& enemies = mngr_->getHandler(_hdlr_ENEMIES);
 
-	for (auto& t : towers) {
+	for (auto& t : enemies) {
 		enemiesTransforms.push_back(mngr_->getComponent<Transform>(t));
 	}
 }
@@ -36,8 +36,8 @@ void EnemySystem::onRoundOver() {
 	enemiesTransforms.clear();
 }
 void EnemySystem::update() {
-	const auto& enemies = mngr_->getEntities(_grp_ENEMIES);
-	const auto& towers = mngr_->getEntities(_grp_TOWERS);
+	const auto& enemies = mngr_->getHandler(_hdlr_ENEMIES);
+	const auto& towers = mngr_->getHandler(_hdlr_LOW_TOWERS);
 	for (auto& e : enemies) {
 		RouteComponent* rc = mngr_->getComponent<RouteComponent>(e);
 		MovementComponent* mc = mngr_->getComponent<MovementComponent>(e);

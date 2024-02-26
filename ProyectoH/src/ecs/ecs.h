@@ -22,6 +22,7 @@ enum cmpId : cmpId_type {
 	_BULLET,
 	_MOVEMENT,
 	_BUTTON,
+	_ROUTE,
 
 	// do not remove this
 	_LAST_CMP_ID

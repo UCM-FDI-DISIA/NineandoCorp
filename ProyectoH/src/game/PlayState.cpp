@@ -7,6 +7,8 @@
 
 PlayState::PlayState() : GameState(_gmStt_PLAY) {
 	// Sistemas requeridos para que funcione el juego
+	mngr_->setHandler(_hdlr_ENEMIES, enemy);
+
 	mngr_->addSystem<RenderSystem>();
 	
 	
@@ -21,9 +23,9 @@ PlayState::PlayState() : GameState(_gmStt_PLAY) {
 	mngr_->addComponent<RenderComponent>(enemy,square);
 	RouteComponent* rc = mngr_->getComponent<RouteComponent>(enemy);
 	MovementComponent* mc = mngr_->getComponent<MovementComponent>(enemy);
-	rc->checkdestiny();
-	mc->Move();
-	mngr_->addSystem<Enemy>("../ProyectoH/resources/tileMap/nivelPrueba.tmx");
+	//rc->checkdestiny();
+	//mc->Move();
+	mngr_->addSystem<EnemySystem>();
 }
 
 void PlayState::handleInput() {
@@ -32,10 +34,10 @@ void PlayState::handleInput() {
 
 void PlayState::update() {
 	GameState::update();
-	MovementComponent* mc = mngr_->getComponent<MovementComponent>(enemy);
+	/*MovementComponent* mc = mngr_->getComponent<MovementComponent>(enemy);
 	RouteComponent* rc = mngr_->getComponent<RouteComponent>(enemy);
 	rc->checkdestiny();
 	mc->Move();
-	rc->checkdestiny();
-	cout << *(mngr_->getComponent<Transform>(enemy)->getPosition());
+	rc->checkdestiny();*/
+	//cout << *(mngr_->getComponent<Transform>(enemy)->getPosition());
 }

@@ -10,8 +10,8 @@ public:
 	PlayState();
 	virtual ~PlayState() {};
 
-	void handleInput() override;
+	void handleInput();
 	void update() override;
-	Entity* enemy = mngr_->addEntity(_grp_ENEMIES);
+	Entity* enemy = mngr_->addEntity(_grp_TOWERS_AND_ENEMIES);
 };
 
