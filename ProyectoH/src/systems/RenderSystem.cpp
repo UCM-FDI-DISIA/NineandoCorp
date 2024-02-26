@@ -63,17 +63,17 @@ void RenderSystem::update() {
 	sdlutils().clearRenderer();
 
 	//Este control tiene que estar en el main control sistem
-	//Control de camara
-	if (ih().isKeyDown(SDLK_UP)) {
+	////Control de camara
+	if (ih().isKeyDown(SDLK_UP) && offset.y < limtop) {
 		offset.y += 50;
 	}
-	else if (ih().isKeyDown(SDLK_LEFT)) {
+	else if (ih().isKeyDown(SDLK_LEFT) && offset.x < limleft) {
 		offset.x += 50;
 	}
-	else if (ih().isKeyDown(SDLK_RIGHT)) {
+	else if (ih().isKeyDown(SDLK_RIGHT) && offset.x > limright) {
 		offset.x -= 50;
 	}
-	else if (ih().isKeyDown(SDLK_DOWN)) {
+	else if (ih().isKeyDown(SDLK_DOWN) && offset.y > limbot) {
 		offset.y -= 50;
 	}
 	//tmp->update();

@@ -26,6 +26,7 @@ protected:
 	double elapsedTime_;
 	VirtualTimer timer_;
 
+
 	void onRoundOver();
 	void onRoundStart();
 	void subtractCoins(int num);
