@@ -7,5 +7,4 @@ MainMenuState::MainMenuState(Manager* mngr) : GameState(_gmStt_MAINMENU, mngr) {
 
 	mngr_->addSystem<MainControlSystem>();
 	mngr_->addSystem<RenderSystem>();
-	mngr_->addSystem<HUDSystem>();
 }
