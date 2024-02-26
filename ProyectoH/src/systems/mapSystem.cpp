@@ -40,82 +40,48 @@ void mapSystem::loadMap(std::string filename) {
 		}
 	}
 
+	
 }
 void mapSystem::loadTile(const tmx::Map& map, const tmx::TileLayer& layer){
 	const auto& tileSets = map.getTilesets();
 	const auto& layerIDs = layer.getTiles();
-	int i = 1300 / 2;
+	int i = WIN_WIDTH;
 	int j = 0;
-	float sep = 1.34;
-	const auto tileSize = map.getTileSize();
+	float sep = 2;
 	for (auto tile : layerIDs)
 	{
-		Entity* entityTile = nullptr;
-		Vector2D tilePosition(((layer.getOffset().x + i - j)/ sep ),
-			((layer.getOffset().y + (i + j) / 2)) / sep);
-		if (tile.ID == 2) {
-			entityTile = mngr_->addEntity(_grp_TILES_L1);
-			mngr_->addComponent<RenderComponent>(entityTile, gameTextures::hillTexture);
+		if (tile.ID != 0) {
+			Entity* entityTile = nullptr;
+			Vector2D tilePosition(((layer.getOffset().x + i - j) / sep),
+				((layer.getOffset().y + (i + j) / 2)) / sep);
+
+			if (tile.ID == 2 || tile.ID == 133) {
+
+				entityTile = mngr_->addEntity(_grp_TILES_L1);
+			}
+			else if (tile.ID > 80 && tile.ID < 100) {
+				entityTile = mngr_->addEntity(_grp_TILES_L2);
+			}
+			else {
+				entityTile = mngr_->addEntity(_grp_TILES_L3);
+			}
+			mngr_->addComponent<FramedImage>(entityTile, 10, 16, m_chunkSize.x, m_chunkSize.y, tile.ID -1);
+			mngr_->addComponent<RenderComponent>(entityTile, gameTextures::tileSet);
+			if (entityTile) {
+				const auto transform = mngr_->addComponent<Transform>(entityTile);
+				transform->setPosition(tilePosition);
+				transform->setWidth(32);
+				transform->setHeight(32);
+			}
 		}
-		else if (tile.ID == 4) {
-			entityTile = mngr_->addEntity(_grp_TILES_L3);
-			mngr_->addComponent<RenderComponent>(entityTile, gameTextures::mountainTexture);
-		}
-		else if (tile.ID == 133) {
-			entityTile = mngr_->addEntity(_grp_TILES_L1);
-			mngr_->addComponent<RenderComponent>(entityTile, gameTextures::roadTexture);
-		}
-		else if (tile.ID == 81) {
-			entityTile = mngr_->addEntity(_grp_TILES_L2);
-			mngr_->addComponent<RenderComponent>(entityTile, gameTextures::lakeTexture1);
-		}
-		else if (tile.ID == 82) {
-			entityTile = mngr_->addEntity(_grp_TILES_L2);
-			mngr_->addComponent<RenderComponent>(entityTile, gameTextures::lakeTexture2);
-		}
-		else if (tile.ID == 83) {
-			entityTile = mngr_->addEntity(_grp_TILES_L2);
-			mngr_->addComponent<RenderComponent>(entityTile, gameTextures::lakeTexture3);
-		}
-		else if (tile.ID == 84) {
-			entityTile = mngr_->addEntity(_grp_TILES_L2);
-			mngr_->addComponent<RenderComponent>(entityTile, gameTextures::lakeTexture4);
-		}
-		else if (tile.ID == 85) {
-			entityTile = mngr_->addEntity(_grp_TILES_L2);
-			mngr_->addComponent<RenderComponent>(entityTile, gameTextures::lakeTexture5);
-		}
-		else if (tile.ID == 87) {
-			entityTile = mngr_->addEntity(_grp_TILES_L2);
-			mngr_->addComponent<RenderComponent>(entityTile, gameTextures::lakeTexture6);
-		}
-		else if (tile.ID == 88) {
-			entityTile = mngr_->addEntity(_grp_TILES_L2);
-			mngr_->addComponent<RenderComponent>(entityTile, gameTextures::lakeTexture7);
-		}
-		else if (tile.ID == 89) {
-			entityTile = mngr_->addEntity(_grp_TILES_L2);
-			mngr_->addComponent<RenderComponent>(entityTile, gameTextures::lakeTexture8);
-		}
-		else if (tile.ID == 90) {
-			entityTile = mngr_->addEntity(_grp_TILES_L2);
-			mngr_->addComponent<RenderComponent>(entityTile, gameTextures::lakeTexture9);
-		}
-		else if (tile.ID == 98) {
-			entityTile = mngr_->addEntity(_grp_TILES_L2);
-			mngr_->addComponent<RenderComponent>(entityTile, gameTextures::lakeTexture10);
-		}
-		else if (tile.ID == 99) {
-			entityTile = mngr_->addEntity(_grp_TILES_L2);
-			mngr_->addComponent<RenderComponent>(entityTile, gameTextures::lakeTexture11);
-		}
-		if (entityTile) 
-			mngr_->addComponent<Transform>(entityTile)->setPosition(tilePosition);
 		
-		i += m_chunkSize.x;
-		if (i >= (layer.getSize().x * m_chunkSize.x) + 650) {
-			i = 1300 / 2;
-			j += m_chunkSize.y;
+			
+			
+		
+		i += m_chunkSize.x / 2;
+		if (i >= (layer.getSize().x * (m_chunkSize.x/ 2)) + WIN_WIDTH) {
+			i = WIN_WIDTH;
+			j += m_chunkSize.y /2;
 		}
 	}
 }

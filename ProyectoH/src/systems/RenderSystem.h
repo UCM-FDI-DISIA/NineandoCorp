@@ -3,6 +3,7 @@
 #include "../components/Transform.h"
 #include "../components/MovementComponent.h"
 #include "../components/FramedImage.h"
+#include "../components/FramedImage.h"
 #include "../components/RenderComponent.h"
 
 
@@ -37,11 +38,11 @@ private:
 	// Displays pause message
 	void onPause();
 	// Hides pause message
-	void onResume();
+	void onResume(); 
 
 	uint8_t winner_; // 0 - None, 1 - Asteroid, 2- Fighter
 
-	Vector2D offset = Vector2D(0,0);
+	SDL_Rect offset = build_sdlrect(0,0,0,0);
 
 	// Texts
 	stateText currStTxt;
@@ -50,6 +51,7 @@ private:
 
 	// Textures
 	Texture* textures[gameTextures::gmTxtrSize];
+	Texture* cursorTexture;
 
 	// Doing a texture array so we do not need to access sdlutils' map every time
 };

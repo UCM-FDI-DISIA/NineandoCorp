@@ -1,10 +1,10 @@
 #pragma once
 #include <vector>
-#include <list>
 #include <array>
 #include "ecs.h"
 #include "System.h"
 #include "Entity.h"
+#include <list>
 
 
 class Manager {
@@ -21,10 +21,11 @@ public:
 	Entity* addEntity(grpId_type gId = _grp_GENERAL);
 	void refresh();
 	void update();
-	/*void render();
-	void handleInput();*/
 	inline void setHandler(hdlrId_type hId, Entity* e) {
 		hdlrs_[hId].push_back(e);
+	}
+	inline void deleteHandler(hdlrId_type hId, Entity* e) {
+		hdlrs_[hId].remove(e);
 	}
 	inline std::list<Entity*> getHandler(hdlrId_type hId) {
 		return hdlrs_[hId];
@@ -124,7 +125,7 @@ public:
 		aux_msgs_.clear();
 	}
 
-	const std::vector<Entity*>& getEntities(grpId_type gId = _grp_GENERAL);
+	std::vector<Entity*>& getEntities(grpId_type gId = _grp_GENERAL);
 	void addToGroupList(grpId_type gId, Entity* e);
 };
 

@@ -1,8 +1,9 @@
 #pragma once
 #include "..//ecs/System.h"
+#include "../sdlutils/SDLUtils.h"
 #include "../components/RenderComponent.h"
 #include "../components/Transform.h"
-//#include "../systems/RenderSystem.h"
+#include "../components/ButtonComponent.h"
 
 class MainMenuSystem : public System
 {
@@ -13,6 +14,6 @@ public:
 
 	void initSystem() override;
 	void receive(const Message& m) override;
-	void update();
+	void update() override ;
 };
 

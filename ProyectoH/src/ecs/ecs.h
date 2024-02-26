@@ -95,6 +95,7 @@ enum msgId : msgId_type {
 	_m_GAMESTART,
 	_m_PAUSE,
 	_m_RESUME,
+	_m_START_GAME,
 };
 
 using twrId_type = uint8_t;
@@ -145,9 +146,15 @@ inline Uint8* _deserialize_(float& v, Uint8* buf) {
 }
 struct Message {
 msgId_type id;
+	// _m_START_GAME
+	struct
+	{
+		//nivel 
+	}start_game_data;
+
     // _m_TOWERS_TO_ATTACK
     struct {
-		std::vector<Entity*> vector;
+		std::vector<Entity*> towers;
 	} towers_to_attack;
 	// _m_ENTITY_TO_ATTACK
 	struct {
