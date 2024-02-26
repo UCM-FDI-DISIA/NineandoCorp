@@ -2,12 +2,14 @@
 #include "Game.h"
 
 // Constructor
-GameState::GameState(gmSttId_type _id, Manager* m = nullptr) : id(_id) {
+GameState::GameState(gmSttId_type _id, Manager* m) : id(_id) {
     if (m == nullptr)
         mngr_ = new Manager();
+    else mngr_ = m;
 }
 // Destructor
 GameState::~GameState() {
+       
 }
 
 // Updates scene's objects

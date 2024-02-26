@@ -55,6 +55,12 @@ public:
 			e->cmps_[cId] = nullptr;
 		}
 	}
+	inline void removeAllComponents(Entity* e) {
+		for (auto cmp : e->currCmps_) {
+			e->currCmps_.erase();
+			delete cmp;
+		}
+	}
 	template<typename T>
 	inline bool hasComponent(Entity* e) {
 		constexpr cmpId_type cId = T::id;

@@ -32,6 +32,7 @@ using hdlrId_type = int;
 enum hdlrId : hdlrId_type { 
 	_hdlr_DRAG_AND_DROP,
 	_hdlr_BUTTON,
+	_hdlr_SUBMENU,
 	
 	// do not remove this
 	_LAST_HDLR_ID };

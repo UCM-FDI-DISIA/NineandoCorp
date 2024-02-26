@@ -8,12 +8,16 @@ LevelSelectorSystem::LevelSelectorSystem()
 
 LevelSelectorSystem::~LevelSelectorSystem()
 {
+	for (auto en : mngr_->getHandler(_hdlr_SUBMENU)) {
+		mngr_->setAlive(en, false);
+		mngr_->removeAllComponents(en);
+	}
 }
 
 void LevelSelectorSystem::initSystem()
 {
 	//play button
-	Vector2D pAux(sdlutils().width() / 2, (sdlutils().height() / 2) + 150);
+	Vector2D pAux(sdlutils().width() / 2, (sdlutils().height() / 2) + 350);
 	Vector2D sAux(350, 110);
 	addButton(pAux, sAux, gameTextures::play, gameTextures::play_hover, ButtonTypes::backButton);
 	//-------//
@@ -39,7 +43,7 @@ void LevelSelectorSystem::addButton(Vector2D pos, Vector2D scale, gameTextures t
 {
 	Entity* b = mngr_->addEntity(_grp_HUD_FOREGROUND);
 	mngr_->setHandler(_hdlr_BUTTON, b);
-
+	mngr_->setHandler(_hdlr_SUBMENU, b);
 	Transform* tr = mngr_->addComponent<Transform>(b);
 	tr->setScale(scale);
 	Vector2D aux = tr->getScale();
@@ -55,6 +59,7 @@ void LevelSelectorSystem::addButton(Vector2D pos, Vector2D scale, gameTextures t
 void LevelSelectorSystem::addImage(Vector2D pos, Vector2D(scale), double rot, gameTextures t)
 {
 	Entity* img = mngr_->addEntity(_grp_HUD_FOREGROUND);
+	mngr_->setHandler(_hdlr_SUBMENU, img);
 	Transform* tr = mngr_->addComponent<Transform>(img);
 	tr->setScale(scale);
 	Vector2D aux = tr->getScale();

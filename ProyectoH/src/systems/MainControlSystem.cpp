@@ -11,7 +11,7 @@ void MainControlSystem::receive(const Message& m) {
 		game().popState(); 
 		break;
 	case _m_LEVEL_SELECTOR:
-		game().pushState<LevelSelectorState>();
+		game().pushState<LevelSelectorState>(mngr_);
 		break;
 	case _m_ROUND_START:
 		onRoundStart();

@@ -7,7 +7,7 @@
 class PlayState : public GameState
 {
 public:
-	PlayState();
+	PlayState(Manager* mngr);
 	virtual ~PlayState() {};
 
 	void update() override;

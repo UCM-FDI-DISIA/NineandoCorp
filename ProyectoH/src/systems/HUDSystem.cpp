@@ -20,11 +20,12 @@ void HUDSystem::update() {
 
 	//hover 
 	for (auto en : mngr_->getHandler(_hdlr_BUTTON)) {
-
-		ButtonComponent* bC = mngr_->getComponent<ButtonComponent>(en);
-		RenderComponent* rC = mngr_->getComponent<RenderComponent>(en);
-		if (bC->hover(pos)) rC->setTexture(bC->getHover());
-		else rC->setTexture(bC->getTexture());
+		if (en != nullptr) {
+			ButtonComponent* bC = mngr_->getComponent<ButtonComponent>(en);
+			RenderComponent* rC = mngr_->getComponent<RenderComponent>(en);
+			if (bC->hover(pos)) rC->setTexture(bC->getHover());
+			else rC->setTexture(bC->getTexture());
+		}
 	}
 
 
@@ -34,10 +35,11 @@ void HUDSystem::update() {
 
 			//Recorre lista de entities de tipo HUD_FOREGROUND
 			for (auto en : mngr_->getHandler(_hdlr_BUTTON)) {
-
-				//comprueba la id del button y si no es none llama a la funcion correspondiente
-				auto type = mngr_->getComponent<ButtonComponent>(en)->isPressed(pos);
-				if (type != ButtonTypes::none) callFunction(type, mngr_->getComponent<Transform>(en));
+				if (en != nullptr) {
+					//comprueba la id del button y si no es none llama a la funcion correspondiente
+					auto type = mngr_->getComponent<ButtonComponent>(en)->isPressed(pos);
+					if (type != ButtonTypes::none) callFunction(type, mngr_->getComponent<Transform>(en));
+				}
 			}
 		}
 	}
