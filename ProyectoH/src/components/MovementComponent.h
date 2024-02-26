@@ -12,7 +12,8 @@ public:
 	void MoveTo(Vector2D destino);
 	void rotate(float rotation);
 	void initComponent();
-	void Stop();
+	void setStop(bool);
+	bool getStop() { return stop_; };
 private:
 	bool stop_;
 	Transform* transform_;

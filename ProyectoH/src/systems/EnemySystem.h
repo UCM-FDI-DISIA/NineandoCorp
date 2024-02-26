@@ -1,6 +1,9 @@
 #pragma once
 #include "..//ecs/System.h"
 #include "..//components/Transform.h"
+#include "..//components/HealthComponent.h"
+#include "..//components/AttackComponent.h"
+#include "..//sdlutils/VirtualTimer.h"
 class EnemySystem: public System
 {
 
@@ -15,10 +18,10 @@ public:
 	void onRoundOver();
 	void onRoundStart();
 	void collideswithEnemy();
-
 protected:
 
 	std::vector<Transform*> enemiesTransforms;
 	bool active_;
+	VirtualTimer timer_;
 };
 
