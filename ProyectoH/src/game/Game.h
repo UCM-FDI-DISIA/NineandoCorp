@@ -11,6 +11,12 @@
 //#include "../gameStates/PauseState.h"
 //#include "../gameStates/GameOverState.h"
 #include "../game/MainMenuState.h"
+constexpr int WIN_WIDTH = 1200;
+constexpr int WIN_HEIGHT = 900;
+#include "../systems/RenderSystem.h"
+
+#include <SDL.h>
+#include <SDL_image.h>
 
 class Game : public Singleton<Game> {
 	friend Singleton<Game>;
@@ -21,7 +27,7 @@ private:
 
 	// Constructor
 	Game() : exit(false), deltaTime(0), gameStateMachine(new GameStateMachine()) {
-		SDLUtils::init("Proyect H", 1200, 900, "resources/config/towerDefenseResources.json");
+		SDLUtils::init("Proyect H", WIN_WIDTH, WIN_HEIGHT, "resources/config/towerDefenseResources.json");
 		auto& sdl = *SDLUtils::instance();
 
 		//show the cursor
@@ -29,6 +35,7 @@ private:
 	}
 
 public:
+
 	// Destructor
 	~Game();
 	// Executes the game

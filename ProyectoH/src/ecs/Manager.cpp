@@ -43,7 +43,7 @@ void Manager::refresh() {
 	}
 }
 
-const std::vector<Entity*>& Manager::getEntities(grpId_type gId) {
+std::vector<Entity*>& Manager::getEntities(grpId_type gId) {
 	return entsByGroup_[gId];
 }
 

@@ -1,12 +1,15 @@
 #include "MainControlSystem.h"
 
-MainControlSystem::MainControlSystem(int doradasIniciales, int doradasPorSegundo, int numOleadas, float tiempoEntreOleadas) :
-	numDoradasIniciales(doradasIniciales), numDoradasPorSegundo(doradasPorSegundo), numOleadas(numOleadas), tiempoEntreOleadas(tiempoEntreOleadas), numDoradasActuales(0), oleadaActual(0), active_(false), elapsedTime_(0) {
+MainControlSystem::MainControlSystem()
+	{
 
 }
 
 void MainControlSystem::receive(const Message& m) {
 	switch (m.id) {
+	case _m_START_GAME:
+		game().changeState<PlayState>(); 
+		break;
 	case _m_ROUND_START:
 		onRoundStart();
 		break;

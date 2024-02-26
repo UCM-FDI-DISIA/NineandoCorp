@@ -1,8 +1,8 @@
 #include "AttackComponent.h"
 #include "SDL.h"
 #include "algorithm"
-#include "..//components/Transform.h"
-#include "..//components/HealthComponent.h"
+#include "../components/Transform.h"
+#include "../components/HealthComponent.h"
 
 AttackComponent::AttackComponent(float range, float reloadTime, int damage, bool shootBullets) : range_(range), reloadTime_(reloadTime), damage_(damage), baseDamage_(damage) {
 	target_ = nullptr; timeToShoot_ = reloadTime; loaded_ = false;

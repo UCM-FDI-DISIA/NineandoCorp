@@ -1,6 +1,6 @@
 #pragma once
-#include "..//ecs/Manager.h"
-#include "..//ecs/Component.h"
+#include "../ecs/Manager.h"
+#include "../ecs/Component.h"
 
 class HealthComponent : public Component
 {
