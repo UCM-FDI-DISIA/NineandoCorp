@@ -82,6 +82,18 @@ void TowerSystem::update() {
 					ct->setElapsedTime(0);
 				}
 			}
+
+			DiegoSniperTower* ds = mngr_->getComponent<DiegoSniperTower>(t);
+			if (ds != nullptr) {
+				ds->setElapsedTime(timer_.currTime() / 1000);//Lo pasa a segundos
+				if (ds->getElapsedTime() > ds->getTimeToShoot()) {
+					std::list<Entity*> enemies = mngr_->getHandler(_hdlr_ENEMIES);
+					/*for (const auto& enemy : enemies)
+					{
+						if (mngr_->getComponent<AttackComponent>(enemy));
+					}*/
+				}
+			}
 		}	
 	}
 
