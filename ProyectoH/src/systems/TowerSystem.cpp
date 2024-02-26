@@ -58,15 +58,15 @@ void TowerSystem::update() {
 			EnhancerTower* et = mngr_->getComponent<EnhancerTower>(t);
 			if (et != nullptr) {
 				Vector2D myPos = mngr_->getComponent<Transform>(t)->getPosition();
-				for (size_t i = 0; i < towers.size(); i++)
+				for (size_t i = 0; i < towers.size(); i++)//miramos las torres de alarededor para potenciarlas
 				{
 					Vector2D towerPos = mngr_->getComponent<Transform>(towers[i])->getPosition();
-					float distance = sqrt(pow(towerPos.getX() - myPos.getX(), 2) + pow(towerPos.getY() - myPos.getY(), 2));
+					float distance = sqrt(pow(towerPos.getX() - myPos.getX(), 2) + pow(towerPos.getY() - myPos.getY(), 2));//distancia a la torre
 					if (distance <= et->getRange() && towers[i] != t) {//enRango
 						AttackComponent* ac = mngr_->getComponent<AttackComponent>(towers[i]);
-						if (ac != nullptr) {ac->setDamage(ac->getBaseDamage() * (1 + et->getDamageIncreasePercentage()));}
+						if (ac != nullptr) {ac->setDamage(ac->getBaseDamage() * (1 + et->getDamageIncreasePercentage()));}//incrementamos daño
 						HealthComponent* h = mngr_->getComponent<HealthComponent>(towers[i]);
-						if (h != nullptr) { h->setMaxHealth(h->getBaseHealth() + et->getTowersHPboost()); }
+						if (h != nullptr) { h->setMaxHealth(h->getBaseHealth() + et->getTowersHPboost()); }//incrementamos vida
 					}
 				}
 			}
@@ -91,7 +91,7 @@ void TowerSystem::update() {
 	}
 }
 
-void TowerSystem::eliminateDestroyedTowers(Entity* t) {
+void TowerSystem::eliminateDestroyedTowers(Entity* t) {//elimina delk array las torres muertas
 	bool found = false;
 	int i = 0;
 	/*while (i < lowTowers.size() && !found) {
@@ -115,16 +115,16 @@ void TowerSystem::eliminateDestroyedTowers(Entity* t) {
 }
 
 void TowerSystem::shootBullet(Entity* target, float damage) {
-	Entity* bullet = mngr_->addEntity(_grp_BULLETS);
-	Transform* t = mngr_->addComponent<Transform>(bullet);
-	mngr_->addComponent<BulletComponent>(bullet, t, target, damage);
-	mngr_->addComponent<RenderComponent>(bullet, square);
+	Entity* bullet = mngr_->addEntity(_grp_BULLETS);//crea bala
+	Transform* t = mngr_->addComponent<Transform>(bullet);//transform
+	mngr_->addComponent<BulletComponent>(bullet, t, target, damage);//bullet component
+	mngr_->addComponent<RenderComponent>(bullet, square);//habra que hacer switch
 }
 
 void TowerSystem::addTower(TowerType type, Vector2D pos, Height height) {
-	Entity* t = mngr_->addEntity(_grp_TOWERS_AND_ENEMIES);
-	mngr_->addComponent<Transform>(t)->setPosition(pos);
-	mngr_->addComponent<RenderComponent>(t, towerTexture);
+	Entity* t = mngr_->addEntity(_grp_TOWERS_AND_ENEMIES);//Se añade al mngr
+	mngr_->addComponent<Transform>(t)->setPosition(pos);//transform
+	mngr_->addComponent<RenderComponent>(t, towerTexture);//render, hay que moverlo al switch
 	float health = 100.0f;
 	if (height == LOW) { 
 		mngr_->addComponent<HealthComponent>(t, health); 
@@ -135,11 +135,13 @@ void TowerSystem::addTower(TowerType type, Vector2D pos, Height height) {
 	{
 	case FENIX:
 		break;
-	case BULLET:
+	case BULLET://Pasar rango, recarga, daño y si dispara
+		mngr_->addComponent<AttackComponent>(t, 50.0f, 0.5f, 5.0f, true);
 		break;
 	case WALL:
 		break;
 	case ENHANCER://Pasar rango, porcentaje incremento de ataque y vida extra
+		mngr_->addComponent<EnhancerTower>(t, 100.0f, 5.0f, 0);
 		break;
 	case DIEGO:
 		break;
