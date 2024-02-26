@@ -18,23 +18,15 @@ RenderSystem::RenderSystem() :
 {
 	textures[square] = &sdlutils().images().at("square");
 	textures[tileSet] = &sdlutils().images().at("map");
-	textures[hillTexture] = &sdlutils().images().at("map1");
-	textures[roadTexture] = &sdlutils().images().at("map133");
-	textures[mountainTexture] = &sdlutils().images().at("map3");
-	textures[lakeTexture1] = &sdlutils().images().at("map81");
-	textures[lakeTexture2] = &sdlutils().images().at("map82");
-	textures[lakeTexture3] = &sdlutils().images().at("map83");
-	textures[lakeTexture4] = &sdlutils().images().at("map84");
-	textures[lakeTexture5] = &sdlutils().images().at("map85");
-	textures[lakeTexture6] = &sdlutils().images().at("map87");
-	textures[lakeTexture7] = &sdlutils().images().at("map88");
-	textures[lakeTexture8] = &sdlutils().images().at("map89");
-	textures[lakeTexture9] = &sdlutils().images().at("map90");
-	textures[lakeTexture10] = &sdlutils().images().at("map98");
-	textures[lakeTexture11] = &sdlutils().images().at("map99");
 	textures[play] = &sdlutils().images().at("play");
 	textures[playHover] = &sdlutils().images().at("play_hover");
 	textures[bulletTowerTexture] = &sdlutils().images().at("Bullet_Tower");
+	textures[cristalTowerTexture] = &sdlutils().images().at("Cristal_Tower");
+	textures[phoenixTowerTexture] = &sdlutils().images().at("Phoenix_Tower");
+	textures[slimeTowerTexture] = &sdlutils().images().at("Slime_Tower");
+	textures[boosterTowerTexture] = &sdlutils().images().at("Booster_Tower");
+	textures[sniperTowerTexture] = &sdlutils().images().at("Sniper_Tower");
+	textures[clayTowerTexture] = &sdlutils().images().at("Clay_Tower");
 	cursorTexture = &sdlutils().images().at("cursor");
 }
 
