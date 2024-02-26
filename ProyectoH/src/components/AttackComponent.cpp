@@ -102,3 +102,7 @@ void AttackComponent::setTimeToShoot(float t) {
 void AttackComponent::setElapsedTime(float elapsed) {
 	elapsedTime_ = elapsed;
 }
+
+void AttackComponent::setReloadTime(float time) {
+	reloadTime_ = time;
+}

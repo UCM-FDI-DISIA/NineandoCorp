@@ -220,7 +220,7 @@
       <Filter>Header Files\components</Filter>
     </ClInclude>
     <ClInclude Include="src\components\DiegoSniperTower.h">
-      <Filter>Header Files</Filter>
+      <Filter>Header Files\components</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -345,7 +345,7 @@
       <Filter>Source Files\components</Filter>
     </ClCompile>
     <ClCompile Include="src\components\DiegoSniperTower.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Source Files\components</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

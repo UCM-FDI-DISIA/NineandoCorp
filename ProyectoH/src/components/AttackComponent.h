@@ -33,6 +33,7 @@ public:
 	//Setters
 	void setDamage(int dmg);
 	void setRange(float rng);
+	void setReloadTime(float time);
 	void setLoaded(bool ld);
 	void setTimeToShoot(float t);
 	void setElapsedTime(float elapsed);
