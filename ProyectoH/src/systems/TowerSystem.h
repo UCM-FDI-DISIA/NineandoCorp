@@ -7,6 +7,7 @@
 #include "../components/BulletTower.h"
 #include "..//components/EnhancerTower.h"
 #include "..//components/CrystalTower.h"
+#include "..//components/RenderComponent.h"
 #include <list>
 
 enum TowerType{FENIX, BULLET, WALL, ENHANCER, DIEGO, SLIME, SHIELD};

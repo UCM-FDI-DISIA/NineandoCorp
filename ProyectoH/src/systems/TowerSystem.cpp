@@ -136,7 +136,7 @@ void TowerSystem::shootBullet(Entity* target, float damage, float speed) {
 void TowerSystem::addTower(TowerType type, Vector2D pos, Height height) {
 	Entity* t = mngr_->addEntity(_grp_TOWERS_AND_ENEMIES);//Se añade al mngr
 	mngr_->addComponent<Transform>(t)->setPosition(pos);//transform
-	mngr_->addComponent<RenderComponent>(t, towerTexture);//render, hay que moverlo al switch
+	mngr_->addComponent<RenderComponent>(t, bulletTowerTexture);//render, hay que moverlo al switch
 	float health = 100.0f;
 	if (height == LOW) { 
 		mngr_->addComponent<HealthComponent>(t, health); 
