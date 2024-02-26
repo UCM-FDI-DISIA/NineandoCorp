@@ -24,6 +24,7 @@
     <ClInclude Include="src\components\BulletTower.h" />
     <ClInclude Include="src\components\ButtonComponent.h" />
     <ClInclude Include="src\components\CrystalTower.h" />
+    <ClInclude Include="src\components\DiegoSniperTower.h" />
     <ClInclude Include="src\components\DirtTower.h" />
     <ClInclude Include="src\components\DragAndDrop.h" />
     <ClInclude Include="src\components\EnhancerTower.h" />
@@ -78,6 +79,7 @@
     <ClCompile Include="src\components\BulletTower.cpp" />
     <ClCompile Include="src\components\ButtonComponent.cpp" />
     <ClCompile Include="src\components\CrystalTower.cpp" />
+    <ClCompile Include="src\components\DiegoSniperTower.cpp" />
     <ClCompile Include="src\components\DirtTower.cpp" />
     <ClCompile Include="src\components\DragAndDrop.cpp" />
     <ClCompile Include="src\components\EnhancerTower.cpp" />
