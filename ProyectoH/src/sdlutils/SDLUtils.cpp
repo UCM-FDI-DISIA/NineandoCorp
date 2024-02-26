@@ -21,7 +21,8 @@ SDLUtils::SDLUtils(std::string windowTitle, int width, int height) :
 	soundsAccessWrapper_(sounds_, "Sounds Table"), //
 	musicsAccessWrapper_(musics_, "Musics Table"), ///
 	floatConstAccessWrapper_(floatConst_, "Float Constant Table"),
-	intConstAccessWrapper_(intConst_, "Int Constant Table")
+	intConstAccessWrapper_(intConst_, "Int Constant Table"),
+	rutesAccessWrapper_(rutes_, "Rutes Table")
 {
 
 	initWindow();
@@ -32,6 +33,12 @@ SDLUtils::SDLUtils(std::string windowTitle, int width, int height,
 		std::string filename) :
 		SDLUtils(windowTitle, width, height) {
 	loadReasources(filename);
+}
+
+SDLUtils::SDLUtils(std::string windowTitle, int width, int height,
+	std::string resourcesFilename, std::string constantsFilename) :
+	SDLUtils(windowTitle, width, height, resourcesFilename) {
+	loadConstants(constantsFilename);
 }
 
 SDLUtils::~SDLUtils() {
@@ -291,6 +298,38 @@ void SDLUtils::loadConstants(std::string filename) {
 	JSONObject root = jValueRoot->AsObject();
 	JSONValue* jValue = nullptr;
 
+	// load ints
+	jValue = root["rutas"];
+	if (jValue != nullptr) {
+		if (jValue->IsArray()) {
+			msgs_.reserve(jValue->AsArray().size()); // reserve enough space to avoid resizing
+			for (auto& v : jValue->AsArray()) {
+				if (v->IsObject()) {
+					JSONObject vObj = v->AsObject();
+					std::string key = vObj["id"]->AsString();
+					RuteData data;
+					data.numRutes = static_cast<int>(vObj["numPuntos"]->AsNumber());
+					for (auto& arrayPoint : vObj["puntos"]->AsArray()) {
+						auto& value = arrayPoint->AsArray();
+						data.points.push_back(Vector2D(value[0]->AsNumber(), value[1]->AsNumber()));
+					}
+
+#ifdef _DEBUG
+					std::cout << "Loading int with id: " << key
+						<< std::endl;
+#endif
+					rutes_.emplace(key, data);
+				}
+				else {
+					throw "'intConst' array in '" + filename
+						+ "' includes and invalid value";
+				}
+			}
+		}
+		else {
+			throw "'intConst' is not an array in '" + filename + "'";
+		}
+	}
 	// TODO improve syntax error checks below, now we do not check
 	//      validity of keys with values as sting or integer
 	// load floats
