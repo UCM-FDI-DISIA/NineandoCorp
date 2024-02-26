@@ -23,7 +23,7 @@ PlayState::PlayState() : GameState(_gmStt_PLAY) {
 	MovementComponent* mc = mngr_->getComponent<MovementComponent>(enemy);
 	rc->checkdestiny();
 	mc->Move();
-	//mngr_->addSystem<mapSystem>("../ProyectoH/resources/tileMap/nivelPrueba.tmx");
+	mngr_->addSystem<Enemy>("../ProyectoH/resources/tileMap/nivelPrueba.tmx");
 }
 
 void PlayState::handleInput() {
