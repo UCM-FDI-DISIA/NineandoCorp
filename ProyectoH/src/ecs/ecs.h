@@ -77,6 +77,8 @@ enum sysId : sysId_type {
 	_sys_MAINMENU,
 	_sys_MAINCONTROL,
 	_sys_ENEMIES,
+	_sys_LEVELSELECTOR,
+
 	// do not remove this
 	_LAST_SYS_ID
 };
