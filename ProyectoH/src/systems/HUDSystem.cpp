@@ -21,10 +21,13 @@ void HUDSystem::update() {
 	//hover 
 	for (auto en : mngr_->getHandler(_hdlr_BUTTON)) {
 		if (en != nullptr) {
+
 			ButtonComponent* bC = mngr_->getComponent<ButtonComponent>(en);
 			RenderComponent* rC = mngr_->getComponent<RenderComponent>(en);
-			if (bC->hover(pos)) rC->setTexture(bC->getHover());
-			else rC->setTexture(bC->getTexture());
+			if (bC->isActive()) {
+				if (bC->hover(pos)) rC->setTexture(bC->getHover());
+				else rC->setTexture(bC->getTexture());
+			}
 		}
 	}
 
@@ -38,7 +41,7 @@ void HUDSystem::update() {
 				if (en != nullptr) {
 					//comprueba la id del button y si no es none llama a la funcion correspondiente
 					auto type = mngr_->getComponent<ButtonComponent>(en)->isPressed(pos);
-					if (type != ButtonTypes::none) callFunction(type, mngr_->getComponent<Transform>(en));
+					if (type != ButtonTypes::none) callFunction(type, mngr_->getComponent<ButtonComponent>(en));
 				}
 			}
 		}
@@ -46,7 +49,7 @@ void HUDSystem::update() {
 }
 
 
-void HUDSystem::callFunction(ButtonTypes type, Transform* en) {
+void HUDSystem::callFunction(ButtonTypes type, ButtonComponent* bC) {
 	// Incluye la id del button para incluir 
 	switch (type)
 	{
@@ -54,10 +57,11 @@ void HUDSystem::callFunction(ButtonTypes type, Transform* en) {
 		break;
 	case playButtonMenu:
 		loadLevelSelector();
+		bC->setActive(false);
 		std::cout << "ok" << std::endl;
 		break;
 	case backButton:
-		startLevel();
+		backToMainMenu();
 		break;
 	default:
 		break;
@@ -77,6 +81,12 @@ void HUDSystem::loadLevelSelector() {
 void HUDSystem::startLevel() {
 	Message m;
 	m.id = _m_START_GAME;
+	mngr_->send(m);
+}
+
+void HUDSystem::backToMainMenu() {
+	Message m;
+	m.id = _m_BACK_TO_MAINMENU;
 	mngr_->send(m);
 }
 

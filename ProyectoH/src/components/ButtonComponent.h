@@ -29,11 +29,15 @@ public:
 
 	inline gameTextures getTexture() { return texture; }
 	inline gameTextures getHover() { return hoverTexture; }
+
+	inline void setActive(bool b) { isActive_ = b; }
+	inline bool isActive() { return isActive_; }
  
 private:
 	Transform* tr_;
 	ButtonTypes id_;
 	gameTextures texture;
 	gameTextures hoverTexture;
+	bool isActive_ = true;
 };
 

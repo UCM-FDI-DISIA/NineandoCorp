@@ -50,8 +50,8 @@ void GameStateMachine::clearStatesToErase() {
 // Calls current state update method
 void GameStateMachine::update() {
     clearStatesToErase();
+    currentState()->update();
     for (GameState* state : gameStates) {
         state->refresh();
     }
-    currentState()->update();
 }

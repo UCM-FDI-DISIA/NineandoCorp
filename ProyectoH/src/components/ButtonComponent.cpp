@@ -14,7 +14,7 @@ ButtonTypes ButtonComponent::isPressed(Vector2D mousePos) {
 	float rightX = pos->getX() + width;
 	float bottomY = pos->getY() + height;
 	float topY = pos->getY();
-	if (hover(mousePos)) {
+	if (hover(mousePos) && isActive_) {
 		return id_;
 	}
 	else return ButtonTypes::none;

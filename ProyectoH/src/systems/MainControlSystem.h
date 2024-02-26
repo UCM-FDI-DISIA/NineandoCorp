@@ -29,5 +29,11 @@ protected:
 	void onRoundOver();
 	void onRoundStart();
 	void subtractCoins(int num);
+	
+	inline void resetButtons() {
+		for (auto b : mngr_->getHandler(_hdlr_BUTTON)) {
+			mngr_->getComponent<ButtonComponent>(b)->setActive(true);
+		}
+	}
 };
 

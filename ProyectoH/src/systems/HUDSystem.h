@@ -16,9 +16,10 @@ public:
 
 private:
 	//Ejecuta la funcion correspondiente a cada boton
-	void callFunction(ButtonTypes type, Transform* en);
+	void callFunction(ButtonTypes type, ButtonComponent* en);
 	void funcionPrueba(Transform* tr);
 	void loadLevelSelector();
 	void startLevel();
+	void backToMainMenu(); 
 };
 

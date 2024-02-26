@@ -8,10 +8,13 @@ MainControlSystem::MainControlSystem()
 void MainControlSystem::receive(const Message& m) {
 	switch (m.id) {
 	case _m_START_GAME:
-		game().popState(); 
 		break;
 	case _m_LEVEL_SELECTOR:
 		game().pushState<LevelSelectorState>(mngr_);
+		break;
+	case _m_BACK_TO_MAINMENU:
+		game().popState();
+		resetButtons();
 		break;
 	case _m_ROUND_START:
 		onRoundStart();
