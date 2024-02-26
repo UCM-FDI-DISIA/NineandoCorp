@@ -219,6 +219,9 @@
     <ClInclude Include="src\components\CrystalTower.h">
       <Filter>Header Files\components</Filter>
     </ClInclude>
+    <ClInclude Include="src\components\DiegoSniperTower.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\json\JSONValue.cpp">
@@ -340,6 +343,9 @@
     </ClCompile>
     <ClCompile Include="src\components\CrystalTower.cpp">
       <Filter>Source Files\components</Filter>
+    </ClCompile>
+    <ClCompile Include="src\components\DiegoSniperTower.cpp">
+      <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
