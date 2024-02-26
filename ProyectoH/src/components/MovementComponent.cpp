@@ -19,6 +19,6 @@ MovementComponent::rotate(float rotation) {
 	transform_->setRotation(rotation);
 }
 void
-MovementComponent::Stop() {
-	stop_=true;
+MovementComponent::setStop(bool stop) {
+	stop_ = stop;
 }
