@@ -28,6 +28,7 @@ public:
 	// la práctica 1)
 	void update() override;
 private:
+	
 	// Creates an Entity with correspondant text texture and transform
 	void addText(stateText stt);
 	// Para gestionar los mensajes correspondientes y actualizar los atributos
@@ -43,6 +44,12 @@ private:
 	uint8_t winner_; // 0 - None, 1 - Asteroid, 2- Fighter
 
 	SDL_Rect offset = build_sdlrect(0,0,0,0);
+
+	//limites de la camara
+	int limtop = 200;
+	int limbot = -200;
+	int limleft = 200;
+	int limright = -200;
 
 	// Texts
 	stateText currStTxt;
