@@ -1,7 +1,6 @@
 {
 
-    "Cristal"
-    :
+    "Cristal"   :
     {
       "escudo": 50, //Aumenta el escudo en 50 puntos (Niveles 1 a 3)
       "explosion": 30 //Al romperse el escudo crea una explosion alrededor de 30 de dano (Nivel 4)

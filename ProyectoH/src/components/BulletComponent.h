@@ -13,11 +13,15 @@ protected:
 public:
 	static const cmpId id = cmpId::_BULLET;
 
-	BulletComponent();
+	BulletComponent(Transform* tr, Entity* target, int damage);
+	BulletComponent() {};
 	
 	void initComponent() override;
 	void setBullet(Entity* target, int damage) { targetEntity_ = target; damage_ = damage; };
-	void doDamageTo(HealthComponent* healthcmp);
+	void doDamageTo(Entity* target, int damage);
 	void onTravelEnds();
 		
+	Entity* getTarget()const { return targetEntity_; }
+	int getDamage()const { return damage_; }
+
 };

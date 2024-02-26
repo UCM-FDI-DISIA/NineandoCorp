@@ -4,6 +4,7 @@
 #include "../ecs/Entity.h"
 #include "../ecs/Manager.h"
 //#include "../systems/GameCtrlSystem.h"
+
 using namespace std;
 
 class GameState {
@@ -18,10 +19,6 @@ public:
     // Updates scene's objects
     virtual void update();
     // Draws the scene on screen
-    virtual void render() {}
-    // Handles the event
-    virtual void handleInput() {}
-    // Clears every non alive Entity
     void refresh();
     // Sends a message to the manager
     void send(const Message& m, bool delay = false);

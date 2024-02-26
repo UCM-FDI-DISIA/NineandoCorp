@@ -43,6 +43,7 @@ void GameStateMachine::clearStatesToErase() {
 }
 
 
+
 // Calls current state handleInput method
 /*void GameStateMachine::handleInput() {
     currentState()->handleInput();
@@ -53,11 +54,5 @@ void GameStateMachine::update() {
     currentState()->update();
     for (GameState* state : gameStates) {
         state->refresh();
-    }
-}
-// Calls every stacked state render method
-void GameStateMachine::render() const {
-    for (GameState* state : gameStates) {
-        state->render();
     }
 }

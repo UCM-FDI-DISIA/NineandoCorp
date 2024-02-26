@@ -4,85 +4,169 @@
     
   ],
 
-  "images": [
-    {
-      "id": "map",
-      "file": "resources/images/Map/terrain_0.png"
-    },
-    {
-      "id": "Acechante_Electrico_Attack",
-      "file": "resources/images/Enemies/Acechante Electrico/Attack.png"
-    },
-    {
-      "id": "Acechante_Electrico_Run",
-      "file": "resources/images/Enemies/Acechante Electrico/Run.png"
-    },
-    {
-      "id": "Angel",
-      "file": "resources/images/Enemies/Angel/angel.png"
-    },
-    {
-      "id": "Defensor_Real_Attack",
-      "file": "resources/images/Enemies/Defensor Real/Attack1.png"
-    },
-    {
-      "id": "Defensor_Real_Run",
-      "file": "resources/images/Enemies/Defensor Real/Run.png"
-    },
-    {
-      "id": "Demonio_Alado_Attack",
-      "file": "resources/images/Enemies/Demonio Alado/Attack1.png"
-    },
-    {
-      "id": "Demonio_Alado_Run",
-      "file": "resources/images/Enemies/Demonio Alado/Flight.png"
-    },
-    {
-      "id": "Esqueleto_Attack",
-      "file": "resources/images/Enemies/Esqueleto/Attack1.png"
-    },
-    {
-      "id": "Esqueleto_Run",
-      "file": "resources/images/Enemies/Esqueleto/Walk.png"
-    },
-    {
-      "id": "Goblin_Run",
-      "file": "resources/images/Enemies/Goblin/Run.png"
-    },
-    {
-      "id": "Goblin_Attack",
-      "file": "resources/images/Enemies/Goblin/Attack1.png"
-    },
-    {
-      "id": "Golem",
-      "file": "resources/images/Enemies/Golem/GolemSpritesheet.png"
-    },
-    {
-      "id": "Maestro_de_las_Almas_Attack",
-      "file": "resources/images/Enemies/Maestro de las Almas/Attack.png"
-    },
-    {
-      "id": "Maestro_de_las_Almas_Run",
-      "file": "resources/images/Enemies/Maestro de las Almas/Run.png"
-    },
-    {
-      "id": "Maldito_Attack",
-      "file": "resources/images/Enemies/Maldito/Attack.png"
-    },
-    {
-      "id": "Maldito_Run",
-      "file": "resources/images/Enemies/Maldito/Run.png"
-    },
-    {
-      "id": "Mensajero_de_la_muerte",
-      "file": "resources/images/Enemies/Mensajero de la Muerte/Maestro de las AlmasSpritesheet.png"
-    },
-    {
-      "id": "square",
-      "file": "resources/images/Enemies/Angel/angel1.png"
-    }
+    "images": [
+        {
+            "id": "map",
+            "file": "resources/images/Map/terrain_0.png"
+        },
+        {
+            "id": "map1",
+            "file": "resources/images/Map/1.png"
+        },
+        {
+            "id": "map3",
+            "file": "resources/images/Map/3.png"
+        },
+        {
+            "id": "map81",
+            "file": "resources/images/Map/81.png"
+        },
+        {
+            "id": "map82",
+            "file": "resources/images/Map/82.png"
+        },
+        {
+            "id": "map83",
+            "file": "resources/images/Map/83.png"
+        },
+        {
+            "id": "map84",
+            "file": "resources/images/Map/84.png"
+        },
+        {
+            "id": "map85",
+            "file": "resources/images/Map/85.png"
+        },
+        {
+            "id": "map87",
+            "file": "resources/images/Map/87.png"
+        },
+        {
+            "id": "map88",
+            "file": "resources/images/Map/88.png"
+        },
+        {
+            "id": "map89",
+            "file": "resources/images/Map/89.png"
+        },
+        {
+            "id": "map90",
+            "file": "resources/images/Map/90.png"
+        },
+        {
+            "id": "map98",
+            "file": "resources/images/Map/98.png"
+        },
+        {
+            "id": "map99",
+            "file": "resources/images/Map/99.png"
+        },
+        {
+            "id": "map133",
+            "file": "resources/images/Map/133.png"
+        },
+        {
+            "id": "Acechante_Electrico_Attack",
+            "file": "resources/images/Enemies/Acechante Electrico/Attack.png"
+        },
+        {
+            "id": "Acechante_Electrico_Run",
+            "file": "resources/images/Enemies/Acechante Electrico/Run.png"
+        },
+        {
+            "id": "Angel",
+            "file": "resources/images/Enemies/Angel/angel.png"
+        },
+        {
+            "id": "Defensor_Real_Attack",
+            "file": "resources/images/Enemies/Defensor Real/Attack1.png"
+        },
+        {
+            "id": "Defensor_Real_Run",
+            "file": "resources/images/Enemies/Defensor Real/Run.png"
+        },
+        {
+            "id": "Demonio_Alado_Attack",
+            "file": "resources/images/Enemies/Demonio Alado/Attack1.png"
+        },
+        {
+            "id": "Demonio_Alado_Run",
+            "file": "resources/images/Enemies/Demonio Alado/Flight.png"
+        },
+        {
+            "id": "Esqueleto_Attack",
+            "file": "resources/images/Enemies/Esqueleto/Attack1.png"
+        },
+        {
+            "id": "Esqueleto_Run",
+            "file": "resources/images/Enemies/Esqueleto/Walk.png"
+        },
+        {
+            "id": "Goblin_Run",
+            "file": "resources/images/Enemies/Goblin/Run.png"
+        },
+        {
+            "id": "Goblin_Attack",
+            "file": "resources/images/Enemies/Goblin/Attack1.png"
+        },
+        {
+            "id": "Golem",
+            "file": "resources/images/Enemies/Golem/GolemSpritesheet.png"
+        },
+        {
+            "id": "Maestro_de_las_Almas_Attack",
+            "file": "resources/images/Enemies/Maestro de las Almas/Attack.png"
+        },
+        {
+            "id": "Maestro_de_las_Almas_Run",
+            "file": "resources/images/Enemies/Maestro de las Almas/Run.png"
+        },
+        {
+            "id": "Maldito_Attack",
+            "file": "resources/images/Enemies/Maldito/Attack.png"
+        },
+        {
+            "id": "Maldito_Run",
+            "file": "resources/images/Enemies/Maldito/Run.png"
+        },
+        {
+            "id": "Mensajero_de_la_muerte",
+            "file": "resources/images/Enemies/Mensajero de la Muerte/Maestro de las AlmasSpritesheet.png"
+        },
+        {
+            "id": "square",
+            "file": "resources/images/Enemies/Angel/angel1.png"
+        },
+        {
+            "id": "Bullet_Tower",
+            "file": "resources/images/towers/bullet_tower.png"
+        },
+        {
+            "id": "Diego_Tower",
+            "file": "resources/images/towers/phoenix_tower.png"
+        },
+        {
+            "id": "Phoenix_Tower",
+            "file": "resources/images/towers/diego_tower.png"
+        },
+        {
+            "id": "play",
+            "file": "resources/images/Buttons/play/play01.png"
+        },
+        {
+            "id": "play_hover",
+            "file": "resources/images/Buttons/play/play03.png"
+        },
+      {
+        "id": "Phoenix_Tower",
+        "file": "resources/images/towers/diego_tower.png"
+      },
+      {
+        "id": "cursor",
+        "file": "resources/images/Enemies/Angel/angel1.png"
+      }
 
-  ],
+    ],
   
   "messages" : [
    

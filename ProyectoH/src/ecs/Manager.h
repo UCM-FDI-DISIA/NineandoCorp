@@ -4,12 +4,13 @@
 #include "ecs.h"
 #include "System.h"
 #include "Entity.h"
+#include <list>
 
 
 class Manager {
 private:
 	std::array<std::vector<Entity*>, maxGroupId> entsByGroup_;
-	std::array<Entity*, maxHdlrId> hdlrs_;
+	std::array<std::list<Entity*>, maxHdlrId> hdlrs_;
 	std::array<System*, maxSystemId> sys_; 
 	std::vector<Message> msgs_;
 	std::vector<Message> aux_msgs_;
@@ -20,12 +21,13 @@ public:
 	Entity* addEntity(grpId_type gId = _grp_GENERAL);
 	void refresh();
 	void update();
-	/*void render();
-	void handleInput();*/
 	inline void setHandler(hdlrId_type hId, Entity* e) {
-		hdlrs_[hId] = e;
+		hdlrs_[hId].push_back(e);
 	}
-	inline Entity* getHandler(hdlrId_type hId) {
+	inline void deleteHandler(hdlrId_type hId, Entity* e) {
+		hdlrs_[hId].remove(e);
+	}
+	inline std::list<Entity*> getHandler(hdlrId_type hId) {
 		return hdlrs_[hId];
 	}
 
@@ -123,7 +125,7 @@ public:
 		aux_msgs_.clear();
 	}
 
-	const std::vector<Entity*>& getEntities(grpId_type gId = _grp_GENERAL);
+	std::vector<Entity*>& getEntities(grpId_type gId = _grp_GENERAL);
 	void addToGroupList(grpId_type gId, Entity* e);
 };
 

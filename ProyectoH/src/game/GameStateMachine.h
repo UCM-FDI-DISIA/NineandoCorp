@@ -8,6 +8,7 @@ class GameStateMachine {
 private:
     list<GameState*> gameStates;
     list<GameState*> gameStatesToErase;
+   
 public:
     // Constructor
     GameStateMachine();
@@ -25,12 +26,10 @@ public:
     void changeState(GameState* newState);
     // Clears the game states to erase stack
     void clearStatesToErase();
+    // Update Cursor image
+    
 
-    // Calls current state handleInput method
-    void handleInput();
     // Calls current state update method
     void update();
-    // Calls every stacked state render method
-    void render() const;
 };
 #endif

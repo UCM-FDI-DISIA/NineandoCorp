@@ -19,12 +19,6 @@ BulletTower::BulletTower(float range, float reloadTime, int damage)
 	}
 }*/
 
-void BulletTower::shoot(Entity* targetToShoot) {
-	Entity* bullet = mngr_->addEntity(_grp_BULLETS);
-	mngr_->addComponent<BulletComponent>(bullet)->setBullet(target_, damage_);
-	mngr_->addComponent<Transform>(bullet);
-}
-
 void BulletTower::levelUp(int level) {
 	switch (level) {
 	case 1:
@@ -41,5 +35,24 @@ void BulletTower::levelUp(int level) {
 		break;
 	default:
 		break;
+	}
+}
+
+void BulletTower::targetSecondEnemy(const std::list<Entity*>& targetGroup) {
+	if (secondTarget_ == nullptr) {//Si no hay enemigo targeteado se busca uno
+		double closestEnemy = INT32_MAX;
+		for (auto enemy : targetGroup)
+		{
+			float distance = getDistance(mngr_->getComponent<Transform>(enemy)->getPosition());
+			if (enemy != target_ && distance < range_ && distance < closestEnemy) {
+				secondTarget_ = enemy;
+				closestEnemy = distance;
+			}
+		}
+	}
+	else {
+		if (getDistance(mngr_->getComponent<Transform>(secondTarget_)->getPosition()) > range_) {//el target ha salido de rango luego lo pierde
+			secondTarget_ = nullptr;
+		}
 	}
 }

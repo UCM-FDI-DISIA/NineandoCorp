@@ -1,6 +1,6 @@
 #include "HealthComponent.h"
 
-HealthComponent::HealthComponent(float l) : maxHealth_(l) { };
+HealthComponent::HealthComponent(float l) : maxHealth_(l), baseHealth_(l) { };
 
 
 void
@@ -17,6 +17,7 @@ HealthComponent::addHealth(float health) {
 void
 HealthComponent::subtractHealth(float health) {
 	currentHealth_ -= health;
+	std::cout << currentHealth_ << std::endl;
 	if (currentHealth_ <= 0) {
 		mngr_->setAlive(ent_, false);
 	}
@@ -30,4 +31,9 @@ HealthComponent::resetHealth() {
 void 
 HealthComponent::setHealth(float health) {
 	currentHealth_ = health;
+}
+
+void 
+HealthComponent::setMaxHealth(float health) {
+	maxHealth_ = health;
 }

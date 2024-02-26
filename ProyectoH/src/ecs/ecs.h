@@ -5,6 +5,7 @@
 #include "../checkML.h"
 #include "../utils/Vector2D.h"
 #include "../sdlutils/SDLNetUtils.h"
+#include <vector>
 
 class Entity;
 class Manager;
@@ -20,7 +21,7 @@ enum cmpId : cmpId_type {
 	_HEALTH, 
 	_BULLET,
 	_MOVEMENT,
-	_ROUTE,
+	_BUTTON,
 
 	// do not remove this
 	_LAST_CMP_ID
@@ -31,7 +32,8 @@ using hdlrId_type = int;
 enum hdlrId : hdlrId_type { 
 	_hdlr_DRAG_AND_DROP,
 	_hdlr_BUTTON,
-	
+	_hdlr_LOW_TOWERS,
+	_hdlr_ENEMIES,
 	// do not remove this
 	_LAST_HDLR_ID };
 constexpr hdlrId_type maxHdlrId = _LAST_HDLR_ID;
@@ -41,9 +43,8 @@ enum grpId : grpId_type {
 	_grp_GENERAL,
 	_grp_TILES_L1,
 	_grp_TILES_L2,
-	_grp_TILES_L3, 
-	_grp_TOWERS,
-	_grp_ENEMIES,
+	_grp_TILES_L3,
+	_grp_TOWERS_AND_ENEMIES,
 	_grp_BULLETS,
 	_grp_HUD_BACKGROUND,
 	_grp_HUD_FOREGROUND,
@@ -73,8 +74,10 @@ enum sysId : sysId_type {
 	_sys_RENDER,
 	_sys_MAP,
 	_sys_TOWERS,
-	_sys_ENEMY,
-
+	_sys_HUD,
+	_sys_MAINMENU,
+	_sys_MAINCONTROL,
+	_sys_ENEMIES,
 	// do not remove this
 	_LAST_SYS_ID
 };
@@ -85,10 +88,13 @@ enum msgId : msgId_type {
 	_m_ROUND_START, //
 	_m_ROUND_OVER,
 	_m_SHOOT,
+	_m_TOWERS_TO_ATTACK,
+	_m_ENTITY_TO_ATTACK,
 	_m_GAMEOVER,
 	_m_GAMESTART,
 	_m_PAUSE,
 	_m_RESUME,
+	_m_START_GAME,
 };
 
 using twrId_type = uint8_t;
@@ -139,6 +145,21 @@ inline Uint8* _deserialize_(float& v, Uint8* buf) {
 }
 struct Message {
 msgId_type id;
+	// _m_START_GAME
+	struct
+	{
+		//nivel 
+	}start_game_data;
+
+    // _m_TOWERS_TO_ATTACK
+    struct {
+		std::vector<Entity*> towers;
+	} towers_to_attack;
+	// _m_ENTITY_TO_ATTACK
+	struct {
+		Entity* e;
+		float damage;
+	} entity_to_attack;
 	// _m_COLLISION_ASTEROIDBULLET
 	struct {
 		Entity* a;
@@ -186,6 +207,7 @@ msgId_type id;
 	struct {
 		bool isEnemy;
 	} collision_fighterbullet_data;
+
 
 	struct {
 		std::string name; 
