@@ -10,8 +10,9 @@ LevelSelectorSystem::~LevelSelectorSystem()
 {
 	for (auto en : mngr_->getHandler(_hdlr_SUBMENU)) {
 		mngr_->setAlive(en, false);
-		mngr_->removeAllComponents(en);
 	}
+	mngr_->deleteAllHandlers(_hdlr_SUBMENU);
+	mngr_->deleteHandler(_hdlr_BUTTON, backButton);
 }
 
 void LevelSelectorSystem::initSystem()
@@ -19,7 +20,7 @@ void LevelSelectorSystem::initSystem()
 	//play button
 	Vector2D pAux(sdlutils().width() / 2, (sdlutils().height() / 2) + 350);
 	Vector2D sAux(350, 110);
-	addButton(pAux, sAux, gameTextures::play, gameTextures::play_hover, ButtonTypes::backButton);
+	backButton = addButton(pAux, sAux, gameTextures::play, gameTextures::play_hover, ButtonTypes::backButton);
 	//-------//
 	pAux = { 800,  800 };
 	sAux = { sdlutils().height() - 100.0f , 400 };
@@ -39,7 +40,7 @@ void LevelSelectorSystem::update()
 {
 }
 
-void LevelSelectorSystem::addButton(Vector2D pos, Vector2D scale, gameTextures tex, gameTextures hov, ButtonTypes type)
+Entity* LevelSelectorSystem::addButton(Vector2D pos, Vector2D scale, gameTextures tex, gameTextures hov, ButtonTypes type)
 {
 	Entity* b = mngr_->addEntity(_grp_HUD_FOREGROUND);
 	mngr_->setHandler(_hdlr_BUTTON, b);
@@ -54,6 +55,7 @@ void LevelSelectorSystem::addButton(Vector2D pos, Vector2D scale, gameTextures t
 	ButtonComponent* bC = mngr_->addComponent<ButtonComponent>(b, type);
 	bC->setTexture(tex);
 	bC->setHover(hov);
+	return b;
 }
 
 void LevelSelectorSystem::addImage(Vector2D pos, Vector2D(scale), double rot, gameTextures t)

@@ -27,6 +27,9 @@ public:
 	inline void deleteHandler(hdlrId_type hId, Entity* e) {
 		hdlrs_[hId].remove(e);
 	}
+	inline void deleteAllHandlers(hdlrId_type hId) {
+		hdlrs_[hId].clear();
+	}
 	inline std::list<Entity*> getHandler(hdlrId_type hId) {
 		return hdlrs_[hId];
 	}
@@ -53,12 +56,6 @@ public:
 			e->currCmps_.erase(iter);
 			delete e->cmps_[cId];
 			e->cmps_[cId] = nullptr;
-		}
-	}
-	inline void removeAllComponents(Entity* e) {
-		for (auto cmp : e->currCmps_) {
-			e->currCmps_.erase();
-			delete cmp;
 		}
 	}
 	template<typename T>

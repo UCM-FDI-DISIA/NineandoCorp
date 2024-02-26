@@ -16,7 +16,8 @@ public:
 	void receive(const Message& m) override;
 	void update() override;
 private:
-	void addButton(Vector2D pos, Vector2D scale, gameTextures tex, gameTextures hov, ButtonTypes type);
+	Entity* addButton(Vector2D pos, Vector2D scale, gameTextures tex, gameTextures hov, ButtonTypes type);
 	void addImage(Vector2D pos, Vector2D(scale), double rot, gameTextures t);
+	Entity* backButton;
 };
 

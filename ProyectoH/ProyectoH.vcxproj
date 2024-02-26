@@ -43,6 +43,7 @@
     <ClInclude Include="src\game\GameOverState.h" />
     <ClInclude Include="src\game\GameState.h" />
     <ClInclude Include="src\game\GameStateMachine.h" />
+    <ClInclude Include="src\game\LevelSelectorState.h" />
     <ClInclude Include="src\game\MainMenuState.h" />
     <ClInclude Include="src\game\PauseState.h" />
     <ClInclude Include="src\game\PlayState.h" />
@@ -71,7 +72,6 @@
     <ClInclude Include="src\utils\mpl.h" />
     <ClInclude Include="src\utils\Singleton.h" />
     <ClInclude Include="src\utils\Vector2D.h" />
-    <ClInclude Include="U:\hlocal\NineandoCorp\ProyectoH\src\game\LevelSelectorState.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\components\AttackComponent.cpp" />
@@ -93,6 +93,7 @@
     <ClCompile Include="src\game\GameOverState.cpp" />
     <ClCompile Include="src\game\GameState.cpp" />
     <ClCompile Include="src\game\GameStateMachine.cpp" />
+    <ClCompile Include="src\game\LevelSelectorState.cpp" />
     <ClCompile Include="src\game\MainMenuState.cpp" />
     <ClCompile Include="src\game\PauseState.cpp" />
     <ClCompile Include="src\game\PlayState.cpp" />
@@ -113,7 +114,6 @@
     <ClCompile Include="src\systems\TowerSystem.cpp" />
     <ClCompile Include="src\utils\Collisions.cpp" />
     <ClCompile Include="src\utils\Vector2D.cpp" />
-    <ClCompile Include="U:\hlocal\NineandoCorp\ProyectoH\src\game\LevelSelectorState.cpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>
