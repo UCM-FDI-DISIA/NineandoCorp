@@ -65,7 +65,7 @@ void EnemySystem::update() {
 					ac->setTimeToShoot(ac->getTimeToShoot() + ac->getReloadTime());
 					ac->setLoaded(false);
 				}
-		
+			}
 		}
 
 	}

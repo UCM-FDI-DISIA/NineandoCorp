@@ -15,7 +15,7 @@ RouteComponent::checkdestiny() {
 	if (*(transform_->getPosition()) - route_[destiny_] <=epsilon) {
 		if (destiny_ >= route_.size() -1) {
 			transform_->setVelocity({0,0});
-			mngr_->getComponent<MovementComponent>(ent_)->Stop(false);
+			mngr_->getComponent<MovementComponent>(ent_)->setStop(true);
 		}
 		else {
 			destiny_++;
