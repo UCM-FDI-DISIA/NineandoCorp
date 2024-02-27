@@ -27,6 +27,8 @@ void MainControlSystem::update() {
 		numDoradasActuales += numDoradasPorSegundo;
 		elapsedTime_ = 0;
 	}
+
+
 }
 
 void MainControlSystem::onRoundStart() {

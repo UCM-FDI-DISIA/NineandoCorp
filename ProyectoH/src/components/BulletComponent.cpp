@@ -23,6 +23,11 @@ void BulletComponent::onTravelEnds() {
 
 void BulletComponent::setDir() {
 	Vector2D vel = *(mngr_->getComponent<Transform>(targetEntity_)->getPosition()) - *(t->getPosition());
-	vel = vel.normalize() * speed_;
-	t->setVelocity(vel);
+	vel = vel.normalize();
+	Vector2D norm = { 1, 0 };
+	float dot =	norm.getX() * vel.getX() + norm.getY() * vel.getY();
+	float det = norm.getX() * vel.getY() + norm.getY() * vel.getX();
+	float angle = atan2(det, dot);
+	t->setRotation(180*angle/3.14);
+	t->setVelocity(vel*speed_);
 }

@@ -12,6 +12,8 @@ public:
 	float getTimeToShield() { return timeToShield_; }
 	float getElapsedTime() { return elapsedTime_; }
 	int getExplosionDmg() { return explosionDmg_; }
+	bool isMaxLevel() { return isMaxLevel_; }
+	float getReloadTime() { return reloadTime_; }
 
 	void setShieldVal(int val) { shieldVal_ = val; }
 	void setTimeToShield(float time) {  timeToShield_ = time; }
@@ -21,6 +23,7 @@ public:
 private:
 	int shieldVal_;
 	float timeToShield_;
+	float reloadTime_;
 	float elapsedTime_ = 0.0f;
 	int explosionDmg_;
 	bool isMaxLevel_ = false;

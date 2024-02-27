@@ -28,4 +28,6 @@ void DiegoSniperTower::levelUp(int level) {
 		setReloadTime(2.0f);
 		break;
 	default:
+		break;
+	}
 }

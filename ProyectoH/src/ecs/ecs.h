@@ -164,6 +164,8 @@ msgId_type id;
 	//_m_SHIELD_NEXUS
 	struct {
 		int shield;
+		int explosionDmg;
+		bool explodes;
 	}shield_data;
 	// _m_COLLISION_ASTEROIDBULLET
 	struct {
