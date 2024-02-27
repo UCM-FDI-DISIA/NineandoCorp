@@ -37,7 +37,9 @@ RenderSystem::RenderSystem() :
 	textures[bulletTowerTexture] = &sdlutils().images().at("Bullet_Tower");
 	textures[box] = &sdlutils().images().at("box"); 
 	textures[box_hover] = &sdlutils().images().at("box_hover");
-
+	textures[large_box] = &sdlutils().images().at("large_box");
+	textures[close] = &sdlutils().images().at("close");
+	textures[close_hover] = &sdlutils().images().at("close_hover");
 }
 
 

@@ -13,18 +13,26 @@ LevelSelectorSystem::~LevelSelectorSystem()
 	}
 	mngr_->deleteAllHandlers(_hdlr_SUBMENU);
 	mngr_->deleteHandler(_hdlr_BUTTON, backButtonEntity);
+	mngr_->deleteHandler(_hdlr_BUTTON, playButtonEntity);
 }
 
 void LevelSelectorSystem::initSystem()
 {
-	//play button
-	Vector2D pAux(sdlutils().width() / 2, (sdlutils().height() / 2) + 350);
-	Vector2D sAux(350, 110);
-	backButtonEntity = addButton(pAux, sAux, gameTextures::play, gameTextures::play_hover, ButtonTypes::backButton);
 	//-------//
-	pAux = { 800,  800 };
-	sAux = { sdlutils().height() - 100.0f , 400 };
-	addImage(pAux, sAux, 90.0, gameTextures::box);
+	Vector2D pAux = { sdlutils().width() / 2.0f, sdlutils().height() / 2.0f };
+	Vector2D sAux = {  1000.0f , 600.0f };
+	addImage(pAux, sAux, 0.0, gameTextures::large_box);
+
+	//close button
+	pAux = pAux + Vector2D(430.0f, -230.0f);
+	sAux = { 70.0f, 70.0f };
+	backButtonEntity = addButton(pAux, sAux, gameTextures::close, gameTextures::close_hover, ButtonTypes::backButton);
+
+	//play button
+	pAux = { sdlutils().width() / 2.0f, sdlutils().height() / 2.0f };
+	sAux = { 350, 110 };
+	playButtonEntity = addButton(pAux, sAux, gameTextures::play, gameTextures::play_hover, ButtonTypes::playButtonMenu);
+	
 }
 
 void LevelSelectorSystem::receive(const Message& m)
@@ -77,6 +85,9 @@ void LevelSelectorSystem::callFunction(ButtonTypes type, ButtonComponent* bC) {
 	case backButton:
 		backToMainMenu();
 		break;
+	case playButtonMenu:
+		startGame();
+		break;
 	default:
 		break;
 	}
@@ -115,6 +126,11 @@ void LevelSelectorSystem::addImage(Vector2D pos, Vector2D(scale), double rot, ga
 void LevelSelectorSystem::backToMainMenu() {
 	Message m;
 	m.id = _m_BACK_TO_MAINMENU;
+	mngr_->send(m);
+}
+void LevelSelectorSystem::startGame() {
+	Message m;
+	m.id = _m_START_GAME;
 	mngr_->send(m);
 }
 

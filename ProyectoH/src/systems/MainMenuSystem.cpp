@@ -7,7 +7,7 @@ MainMenuSystem::MainMenuSystem() {
 }
 
 MainMenuSystem::~MainMenuSystem() {
-
+	
 }
 
 void MainMenuSystem::initSystem() {
@@ -18,11 +18,11 @@ void MainMenuSystem::initSystem() {
 	//-------//
 	pAux = { 200,  sdlutils().height() / 2.0f };
 	sAux = { sdlutils().height() - 100.0f , 400};
-	addImage(pAux, sAux, 90.0, gameTextures::box);
+	addImage(pAux, sAux, 90.0, gameTextures::box, _grp_HUD_BACKGROUND);
 	//-------//
 	pAux = { sdlutils().width() - 200.0f,  sdlutils().height() / 2.0f };
 	sAux = { sdlutils().height() - 100.0f , 400};
-	addImage(pAux, sAux, 90.0, gameTextures::box);
+	addImage(pAux, sAux, 90.0, gameTextures::box, _grp_HUD_BACKGROUND);
 
 }
 
@@ -117,8 +117,8 @@ void MainMenuSystem::addButton(Vector2D pos, Vector2D scale, gameTextures tex, g
 	bC->setHover(hov);
 }
 
-void MainMenuSystem::addImage(Vector2D pos, Vector2D scale, double rot, gameTextures t) {
-	Entity* img = mngr_->addEntity(_grp_HUD_FOREGROUND);
+void MainMenuSystem::addImage(Vector2D pos, Vector2D scale, double rot, gameTextures t, grpId_type grpId) {
+	Entity* img = mngr_->addEntity(grpId);
 	Transform* tr = mngr_->addComponent<Transform>(img); 
 	tr->setScale(scale); 
 	Vector2D aux = tr->getScale(); 

@@ -11,6 +11,6 @@ class MainMenuState : public GameState
 {
 public:
 	MainMenuState(Manager* mngr = nullptr);
-	virtual ~MainMenuState() {};
+	virtual ~MainMenuState();
 };
 
