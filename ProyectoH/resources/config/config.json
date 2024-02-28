@@ -1,324 +1,328 @@
 {
-  "floatConst": [
-    //1.Torres
-    //1.3 Balas Upgrades
-    {
-      "id": "BalasRecarga",
-      "value": 0.5
-    },
-    //1.5 Fenix Upgrades
-    {
-      "id": "FenixDano",
-      "value": 2.5
-    },
-    //2.Tower Upgrades
-    //2.2 Slime Upgrades
-    {
-      "id": "SlimeRecargaUpgrade", //Disminuye tiempo de recarga 0.5s (Nivel 1)
-      "value": 0.5
-    },
-    {
-      "id": "SlimeRalentizacion", //Aumenta el efecto de ralentizacion un 30%  (Nivel 2)
-      "value": 0.3
-    },
-    {
-      "id": "SlimeTiempoSlime", //El slime se mantiene 0.5s mas (Nivel 3)
-      "value": 0.5
-    },
-    //2.4 Diego Sniper Upgrades
-    {
-      "id": "DiegoSniperCritico1", //Probabilidad del 20% de realizar un critico, que hace 150% de dano (Nivel 2)
-      "value": 0.2
-    },
-    {
-      "id": "DiegoSniperRecargaUpgrade1", //Se reduce en 0.5 el tiempo de recarga (Nivel 3)
-      "value": 0.5
-    },
-    {
-      "id": "DiegoSniperCritico2", //Probabilidad de 30% de critico (Nivel 4)
-      "value": 0.3
-    },
-    //2.5 Fenix
-    {
-      "id": "FenixEnfriamiento1", //Se reduce el enfriamiento a 1.5 (Nivel 2)
-      "value": 1.5
-    },
-    //2.7 Potenciadora
-    {
-      "id": "PotenciadoraDano1", //Mejora el dano un 10% en vez de un 5% (Nivel 1)
-      "value": 0.1
-    },
-    {
-      "id": "PotenciadoraDano2", //Mejora el dano un 15% en vez de un 5% (Nivel 1)
-      "value": 0.15
-    },
-    {
-      "id": "PotenciadoraDano3", //Mejora el dano un 20% en vez de un 5% (Nivel 1)
-      "value": 0.2
-    }
-  ],
+    "rutas": [
+        {
+            "id": "ruta1Nivel2",
+            "numPuntos": 9,
+            "puntos": [
+                [ 761, 428 ],
+                [ 283, 667 ],
+                [ 188, 619 ],
+                [ -50, 738 ],
+                [ 140, 834 ],
+                [ -146, 977 ],
+                [ 331, 1216 ],
+                [ 617, 1073 ],
+                [ 570, 1049 ]
+            ]
+        },
+        {
+            "id": "ruta2Nivel2",
+            "numPuntos": 5,
+            "puntos": [
+                [ 618, 1646 ],
+                [ 379, 1527 ],
+                [ 1286, 1073 ],
+                [ 856, 858 ],
+                [ 618, 997 ]
+            ]
+         }
+    ],
+    "floatConst": [
+        {
+            "id": "BalasRecarga",
+            "value": 0.5
+        },
+        {
+            "id": "FenixDano",
+            "value": 2.5
+        },
+        {
+            "id": "SlimeRecargaUpgrade", 
+            "value": 0.5
+        },
+        {
+            "id": "SlimeRalentizacion", 
+            "value": 0.3
+        },
+        {
+            "id": "SlimeTiempoSlime",
+            "value": 0.5
+        },
+        {
+            "id": "DiegoSniperCritico1", 
+            "value": 0.2
+        },
+        {
+            "id": "DiegoSniperRecargaUpgrade1", 
+            "value": 0.5
+        },
+        {
+            "id": "DiegoSniperCritico2",
+            "value": 0.3
+        },
+        {
+            "id": "FenixEnfriamiento1",
+            "value": 1.5
+        },
+      {
+        "id": "PotenciadoraDano1",
+        "value": 0.1
+      },
+        {
+            "id": "PotenciadoraDano2", 
+            "value": 0.15
+        },
+        {
+            "id": "PotenciadoraDano3",
+            "value": 0.2
+        }
+    ],
 
-  "intConst": [
-    //1.Torres
-    //1.1 Cristal
-    {
-      "id": "CristalVida",
-      "value": 50
-    },
-    {
-      "id": "CristalRango",
-      "value": 0
-    },
-    {
-      "id": "CristalPrecio",
-      "value": 200
-    },
-    {
-      "id": "CristalRecarga",
-      "value": 20
-    },
-    {
-      "id": "CristalDano",
-      "value": 0
-    },
-    {
-      "id": "CristalElevacion",
-      "value": 0
-    },
-    //1.2 Slime
-    {
-      "id": "SlimeVida",
-      "value": 100
-    },
-    {
-      "id": "SlimeRango",
-      "value": 100
-    },
-    {
-      "id": "SlimePrecio",
-      "value": 400
-    },
-    {
-      "id": "SlimeRecarga",
-      "value": 5
-    },
-    {
-      "id": "SlimeDano",
-      "value": 0
-    },
-    {
-      "id": "SlimeElevacion",
-      "value": 0
-    },
-    //1.3 Balas
-    {
-      "id": "BalasVida",
-      "value": 25
-    },
-    {
-      "id": "BalasRango",
-      "value": 100
-    },
-    {
-      "id": "BalasPrecio",
-      "value": 100
-    },
-    {
-      "id": "BalasDano",
-      "value": 5
-    },
-    {
-      "id": "BalasElevacion",
-      "value": 0
-    },
-    //1.4 DiegoSniper
-    {
-      "id": "DiegoSniperVida",
-      "value": 50
-    },
-    {
-      "id": "DiegoSniperRango",
-      "value": 300
-    },
-    {
-      "id": "DiegoSniperPrecio",
-      "value": 500
-    },
-    {
-      "id": "DiegoSniperRecarga",
-      "value": 3
-    },
-    {
-      "id": "DiegoSniperDano",
-      "value": 50
-    },
-    {
-      "id": "DiegoSniperElevacion",
-      "value": 1
-    },
-    //1.5 Fenix
-    {
-      "id": "FenixVida",
-      "value": 50
-    },
-    {
-      "id": "FenixRango",
-      "value": 100
-    },
-    {
-      "id": "FenixPrecio",
-      "value": 500
-    },
-    {
-      "id": "FenixRecarga",
-      "value": 2
-    },
-    {
-      "id": "FenixElevacion",
-      "value": 1
-    },
-    //1.6 Arcilla
-    {
-      "id": "ArcillaVida",
-      "value": 500
-    },
-    {
-      "id": "ArcillaRango",
-      "value": 0
-    },
-    {
-      "id": "ArcillaPrecio",
-      "value": 200
-    },
-    {
-      "id": "ArcillaRecarga",
-      "value": 0
-    },
-    {
-      "id": "ArcillaDano",
-      "value": 0
-    },
-    {
-      "id": "ArcillaElevacion",
-      "value": 0
-    },
-    //1.7 Potenciadora
-    {
-      "id": "PotenciadoraVida",
-      "value": 75
-    },
-    {
-      "id": "PotenciadoraRango",
-      "value": 100
-    },
-    {
-      "id": "PotenciadoraPrecio",
-      "value": 400
-    },
-    {
-      "id": "PotenciadoraRecarga",
-      "value": 0
-    },
-    {
-      "id": "PotenciadoraDano",
-      "value": 0
-    },
-    {
-      "id": "PotenciadoraElevacion",
-      "value": 2
-    },
-    //2. Tower Upgrades
-    //2.1 Cristal Upgrades
-    {
-      "id": "CristalEscudo", //Aumenta el escudo en 50 puntos (Niveles 1 a 3)
-      "value": 50
-    },
-    {
-      "id": "CristalExplosion", //Al romperse el escudo crea una explosion alrededor de 30 de dano (Nivel 4)
-      "value": 30
-    },
-    //2.2 Slime Upgrades
-    {
-      "id": "SlimeDPS", //El area del slime hace 1 de dano por segundo (Nivel 4)
-      "value": 1
-    },
-    //2.3 Balas Upgrades
-    {
-      "id": "BalasDano1", //Aumenta el dano a 10 puntos (Nivel 1)
-      "value": 10
-    },
-    {
-      "id": "BalasDano2", //Aumenta el dano a 20 puntos (Nivel 2)
-      "value": 20
-    },
-    {
-      "id": "BalasDano3", //Aumenta el dano a 35 puntos (Nivel 3)
-      "value": 35
-    },
-    {
-      "id": "BalasDobleObj", //La torre puede apuntar a dos objetivos (Nivel 4)
-      "value": 1
-    },
-    //2.4 Diego Sniper Upgrades
-    {
-      "id": "DiegoSniperDano", //Aumenta el dano a 75 (Nivel 1)
-      "value": 75
-    },
-    {
-      "id": "DiegoSniperRecargaUpgrade2", //Se reduce en 1 el tiempo de recarga (Nivel 4)
-      "value": 1
-    },
-    //2.5 Fenix
-    {
-      "id": "FenixDPS1", //El dps aumenta a 4 puntos/medio segundo (Nivel 1)
-      "value": 4
-    },
-    {
-      "id": "FenixDPS2", //El dps aumenta a 5 puntos/medio segundo (Nivel 3)
-      "value": 5
-    },
-    {
-      "id": "FenixEnfriamiento2", //Se reduce el enfriamiento a 1 (Nivel 3)
-      "value": 1
-    },
-    {
-      "id": "FenixArea", //El cono de ataque aumenta de area 15 grados (Nivel 4)
-      "value": 15
-    },
-    {
-      "id": "FenixEnfriamientoCero", //El ataque es continuo, no tiene enfriamiento (Nivel 4)
-      "value": 0
-    },
-    //2.6 Arcilla
-    {
-      "id": "ArcillaVida1", //(Nivel 1)
-      "value": 750
-    },
-    {
-      "id": "ArcillaVida2", //(Nivel 2)
-      "value": 1000
-    },
-    {
-      "id": "ArcillaVida3", //(Nivel 3)
-      "value": 1250
-    },
-    {
-      "id": "ArcillaVida4", //(Nivel 4)
-      "value": 1500
-    },
-    {
-      "id": "ArcillaDanoReflejado", //Refleja 3 puntos de dano por cada ataque (Nivel 4)
-      "value": 3
-    },
-    //2.7 Potenciadora
-    {
-      "id": "PotenciadoraVida1", //Anade 30 puntos de vida a las torres cercanas (Nivel 2)
-      "value": 30
-    },
-    {
-      "id": "PotenciadoraVida2", //Anade 50 puntos de vida a las torres cercanas (Nivel 4)
-      "value": 50
-    }
-  ],
+    "intConst": [
+        {
+            "id": "CristalVida",
+            "value": 50
+        },
+        {
+            "id": "CristalRango",
+            "value": 0
+        },
+        {
+            "id": "CristalPrecio",
+            "value": 200
+        },
+        {
+            "id": "CristalRecarga",
+            "value": 20
+        },
+        {
+            "id": "CristalDano",
+            "value": 0
+        },
+        {
+            "id": "CristalElevacion",
+            "value": 0
+        },
+        {
+            "id": "SlimeVida",
+            "value": 100
+        },
+        {
+            "id": "SlimeRango",
+            "value": 100
+        },
+        {
+            "id": "SlimePrecio",
+            "value": 400
+        },
+        {
+            "id": "SlimeRecarga",
+            "value": 5
+        },
+        {
+            "id": "SlimeDano",
+            "value": 0
+        },
+        {
+            "id": "SlimeElevacion",
+            "value": 0
+        },
+        {
+            "id": "BalasVida",
+            "value": 25
+        },
+        {
+            "id": "BalasRango",
+            "value": 100
+        },
+        {
+            "id": "BalasPrecio",
+            "value": 100
+        },
+        {
+            "id": "BalasDano",
+            "value": 5
+        },
+        {
+            "id": "BalasElevacion",
+            "value": 0
+        },
+        {
+            "id": "DiegoSniperVida",
+            "value": 50
+        },
+        {
+            "id": "DiegoSniperRango",
+            "value": 300
+        },
+        {
+            "id": "DiegoSniperPrecio",
+            "value": 500
+        },
+        {
+            "id": "DiegoSniperRecarga",
+            "value": 3
+        },
+        {
+            "id": "DiegoSniperDano",
+            "value": 50
+        },
+        {
+            "id": "DiegoSniperElevacion",
+            "value": 1
+        },
+        {
+            "id": "FenixVida",
+            "value": 50
+        },
+        {
+            "id": "FenixRango",
+            "value": 100
+        },
+        {
+            "id": "FenixPrecio",
+            "value": 500
+        },
+        {
+            "id": "FenixRecarga",
+            "value": 2
+        },
+        {
+            "id": "FenixElevacion",
+            "value": 1
+        },
+        {
+            "id": "ArcillaVida",
+            "value": 500
+        },
+        {
+            "id": "ArcillaRango",
+            "value": 0
+        },
+        {
+            "id": "ArcillaPrecio",
+            "value": 200
+        },
+        {
+            "id": "ArcillaRecarga",
+            "value": 0
+        },
+        {
+            "id": "ArcillaDano",
+            "value": 0
+        },
+        {
+            "id": "ArcillaElevacion",
+            "value": 0
+        },
+        {
+            "id": "PotenciadoraVida",
+            "value": 75
+        },
+        {
+            "id": "PotenciadoraRango",
+            "value": 100
+        },
+        {
+            "id": "PotenciadoraPrecio",
+            "value": 400
+        },
+        {
+            "id": "PotenciadoraRecarga",
+            "value": 0
+        },
+        {
+            "id": "PotenciadoraDano",
+            "value": 0
+        },
+        {
+            "id": "PotenciadoraElevacion",
+            "value": 2
+        },
+        {
+            "id": "CristalEscudo", 
+            "value": 50
+        },
+        {
+            "id": "CristalExplosion", 
+            "value": 30
+        },
+        {
+            "id": "SlimeDPS", 
+            "value": 1
+        },
+        {
+            "id": "BalasDano1", 
+            "value": 10
+        },
+        {
+            "id": "BalasDano2", 
+            "value": 20
+        },
+        {
+            "id": "BalasDano3", 
+            "value": 35
+        },
+        {
+            "id": "BalasDobleObj", 
+            "value": 1
+        },
+        {
+            "id": "DiegoSniperDano",
+            "value": 75
+        },
+        {
+            "id": "DiegoSniperRecargaUpgrade2", 
+            "value": 1
+        },
+        {
+            "id": "FenixDPS1", 
+            "value": 4
+        },
+        {
+            "id": "FenixDPS2", 
+            "value": 5
+        },
+        {
+            "id": "FenixEnfriamiento2", 
+            "value": 1
+        },
+        {
+            "id": "FenixArea", 
+            "value": 15
+        },
+        {
+            "id": "FenixEnfriamientoCero", 
+            "value": 0
+        },
+        {
+            "id": "ArcillaVida1", 
+            "value": 750
+        },
+        {
+            "id": "ArcillaVida2",
+            "value": 1000
+        },
+        {
+            "id": "ArcillaVida3", 
+            "value": 1250
+        },
+        {
+            "id": "ArcillaVida4", 
+            "value": 1500
+        },
+        {
+            "id": "ArcillaDanoReflejado", 
+            "value": 3
+        },
+        {
+            "id": "PotenciadoraVida1", 
+            "value": 30
+        },
+        {
+            "id": "PotenciadoraVida2", 
+            "value": 50
+        }
+    ]
 
 }

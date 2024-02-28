@@ -147,7 +147,15 @@
         },
         {
             "id": "Phoenix_Tower",
-            "file": "resources/images/towers/diego_tower.png"
+            "file": "resources/images/towers/phoenix_tower.png"
+        },
+        {
+            "id": "cristal_tower",
+            "file": "resources/images/towers/cristal_tower.png"
+        },
+        {
+            "id": "booster_tower",
+            "file": "resources/images/towers/booster_tower.png"
         },
         {
             "id": "play",
@@ -158,16 +166,12 @@
             "file": "resources/images/Buttons/play/play03.png"
         },
       {
-        "id": "Phoenix_Tower",
-        "file": "resources/images/towers/diego_tower.png"
-      },
-      {
         "id": "cursor",
-        "file": "resources/images/Enemies/Angel/angel1.png"
+        "file": "resources/images/pointer/finger_up.png"
       },
       {
-        "id": "Bullet",
-        "file": "resources/images/towers/bullet.png"
+        "id": "cursorpress",
+        "file": "resources/images/pointer/finger_down.png"
       }
 
     ],
