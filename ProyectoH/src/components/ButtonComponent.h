@@ -23,7 +23,8 @@ enum ButtonTypes {
 	upgradeSlimeTower, upgradeBulletTower, 
 	upgradeSniperTower, upgradeFenixTower,
 	upgradeClayTower, upgradeEnhancerTower,
-	
+	/*upgradeNexus,*/
+
 	none
 };
 

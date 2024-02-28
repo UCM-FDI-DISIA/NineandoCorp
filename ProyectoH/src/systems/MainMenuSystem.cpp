@@ -15,6 +15,7 @@ void MainMenuSystem::initSystem() {
 	Vector2D pAux(sdlutils().width() / 2, (sdlutils().height() / 2) + 150);
 	Vector2D sAux(350, 110);
 	addButton(pAux, sAux , gameTextures::play, gameTextures::play_hover, ButtonTypes::selector_main);
+
 	//-------//
 	pAux = { 200,  sdlutils().height() / 2.0f };
 	sAux = { sdlutils().height() - 100.0f , 400};
@@ -26,6 +27,11 @@ void MainMenuSystem::initSystem() {
 	
 	//tower button
 	pAux = { sdlutils().width() - 200.0f , sdlutils().height() / 2.0f - 330 };
+	sAux = { 350.0f, 70.0f };
+	addButton(pAux, sAux, play, play_hover, ButtonTypes::bullet_menu);
+
+	//nexus button
+	pAux = { 200.0f , sdlutils().height() / 2.0f - 330 };
 	sAux = { 350.0f, 70.0f };
 	addButton(pAux, sAux, play, play_hover, ButtonTypes::bullet_menu);
 }
