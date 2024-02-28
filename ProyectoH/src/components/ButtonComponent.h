@@ -7,7 +7,7 @@ enum ButtonTypes {
 	//Others
 	pruebaButton, 
 	//MainMenu
-	selector_main, 
+	selector_main, enemies_main,
 	//Level Selector
 	start_game, back_selector,
 	//Tower_menu

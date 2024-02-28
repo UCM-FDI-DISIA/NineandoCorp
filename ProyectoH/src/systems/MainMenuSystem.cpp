@@ -23,23 +23,30 @@ void MainMenuSystem::initSystem() {
 	// LOGO
 	addImage({ sdlutils().width() / 2.0f, (sdlutils().height() / 2.0f)  - 250},
 		{ 213 , 159 },
-		0.0, gameTextures::logo, _grp_HUD_BACKGROUND);
+		0.0, gameTextures::logo, _grp_HUD_BACKGROUND);	
 
 	// LEFT COLUMN
 	addImage({ 200,  sdlutils().height() / 2.0f }, 
 		{ sdlutils().height() - 100.0f , 400 },
 		90.0, gameTextures::box, _grp_HUD_BACKGROUND);
+
 	// RIGHT COLUMN
 	addImage({ sdlutils().width() - 200.0f,  sdlutils().height() / 2.0f },
 		{ sdlutils().height() - 100.0f , 400 },
 		90.0, gameTextures::box, _grp_HUD_BACKGROUND);
+
+
+	// NEXUS IMAGE - CAMBIAR IMAGEN
+	addImage({ 200,  (sdlutils().height() / 2.0f) - 150.0f },
+		{ 200 , 200 },
+		0.0, gameTextures::box, _grp_HUD_BACKGROUND);
 
 	//-------------------------------------------//
 
 	// ENEMIES BUTTON
 	addButton({ sdlutils().width() / 2.0f, (sdlutils().height() / 2.0f) - 75 },
 		{ 350, 110 },
-		gameTextures::upgrade, gameTextures::upgrade_hover, ButtonTypes::upgrade_nexus);
+		gameTextures::enemies_button, gameTextures::enemies_button_hover, ButtonTypes::enemies_main);
 
 	// PLAY BUTTON
 	addButton({ sdlutils().width() / 2.0f, (sdlutils().height() / 2.0f) + 75},
@@ -56,70 +63,70 @@ void MainMenuSystem::initSystem() {
 		{ 250.0f, 70.0f },
 		gameTextures::upgrade, gameTextures::upgrade_hover, ButtonTypes::upgrade_nexus);
 
-	// 1 TOWER BUTTON
+	// 1 TOWER BUTTON - GLASS
 	addButton({ sdlutils().width() - 150.0f , (sdlutils().height() /8.0f) * 1 },
 		{ 200.0f, 70.0f },
-		upgrade, upgrade_hover, ButtonTypes::upgrade_nexus);
+		upgrade, upgrade_hover, ButtonTypes::glass_menu);
 
 	// 1 TOWER IMAGE - CAMBIAR IMAGEN
 	addImage({ sdlutils().width() - 310.0f , (sdlutils().height() / 8.0f) * 1 },
 		{ 70.0f, 70.0f },
 		0, gameTextures::box, _grp_HUD_BACKGROUND);
 
-	// 2 TOWER BUTTON
+	// 2 TOWER BUTTON - SLIME
 	addButton({ sdlutils().width() - 150.0f , (sdlutils().height() / 8.0f) * 2 },
 		{ 200.0f, 70.0f },
-		upgrade, upgrade_hover, ButtonTypes::upgrade_nexus);
+		upgrade, upgrade_hover, ButtonTypes::slime_menu);
 
 	// 2 TOWER IMAGE - CAMBIAR IMAGEN
 	addImage({ sdlutils().width() - 310.0f , (sdlutils().height() / 8.0f) * 2 },
 		{ 70.0f, 70.0f },
 		0, gameTextures::box, _grp_HUD_BACKGROUND);
 
-	// 3 TOWER BUTTON
+	// 3 TOWER BUTTON - BULLET
 	addButton({ sdlutils().width() - 150.0f , (sdlutils().height() / 8.0f) * 3 },
 		{ 200.0f, 70.0f },
-		upgrade, upgrade_hover, ButtonTypes::upgrade_nexus);
+		upgrade, upgrade_hover, ButtonTypes::bullet_menu);
 
 	// 3 TOWER IMAGE - CAMBIAR IMAGEN
 	addImage({ sdlutils().width() - 310.0f , (sdlutils().height() / 8.0f) * 3 },
 		{ 70.0f, 70.0f },
 		0, gameTextures::box, _grp_HUD_BACKGROUND);
 
-	// 4 TOWER BUTTON
+	// 4 TOWER BUTTON - SNIPER
 	addButton({ sdlutils().width() - 150.0f , (sdlutils().height() / 8.0f) * 4 },
 		{ 200.0f, 70.0f },
-		upgrade, upgrade_hover, ButtonTypes::upgrade_nexus);
+		upgrade, upgrade_hover, ButtonTypes::sniper_menu);
 
 	// 4 TOWER IMAGE - CAMBIAR IMAGEN
 	addImage({ sdlutils().width() - 310.0f , (sdlutils().height() / 8.0f) * 4 },
 		{ 70.0f, 70.0f },
 		0, gameTextures::box, _grp_HUD_BACKGROUND);
 
-	// 5 TOWER BUTTON
+	// 5 TOWER BUTTON - FENIX
 	addButton({ sdlutils().width() - 150.0f , (sdlutils().height() / 8.0f) * 5 },
 		{ 200.0f, 70.0f },
-		upgrade, upgrade_hover, ButtonTypes::upgrade_nexus);
+		upgrade, upgrade_hover, ButtonTypes::fenix_menu);
 
 	// 5 TOWER IMAGE - CAMBIAR IMAGEN
 	addImage({ sdlutils().width() - 310.0f , (sdlutils().height() / 8.0f) * 5 },
 		{ 70.0f, 70.0f },
 		0, gameTextures::box, _grp_HUD_BACKGROUND);
 
-	// 6 TOWER BUTTON
+	// 6 TOWER BUTTON - CLAY
 	addButton({ sdlutils().width() - 150.0f , (sdlutils().height() / 8.0f) * 6 },
 		{ 200.0f, 70.0f },
-		upgrade, upgrade_hover, ButtonTypes::upgrade_nexus);
+		upgrade, upgrade_hover, ButtonTypes::clay_menu);
 
 	// 6 TOWER IMAGE - CAMBIAR IMAGEN
 	addImage({ sdlutils().width() - 310.0f , (sdlutils().height() / 8.0f) * 6 },
 		{ 70.0f, 70.0f },
 		0, gameTextures::box, _grp_HUD_BACKGROUND);
 
-	// 7 TOWER BUTTON
+	// 7 TOWER BUTTON - ENHANCER
 	addButton({ sdlutils().width() - 150.0f , (sdlutils().height() / 8.0f) * 7 },
 		{ 200.0f, 70.0f },
-		upgrade, upgrade_hover, ButtonTypes::upgrade_nexus);
+		upgrade, upgrade_hover, ButtonTypes::enhancer_menu);
 
 	// 7 TOWER IMAGE - CAMBIAR IMAGEN
 	addImage({ sdlutils().width() - 310.0f , (sdlutils().height() / 8.0f) * 7 },
