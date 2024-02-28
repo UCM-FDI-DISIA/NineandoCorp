@@ -23,8 +23,12 @@ void MainMenuSystem::initSystem() {
 	//Fondo
 	addImage({ sdlutils().width() / 2.0f, (sdlutils().height() / 2.0f) },
 		{ 1200 , 900 }, 
-		0.0, gameTextures::menu_background, _grp_HUD_BACKGROUND);
+		0.0, gameTextures::box, _grp_HUD_BACKGROUND);
 
+	//Logo
+	addImage({ sdlutils().width() / 2.0f, (sdlutils().height() / 2.0f)  - 150},
+		{ 426 , 318 },
+		0.0, gameTextures::logo, _grp_HUD_BACKGROUND);
 	//-------//
 	addImage({ 200,  sdlutils().height() / 2.0f }, 
 		{ sdlutils().height() - 100.0f , 400 },

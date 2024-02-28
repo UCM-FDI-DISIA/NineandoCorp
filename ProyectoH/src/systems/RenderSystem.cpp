@@ -45,6 +45,8 @@ RenderSystem::RenderSystem() :
 	textures[menu_background] = &sdlutils().images().at("menu_background");
 	textures[upgrade] = &sdlutils().images().at("upgrade");
 	textures[upgrade_hover] = &sdlutils().images().at("upgrade_hover");
+	textures[logo] = &sdlutils().images().at("logo");
+
 }
 
 

@@ -196,6 +196,10 @@
         {
             "id": "upgrade_hover",
             "file": "resources/images/UI/upgrade_button_hover.png"
+        },
+        {
+            "id": "logo",
+            "file": "resources/images/UI/LogodeHDefense.png"
         }
 
     ],
