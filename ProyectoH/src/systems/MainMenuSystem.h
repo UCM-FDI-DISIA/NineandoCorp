@@ -22,5 +22,6 @@ private:
 	void funcionPrueba(Transform* tr);
 	void loadLevelSelector();
 	void startLevel();
+	void pause();
 };
 

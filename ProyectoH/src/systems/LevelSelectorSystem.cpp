@@ -26,12 +26,12 @@ void LevelSelectorSystem::initSystem()
 	//close button
 	pAux = pAux + Vector2D(430.0f, -230.0f);
 	sAux = { 70.0f, 70.0f };
-	backButtonEntity = addButton(pAux, sAux, gameTextures::close, gameTextures::close_hover, ButtonTypes::backButton);
+	backButtonEntity = addButton(pAux, sAux, gameTextures::close, gameTextures::close_hover, ButtonTypes::back_selector);
 
 	//play button
 	pAux = { sdlutils().width() / 2.0f, sdlutils().height() / 2.0f };
 	sAux = { 350, 110 };
-	playButtonEntity = addButton(pAux, sAux, gameTextures::play, gameTextures::play_hover, ButtonTypes::playButtonMenu);
+	playButtonEntity = addButton(pAux, sAux, gameTextures::play, gameTextures::play_hover, ButtonTypes::start_game);
 	
 }
 
@@ -82,10 +82,10 @@ void LevelSelectorSystem::callFunction(ButtonTypes type, ButtonComponent* bC) {
 	// Incluye la id del button para incluir 
 	switch (type)
 	{
-	case backButton:
+	case back_selector:
 		backToMainMenu();
 		break;
-	case playButtonMenu:
+	case start_game:
 		startGame();
 		break;
 	default:

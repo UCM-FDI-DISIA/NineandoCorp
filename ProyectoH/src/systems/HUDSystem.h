@@ -13,13 +13,5 @@ public:
 	void receive(const Message& m) override;
 	void initSystem() override;
 	void update() override;
-
-private:
-	//Ejecuta la funcion correspondiente a cada boton
-	void callFunction(ButtonTypes type, ButtonComponent* en);
-	void funcionPrueba(Transform* tr);
-	void loadLevelSelector();
-	void startLevel();
-	void backToMainMenu(); 
 };
 

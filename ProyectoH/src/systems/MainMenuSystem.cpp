@@ -14,7 +14,7 @@ void MainMenuSystem::initSystem() {
 	//play button
 	Vector2D pAux(sdlutils().width() / 2, (sdlutils().height() / 2) + 150);
 	Vector2D sAux(350, 110);
-	addButton(pAux, sAux , gameTextures::play, gameTextures::play_hover, ButtonTypes::playButtonMenu);
+	addButton(pAux, sAux , gameTextures::play, gameTextures::play_hover, ButtonTypes::selector_main);
 	//-------//
 	pAux = { 200,  sdlutils().height() / 2.0f };
 	sAux = { sdlutils().height() - 100.0f , 400};
@@ -23,7 +23,11 @@ void MainMenuSystem::initSystem() {
 	pAux = { sdlutils().width() - 200.0f,  sdlutils().height() / 2.0f };
 	sAux = { sdlutils().height() - 100.0f , 400};
 	addImage(pAux, sAux, 90.0, gameTextures::box, _grp_HUD_BACKGROUND);
-
+	
+	//tower button
+	pAux = { sdlutils().width() - 200.0f , sdlutils().height() / 2.0f - 330 };
+	sAux = { 350.0f, 70.0f };
+	addButton(pAux, sAux, play, play_hover, ButtonTypes::bullet_menu);
 }
 
 void MainMenuSystem::receive(const Message& m) {
@@ -73,11 +77,9 @@ void MainMenuSystem::callFunction(ButtonTypes type, ButtonComponent* bC) {
 	// Incluye la id del button para incluir 
 	switch (type)
 	{
-	case pruebaButton:
-		break;
-	case playButtonMenu:
+	case selector_main:
 		loadLevelSelector();
-		bC->setActive(false);
+		pause();
 		break;
 	default:
 		break;
@@ -125,4 +127,10 @@ void MainMenuSystem::addImage(Vector2D pos, Vector2D scale, double rot, gameText
 	tr->setPosition(pos - aux / 2); 
 	tr->setRotation(rot);
 	mngr_->addComponent<RenderComponent>(img, t);
+}
+
+void MainMenuSystem::pause() {
+	for (auto but : mngr_->getHandler(_hdlr_BUTTON)) {
+		mngr_->getComponent<ButtonComponent>(but)->setActive(false);
+	}
 }

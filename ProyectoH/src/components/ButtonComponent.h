@@ -4,10 +4,27 @@
 #include "../components/RenderComponent.h"
 
 enum ButtonTypes {
-
-	pruebaButton, backButton, playButtonMenu ,upgradeNexus, upgradeGlassTower,
-	upgradeSlimeTower, upgradeBulletTower, upgradeSniperTower, upgradeFenixTower,
-	upgradeClayTower, upgradeEnhancerTower, none
+	//Others
+	pruebaButton, 
+	//MainMenu
+	selector_main, 
+	//Level Selector
+	start_game, back_selector,
+	//Tower_menu
+	glass_menu,
+	slime_menu,
+	bullet_menu,
+	sniper_menu,
+	fenix_menu,
+	clay_menu,
+	enhancer_menu,
+	//Upgrades 
+	upgradeNexus, upgradeGlassTower,
+	upgradeSlimeTower, upgradeBulletTower, 
+	upgradeSniperTower, upgradeFenixTower,
+	upgradeClayTower, upgradeEnhancerTower,
+	
+	none
 };
 
 class ButtonComponent : public Component
