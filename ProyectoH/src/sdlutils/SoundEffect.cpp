@@ -2,4 +2,5 @@
 
 #include "SoundEffect.h"
 
+// cleon: cuidado con esto...
 int SoundEffect::channels_ = 0;

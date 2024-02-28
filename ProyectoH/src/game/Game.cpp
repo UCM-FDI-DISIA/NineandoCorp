@@ -20,6 +20,7 @@ void Game::run() {
 		currentTime = SDL_GetPerformanceCounter();
 		deltaTime = (double)((currentTime - startTime) / (double)SDL_GetPerformanceFrequency());
 
+		// cleon: cuidado, falta el delta
 		gameStateMachine->update();
 
 		// Allows to exit if the window is closed in any moment

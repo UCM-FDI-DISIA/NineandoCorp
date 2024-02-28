@@ -40,6 +40,11 @@ RenderSystem::RenderSystem() :
 	textures[large_box] = &sdlutils().images().at("large_box");
 	textures[close] = &sdlutils().images().at("close");
 	textures[close_hover] = &sdlutils().images().at("close_hover");
+	textures[enemies_button] = &sdlutils().images().at("enemies");
+	textures[enemies_button_hover] = &sdlutils().images().at("enemies_hover");
+	textures[menu_background] = &sdlutils().images().at("menu_background");
+	textures[upgrade] = &sdlutils().images().at("upgrade");
+	textures[upgrade_hover] = &sdlutils().images().at("upgrade_hover");
 }
 
 

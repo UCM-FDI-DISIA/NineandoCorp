@@ -36,7 +36,7 @@ public:
 	// Executes the game
 	void run();
 	// Returns game time between updates
-	inline double getDeltaTime() { return deltaTime; }
+	inline double getDeltaTime() const { return deltaTime; }
 
 	// Launches a new GameState on top of the current one
 	template <typename T, typename ...Ts>

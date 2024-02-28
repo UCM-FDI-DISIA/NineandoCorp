@@ -37,11 +37,6 @@ void LevelSelectorSystem::initSystem()
 
 void LevelSelectorSystem::receive(const Message& m)
 {
-	switch (m.id)
-	{
-	default:
-		break;
-	}
 }
 
 void LevelSelectorSystem::update() {

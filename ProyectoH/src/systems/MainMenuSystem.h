@@ -16,12 +16,15 @@ public:
 	void receive(const Message& m) override;
 	void update() override ;
 private: 
-	void addButton(Vector2D pos, Vector2D scale, gameTextures tex, gameTextures hov, ButtonTypes type);
-	void addImage(Vector2D pos, Vector2D(scale), double rot, gameTextures t, grpId_type grpId);
+	void addButton(const Vector2D& pos, const Vector2D& scale, gameTextures tex, gameTextures hov, ButtonTypes type);
+	//void addImage(const Vector2D &pos, Vector2D(scale), double rot, gameTextures t, grpId_type grpId);
+
+	void addImage(const Vector2D& pos, const Vector2D & scale, const double rot, gameTextures t, grpId_type grpId);
 	void callFunction(ButtonTypes type, ButtonComponent* en);
 	void funcionPrueba(Transform* tr);
 	void loadLevelSelector();
 	void startLevel();
 	void pause();
+	void upgradeNexus();
 };
 

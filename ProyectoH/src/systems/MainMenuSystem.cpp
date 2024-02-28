@@ -11,42 +11,41 @@ MainMenuSystem::~MainMenuSystem() {
 }
 
 void MainMenuSystem::initSystem() {
+
+	// cleon: creais mucho reuido con las variables locales.
+	// al menos, redefinid cada una por pseparado (no reutiliceis "pAux")
+	// 
 	//play button
-	Vector2D pAux(sdlutils().width() / 2, (sdlutils().height() / 2) + 150);
-	Vector2D sAux(350, 110);
-	addButton(pAux, sAux , gameTextures::play, gameTextures::play_hover, ButtonTypes::selector_main);
+	addButton({ sdlutils().width() / 2.0f, (sdlutils().height() / 2.0f) + 150 },
+		{ 350, 110 } , 
+		gameTextures::play, gameTextures::play_hover, ButtonTypes::selector_main);
 
 	//Fondo
-	pAux = { sdlutils().width() / 2.0f, (sdlutils().height() / 2.0f)  };
-	sAux = { 1200 , 900 };
-	addImage(pAux, sAux, 0.0, gameTextures::box, _grp_HUD_BACKGROUND);
+	addImage({ sdlutils().width() / 2.0f, (sdlutils().height() / 2.0f) },
+		{ 1200 , 900 }, 
+		0.0, gameTextures::menu_background, _grp_HUD_BACKGROUND);
 
 	//-------//
-	pAux = { 200,  sdlutils().height() / 2.0f };
-	sAux = { sdlutils().height() - 100.0f , 400};
-	addImage(pAux, sAux, 90.0, gameTextures::box, _grp_HUD_BACKGROUND);
+	addImage({ 200,  sdlutils().height() / 2.0f }, 
+		{ sdlutils().height() - 100.0f , 400 },
+		90.0, gameTextures::box, _grp_HUD_BACKGROUND);
 	//-------//
-	pAux = { sdlutils().width() - 200.0f,  sdlutils().height() / 2.0f };
-	sAux = { sdlutils().height() - 100.0f , 400};
-	addImage(pAux, sAux, 90.0, gameTextures::box, _grp_HUD_BACKGROUND);
+	addImage({ sdlutils().width() - 200.0f,  sdlutils().height() / 2.0f },
+		{ sdlutils().height() - 100.0f , 400 },
+		90.0, gameTextures::box, _grp_HUD_BACKGROUND);
 	
 	//tower button
-	pAux = { sdlutils().width() - 200.0f , sdlutils().height() / 2.0f - 330 };
-	sAux = { 350.0f, 70.0f };
-	addButton(pAux, sAux, play, play_hover, ButtonTypes::bullet_menu);
+	addButton({ sdlutils().width() - 200.0f , sdlutils().height() / 2.0f - 330 },
+		{ 320.0f, 70.0f },
+		play, play_hover, ButtonTypes::bullet_menu);
 
-	//nexus button
-	pAux = { 200.0f , sdlutils().height() / 2.0f - 330 };
-	sAux = { 350.0f, 70.0f };
-	addButton(pAux, sAux, play, play_hover, ButtonTypes::bullet_menu);
+	//nexus upgrade button
+	addButton({ 200.0f , sdlutils().height() / 2.0f + 200.0f },
+		{ 250.0f, 70.0f },
+		gameTextures::upgrade, gameTextures::upgrade_hover, ButtonTypes::upgrade_nexus);
 }
 
 void MainMenuSystem::receive(const Message& m) {
-	switch (m.id)
-	{
-		default:
-			break;
-	}
 }
 
 void MainMenuSystem::update() {
@@ -92,6 +91,8 @@ void MainMenuSystem::callFunction(ButtonTypes type, ButtonComponent* bC) {
 		loadLevelSelector();
 		pause();
 		break;
+	case upgrade_nexus:
+		break;
 	default:
 		break;
 	}
@@ -113,8 +114,13 @@ void MainMenuSystem::startLevel() {
 	mngr_->send(m);
 }
 
+void MainMenuSystem::upgradeNexus(){
+	Message m;
+	// id = upgradeTower
+	// mngr_->send(m);
+}
 
-void MainMenuSystem::addButton(Vector2D pos, Vector2D scale, gameTextures tex, gameTextures hov, ButtonTypes type) {
+void MainMenuSystem::addButton(const Vector2D& pos, const Vector2D& scale, gameTextures tex, gameTextures hov, ButtonTypes type) {
 	Entity* b = mngr_->addEntity(_grp_HUD_FOREGROUND);
 	mngr_->setHandler(_hdlr_BUTTON, b);
 
@@ -130,7 +136,7 @@ void MainMenuSystem::addButton(Vector2D pos, Vector2D scale, gameTextures tex, g
 	bC->setHover(hov);
 }
 
-void MainMenuSystem::addImage(Vector2D pos, Vector2D scale, double rot, gameTextures t, grpId_type grpId) {
+void MainMenuSystem::addImage(const Vector2D& pos, const Vector2D& scale, const double rot, gameTextures t, grpId_type grpId) {
 	Entity* img = mngr_->addEntity(grpId);
 	Transform* tr = mngr_->addComponent<Transform>(img); 
 	tr->setScale(scale); 
@@ -145,3 +151,4 @@ void MainMenuSystem::pause() {
 		mngr_->getComponent<ButtonComponent>(but)->setActive(false);
 	}
 }
+

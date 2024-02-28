@@ -18,12 +18,14 @@ enum ButtonTypes {
 	fenix_menu,
 	clay_menu,
 	enhancer_menu,
-	//Upgrades 
-	upgradeNexus, upgradeGlassTower,
-	upgradeSlimeTower, upgradeBulletTower, 
-	upgradeSniperTower, upgradeFenixTower,
-	upgradeClayTower, upgradeEnhancerTower,
-	/*upgradeNexus,*/
+
+	//Upgrades main menu
+	upgrade_nexus, 
+	
+	upgrade_glass_main,
+	upgrade_slime_main, upgrade_bullet_main, 
+	upgrade_sniper_main, upgrade_fenix_main,
+	upgrade_clay_main, upgrade_enhancer_main,
 
 	none
 };

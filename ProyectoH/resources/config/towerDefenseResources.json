@@ -188,6 +188,14 @@
         {
             "id": "menu_background",
             "file": "resources/images/UI/FondoMenu.png"
+        },
+        {
+            "id": "upgrade",
+            "file": "resources/images/UI/upgrade_button.png"
+        },
+        {
+            "id": "upgrade_hover",
+            "file": "resources/images/UI/upgrade_button_hover.png"
         }
 
     ],
