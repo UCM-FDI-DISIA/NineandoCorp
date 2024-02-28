@@ -1,10 +1,7 @@
 #include "MovementComponent.h"
 void
-MovementComponent::Move() {
-	if (!stop_) {
-		transform_->translate();
-	}
-	
+MovementComponent::update() {
+	transform_->translate();
 }
 void
 MovementComponent::MoveTo(Vector2D destino) {
@@ -17,8 +14,4 @@ MovementComponent::initComponent() {
 void
 MovementComponent::rotate(float rotation) {
 	transform_->setRotation(rotation);
-}
-void
-MovementComponent::setStop(bool stop) {
-	stop_ = stop;
 }

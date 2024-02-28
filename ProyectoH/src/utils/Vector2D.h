@@ -147,10 +147,6 @@ public:
 
 	}
 
-	inline bool operator<=(float e) {
-		return (abs(x_) <= e && abs(y_) <= e);
-
-	}
 private:
 	float x_;  // first coordinate
 	float y_;  // second coordinate
