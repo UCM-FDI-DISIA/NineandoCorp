@@ -216,4 +216,5 @@ msgId_type id;
 	} multiplayer_start_data;
 
 };
+
 #endif // !ECS_H_

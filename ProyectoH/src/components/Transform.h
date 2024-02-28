@@ -75,5 +75,4 @@ public:
 	// Updates position based on velocity and deltaTime
 	void translate();
 };
-
 #endif

@@ -18,6 +18,7 @@ public:
 	void onRoundOver();
 	void onRoundStart();
 	void collideswithEnemy();
+
 protected:
 
 	std::vector<Transform*> enemiesTransforms;
