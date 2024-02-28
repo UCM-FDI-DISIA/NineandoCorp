@@ -31,7 +31,6 @@ void  EnemySystem::receive(const Message& m) {
 void EnemySystem::onRoundStart() {
 	const auto& enemies = mngr_->getHandler(_hdlr_ENEMIES);
 
-	// todavia no usamos el array de transforms
 	for (auto& t : enemies) {
 		enemiesTransforms.push_back(mngr_->getComponent<Transform>(t));
 	}

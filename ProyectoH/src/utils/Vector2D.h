@@ -144,9 +144,11 @@ public:
 
 	inline bool operator==(const Vector2D& v) {
 		return (v.getX() == x_ && v.getY() == y_);
-
 	}
 
+	inline bool operator<=(float e) {
+		return (abs(x_) <= e && abs(y_) <= e);
+	}
 private:
 	float x_;  // first coordinate
 	float y_;  // second coordinate

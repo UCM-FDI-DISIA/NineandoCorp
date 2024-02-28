@@ -4,6 +4,7 @@
 #include "..//ecs/Component.h"
 class MovementComponent:public Component
 {
+
 public:
 	static const cmpId id = cmpId::_MOVEMENT;
 
