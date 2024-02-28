@@ -14,39 +14,82 @@ void MainMenuSystem::initSystem() {
 
 	// cleon: creais mucho reuido con las variables locales.
 	// al menos, redefinid cada una por pseparado (no reutiliceis "pAux")
-	// 
-	//play button
-	addButton({ sdlutils().width() / 2.0f, (sdlutils().height() / 2.0f) + 150 },
-		{ 350, 110 } , 
-		gameTextures::play, gameTextures::play_hover, ButtonTypes::selector_main);
 
-	//Fondo
+	// BACKGROUND
 	addImage({ sdlutils().width() / 2.0f, (sdlutils().height() / 2.0f) },
 		{ 1200 , 900 }, 
 		0.0, gameTextures::box, _grp_HUD_BACKGROUND);
 
-	//Logo
-	addImage({ sdlutils().width() / 2.0f, (sdlutils().height() / 2.0f)  - 150},
-		{ 426 , 318 },
+	// LOGO
+	addImage({ sdlutils().width() / 2.0f, (sdlutils().height() / 2.0f)  - 250},
+		{ 213 , 159 },
 		0.0, gameTextures::logo, _grp_HUD_BACKGROUND);
-	//-------//
+
+	// LEFT COLUMN
 	addImage({ 200,  sdlutils().height() / 2.0f }, 
 		{ sdlutils().height() - 100.0f , 400 },
 		90.0, gameTextures::box, _grp_HUD_BACKGROUND);
-	//-------//
+	// RIGHT COLUMN
 	addImage({ sdlutils().width() - 200.0f,  sdlutils().height() / 2.0f },
 		{ sdlutils().height() - 100.0f , 400 },
 		90.0, gameTextures::box, _grp_HUD_BACKGROUND);
-	
-	//tower button
-	addButton({ sdlutils().width() - 200.0f , sdlutils().height() / 2.0f - 330 },
-		{ 320.0f, 70.0f },
-		play, play_hover, ButtonTypes::bullet_menu);
 
-	//nexus upgrade button
+	//-------------------------------------------//
+
+	// ENEMIES BUTTON
+	addButton({ sdlutils().width() / 2.0f, (sdlutils().height() / 2.0f) - 75 },
+		{ 350, 110 },
+		gameTextures::upgrade, gameTextures::upgrade_hover, ButtonTypes::upgrade_nexus);
+
+	// PLAY BUTTON
+	addButton({ sdlutils().width() / 2.0f, (sdlutils().height() / 2.0f) + 75},
+		{ 350, 110 },
+		gameTextures::play, gameTextures::play_hover, ButtonTypes::selector_main);
+
+	// CONFIGURATION BUTTON
+	addButton({ sdlutils().width() / 2.0f, (sdlutils().height() / 2.0f) + 265},
+		{ 200, 200 },
+		gameTextures::close, gameTextures::close_hover, ButtonTypes::back_selector);
+
+	// NEXUS UPGRADE BUTTON
 	addButton({ 200.0f , sdlutils().height() / 2.0f + 200.0f },
 		{ 250.0f, 70.0f },
 		gameTextures::upgrade, gameTextures::upgrade_hover, ButtonTypes::upgrade_nexus);
+
+	// 1 TOWER BUTTON
+	addButton({ sdlutils().width() - 150.0f , (sdlutils().height() /8.0f) * 1 },
+		{ 200.0f, 70.0f },
+		upgrade, upgrade_hover, ButtonTypes::upgrade_nexus);
+
+	// 2 TOWER BUTTON
+	addButton({ sdlutils().width() - 150.0f , (sdlutils().height() / 8.0f) * 2 },
+		{ 200.0f, 70.0f },
+		upgrade, upgrade_hover, ButtonTypes::upgrade_nexus);
+
+	// 3 TOWER BUTTON
+	addButton({ sdlutils().width() - 150.0f , (sdlutils().height() / 8.0f) * 3 },
+		{ 200.0f, 70.0f },
+		upgrade, upgrade_hover, ButtonTypes::upgrade_nexus);
+
+	// 4 TOWER BUTTON
+	addButton({ sdlutils().width() - 150.0f , (sdlutils().height() / 8.0f) * 4 },
+		{ 200.0f, 70.0f },
+		upgrade, upgrade_hover, ButtonTypes::upgrade_nexus);
+
+	// 5 TOWER BUTTON
+	addButton({ sdlutils().width() - 150.0f , (sdlutils().height() / 8.0f) * 5 },
+		{ 200.0f, 70.0f },
+		upgrade, upgrade_hover, ButtonTypes::upgrade_nexus);
+
+	// 6 TOWER BUTTON
+	addButton({ sdlutils().width() - 150.0f , (sdlutils().height() / 8.0f) * 6 },
+		{ 200.0f, 70.0f },
+		upgrade, upgrade_hover, ButtonTypes::upgrade_nexus);
+
+	// 7 TOWER BUTTON
+	addButton({ sdlutils().width() - 150.0f , (sdlutils().height() / 8.0f) * 7 },
+		{ 200.0f, 70.0f },
+		upgrade, upgrade_hover, ButtonTypes::upgrade_nexus);
 }
 
 void MainMenuSystem::receive(const Message& m) {
