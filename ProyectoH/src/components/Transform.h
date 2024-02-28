@@ -12,7 +12,7 @@ struct Transform : public Component
 private:
 	Vector2D* position;
 	float rotation;
-	float speed;
+	//float speed;
 	Vector2D* scale;
 	Vector2D* velocity;
 

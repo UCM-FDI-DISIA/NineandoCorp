@@ -48,5 +48,5 @@ void Transform::addRotation(float rot) { rotation += rot; };
 // Updates position based on velocity and deltaTime
 void Transform::translate() {
 	*velocity=velocity->normalize();
-	*position = *position + *velocity*speed;
+	*position = *position + *velocity*5/*speed*/;
 };

@@ -14,6 +14,7 @@ public:
 	void initComponent();
 	void Move();
 	void setStop(bool stop);
+	bool getStop() { return stop_; };
 private:
 	Transform* transform_;
 	bool stop_;

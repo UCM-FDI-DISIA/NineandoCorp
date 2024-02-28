@@ -13,13 +13,17 @@ RouteComponent::initComponent() {
 
 void
 RouteComponent::checkdestiny() {
-	if (*(transform_->getPosition())-route_[destiny_]<=epsilon) {
+	if ((*(transform_->getPosition())-route_[destiny_])<=epsilon) {
 		if (destiny_ >= route_.size()-1) {
 			transform_->setVelocity({ 0,0 });
 			mngr_->getComponent<MovementComponent>(ent_)->setStop(true);
 		}
-		destiny_++;
-		changevelocity(route_[destiny_]);
+		else {
+			destiny_++;
+			changevelocity(route_[destiny_]);
+			std::cout << "e";
+		}
+
 	}
 }
 
