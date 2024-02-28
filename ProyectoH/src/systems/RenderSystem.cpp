@@ -20,13 +20,13 @@ RenderSystem::RenderSystem() :
 	textures[tileSet] = &sdlutils().images().at("map");
 	textures[play] = &sdlutils().images().at("play");
 	textures[playHover] = &sdlutils().images().at("play_hover");
-	textures[bulletTowerTexture] = &sdlutils().images().at("Bullet_Tower");
+	textures[bulletTowerTexture] = &sdlutils().images().at("bullet_tower");
 	textures[cristalTowerTexture] = &sdlutils().images().at("cristal_tower");
-	textures[phoenixTowerTexture] = &sdlutils().images().at("Phoenix_Tower");
-	/*textures[slimeTowerTexture] = &sdlutils().images().at("Slime_Tower");*/
+	textures[phoenixTowerTexture] = &sdlutils().images().at("phoenix_tower");
+	textures[slimeTowerTexture] = &sdlutils().images().at("slime_tower");
 	textures[boosterTowerTexture] = &sdlutils().images().at("booster_tower");
-	/*textures[sniperTowerTexture] = &sdlutils().images().at("Sniper_Tower");
-	textures[clayTowerTexture] = &sdlutils().images().at("Clay_Tower");*/
+	textures[sniperTowerTexture] = &sdlutils().images().at("sniper_tower");
+	textures[clayTowerTexture] = &sdlutils().images().at("clay_tower");
 	cursorTexture = &sdlutils().images().at("cursor");
 	cursorTexture2 = &sdlutils().images().at("cursorpress");
 }
