@@ -46,7 +46,7 @@ void MainMenuSystem::initSystem() {
 		{ 350, 110 },
 		gameTextures::play, gameTextures::play_hover, ButtonTypes::selector_main);
 
-	// CONFIGURATION BUTTON
+	// CONFIGURATION BUTTON - CAMBIAR IMAGEN
 	addButton({ sdlutils().width() / 2.0f, (sdlutils().height() / 2.0f) + 265},
 		{ 200, 200 },
 		gameTextures::close, gameTextures::close_hover, ButtonTypes::back_selector);
@@ -61,35 +61,70 @@ void MainMenuSystem::initSystem() {
 		{ 200.0f, 70.0f },
 		upgrade, upgrade_hover, ButtonTypes::upgrade_nexus);
 
+	// 1 TOWER IMAGE - CAMBIAR IMAGEN
+	addImage({ sdlutils().width() - 310.0f , (sdlutils().height() / 8.0f) * 1 },
+		{ 70.0f, 70.0f },
+		0, gameTextures::box, _grp_HUD_BACKGROUND);
+
 	// 2 TOWER BUTTON
 	addButton({ sdlutils().width() - 150.0f , (sdlutils().height() / 8.0f) * 2 },
 		{ 200.0f, 70.0f },
 		upgrade, upgrade_hover, ButtonTypes::upgrade_nexus);
+
+	// 2 TOWER IMAGE - CAMBIAR IMAGEN
+	addImage({ sdlutils().width() - 310.0f , (sdlutils().height() / 8.0f) * 2 },
+		{ 70.0f, 70.0f },
+		0, gameTextures::box, _grp_HUD_BACKGROUND);
 
 	// 3 TOWER BUTTON
 	addButton({ sdlutils().width() - 150.0f , (sdlutils().height() / 8.0f) * 3 },
 		{ 200.0f, 70.0f },
 		upgrade, upgrade_hover, ButtonTypes::upgrade_nexus);
 
+	// 3 TOWER IMAGE - CAMBIAR IMAGEN
+	addImage({ sdlutils().width() - 310.0f , (sdlutils().height() / 8.0f) * 3 },
+		{ 70.0f, 70.0f },
+		0, gameTextures::box, _grp_HUD_BACKGROUND);
+
 	// 4 TOWER BUTTON
 	addButton({ sdlutils().width() - 150.0f , (sdlutils().height() / 8.0f) * 4 },
 		{ 200.0f, 70.0f },
 		upgrade, upgrade_hover, ButtonTypes::upgrade_nexus);
+
+	// 4 TOWER IMAGE - CAMBIAR IMAGEN
+	addImage({ sdlutils().width() - 310.0f , (sdlutils().height() / 8.0f) * 4 },
+		{ 70.0f, 70.0f },
+		0, gameTextures::box, _grp_HUD_BACKGROUND);
 
 	// 5 TOWER BUTTON
 	addButton({ sdlutils().width() - 150.0f , (sdlutils().height() / 8.0f) * 5 },
 		{ 200.0f, 70.0f },
 		upgrade, upgrade_hover, ButtonTypes::upgrade_nexus);
 
+	// 5 TOWER IMAGE - CAMBIAR IMAGEN
+	addImage({ sdlutils().width() - 310.0f , (sdlutils().height() / 8.0f) * 5 },
+		{ 70.0f, 70.0f },
+		0, gameTextures::box, _grp_HUD_BACKGROUND);
+
 	// 6 TOWER BUTTON
 	addButton({ sdlutils().width() - 150.0f , (sdlutils().height() / 8.0f) * 6 },
 		{ 200.0f, 70.0f },
 		upgrade, upgrade_hover, ButtonTypes::upgrade_nexus);
 
+	// 6 TOWER IMAGE - CAMBIAR IMAGEN
+	addImage({ sdlutils().width() - 310.0f , (sdlutils().height() / 8.0f) * 6 },
+		{ 70.0f, 70.0f },
+		0, gameTextures::box, _grp_HUD_BACKGROUND);
+
 	// 7 TOWER BUTTON
 	addButton({ sdlutils().width() - 150.0f , (sdlutils().height() / 8.0f) * 7 },
 		{ 200.0f, 70.0f },
 		upgrade, upgrade_hover, ButtonTypes::upgrade_nexus);
+
+	// 7 TOWER IMAGE - CAMBIAR IMAGEN
+	addImage({ sdlutils().width() - 310.0f , (sdlutils().height() / 8.0f) * 7 },
+		{ 70.0f, 70.0f },
+		0, gameTextures::box, _grp_HUD_BACKGROUND);
 }
 
 void MainMenuSystem::receive(const Message& m) {
