@@ -14,15 +14,16 @@ using uint8_t = unsigned char;
 
 using cmpId_type = int;
 enum cmpId : cmpId_type {
-	_TRANSFORM = 0, 
+	_TRANSFORM = 0,
 	_RENDER,
-	_FRAMEDIMAGE, 
+	_FRAMEDIMAGE,
 	_ATTACK,
-	_HEALTH, 
+	_HEALTH,
 	_BULLET,
 	_MOVEMENT,
 	_BUTTON,
 	_ROUTE,
+	_UPGRADETOWER,
 
 	// do not remove this
 	_LAST_CMP_ID

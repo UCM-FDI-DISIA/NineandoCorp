@@ -23,6 +23,8 @@ public:
 	void updateCurrentFrame();
 	// Returns texture Source Rect
 	SDL_Rect getSrcRect();
+
+	void setCurrentFrame(int newFrame) { currentFrame = newFrame; }
 };
 
 #endif

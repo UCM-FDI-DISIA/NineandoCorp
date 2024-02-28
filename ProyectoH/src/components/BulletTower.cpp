@@ -3,7 +3,7 @@
 
 
 BulletTower::BulletTower(float range, float reloadTime, int damage) 
-	: AttackComponent::AttackComponent(range, reloadTime, damage, true), isMaxLevel_(false){}
+	: AttackComponent::AttackComponent(range, reloadTime, damage, true), isMaxLevel_(false), secondTarget_(nullptr){}
 
 /*void BulletTower::update() {
 	AttackComponent::update();
@@ -48,6 +48,7 @@ void BulletTower::targetSecondEnemy(const std::list<Entity*>& targetGroup) {
 			if (enemy != target_ && distance < range_ && distance < closestEnemy) {
 				secondTarget_ = enemy;
 				closestEnemy = distance;
+				std::cout << "fglskdjg";
 			}
 		}
 	}

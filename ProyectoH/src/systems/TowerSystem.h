@@ -9,13 +9,14 @@
 #include "..//components/CrystalTower.h"
 #include "..//components/RenderComponent.h"
 #include "..//components/DiegoSniperTower.h"
+#include "../components/FramedImage.h"
+#include "../components/UpgradeTowerComponent.h"
 #include <list>
 #include <algorithm>
 
-enum TowerType{FENIX, BULLET, WALL, ENHANCER, DIEGO, SLIME, SHIELD};
 enum Height{HIGH, LOW};
 
-const float BULLET_SPEED = 200.0f, FENIX_SPEED = 100.0f, DIEGO_SPEED = 400.0f, SLIME_SPEED = 100.0f;
+const float BULLET_SPEED = 1000.0f, FENIX_SPEED = 100.0f, DIEGO_SPEED = 400.0f, SLIME_SPEED = 100.0f;
 
 class TowerSystem : public System
 {
@@ -30,12 +31,12 @@ public:
 	void onRoundOver();
 	void onRoundStart();
 	void onAttackTower(Entity* e, int dmg); //Hace daño a la torre mandada por mensaje
-	void addTower(TowerType type, Vector2D pos, Height height);
+	void addTower(twrId type, Vector2D pos, Height height);
 	
 	//bool collidesWithEnemy();//Devuelve true si una torre colisiona con un enemigo
 
 protected:
-	void shootBullet(Entity* target, float damage, float speed);
+	void shootBullet(Entity* target, float damage, float speed, Vector2D spawnPos);
 	void eliminateDestroyedTowers(Entity* t);
 	std::vector<Entity*> towers;
 	//std::vector<Entity*> lowTowers;

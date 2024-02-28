@@ -34,6 +34,8 @@ void TowerSystem::update() {
 	for (auto& t : towers) {
 		if(!mngr_->isAlive(t)){ eliminateDestroyedTowers(t); }//Eliminamos la torre de los arrays si esta muerta
 		else {
+			Transform* TR = mngr_->getComponent<Transform>(t);
+
 			AttackComponent* ac = mngr_->getComponent<AttackComponent>(t);
 			if (ac != nullptr) {
 				//std::cout << "Elapsed: " << timer_.currTime() << "\n";
@@ -44,7 +46,7 @@ void TowerSystem::update() {
 					ac->targetEnemy(mngr_->getHandler(_hdlr_ENEMIES));
 
 					if (ac->getTarget() != nullptr) {
-						shootBullet(ac->getTarget(), ac->getDamage(), BULLET_SPEED);
+						shootBullet(ac->getTarget(), ac->getDamage(), BULLET_SPEED, TR->getPosition());
 						ac->setTimeToShoot(ac->getTimeToShoot() + ac->getReloadTime());
 						ac->setLoaded(false);
 					}
@@ -52,11 +54,17 @@ void TowerSystem::update() {
 				}
 			}
 			BulletTower* bt = mngr_->getComponent<BulletTower>(t);
+			if (bt != nullptr) {
+				int lvl = mngr_->getComponent<UpgradeTowerComponent>(t)->getLevel();
+				mngr_->getComponent<FramedImage>(t)->setCurrentFrame(lvl);
+			}
+			
 			if (bt != nullptr && bt->isMaxLevel()) {
 				bt->setElapsedTime(timer_.currTime());
 				if (bt->getElapsedTime() > bt->getTimeToShoot()*1000) {
 					bt->targetSecondEnemy(mngr_->getHandler(_hdlr_ENEMIES));
-					if (bt->getTarget() != nullptr) { shootBullet(bt->getTarget(), bt->getDamage(), BULLET_SPEED);}
+					if (bt->getTarget() != nullptr) { shootBullet(bt->getTarget(), bt->getDamage(), BULLET_SPEED, TR->getPosition());}
+					std::cout << "s";
 				}
 			}
 			EnhancerTower* et = mngr_->getComponent<EnhancerTower>(t);
@@ -146,10 +154,11 @@ void TowerSystem::eliminateDestroyedTowers(Entity* t) {//elimina delk array las 
 	}
 }
 
-void TowerSystem::shootBullet(Entity* target, float damage, float speed) {
+void TowerSystem::shootBullet(Entity* target, float damage, float speed, Vector2D spawnPos) {
 	Entity* bullet = mngr_->addEntity(_grp_BULLETS);//crea bala
 	Transform* t = mngr_->addComponent<Transform>(bullet);//transform
-		t->setScale({ 100.0f, 100.0f });
+	t->setPosition(spawnPos);
+	t->setScale({ 40.0f, 40.0f });
 	Vector2D dir = *(mngr_->getComponent<Transform>(target)->getPosition()) - *(t->getPosition());
 	Vector2D norm = { 1, 0 };
 	float angle = atan2(dir.getY(), dir.getX());
@@ -158,10 +167,10 @@ void TowerSystem::shootBullet(Entity* target, float damage, float speed) {
 	mngr_->addComponent<RenderComponent>(bullet, bulletTexture);//habra que hacer switch
 }
 
-void TowerSystem::addTower(TowerType type, Vector2D pos, Height height) {
+void TowerSystem::addTower(twrId type, Vector2D pos, Height height) {
 	Entity* t = mngr_->addEntity(_grp_TOWERS_AND_ENEMIES);//Se añade al mngr
 	mngr_->addComponent<Transform>(t)->setPosition(pos);//transform
-	mngr_->addComponent<RenderComponent>(t, bulletTowerTexture);//render, hay que moverlo al switch
+	mngr_->addComponent<UpgradeTowerComponent>(t, type, 4);
 	float health = 100.0f;
 	if (height == LOW) { 
 		mngr_->addComponent<HealthComponent>(t, health); 
@@ -170,22 +179,28 @@ void TowerSystem::addTower(TowerType type, Vector2D pos, Height height) {
 	}
 	switch (type)
 	{
-	case FENIX:
+	case _twr_FENIX:
 		break;
-	case BULLET://Pasar rango, recarga, daño y si dispara
+	case _twr_BULLET://Pasar rango, recarga, daño y si dispara
 		mngr_->addComponent<BulletTower>(t, 1000.0f, 0.5f, 5.0f);
-		mngr_->getComponent<BulletTower>(t)->levelUp(4);
+		mngr_->addComponent<RenderComponent>(t, bulletTowerTexture);
+		mngr_->addComponent<FramedImage>(t, 4, 4, 37, 60, 0, 0);
+		mngr_->getComponent<UpgradeTowerComponent>(t)->LevelUp();
+		mngr_->getComponent<UpgradeTowerComponent>(t)->LevelUp();
+		mngr_->getComponent<UpgradeTowerComponent>(t)->LevelUp();
+		mngr_->getComponent<UpgradeTowerComponent>(t)->LevelUp();
+
 		break;
-	case WALL:
+	case _twr_DIRT:
 		break;
-	case ENHANCER://Pasar rango, porcentaje incremento de ataque y vida extra
+	case _twr_POWER://Pasar rango, porcentaje incremento de ataque y vida extra
 		mngr_->addComponent<EnhancerTower>(t, 100.0f, 5.0f, 0);
 		break;
-	case DIEGO:
+	case _twr_DIEGO:
 		break;
-	case SLIME:
+	case _twr_SLIME:
 		break;
-	case SHIELD:
+	case _twr_CRISTAL:
 		break;
 	default:
 		break;
