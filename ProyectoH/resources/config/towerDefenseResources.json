@@ -138,24 +138,24 @@
             "file": "resources/images/Enemies/Angel/angel1.png"
         },
         {
-            "id": "Bullet_Tower",
-            "file": "resources/images/towers/bullet_tower.png"
+          "id": "Bullet_Tower",
+          "file": "resources/images/Towers/bullet_tower.png"
         },
         {
-            "id": "Diego_Tower",
-            "file": "resources/images/towers/phoenix_tower.png"
+          "id": "Diego_Tower",
+          "file": "resources/images/Towers/phoenix_tower.png"
         },
         {
             "id": "Phoenix_Tower",
-            "file": "resources/images/towers/phoenix_tower.png"
+            "file": "resources/images/Towers/phoenix_tower.png"
         },
         {
             "id": "cristal_tower",
-            "file": "resources/images/towers/cristal_tower.png"
+            "file": "resources/images/Towers/cristal_tower.png"
         },
         {
             "id": "booster_tower",
-            "file": "resources/images/towers/booster_tower.png"
+            "file": "resources/images/Towers/booster_tower.png"
         },
         {
             "id": "play",
@@ -172,6 +172,10 @@
       {
         "id": "cursorpress",
         "file": "resources/images/pointer/finger_down.png"
+      },
+      {
+        "id": "Bullet",
+        "file":  "resources/images/Towers/bullet.png"
       }
 
     ],

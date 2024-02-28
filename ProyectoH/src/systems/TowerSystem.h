@@ -10,6 +10,7 @@
 #include "..//components/RenderComponent.h"
 #include "..//components/DiegoSniperTower.h"
 #include <list>
+#include <algorithm>
 
 enum TowerType{FENIX, BULLET, WALL, ENHANCER, DIEGO, SLIME, SHIELD};
 enum Height{HIGH, LOW};
@@ -28,6 +29,7 @@ public:
 	void update();
 	void onRoundOver();
 	void onRoundStart();
+	void onAttackTower(Entity* e, int dmg); //Hace daño a la torre mandada por mensaje
 	void addTower(TowerType type, Vector2D pos, Height height);
 	
 	//bool collidesWithEnemy();//Devuelve true si una torre colisiona con un enemigo

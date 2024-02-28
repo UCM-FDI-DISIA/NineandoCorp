@@ -21,6 +21,7 @@ RenderSystem::RenderSystem() :
 	textures[play] = &sdlutils().images().at("play");
 	textures[playHover] = &sdlutils().images().at("play_hover");
 	textures[bulletTowerTexture] = &sdlutils().images().at("Bullet_Tower");
+	textures[bulletTexture] = &sdlutils().images().at("Bullet");
 	textures[cristalTowerTexture] = &sdlutils().images().at("cristal_tower");
 	textures[phoenixTowerTexture] = &sdlutils().images().at("Phoenix_Tower");
 	/*textures[slimeTowerTexture] = &sdlutils().images().at("Slime_Tower");*/

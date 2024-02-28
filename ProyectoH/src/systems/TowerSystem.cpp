@@ -21,6 +21,8 @@ void TowerSystem::receive(const Message& m) {
 	case _m_ROUND_OVER:
 		onRoundOver();
 		break;
+	case _m_TOWER_TO_ATTACK:
+		onAttackTower(m.tower_to_attack.e, m.tower_to_attack.damage);
 	}
 }
 
@@ -171,7 +173,8 @@ void TowerSystem::addTower(TowerType type, Vector2D pos, Height height) {
 	case FENIX:
 		break;
 	case BULLET://Pasar rango, recarga, daño y si dispara
-		mngr_->addComponent<AttackComponent>(t, 1000.0f, 0.5f, 5.0f, true);
+		mngr_->addComponent<BulletTower>(t, 1000.0f, 0.5f, 5.0f);
+		mngr_->getComponent<BulletTower>(t)->levelUp(4);
 		break;
 	case WALL:
 		break;
@@ -196,4 +199,10 @@ void TowerSystem::onRoundStart() {
 
 void TowerSystem::onRoundOver() {
 	
+}
+
+void TowerSystem::onAttackTower(Entity* e, int dmg) {
+	std::list<Entity*> towers = mngr_->getHandler(_hdlr_LOW_TOWERS);
+	std::list<Entity*>::iterator findIter = std::find(towers.begin(), towers.end(), e);
+	mngr_->getComponent<HealthComponent>((*findIter))->subtractHealth(dmg);
 }
