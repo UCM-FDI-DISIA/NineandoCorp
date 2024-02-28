@@ -16,6 +16,11 @@ void MainMenuSystem::initSystem() {
 	Vector2D sAux(350, 110);
 	addButton(pAux, sAux , gameTextures::play, gameTextures::play_hover, ButtonTypes::selector_main);
 
+	//Fondo
+	pAux = { sdlutils().width() / 2.0f, (sdlutils().height() / 2.0f)  };
+	sAux = { 1200 , 900 };
+	addImage(pAux, sAux, 0.0, gameTextures::box, _grp_HUD_BACKGROUND);
+
 	//-------//
 	pAux = { 200,  sdlutils().height() / 2.0f };
 	sAux = { sdlutils().height() - 100.0f , 400};

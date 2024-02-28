@@ -176,6 +176,18 @@
         {
             "id": "close_hover",
             "file": "resources/images/UI/close_button_hover.png"
+        },
+        {
+            "id": "enemies",
+            "file": "resources/images/UI/enemies_button.png"
+        },
+        {
+            "id": "enemies_hover",
+            "file": "resources/images/UI/enemies_button_hover.png"
+        },
+        {
+            "id": "menu_background",
+            "file": "resources/images/UI/FondoMenu.png"
         }
 
     ],
