@@ -36,23 +36,23 @@ void TowerSystem::update() {
 		else {
 			Transform* TR = mngr_->getComponent<Transform>(t);
 
-			AttackComponent* ac = mngr_->getComponent<AttackComponent>(t);
-			if (ac != nullptr) {
-				//std::cout << "Elapsed: " << timer_.currTime() << "\n";
-				//std::cout << "TTS: " << ac->getTimeToShoot() << "\n";
-				ac->setElapsedTime(timer_.currTime());
-				if (ac->getElapsedTime() > ac->getTimeToShoot()*1000) {
-					ac->setLoaded(true);
-					ac->targetEnemy(mngr_->getHandler(_hdlr_ENEMIES));
+			//AttackComponent* ac = mngr_->getComponent<AttackComponent>(t);
+			//if (ac != nullptr) {
+			//	//std::cout << "Elapsed: " << timer_.currTime() << "\n";
+			//	//std::cout << "TTS: " << ac->getTimeToShoot() << "\n";
+			//	ac->setElapsedTime(timer_.currTime());
+			//	if (ac->getElapsedTime() > ac->getTimeToShoot()*1000) {
+			//		ac->setLoaded(true);
+			//		ac->targetEnemy(mngr_->getHandler(_hdlr_ENEMIES));
 
-					if (ac->getTarget() != nullptr) {
-						shootBullet(ac->getTarget(), ac->getDamage(), BULLET_SPEED, TR->getPosition());
-						ac->setTimeToShoot(ac->getTimeToShoot() + ac->getReloadTime());
-						ac->setLoaded(false);
-					}
-					
-				}
-			}
+			//		if (ac->getTarget() != nullptr) {
+			//			shootBullet(ac->getTarget(), ac->getDamage(), BULLET_SPEED, TR->getPosition());
+			//			ac->setTimeToShoot(ac->getTimeToShoot() + ac->getReloadTime());
+			//			ac->setLoaded(false);
+			//		}
+			//		
+			//	}
+			//}
 			BulletTower* bt = mngr_->getComponent<BulletTower>(t);
 			if (bt != nullptr) {
 				int lvl = mngr_->getComponent<UpgradeTowerComponent>(t)->getLevel();
@@ -185,7 +185,7 @@ void TowerSystem::addTower(twrId type, Vector2D pos, Height height) {
 	case _twr_FENIX:
 		break;
 	case _twr_BULLET://Pasar rango, recarga, daño y si dispara
-		mngr_->addComponent<BulletTower>(t, 1000.0f, 0.5f, 5.0f);
+		mngr_->addComponent<BulletTower>(t, 100.0f/*&sdlutils().floatConst().at("BalasRango")*/, 0.5f/*&sdlutils().floatConst().at("BalasRecarga")*/, 5/*&sdlutils().intConst().at("BalasDano")*/);
 		mngr_->addComponent<RenderComponent>(t, bulletTowerTexture);
 		mngr_->addComponent<FramedImage>(t, 4, 4, 37, 60, 0, 0);
 	/*	mngr_->getComponent<UpgradeTowerComponent>(t)->LevelUp();
@@ -197,7 +197,7 @@ void TowerSystem::addTower(twrId type, Vector2D pos, Height height) {
 	case _twr_DIRT:
 		break;
 	case _twr_POWER://Pasar rango, porcentaje incremento de ataque y vida extra
-		mngr_->addComponent<EnhancerTower>(t, 1000.0f, 5.0f, 0.0f);
+		mngr_->addComponent<EnhancerTower>(t, 100.0f/*&sdlutils().floatConst().at("PotenciadoraRango")*/, 0.05f/*&sdlutils().floatConst().at("PotenciadoraAumentoDano")*/, 30.0f/*&sdlutils().floatConst().at("PotenciadoraAumentoVida")*/);
 		mngr_->addComponent<RenderComponent>(t, boosterTowerTexture);
 		mngr_->addComponent<FramedImage>(t, 5, 1, 35, 54, 0, 0);
 		break;
@@ -206,6 +206,9 @@ void TowerSystem::addTower(twrId type, Vector2D pos, Height height) {
 	case _twr_SLIME:
 		break;
 	case _twr_CRISTAL:
+		mngr_->addComponent<CrystalTower>(t,20/* &sdlutils().intConst().at("CristalEscudo")*/, 20.0f/*&sdlutils().floatConst().at("CristalRecarga")*/, 0/*&sdlutils().intConst().at("CristalDano")*/);
+		mngr_->addComponent<RenderComponent>(t, cristalTowerTexture);
+		mngr_->addComponent<FramedImage>(t, 4, 1, 44, 65, 0, 0);
 		break;
 	default:
 		break;

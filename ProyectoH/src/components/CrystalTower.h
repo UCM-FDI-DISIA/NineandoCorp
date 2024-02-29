@@ -4,7 +4,7 @@
 class CrystalTower : public Component
 {
 public:
-	static const cmpId id = cmpId::_ATTACK;
+	static const cmpId id = cmpId::_CRISTALTOWER;
 	CrystalTower(int shieldVal, float timeToShield, int explosionDmg);
 	void levelUp(int level);
 

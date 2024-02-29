@@ -25,6 +25,7 @@ enum cmpId : cmpId_type {
 	_ROUTE,
 	_UPGRADETOWER,
 	_POWERTOWER,
+	_CRISTALTOWER,
 
 	// do not remove this
 	_LAST_CMP_ID

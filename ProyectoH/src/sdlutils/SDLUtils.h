@@ -157,6 +157,10 @@ public:
 	inline auto& rutes() {
 		return rutesAccessWrapper_;
 	}
+	// float constant map
+	inline auto& floatConst() {
+		return floatConstAccessWrapper_;
+	}
 
 // Access to the random number generator. It is important to always
 // use this generator, this way you can regenerate the same sequence

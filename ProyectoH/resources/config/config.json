@@ -33,15 +33,19 @@
             "value": 0.5
         },
         {
+            "id": "BalasRango",
+            "value": 100
+        },
+        {
             "id": "FenixDano",
             "value": 2.5
         },
         {
-            "id": "SlimeRecargaUpgrade", 
+            "id": "SlimeRecargaUpgrade",
             "value": 0.5
         },
         {
-            "id": "SlimeRalentizacion", 
+            "id": "SlimeRalentizacion",
             "value": 0.3
         },
         {
@@ -49,11 +53,11 @@
             "value": 0.5
         },
         {
-            "id": "DiegoSniperCritico1", 
+            "id": "DiegoSniperCritico1",
             "value": 0.2
         },
         {
-            "id": "DiegoSniperRecargaUpgrade1", 
+            "id": "DiegoSniperRecargaUpgrade1",
             "value": 0.5
         },
         {
@@ -64,17 +68,33 @@
             "id": "FenixEnfriamiento1",
             "value": 1.5
         },
-      {
-        "id": "PotenciadoraDano1",
-        "value": 0.1
-      },
         {
-            "id": "PotenciadoraDano2", 
+            "id": "PotenciadoraRango",
+            "value": 100
+        },
+        {
+            "id": "PotenciadoraAumentoDano",
+            "value": 0.05
+        },
+        {
+            "id": "PotenciadoraAumentoVida",
+            "value": 30
+        },
+        {
+            "id": "PotenciadoraDano1",
+            "value": 0.1
+        },
+        {
+            "id": "PotenciadoraDano2",
             "value": 0.15
         },
         {
             "id": "PotenciadoraDano3",
             "value": 0.2
+        },
+        {
+            "id": "CristalRecarga",
+            "value": 20
         }
     ],
 
@@ -91,13 +111,14 @@
             "id": "CristalPrecio",
             "value": 200
         },
-        {
-            "id": "CristalRecarga",
-            "value": 20
-        },
+        
         {
             "id": "CristalDano",
             "value": 0
+        },
+        {
+            "id": "CristalEscudo",
+            "value":  20
         },
         {
             "id": "CristalElevacion",
@@ -131,10 +152,7 @@
             "id": "BalasVida",
             "value": 25
         },
-        {
-            "id": "BalasRango",
-            "value": 100
-        },
+        
         {
             "id": "BalasPrecio",
             "value": 100
@@ -219,10 +237,7 @@
             "id": "PotenciadoraVida",
             "value": 75
         },
-        {
-            "id": "PotenciadoraRango",
-            "value": 100
-        },
+        
         {
             "id": "PotenciadoraPrecio",
             "value": 400
