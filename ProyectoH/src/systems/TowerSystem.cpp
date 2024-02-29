@@ -69,6 +69,8 @@ void TowerSystem::update() {
 			}
 			EnhancerTower* et = mngr_->getComponent<EnhancerTower>(t);
 			if (et != nullptr) {
+				int lvl = mngr_->getComponent<UpgradeTowerComponent>(t)->getLevel();
+				mngr_->getComponent<FramedImage>(t)->setCurrentFrame(lvl);
 				Vector2D myPos = mngr_->getComponent<Transform>(t)->getPosition();
 				for (size_t i = 0; i < towers.size(); i++)//miramos las torres de alarededor para potenciarlas
 				{
@@ -169,7 +171,8 @@ void TowerSystem::shootBullet(Entity* target, float damage, float speed, Vector2
 
 void TowerSystem::addTower(twrId type, Vector2D pos, Height height) {
 	Entity* t = mngr_->addEntity(_grp_TOWERS_AND_ENEMIES);//Se añade al mngr
-	mngr_->addComponent<Transform>(t)->setPosition(pos);//transform
+	Transform* tr = mngr_->addComponent<Transform>(t);//transform
+	tr->setPosition(pos);
 	mngr_->addComponent<UpgradeTowerComponent>(t, type, 4);
 	float health = 100.0f;
 	if (height == LOW) { 
@@ -185,16 +188,18 @@ void TowerSystem::addTower(twrId type, Vector2D pos, Height height) {
 		mngr_->addComponent<BulletTower>(t, 1000.0f, 0.5f, 5.0f);
 		mngr_->addComponent<RenderComponent>(t, bulletTowerTexture);
 		mngr_->addComponent<FramedImage>(t, 4, 4, 37, 60, 0, 0);
+	/*	mngr_->getComponent<UpgradeTowerComponent>(t)->LevelUp();
 		mngr_->getComponent<UpgradeTowerComponent>(t)->LevelUp();
 		mngr_->getComponent<UpgradeTowerComponent>(t)->LevelUp();
-		mngr_->getComponent<UpgradeTowerComponent>(t)->LevelUp();
-		mngr_->getComponent<UpgradeTowerComponent>(t)->LevelUp();
+		mngr_->getComponent<UpgradeTowerComponent>(t)->LevelUp();*/
 
 		break;
 	case _twr_DIRT:
 		break;
 	case _twr_POWER://Pasar rango, porcentaje incremento de ataque y vida extra
-		mngr_->addComponent<EnhancerTower>(t, 100.0f, 5.0f, 0);
+		mngr_->addComponent<EnhancerTower>(t, 1000.0f, 5.0f, 0.0f);
+		mngr_->addComponent<RenderComponent>(t, boosterTowerTexture);
+		mngr_->addComponent<FramedImage>(t, 5, 1, 35, 54, 0, 0);
 		break;
 	case _twr_DIEGO:
 		break;

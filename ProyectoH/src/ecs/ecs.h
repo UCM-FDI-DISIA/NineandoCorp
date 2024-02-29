@@ -24,6 +24,7 @@ enum cmpId : cmpId_type {
 	_BUTTON,
 	_ROUTE,
 	_UPGRADETOWER,
+	_POWERTOWER,
 
 	// do not remove this
 	_LAST_CMP_ID
