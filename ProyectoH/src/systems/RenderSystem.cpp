@@ -123,10 +123,14 @@ void RenderSystem::update() {
 	for (auto& t : towers) {
 		Transform* tr = mngr_->getComponent<Transform>(t);
 		gameTextures textureId = mngr_->getComponent<RenderComponent>(t)->getTexture();
+		SDL_Rect srcRect;
+		FramedImage* fi = mngr_->getComponent<FramedImage>(t);
+		if (fi != nullptr)srcRect = fi->getSrcRect();
 		SDL_Rect trRect = tr->getRect();
 		trRect.x += offset.x;
 		trRect.y += offset.y;
-		textures[textureId]->render(trRect, tr->getRotation());
+		if (fi != nullptr)textures[textureId]->render(srcRect, trRect, tr->getRotation());
+		else textures[textureId]->render(trRect, tr->getRotation());
 	}
 
 	// BULLETS
