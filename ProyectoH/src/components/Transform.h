@@ -12,6 +12,7 @@ struct Transform : public Component
 private:
 	Vector2D* position;
 	float rotation;
+	//float speed;
 	Vector2D* scale;
 	Vector2D* velocity;
 
@@ -75,5 +76,4 @@ public:
 	// Updates position based on velocity and deltaTime
 	void translate();
 };
-
 #endif
