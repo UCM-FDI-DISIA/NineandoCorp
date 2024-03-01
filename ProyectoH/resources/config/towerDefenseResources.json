@@ -79,11 +79,15 @@
     },
     {
       "id": "Defensor_Real_Attack",
-      "file": "resources/images/Enemies/Defensor Real/Attack1.png"
+      "file": "resources/images/Enemies/defensor_real/Attack2.png"
     },
     {
       "id": "Defensor_Real_Run",
-      "file": "resources/images/Enemies/Defensor Real/Run.png"
+      "file": "resources/images/Enemies/defensor_real/Run.png"
+    },
+    {
+      "id": "Defensor_Real_Death",
+      "file": "resources/images/Enemies/defensor_real/Death.png"
     },
     {
       "id": "Demonio_Alado_Attack",
@@ -132,6 +136,50 @@
     {
       "id": "Mensajero_de_la_muerte",
       "file": "resources/images/Enemies/Mensajero de la Muerte/Maestro de las AlmasSpritesheet.png"
+    },
+    {
+      "id": "Monje_Death",
+      "file": "resources/images/Enemies/monje/Death.png"
+    },
+    {
+      "id": "Monje_Run",
+      "file": "resources/images/Enemies/monje/Move.png"
+    },
+    {
+      "id": "Principito_Run",
+      "file": "resources/images/Enemies/principito/Run.png"
+    },
+    {
+      "id": "Principito_Attack",
+      "file": "resources/images/Enemies/principito/Attack.png"
+    },
+    {
+      "id": "Principito_Death",
+      "file": "resources/images/Enemies/principito/Death.png"
+    },
+    {
+      "id": "Principito_Idle",
+      "file": "resources/images/Enemies/principito/Idle.png"
+    },
+    {
+      "id": "Elfo_Run",
+      "file": "resources/images/Enemies/Elfo/Character/Run.png"
+    },
+    {
+      "id": "Elfo_Death",
+      "file": "resources/images/Enemies/Elfo/Character/Death.png"
+    },
+    {
+      "id": "Elfo_Attack",
+      "file": "resources/images/Enemies/Elfo/Character/Attack.png"
+    },
+    {
+      "id": "Flechas_Move",
+      "file": "resources/images/Enemies/Elfo/Arrow/Move.png"
+    },
+    {
+      "id": "Flechas_Static",
+      "file": "resources/images/Enemies/Elfo/Arrow/Static.png"
     },
     {
       "id": "square",
