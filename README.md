@@ -135,27 +135,52 @@ Estas zonas son:
 |Montaña| Son zonas más alejadas de los caminos. En ella solo se pueden poner torres de gran alcance o torres que ataque a enemigos aéreos|
 |Lagos|Estas zonas imposibilitan poner todo tipo de torres.|
 
+##### 4.3.3 Zonas del escenario
+Durante el transcurso de los niveles aparecerán una vez pasada x rondas un fenómeno meteorológico que modificará el escenario, antes de que ocurran dichos desastres se le avisará al jugador en pantalla cuantas rondas le quedan para que ocurra. Pueden  ser:
+- Tornados: estos reubicarán a los enemigos cambiandolos a otros caminos.
+- Terremoto: destruirán las torres de arcilla que se ubiquen en los caminos y baja la velocidad de los enemigos durante el periodo que dure el fenómeno meteorológico.
+- Tormenta: caerán rayos que paralicen las torretas y enemigos según donde caiga. Además, se desactivan las torres Fénix durante el periodo de tormenta impidiendo que lanzan fuego.
+- Meteoritos:  caerán meteoritos que destruye las torretas y enemigos haciendo daño en área según donde caiga, se potencia las torres Fénix, ya que absorben el calor de los meteoritos.
+- Tsunami: cuando este fenómeno meteorológico suceda, el tsunami limpiará el mapa de torres y enemigos. Además, crea nuevas zonas de agua dando menos opciones de zonas para poner torres.
+
 ### 4.4 Enemigos
 
 Encima de cada enemigo se muestra su barra de vida.
 Los enemigos se detendrán al encontrarse con una torre si es su objetivo, sin embargo los que tienen como objetivo el nexo no se detendrán.
 
-Nos encontraremos con los siguientes tipos de enemigos:
+Distancia de ataque:
+-Rango: Ataca en un radio de 5 casillas.
+-Melé: Ataca en un radio de 1 casilla.
+
+Tipo de tropa:
+-Terrestre: en este tipo de tropa distinguimos otras dos clases:
+	> Méle: estos seguirán el camino teniendo como objetivo ir hasta el nexo y destruirlo.
+	> Rango: estos otros se moverán también por el camino, pero su diferencia es que sus objetivos son el nexo y las torres que se encuentren por los caminos que estén en su rango de ataque y en las zonas de pradera pudiendo atacarlas.
+
+-Aéreas: las tropas aéreas son tropas que disparan a distancia. Además, siguen el camino hasta el nexo y su peculiaridad es que atacan a la torres de las zonas de pradera y montaña que estén en su rango de ataque. 
+
+-Jefes finales: encontraremos 4 jefes finales que se desbloquearán durante el paso de niveles. La aparición de los jefes viene dado por el número de rondas que hayas completado para el primer jefe 8 oleadas, para el segundo 16, el tercero 32 y el cuarto 64. Los jefes tendrán características básicas según el tipo de tropa que sea, podrán ser melé, de rango o aéreo. Además, de tener sus podrias estadísticas y habilidades especiales. 
+
+Nos encontraremos con los siguientes tipos de tropas:
+
 
 | ENEMIGO | FOTO | Habilidades | Estadísticas |
 | :---: | :---: | :---: | :---: |
-| **Maestro de las Almas**| ![MaestroAlmas](ProyectoH/resources/images/Enemies/maestro_de_almas.png) | Habilidad especial: <br/>Provoca ceguera a la torre que golpea<br/>(impide a la torre atacar durante un tiempo específico). | <ul><li>Tipo de tropa: Terrestre<li>Vida: 200<li>Daño: 10 <li>Tiempo de ataque: 1s<li> Tipo de ataque: cercano <li>Velocidad: 3<li>Objetivo: torres<ul/>
-| **Acechante Eléctrico** | ![AcechanteElectrico](ProyectoH/resources/images/Enemies/acechante_electrico.png) | Habilidad especial: En un tiempo específico la tropa ejecuta una descarga que potencia la velocidad de los aliados cercanos(Se queda quieto para hacerlo y luego sigue corriendo). Si golpea el escudo del nexo lo inhabilita. | <ul><li>Tipo de tropa: Terrestre<li>Vida: 150<li>Daño: 20 <li>Tiempo de ataque: 1s<li> Tipo de ataque: cercano <li>Velocidad: 7<li>Objetivo: nexo<ul/>
-| **Caballero Maldito**|  ![CaballeroMaldito](ProyectoH/resources/images/Enemies/caballero_maldito.png) | Habilidad especial: Al morir genera 10 malditos. | <ul><li>Tipo de tropa: Terrestre<li>Vida: 2000<li>Daño: 150 <li>Tiempo de ataque: 3s<li> Tipo de ataque: cercano <li>Velocidad: 1<li>Objetivo: nexo<ul/>
-| **Maldito** | ![CaballeroMaldito](ProyectoH/resources/images/Enemies/caballero_maldito.png) | Ninguna | <ul><li>Tipo de tropa: Terrestre<li>Vida: 100<li>Daño: 10 <li>Tiempo de ataque: 1s<li> Tipo de ataque: cercano <li>Velocidad: 3<li>Objetivo: torres<ul/>
-| **Golem** | ![Golem](ProyectoH/resources/images/Enemies/golem.png) | Habilidad especial: Regenera 10  de vida por segundo. | <ul><li>Tipo de tropa: Terrestre<li>Vida: 2500<li>Daño: 60 <li>Tiempo de ataque: 3s<li> Tipo de ataque: cercano <li>Velocidad: 2<li>Objetivo: nexo<ul/>
-| **Demonio alado** | ![DemonioAlado](ProyectoH/resources/images/Enemies/demonio_alado.png) | Ninguna | <ul><li>Tipo de tropa: Aérea<li>Vida: 25<li>Daño: 5 <li>Tiempo de ataque: 1s<li> Tipo de ataque: muy cercano <li>Velocidad: 4<li>Objetivo: torres<ul/>
-| **Goblin** | ![Goblin](ProyectoH/resources/images/Enemies/goblin.png) | Ninguna | <ul><li>Tipo de tropa: Terrestre<li>Vida: 40<li>Daño: 15 <li>Tiempo de ataque: 1s<li> Tipo de ataque: cercano <li>Velocidad: 6<li>Objetivo: nexo<ul/>
-| **Esqueleto** | ![Esqueleto](ProyectoH/resources/images/Enemies/esqueleto.png) | Ninguna | <ul><li>Tipo de tropa: Terrestre<li>Vida: 100<li>Daño: 10 <li>Tiempo de ataque: 2s<li> Tipo de ataque: cercano <li>Velocidad: 2<li>Objetivo: torres<ul/>
-| **Mensajero de la Muerte** | ![MensajeroDeLaMuerte](ProyectoH/resources/images/Enemies/mensajero.png) | Habilidad especial: Se desplaza en forma fantasmal siendo invisible a las torres, cuando llega a una torre aparece y la golpea. El muro y el nexo también lo hacen aparecer | <ul><li>Tipo de tropa: Terrestre<li>Vida: 100<li>Daño: 15 <li>Tiempo de ataque: 1s<li> Tipo de ataque: cercano <li>Velocidad: 3<li>Objetivo: torres<ul/>
-| **Angel** | ![Angel](ProyectoH/resources/images/Enemies/angel.png) | En un área alrededor de ella cura a sus aliados 1% de vida por segundo. No ataca, cuando llega al nexo se desvanece. | <ul><li>Tipo de tropa: Aérea<li>Vida: 400<li>Daño: 0 <li>Tiempo de ataque: <li> Tipo de ataque: cercano <li>Velocidad: 3<li>Objetivo: nexo<ul/>
-| **Demonio Infernal**| ![DemonioInfernal](ProyectoH/resources/images/Enemies/demonio_infernal.png) | Ninguna | <ul><li>Tipo de tropa: Aérea<li>Vida: 1500<li>Daño: 40 <li>Tiempo de ataque: 2s <li> Tipo de ataque: cercano <li>Velocidad: 3<li>Objetivo: nexo<ul/>
-| **Defensor Real** | ![DefensorReal](ProyectoH/resources/images/Enemies/defensor_real.png) | Habilidad especial: al morir invoca un campo de fuerza que se queda donde a muerto de forma que no se puede dañar a los enemigos en su interior durante 5 segundos | <ul><li>Tipo de tropa: Terrestre<li>Vida: 200<li>Daño: 10 <li>Tiempo de ataque: 1s <li> Tipo de ataque: cercano <li>Velocidad: 3<li>Objetivo: torres<ul/>
+| **Maestro de las Almas**| ![MaestroAlmas](ProyectoH/resources/images/Enemies/maestro_de_almas.png) | Habilidad especial: <br/>Provoca ceguera a la torre que golpea<br/>(impide a la torre atacar durante un tiempo específico). | <ul><li>Tipo de tropa: terrestre de rango<li>Vida: 200<li>Daño: 10 <li>Tiempo de ataque: 1s<li> Tipo de ataque: cercano <li>Velocidad: 3<li>Objetivo: torres pradera / nexo<ul/>
+| **Acechante Eléctrico** | ![AcechanteElectrico](ProyectoH/resources/images/Enemies/acechante_electrico.png) | Habilidad especial: En un tiempo específico la tropa ejecuta una descarga que potencia la velocidad de los aliados cercanos(Se queda quieto para hacerlo y luego sigue corriendo). Si golpea el escudo del nexo lo inhabilita. | <ul><li>Tipo de tropa: terrestre melé<li>Vida: 150<li>Daño: 20 <li>Tiempo de ataque: 1s<li> Tipo de ataque: cercano <li>Velocidad: 7<li>Objetivo: nexo<ul/>
+| **Maldito** | ![CaballeroMaldito](ProyectoH/resources/images/Enemies/caballero_maldito.png) | Ninguna | <ul><li>Tipo de tropa: terrestre melé<li>Vida: 100<li>Daño: 10 <li>Tiempo de ataque: 1s<li> Tipo de ataque: cercano <li>Velocidad: 3<li>Objetivo: nexo<ul/>
+| **Golem** | ![Golem](ProyectoH/resources/images/Enemies/golem.png) | Habilidad especial: Regenera 10  de vida por segundo. | <ul><li>Tipo de tropa: terrestre melé<li>Vida: 2500<li>Daño: 60 <li>Tiempo de ataque: 3s<li> Tipo de ataque: cercano <li>Velocidad: 2<li>Objetivo: nexo<ul/>
+| **Demonio alado** | ![DemonioAlado](ProyectoH/resources/images/Enemies/demonio_alado.png) | Ninguna | <ul><li>Tipo de tropa: Aérea<li>Vida: 25<li>Daño: 5 <li>Tiempo de ataque: 1s<li> Tipo de ataque: muy cercano <li>Velocidad: 4<li>Objetivo: torres pradera y montaña / nexo<ul/>
+| **Goblin** | ![Goblin](ProyectoH/resources/images/Enemies/goblin.png) | Ninguna | <ul><li>Tipo de tropa: terrestre melé<li>Vida: 40<li>Daño: 15 <li>Tiempo de ataque: 1s<li> Tipo de ataque: cercano <li>Velocidad: 6<li>Objetivo: nexo<ul/>
+| **Elfo** | ![Elfo](ProyectoH/resources/images/Enemies/elfoo.png) | Ninguna | <ul><li>Tipo de tropa: terrestre de rango<li>Vida: 100<li>Daño: 10 <li>Tiempo de ataque: 2s<li> Tipo de ataque: cercano <li>Velocidad: 2<li>Objetivo: torres pradera / nexo<ul/>
+| **Mensajero de la Muerte** | ![MensajeroDeLaMuerte](ProyectoH/resources/images/Enemies/mensajero.png) | Habilidad especial: Se desplaza en forma fantasmal siendo invisible a las torres, cuando llega a una torre aparece y la golpea. El muro y el nexo también lo hacen aparecer | <ul><li>Tipo de tropa: Terrestre<li>Vida: 100<li>Daño: 15 <li>Tiempo de ataque: 1s<li> Tipo de ataque: cercano <li>Velocidad: 3<li>Objetivo: nexo<ul/>
+| **Angel** | ![Angel](ProyectoH/resources/images/Enemies/angel.png) | En un área alrededor de ella cura a sus aliados 1% de vida por segundo. No ataca, cuando llega al nexo se desvanece. | <ul><li>Tipo de tropa: Aérea<li>Vida: 400<li>Daño: 0 <li>Tiempo de ataque: <li> Tipo de ataque: cercano <li>Velocidad: 3<li>Objetivo: torres pradera y montaña / nexo<ul/>
+| **Demonio Infernal**| ![DemonioInfernal](ProyectoH/resources/images/Enemies/demonio_infernal.png) | Ninguna | <ul><li>Tipo de tropa: Aérea<li>Vida: 1500<li>Daño: 40 <li>Tiempo de ataque: 2s <li> Tipo de ataque: cercano <li>Velocidad: 3<li>Objetivo: torres pradera y montaña / nexo<ul/>
+| **Defensor Real** | ![DefensorReal](ProyectoH/resources/images/Enemies/defensor_real1.png) | Habilidad especial: al morir invoca un campo de fuerza que se queda donde a muerto de forma que no se puede dañar a los enemigos en su interior durante 5 segundos | <ul><li>Tipo de tropa: terrestre de rango<li>Vida: 200<li>Daño: 10 <li>Tiempo de ataque: 1s <li> Tipo de ataque: cercano <li>Velocidad: 3<li>Objetivo: torres pradera / nexo<ul/>
+| **Caballero Maldito**|  ![CaballeroMaldito](ProyectoH/resources/images/Enemies/caballero_maldito.png) | Habilidad especial: Al morir genera 10 malditos. | <ul><li>Tipo de tropa: jefe final melé<li>Vida: 2000<li>Daño: 150 <li>Tiempo de ataque: 3s<li> Tipo de ataque: cercano <li>Velocidad: 1<li>Objetivo: nexo<ul/>
+| **Principito**|  ![Principito](ProyectoH/resources/images/Enemies/boss2.png) | Habilidad especial: este jefe una vez que tiene como objetivo dispara disminuyendo el tiempo entre disparo hasta un límite. Este se reseteara cuando se destruya la torre. | <ul><li>Tipo de tropa: jefe final de rango<li>Vida: 2000<li>Daño: 150 <li>Tiempo de ataque: 3s<li> Tipo de ataque: cercano <li>Velocidad: 1<li>Objetivo: torres pradera / nexo<ul/>
+| **Monje**|  ![Monje](ProyectoH/resources/images/Enemies/boss3.png) | Habilidad especial: esta habilidad consiste en que una vez que lo active se parará y todo daño que está recibiendo lo va devolviendo, y por lo tanto no recibe daño. Sin embargo esta habilidad la activará cada x tiempo. | <ul><li>Tipo de tropa: jefe final melé-de rango<li>Vida: 2000<li>Daño: 150 <li>Tiempo de ataque: 3s<li> Tipo de ataque: cercano <li>Velocidad: 1<li>Objetivo: torres pradera / nexo<ul/>
+| **La Muerte**|  ![La Muerte](ProyectoH/resources/images/Enemies/boss4.png) | Habilidad especial: este enemigo aparte de tener su ataque normal que daña a torres, podrá lanzar pociones a las torres haciendo que estas se ataquen entre sí. | <ul><li>Tipo de tropa: jefe final aéreo<li>Vida: 2000<li>Daño: 150 <li>Tiempo de ataque: 3s<li> Tipo de ataque: cercano <li>Velocidad: 1<li>Objetivo: torres pradera y montaña / nexo<ul/>
 
 ### 4.5 Torretas
 
@@ -163,8 +188,9 @@ Contamos con 2 tipos de torretas básicas (Torre de balas y Torre de arcilla ter
 
 Las torretas pueden estar en dos elevaciones diferentes:
 
-- ALTA: Si una torreta está en elevación alta, no pueden recibir daño de los enemigos, ni aéreos ni terrestres.
-- BAJA: Si una torreta está en elevación baja, pueden recibir daño de los enemigos que vengan por el camino.
+- ALTA: Si una torreta está en elevación alta, solo recibirá daño de enemigos aéreos.
+- BAJA: Si una torreta está en elevación baja, pueden recibir daño de los enemigos que vengan por el camino, excepto los melé..
+
 
 Nos encontramos con los siguientes tipos de torretas:
 
@@ -274,9 +300,9 @@ Por los caminos aparecerán los diferentes enemigos aumentando la dificultad con
 
 Para pasar de nivel, tendremos en cuenta las oleadas de enemigos que se van superando. En el nivel 1 el jugador deberá defenderse durante 10 oleadas. Al pasarlas, desbloqueará el nivel 2. En el nivel 2 habrá 20 oleadas, en el nivel 3, 30 oleadas y en el nivel 4, 40 oleadas. Al pasar cada nivel aparecerán enemigos más fuertes (sin mejorar stats) y con distintas habilidades.
 
-### 6.3 Modo infinito
+<!-- ### 6.3 Modo infinito
 
-En este modo el jugador juega hasta que se destruye el nexo. Los enemigos mejoran en 2% el daño y la vida que en los niveles normales, de forma que sea más rentable jugar los niveles y se incentiven.
+En este modo el jugador juega hasta que se destruye el nexo. Los enemigos mejoran en 2% el daño y la vida que en los niveles normales, de forma que sea más rentable jugar los niveles y se incentiven. -->
 
 ## 7. Dinámica
 
