@@ -4,6 +4,8 @@
 class NexusComponent : public Component
 {
 public:
+	static const cmpId id = cmpId::_NEXUS;
+
 	NexusComponent();
 	void activateShield();
 	void inactivateShield();

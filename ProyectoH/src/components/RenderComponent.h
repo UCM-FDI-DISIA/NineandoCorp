@@ -5,7 +5,7 @@
 // Correspondant texture to each type of entity
 enum gameTextures {
 	tileSet, bulletTexture, play, playHover,square, bulletTowerTexture, cristalTowerTexture, phoenixTowerTexture,
-	slimeTowerTexture, boosterTowerTexture, sniperTowerTexture, clayTowerTexture,gmTxtrSize
+	slimeTowerTexture, boosterTowerTexture, sniperTowerTexture, clayTowerTexture, nexusTexture, gmTxtrSize
 };
 class RenderComponent : public Component
 {

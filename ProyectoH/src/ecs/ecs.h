@@ -27,6 +27,7 @@ enum cmpId : cmpId_type {
 	_POWERTOWER,
 	_CRISTALTOWER,
 	_DIEGOTOWER,
+	_NEXUS,
 
 	// do not remove this
 	_LAST_CMP_ID
@@ -95,6 +96,7 @@ enum msgId : msgId_type {
 	_m_SHOOT,
 	_m_TOWERS_TO_ATTACK,
 	_m_ENTITY_TO_ATTACK,
+	_m_ATTACK_NEXUS,
 	_m_TOWER_TO_ATTACK,
 	_m_SHIELD_NEXUS,
 	_m_GAMEOVER,
@@ -178,6 +180,10 @@ msgId_type id;
 		int explosionDmg;
 		bool explodes;
 	}shield_data;
+	//_m_ATTACK_NEXUS
+	struct {
+		int damage;
+	}nexus_attack_data;
 	// _m_COLLISION_ASTEROIDBULLET
 	struct {
 		Entity* a;

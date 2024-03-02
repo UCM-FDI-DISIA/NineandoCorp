@@ -184,6 +184,10 @@
     {
       "id": "bullet",
       "file": "resources/images/Towers/bullet.png"
+    },
+    {
+      "id": "nexus_tower",
+      "file": "resources/images/Towers/nexus_tower.jpeg"
     }
 
   ],

@@ -6,7 +6,7 @@ PlayState::PlayState() : GameState(_gmStt_PLAY) {
 	mngr_->addSystem<RenderSystem>();
 	mngr_->addSystem<mapSystem>("../ProyectoH/resources/tileMap/nivelPrueba.tmx");
 	TowerSystem* ts = mngr_->addSystem<TowerSystem>();
-	ts->addTower(_twr_DIEGO, { 550.0f,550.0f }, LOW);
+	ts->addTower(_twr_CRISTAL, { 550.0f,550.0f }, LOW);
 	//ts->addTower(_twr_POWER, { 540.0f,550.0f }, LOW);
 	Entity* e2 = mngr_->addEntity(_grp_TOWERS_AND_ENEMIES);
 	Transform* t = mngr_->addComponent<Transform>(e2);
@@ -31,6 +31,10 @@ PlayState::PlayState() : GameState(_gmStt_PLAY) {
 	mngr_->setHandler(_hdlr_ENEMIES, e3);
 
 	//mngr_->addSystem<EnemySystem>();
+	mngr_->addSystem<MainControlSystem>();
+	Message m;
+	m.id = _m_ROUND_START;
+	mngr_->send(m);
 }
 
 void PlayState::update() {

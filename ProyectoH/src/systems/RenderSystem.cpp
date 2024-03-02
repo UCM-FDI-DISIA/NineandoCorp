@@ -28,6 +28,7 @@ RenderSystem::RenderSystem() :
 	textures[sniperTowerTexture] = &sdlutils().images().at("sniper_tower");
 	textures[clayTowerTexture] = &sdlutils().images().at("clay_tower");
 	textures[bulletTexture] = &sdlutils().images().at("bullet");
+	textures[nexusTexture] = &sdlutils().images().at("nexus_tower");
 	cursorTexture = &sdlutils().images().at("cursor");
 	cursorTexture2 = &sdlutils().images().at("cursorpress");
 }
