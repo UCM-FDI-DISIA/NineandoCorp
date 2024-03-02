@@ -30,35 +30,16 @@ void TowerSystem::receive(const Message& m) {
 void TowerSystem::update() {
 	const auto& bullets = mngr_->getEntities(_grp_BULLETS);
 	
-
+	
 	for (auto& t : towers) {
 		if(!mngr_->isAlive(t)){ eliminateDestroyedTowers(t); }//Eliminamos la torre de los arrays si esta muerta
 		else {
 			Transform* TR = mngr_->getComponent<Transform>(t);
-
-			//AttackComponent* ac = mngr_->getComponent<AttackComponent>(t);
-			//if (ac != nullptr) {
-			//	//std::cout << "Elapsed: " << timer_.currTime() << "\n";
-			//	//std::cout << "TTS: " << ac->getTimeToShoot() << "\n";
-			//	ac->setElapsedTime(timer_.currTime());
-			//	if (ac->getElapsedTime() > ac->getTimeToShoot()*1000) {
-			//		ac->setLoaded(true);
-			//		ac->targetEnemy(mngr_->getHandler(_hdlr_ENEMIES));
-
-			//		if (ac->getTarget() != nullptr) {
-			//			shootBullet(ac->getTarget(), ac->getDamage(), BULLET_SPEED, TR->getPosition());
-			//			ac->setTimeToShoot(ac->getTimeToShoot() + ac->getReloadTime());
-			//			ac->setLoaded(false);
-			//		}
-			//		
-			//	}
-			//}
 			BulletTower* bt = mngr_->getComponent<BulletTower>(t);
 			if (bt != nullptr) {
 				int lvl = mngr_->getComponent<UpgradeTowerComponent>(t)->getLevel();
 				mngr_->getComponent<FramedImage>(t)->setCurrentFrame(lvl);
-			}
-			
+			}		
 			if (bt != nullptr && bt->isMaxLevel()) {
 				bt->setElapsedTime(timer_.currTime());
 				if (bt->getElapsedTime() > bt->getTimeToShoot()*1000) {
@@ -101,17 +82,29 @@ void TowerSystem::update() {
 				}
 			}
 
-			DiegoSniperTower* ds = mngr_->getComponent<DiegoSniperTower>(t);
-			if (ds != nullptr) {
-				ds->setElapsedTime(timer_.currTime());//Lo pasa a segundos
-				if (ds->getElapsedTime() > ds->getTimeToShoot()*1000) {
-					std::list<Entity*> enemies = mngr_->getHandler(_hdlr_ENEMIES);
-					/*for (const auto& enemy : enemies)
-					{
-						if (mngr_->getComponent<AttackComponent>(enemy));
-					}*/
-				}
-			}
+			//DiegoSniperTower* ds = mngr_->getComponent<DiegoSniperTower>(t);
+			//if (ds != nullptr) {
+			//	ds->setElapsedTime(timer_.currTime());//Lo pasa a segundos
+			//	if (ds->getElapsedTime() > ds->getTimeToShoot()*1000) {//si esta cargada busca enemigo con mas vida
+			//		float health = 0;
+			//		Entity* target = nullptr;
+			//		for (const auto& enemy : mngr_->getHandler(_hdlr_ENEMIES))
+			//		{	
+			//			if (mngr_->isAlive(enemy)) {
+			//				HealthComponent* h = mngr_->getComponent<HealthComponent>(enemy);
+			//				if (h != nullptr && h->getHealth() > health) {//se guarda la referencia al enemigo con mas vida
+			//					target = enemy;
+			//					health = h->getHealth();
+			//				}
+			//			}					
+			//		}
+			//		if (target != nullptr) {//Dispara con el critico
+			//			std::cout << "shot";
+			//			shootBullet(target, ds->getDamage() * ds->getCritDamage(), DIEGO_SPEED, TR->getPosition());
+			//			ds->setTimeToShoot(ds->getTimeToShoot() + ds->getReloadTime());
+			//		}
+			//	}
+			//}
 		}	
 	}
 
@@ -171,6 +164,7 @@ void TowerSystem::shootBullet(Entity* target, float damage, float speed, Vector2
 
 void TowerSystem::addTower(twrId type, Vector2D pos, Height height) {
 	Entity* t = mngr_->addEntity(_grp_TOWERS_AND_ENEMIES);//Se añade al mngr
+	towers.push_back(t);
 	Transform* tr = mngr_->addComponent<Transform>(t);//transform
 	tr->setPosition(pos);
 	mngr_->addComponent<UpgradeTowerComponent>(t, type, 4);
@@ -202,6 +196,9 @@ void TowerSystem::addTower(twrId type, Vector2D pos, Height height) {
 		mngr_->addComponent<FramedImage>(t, 5, 1, 35, 54, 0, 0);
 		break;
 	case _twr_DIEGO:
+		mngr_->addComponent<DiegoSniperTower>(t, 1000.0f, 0, 1.0f, 3.0f, 50);
+		mngr_->addComponent<RenderComponent>(t, boosterTowerTexture);
+		mngr_->addComponent<FramedImage>(t, 5, 1, 35, 54, 0, 0);
 		break;
 	case _twr_SLIME:
 		break;
