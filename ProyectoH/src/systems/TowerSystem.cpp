@@ -82,29 +82,31 @@ void TowerSystem::update() {
 				}
 			}
 
-			//DiegoSniperTower* ds = mngr_->getComponent<DiegoSniperTower>(t);
-			//if (ds != nullptr) {
-			//	ds->setElapsedTime(timer_.currTime());//Lo pasa a segundos
-			//	if (ds->getElapsedTime() > ds->getTimeToShoot()*1000) {//si esta cargada busca enemigo con mas vida
-			//		float health = 0;
-			//		Entity* target = nullptr;
-			//		for (const auto& enemy : mngr_->getHandler(_hdlr_ENEMIES))
-			//		{	
-			//			if (mngr_->isAlive(enemy)) {
-			//				HealthComponent* h = mngr_->getComponent<HealthComponent>(enemy);
-			//				if (h != nullptr && h->getHealth() > health) {//se guarda la referencia al enemigo con mas vida
-			//					target = enemy;
-			//					health = h->getHealth();
-			//				}
-			//			}					
-			//		}
-			//		if (target != nullptr) {//Dispara con el critico
-			//			std::cout << "shot";
-			//			shootBullet(target, ds->getDamage() * ds->getCritDamage(), DIEGO_SPEED, TR->getPosition());
-			//			ds->setTimeToShoot(ds->getTimeToShoot() + ds->getReloadTime());
-			//		}
-			//	}
-			//}
+			DiegoSniperTower* ds = mngr_->getComponent<DiegoSniperTower>(t);
+			if (ds != nullptr) {
+				ds->setElapsedTime(timer_.currTime());//Lo pasa a segundos
+				if (ds->getElapsedTime() > ds->getTimeToShoot()*1000) {//si esta cargada busca enemigo con mas vida
+					float health = 0;
+					Entity* target = nullptr;
+					for (const auto& enemy : mngr_->getHandler(_hdlr_ENEMIES))
+					{	
+						if (mngr_->isAlive(enemy)) {
+							HealthComponent* h = mngr_->getComponent<HealthComponent>(enemy);
+							if (h != nullptr && h->getHealth() > health) {//se guarda la referencia al enemigo con mas vida
+								target = enemy;
+								health = h->getHealth();
+							}
+						}					
+					}
+					if (target != nullptr) {//Dispara con el critico
+						std::cout << "shot";
+						RenderComponent* rc = mngr_->getComponent<RenderComponent>(t);
+						Vector2D spawn = { TR->getPosition()->getX(),	TR->getPosition()->getY() + DIEGO_OFFSET};
+						shootBullet(target, ds->getDamage() * ds->getCritDamage(), DIEGO_SPEED, spawn);
+						ds->setTimeToShoot(ds->getTimeToShoot() + ds->getReloadTime());
+					}
+				}
+			}
 		}	
 	}
 
@@ -197,7 +199,7 @@ void TowerSystem::addTower(twrId type, Vector2D pos, Height height) {
 		break;
 	case _twr_DIEGO:
 		mngr_->addComponent<DiegoSniperTower>(t, 1000.0f, 0, 1.0f, 3.0f, 50);
-		mngr_->addComponent<RenderComponent>(t, boosterTowerTexture);
+		mngr_->addComponent<RenderComponent>(t, sniperTowerTexture);
 		mngr_->addComponent<FramedImage>(t, 5, 1, 35, 54, 0, 0);
 		break;
 	case _twr_SLIME:

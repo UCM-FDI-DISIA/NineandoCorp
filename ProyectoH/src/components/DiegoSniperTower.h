@@ -4,6 +4,7 @@
 class DiegoSniperTower : public AttackComponent
 {
 public:
+	static const cmpId id = cmpId::_DIEGOTOWER;
 	DiegoSniperTower(float range, float critProbability, float critDamagePercentage, float reloadTime, int damage);
 	float getCritProb() const;
 	float getCritDamage() const;

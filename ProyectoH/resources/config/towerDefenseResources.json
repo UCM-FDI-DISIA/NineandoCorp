@@ -180,6 +180,10 @@
     {
       "id": "cursorpress",
       "file": "resources/images/pointer/finger_down.png"
+    },
+    {
+      "id": "bullet",
+      "file": "resources/images/Towers/bullet.png"
     }
 
   ],

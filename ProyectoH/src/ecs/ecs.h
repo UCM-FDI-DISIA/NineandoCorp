@@ -26,6 +26,7 @@ enum cmpId : cmpId_type {
 	_UPGRADETOWER,
 	_POWERTOWER,
 	_CRISTALTOWER,
+	_DIEGOTOWER,
 
 	// do not remove this
 	_LAST_CMP_ID
