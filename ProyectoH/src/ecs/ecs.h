@@ -110,7 +110,6 @@ enum msgId : msgId_type {
 	_m_RESUME,
 	_m_START_GAME,
 	_m_LEVEL_SELECTOR,
-	_m_TOWERS_TO_ATTACK,
 	_m_UPGRADE_NEXUS,
 	_m_UPGRADE_TOWER,
 	_m_BACK_TO_MAINMENU,
