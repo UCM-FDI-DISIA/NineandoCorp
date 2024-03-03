@@ -2,16 +2,16 @@
 #include "..//ecs/Manager.h"
 #include "..//components/HealthComponent.h"
 
-NexusComponent::NexusComponent() { shieldActive_ = false; }
+NexusComponent::NexusComponent():shieldCurrentHitpoints_(0) { shieldActive_ = false; }
 
 void NexusComponent::activateShield() { 
 	shieldActive_ = true; 
-	mngr_->getComponent<HealthComponent>(ent_)->addHealth(shieldCurrentHitpoints_);
+	//mngr_->getComponent<HealthComponent>(ent_)->addHealth(shieldCurrentHitpoints_);
 }
 
 void NexusComponent::inactivateShield() { 
 	shieldActive_ = false;
-	mngr_->getComponent<HealthComponent>(ent_)->subtractHealth(shieldCurrentHitpoints_);
+	//mngr_->getComponent<HealthComponent>(ent_)->subtractHealth(shieldCurrentHitpoints_);
 }
 
 bool NexusComponent::isShieldActive() const { return shieldActive_; }

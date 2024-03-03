@@ -198,9 +198,6 @@
     <ClInclude Include="src\components\UpgradeTowerComponent.h">
       <Filter>Header Files\components</Filter>
     </ClInclude>
-    <ClInclude Include="src\components\ButtonComponent.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="src\systems\HUDSystem.h">
       <Filter>Header Files\systems</Filter>
     </ClInclude>
@@ -210,16 +207,22 @@
     <ClInclude Include="src\systems\MainMenuSystem.h">
       <Filter>Header Files\systems</Filter>
     </ClInclude>
-    <ClInclude Include="src\components\NexusComponent.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="src\components\EnhancerTower.h">
       <Filter>Header Files\components</Filter>
     </ClInclude>
-    <ClInclude Include="src\systems\LevelSelectorSystem.h">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="src\components\ButtonComponent.h">
+      <Filter>Header Files\components</Filter>
     </ClInclude>
-    <ClInclude Include="src\game\LevelSelectorState.h">
+    <ClInclude Include="src\components\NexusComponent.h">
+      <Filter>Header Files\components</Filter>
+    </ClInclude>
+    <ClInclude Include="src\components\CrystalTower.h">
+      <Filter>Header Files\components</Filter>
+    </ClInclude>
+    <ClInclude Include="src\components\DiegoSniperTower.h">
+      <Filter>Header Files\components</Filter>
+    </ClInclude>
+    <ClInclude Include="src\systems\EnemySystem.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
@@ -320,28 +323,34 @@
     <ClCompile Include="src\components\UpgradeTowerComponent.cpp">
       <Filter>Source Files\components</Filter>
     </ClCompile>
-    <ClCompile Include="src\components\ButtonComponent.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\systems\HUDSystem.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="src\systems\MainControlSystem.cpp">
       <Filter>Source Files\systems</Filter>
     </ClCompile>
     <ClCompile Include="src\systems\MainMenuSystem.cpp">
       <Filter>Source Files\systems</Filter>
     </ClCompile>
-    <ClCompile Include="src\components\NexusComponent.cpp">
-      <Filter>Source Files</Filter>
+    <ClCompile Include="src\components\EnhancerTower.cpp">
+      <Filter>Source Files\components</Filter>
     </ClCompile>
     <ClCompile Include="src\components\DirtTower.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Source Files\components</Filter>
     </ClCompile>
-    <ClCompile Include="src\systems\LevelSelectorSystem.cpp">
-      <Filter>Source Files</Filter>
+    <ClCompile Include="src\components\ButtonComponent.cpp">
+      <Filter>Source Files\components</Filter>
     </ClCompile>
-    <ClCompile Include="src\game\LevelSelectorState.cpp">
+    <ClCompile Include="src\components\NexusComponent.cpp">
+      <Filter>Source Files\components</Filter>
+    </ClCompile>
+    <ClCompile Include="src\systems\HUDSystem.cpp">
+      <Filter>Source Files\systems</Filter>
+    </ClCompile>
+    <ClCompile Include="src\components\CrystalTower.cpp">
+      <Filter>Source Files\components</Filter>
+    </ClCompile>
+    <ClCompile Include="src\components\DiegoSniperTower.cpp">
+      <Filter>Source Files\components</Filter>
+    </ClCompile>
+    <ClCompile Include="src\systems\EnemySystem.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

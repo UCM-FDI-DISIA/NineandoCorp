@@ -2,6 +2,7 @@
 #include "../ecs/System.h"
 #include "..//sdlutils/VirtualTimer.h"
 #include "../game/Game.h"
+#include "../components/NexusComponent.h"
 
 class MainControlSystem : public System
 {
@@ -11,7 +12,7 @@ public:
 	MainControlSystem();
 	~MainControlSystem() {};
 
-	void initSystem() override {};
+	void initSystem() override;
 	void receive(const Message& m) override;
 	void update();
 
@@ -25,6 +26,7 @@ protected:
 	float tiempoEntreOleadas;
 	double elapsedTime_;
 	VirtualTimer timer_;
+	Entity* nexo;
 
 	void onRoundOver();
 	void onRoundStart();

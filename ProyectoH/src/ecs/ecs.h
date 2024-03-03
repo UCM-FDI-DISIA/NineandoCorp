@@ -14,14 +14,20 @@ using uint8_t = unsigned char;
 
 using cmpId_type = int;
 enum cmpId : cmpId_type {
-	_TRANSFORM = 0, 
+	_TRANSFORM = 0,
 	_RENDER,
-	_FRAMEDIMAGE, 
+	_FRAMEDIMAGE,
 	_ATTACK,
-	_HEALTH, 
+	_HEALTH,
 	_BULLET,
 	_MOVEMENT,
 	_BUTTON,
+	_ROUTE,
+	_UPGRADETOWER,
+	_POWERTOWER,
+	_CRISTALTOWER,
+	_DIEGOTOWER,
+	_NEXUS,
 
 	// do not remove this
 	_LAST_CMP_ID
@@ -33,6 +39,8 @@ enum hdlrId : hdlrId_type {
 	_hdlr_DRAG_AND_DROP,
 	_hdlr_BUTTON,
 	_hdlr_SUBMENU,
+	_hdlr_LOW_TOWERS,
+	_hdlr_ENEMIES,
 	
 	// do not remove this
 	_LAST_HDLR_ID };
@@ -91,6 +99,11 @@ enum msgId : msgId_type {
 	_m_ROUND_START, //
 	_m_ROUND_OVER,
 	_m_SHOOT,
+	_m_TOWERS_TO_ATTACK,
+	_m_ENTITY_TO_ATTACK,
+	_m_ATTACK_NEXUS,
+	_m_TOWER_TO_ATTACK,
+	_m_SHIELD_NEXUS,
 	_m_GAMEOVER,
 	_m_GAMESTART,
 	_m_PAUSE,
@@ -151,6 +164,45 @@ inline Uint8* _deserialize_(float& v, Uint8* buf) {
 }
 struct Message {
 msgId_type id;
+	// _m_START_GAME
+	struct
+	{
+		//nivel 
+	}start_game_data;
+
+    // _m_TOWERS_TO_ATTACK
+    struct {
+		std::vector<Entity*> towers;
+	} towers_to_attack;
+	// _m_ENTITY_TO_ATTACK
+	struct {
+		Entity* e;
+		float damage;
+	} entity_to_attack;
+	// _m_TOWER_TO_ATTACK
+	struct {
+		Entity* e;
+		float damage;
+	} tower_to_attack;
+	//_m_SHIELD_NEXUS
+	struct {
+		int shield;
+		int explosionDmg;
+		bool explodes;
+	}shield_data;
+	//_m_ATTACK_NEXUS
+	struct {
+		int damage;
+	}nexus_attack_data;
+	// _m_COLLISION_ASTEROIDBULLET
+	struct {
+		Entity* a;
+		Entity* b;
+	} collision_asteroidbullet_data;
+	// _m_GAMEOVER
+	struct {
+		unsigned char n;
+	} winner_data;
 	// _m_SHOOT
 	struct {
 		Vector2D pos;
@@ -189,20 +241,8 @@ msgId_type id;
 	struct {
 		bool isEnemy;
 	} collision_fighterbullet_data;
-	
-	// _m_START_GAME
-	struct 
-	{
-		//nivel 
-	}start_game_data;
 
-	// _m_TOWERS_TO_ATTACK
-	struct
-	{
-		std::vector<Entity*> towers;
-	}towers_to_attack_data;
 
-	// Poned el nombre pishitas
 	struct {
 		std::string name; 
 		std::string enemyName; 
@@ -219,4 +259,5 @@ msgId_type id;
 		int lvl;
 	};
 };
+
 #endif // !ECS_H_

@@ -28,6 +28,7 @@ public:
 	// la práctica 1)
 	void update() override;
 private:
+	
 	// Creates an Entity with correspondant text texture and transform
 	void addText(stateText stt);
 	// Para gestionar los mensajes correspondientes y actualizar los atributos
@@ -44,6 +45,12 @@ private:
 
 	SDL_Rect offset = build_sdlrect(0,0,0,0);
 
+	//limites de la camara
+	int limtop = 1000;
+	int limbot = -1000;
+	int limleft = 1000;
+	int limright = -1000;
+
 	// Texts
 	stateText currStTxt;
 	Texture* textTextures[stateText::sttTxtSize];
@@ -51,6 +58,7 @@ private:
 
 	// Textures
 	Texture* textures[gameTextures::gmTxtrSize];
-
+	Texture* cursorTexture;
+	Texture* cursorTexture2;
 	// Doing a texture array so we do not need to access sdlutils' map every time
 };

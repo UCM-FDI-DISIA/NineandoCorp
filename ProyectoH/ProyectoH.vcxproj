@@ -23,6 +23,8 @@
     <ClInclude Include="src\components\BulletComponent.h" />
     <ClInclude Include="src\components\BulletTower.h" />
     <ClInclude Include="src\components\ButtonComponent.h" />
+    <ClInclude Include="src\components\CrystalTower.h" />
+    <ClInclude Include="src\components\DiegoSniperTower.h" />
     <ClInclude Include="src\components\DirtTower.h" />
     <ClInclude Include="src\components\DragAndDrop.h" />
     <ClInclude Include="src\components\EnhancerTower.h" />
@@ -43,7 +45,6 @@
     <ClInclude Include="src\game\GameOverState.h" />
     <ClInclude Include="src\game\GameState.h" />
     <ClInclude Include="src\game\GameStateMachine.h" />
-    <ClInclude Include="src\game\LevelSelectorState.h" />
     <ClInclude Include="src\game\MainMenuState.h" />
     <ClInclude Include="src\game\PauseState.h" />
     <ClInclude Include="src\game\PlayState.h" />
@@ -61,8 +62,8 @@
     <ClInclude Include="src\sdlutils\SoundEffect.h" />
     <ClInclude Include="src\sdlutils\Texture.h" />
     <ClInclude Include="src\sdlutils\VirtualTimer.h" />
+    <ClInclude Include="src\systems\EnemySystem.h" />
     <ClInclude Include="src\systems\HUDSystem.h" />
-    <ClInclude Include="src\systems\LevelSelectorSystem.h" />
     <ClInclude Include="src\systems\MainControlSystem.h" />
     <ClInclude Include="src\systems\MainMenuSystem.h" />
     <ClInclude Include="src\systems\mapSystem.h" />
@@ -78,8 +79,11 @@
     <ClCompile Include="src\components\BulletComponent.cpp" />
     <ClCompile Include="src\components\BulletTower.cpp" />
     <ClCompile Include="src\components\ButtonComponent.cpp" />
+    <ClCompile Include="src\components\CrystalTower.cpp" />
+    <ClCompile Include="src\components\DiegoSniperTower.cpp" />
     <ClCompile Include="src\components\DirtTower.cpp" />
     <ClCompile Include="src\components\DragAndDrop.cpp" />
+    <ClCompile Include="src\components\EnhancerTower.cpp" />
     <ClCompile Include="src\components\FramedImage.cpp" />
     <ClCompile Include="src\components\HealthComponent.cpp" />
     <ClCompile Include="src\components\MovementComponent.cpp" />
@@ -93,7 +97,6 @@
     <ClCompile Include="src\game\GameOverState.cpp" />
     <ClCompile Include="src\game\GameState.cpp" />
     <ClCompile Include="src\game\GameStateMachine.cpp" />
-    <ClCompile Include="src\game\LevelSelectorState.cpp" />
     <ClCompile Include="src\game\MainMenuState.cpp" />
     <ClCompile Include="src\game\PauseState.cpp" />
     <ClCompile Include="src\game\PlayState.cpp" />
@@ -105,8 +108,8 @@
     <ClCompile Include="src\sdlutils\sdlutils_demo.cpp" />
     <ClCompile Include="src\sdlutils\SoundEffect.cpp" />
     <ClCompile Include="src\sdlutils\Texture.cpp" />
+    <ClCompile Include="src\systems\EnemySystem.cpp" />
     <ClCompile Include="src\systems\HUDSystem.cpp" />
-    <ClCompile Include="src\systems\LevelSelectorSystem.cpp" />
     <ClCompile Include="src\systems\MainControlSystem.cpp" />
     <ClCompile Include="src\systems\MainMenuSystem.cpp" />
     <ClCompile Include="src\systems\mapSystem.cpp" />

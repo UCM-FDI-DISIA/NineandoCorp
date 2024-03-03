@@ -4,6 +4,7 @@
 #include "..//utils/Vector2D.h"
 #include "BulletComponent.h"
 #include <vector>
+#include <list>
 
 class Entity;
 class HealthComponent;
@@ -16,11 +17,12 @@ public:
 	virtual void initComponent();
 	
 ;
-	void doDamageTo(HealthComponent* healthcmp);
-	void targetEnemy(const std::vector<Entity*>& targetGroup);
+	void doDamageTo(Entity* e, float damage);
+	void targetEnemy(const std::list<Entity*>& targetGroup);
 
 	//Getters
 	float getDamage() const;
+	float getBaseDamage() const;
 	float getRange() const;
 	bool isLoaded()const;
 	Entity* getTarget() const;
@@ -31,6 +33,7 @@ public:
 	//Setters
 	void setDamage(int dmg);
 	void setRange(float rng);
+	void setReloadTime(float time);
 	void setLoaded(bool ld);
 	void setTimeToShoot(float t);
 	void setElapsedTime(float elapsed);
@@ -38,6 +41,7 @@ public:
 protected:
 	
 	float reloadTime_;
+	int baseDamage_;
 	int damage_;
 	Entity* target_;//target principal
 
@@ -45,6 +49,7 @@ protected:
 	float range_;
 	float timeToShoot_;
 	float elapsedTime_;
+
 	bool loaded_;
 };
 

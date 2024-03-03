@@ -12,7 +12,23 @@ void mapSystem::initSystem(){
 }
 
 void mapSystem::receive(const Message& m) {
-
+	switch (m.id) {
+	case _m_ROUND_START:
+		onRoundStart();
+		break;
+	case _m_GAMESTART:
+		onGameStart();
+		break;
+	case _m_GAMEOVER:
+		//onGameOver(m.winner_data.n);
+		break;
+	case _m_PAUSE:
+		onPause();
+		break;
+	case _m_RESUME:
+		onResume();
+		break;
+	}
 }
 
 void mapSystem::update(){}
@@ -45,11 +61,13 @@ void mapSystem::loadMap(std::string filename) {
 void mapSystem::loadTile(const tmx::Map& map, const tmx::TileLayer& layer){
 	const auto& tileSets = map.getTilesets();
 	const auto& layerIDs = layer.getTiles();
-	int i = WIN_WIDTH;
+	int i = (WIN_WIDTH + 200)/ 2;
 	int j = 0;
-	float sep = 2;
+	float sep = 1.34;
+	int n = 0;
 	for (auto tile : layerIDs)
 	{
+		n++;
 		if (tile.ID != 0) {
 			Entity* entityTile = nullptr;
 			Vector2D tilePosition(((layer.getOffset().x + i - j) / sep),
@@ -70,19 +88,35 @@ void mapSystem::loadTile(const tmx::Map& map, const tmx::TileLayer& layer){
 			if (entityTile) {
 				const auto transform = mngr_->addComponent<Transform>(entityTile);
 				transform->setPosition(tilePosition);
-				transform->setWidth(32);
-				transform->setHeight(32);
+				/*transform->setWidth(32);
+				transform->setHeight(32);*/
 			}
 		}
 		
 			
 			
 		
-		i += m_chunkSize.x / 2;
-		if (i >= (layer.getSize().x * (m_chunkSize.x/ 2)) + WIN_WIDTH) {
-			i = WIN_WIDTH;
-			j += m_chunkSize.y /2;
+		i += m_chunkSize.x;
+		if (i >= (layer.getSize().x * (m_chunkSize.x)) + (WIN_WIDTH + 200) / 2) {
+			i = (WIN_WIDTH + 200) / 2;
+			j += m_chunkSize.y;
 		}
 	}
 }
+// Para gestionar los mensajes correspondientes y actualizar los atributos
+// winner_ y state_.
+void mapSystem::onRoundStart() {
 
+	loadMap(filename);
+}
+void mapSystem::onGameStart() {
+}
+void mapSystem::onGameOver(Uint8 winner) {
+}
+
+// Displays pause message
+void mapSystem::onPause() {
+}
+// Hides pause message
+void mapSystem::onResume() {
+}

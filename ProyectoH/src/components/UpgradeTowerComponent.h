@@ -5,6 +5,7 @@
 class UpgradeTowerComponent : public Component
 {
 public:
+	static const cmpId id = cmpId::_UPGRADETOWER;
 
 	UpgradeTowerComponent(twrId id, int maxLevel);
 	~UpgradeTowerComponent() {};

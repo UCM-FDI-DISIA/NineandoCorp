@@ -57,6 +57,11 @@ public:
 		}
 	};
 
+	struct RuteData {
+		int numRutes;
+		std::vector<Vector2D> points;
+	};
+
 	virtual ~SDLUtils();
 
 // cannot copy/move
@@ -149,6 +154,13 @@ public:
 	inline auto& intConst() {
 		return intConstAccessWrapper_;
 	}
+	inline auto& rutes() {
+		return rutesAccessWrapper_;
+	}
+	// float constant map
+	inline auto& floatConst() {
+		return floatConstAccessWrapper_;
+	}
 
 // Access to the random number generator. It is important to always
 // use this generator, this way you can regenerate the same sequence
@@ -172,7 +184,9 @@ private:
 	SDLUtils();
 	SDLUtils(std::string windowTitle, int width, int height);
 	SDLUtils(std::string windowTitle, int width, int height,
-			std::string filename);
+			std::string filename); 
+	SDLUtils(std::string windowTitle, int width, int height,
+		std::string resourcesFilename, std::string constantsFilename);
 
 	void initWindow();
 	void closeWindow();
@@ -195,6 +209,7 @@ private:
 	sdl_resource_table<Music> musics_; // musics map (string -> music)
 	sdl_resource_table<int> floatConst_;
 	sdl_resource_table<int> intConst_;
+	sdl_resource_table<RuteData> rutes_;
 
 	map_access_wrapper<Font> fontsAccessWrapper_;
 	map_access_wrapper<Texture> imagesAccessWrapper_;
@@ -203,6 +218,7 @@ private:
 	map_access_wrapper<Music> musicsAccessWrapper_; 
 	map_access_wrapper<int> floatConstAccessWrapper_;
 	map_access_wrapper<int> intConstAccessWrapper_;
+	map_access_wrapper<RuteData> rutesAccessWrapper_;
 
 	RandomNumberGenerator random_; // (pseudo) random numbers generator
 	VirtualTimer timer_; // virtual timer

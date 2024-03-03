@@ -9,16 +9,20 @@ protected:
 	Transform* t;
 	Entity* targetEntity_;
 	int damage_;
+	float speed_;
 
 public:
 	static const cmpId id = cmpId::_BULLET;
 
-	BulletComponent();
-	
-	void initComponent() override;
+	BulletComponent(Transform* tr, Entity* target, int damage, float speed);
+	BulletComponent() {};
+	//void initComponent() override;
 	void setBullet(Entity* target, int damage) { targetEntity_ = target; damage_ = damage; };
-	void doDamageTo(HealthComponent* healthcmp);
+	void doDamageTo(Entity* e, float damage);
+	void setDir();
 	void onTravelEnds();
+
+	float getDamage()const { return damage_; }
 		
 	Entity* getTarget()const { return targetEntity_; }
 
