@@ -42,6 +42,8 @@ RenderSystem::RenderSystem() :
 	textures[upgrade] = &sdlutils().images().at("upgrade");
 	textures[upgrade_hover] = &sdlutils().images().at("upgrade_hover");
 	textures[logo] = &sdlutils().images().at("logo");
+	textures[cristal_tower_image] = &sdlutils().images().at("cristal_tower_image");
+
 }
 
 

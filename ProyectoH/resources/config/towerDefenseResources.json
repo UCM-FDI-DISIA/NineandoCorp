@@ -215,11 +215,11 @@
     },
     {
       "id": "play",
-      "file": "resources/images/Buttons/play/play01.png"
+      "file": "resources/images/UI/play_button.png"
     },
     {
       "id": "play_hover",
-      "file": "resources/images/Buttons/play/play03.png"
+      "file": "resources/images/UI/play_button_hover.png"
     },
     {
       "id": "cursor",
@@ -340,6 +340,10 @@
     {
         "id": "logo",
         "file": "resources/images/UI/LogodeHDefense.png"
+    },
+    {
+      "id": "cristal_tower_image",
+      "file": "resources/images/towers/1_cristal_tower.png"
     }
 
   ],

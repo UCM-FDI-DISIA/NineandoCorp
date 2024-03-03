@@ -53,7 +53,7 @@ void MainMenuSystem::initSystem() {
 		{ 350, 110 },
 		gameTextures::play, gameTextures::play_hover, ButtonTypes::selector_main);
 
-	// CONFIGURATION BUTTON - CAMBIAR IMAGEN
+	// CONFIGURATION BUTTON
 	addButton({ sdlutils().width() / 2.0f, (sdlutils().height() / 2.0f) + 265},
 		{ 200, 200 },
 		gameTextures::close, gameTextures::close_hover, ButtonTypes::back_selector);
@@ -68,10 +68,10 @@ void MainMenuSystem::initSystem() {
 		{ 200.0f, 70.0f },
 		upgrade, upgrade_hover, ButtonTypes::glass_menu);
 
-	// 1 TOWER IMAGE - CAMBIAR IMAGEN
+	// 1 TOWER IMAGE
 	addImage({ sdlutils().width() - 310.0f , (sdlutils().height() / 8.0f) * 1 },
-		{ 70.0f, 70.0f },
-		0, gameTextures::box, _grp_HUD_BACKGROUND);
+		{ 75, 120 },
+		0, gameTextures::cristal_tower_image, _grp_HUD_BACKGROUND);
 
 	// 2 TOWER BUTTON - SLIME
 	addButton({ sdlutils().width() - 150.0f , (sdlutils().height() / 8.0f) * 2 },

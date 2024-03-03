@@ -11,8 +11,8 @@ enum gameTextures {
 	//UI
 	play, play_hover, box, box_hover, large_box, 
 	close, close_hover, enemies_button, enemies_button_hover, 
-	menu_background, upgrade, upgrade_hover, logo, 
-
+	menu_background, upgrade, upgrade_hover, logo,  
+	cristal_tower_image,
 	// towers
 	square, bulletTowerTexture, cristalTowerTexture, phoenixTowerTexture,
 	slimeTowerTexture, boosterTowerTexture, sniperTowerTexture, clayTowerTexture, nexusTexture,
