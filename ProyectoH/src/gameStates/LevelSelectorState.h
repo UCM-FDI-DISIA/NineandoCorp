@@ -1,10 +1,8 @@
 #pragma once
-#include "GameState.h"
+#include "../game/GameState.h"
 
-#include "../systems/RenderSystem.h"
-#include "../systems/HUDSystem.h"
-#include "../systems/MainControlSystem.h"
 #include "../systems/LevelSelectorSystem.h"
+#include "../systems/MainMenuSystem.h"
 
 class LevelSelectorState : public GameState
 {

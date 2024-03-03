@@ -1,5 +1,5 @@
 #pragma once
-#include "GameState.h"
+#include "../game/GameState.h"
 #include "../systems/RenderSystem.h"
 #include "../systems/mapSystem.h"
 #include "../systems/EnemySystem.h"

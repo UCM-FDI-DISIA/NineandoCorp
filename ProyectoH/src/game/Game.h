@@ -7,11 +7,9 @@
 #include "../sdlutils/InputHandler.h"
 #include "../utils/Singleton.h"
 
-#include "../game/PlayState.h"
-#include "../game/LevelSelectorState.h"
-//#include "../gameStates/PauseState.h"
-//#include "../gameStates/GameOverState.h"
-#include "../game/MainMenuState.h"
+#include "../gameStates/PlayState.h"
+#include "../gameStates/LevelSelectorState.h"
+#include "../gameStates/MainMenuState.h"
 constexpr int WIN_WIDTH = 1200;
 constexpr int WIN_HEIGHT = 900;
 #include "../systems/RenderSystem.h"
