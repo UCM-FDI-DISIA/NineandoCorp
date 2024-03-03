@@ -9,6 +9,8 @@
 #include "..//components/CrystalTower.h"
 #include "..//components/RenderComponent.h"
 #include "..//components/DiegoSniperTower.h"
+#include "..//components/PhoenixTower.h"
+#include "..//components/DirtTower.h"
 #include "../components/FramedImage.h"
 #include "../components/UpgradeTowerComponent.h"
 #include <list>

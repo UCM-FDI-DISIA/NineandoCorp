@@ -169,6 +169,7 @@ void TowerSystem::addTower(twrId type, Vector2D pos, Height height) {
 	towers.push_back(t);
 	Transform* tr = mngr_->addComponent<Transform>(t);//transform
 	tr->setPosition(pos);
+	tr->setScale({ 100.0f, 150.0f });
 	mngr_->addComponent<UpgradeTowerComponent>(t, type, 4);
 	float health = 100.0f;
 	if (height == LOW) { 
@@ -179,11 +180,14 @@ void TowerSystem::addTower(twrId type, Vector2D pos, Height height) {
 	switch (type)
 	{
 	case _twr_FENIX:
+		mngr_->addComponent<PhoenixTower>(t);
+		mngr_->addComponent<RenderComponent>(t, phoenixTowerTexture);
+		mngr_->addComponent<FramedImage>(t, 4, 2, 650, 900, 0, 0);
 		break;
 	case _twr_BULLET://Pasar rango, recarga, daño y si dispara
 		mngr_->addComponent<BulletTower>(t, 100.0f/*&sdlutils().floatConst().at("BalasRango")*/, 0.5f/*&sdlutils().floatConst().at("BalasRecarga")*/, 5/*&sdlutils().intConst().at("BalasDano")*/);
 		mngr_->addComponent<RenderComponent>(t, bulletTowerTexture);
-		mngr_->addComponent<FramedImage>(t, 4, 4, 37, 60, 0, 0);
+		mngr_->addComponent<FramedImage>(t, 4, 4, 650, 1000, 0, 0);
 	/*	mngr_->getComponent<UpgradeTowerComponent>(t)->LevelUp();
 		mngr_->getComponent<UpgradeTowerComponent>(t)->LevelUp();
 		mngr_->getComponent<UpgradeTowerComponent>(t)->LevelUp();
@@ -191,23 +195,29 @@ void TowerSystem::addTower(twrId type, Vector2D pos, Height height) {
 
 		break;
 	case _twr_DIRT:
+		mngr_->addComponent<DirtTower>(t, 100.0f, 0.0f, 0);
+		mngr_->addComponent<RenderComponent>(t, clayTowerTexture);
+		mngr_->addComponent<FramedImage>(t, 4, 4, 750, 1200, 0, 0);
 		break;
 	case _twr_POWER://Pasar rango, porcentaje incremento de ataque y vida extra
 		mngr_->addComponent<EnhancerTower>(t, 100.0f/*&sdlutils().floatConst().at("PotenciadoraRango")*/, 0.05f/*&sdlutils().floatConst().at("PotenciadoraAumentoDano")*/, 30.0f/*&sdlutils().floatConst().at("PotenciadoraAumentoVida")*/);
 		mngr_->addComponent<RenderComponent>(t, boosterTowerTexture);
-		mngr_->addComponent<FramedImage>(t, 5, 1, 35, 54, 0, 0);
+		mngr_->addComponent<FramedImage>(t, 5, 1, 640, 1000, 0, 0);
 		break;
 	case _twr_DIEGO:
 		mngr_->addComponent<DiegoSniperTower>(t, 1000.0f, 0, 1.0f, 3.0f, 50);
 		mngr_->addComponent<RenderComponent>(t, sniperTowerTexture);
-		mngr_->addComponent<FramedImage>(t, 5, 1, 35, 54, 0, 0);
+		mngr_->addComponent<FramedImage>(t, 4, 4, 690, 1150, 0, 0);
 		break;
 	case _twr_SLIME:
+		mngr_->addComponent<RenderComponent>(t, slimeTowerTexture);
+		mngr_->addComponent<FramedImage>(t, 4, 4, 750, 1050, 0, 0);
+		
 		break;
 	case _twr_CRISTAL:
 		mngr_->addComponent<CrystalTower>(t,20/* &sdlutils().intConst().at("CristalEscudo")*/, 2.0f/*&sdlutils().floatConst().at("CristalRecarga")*/, 0/*&sdlutils().intConst().at("CristalDano")*/);
 		mngr_->addComponent<RenderComponent>(t, cristalTowerTexture);
-		mngr_->addComponent<FramedImage>(t, 4, 1, 44, 65, 0, 0);
+		mngr_->addComponent<FramedImage>(t, 4, 1, 875, 1500, 0, 0);
 		break;
 	default:
 		break;
