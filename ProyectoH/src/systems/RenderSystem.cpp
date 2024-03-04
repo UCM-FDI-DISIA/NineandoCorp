@@ -43,7 +43,12 @@ RenderSystem::RenderSystem() :
 	textures[upgrade_hover] = &sdlutils().images().at("upgrade_hover");
 	textures[logo] = &sdlutils().images().at("logo");
 	textures[cristal_tower_image] = &sdlutils().images().at("cristal_tower_image");
-
+	textures[bullet_tower_image] = &sdlutils().images().at("bullet_tower_image");
+	textures[slime_tower_image] = &sdlutils().images().at("slime_tower_image");
+	textures[sniper_tower_image] = &sdlutils().images().at("sniper_tower_image");
+	textures[phoenix_tower_image] = &sdlutils().images().at("phoenix_tower_image");
+	textures[dirt_tower_image] = &sdlutils().images().at("dirt_tower_image");
+	textures[power_tower_image] = &sdlutils().images().at("power_tower_image");
 }
 
 

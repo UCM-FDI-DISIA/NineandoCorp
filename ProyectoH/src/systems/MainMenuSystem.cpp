@@ -15,6 +15,8 @@ void MainMenuSystem::initSystem() {
 	// cleon: creais mucho reuido con las variables locales.
 	// al menos, redefinid cada una por pseparado (no reutiliceis "pAux")
 
+	Vector2D towerImagesSize{ 50, 80 };
+
 	// BACKGROUND
 	addImage({ sdlutils().width() / 2.0f, (sdlutils().height() / 2.0f) },
 		{ 1200 , 900 }, 
@@ -63,75 +65,75 @@ void MainMenuSystem::initSystem() {
 		{ 250.0f, 70.0f },
 		gameTextures::upgrade, gameTextures::upgrade_hover, ButtonTypes::upgrade_nexus);
 
-	// 1 TOWER BUTTON - GLASS
+	// 1 TOWER BUTTON - BULLET
 	addButton({ sdlutils().width() - 150.0f , (sdlutils().height() /8.0f) * 1 },
-		{ 200.0f, 70.0f },
-		upgrade, upgrade_hover, ButtonTypes::glass_menu);
-
-	// 1 TOWER IMAGE
-	addImage({ sdlutils().width() - 310.0f , (sdlutils().height() / 8.0f) * 1 },
-		{ 75, 120 },
-		0, gameTextures::cristal_tower_image, _grp_HUD_BACKGROUND);
-
-	// 2 TOWER BUTTON - SLIME
-	addButton({ sdlutils().width() - 150.0f , (sdlutils().height() / 8.0f) * 2 },
-		{ 200.0f, 70.0f },
-		upgrade, upgrade_hover, ButtonTypes::slime_menu);
-
-	// 2 TOWER IMAGE - CAMBIAR IMAGEN
-	addImage({ sdlutils().width() - 310.0f , (sdlutils().height() / 8.0f) * 2 },
-		{ 70.0f, 70.0f },
-		0, gameTextures::box, _grp_HUD_BACKGROUND);
-
-	// 3 TOWER BUTTON - BULLET
-	addButton({ sdlutils().width() - 150.0f , (sdlutils().height() / 8.0f) * 3 },
 		{ 200.0f, 70.0f },
 		upgrade, upgrade_hover, ButtonTypes::bullet_menu);
 
-	// 3 TOWER IMAGE - CAMBIAR IMAGEN
+	// 1 TOWER BULLET IMAGE
+	addImage({ sdlutils().width() - 310.0f , (sdlutils().height() / 8.0f) * 1 },
+		{ towerImagesSize },
+		0, gameTextures::bullet_tower_image, _grp_HUD_BACKGROUND);
+
+	// 2 TOWER BUTTON - CRISTAL
+	addButton({ sdlutils().width() - 150.0f , (sdlutils().height() / 8.0f) * 2 },
+		{ 200.0f, 70.0f },
+		upgrade, upgrade_hover, ButtonTypes::glass_menu);
+
+	// 2 TOWER CRISTAL IMAGE
+	addImage({ sdlutils().width() - 310.0f , (sdlutils().height() / 8.0f) * 2 },
+		{ towerImagesSize },
+		0, gameTextures::cristal_tower_image, _grp_HUD_BACKGROUND);
+
+	// 3 TOWER BUTTON - SLIME
+	addButton({ sdlutils().width() - 150.0f , (sdlutils().height() / 8.0f) * 3 },
+		{ 200.0f, 70.0f },
+		upgrade, upgrade_hover, ButtonTypes::slime_menu);
+
+	// 3 TOWER SLIME IMAGE
 	addImage({ sdlutils().width() - 310.0f , (sdlutils().height() / 8.0f) * 3 },
-		{ 70.0f, 70.0f },
-		0, gameTextures::box, _grp_HUD_BACKGROUND);
+		{ towerImagesSize },
+		0, gameTextures::slime_tower_image, _grp_HUD_BACKGROUND);
 
 	// 4 TOWER BUTTON - SNIPER
 	addButton({ sdlutils().width() - 150.0f , (sdlutils().height() / 8.0f) * 4 },
 		{ 200.0f, 70.0f },
 		upgrade, upgrade_hover, ButtonTypes::sniper_menu);
 
-	// 4 TOWER IMAGE - CAMBIAR IMAGEN
+	// 4 TOWER SNIPER IMAGE
 	addImage({ sdlutils().width() - 310.0f , (sdlutils().height() / 8.0f) * 4 },
-		{ 70.0f, 70.0f },
-		0, gameTextures::box, _grp_HUD_BACKGROUND);
+		{ towerImagesSize },
+		0, gameTextures::sniper_tower_image, _grp_HUD_BACKGROUND);
 
 	// 5 TOWER BUTTON - FENIX
 	addButton({ sdlutils().width() - 150.0f , (sdlutils().height() / 8.0f) * 5 },
 		{ 200.0f, 70.0f },
 		upgrade, upgrade_hover, ButtonTypes::fenix_menu);
 
-	// 5 TOWER IMAGE - CAMBIAR IMAGEN
+	// 5 TOWER FENIX IMAGE
 	addImage({ sdlutils().width() - 310.0f , (sdlutils().height() / 8.0f) * 5 },
-		{ 70.0f, 70.0f },
-		0, gameTextures::box, _grp_HUD_BACKGROUND);
+		{ towerImagesSize },
+		0, gameTextures::phoenix_tower_image, _grp_HUD_BACKGROUND);
 
-	// 6 TOWER BUTTON - CLAY
+	// 6 TOWER BUTTON - DIRT
 	addButton({ sdlutils().width() - 150.0f , (sdlutils().height() / 8.0f) * 6 },
 		{ 200.0f, 70.0f },
 		upgrade, upgrade_hover, ButtonTypes::clay_menu);
 
-	// 6 TOWER IMAGE - CAMBIAR IMAGEN
+	// 6 TOWER DIRT IMAGE
 	addImage({ sdlutils().width() - 310.0f , (sdlutils().height() / 8.0f) * 6 },
-		{ 70.0f, 70.0f },
-		0, gameTextures::box, _grp_HUD_BACKGROUND);
+		{ towerImagesSize },
+		0, gameTextures::dirt_tower_image, _grp_HUD_BACKGROUND);
 
 	// 7 TOWER BUTTON - ENHANCER
 	addButton({ sdlutils().width() - 150.0f , (sdlutils().height() / 8.0f) * 7 },
 		{ 200.0f, 70.0f },
 		upgrade, upgrade_hover, ButtonTypes::enhancer_menu);
 
-	// 7 TOWER IMAGE - CAMBIAR IMAGEN
+	// 7 TOWER POWER IMAGE
 	addImage({ sdlutils().width() - 310.0f , (sdlutils().height() / 8.0f) * 7 },
-		{ 70.0f, 70.0f },
-		0, gameTextures::box, _grp_HUD_BACKGROUND);
+		{ towerImagesSize },
+		0, gameTextures::power_tower_image, _grp_HUD_BACKGROUND);
 }
 
 void MainMenuSystem::receive(const Message& m) {

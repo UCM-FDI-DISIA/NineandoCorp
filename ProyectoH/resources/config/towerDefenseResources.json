@@ -344,6 +344,34 @@
     {
       "id": "cristal_tower_image",
       "file": "resources/images/towers/1_cristal_tower.png"
+    },
+    {
+      "id": "bullet_tower_image",
+      "file": "resources/images/towers/1_bullet_tower.png"
+    },
+    {
+      "id": "slime_tower_image",
+      "file": "resources/images/towers/1_slime_tower.png"
+    },
+    {
+      "id": "sniper_tower_image",
+      "file": "resources/images/towers/1_sniper_tower.png"
+    },
+    {
+      "id": "cristal_tower_image",
+      "file": "resources/images/towers/1_cristal_tower.png"
+    },
+    {
+      "id": "phoenix_tower_image",
+      "file": "resources/images/towers/1_phoenix_tower.png"
+    },
+    {
+      "id": "dirt_tower_image",
+      "file": "resources/images/towers/1_clay_tower.png"
+    },
+    {
+      "id": "power_tower_image",
+      "file": "resources/images/towers/1_booster_tower.png"
     }
 
   ],
