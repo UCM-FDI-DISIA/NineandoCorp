@@ -36,16 +36,22 @@ void TowerSystem::update() {
 		else {
 			Transform* TR = mngr_->getComponent<Transform>(t);
 			BulletTower* bt = mngr_->getComponent<BulletTower>(t);
+					
 			if (bt != nullptr) {
-				int lvl = mngr_->getComponent<UpgradeTowerComponent>(t)->getLevel();
-				mngr_->getComponent<FramedImage>(t)->setCurrentFrame(lvl);
-			}		
-			if (bt != nullptr && bt->isMaxLevel()) {
 				bt->setElapsedTime(timer_.currTime());
+				
 				if (bt->getElapsedTime() > bt->getTimeToShoot()*1000) {
 					bt->targetSecondEnemy(mngr_->getHandler(_hdlr_ENEMIES));
-					if (bt->getTarget() != nullptr) { shootBullet(bt->getTarget(), bt->getDamage(), BULLET_SPEED, TR->getPosition());}
-					std::cout << "s";
+					if (bt->getSecondTarget() != nullptr) {
+						Vector2D dir = *(mngr_->getComponent<Transform>(bt->getSecondTarget())->getPosition()) - *(TR->getPosition());
+						if (dir.getX() >= 0 && dir.getY() >= 0) mngr_->getComponent<FramedImage>(t)->setCurrentFrame(4 + mngr_->getComponent<UpgradeTowerComponent>(t)->getLevel());
+						else if (dir.getX() >= 0 && dir.getY() < 0) mngr_->getComponent<FramedImage>(t)->setCurrentFrame(12 + mngr_->getComponent<UpgradeTowerComponent>(t)->getLevel());
+						else if (dir.getX() < 0 && dir.getY() >= 0)mngr_->getComponent<FramedImage>(t)->setCurrentFrame(0 + mngr_->getComponent<UpgradeTowerComponent>(t)->getLevel());
+						else if (dir.getX() < 0 && dir.getY() < 0)mngr_->getComponent<FramedImage>(t)->setCurrentFrame(8+mngr_->getComponent<UpgradeTowerComponent>(t)->getLevel());
+						shootBullet(bt->getSecondTarget(), bt->getDamage(), BULLET_SPEED, TR->getPosition());	
+						bt->setTimeToShoot(bt->getTimeToShoot() + bt->getReloadTime());
+						std::cout << dir.getX() << " " << dir.getY() << "\n";
+					}
 				}
 			}
 			EnhancerTower* et = mngr_->getComponent<EnhancerTower>(t);
@@ -99,7 +105,12 @@ void TowerSystem::update() {
 						}					
 					}
 					if (target != nullptr) {//Dispara con el critico
-						std::cout << "shot";
+						//std::cout << "shot";
+						Vector2D dir = *(mngr_->getComponent<Transform>(target)->getPosition()) - *(TR->getPosition());
+						if (dir.getX() >= 0 && dir.getY() >= 0) mngr_->getComponent<FramedImage>(t)->setCurrentFrame(4 + mngr_->getComponent<UpgradeTowerComponent>(t)->getLevel());
+						else if (dir.getX() >= 0 && dir.getY() < 0) mngr_->getComponent<FramedImage>(t)->setCurrentFrame(12 + mngr_->getComponent<UpgradeTowerComponent>(t)->getLevel());
+						else if (dir.getX() < 0 && dir.getY() >= 0)mngr_->getComponent<FramedImage>(t)->setCurrentFrame(0 + mngr_->getComponent<UpgradeTowerComponent>(t)->getLevel());
+						else if (dir.getX() < 0 && dir.getY() < 0)mngr_->getComponent<FramedImage>(t)->setCurrentFrame(8 + mngr_->getComponent<UpgradeTowerComponent>(t)->getLevel());
 						RenderComponent* rc = mngr_->getComponent<RenderComponent>(t);
 						Vector2D spawn = { TR->getPosition()->getX(),	TR->getPosition()->getY() + DIEGO_OFFSET};
 						shootBullet(target, ds->getDamage() * ds->getCritDamage(), DIEGO_SPEED, spawn);
@@ -107,7 +118,13 @@ void TowerSystem::update() {
 					}
 				}
 			}
-		}	
+			//Esto no hay que hacerlo en el update, si no en el LevelUp
+			/*if (et == nullptr) {
+				int lvl = mngr_->getComponent<UpgradeTowerComponent>(t)->getLevel();
+				if (lvl == 4)lvl--;
+				mngr_->getComponent<FramedImage>(t)->setCurrentFrame(lvl);
+			}*/
+		}		
 	}
 
 	for (auto& b : bullets) {
@@ -188,10 +205,6 @@ void TowerSystem::addTower(twrId type, Vector2D pos, Height height) {
 		mngr_->addComponent<BulletTower>(t, 100.0f/*&sdlutils().floatConst().at("BalasRango")*/, 0.5f/*&sdlutils().floatConst().at("BalasRecarga")*/, 5/*&sdlutils().intConst().at("BalasDano")*/);
 		mngr_->addComponent<RenderComponent>(t, bulletTowerTexture);
 		mngr_->addComponent<FramedImage>(t, 4, 4, 650, 1000, 0, 0);
-	/*	mngr_->getComponent<UpgradeTowerComponent>(t)->LevelUp();
-		mngr_->getComponent<UpgradeTowerComponent>(t)->LevelUp();
-		mngr_->getComponent<UpgradeTowerComponent>(t)->LevelUp();
-		mngr_->getComponent<UpgradeTowerComponent>(t)->LevelUp();*/
 
 		break;
 	case _twr_DIRT:
