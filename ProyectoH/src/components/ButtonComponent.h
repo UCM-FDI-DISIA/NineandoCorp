@@ -27,7 +27,8 @@ enum ButtonTypes {
 	upgrade_clay_main, upgrade_enhancer_main,
 
 	// ----- HUD -----//
-	
+	glass_hud, 
+
 
 
 	none
