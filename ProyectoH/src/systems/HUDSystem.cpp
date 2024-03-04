@@ -9,11 +9,17 @@ HUDSystem::~HUDSystem(){
 }
 
 void HUDSystem::initSystem() {
-	addImage({ 200.0f, 200.0f },
-		{ 100.0f, 200.0f },
+	addImage({ (float)sdlutils().width() / 2 , (float)sdlutils().height()},
+		{ (float)sdlutils().width(), 200.0f },
 		0.0,
 		gameTextures::box,
 		_grp_HUD_BACKGROUND);
+
+	addButton({ 500.0f, 500.0f },
+		{ 50.0f, 100.0f },
+		gameTextures::play, gameTextures::play_hover,
+		ButtonTypes::none
+	);
 }
 void HUDSystem::receive(const Message& m) {
 
