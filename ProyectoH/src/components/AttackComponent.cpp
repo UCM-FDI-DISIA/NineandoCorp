@@ -33,7 +33,7 @@ void AttackComponent::targetEnemy(const std::list<Entity*>& targetGroup) {//Busc
 			}
 		}		
 	}	
-	else if(mngr_->isAlive(target_)){
+	else if(mngr_->isAlive(target_) && target_ != nullptr){
 		if (getDistance(mngr_->getComponent<Transform>(target_)->getPosition()) > range_) {//el target ha salido de rango luego lo pierde
 			target_ = nullptr;
 		}

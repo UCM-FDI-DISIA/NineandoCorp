@@ -24,7 +24,7 @@ PlayState::PlayState() : GameState(_gmStt_PLAY) {
 	Transform* t2 = mngr_->addComponent<Transform>(e3);
 	t2->setPosition({ 500,500 });
 	t2->setVelocity({ 20,-20 });
-	//mngr_->addComponent<AttackComponent>(e3, 1000.0f, 1.0f, 30, false);
+	mngr_->addComponent<AttackComponent>(e3, 1000.0f, 1.0f, 30, false);
 	mngr_->addComponent<HealthComponent>(e3, 10.0f);
 	//mngr_->addComponent<MovementComponent>(e3);
 	//mngr_->addComponent<RouteComponent>(e2, routes);

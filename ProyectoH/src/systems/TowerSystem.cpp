@@ -22,6 +22,7 @@ void TowerSystem::receive(const Message& m) {
 		onRoundOver();
 		break;
 	case _m_TOWER_TO_ATTACK:
+
 		onAttackTower(m.tower_to_attack.e, m.tower_to_attack.damage);
 	}
 }
@@ -100,7 +101,7 @@ void TowerSystem::update() {
 					std::cout << mngr_->getHandler(_hdlr_ENEMIES).size();
 					for (const auto& enemy : mngr_->getHandler(_hdlr_ENEMIES))
 					{	
-						if (mngr_->isAlive(enemy)) { std::cout << "vivo"; }
+						
 						if (mngr_->isAlive(enemy)) {
 							HealthComponent* h = mngr_->getComponent<HealthComponent>(enemy);
 							if (h != nullptr) {//se guarda la referencia al enemigo con mas vida
@@ -156,10 +157,11 @@ void TowerSystem::update() {
 void TowerSystem::eliminateDestroyedTowers(Entity* t) {//elimina delk array las torres muertas
 	bool found = false;
 	int i = 0;
+	
 	while (i < towers.size() && !found) {
 		if (t == towers[i]) {
 			found = true;
-			towers[i] = towers[towers.size()];
+			if (towers.size() > 1) { towers[i] = towers.back(); }
 			towers.pop_back();
 		}
 		i++;
@@ -219,7 +221,7 @@ void TowerSystem::addTower(twrId type, Vector2D pos, Height height) {
 		mngr_->addComponent<FramedImage>(t, 5, 1, 640, 1000, 0, 0);
 		break;
 	case _twr_DIEGO:
-		mngr_->addComponent<DiegoSniperTower>(t, 1000.0f, 0, 1.0f, 3.0f, 50);
+		//mngr_->addComponent<DiegoSniperTower>(t, 1000.0f, 0, 1.0f, 3.0f, 50);
 		mngr_->addComponent<RenderComponent>(t, sniperTowerTexture);
 		mngr_->addComponent<FramedImage>(t, 4, 4, 690, 1150, 0, 0);
 		break;
@@ -250,5 +252,11 @@ void TowerSystem::onRoundOver() {
 void TowerSystem::onAttackTower(Entity* e, int dmg) {
 	/*std::list<Entity*> towers = mngr_->getHandler(_hdlr_LOW_TOWERS);
 	std::list<Entity*>::iterator findIter = std::find(towers.begin(), towers.end(), e);*/
-	mngr_->getComponent<HealthComponent>(e)->subtractHealth(dmg);
+	if (mngr_->isAlive(e)) {
+		HealthComponent* h = mngr_->getComponent<HealthComponent>(e);
+		if (h->getHealth() - dmg <= 0) {
+			mngr_->deleteHandler(_hdlr_LOW_TOWERS, e); eliminateDestroyedTowers(e);
+		}
+		h->subtractHealth(dmg);
+	}
 }

@@ -60,7 +60,7 @@ void EnemySystem::update() {
 			}
 
 		}*/
-		/*if (ac != nullptr) {
+		if (ac != nullptr) {
 			ac->setElapsedTime(timer_.currTime());
 			if (ac->getElapsedTime() > ac->getTimeToShoot() * 1000) {
 				ac->setLoaded(true);
@@ -72,7 +72,7 @@ void EnemySystem::update() {
 					ac->setLoaded(false);
 				}
 			}
-		}*/
+		}
 
 	}
 }
