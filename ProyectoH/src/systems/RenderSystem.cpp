@@ -49,6 +49,7 @@ RenderSystem::RenderSystem() :
 	textures[phoenix_tower_image] = &sdlutils().images().at("phoenix_tower_image");
 	textures[dirt_tower_image] = &sdlutils().images().at("dirt_tower_image");
 	textures[power_tower_image] = &sdlutils().images().at("power_tower_image");
+	textures[nexus_level_3_image] = &sdlutils().images().at("nexus_level_3_image");
 }
 
 

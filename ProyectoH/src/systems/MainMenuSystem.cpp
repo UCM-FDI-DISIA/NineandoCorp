@@ -15,7 +15,7 @@ void MainMenuSystem::initSystem() {
 	// cleon: creais mucho reuido con las variables locales.
 	// al menos, redefinid cada una por pseparado (no reutiliceis "pAux")
 
-	Vector2D towerImagesSize{ 50, 80 };
+	Vector2D towerImagesSize{ 62.5f, 100.0f };
 
 	// BACKGROUND
 	addImage({ sdlutils().width() / 2.0f, (sdlutils().height() / 2.0f) },
@@ -24,7 +24,7 @@ void MainMenuSystem::initSystem() {
 
 	// LOGO
 	addImage({ sdlutils().width() / 2.0f, (sdlutils().height() / 2.0f)  - 250},
-		{ 213 , 159 },
+		{ 266.25f , 198.75f },
 		0.0, gameTextures::logo, _grp_HUD_BACKGROUND);	
 
 	// LEFT COLUMN
@@ -37,11 +37,11 @@ void MainMenuSystem::initSystem() {
 		{ sdlutils().height() - 100.0f , 400 },
 		90.0, gameTextures::box, _grp_HUD_BACKGROUND);
 
-
+	
 	// NEXUS IMAGE - CAMBIAR IMAGEN
 	addImage({ 200,  (sdlutils().height() / 2.0f) - 150.0f },
 		{ 200 , 200 },
-		0.0, gameTextures::box, _grp_HUD_BACKGROUND);
+		0.0, gameTextures::nexus_level_3_image, _grp_HUD_BACKGROUND);
 
 	//-------------------------------------------//
 
@@ -62,7 +62,7 @@ void MainMenuSystem::initSystem() {
 
 	// NEXUS UPGRADE BUTTON
 	addButton({ 200.0f , sdlutils().height() / 2.0f + 200.0f },
-		{ 250.0f, 70.0f },
+		{ 250.0f, 87.5f },
 		gameTextures::upgrade, gameTextures::upgrade_hover, ButtonTypes::upgrade_nexus);
 
 	// 1 TOWER BUTTON - BULLET
@@ -236,6 +236,19 @@ void MainMenuSystem::addImage(const Vector2D& pos, const Vector2D& scale, const 
 	tr->setRotation(rot);
 	mngr_->addComponent<RenderComponent>(img, t);
 }
+
+void MainMenuSystem::addText(const Vector2D& pos, const Vector2D& scale, const double rot, const std::string& text, grpId_type grpId) {
+	
+	Entity* textEntity = mngr_->addEntity(grpId);
+
+	Transform* textTransform = mngr_->addComponent<Transform>(textEntity);
+	textTransform->setPosition(pos);
+	textTransform->setScale(scale);
+	textTransform->setRotation(rot);
+
+	// Añadir Texto
+}
+
 
 void MainMenuSystem::pause() {
 	for (auto but : mngr_->getHandler(_hdlr_BUTTON)) {
