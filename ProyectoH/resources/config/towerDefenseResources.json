@@ -1,9 +1,5 @@
 {
 
-  "fonts" : [
-    
-  ],
-
   "images": [
     {
       "id": "map",
@@ -379,9 +375,22 @@
     }
 
   ],
+
+  "fonts":[
+    {
+      "id": "ARIAL",
+      "file":"resources/fonts/ARIAL.ttf",
+      "size": 24 
+    }
+  ],
   
   "messages" : [
-   
+   {
+    "id": "nexus_level_text",
+    "text": "Nexus Level: ",
+    "font": "ARIAL",
+    "color": "0xffffffff"
+   }
   ],
   
   "sounds" : [

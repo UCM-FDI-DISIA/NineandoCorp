@@ -17,9 +17,12 @@ void MainMenuSystem::initSystem() {
 
 	Vector2D towerImagesSize{ 62.5f, 100.0f };
 
+	// NEXUS LEVEL TEXT
+	addText({ 50.0f, (sdlutils().height() / 2.0f) + 50.0f}, 
+		{ 300.0f, 75.0f}, 0.0f, _grp_GENERAL);
 	// BACKGROUND
 	addImage({ sdlutils().width() / 2.0f, (sdlutils().height() / 2.0f) },
-		{ 1200 , 900 }, 
+		{ 2400 , 1800 }, 
 		0.0, gameTextures::box, _grp_HUD_BACKGROUND);
 
 	// LOGO
@@ -29,12 +32,12 @@ void MainMenuSystem::initSystem() {
 
 	// LEFT COLUMN
 	addImage({ 200,  sdlutils().height() / 2.0f }, 
-		{ sdlutils().height() - 100.0f , 400 },
+		{ sdlutils().height() - 0.0f , 400 },
 		90.0, gameTextures::box, _grp_HUD_BACKGROUND);
 
 	// RIGHT COLUMN
 	addImage({ sdlutils().width() - 200.0f,  sdlutils().height() / 2.0f },
-		{ sdlutils().height() - 100.0f , 400 },
+		{ sdlutils().height() - 0.0f , 400 },
 		90.0, gameTextures::box, _grp_HUD_BACKGROUND);
 
 	
@@ -237,7 +240,7 @@ void MainMenuSystem::addImage(const Vector2D& pos, const Vector2D& scale, const 
 	mngr_->addComponent<RenderComponent>(img, t);
 }
 
-void MainMenuSystem::addText(const Vector2D& pos, const Vector2D& scale, const double rot, const std::string& text, grpId_type grpId) {
+void MainMenuSystem::addText(const Vector2D& pos, const Vector2D& scale, const double rot, grpId_type grpId) {
 	
 	Entity* textEntity = mngr_->addEntity(grpId);
 
@@ -246,6 +249,11 @@ void MainMenuSystem::addText(const Vector2D& pos, const Vector2D& scale, const d
 	textTransform->setScale(scale);
 	textTransform->setRotation(rot);
 
+	Message m;
+	m.id = _m_TEXT_MESSAGE;
+	m.text_message.ent = textEntity;
+	m.text_message.text = stateText::nexus_level;
+	mngr_->send(m, true);
 	// Añadir Texto
 }
 

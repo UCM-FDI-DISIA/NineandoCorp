@@ -7,11 +7,6 @@
 #include "../components/RenderComponent.h"
 
 
-// Correspondant text to each state
-enum stateText {
-	startText, pauseText, winText, loseText, sttTxtSize 
-};
-
 class RenderSystem : public System {
 public:
 	static constexpr sysId_type id = _sys_RENDER;
@@ -39,7 +34,8 @@ private:
 	// Displays pause message
 	void onPause();
 	// Hides pause message
-	void onResume(); 
+	void onResume();
+	void putText(const Message &m);
 
 	uint8_t winner_; // 0 - None, 1 - Asteroid, 2- Fighter
 

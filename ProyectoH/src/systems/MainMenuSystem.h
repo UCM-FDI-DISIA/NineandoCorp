@@ -20,7 +20,7 @@ private:
 	//void addImage(const Vector2D &pos, Vector2D(scale), double rot, gameTextures t, grpId_type grpId);
 
 	void addImage(const Vector2D& pos, const Vector2D & scale, const double rot, gameTextures t, grpId_type grpId);
-	void addText(const Vector2D& pos, const Vector2D& scale, const double rot, const std::string& text, grpId_type grpId);
+	void addText(const Vector2D& pos, const Vector2D& scale, const double rot, grpId_type grpId);
 	void callFunction(ButtonTypes type, ButtonComponent* en);
 	void funcionPrueba(Transform* tr);
 	void loadLevelSelector();

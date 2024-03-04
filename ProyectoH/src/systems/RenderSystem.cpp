@@ -50,6 +50,9 @@ RenderSystem::RenderSystem() :
 	textures[dirt_tower_image] = &sdlutils().images().at("dirt_tower_image");
 	textures[power_tower_image] = &sdlutils().images().at("power_tower_image");
 	textures[nexus_level_3_image] = &sdlutils().images().at("nexus_level_3_image");
+
+	textTextures[nexus_level] = &sdlutils().msgs().at("nexus_level_text");
+	currStTxt = sttTxtSize;
 }
 
 
@@ -70,6 +73,9 @@ void RenderSystem::receive(const Message& m) {
 		break;
 	case _m_PAUSE:
 		onPause();
+		break;
+	case _m_TEXT_MESSAGE:
+		putText(m);
 		break;
 	case _m_RESUME:
 		onResume();
@@ -190,9 +196,9 @@ void RenderSystem::update() {
 	}
 
 	// TEXTS
-	/*if (currStTxt != stateText::sttTxtSize) {
+	if (currStTxt != stateText::sttTxtSize) {
 		textTextures[currStTxt]->render(textTr[currStTxt]->getRect());
-	}*/
+	}
 
 	//Renderizar cursor
 	int x, y;
@@ -218,17 +224,17 @@ void RenderSystem::update() {
 	sdlutils().presentRenderer();
 }
 
-// Creates an Entity with correspondant text texture and transform
-void RenderSystem::addText(stateText stt) {
-	int scale = sdlutils().intConst().at("textScale");
-	Entity* text = mngr_->addEntity();
-	Vector2D size = Vector2D(textTextures[startText]->width(), textTextures[startText]->height()) * scale;
-	textTr[stt] = mngr_->addComponent<Transform>(text);
-	textTr[stt]->setPosition(
-		Vector2D(sdlutils().width() / 2, sdlutils().intConst().at("pressSpaceMessageY"))
-		- size / 2);
-	textTr[stt]->setScale(size);
-}
+//// Creates an Entity with correspondant text texture and transform
+//void RenderSystem::addText(stateText stt) {
+//	int scale = sdlutils().intConst().at("textScale");
+//	Entity* text = mngr_->addEntity();
+//	Vector2D size = Vector2D(textTextures[startText]->width(), textTextures[startText]->height()) * scale;
+//	textTr[stt] = mngr_->addComponent<Transform>(text);
+//	textTr[stt]->setPosition(
+//		Vector2D(sdlutils().width() / 2, sdlutils().intConst().at("pressSpaceMessageY"))
+//		- size / 2);
+//	textTr[stt]->setScale(size);
+//}
 
 
 // Para gestionar los mensajes correspondientes y actualizar los atributos
@@ -245,4 +251,9 @@ void RenderSystem::onPause() {
 }
 // Hides pause message
 void RenderSystem::onResume() {
+}
+
+void  RenderSystem::putText(const Message &m) {
+	currStTxt = m.text_message.text;
+	textTr[currStTxt] = mngr_->getComponent<Transform>(m.text_message.ent);
 }
