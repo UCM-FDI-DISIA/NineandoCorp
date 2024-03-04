@@ -39,6 +39,7 @@ public:
 
 protected:
 	void shootBullet(Entity* target, float damage, float speed, Vector2D spawnPos);
+	void shootFire(float shootingTime, int damage);
 	void eliminateDestroyedTowers(Entity* t);
 	std::vector<Entity*> towers;
 	//std::vector<Entity*> lowTowers;

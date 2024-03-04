@@ -6,5 +6,16 @@ public:
 
 	static const cmpId id = cmpId::_PHOENIXTOWER;
 
-	PhoenixTower() {};
+	PhoenixTower(float damage, float coolingTime, float shootingTime);
+
+	void levelUp(int level);
+
+	bool isMaxLevel() { return isMaxLevel_; }
+
+private:
+	bool isMaxLevel_ = false;
+	float coolingTime_;
+	float shootingTime_;
+	float elapsedTime_;
+	float damage_;
 };

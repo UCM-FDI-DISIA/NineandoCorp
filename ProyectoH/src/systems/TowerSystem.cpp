@@ -181,6 +181,10 @@ void TowerSystem::shootBullet(Entity* target, float damage, float speed, Vector2
 	mngr_->addComponent<RenderComponent>(bullet, bulletTexture);//habra que hacer switch
 }
 
+void TowerSystem::shootFire(float shootingTime, int damage) {
+
+}
+
 void TowerSystem::addTower(twrId type, Vector2D pos, Height height) {
 	Entity* t = mngr_->addEntity(_grp_TOWERS_AND_ENEMIES);//Se añade al mngr
 	towers.push_back(t);
@@ -197,7 +201,7 @@ void TowerSystem::addTower(twrId type, Vector2D pos, Height height) {
 	switch (type)
 	{
 	case _twr_FENIX:
-		mngr_->addComponent<PhoenixTower>(t);
+		mngr_->addComponent<PhoenixTower>(t, 2.5f, 5.0f, 2.0f);
 		mngr_->addComponent<RenderComponent>(t, phoenixTowerTexture);
 		mngr_->addComponent<FramedImage>(t, 4, 2, 650, 900, 0, 0);
 		break;
