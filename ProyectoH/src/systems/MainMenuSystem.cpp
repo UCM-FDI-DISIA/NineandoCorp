@@ -20,6 +20,7 @@ void MainMenuSystem::initSystem() {
 	// NEXUS LEVEL TEXT
 	addText({ 50.0f, (sdlutils().height() / 2.0f) + 50.0f}, 
 		{ 300.0f, 75.0f}, 0.0f, _grp_GENERAL);
+
 	// BACKGROUND
 	addImage({ sdlutils().width() / 2.0f, (sdlutils().height() / 2.0f) },
 		{ 2400 , 1800 }, 

@@ -378,9 +378,9 @@
 
   "fonts":[
     {
-      "id": "ARIAL",
-      "file":"resources/fonts/ARIAL.ttf",
-      "size": 24 
+      "id": "ARIAL_ROUNDED",
+      "file":"resources/fonts/Arial_Rounded_MT_Regular.ttf",
+      "size": 50 
     }
   ],
   
@@ -388,7 +388,13 @@
    {
     "id": "nexus_level_text",
     "text": "Nexus Level: ",
-    "font": "ARIAL",
+    "font": "ARIAL_ROUNDED",
+    "color": "0xffffffff"
+   },
+   {
+    "id": "title_text",
+    "text": "Proyecto H Defense",
+    "font": "ARIAL_ROUNDED",
     "color": "0xffffffff"
    }
   ],
