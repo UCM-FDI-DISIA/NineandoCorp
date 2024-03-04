@@ -32,6 +32,7 @@ void TowerSystem::update() {
 	
 	
 	for (auto& t : towers) {
+		//std::cout << towers.size() << std::endl;
 		if(!mngr_->isAlive(t)){ eliminateDestroyedTowers(t); }//Eliminamos la torre de los arrays si esta muerta
 		else {
 			Transform* TR = mngr_->getComponent<Transform>(t);
@@ -41,7 +42,9 @@ void TowerSystem::update() {
 				bt->setElapsedTime(timer_.currTime());
 				
 				if (bt->getElapsedTime() > bt->getTimeToShoot()*1000) {
+					bt->targetEnemy(mngr_->getHandler(_hdlr_ENEMIES));
 					bt->targetSecondEnemy(mngr_->getHandler(_hdlr_ENEMIES));
+					if(bt->getTarget() != nullptr)
 					if (bt->getSecondTarget() != nullptr) {
 						Vector2D dir = *(mngr_->getComponent<Transform>(bt->getSecondTarget())->getPosition()) - *(TR->getPosition());
 						if (dir.getX() >= 0 && dir.getY() >= 0) mngr_->getComponent<FramedImage>(t)->setCurrentFrame(4 + mngr_->getComponent<UpgradeTowerComponent>(t)->getLevel());
@@ -94,13 +97,17 @@ void TowerSystem::update() {
 				if (ds->getElapsedTime() > ds->getTimeToShoot()*1000) {//si esta cargada busca enemigo con mas vida
 					float health = 0;
 					Entity* target = nullptr;
+					std::cout << mngr_->getHandler(_hdlr_ENEMIES).size();
 					for (const auto& enemy : mngr_->getHandler(_hdlr_ENEMIES))
 					{	
+						if (mngr_->isAlive(enemy)) { std::cout << "vivo"; }
 						if (mngr_->isAlive(enemy)) {
 							HealthComponent* h = mngr_->getComponent<HealthComponent>(enemy);
-							if (h != nullptr && h->getHealth() > health) {//se guarda la referencia al enemigo con mas vida
-								target = enemy;
-								health = h->getHealth();
+							if (h != nullptr) {//se guarda la referencia al enemigo con mas vida
+								if (h->getHealth() > health) {
+									target = enemy;
+									health = h->getHealth();
+								}		
 							}
 						}					
 					}
@@ -113,6 +120,7 @@ void TowerSystem::update() {
 						else if (dir.getX() < 0 && dir.getY() < 0)mngr_->getComponent<FramedImage>(t)->setCurrentFrame(8 + mngr_->getComponent<UpgradeTowerComponent>(t)->getLevel());
 						RenderComponent* rc = mngr_->getComponent<RenderComponent>(t);
 						Vector2D spawn = { TR->getPosition()->getX(),	TR->getPosition()->getY() + DIEGO_OFFSET};
+						
 						shootBullet(target, ds->getDamage() * ds->getCritDamage(), DIEGO_SPEED, spawn);
 						ds->setTimeToShoot(ds->getTimeToShoot() + ds->getReloadTime());
 					}
@@ -148,16 +156,6 @@ void TowerSystem::update() {
 void TowerSystem::eliminateDestroyedTowers(Entity* t) {//elimina delk array las torres muertas
 	bool found = false;
 	int i = 0;
-	/*while (i < lowTowers.size() && !found) {
-		if (t == lowTowers[i]) {
-			found = true;
-			lowTowers[i] = lowTowers[lowTowers.size()];
-			lowTowers.pop_back();
-		}
-		i++;
-	}
-	found = false;
-	i = 0;*/
 	while (i < towers.size() && !found) {
 		if (t == towers[i]) {
 			found = true;
@@ -187,7 +185,6 @@ void TowerSystem::shootFire(float shootingTime, int damage) {
 
 void TowerSystem::addTower(twrId type, Vector2D pos, Height height) {
 	Entity* t = mngr_->addEntity(_grp_TOWERS_AND_ENEMIES);//Se añade al mngr
-	towers.push_back(t);
 	Transform* tr = mngr_->addComponent<Transform>(t);//transform
 	tr->setPosition(pos);
 	tr->setScale({ 100.0f, 150.0f });
@@ -251,7 +248,7 @@ void TowerSystem::onRoundOver() {
 }
 
 void TowerSystem::onAttackTower(Entity* e, int dmg) {
-	std::list<Entity*> towers = mngr_->getHandler(_hdlr_LOW_TOWERS);
-	std::list<Entity*>::iterator findIter = std::find(towers.begin(), towers.end(), e);
-	mngr_->getComponent<HealthComponent>((*findIter))->subtractHealth(dmg);
+	/*std::list<Entity*> towers = mngr_->getHandler(_hdlr_LOW_TOWERS);
+	std::list<Entity*>::iterator findIter = std::find(towers.begin(), towers.end(), e);*/
+	mngr_->getComponent<HealthComponent>(e)->subtractHealth(dmg);
 }

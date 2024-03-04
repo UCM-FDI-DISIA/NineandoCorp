@@ -15,9 +15,9 @@ void AttackComponent::initComponent() {
 
 void AttackComponent::doDamageTo(Entity* e, float damage) {//Causa un daño a una entidad
 	Message m;
-	m.id = _m_ENTITY_TO_ATTACK;
-	m.entity_to_attack.e = e;
-	m.entity_to_attack.damage = damage;
+	m.id = _m_TOWER_TO_ATTACK;
+	m.tower_to_attack.e = e;
+	m.tower_to_attack.damage = damage;
 	mngr_->send(m);
 }
 
