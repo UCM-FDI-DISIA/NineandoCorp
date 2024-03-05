@@ -11,6 +11,7 @@
 #include "..//components/DiegoSniperTower.h"
 #include "../components/FramedImage.h"
 #include "../components/UpgradeTowerComponent.h"
+#include "../game/Game.h"
 #include <list>
 #include <algorithm>
 
@@ -42,6 +43,5 @@ protected:
 	//std::vector<Entity*> lowTowers;
 	//std::vector<Entity*> enemies;//Falta el mensaje para acceder a los enemigos desde el receive
 	bool active_;
-	VirtualTimer timer_;
 };
 

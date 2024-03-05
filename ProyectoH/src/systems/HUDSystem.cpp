@@ -9,14 +9,14 @@ HUDSystem::~HUDSystem(){
 }
 
 void HUDSystem::initSystem() {
-	addImage({ (float)sdlutils().width() / 2 , (float)sdlutils().height()},
+	addImage({ (float)sdlutils().width() / 2 , (float)sdlutils().height()-100},
 		{ (float)sdlutils().width(), 200.0f },
 		0.0,
 		gameTextures::box,
 		_grp_HUD_BACKGROUND);
 
-	addButton({ 500.0f, 500.0f },
-		{ 50.0f, 100.0f },
+	addButton({ (float)sdlutils().width() / 2 , (float)sdlutils().height() - 100 },
+		{ 200.0f, 100.0f },
 		gameTextures::play, gameTextures::play_hover,
 		ButtonTypes::none
 	);

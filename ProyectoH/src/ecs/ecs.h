@@ -127,11 +127,6 @@ enum twrId : twrId_type {
 	_twr_POWER,
 };
 
-// Correspondant text to each state
-enum stateText {
-	nexus_level, sttTxtSize
-};
-
 inline Uint16 sdlnet_hton(Uint16 v) {
 	Uint16 nv;
 	SDLNet_Write16(v, &nv);
@@ -205,12 +200,6 @@ msgId_type id;
 		twrId_type towerId;
 		int lvl;
 	}upgrade_tower;
-
-	//_m_TEXT_MESSAGE
-	struct {
-		Entity* ent;
-		stateText text;
-	}text_message;
 
 	// _m_UPGRADE_NEXUS
 	struct {

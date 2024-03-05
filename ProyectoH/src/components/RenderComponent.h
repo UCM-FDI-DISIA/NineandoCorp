@@ -21,6 +21,10 @@ enum gameTextures {
 	
 	//enemies
 
+
+	//texts
+	nexus_level_text,
+	
 	//others
 	bulletTexture, 
 

@@ -1,16 +1,17 @@
 #include "TowerSystem.h"
 
 
-TowerSystem::TowerSystem() :timer_(), active_(true) {
+TowerSystem::TowerSystem() : active_(true) {
 }
 
 TowerSystem::~TowerSystem() {
 	towers.clear();
-	//enemies.clear();
 }
 
 void TowerSystem::initSystem() {
 	active_ = true;
+
+	addTower(twrId::_twr_BULLET, { (float)sdlutils().width() / 2.f, 600.f }, LOW);
 }
 
 void TowerSystem::receive(const Message& m) {
@@ -38,10 +39,10 @@ void TowerSystem::update() {
 			BulletTower* bt = mngr_->getComponent<BulletTower>(t);
 			if (bt != nullptr) {
 				int lvl = mngr_->getComponent<UpgradeTowerComponent>(t)->getLevel();
-				mngr_->getComponent<FramedImage>(t)->setCurrentFrame(lvl);
+				//mngr_->getComponent<FramedImage>(t)->setCurrentFrame(lvl); No tiene sentido
 			}		
 			if (bt != nullptr && bt->isMaxLevel()) {
-				bt->setElapsedTime(timer_.currTime());
+				bt->setElapsedTime(game().getDeltaTime());
 				if (bt->getElapsedTime() > bt->getTimeToShoot()*1000) {
 					bt->targetSecondEnemy(mngr_->getHandler(_hdlr_ENEMIES));
 					if (bt->getTarget() != nullptr) { shootBullet(bt->getTarget(), bt->getDamage(), BULLET_SPEED, TR->getPosition());}
@@ -68,7 +69,7 @@ void TowerSystem::update() {
 
 			CrystalTower* ct = mngr_->getComponent<CrystalTower>(t);
 			if (ct != nullptr) {
-				ct->setElapsedTime(timer_.currTime());
+				ct->setElapsedTime(game().getDeltaTime());
 				if (ct->getElapsedTime() > ct->getTimeToShield()*1000) {
 					Message m;
 					m.id = _m_SHIELD_NEXUS;
@@ -84,7 +85,7 @@ void TowerSystem::update() {
 
 			DiegoSniperTower* ds = mngr_->getComponent<DiegoSniperTower>(t);
 			if (ds != nullptr) {
-				ds->setElapsedTime(timer_.currTime());//Lo pasa a segundos
+				ds->setElapsedTime(game().getDeltaTime());//Lo pasa a segundos
 				if (ds->getElapsedTime() > ds->getTimeToShoot()*1000) {//si esta cargada busca enemigo con mas vida
 					float health = 0;
 					Entity* target = nullptr;
@@ -183,7 +184,7 @@ void TowerSystem::addTower(twrId type, Vector2D pos, Height height) {
 	case _twr_BULLET://Pasar rango, recarga, daño y si dispara
 		mngr_->addComponent<BulletTower>(t, 100.0f/*&sdlutils().floatConst().at("BalasRango")*/, 0.5f/*&sdlutils().floatConst().at("BalasRecarga")*/, 5/*&sdlutils().intConst().at("BalasDano")*/);
 		mngr_->addComponent<RenderComponent>(t, bulletTowerTexture);
-		mngr_->addComponent<FramedImage>(t, 4, 4, 37, 60, 0, 0);
+		mngr_->addComponent<FramedImage>(t, 4, 4, 650, 1000, 12, 0, 13); // Hay que poner como variable el frame que quieres(El quinto argumento)
 	/*	mngr_->getComponent<UpgradeTowerComponent>(t)->LevelUp();
 		mngr_->getComponent<UpgradeTowerComponent>(t)->LevelUp();
 		mngr_->getComponent<UpgradeTowerComponent>(t)->LevelUp();

@@ -210,9 +210,6 @@
     <ClInclude Include="src\components\DiegoSniperTower.h">
       <Filter>Header Files\components</Filter>
     </ClInclude>
-    <ClInclude Include="src\systems\EnemySystem.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="src\gameStates\PauseState.h">
       <Filter>Header Files\gameStates</Filter>
     </ClInclude>
@@ -229,6 +226,9 @@
       <Filter>Header Files\gameStates</Filter>
     </ClInclude>
     <ClInclude Include="src\systems\LevelSelectorSystem.h">
+      <Filter>Header Files\systems</Filter>
+    </ClInclude>
+    <ClInclude Include="src\systems\EnemySystem.h">
       <Filter>Header Files\systems</Filter>
     </ClInclude>
   </ItemGroup>
@@ -293,9 +293,6 @@
     <ClCompile Include="src\systems\RenderSystem.cpp">
       <Filter>Source Files\systems</Filter>
     </ClCompile>
-    <ClCompile Include="src\components\RenderComponent.cpp">
-      <Filter>Source Files\components</Filter>
-    </ClCompile>
     <ClCompile Include="src\components\AttackComponent.cpp">
       <Filter>Source Files\components</Filter>
     </ClCompile>
@@ -341,9 +338,6 @@
     <ClCompile Include="src\components\DiegoSniperTower.cpp">
       <Filter>Source Files\components</Filter>
     </ClCompile>
-    <ClCompile Include="src\systems\EnemySystem.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="src\game\GameState.cpp">
       <Filter>Source Files\Game</Filter>
     </ClCompile>
@@ -363,6 +357,9 @@
       <Filter>Source Files\gameStates</Filter>
     </ClCompile>
     <ClCompile Include="src\systems\LevelSelectorSystem.cpp">
+      <Filter>Source Files\systems</Filter>
+    </ClCompile>
+    <ClCompile Include="src\systems\EnemySystem.cpp">
       <Filter>Source Files\systems</Filter>
     </ClCompile>
   </ItemGroup>

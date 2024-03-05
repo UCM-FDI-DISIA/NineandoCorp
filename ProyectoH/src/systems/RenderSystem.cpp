@@ -5,7 +5,7 @@
 struct cmpIsometricY {
 	cmpIsometricY(Manager* mngr_) { this->mngr_ = mngr_; }
 	bool operator ()(Entity* e1, Entity* e2) {
-		if (mngr_->getComponent<Transform>(e1)->getY() <= mngr_->getComponent<Transform>(e2)->getY())
+		if (mngr_->getComponent<Transform>(e1)->getY() < mngr_->getComponent<Transform>(e2)->getY())
 			return true;
 		return false;
 	}
@@ -51,8 +51,7 @@ RenderSystem::RenderSystem() :
 	textures[power_tower_image] = &sdlutils().images().at("power_tower_image");
 	textures[nexus_level_3_image] = &sdlutils().images().at("nexus_level_3_image");
 
-	textTextures[nexus_level] = &sdlutils().msgs().at("nexus_level_text");
-	currStTxt = sttTxtSize;
+	textures[nexus_level_text] = &sdlutils().msgs().at("nexus_level_text");
 }
 
 
@@ -73,9 +72,6 @@ void RenderSystem::receive(const Message& m) {
 		break;
 	case _m_PAUSE:
 		onPause();
-		break;
-	case _m_TEXT_MESSAGE:
-		putText(m);
 		break;
 	case _m_RESUME:
 		onResume();
@@ -195,11 +191,6 @@ void RenderSystem::update() {
 		textures[textureId]->render(tr->getRect(), tr->getRotation());
 	}
 
-	// TEXTS
-	if (currStTxt != stateText::sttTxtSize) {
-		textTextures[currStTxt]->render(textTr[currStTxt]->getRect());
-	}
-
 	//Renderizar cursor
 	int x, y;
 	bool pointerdown = false;
@@ -224,18 +215,6 @@ void RenderSystem::update() {
 	sdlutils().presentRenderer();
 }
 
-//// Creates an Entity with correspondant text texture and transform
-//void RenderSystem::addText(stateText stt) {
-//	int scale = sdlutils().intConst().at("textScale");
-//	Entity* text = mngr_->addEntity();
-//	Vector2D size = Vector2D(textTextures[startText]->width(), textTextures[startText]->height()) * scale;
-//	textTr[stt] = mngr_->addComponent<Transform>(text);
-//	textTr[stt]->setPosition(
-//		Vector2D(sdlutils().width() / 2, sdlutils().intConst().at("pressSpaceMessageY"))
-//		- size / 2);
-//	textTr[stt]->setScale(size);
-//}
-
 
 // Para gestionar los mensajes correspondientes y actualizar los atributos
 // winner_ y state_.
@@ -251,9 +230,4 @@ void RenderSystem::onPause() {
 }
 // Hides pause message
 void RenderSystem::onResume() {
-}
-
-void  RenderSystem::putText(const Message &m) {
-	currStTxt = m.text_message.text;
-	textTr[currStTxt] = mngr_->getComponent<Transform>(m.text_message.ent);
 }

@@ -24,8 +24,6 @@ public:
 	void update() override;
 private:
 	
-	// Creates an Entity with correspondant text texture and transform
-	void addText(stateText stt);
 	// Para gestionar los mensajes correspondientes y actualizar los atributos
 	// winner_ y state_.
 	void onRoundStart();
@@ -35,7 +33,6 @@ private:
 	void onPause();
 	// Hides pause message
 	void onResume();
-	void putText(const Message &m);
 
 	uint8_t winner_; // 0 - None, 1 - Asteroid, 2- Fighter
 
@@ -46,11 +43,6 @@ private:
 	int limbot = -1000;
 	int limleft = 1000;
 	int limright = -1000;
-
-	// Texts
-	stateText currStTxt;
-	Texture* textTextures[stateText::sttTxtSize];
-	Transform* textTr[stateText::sttTxtSize];
 
 	// Textures
 	Texture* textures[gameTextures::gmTxtrSize];

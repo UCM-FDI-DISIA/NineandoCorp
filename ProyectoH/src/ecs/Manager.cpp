@@ -48,29 +48,10 @@ std::vector<Entity*>& Manager::getEntities(grpId_type gId) {
 }
 
 void Manager::update() {
-	/*for (auto& ents : entsByGroup_) {
-		auto n = ents.size();
-		for (auto i = 0u; i < n; i++)
-			ents[i]->update();
-	}*/
 	for (auto& syst : sys_) {
 		if (syst != nullptr) syst->update();
 	}
 }
-/*void Manager::render() {
-	for (auto& ents : entsByGroup_) {
-		auto n = ents.size();
-		for (auto i = 0u; i < n; i++)
-			ents[i]->render();
-	}
-}
-void Manager::handleInput() {
-	for (auto& ents : entsByGroup_) {
-		auto n = ents.size();
-		for (auto i = 0u; i < n; i++)
-			ents[i]->handleInput();
-	}
-}*/
 
 void Manager::addToGroupList(grpId_type gId, Entity* e) {
 	entsByGroup_[gId].push_back(e);
