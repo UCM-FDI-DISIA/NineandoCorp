@@ -1,5 +1,5 @@
 #pragma once
-#include "GameState.h"
+#include "../game/GameState.h"
 
 #include "../systems/MainMenuSystem.h"
 #include "../systems/RenderSystem.h"
@@ -10,7 +10,7 @@
 class MainMenuState : public GameState
 {
 public:
-	MainMenuState();
-	virtual ~MainMenuState() {};
+	MainMenuState(Manager* mngr = nullptr);
+	virtual ~MainMenuState();
 };
 

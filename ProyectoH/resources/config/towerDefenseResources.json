@@ -1,275 +1,402 @@
 {
 
-  "fonts" : [
-    
+  "images": [
+    {
+      "id": "map",
+      "file": "resources/images/Map/terrain_0.png"
+    },
+    {
+      "id": "map1",
+      "file": "resources/images/Map/1.png"
+    },
+    {
+      "id": "map3",
+      "file": "resources/images/Map/3.png"
+    },
+    {
+      "id": "map81",
+      "file": "resources/images/Map/81.png"
+    },
+    {
+      "id": "map82",
+      "file": "resources/images/Map/82.png"
+    },
+    {
+      "id": "map83",
+      "file": "resources/images/Map/83.png"
+    },
+    {
+      "id": "map84",
+      "file": "resources/images/Map/84.png"
+    },
+    {
+      "id": "map85",
+      "file": "resources/images/Map/85.png"
+    },
+    {
+      "id": "map87",
+      "file": "resources/images/Map/87.png"
+    },
+    {
+      "id": "map88",
+      "file": "resources/images/Map/88.png"
+    },
+    {
+      "id": "map89",
+      "file": "resources/images/Map/89.png"
+    },
+    {
+      "id": "map90",
+      "file": "resources/images/Map/90.png"
+    },
+    {
+      "id": "map98",
+      "file": "resources/images/Map/98.png"
+    },
+    {
+      "id": "map99",
+      "file": "resources/images/Map/99.png"
+    },
+    {
+      "id": "map133",
+      "file": "resources/images/Map/133.png"
+    },
+    {
+      "id": "Acechante_Electrico_Attack",
+      "file": "resources/images/Enemies/Acechante Electrico/Attack.png"
+    },
+    {
+      "id": "Acechante_Electrico_Run",
+      "file": "resources/images/Enemies/Acechante Electrico/Run.png"
+    },
+    {
+      "id": "Angel",
+      "file": "resources/images/Enemies/Angel/angel.png"
+    },
+    {
+      "id": "Defensor_Real_Attack",
+      "file": "resources/images/Enemies/defensor_real/Attack2.png"
+    },
+    {
+      "id": "Defensor_Real_Run",
+      "file": "resources/images/Enemies/defensor_real/Run.png"
+    },
+    {
+      "id": "Defensor_Real_Death",
+      "file": "resources/images/Enemies/defensor_real/Death.png"
+    },
+    {
+      "id": "Demonio_Alado_Attack",
+      "file": "resources/images/Enemies/Demonio Alado/Attack1.png"
+    },
+    {
+      "id": "Demonio_Alado_Run",
+      "file": "resources/images/Enemies/Demonio Alado/Flight.png"
+    },
+    {
+      "id": "Esqueleto_Attack",
+      "file": "resources/images/Enemies/Esqueleto/Attack1.png"
+    },
+    {
+      "id": "Esqueleto_Run",
+      "file": "resources/images/Enemies/Esqueleto/Walk.png"
+    },
+    {
+      "id": "Goblin_Run",
+      "file": "resources/images/Enemies/Goblin/Run.png"
+    },
+    {
+      "id": "Goblin_Attack",
+      "file": "resources/images/Enemies/Goblin/Attack1.png"
+    },
+    {
+      "id": "Golem",
+      "file": "resources/images/Enemies/Golem/GolemSpritesheet.png"
+    },
+    {
+      "id": "Maestro_de_las_Almas_Attack",
+      "file": "resources/images/Enemies/Maestro de las Almas/Attack.png"
+    },
+    {
+      "id": "Maestro_de_las_Almas_Run",
+      "file": "resources/images/Enemies/Maestro de las Almas/Run.png"
+    },
+    {
+      "id": "Maldito_Attack",
+      "file": "resources/images/Enemies/Maldito/Attack.png"
+    },
+    {
+      "id": "Maldito_Run",
+      "file": "resources/images/Enemies/Maldito/Run.png"
+    },
+    {
+      "id": "Mensajero_de_la_muerte",
+      "file": "resources/images/Enemies/Mensajero de la Muerte/Maestro de las AlmasSpritesheet.png"
+    },
+    {
+      "id": "Monje_Death",
+      "file": "resources/images/Enemies/monje/Death.png"
+    },
+    {
+      "id": "Monje_Run",
+      "file": "resources/images/Enemies/monje/Move.png"
+    },
+    {
+      "id": "Principito_Run",
+      "file": "resources/images/Enemies/principito/Run.png"
+    },
+    {
+      "id": "Principito_Attack",
+      "file": "resources/images/Enemies/principito/Attack.png"
+    },
+    {
+      "id": "Principito_Death",
+      "file": "resources/images/Enemies/principito/Death.png"
+    },
+    {
+      "id": "Principito_Idle",
+      "file": "resources/images/Enemies/principito/Idle.png"
+    },
+    {
+      "id": "Elfo_Run",
+      "file": "resources/images/Enemies/Elfo/Character/Run.png"
+    },
+    {
+      "id": "Elfo_Death",
+      "file": "resources/images/Enemies/Elfo/Character/Death.png"
+    },
+    {
+      "id": "Elfo_Attack",
+      "file": "resources/images/Enemies/Elfo/Character/Attack.png"
+    },
+    {
+      "id": "Flechas_Move",
+      "file": "resources/images/Enemies/Elfo/Arrow/Move.png"
+    },
+    {
+      "id": "Flechas_Static",
+      "file": "resources/images/Enemies/Elfo/Arrow/Static.png"
+    },
+    {
+      "id": "square",
+      "file": "resources/images/Enemies/Angel/angel1.png"
+    },
+    {
+      "id": "bullet_tower",
+      "file": "resources/images/towers/bullet_tower.png"
+    },
+    {
+      "id": "sniper_tower",
+      "file": "resources/images/towers/sniper_tower.png"
+    },
+    {
+      "id": "phoenix_tower",
+      "file": "resources/images/towers/phoenix_tower.png"
+    },
+    {
+      "id": "cristal_tower",
+      "file": "resources/images/towers/cristal_tower.png"
+    },
+    {
+      "id": "booster_tower",
+      "file": "resources/images/towers/booster_tower.png"
+    },
+    {
+      "id": "slime_tower",
+      "file": "resources/images/towers/slime_tower.png"
+    },
+    {
+      "id": "clay_tower",
+      "file": "resources/images/towers/clay_tower.png"
+    },
+    {
+      "id": "play",
+      "file": "resources/images/UI/play_button.png"
+    },
+    {
+      "id": "play_hover",
+      "file": "resources/images/UI/play_button_hover.png"
+    },
+    {
+      "id": "cursor",
+      "file": "resources/images/pointer/finger_up.png"
+    },
+    {
+      "id": "cursorpress",
+      "file": "resources/images/pointer/finger_down.png"
+    },
+    {
+      "id": "bullet",
+      "file": "resources/images/Towers/bullet.png"
+    },
+    {
+      "id": "nexus_tower",
+      "file": "resources/images/Towers/nexus_tower.jpeg"
+    },
+    {
+        "id": "play",
+        "file": "resources/images/UI/play_button.png"
+    },
+    {
+        "id": "play_hover",
+        "file": "resources/images/UI/play_button_hover.png"
+    },
+    {
+        "id": "box",
+        "file": "resources/images/UI/box.png"
+    },
+    {
+        "id": "box_hover",
+        "file": "resources/images/UI/box_hover.png"
+    },
+    {
+        "id": "large_box",
+        "file": "resources/images/UI/large_box.png"
+    },
+    {
+        "id": "close",
+        "file": "resources/images/UI/close_button.png"
+    },
+    {
+        "id": "close_hover",
+        "file": "resources/images/UI/close_button_hover.png"
+    },
+    {
+        "id": "enemies",
+        "file": "resources/images/UI/enemies_button.png"
+    },
+    {
+        "id": "enemies_hover",
+        "file": "resources/images/UI/enemies_button_hover.png"
+    },
+    {
+        "id": "menu_background",
+        "file": "resources/images/UI/FondoMenu.png"
+    },
+    {
+        "id": "upgrade",
+        "file": "resources/images/UI/upgrade_button.png"
+    },
+    {
+        "id": "upgrade_hover",
+        "file": "resources/images/UI/upgrade_button_hover.png"
+    },
+    {
+        "id": "logo",
+        "file": "resources/images/UI/LogodeHDefense.png"
+    },
+    {
+        "id": "play",
+        "file": "resources/images/UI/play_button.png"
+    },
+    {
+        "id": "play_hover",
+        "file": "resources/images/UI/play_button_hover.png"
+    },
+    {
+        "id": "box",
+        "file": "resources/images/UI/box.png"
+    },
+    {
+        "id": "box_hover",
+        "file": "resources/images/UI/box_hover.png"
+    },
+    {
+        "id": "large_box",
+        "file": "resources/images/UI/large_box.png"
+    },
+    {
+        "id": "close",
+        "file": "resources/images/UI/close_button.png"
+    },
+    {
+        "id": "close_hover",
+        "file": "resources/images/UI/close_button_hover.png"
+    },
+    {
+        "id": "enemies",
+        "file": "resources/images/UI/enemies_button.png"
+    },
+    {
+        "id": "enemies_hover",
+        "file": "resources/images/UI/enemies_button_hover.png"
+    },
+    {
+        "id": "menu_background",
+        "file": "resources/images/UI/FondoMenu.png"
+    },
+    {
+        "id": "upgrade",
+        "file": "resources/images/UI/upgrade_button.png"
+    },
+    {
+        "id": "upgrade_hover",
+        "file": "resources/images/UI/upgrade_button_hover.png"
+    },
+    {
+        "id": "logo",
+        "file": "resources/images/UI/LogodeHDefense.png"
+    },
+    {
+      "id": "cristal_tower_image",
+      "file": "resources/images/towers/1_cristal_tower.png"
+    },
+    {
+      "id": "bullet_tower_image",
+      "file": "resources/images/towers/1_bullet_tower.png"
+    },
+    {
+      "id": "slime_tower_image",
+      "file": "resources/images/towers/1_slime_tower.png"
+    },
+    {
+      "id": "sniper_tower_image",
+      "file": "resources/images/towers/1_sniper_tower.png"
+    },
+    {
+      "id": "cristal_tower_image",
+      "file": "resources/images/towers/1_cristal_tower.png"
+    },
+    {
+      "id": "phoenix_tower_image",
+      "file": "resources/images/towers/1_phoenix_tower.png"
+    },
+    {
+      "id": "dirt_tower_image",
+      "file": "resources/images/towers/1_clay_tower.png"
+    },
+    {
+      "id": "power_tower_image",
+      "file": "resources/images/towers/1_booster_tower.png"
+    },
+    {
+      "id": "nexus_level_3_image",
+      "file": "resources/images/nexus/nexus_level_3_image.png"
+    }
+
   ],
 
-    "images": [
-        {
-            "id": "map",
-            "file": "resources/images/Map/terrain_0.png"
-        },
-        {
-            "id": "map1",
-            "file": "resources/images/Map/1.png"
-        },
-        {
-            "id": "map3",
-            "file": "resources/images/Map/3.png"
-        },
-        {
-            "id": "map81",
-            "file": "resources/images/Map/81.png"
-        },
-        {
-            "id": "map82",
-            "file": "resources/images/Map/82.png"
-        },
-        {
-            "id": "map83",
-            "file": "resources/images/Map/83.png"
-        },
-        {
-            "id": "map84",
-            "file": "resources/images/Map/84.png"
-        },
-        {
-            "id": "map85",
-            "file": "resources/images/Map/85.png"
-        },
-        {
-            "id": "map87",
-            "file": "resources/images/Map/87.png"
-        },
-        {
-            "id": "map88",
-            "file": "resources/images/Map/88.png"
-        },
-        {
-            "id": "map89",
-            "file": "resources/images/Map/89.png"
-        },
-        {
-            "id": "map90",
-            "file": "resources/images/Map/90.png"
-        },
-        {
-            "id": "map98",
-            "file": "resources/images/Map/98.png"
-        },
-        {
-            "id": "map99",
-            "file": "resources/images/Map/99.png"
-        },
-        {
-            "id": "map133",
-            "file": "resources/images/Map/133.png"
-        },
-        {
-            "id": "Acechante_Electrico_Attack",
-            "file": "resources/images/Enemies/Acechante Electrico/Attack.png"
-        },
-        {
-            "id": "Acechante_Electrico_Run",
-            "file": "resources/images/Enemies/Acechante Electrico/Run.png"
-        },
-        {
-            "id": "Angel",
-            "file": "resources/images/Enemies/Angel/angel.png"
-        },
-        {
-            "id": "Defensor_Real_Attack",
-            "file": "resources/images/Enemies/defensor_real/Attack2.png"
-        },
-        {
-            "id": "Defensor_Real_Run",
-            "file": "resources/images/Enemies/defensor_real/Run.png"
-        },
-        {
-            "id": "Defensor_Real_Death",
-            "file": "resources/images/Enemies/defensor_real/Death.png"
-        },
-        {
-            "id": "Demonio_Alado_Attack",
-            "file": "resources/images/Enemies/Demonio Alado/Attack1.png"
-        },
-        {
-            "id": "Demonio_Alado_Run",
-            "file": "resources/images/Enemies/Demonio Alado/Flight.png"
-        },
-        {
-            "id": "Esqueleto_Attack",
-            "file": "resources/images/Enemies/Esqueleto/Attack1.png"
-        },
-        {
-            "id": "Esqueleto_Run",
-            "file": "resources/images/Enemies/Esqueleto/Walk.png"
-        },
-        {
-            "id": "Goblin_Run",
-            "file": "resources/images/Enemies/Goblin/Run.png"
-        },
-        {
-            "id": "Goblin_Attack",
-            "file": "resources/images/Enemies/Goblin/Attack1.png"
-        },
-        {
-            "id": "Golem",
-            "file": "resources/images/Enemies/Golem/GolemSpritesheet.png"
-        },
-        {
-            "id": "Maestro_de_las_Almas_Attack",
-            "file": "resources/images/Enemies/Maestro de las Almas/Attack.png"
-        },
-        {
-            "id": "Maestro_de_las_Almas_Run",
-            "file": "resources/images/Enemies/Maestro de las Almas/Run.png"
-        },
-        {
-            "id": "Maldito_Attack",
-            "file": "resources/images/Enemies/Maldito/Attack.png"
-        },
-        {
-            "id": "Maldito_Run",
-            "file": "resources/images/Enemies/Maldito/Run.png"
-        },
-        {
-            "id": "Mensajero_de_la_muerte",
-            "file": "resources/images/Enemies/Mensajero de la Muerte/Maestro de las AlmasSpritesheet.png"
-        },
-        {
-            "id": "Monje_Death",
-            "file": "resources/images/Enemies/monje/Death.png"
-        },
-        {
-            "id": "Monje_Run",
-            "file": "resources/images/Enemies/monje/Move.png"
-        },
-        {
-            "id": "Principito_Run",
-            "file": "resources/images/Enemies/principito/Run.png"
-        },
-        {
-            "id": "Principito_Attack",
-            "file": "resources/images/Enemies/principito/Attack.png"
-        },
-        {
-            "id": "Principito_Death",
-            "file": "resources/images/Enemies/principito/Death.png"
-        },
-        {
-            "id": "Principito_Idle",
-            "file": "resources/images/Enemies/principito/Idle.png"
-        },
-        {
-            "id": "Elfo_Run",
-            "file": "resources/images/Enemies/Elfo/Character/Run.png"
-        },
-        {
-            "id": "Elfo_Death",
-            "file": "resources/images/Enemies/Elfo/Character/Death.png"
-        },
-        {
-            "id": "Elfo_Attack",
-            "file": "resources/images/Enemies/Elfo/Character/Attack.png"
-        },
-        {
-            "id": "Flechas_Move",
-            "file": "resources/images/Enemies/Elfo/Arrow/Move.png"
-        },
-        {
-            "id": "Flechas_Static",
-            "file": "resources/images/Enemies/Elfo/Arrow/Static.png"
-        },
-        {
-            "id": "square",
-            "file": "resources/images/Enemies/Angel/angel1.png"
-        },
-        {
-            "id": "bullet_tower",
-            "file": "resources/images/towers/bullet_tower.png"
-        },
-        {
-            "id": "sniper_tower",
-            "file": "resources/images/towers/sniper_tower.png"
-        },
-        {
-            "id": "phoenix_tower",
-            "file": "resources/images/towers/phoenix_tower.png"
-        },
-        {
-            "id": "cristal_tower",
-            "file": "resources/images/towers/cristal_tower.png"
-        },
-        {
-            "id": "booster_tower",
-            "file": "resources/images/towers/booster_tower.png"
-        },
-        {
-            "id": "slime_tower",
-            "file": "resources/images/towers/slime_tower.png"
-        },
-        {
-            "id": "clay_tower",
-            "file": "resources/images/towers/clay_tower.png"
-        },
-        {
-            "id": "1_bullet_tower",
-            "file": "resources/images/towers/1_bullet_tower.png"
-        },
-        {
-            "id": "1_sniper_tower",
-            "file": "resources/images/towers/1_sniper_tower.png"
-        },
-        {
-            "id": "1_phoenix_tower",
-            "file": "resources/images/towers/1_phoenix_tower.png"
-        },
-        {
-            "id": "1_cristal_tower",
-            "file": "resources/images/towers/1_cristal_tower.png"
-        },
-        {
-            "id": "1_booster_tower",
-            "file": "resources/images/towers/1_booster_tower.png"
-        },
-        {
-            "id": "1_slime_tower",
-            "file": "resources/images/towers/1_slime_tower.png"
-        },
-        {
-            "id": "1_clay_tower",
-            "file": "resources/images/towers/1_clay_tower.png"
-        },
-        {
-            "id": "play",
-            "file": "resources/images/Buttons/play/play01.png"
-        },
-        {
-            "id": "play_hover",
-            "file": "resources/images/Buttons/play/play03.png"
-        },
-        {
-            "id": "cursor",
-            "file": "resources/images/pointer/finger_up.png"
-        },
-        {
-            "id": "cursorpress",
-            "file": "resources/images/pointer/finger_down.png"
-        },
-        {
-            "id": "bullet",
-            "file": "resources/images/Towers/bullet.png"
-        },
-        {
-            "id": "nexus_tower",
-            "file": "resources/images/Towers/nexus_tower.jpeg"
-        }
-
-    ],
+  "fonts":[
+    {
+      "id": "ARIAL_ROUNDED",
+      "file":"resources/fonts/Arial_Rounded_MT_Regular.ttf",
+      "size": 50 
+    }
+  ],
   
   "messages" : [
-   
+   {
+    "id": "nexus_level_text",
+    "text": "Nexus Level: ",
+    "font": "ARIAL_ROUNDED",
+    "color": "0xffffffff"
+   },
+   {
+    "id": "title_text",
+    "text": "Proyecto H Defense",
+    "font": "ARIAL_ROUNDED",
+    "color": "0xffffffff"
+   }
   ],
   
   "sounds" : [

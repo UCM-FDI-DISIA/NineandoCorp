@@ -7,7 +7,7 @@
 #include <list>
 
 
-class Manager {
+class Manager{
 private:
 	std::array<std::vector<Entity*>, maxGroupId> entsByGroup_;
 	std::array<std::list<Entity*>, maxHdlrId> hdlrs_;
@@ -26,6 +26,9 @@ public:
 	}
 	inline void deleteHandler(hdlrId_type hId, Entity* e) {
 		hdlrs_[hId].remove(e);
+	}
+	inline void deleteAllHandlers(hdlrId_type hId) {
+		hdlrs_[hId].clear();
 	}
 	inline std::list<Entity*> getHandler(hdlrId_type hId) {
 		return hdlrs_[hId];

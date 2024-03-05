@@ -13,11 +13,13 @@ public:
 	void receive(const Message& m) override;
 	void initSystem() override;
 	void update() override;
+private: 
+	void manageButtons();
+	void addButton(const Vector2D& pos, const Vector2D& scale, gameTextures tex, gameTextures hov, ButtonTypes type);
+	//void addImage(const Vector2D &pos, Vector2D(scale), double rot, gameTextures t, grpId_type grpId);
 
-private:
-	//Ejecuta la funcion correspondiente a cada boton
-	void callFunction(ButtonTypes type, Transform* en);
-	void funcionPrueba(Transform* tr);
-	void playGame();
+	void addImage(const Vector2D& pos, const Vector2D& scale, const double rot, gameTextures t, grpId_type grpId);
+	void callFunction(ButtonTypes type, ButtonComponent* en);
+	void pause();
 };
 

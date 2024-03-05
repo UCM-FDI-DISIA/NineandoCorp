@@ -1,4 +1,4 @@
-#include "RenderSystem.h"
+﻿#include "RenderSystem.h"
 #include "../ecs/Manager.h"
 #include "../game/Game.h"
 
@@ -19,7 +19,7 @@ RenderSystem::RenderSystem() :
 	textures[square] = &sdlutils().images().at("square");
 	textures[tileSet] = &sdlutils().images().at("map");
 	textures[play] = &sdlutils().images().at("play");
-	textures[playHover] = &sdlutils().images().at("play_hover");
+	textures[play_hover] = &sdlutils().images().at("play_hover");
 	textures[bulletTowerTexture] = &sdlutils().images().at("bullet_tower");
 	textures[cristalTowerTexture] = &sdlutils().images().at("cristal_tower");
 	textures[phoenixTowerTexture] = &sdlutils().images().at("phoenix_tower");
@@ -31,13 +31,35 @@ RenderSystem::RenderSystem() :
 	textures[nexusTexture] = &sdlutils().images().at("nexus_tower");
 	cursorTexture = &sdlutils().images().at("cursor");
 	cursorTexture2 = &sdlutils().images().at("cursorpress");
+	textures[box] = &sdlutils().images().at("box"); 
+	textures[box_hover] = &sdlutils().images().at("box_hover");
+	textures[large_box] = &sdlutils().images().at("large_box");
+	textures[close] = &sdlutils().images().at("close");
+	textures[close_hover] = &sdlutils().images().at("close_hover");
+	textures[enemies_button] = &sdlutils().images().at("enemies");
+	textures[enemies_button_hover] = &sdlutils().images().at("enemies_hover");
+	textures[menu_background] = &sdlutils().images().at("menu_background");
+	textures[upgrade] = &sdlutils().images().at("upgrade");
+	textures[upgrade_hover] = &sdlutils().images().at("upgrade_hover");
+	textures[logo] = &sdlutils().images().at("logo");
+	textures[cristal_tower_image] = &sdlutils().images().at("cristal_tower_image");
+	textures[bullet_tower_image] = &sdlutils().images().at("bullet_tower_image");
+	textures[slime_tower_image] = &sdlutils().images().at("slime_tower_image");
+	textures[sniper_tower_image] = &sdlutils().images().at("sniper_tower_image");
+	textures[phoenix_tower_image] = &sdlutils().images().at("phoenix_tower_image");
+	textures[dirt_tower_image] = &sdlutils().images().at("dirt_tower_image");
+	textures[power_tower_image] = &sdlutils().images().at("power_tower_image");
+	textures[nexus_level_3_image] = &sdlutils().images().at("nexus_level_3_image");
+
+	textTextures[nexus_level] = &sdlutils().msgs().at("nexus_level_text");
+	currStTxt = sttTxtSize;
 }
 
 
 RenderSystem::~RenderSystem() {
 }
 
-// Reaccionar a los mensajes recibidos (llamando a m�todos correspondientes).
+// Reaccionar a los mensajes recibidos (llamando a métodos correspondientes).
 void RenderSystem::receive(const Message& m) {
 	switch (m.id) {
 	case _m_ROUND_START:
@@ -51,6 +73,9 @@ void RenderSystem::receive(const Message& m) {
 		break;
 	case _m_PAUSE:
 		onPause();
+		break;
+	case _m_TEXT_MESSAGE:
+		putText(m);
 		break;
 	case _m_RESUME:
 		onResume();
@@ -90,7 +115,7 @@ void RenderSystem::update() {
 		SDL_Rect trRect = tr->getRect();
 		trRect.x += offset.x;
 		trRect.y += offset.y;
-		textures[textureId]->render(srcRect,trRect);
+		textures[textureId]->render(srcRect, trRect);
 	}
 
 	//LAYER 2 TILEMAP
@@ -121,7 +146,7 @@ void RenderSystem::update() {
 	// NO CAMBIAR LECHES
 	//TOWERS AND ENEMIES
 	auto& towers = mngr_->getEntities(_grp_TOWERS_AND_ENEMIES);
-	sort(towers.begin(),towers.end(), cmpIsometricY(mngr_));
+	sort(towers.begin(), towers.end(), cmpIsometricY(mngr_));
 	for (auto& t : towers) {
 		Transform* tr = mngr_->getComponent<Transform>(t);
 		gameTextures textureId = mngr_->getComponent<RenderComponent>(t)->getTexture();
@@ -145,7 +170,7 @@ void RenderSystem::update() {
 		trRect.y += offset.y;
 		textures[textureId]->render(trRect, tr->getRotation());
 	}
-	
+
 	//HUD BACKGROUND
 	const auto& hudB = mngr_->getEntities(_grp_HUD_BACKGROUND);
 	for (auto& h : hudB) {
@@ -171,9 +196,9 @@ void RenderSystem::update() {
 	}
 
 	// TEXTS
-	/*if (currStTxt != stateText::sttTxtSize) {
+	if (currStTxt != stateText::sttTxtSize) {
 		textTextures[currStTxt]->render(textTr[currStTxt]->getRect());
-	}*/
+	}
 
 	//Renderizar cursor
 	int x, y;
@@ -199,17 +224,17 @@ void RenderSystem::update() {
 	sdlutils().presentRenderer();
 }
 
-// Creates an Entity with correspondant text texture and transform
-void RenderSystem::addText(stateText stt) {
-	int scale = sdlutils().intConst().at("textScale");
-	Entity* text = mngr_->addEntity();
-	Vector2D size = Vector2D(textTextures[startText]->width(), textTextures[startText]->height()) * scale;
-	textTr[stt] = mngr_->addComponent<Transform>(text);
-	textTr[stt]->setPosition(
-		Vector2D(sdlutils().width() / 2, sdlutils().intConst().at("pressSpaceMessageY"))
-		- size / 2);
-	textTr[stt]->setScale(size);
-}
+//// Creates an Entity with correspondant text texture and transform
+//void RenderSystem::addText(stateText stt) {
+//	int scale = sdlutils().intConst().at("textScale");
+//	Entity* text = mngr_->addEntity();
+//	Vector2D size = Vector2D(textTextures[startText]->width(), textTextures[startText]->height()) * scale;
+//	textTr[stt] = mngr_->addComponent<Transform>(text);
+//	textTr[stt]->setPosition(
+//		Vector2D(sdlutils().width() / 2, sdlutils().intConst().at("pressSpaceMessageY"))
+//		- size / 2);
+//	textTr[stt]->setScale(size);
+//}
 
 
 // Para gestionar los mensajes correspondientes y actualizar los atributos
@@ -226,4 +251,9 @@ void RenderSystem::onPause() {
 }
 // Hides pause message
 void RenderSystem::onResume() {
+}
+
+void  RenderSystem::putText(const Message &m) {
+	currStTxt = m.text_message.text;
+	textTr[currStTxt] = mngr_->getComponent<Transform>(m.text_message.ent);
 }
