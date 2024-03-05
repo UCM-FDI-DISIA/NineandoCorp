@@ -23,6 +23,7 @@ void TowerSystem::receive(const Message& m) {
 		onRoundOver();
 		break;
 	case _m_TOWER_TO_ATTACK:
+
 		onAttackTower(m.tower_to_attack.e, m.tower_to_attack.damage);
 	}
 }
@@ -33,20 +34,29 @@ void TowerSystem::update() {
 	
 	
 	for (auto& t : towers) {
+		//std::cout << towers.size() << std::endl;
 		if(!mngr_->isAlive(t)){ eliminateDestroyedTowers(t); }//Eliminamos la torre de los arrays si esta muerta
 		else {
 			Transform* TR = mngr_->getComponent<Transform>(t);
 			BulletTower* bt = mngr_->getComponent<BulletTower>(t);
+					
 			if (bt != nullptr) {
-				int lvl = mngr_->getComponent<UpgradeTowerComponent>(t)->getLevel();
-				//mngr_->getComponent<FramedImage>(t)->setCurrentFrame(lvl); No tiene sentido
-			}		
-			if (bt != nullptr && bt->isMaxLevel()) {
-				bt->setElapsedTime(game().getDeltaTime());
+			bt->setElapsedTime(game().getDeltaTime());
+				
 				if (bt->getElapsedTime() > bt->getTimeToShoot()*1000) {
+					bt->targetEnemy(mngr_->getHandler(_hdlr_ENEMIES));
 					bt->targetSecondEnemy(mngr_->getHandler(_hdlr_ENEMIES));
-					if (bt->getTarget() != nullptr) { shootBullet(bt->getTarget(), bt->getDamage(), BULLET_SPEED, TR->getPosition());}
-					std::cout << "s";
+					if(bt->getTarget() != nullptr)
+					if (bt->getSecondTarget() != nullptr) {
+						Vector2D dir = *(mngr_->getComponent<Transform>(bt->getSecondTarget())->getPosition()) - *(TR->getPosition());
+						if (dir.getX() >= 0 && dir.getY() >= 0) mngr_->getComponent<FramedImage>(t)->setCurrentFrame(4 + mngr_->getComponent<UpgradeTowerComponent>(t)->getLevel());
+						else if (dir.getX() >= 0 && dir.getY() < 0) mngr_->getComponent<FramedImage>(t)->setCurrentFrame(12 + mngr_->getComponent<UpgradeTowerComponent>(t)->getLevel());
+						else if (dir.getX() < 0 && dir.getY() >= 0)mngr_->getComponent<FramedImage>(t)->setCurrentFrame(0 + mngr_->getComponent<UpgradeTowerComponent>(t)->getLevel());
+						else if (dir.getX() < 0 && dir.getY() < 0)mngr_->getComponent<FramedImage>(t)->setCurrentFrame(8+mngr_->getComponent<UpgradeTowerComponent>(t)->getLevel());
+						shootBullet(bt->getSecondTarget(), bt->getDamage(), BULLET_SPEED, TR->getPosition());	
+						bt->setTimeToShoot(bt->getTimeToShoot() + bt->getReloadTime());
+						std::cout << dir.getX() << " " << dir.getY() << "\n";
+					}
 				}
 			}
 			EnhancerTower* et = mngr_->getComponent<EnhancerTower>(t);
@@ -89,26 +99,42 @@ void TowerSystem::update() {
 				if (ds->getElapsedTime() > ds->getTimeToShoot()*1000) {//si esta cargada busca enemigo con mas vida
 					float health = 0;
 					Entity* target = nullptr;
+					std::cout << mngr_->getHandler(_hdlr_ENEMIES).size();
 					for (const auto& enemy : mngr_->getHandler(_hdlr_ENEMIES))
 					{	
+						
 						if (mngr_->isAlive(enemy)) {
 							HealthComponent* h = mngr_->getComponent<HealthComponent>(enemy);
-							if (h != nullptr && h->getHealth() > health) {//se guarda la referencia al enemigo con mas vida
-								target = enemy;
-								health = h->getHealth();
+							if (h != nullptr) {//se guarda la referencia al enemigo con mas vida
+								if (h->getHealth() > health) {
+									target = enemy;
+									health = h->getHealth();
+								}		
 							}
 						}					
 					}
 					if (target != nullptr) {//Dispara con el critico
-						std::cout << "shot";
+						//std::cout << "shot";
+						Vector2D dir = *(mngr_->getComponent<Transform>(target)->getPosition()) - *(TR->getPosition());
+						if (dir.getX() >= 0 && dir.getY() >= 0) mngr_->getComponent<FramedImage>(t)->setCurrentFrame(4 + mngr_->getComponent<UpgradeTowerComponent>(t)->getLevel());
+						else if (dir.getX() >= 0 && dir.getY() < 0) mngr_->getComponent<FramedImage>(t)->setCurrentFrame(12 + mngr_->getComponent<UpgradeTowerComponent>(t)->getLevel());
+						else if (dir.getX() < 0 && dir.getY() >= 0)mngr_->getComponent<FramedImage>(t)->setCurrentFrame(0 + mngr_->getComponent<UpgradeTowerComponent>(t)->getLevel());
+						else if (dir.getX() < 0 && dir.getY() < 0)mngr_->getComponent<FramedImage>(t)->setCurrentFrame(8 + mngr_->getComponent<UpgradeTowerComponent>(t)->getLevel());
 						RenderComponent* rc = mngr_->getComponent<RenderComponent>(t);
 						Vector2D spawn = { TR->getPosition()->getX(),	TR->getPosition()->getY() + DIEGO_OFFSET};
+						
 						shootBullet(target, ds->getDamage() * ds->getCritDamage(), DIEGO_SPEED, spawn);
 						ds->setTimeToShoot(ds->getTimeToShoot() + ds->getReloadTime());
 					}
 				}
 			}
-		}	
+			//Esto no hay que hacerlo en el update, si no en el LevelUp
+			/*if (et == nullptr) {
+				int lvl = mngr_->getComponent<UpgradeTowerComponent>(t)->getLevel();
+				if (lvl == 4)lvl--;
+				mngr_->getComponent<FramedImage>(t)->setCurrentFrame(lvl);
+			}*/
+		}		
 	}
 
 	for (auto& b : bullets) {
@@ -132,20 +158,11 @@ void TowerSystem::update() {
 void TowerSystem::eliminateDestroyedTowers(Entity* t) {//elimina delk array las torres muertas
 	bool found = false;
 	int i = 0;
-	/*while (i < lowTowers.size() && !found) {
-		if (t == lowTowers[i]) {
-			found = true;
-			lowTowers[i] = lowTowers[lowTowers.size()];
-			lowTowers.pop_back();
-		}
-		i++;
-	}
-	found = false;
-	i = 0;*/
+	
 	while (i < towers.size() && !found) {
 		if (t == towers[i]) {
 			found = true;
-			towers[i] = towers[towers.size()];
+			if (towers.size() > 1) { towers[i] = towers.back(); }
 			towers.pop_back();
 		}
 		i++;
@@ -165,11 +182,15 @@ void TowerSystem::shootBullet(Entity* target, float damage, float speed, Vector2
 	mngr_->addComponent<RenderComponent>(bullet, bulletTexture);//habra que hacer switch
 }
 
+void TowerSystem::shootFire(float shootingTime, int damage) {
+
+}
+
 void TowerSystem::addTower(twrId type, Vector2D pos, Height height) {
 	Entity* t = mngr_->addEntity(_grp_TOWERS_AND_ENEMIES);//Se añade al mngr
-	towers.push_back(t);
 	Transform* tr = mngr_->addComponent<Transform>(t);//transform
 	tr->setPosition(pos);
+	tr->setScale({ 100.0f, 150.0f });
 	mngr_->addComponent<UpgradeTowerComponent>(t, type, 4);
 	float health = 100.0f;
 	if (height == LOW) { 
@@ -180,35 +201,40 @@ void TowerSystem::addTower(twrId type, Vector2D pos, Height height) {
 	switch (type)
 	{
 	case _twr_FENIX:
+		mngr_->addComponent<PhoenixTower>(t, 2.5f, 5.0f, 2.0f);
+		mngr_->addComponent<RenderComponent>(t, phoenixTowerTexture);
+		mngr_->addComponent<FramedImage>(t, 4, 2, 650, 900, 0, 0);
 		break;
 	case _twr_BULLET://Pasar rango, recarga, daño y si dispara
 		mngr_->addComponent<BulletTower>(t, 100.0f/*&sdlutils().floatConst().at("BalasRango")*/, 0.5f/*&sdlutils().floatConst().at("BalasRecarga")*/, 5/*&sdlutils().intConst().at("BalasDano")*/);
 		mngr_->addComponent<RenderComponent>(t, bulletTowerTexture);
-		mngr_->addComponent<FramedImage>(t, 4, 4, 650, 1000, 12, 0, 13); // Hay que poner como variable el frame que quieres(El quinto argumento)
-	/*	mngr_->getComponent<UpgradeTowerComponent>(t)->LevelUp();
-		mngr_->getComponent<UpgradeTowerComponent>(t)->LevelUp();
-		mngr_->getComponent<UpgradeTowerComponent>(t)->LevelUp();
-		mngr_->getComponent<UpgradeTowerComponent>(t)->LevelUp();*/
+		mngr_->addComponent<FramedImage>(t, 4, 4, 650, 1000, 0, 0);
 
 		break;
 	case _twr_DIRT:
+		mngr_->addComponent<DirtTower>(t, 100.0f, 0.0f, 0);
+		mngr_->addComponent<RenderComponent>(t, clayTowerTexture);
+		mngr_->addComponent<FramedImage>(t, 4, 4, 750, 1200, 0, 0);
 		break;
 	case _twr_POWER://Pasar rango, porcentaje incremento de ataque y vida extra
 		mngr_->addComponent<EnhancerTower>(t, 100.0f/*&sdlutils().floatConst().at("PotenciadoraRango")*/, 0.05f/*&sdlutils().floatConst().at("PotenciadoraAumentoDano")*/, 30.0f/*&sdlutils().floatConst().at("PotenciadoraAumentoVida")*/);
 		mngr_->addComponent<RenderComponent>(t, boosterTowerTexture);
-		mngr_->addComponent<FramedImage>(t, 5, 1, 35, 54, 0, 0);
+		mngr_->addComponent<FramedImage>(t, 5, 1, 640, 1000, 0, 0);
 		break;
 	case _twr_DIEGO:
-		mngr_->addComponent<DiegoSniperTower>(t, 1000.0f, 0, 1.0f, 3.0f, 50);
+		//mngr_->addComponent<DiegoSniperTower>(t, 1000.0f, 0, 1.0f, 3.0f, 50);
 		mngr_->addComponent<RenderComponent>(t, sniperTowerTexture);
-		mngr_->addComponent<FramedImage>(t, 5, 1, 35, 54, 0, 0);
+		mngr_->addComponent<FramedImage>(t, 4, 4, 690, 1150, 0, 0);
 		break;
 	case _twr_SLIME:
+		mngr_->addComponent<RenderComponent>(t, slimeTowerTexture);
+		mngr_->addComponent<FramedImage>(t, 4, 4, 750, 1050, 0, 0);
+		
 		break;
 	case _twr_CRISTAL:
 		mngr_->addComponent<CrystalTower>(t,20/* &sdlutils().intConst().at("CristalEscudo")*/, 2.0f/*&sdlutils().floatConst().at("CristalRecarga")*/, 0/*&sdlutils().intConst().at("CristalDano")*/);
 		mngr_->addComponent<RenderComponent>(t, cristalTowerTexture);
-		mngr_->addComponent<FramedImage>(t, 4, 1, 44, 65, 0, 0);
+		mngr_->addComponent<FramedImage>(t, 4, 1, 875, 1500, 0, 0);
 		break;
 	default:
 		break;
@@ -225,7 +251,13 @@ void TowerSystem::onRoundOver() {
 }
 
 void TowerSystem::onAttackTower(Entity* e, int dmg) {
-	std::list<Entity*> towers = mngr_->getHandler(_hdlr_LOW_TOWERS);
-	std::list<Entity*>::iterator findIter = std::find(towers.begin(), towers.end(), e);
-	mngr_->getComponent<HealthComponent>((*findIter))->subtractHealth(dmg);
+	/*std::list<Entity*> towers = mngr_->getHandler(_hdlr_LOW_TOWERS);
+	std::list<Entity*>::iterator findIter = std::find(towers.begin(), towers.end(), e);*/
+	if (mngr_->isAlive(e)) {
+		HealthComponent* h = mngr_->getComponent<HealthComponent>(e);
+		if (h->getHealth() - dmg <= 0) {
+			mngr_->deleteHandler(_hdlr_LOW_TOWERS, e); eliminateDestroyedTowers(e);
+		}
+		h->subtractHealth(dmg);
+	}
 }

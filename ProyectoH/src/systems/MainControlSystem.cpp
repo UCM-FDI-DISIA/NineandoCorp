@@ -50,7 +50,7 @@ void MainControlSystem::update() {
 	if (active_) {
 		if(mngr_->getComponent<NexusComponent>(nexo)->getShieldHitpoints() <= 0)mngr_->getComponent<NexusComponent>(nexo)->inactivateShield();
 
-		std::cout << mngr_->getComponent<NexusComponent>(nexo)->getShieldHitpoints() << "\n";
+		//std::cout << mngr_->getComponent<NexusComponent>(nexo)->getShieldHitpoints() << "\n";
 	}
 }
 

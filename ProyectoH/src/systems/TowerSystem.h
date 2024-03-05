@@ -9,6 +9,8 @@
 #include "..//components/CrystalTower.h"
 #include "..//components/RenderComponent.h"
 #include "..//components/DiegoSniperTower.h"
+#include "..//components/PhoenixTower.h"
+#include "..//components/DirtTower.h"
 #include "../components/FramedImage.h"
 #include "../components/UpgradeTowerComponent.h"
 #include "../game/Game.h"
@@ -38,6 +40,7 @@ public:
 
 protected:
 	void shootBullet(Entity* target, float damage, float speed, Vector2D spawnPos);
+	void shootFire(float shootingTime, int damage);
 	void eliminateDestroyedTowers(Entity* t);
 	std::vector<Entity*> towers;
 	//std::vector<Entity*> lowTowers;
