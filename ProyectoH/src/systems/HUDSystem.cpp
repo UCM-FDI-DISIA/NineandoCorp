@@ -23,7 +23,7 @@ void HUDSystem::initSystem() {
 		gameTextures::none_box, gameTextures::none_box_hover,
 		ButtonTypes::none);
 	addButton({ 120.0f, heightH },
-		{ 100.0f, 150.0f },
+		{ 93.0f, 135.0f },
 		gameTextures::bullet_tower_image, gameTextures::bullet_tower_image,
 		ButtonTypes::none
 	);
@@ -33,7 +33,7 @@ void HUDSystem::initSystem() {
 		gameTextures::none_box, gameTextures::none_box_hover,
 		ButtonTypes::none);
 	addButton({ 120.0f + separation, heightH },
-		{ 100.0f, 150.0f },
+		{ 96.0f, 126.0f },
 		gameTextures::cristal_tower_image, gameTextures::cristal_tower_image,
 		ButtonTypes::none
 	);
@@ -43,7 +43,7 @@ void HUDSystem::initSystem() {
 		gameTextures::none_box, gameTextures::none_box_hover,
 		ButtonTypes::none);
 	addButton({ 120.0f + separation * 2, heightH },
-		{ 100.0f, 150.0f },
+		{ 90.0f, 105.0f },
 		gameTextures::phoenix_tower_image, gameTextures::phoenix_tower_image,
 		ButtonTypes::none
 	);
@@ -53,7 +53,7 @@ void HUDSystem::initSystem() {
 		gameTextures::none_box, gameTextures::none_box_hover,
 		ButtonTypes::none);
 	addButton({ 120.0f + separation * 3, heightH },
-		{ 100.0f, 150.0f },
+		{ 128.0f, 156.0f },
 		gameTextures::dirt_tower_image, gameTextures::dirt_tower_image,
 		ButtonTypes::none
 	);
@@ -63,7 +63,7 @@ void HUDSystem::initSystem() {
 		gameTextures::none_box, gameTextures::none_box_hover,
 		ButtonTypes::none);
 	addButton({ 120.0f + separation * 4, heightH },
-		{ 100.0f, 150.0f },
+		{ 96.0f, 150.0f },
 		gameTextures::sniper_tower_image, gameTextures::sniper_tower_image,
 		ButtonTypes::none
 	);
@@ -73,7 +73,7 @@ void HUDSystem::initSystem() {
 		gameTextures::none_box, gameTextures::none_box_hover,
 		ButtonTypes::none);
 	addButton({ 120.0f + separation * 5, heightH },
-		{ 100.0f, 150.0f },
+		{ 102.0f, 129.0f },
 		gameTextures::slime_tower_image, gameTextures::slime_tower_image,
 		ButtonTypes::none
 	);
@@ -83,7 +83,7 @@ void HUDSystem::initSystem() {
 		gameTextures::none_box, gameTextures::none_box_hover,
 		ButtonTypes::none);
 	addButton({ 120.0f + separation * 6, heightH },
-		{ 100.0f, 150.0f },
+		{ 90.0f, 126.0f },
 		gameTextures::power_tower_image, gameTextures::power_tower_image,
 		ButtonTypes::none
 	);
