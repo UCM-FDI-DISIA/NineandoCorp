@@ -33,6 +33,8 @@ RenderSystem::RenderSystem() :
 	cursorTexture2 = &sdlutils().images().at("cursorpress");
 	textures[box] = &sdlutils().images().at("box"); 
 	textures[box_hover] = &sdlutils().images().at("box_hover");
+	textures[none_box] = &sdlutils().images().at("none_box");
+	textures[none_box_hover] = &sdlutils().images().at("none_box_hover");
 	textures[large_box] = &sdlutils().images().at("large_box");
 	textures[close] = &sdlutils().images().at("close");
 	textures[close_hover] = &sdlutils().images().at("close_hover");
