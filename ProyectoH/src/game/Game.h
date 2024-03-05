@@ -7,10 +7,9 @@
 #include "../sdlutils/InputHandler.h"
 #include "../utils/Singleton.h"
 
-#include "../game/PlayState.h"
-//#include "../gameStates/PauseState.h"
-//#include "../gameStates/GameOverState.h"
-#include "../game/MainMenuState.h"
+#include "../gameStates/PlayState.h"
+#include "../gameStates/LevelSelectorState.h"
+#include "../gameStates/MainMenuState.h"
 constexpr int WIN_WIDTH = 1200;
 constexpr int WIN_HEIGHT = 900;
 #include "../systems/RenderSystem.h"
@@ -41,12 +40,13 @@ public:
 	// Executes the game
 	void run();
 	// Returns game time between updates
-	inline double getDeltaTime() { return deltaTime; }
+	inline double getDeltaTime() const { return deltaTime; }
 
 	// Launches a new GameState on top of the current one
 	template <typename T, typename ...Ts>
 	inline void pushState(Ts&& ...args) {
 		gameStateMachine->pushState(new T(std::forward<Ts>(args)...));
+
 	}
 	// Quits the current GameState
 	inline void popState() {
@@ -57,6 +57,10 @@ public:
 	template <typename T, typename ...Ts>
 	inline void changeState(Ts&& ...args) {
 		gameStateMachine->changeState(new T(std::forward<Ts>(args)...));
+	}
+
+	inline void exitGame() {
+		exit = true;
 	}
 
 	inline GameState* currentState() {return gameStateMachine->currentState(); }

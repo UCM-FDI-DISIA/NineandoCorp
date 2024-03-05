@@ -177,18 +177,6 @@
     <ClInclude Include="src\components\DragAndDrop.h">
       <Filter>Header Files\components</Filter>
     </ClInclude>
-    <ClInclude Include="src\game\GameOverState.h">
-      <Filter>Header Files\gameStates</Filter>
-    </ClInclude>
-    <ClInclude Include="src\game\MainMenuState.h">
-      <Filter>Header Files\gameStates</Filter>
-    </ClInclude>
-    <ClInclude Include="src\game\PauseState.h">
-      <Filter>Header Files\gameStates</Filter>
-    </ClInclude>
-    <ClInclude Include="src\game\PlayState.h">
-      <Filter>Header Files\gameStates</Filter>
-    </ClInclude>
     <ClInclude Include="src\systems\TowerSystem.h">
       <Filter>Header Files\systems</Filter>
     </ClInclude>
@@ -222,8 +210,26 @@
     <ClInclude Include="src\components\DiegoSniperTower.h">
       <Filter>Header Files\components</Filter>
     </ClInclude>
+    <ClInclude Include="src\gameStates\PauseState.h">
+      <Filter>Header Files\gameStates</Filter>
+    </ClInclude>
+    <ClInclude Include="src\gameStates\PlayState.h">
+      <Filter>Header Files\gameStates</Filter>
+    </ClInclude>
+    <ClInclude Include="src\gameStates\MainMenuState.h">
+      <Filter>Header Files\gameStates</Filter>
+    </ClInclude>
+    <ClInclude Include="src\gameStates\LevelSelectorState.h">
+      <Filter>Header Files\gameStates</Filter>
+    </ClInclude>
+    <ClInclude Include="src\gameStates\GameOverState.h">
+      <Filter>Header Files\gameStates</Filter>
+    </ClInclude>
+    <ClInclude Include="src\systems\LevelSelectorSystem.h">
+      <Filter>Header Files\systems</Filter>
+    </ClInclude>
     <ClInclude Include="src\systems\EnemySystem.h">
-      <Filter>Header Files</Filter>
+      <Filter>Header Files\systems</Filter>
     </ClInclude>
     <ClInclude Include="src\components\PhoenixTower.h">
       <Filter>Header Files\components</Filter>
@@ -290,9 +296,6 @@
     <ClCompile Include="src\systems\RenderSystem.cpp">
       <Filter>Source Files\systems</Filter>
     </ClCompile>
-    <ClCompile Include="src\components\RenderComponent.cpp">
-      <Filter>Source Files\components</Filter>
-    </ClCompile>
     <ClCompile Include="src\components\AttackComponent.cpp">
       <Filter>Source Files\components</Filter>
     </ClCompile>
@@ -304,21 +307,6 @@
     </ClCompile>
     <ClCompile Include="src\components\DragAndDrop.cpp">
       <Filter>Source Files\components</Filter>
-    </ClCompile>
-    <ClCompile Include="src\game\GameOverState.cpp">
-      <Filter>Source Files\gameStates</Filter>
-    </ClCompile>
-    <ClCompile Include="src\game\GameState.cpp">
-      <Filter>Source Files\gameStates</Filter>
-    </ClCompile>
-    <ClCompile Include="src\game\MainMenuState.cpp">
-      <Filter>Source Files\gameStates</Filter>
-    </ClCompile>
-    <ClCompile Include="src\game\PauseState.cpp">
-      <Filter>Source Files\gameStates</Filter>
-    </ClCompile>
-    <ClCompile Include="src\game\PlayState.cpp">
-      <Filter>Source Files\gameStates</Filter>
     </ClCompile>
     <ClCompile Include="src\systems\TowerSystem.cpp">
       <Filter>Source Files\systems</Filter>
@@ -353,8 +341,29 @@
     <ClCompile Include="src\components\DiegoSniperTower.cpp">
       <Filter>Source Files\components</Filter>
     </ClCompile>
+    <ClCompile Include="src\game\GameState.cpp">
+      <Filter>Source Files\Game</Filter>
+    </ClCompile>
+    <ClCompile Include="src\gameStates\GameOverState.cpp">
+      <Filter>Source Files\gameStates</Filter>
+    </ClCompile>
+    <ClCompile Include="src\gameStates\LevelSelectorState.cpp">
+      <Filter>Source Files\gameStates</Filter>
+    </ClCompile>
+    <ClCompile Include="src\gameStates\MainMenuState.cpp">
+      <Filter>Source Files\gameStates</Filter>
+    </ClCompile>
+    <ClCompile Include="src\gameStates\PauseState.cpp">
+      <Filter>Source Files\gameStates</Filter>
+    </ClCompile>
+    <ClCompile Include="src\gameStates\PlayState.cpp">
+      <Filter>Source Files\gameStates</Filter>
+    </ClCompile>
+    <ClCompile Include="src\systems\LevelSelectorSystem.cpp">
+      <Filter>Source Files\systems</Filter>
+    </ClCompile>
     <ClCompile Include="src\systems\EnemySystem.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Source Files\systems</Filter>
     </ClCompile>
     <ClCompile Include="src\components\PhoenixTower.cpp">
       <Filter>Source Files\components</Filter>

@@ -1,9 +1,5 @@
 {
 
-  "fonts" : [
-    
-  ],
-
   "images": [
     {
       "id": "map",
@@ -215,11 +211,11 @@
     },
     {
       "id": "play",
-      "file": "resources/images/Buttons/play/play01.png"
+      "file": "resources/images/UI/play_button.png"
     },
     {
       "id": "play_hover",
-      "file": "resources/images/Buttons/play/play03.png"
+      "file": "resources/images/UI/play_button_hover.png"
     },
     {
       "id": "cursor",
@@ -236,12 +232,171 @@
     {
       "id": "nexus_tower",
       "file": "resources/images/Towers/nexus_tower.jpeg"
+    },
+    {
+        "id": "play",
+        "file": "resources/images/UI/play_button.png"
+    },
+    {
+        "id": "play_hover",
+        "file": "resources/images/UI/play_button_hover.png"
+    },
+    {
+        "id": "box",
+        "file": "resources/images/UI/box.png"
+    },
+    {
+        "id": "box_hover",
+        "file": "resources/images/UI/box_hover.png"
+    },
+    {
+        "id": "large_box",
+        "file": "resources/images/UI/large_box.png"
+    },
+    {
+        "id": "close",
+        "file": "resources/images/UI/close_button.png"
+    },
+    {
+        "id": "close_hover",
+        "file": "resources/images/UI/close_button_hover.png"
+    },
+    {
+        "id": "enemies",
+        "file": "resources/images/UI/enemies_button.png"
+    },
+    {
+        "id": "enemies_hover",
+        "file": "resources/images/UI/enemies_button_hover.png"
+    },
+    {
+        "id": "menu_background",
+        "file": "resources/images/UI/FondoMenu.png"
+    },
+    {
+        "id": "upgrade",
+        "file": "resources/images/UI/upgrade_button.png"
+    },
+    {
+        "id": "upgrade_hover",
+        "file": "resources/images/UI/upgrade_button_hover.png"
+    },
+    {
+        "id": "logo",
+        "file": "resources/images/UI/LogodeHDefense.png"
+    },
+    {
+        "id": "play",
+        "file": "resources/images/UI/play_button.png"
+    },
+    {
+        "id": "play_hover",
+        "file": "resources/images/UI/play_button_hover.png"
+    },
+    {
+        "id": "box",
+        "file": "resources/images/UI/box.png"
+    },
+    {
+        "id": "box_hover",
+        "file": "resources/images/UI/box_hover.png"
+    },
+    {
+        "id": "large_box",
+        "file": "resources/images/UI/large_box.png"
+    },
+    {
+        "id": "close",
+        "file": "resources/images/UI/close_button.png"
+    },
+    {
+        "id": "close_hover",
+        "file": "resources/images/UI/close_button_hover.png"
+    },
+    {
+        "id": "enemies",
+        "file": "resources/images/UI/enemies_button.png"
+    },
+    {
+        "id": "enemies_hover",
+        "file": "resources/images/UI/enemies_button_hover.png"
+    },
+    {
+        "id": "menu_background",
+        "file": "resources/images/UI/FondoMenu.png"
+    },
+    {
+        "id": "upgrade",
+        "file": "resources/images/UI/upgrade_button.png"
+    },
+    {
+        "id": "upgrade_hover",
+        "file": "resources/images/UI/upgrade_button_hover.png"
+    },
+    {
+        "id": "logo",
+        "file": "resources/images/UI/LogodeHDefense.png"
+    },
+    {
+      "id": "cristal_tower_image",
+      "file": "resources/images/towers/1_cristal_tower.png"
+    },
+    {
+      "id": "bullet_tower_image",
+      "file": "resources/images/towers/1_bullet_tower.png"
+    },
+    {
+      "id": "slime_tower_image",
+      "file": "resources/images/towers/1_slime_tower.png"
+    },
+    {
+      "id": "sniper_tower_image",
+      "file": "resources/images/towers/1_sniper_tower.png"
+    },
+    {
+      "id": "cristal_tower_image",
+      "file": "resources/images/towers/1_cristal_tower.png"
+    },
+    {
+      "id": "phoenix_tower_image",
+      "file": "resources/images/towers/1_phoenix_tower.png"
+    },
+    {
+      "id": "dirt_tower_image",
+      "file": "resources/images/towers/1_clay_tower.png"
+    },
+    {
+      "id": "power_tower_image",
+      "file": "resources/images/towers/1_booster_tower.png"
+    },
+    {
+      "id": "nexus_level_3_image",
+      "file": "resources/images/nexus/nexus_level_3_image.png"
     }
 
   ],
+
+  "fonts":[
+    {
+      "id": "ARIAL_ROUNDED",
+      "file":"resources/fonts/Arial_Rounded_MT_Regular.ttf",
+      "size": 50 
+    }
+  ],
   
   "messages" : [
-   
+   {
+    "id": "nexus_level_text",
+    "text": "Nexus Level: ",
+    "font": "ARIAL_ROUNDED",
+    "color": "0xffffffff"
+   },
+   {
+    "id": "title_text",
+    "text": "Proyecto H Defense",
+    "font": "ARIAL_ROUNDED",
+    "color": "0xffffffff"
+   }
   ],
   
   "sounds" : [

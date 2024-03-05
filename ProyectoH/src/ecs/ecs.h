@@ -40,8 +40,10 @@ using hdlrId_type = int;
 enum hdlrId : hdlrId_type { 
 	_hdlr_DRAG_AND_DROP,
 	_hdlr_BUTTON,
+	_hdlr_SUBMENU,
 	_hdlr_LOW_TOWERS,
 	_hdlr_ENEMIES,
+	
 	// do not remove this
 	_LAST_HDLR_ID };
 constexpr hdlrId_type maxHdlrId = _LAST_HDLR_ID;
@@ -69,6 +71,7 @@ enum gmSttId : gmSttId_type {
 	_gmStt_PAUSE,
 	_gmStt_GAMEOVER,
 	_gmStt_MAINMENU,
+	_gmStt_LEVELSELECTOR, 
 
 	// do not remove this
 	_LAST_GMSTT_ID
@@ -86,6 +89,8 @@ enum sysId : sysId_type {
 	_sys_MAINMENU,
 	_sys_MAINCONTROL,
 	_sys_ENEMIES,
+	_sys_LEVELSELECTOR,
+
 	// do not remove this
 	_LAST_SYS_ID
 };
@@ -106,6 +111,11 @@ enum msgId : msgId_type {
 	_m_PAUSE,
 	_m_RESUME,
 	_m_START_GAME,
+	_m_LEVEL_SELECTOR,
+	_m_UPGRADE_NEXUS,
+	_m_UPGRADE_TOWER,
+	_m_BACK_TO_MAINMENU, 
+	_m_TEXT_MESSAGE
 };
 
 using twrId_type = uint8_t;
@@ -186,60 +196,17 @@ msgId_type id;
 	struct {
 		int damage;
 	}nexus_attack_data;
-	// _m_COLLISION_ASTEROIDBULLET
-	struct {
-		Entity* a;
-		Entity* b;
-	} collision_asteroidbullet_data;
-	// _m_GAMEOVER
-	struct {
-		unsigned char n;
-	} winner_data;
-	// _m_SHOOT
-	struct {
-		Vector2D pos;
-		Vector2D vel;
-		double width;
-		double height;
-		bool isEnemy;
-	} gun_data;
-	struct {
-		float posX;
-		float posY;
-		float rotation;
-		bool shooted;
-		unsigned char winner;
 
-		inline Uint8* serialize(Uint8* buf) {
-			buf = _serialize_(posX, buf);
-			buf = _serialize_(posY, buf);
-			buf = _serialize_(rotation, buf);
-			buf = _serialize_(reinterpret_cast<Uint32&>(shooted), buf);
-			buf = _serialize_(reinterpret_cast<Uint32&>(winner), buf);
-			return buf;
-		}
-		inline Uint8* deserialize(Uint8* buf) {
-			buf = _deserialize_(posX, buf);
-			buf = _deserialize_(posY, buf);
-			buf = _deserialize_(rotation, buf);
-			buf = _deserialize_(reinterpret_cast<Uint32&>(shooted), buf);
-			buf = _deserialize_(reinterpret_cast<Uint32&>(winner), buf);
-			this->winner = (unsigned char)winner;
-			this->shooted = (bool)shooted;
-			return buf;
-		}
-	} package_data;
-	// _m_COLLISION_FIGHTERBULLET
+	// _m_UPGRADE_TOWER
 	struct {
-		bool isEnemy;
-	} collision_fighterbullet_data;
+		twrId_type towerId;
+		int lvl;
+	}upgrade_tower;
 
-
+	// _m_UPGRADE_NEXUS
 	struct {
-		std::string name; 
-		std::string enemyName; 
-	} multiplayer_start_data;
-
+		int lvl;
+	}upgrade_nexus;
 };
 
 #endif // !ECS_H_

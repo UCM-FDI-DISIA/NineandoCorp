@@ -1,16 +1,17 @@
 #include "TowerSystem.h"
 
 
-TowerSystem::TowerSystem() :timer_(), active_(true) {
+TowerSystem::TowerSystem() : active_(true) {
 }
 
 TowerSystem::~TowerSystem() {
 	towers.clear();
-	//enemies.clear();
 }
 
 void TowerSystem::initSystem() {
 	active_ = true;
+
+	addTower(twrId::_twr_BULLET, { (float)sdlutils().width() / 2.f, 600.f }, LOW);
 }
 
 void TowerSystem::receive(const Message& m) {
@@ -40,7 +41,7 @@ void TowerSystem::update() {
 			BulletTower* bt = mngr_->getComponent<BulletTower>(t);
 					
 			if (bt != nullptr) {
-				bt->setElapsedTime(timer_.currTime());
+			bt->setElapsedTime(game().getDeltaTime());
 				
 				if (bt->getElapsedTime() > bt->getTimeToShoot()*1000) {
 					bt->targetEnemy(mngr_->getHandler(_hdlr_ENEMIES));
@@ -78,7 +79,7 @@ void TowerSystem::update() {
 
 			CrystalTower* ct = mngr_->getComponent<CrystalTower>(t);
 			if (ct != nullptr) {
-				ct->setElapsedTime(timer_.currTime());
+				ct->setElapsedTime(game().getDeltaTime());
 				if (ct->getElapsedTime() > ct->getTimeToShield()*1000) {
 					Message m;
 					m.id = _m_SHIELD_NEXUS;
@@ -94,7 +95,7 @@ void TowerSystem::update() {
 
 			DiegoSniperTower* ds = mngr_->getComponent<DiegoSniperTower>(t);
 			if (ds != nullptr) {
-				ds->setElapsedTime(timer_.currTime());//Lo pasa a segundos
+				ds->setElapsedTime(game().getDeltaTime());//Lo pasa a segundos
 				if (ds->getElapsedTime() > ds->getTimeToShoot()*1000) {//si esta cargada busca enemigo con mas vida
 					float health = 0;
 					Entity* target = nullptr;
