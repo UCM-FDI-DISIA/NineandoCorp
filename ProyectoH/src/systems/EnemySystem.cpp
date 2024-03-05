@@ -4,7 +4,7 @@
 #include "..//components/HealthComponent.h"
 #include "../ecs/Manager.h"
 
-EnemySystem::EnemySystem() : timer_() {
+EnemySystem::EnemySystem() {
 
 }
 EnemySystem::~EnemySystem() {
@@ -75,7 +75,7 @@ void EnemySystem::update() {
 
 		}*/
 		if (ac != nullptr) {
-			ac->setElapsedTime(timer_.currTime());
+			ac->setElapsedTime(game().getDeltaTime());
 			if (ac->getElapsedTime() > ac->getTimeToShoot() * 1000) {
 				ac->setLoaded(true);
 				ac->targetEnemy(towers);
