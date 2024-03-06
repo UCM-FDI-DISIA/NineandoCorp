@@ -67,13 +67,13 @@ void EnemySystem::update() {
 		MovementComponent* mc = mngr_->getComponent<MovementComponent>(e);
 		AttackComponent* ac = mngr_->getComponent<AttackComponent>(e);
 
-		/*if (rc != nullptr) {
+		if (rc != nullptr) {
 			rc->checkdestiny();
 			if (mc != nullptr && !mc->getStop()) {
 				mc->Move();
 			}
 
-		}*/
+		}
 		if (ac != nullptr) {
 			ac->setElapsedTime(game().getDeltaTime());
 			if (ac->getElapsedTime() > ac->getTimeToShoot() * 1000) {
