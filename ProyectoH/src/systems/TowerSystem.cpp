@@ -41,13 +41,24 @@ void TowerSystem::update() {
 			BulletTower* bt = mngr_->getComponent<BulletTower>(t);
 					
 			if (bt != nullptr) {
-			bt->setElapsedTime(game().getDeltaTime());
-				
-				if (bt->getElapsedTime() > bt->getTimeToShoot()*1000) {
+				bt->setElapsedTime(bt->getElapsedTime()+game().getDeltaTime());
+				//std::cout << bt->getElapsedTime() << "\n";
+				if (bt->getElapsedTime() > bt->getTimeToShoot()) {
 					bt->targetEnemy(mngr_->getHandler(_hdlr_ENEMIES));
-					bt->targetSecondEnemy(mngr_->getHandler(_hdlr_ENEMIES));
-					if(bt->getTarget() != nullptr)
-					if (bt->getSecondTarget() != nullptr) {
+					bt->setElapsedTime(0);
+					//bt->targetSecondEnemy(mngr_->getHandler(_hdlr_ENEMIES));
+					if (bt->getTarget() != nullptr) {
+						Vector2D dir = *(mngr_->getComponent<Transform>(bt->getTarget())->getPosition()) - *(TR->getPosition());
+						if (dir.getX() >= 0 && dir.getY() >= 0) mngr_->getComponent<FramedImage>(t)->setCurrentFrame(4 + mngr_->getComponent<UpgradeTowerComponent>(t)->getLevel());
+						else if (dir.getX() >= 0 && dir.getY() < 0) mngr_->getComponent<FramedImage>(t)->setCurrentFrame(12 + mngr_->getComponent<UpgradeTowerComponent>(t)->getLevel());
+						else if (dir.getX() < 0 && dir.getY() >= 0)mngr_->getComponent<FramedImage>(t)->setCurrentFrame(0 + mngr_->getComponent<UpgradeTowerComponent>(t)->getLevel());
+						else if (dir.getX() < 0 && dir.getY() < 0)mngr_->getComponent<FramedImage>(t)->setCurrentFrame(8 + mngr_->getComponent<UpgradeTowerComponent>(t)->getLevel());
+						shootBullet(bt->getTarget(), bt->getDamage(), BULLET_SPEED, TR->getPosition());
+						//bt->setTimeToShoot(bt->getTimeToShoot() + bt->getReloadTime());
+						
+						//std::cout << dir.getX() << " " << dir.getY() << "\n";
+					}
+					/*if (bt->getSecondTarget() != nullptr) {
 						Vector2D dir = *(mngr_->getComponent<Transform>(bt->getSecondTarget())->getPosition()) - *(TR->getPosition());
 						if (dir.getX() >= 0 && dir.getY() >= 0) mngr_->getComponent<FramedImage>(t)->setCurrentFrame(4 + mngr_->getComponent<UpgradeTowerComponent>(t)->getLevel());
 						else if (dir.getX() >= 0 && dir.getY() < 0) mngr_->getComponent<FramedImage>(t)->setCurrentFrame(12 + mngr_->getComponent<UpgradeTowerComponent>(t)->getLevel());
@@ -56,7 +67,7 @@ void TowerSystem::update() {
 						shootBullet(bt->getSecondTarget(), bt->getDamage(), BULLET_SPEED, TR->getPosition());	
 						bt->setTimeToShoot(bt->getTimeToShoot() + bt->getReloadTime());
 						std::cout << dir.getX() << " " << dir.getY() << "\n";
-					}
+					}*/
 				}
 			}
 			EnhancerTower* et = mngr_->getComponent<EnhancerTower>(t);
@@ -79,7 +90,7 @@ void TowerSystem::update() {
 
 			CrystalTower* ct = mngr_->getComponent<CrystalTower>(t);
 			if (ct != nullptr) {
-				ct->setElapsedTime(game().getDeltaTime());
+				ct->setElapsedTime(ct->getElapsedTime()+game().getDeltaTime());
 				if (ct->getElapsedTime() > ct->getTimeToShield()*1000) {
 					Message m;
 					m.id = _m_SHIELD_NEXUS;
@@ -89,14 +100,14 @@ void TowerSystem::update() {
 						m.shield_data.explosionDmg = ct->getExplosionDmg();
 					}
 					mngr_->send(m);
-					ct->setTimeToShield(ct->getTimeToShield()+ct->getReloadTime());
+					ct->setElapsedTime(0);
 				}
 			}
 
 			DiegoSniperTower* ds = mngr_->getComponent<DiegoSniperTower>(t);
 			if (ds != nullptr) {
-				ds->setElapsedTime(game().getDeltaTime());//Lo pasa a segundos
-				if (ds->getElapsedTime() > ds->getTimeToShoot()*1000) {//si esta cargada busca enemigo con mas vida
+				ds->setElapsedTime(ds->getElapsedTime()+game().getDeltaTime());//Lo pasa a segundos
+				if (ds->getElapsedTime() > ds->getTimeToShoot()) {//si esta cargada busca enemigo con mas vida
 					float health = 0;
 					Entity* target = nullptr;
 					std::cout << mngr_->getHandler(_hdlr_ENEMIES).size();
@@ -124,8 +135,9 @@ void TowerSystem::update() {
 						Vector2D spawn = { TR->getPosition()->getX(),	TR->getPosition()->getY() + DIEGO_OFFSET};
 						
 						shootBullet(target, ds->getDamage() * ds->getCritDamage(), DIEGO_SPEED, spawn);
-						ds->setTimeToShoot(ds->getTimeToShoot() + ds->getReloadTime());
+						
 					}
+					ds->setElapsedTime(0);
 				}
 			}
 			//Esto no hay que hacerlo en el update, si no en el LevelUp
@@ -206,7 +218,7 @@ void TowerSystem::addTower(twrId type, Vector2D pos, Height height) {
 		mngr_->addComponent<FramedImage>(t, 4, 2, 650, 900, 0, 0);
 		break;
 	case _twr_BULLET://Pasar rango, recarga, daño y si dispara
-		mngr_->addComponent<BulletTower>(t, 100.0f/*&sdlutils().floatConst().at("BalasRango")*/, 0.5f/*&sdlutils().floatConst().at("BalasRecarga")*/, 5/*&sdlutils().intConst().at("BalasDano")*/);
+		mngr_->addComponent<BulletTower>(t, 200.0f/*&sdlutils().floatConst().at("BalasRango")*/, 1.0f/*&sdlutils().floatConst().at("BalasRecarga")*/, 5/*&sdlutils().intConst().at("BalasDano")*/);
 		mngr_->addComponent<RenderComponent>(t, bulletTowerTexture);
 		mngr_->addComponent<FramedImage>(t, 4, 4, 650, 1000, 0, 0);
 

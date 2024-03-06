@@ -19,7 +19,7 @@
 
 enum Height{HIGH, LOW};
 
-const float BULLET_SPEED = 1000.0f, FENIX_SPEED = 100.0f, DIEGO_SPEED = 400.0f, SLIME_SPEED = 100.0f, DIEGO_OFFSET = 25.0f;
+const float BULLET_SPEED = 500.0f, FENIX_SPEED = 100.0f, DIEGO_SPEED = 400.0f, SLIME_SPEED = 100.0f, DIEGO_OFFSET = 25.0f;
 
 class TowerSystem : public System
 {
