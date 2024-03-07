@@ -3,7 +3,8 @@
 #include "../ecs/Manager.h"
 
 HUDSystem::HUDSystem() :
-	buttonsSpace_length_(){
+	buttonsSpace_length_() , //
+	infoSpace_length_(){
 }
 HUDSystem::~HUDSystem(){
 }
@@ -29,77 +30,71 @@ void HUDSystem::initSystem() {
 		bSize,
 		gameTextures::none_box, gameTextures::none_box_hover,
 		ButtonTypes::none);
-	addImage({ xAux, heightH },
+	addButton({ xAux, heightH },
 		{ 55.0f, 80.0f }, 
-		0.0, 
-		gameTextures::bullet_tower_image,
-		_grp_HUD_FOREGROUND);
+		gameTextures::bullet_tower_image, gameTextures::bullet_tower_image,
+		ButtonTypes::none);
 
 	// cristal tower
 	addButton({ xAux * 2, heightH },
 		bSize,
 		gameTextures::none_box, gameTextures::none_box_hover,
 		ButtonTypes::none);
-	addImage({ xAux * 2, heightH },
+	addButton({ xAux * 2, heightH },
 		{ 55.0f, 80.0f },
-		0.0,
-		gameTextures::crystal_tower_image, 
-		_grp_HUD_FOREGROUND);
+		gameTextures::crystal_tower_image, gameTextures::crystal_tower_image,
+		ButtonTypes::none);
 
 	//phoenix_tower
 	addButton({ xAux * 3, heightH },
 		bSize,
 		gameTextures::none_box, gameTextures::none_box_hover,
 		ButtonTypes::none);
-	addImage({ xAux * 3, heightH },
+	addButton({ xAux * 3, heightH },
 		{ 60.0f, 80.0f },
-		0.0,
-		gameTextures::phoenix_tower_image,
-		_grp_HUD_FOREGROUND);
+		gameTextures::phoenix_tower_image, gameTextures::phoenix_tower_image,
+		ButtonTypes::none);
 
 	//dirt_tower
 	addButton({ xAux * 4, heightH },
 		bSize,
 		gameTextures::none_box, gameTextures::none_box_hover,
 		ButtonTypes::none);
-	addImage({ xAux * 4, heightH },
+	addButton({ xAux * 4, heightH },
 		{ 60.0f, 80.0f },
-		0.0,
-		gameTextures::clay_tower_image,
-		_grp_HUD_FOREGROUND);
+		gameTextures::clay_tower_image, gameTextures::clay_tower_image,
+		ButtonTypes::none);
 
 	//sniper_tower
 	addButton({ xAux * 5, heightH },
 		bSize,
 		gameTextures::none_box, gameTextures::none_box_hover,
 		ButtonTypes::none);
-	addImage({ xAux * 5, heightH },
+	addButton({ xAux* 5, heightH },
 		{ 45.0f, 80.0f },
-		0.0,
-		gameTextures::sniper_tower_image,
-		_grp_HUD_FOREGROUND);
+		gameTextures::sniper_tower_image, gameTextures::sniper_tower_image,
+		ButtonTypes::none);
 
 	//slime_tower
 	addButton({ xAux * 6, heightH },
 		bSize,
 		gameTextures::none_box, gameTextures::none_box_hover,
 		ButtonTypes::none);
-	addImage({ xAux * 6, heightH },
+	addButton({ xAux * 6, heightH },
 		{ 60.0f, 80.0f },
-		0.0,
-		gameTextures::slime_tower_image,
-		_grp_HUD_FOREGROUND);
+		gameTextures::slime_tower_image, gameTextures::slime_tower_image,
+		ButtonTypes::none);
 
 	//boost_tower
 	addButton({ xAux * 7, heightH },
 		bSize,
 		gameTextures::none_box, gameTextures::none_box_hover,
 		ButtonTypes::none);
-	addImage({ xAux * 7, heightH },
+	addButton({ xAux * 7, heightH },
 		{ 55.0f, 80.0f },
-		0.0,
-		gameTextures::power_tower_image,
-		_grp_HUD_FOREGROUND);
+		gameTextures::power_tower_image, gameTextures::power_tower_image,
+		ButtonTypes::none);
+	
 }
 
 void HUDSystem::receive(const Message& m) {
@@ -126,7 +121,7 @@ void HUDSystem::manageButtons(){
 		}
 	}
 
-
+	//click
 	if (ih().mouseButtonEvent()) {
 
 		if (ih().getMouseButtonState(InputHandler::MOUSEBUTTON::LEFT) == 1) {
@@ -136,13 +131,14 @@ void HUDSystem::manageButtons(){
 				if (en != nullptr) {
 					//comprueba la id del button y si no es none llama a la funcion correspondiente
 					auto type = mngr_->getComponent<ButtonComponent>(en)->isPressed(pos);
-					if (type != ButtonTypes::none) callFunction(type, mngr_->getComponent<ButtonComponent>(en));
+					if (type != ButtonTypes::none) callFunction(type, en);
 				}
 			}
 		}
 	}
 }
-void HUDSystem::callFunction(ButtonTypes type, ButtonComponent* bC) {
+
+void HUDSystem::callFunction(ButtonTypes type, Entity* bC) {
 	// Incluye la id del button para incluir 
 	switch (type)
 	{
@@ -158,6 +154,10 @@ void HUDSystem::pause() {
 	for (auto but : mngr_->getHandler(_hdlr_BUTTON)) {
 		mngr_->getComponent<ButtonComponent>(but)->setActive(false);
 	}
+}
+
+void HUDSystem::dragTowerIcon(Entity*){
+
 }
 
 void HUDSystem::addButton(const Vector2D& pos, const Vector2D& scale, gameTextures tex, gameTextures hov, ButtonTypes type) {
