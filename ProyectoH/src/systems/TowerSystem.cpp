@@ -35,8 +35,8 @@ void TowerSystem::update() {
 	
 	for (auto& t : towers) {
 		//std::cout << towers.size() << std::endl;
-		if(!mngr_->isAlive(t)){ eliminateDestroyedTowers(t); }//Eliminamos la torre de los arrays si esta muerta
-		else {
+		//if(!mngr_->isAlive(t)){ eliminateDestroyedTowers(t); }//Eliminamos la torre de los arrays si esta muerta
+		//else {
 			Transform* TR = mngr_->getComponent<Transform>(t);
 			BulletTower* bt = mngr_->getComponent<BulletTower>(t);
 					
@@ -53,7 +53,7 @@ void TowerSystem::update() {
 						else if (dir.getX() >= 0 && dir.getY() < 0) mngr_->getComponent<FramedImage>(t)->setCurrentFrame(12 + mngr_->getComponent<UpgradeTowerComponent>(t)->getLevel());
 						else if (dir.getX() < 0 && dir.getY() >= 0)mngr_->getComponent<FramedImage>(t)->setCurrentFrame(0 + mngr_->getComponent<UpgradeTowerComponent>(t)->getLevel());
 						else if (dir.getX() < 0 && dir.getY() < 0)mngr_->getComponent<FramedImage>(t)->setCurrentFrame(8 + mngr_->getComponent<UpgradeTowerComponent>(t)->getLevel());
-						shootBullet(bt->getTarget(), bt->getDamage(), BULLET_SPEED, TR->getPosition());
+						shootBullet(bt->getTarget(), t, bt->getDamage(), BULLET_SPEED, TR->getPosition());
 						//bt->setTimeToShoot(bt->getTimeToShoot() + bt->getReloadTime());
 						
 						//std::cout << dir.getX() << " " << dir.getY() << "\n";
@@ -134,11 +134,12 @@ void TowerSystem::update() {
 						RenderComponent* rc = mngr_->getComponent<RenderComponent>(t);
 						Vector2D spawn = { TR->getPosition()->getX(),	TR->getPosition()->getY() + DIEGO_OFFSET};
 						
-						shootBullet(target, ds->getDamage() * ds->getCritDamage(), DIEGO_SPEED, spawn);
+						shootBullet(target, t, ds->getDamage() * ds->getCritDamage(), DIEGO_SPEED, spawn);
 						
 					}
 					ds->setElapsedTime(0);
 				}
+				if (!mngr_->isAlive(t)) { eliminateDestroyedTowers(t); };
 			}
 			//Esto no hay que hacerlo en el update, si no en el LevelUp
 			/*if (et == nullptr) {
@@ -146,7 +147,7 @@ void TowerSystem::update() {
 				if (lvl == 4)lvl--;
 				mngr_->getComponent<FramedImage>(t)->setCurrentFrame(lvl);
 			}*/
-		}		
+		//}		
 	}
 
 	for (auto& b : bullets) {
@@ -181,7 +182,7 @@ void TowerSystem::eliminateDestroyedTowers(Entity* t) {//elimina delk array las 
 	}
 }
 
-void TowerSystem::shootBullet(Entity* target, float damage, float speed, Vector2D spawnPos) {
+void TowerSystem::shootBullet(Entity* target, Entity* src ,float damage, float speed, Vector2D spawnPos) {
 	Entity* bullet = mngr_->addEntity(_grp_BULLETS);//crea bala
 	Transform* t = mngr_->addComponent<Transform>(bullet);//transform
 	t->setPosition(spawnPos);
@@ -190,7 +191,7 @@ void TowerSystem::shootBullet(Entity* target, float damage, float speed, Vector2
 	Vector2D norm = { 1, 0 };
 	float angle = atan2(dir.getY(), dir.getX());
 	t->addRotation(angle);
-	mngr_->addComponent<BulletComponent>(bullet, t, target, damage, speed);//bullet component
+	mngr_->addComponent<BulletComponent>(bullet, t, target, src, damage, speed);//bullet component
 	mngr_->addComponent<RenderComponent>(bullet, bulletTexture);//habra que hacer switch
 }
 
@@ -218,7 +219,7 @@ void TowerSystem::addTower(twrId type, Vector2D pos, Height height) {
 		mngr_->addComponent<FramedImage>(t, 4, 2, 650, 900, 0, 0);
 		break;
 	case _twr_BULLET://Pasar rango, recarga, daño y si dispara
-		mngr_->addComponent<BulletTower>(t, 200.0f/*&sdlutils().floatConst().at("BalasRango")*/, 1.0f/*&sdlutils().floatConst().at("BalasRecarga")*/, 5/*&sdlutils().intConst().at("BalasDano")*/);
+		mngr_->addComponent<BulletTower>(t, 200.0f/*&sdlutils().floatConst().at("BalasRango")*/, 1.0f/*&sdlutils().floatConst().at("BalasRecarga")*/, 50/*&sdlutils().intConst().at("BalasDano")*/);
 		mngr_->addComponent<RenderComponent>(t, bulletTowerTexture);
 		mngr_->addComponent<FramedImage>(t, 4, 4, 650, 1000, 0, 0);
 

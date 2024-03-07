@@ -39,7 +39,7 @@ public:
 	//bool collidesWithEnemy();//Devuelve true si una torre colisiona con un enemigo
 
 protected:
-	void shootBullet(Entity* target, float damage, float speed, Vector2D spawnPos);
+	void shootBullet(Entity* target, Entity* src, float damage, float speed, Vector2D spawnPos);
 	void shootFire(float shootingTime, int damage);
 	void eliminateDestroyedTowers(Entity* t);
 	std::vector<Entity*> towers;

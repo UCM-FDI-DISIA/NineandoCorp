@@ -17,7 +17,7 @@ public:
 	float getMaxHealth() { return maxHealth_; };
 	float getBaseHealth() { return baseHealth_; };
 	void setMaxHealth(float health);
-	void subtractHealth(float health);
+	bool subtractHealth(float health);
 	void initComponent();
 	void resetHealth();
 	void setHealth(float health);

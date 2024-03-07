@@ -178,6 +178,7 @@ msgId_type id;
 	} towers_to_attack;
 	// _m_ENTITY_TO_ATTACK
 	struct {
+		Entity* src;
 		Entity* e;
 		float damage;
 	} entity_to_attack;
