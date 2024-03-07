@@ -16,6 +16,9 @@ struct cmpIsometricY {
 RenderSystem::RenderSystem() :
 	winner_(0)
 {
+	cursorTexture = &sdlutils().images().at("cursor");
+	cursorTexture2 = &sdlutils().images().at("cursorpress");
+
 	textures[square] = &sdlutils().images().at("square");
 	textures[tileSet] = &sdlutils().images().at("map");
 	textures[play] = &sdlutils().images().at("play");
@@ -29,8 +32,6 @@ RenderSystem::RenderSystem() :
 	textures[clayTowerTexture] = &sdlutils().images().at("clay_tower");
 	textures[bulletTexture] = &sdlutils().images().at("bullet");
 	textures[nexusTexture] = &sdlutils().images().at("nexus_tower");
-	cursorTexture = &sdlutils().images().at("cursor");
-	cursorTexture2 = &sdlutils().images().at("cursorpress");
 	textures[box] = &sdlutils().images().at("box"); 
 	textures[box_hover] = &sdlutils().images().at("box_hover");
 	textures[none_box] = &sdlutils().images().at("none_box");
@@ -44,12 +45,12 @@ RenderSystem::RenderSystem() :
 	textures[upgrade] = &sdlutils().images().at("upgrade");
 	textures[upgrade_hover] = &sdlutils().images().at("upgrade_hover");
 	textures[logo] = &sdlutils().images().at("logo");
-	textures[cristal_tower_image] = &sdlutils().images().at("cristal_tower_image");
+	textures[crystal_tower_image] = &sdlutils().images().at("cristal_tower_image");
 	textures[bullet_tower_image] = &sdlutils().images().at("bullet_tower_image");
 	textures[slime_tower_image] = &sdlutils().images().at("slime_tower_image");
 	textures[sniper_tower_image] = &sdlutils().images().at("sniper_tower_image");
 	textures[phoenix_tower_image] = &sdlutils().images().at("phoenix_tower_image");
-	textures[dirt_tower_image] = &sdlutils().images().at("dirt_tower_image");
+	textures[clay_tower_image] = &sdlutils().images().at("dirt_tower_image");
 	textures[power_tower_image] = &sdlutils().images().at("power_tower_image");
 	textures[nexus_level_3_image] = &sdlutils().images().at("nexus_level_3_image");
 

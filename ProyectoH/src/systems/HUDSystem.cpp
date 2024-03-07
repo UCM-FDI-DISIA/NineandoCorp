@@ -2,92 +2,106 @@
 #include "../sdlutils/InputHandler.h"
 #include "../ecs/Manager.h"
 
-HUDSystem::HUDSystem() {
-
+HUDSystem::HUDSystem() :
+	buttonsSpace_length_(){
 }
 HUDSystem::~HUDSystem(){
 }
 
 void HUDSystem::initSystem() {
-	float heightH = (float)sdlutils().height() - 190.0f;
-	float separation = 150.0f;
+	buttonsSpace_length_ = sdlutils().width() - 200; 
 
+	float heightH = (float)sdlutils().height() - 80.0f;
+	//float xAux = (float)(sdlutils().width() - 150)  / 7;
+
+
+	float xAux = (float)(buttonsSpace_length_ - 150 ) / 7;
+	float separation = 150.0f;
+	Vector2D bSize = Vector2D(100.0f, 100.0f);
 	addImage({ (float)sdlutils().width() / 2 , heightH },
-		{ (float)sdlutils().width() - 20.0f, 200.0f },
+		{ (float)sdlutils().width() + 30.0f, 200.0f },
 		0.0,
 		gameTextures::box,
 		_grp_HUD_BACKGROUND);
 
-	addButton({ 120.0f, heightH },//bullet_tower
-		{ 130.0f, 180.0f },
+	// bullet tower
+	addButton({ xAux, heightH },
+		bSize,
 		gameTextures::none_box, gameTextures::none_box_hover,
 		ButtonTypes::none);
-	addButton({ 120.0f, heightH },
-		{ 93.0f, 135.0f },
-		gameTextures::bullet_tower_image, gameTextures::bullet_tower_image,
-		ButtonTypes::none
-	);
+	addImage({ xAux, heightH },
+		{ 55.0f, 80.0f }, 
+		0.0, 
+		gameTextures::bullet_tower_image,
+		_grp_HUD_FOREGROUND);
 
-	addButton({ 120.0f + separation, heightH },//cristal_tower
-		{ 130.0f, 180.0f },
+	// cristal tower
+	addButton({ xAux * 2, heightH },
+		bSize,
 		gameTextures::none_box, gameTextures::none_box_hover,
 		ButtonTypes::none);
-	addButton({ 120.0f + separation, heightH },
-		{ 96.0f, 126.0f },
-		gameTextures::cristal_tower_image, gameTextures::cristal_tower_image,
-		ButtonTypes::none
-	);
+	addImage({ xAux * 2, heightH },
+		{ 55.0f, 80.0f },
+		0.0,
+		gameTextures::crystal_tower_image, 
+		_grp_HUD_FOREGROUND);
 
-	addButton({ 120.0f + separation * 2, heightH },//phoenix_tower
-		{ 130.0f, 180.0f },
+	//phoenix_tower
+	addButton({ xAux * 3, heightH },
+		bSize,
 		gameTextures::none_box, gameTextures::none_box_hover,
 		ButtonTypes::none);
-	addButton({ 120.0f + separation * 2, heightH },
-		{ 90.0f, 105.0f },
-		gameTextures::phoenix_tower_image, gameTextures::phoenix_tower_image,
-		ButtonTypes::none
-	);
+	addImage({ xAux * 3, heightH },
+		{ 60.0f, 80.0f },
+		0.0,
+		gameTextures::phoenix_tower_image,
+		_grp_HUD_FOREGROUND);
 
-	addButton({ 120.0f + separation * 3, heightH },//dirt_tower
-		{ 130.0f, 180.0f },
+	//dirt_tower
+	addButton({ xAux * 4, heightH },
+		bSize,
 		gameTextures::none_box, gameTextures::none_box_hover,
 		ButtonTypes::none);
-	addButton({ 120.0f + separation * 3, heightH },
-		{ 128.0f, 156.0f },
-		gameTextures::dirt_tower_image, gameTextures::dirt_tower_image,
-		ButtonTypes::none
-	);
+	addImage({ xAux * 4, heightH },
+		{ 60.0f, 80.0f },
+		0.0,
+		gameTextures::clay_tower_image,
+		_grp_HUD_FOREGROUND);
 
-	addButton({ 120.0f + separation * 4, heightH },//sniper_tower
-		{ 130.0f, 180.0f },
+	//sniper_tower
+	addButton({ xAux * 5, heightH },
+		bSize,
 		gameTextures::none_box, gameTextures::none_box_hover,
 		ButtonTypes::none);
-	addButton({ 120.0f + separation * 4, heightH },
-		{ 96.0f, 150.0f },
-		gameTextures::sniper_tower_image, gameTextures::sniper_tower_image,
-		ButtonTypes::none
-	);
+	addImage({ xAux * 5, heightH },
+		{ 45.0f, 80.0f },
+		0.0,
+		gameTextures::sniper_tower_image,
+		_grp_HUD_FOREGROUND);
 
-	addButton({ 120.0f + separation * 5, heightH },//slime_tower
-		{ 130.0f, 180.0f },
+	//slime_tower
+	addButton({ xAux * 6, heightH },
+		bSize,
 		gameTextures::none_box, gameTextures::none_box_hover,
 		ButtonTypes::none);
-	addButton({ 120.0f + separation * 5, heightH },
-		{ 102.0f, 129.0f },
-		gameTextures::slime_tower_image, gameTextures::slime_tower_image,
-		ButtonTypes::none
-	);
+	addImage({ xAux * 6, heightH },
+		{ 60.0f, 80.0f },
+		0.0,
+		gameTextures::slime_tower_image,
+		_grp_HUD_FOREGROUND);
 
-	addButton({ 120.0f + separation * 6, heightH },//boost_tower
-		{ 130.0f, 180.0f },
+	//boost_tower
+	addButton({ xAux * 7, heightH },
+		bSize,
 		gameTextures::none_box, gameTextures::none_box_hover,
 		ButtonTypes::none);
-	addButton({ 120.0f + separation * 6, heightH },
-		{ 90.0f, 126.0f },
-		gameTextures::power_tower_image, gameTextures::power_tower_image,
-		ButtonTypes::none
-	);
+	addImage({ xAux * 7, heightH },
+		{ 55.0f, 80.0f },
+		0.0,
+		gameTextures::power_tower_image,
+		_grp_HUD_FOREGROUND);
 }
+
 void HUDSystem::receive(const Message& m) {
 
 }

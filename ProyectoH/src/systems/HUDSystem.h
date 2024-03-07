@@ -21,5 +21,9 @@ private:
 	void addImage(const Vector2D& pos, const Vector2D& scale, const double rot, gameTextures t, grpId_type grpId);
 	void callFunction(ButtonTypes type, ButtonComponent* en);
 	void pause();
+
+	// Espacio designado para los botones de compra de las torres
+	float buttonsSpace_length_; 
+	float infoSpace_length_;
 };
 

@@ -87,7 +87,7 @@ void MainMenuSystem::initSystem() {
 	// 2 TOWER CRISTAL IMAGE
 	addImage({ sdlutils().width() - 310.0f , (sdlutils().height() / 8.0f) * 2 },
 		{ towerImagesSize },
-		0, gameTextures::cristal_tower_image, _grp_HUD_BACKGROUND);
+		0, gameTextures::crystal_tower_image, _grp_HUD_BACKGROUND);
 
 	// 3 TOWER BUTTON - SLIME
 	addButton({ sdlutils().width() - 150.0f , (sdlutils().height() / 8.0f) * 3 },
@@ -127,7 +127,7 @@ void MainMenuSystem::initSystem() {
 	// 6 TOWER DIRT IMAGE
 	addImage({ sdlutils().width() - 310.0f , (sdlutils().height() / 8.0f) * 6 },
 		{ towerImagesSize },
-		0, gameTextures::dirt_tower_image, _grp_HUD_BACKGROUND);
+		0, gameTextures::clay_tower_image, _grp_HUD_BACKGROUND);
 
 	// 7 TOWER BUTTON - ENHANCER
 	addButton({ sdlutils().width() - 150.0f , (sdlutils().height() / 8.0f) * 7 },
