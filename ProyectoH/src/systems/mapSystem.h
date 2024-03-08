@@ -22,10 +22,15 @@
 #include <iostream>
 #include <cmath>
 
- 
+enum tileId { lake, low, high };
 
 class mapSystem : public System {
 private:
+	struct casilla{
+		Vector2D position;
+		bool isFree;
+		tileId id;
+	};
 	// Para gestionar los mensajes correspondientes y actualizar los atributos
 	// winner_ y state_.
 	void onRoundStart();
@@ -40,6 +45,7 @@ private:
 	tmx::Vector2f m_chunkSize = tmx::Vector2f(64.f, 64.f);
 	tmx::Vector2u m_MapTileSize;
 	tmx::FloatRect m_globalBounds;
+	vector<vector<casilla>> malla;
 
 	std::string filename;
 	

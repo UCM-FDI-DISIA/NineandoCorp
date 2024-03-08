@@ -1,7 +1,15 @@
 #include "mapSystem.h"
 
 mapSystem::mapSystem(std::string filename): filename(filename), winner_(0){
-    
+	int size = 1;
+	bool incremento = true;
+	for (int i = 0; i < 64; i++) {
+		malla.push_back(vector<casilla>(size));
+		if (incremento)
+			size++;
+		else
+			size--;
+	}
 }
 
 mapSystem::~mapSystem() {
@@ -76,12 +84,21 @@ void mapSystem::loadTile(const tmx::Map& map, const tmx::TileLayer& layer){
 			if (tile.ID == 2 || tile.ID == 133) {
 
 				entityTile = mngr_->addEntity(_grp_TILES_L1);
+				malla[j][i].position = tilePosition;
+				malla[j][i].isFree = false;
+				malla[j][i].id = lake;
 			}
 			else if (tile.ID > 80 && tile.ID < 100) {
 				entityTile = mngr_->addEntity(_grp_TILES_L2);
+				malla[j][i].position = tilePosition;
+				malla[j][i].isFree = true;
+				malla[j][i].id = low;
 			}
 			else {
 				entityTile = mngr_->addEntity(_grp_TILES_L3);
+				malla[j][i].position = tilePosition;
+				malla[j][i].isFree = true;
+				malla[j][i].id = high;
 			}
 			mngr_->addComponent<FramedImage>(entityTile, 10, 16, m_chunkSize.x, m_chunkSize.y, tile.ID -1);
 			mngr_->addComponent<RenderComponent>(entityTile, gameTextures::tileSet);
