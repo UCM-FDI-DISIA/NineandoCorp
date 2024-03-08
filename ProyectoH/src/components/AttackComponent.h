@@ -37,6 +37,7 @@ public:
 	void setLoaded(bool ld);
 	void setTimeToShoot(float t);
 	void setElapsedTime(float elapsed);
+	void setTarget(Entity* e) { target_ = e; };
 
 protected:
 	

@@ -1,6 +1,6 @@
 #include "BulletComponent.h"
 
-BulletComponent::BulletComponent(Transform* tr, Entity* target, int damage, float speed):t(tr), targetEntity_(target), damage_(damage), speed_(speed){
+BulletComponent::BulletComponent(Transform* tr, Entity* target, Entity* src, int damage, float speed):t(tr), targetEntity_(target), srcEntity(src), damage_(damage), speed_(speed) {
 	//initComponent();
 	
 }
@@ -12,6 +12,7 @@ BulletComponent::BulletComponent(Transform* tr, Entity* target, int damage, floa
 void BulletComponent::doDamageTo(Entity* e, float damage){
 	Message m;
 	m.id = _m_ENTITY_TO_ATTACK;
+	m.entity_to_attack.src = srcEntity;
 	m.entity_to_attack.e = e;
 	m.entity_to_attack.damage = damage;
 	mngr_->send(m);

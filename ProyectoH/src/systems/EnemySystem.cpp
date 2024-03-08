@@ -18,7 +18,7 @@ void EnemySystem::initSystem() {
 	Entity* enemie = mngr_->addEntity(_grp_TOWERS_AND_ENEMIES);
 	Transform* tr = mngr_->addComponent<Transform>(enemie);
 	tr->setPosition({(float)sdlutils().width()/2.f - 100.f, 300.f});
-	tr->setVelocity({ 0, 20 });
+	tr->setVelocity({ 0, 100 });
 	mngr_->addComponent<MovementComponent>(enemie);
 	std::vector<Vector2D> route;
 	route.push_back({ (float)sdlutils().width() / 2.f, 300.f });
@@ -40,8 +40,7 @@ void  EnemySystem::receive(const Message& m) {
 	case _m_ENTITY_TO_ATTACK:
 		if (mngr_->isAlive(m.entity_to_attack.e)) {
 			 HealthComponent* h = mngr_->getComponent<HealthComponent>(m.entity_to_attack.e);
-			 if (h->getHealth() - m.entity_to_attack.damage <= 0) { mngr_->deleteHandler(_hdlr_ENEMIES, m.entity_to_attack.e); }
-			 h->subtractHealth(m.entity_to_attack.damage);
+			 if (h->subtractHealth(m.entity_to_attack.damage)) { mngr_->deleteHandler(_hdlr_ENEMIES, m.entity_to_attack.e); mngr_->getComponent<AttackComponent>(m.entity_to_attack.src)->setTarget(nullptr); };
 		}		
 		break;
 	}
@@ -67,13 +66,13 @@ void EnemySystem::update() {
 		MovementComponent* mc = mngr_->getComponent<MovementComponent>(e);
 		AttackComponent* ac = mngr_->getComponent<AttackComponent>(e);
 
-		/*if (rc != nullptr) {
+		if (rc != nullptr) {
 			rc->checkdestiny();
 			if (mc != nullptr && !mc->getStop()) {
 				mc->Move();
 			}
 
-		}*/
+		}
 		if (ac != nullptr) {
 			ac->setElapsedTime(game().getDeltaTime());
 			if (ac->getElapsedTime() > ac->getTimeToShoot() * 1000) {
