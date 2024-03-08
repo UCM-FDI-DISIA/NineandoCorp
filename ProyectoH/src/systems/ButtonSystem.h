@@ -13,7 +13,7 @@ public:
 	void receive(const Message& m) override;
 	void initSystem() override;
 	void update() override; 
-private:
+
 
 	void manageButtons();
 	/// <summary>
@@ -35,7 +35,7 @@ private:
 	/// <param name="t">textura de la imagen</param>
 	/// <param name="grpId">id del grupo con el que se añade la entidad al manager</param>
 	void addImage(const Vector2D& pos, const Vector2D& scale, const double rot, gameTextures t, grpId_type grpId);
-
+private:
 	/// <summary>
 	/// Llama a las funciones correspondientes dependiendo del tipo del boton cuando este es pulsado
 	/// </summary>
@@ -48,7 +48,20 @@ private:
 	/// </summary>
 	void pauseAllButtons();
 
+	/// <summary>
+	/// Mensaje de carga de estado de selector de niveles
+	/// </summary>
+	void loadLevelSelector();
 
+	/// <summary>
+	/// Te devuelve al menu principal
+	/// </summary>
+	void backToMainMenu();
+
+	/// <summary>
+	/// Te carga PlayState
+	/// </summary>
+	void startGame();
 };
 
 

@@ -29,9 +29,11 @@ void ButtonSystem::manageButtons() {
 
 			ButtonComponent* bC = mngr_->getComponent<ButtonComponent>(en);
 			RenderComponent* rC = mngr_->getComponent<RenderComponent>(en);
-			if (bC->isActive()) {
-				if (bC->hover(pos)) rC->setTexture(bC->getHover());
-				else rC->setTexture(bC->getTexture());
+			if (bC != nullptr) {
+				if (bC->isActive()) {
+					if (bC->hover(pos)) rC->setTexture(bC->getHover());
+					else rC->setTexture(bC->getTexture());
+				}
 			}
 		}
 	}
@@ -43,9 +45,10 @@ void ButtonSystem::manageButtons() {
 
 			//Recorre lista de entities de tipo HUD_FOREGROUND
 			for (auto en : mngr_->getHandler(hdlr_but_id)) {
-				if (en != nullptr) {
+				auto bC = mngr_->getComponent<ButtonComponent>(en);
+				if (en != nullptr && bC != nullptr) {
 					//comprueba la id del button y si no es none llama a la funcion correspondiente
-					auto type = mngr_->getComponent<ButtonComponent>(en)->isPressed(pos);
+					auto type = bC->isPressed(pos);
 					if (type != ButtonTypes::none) callFunction(type, en);
 				}
 			}
@@ -53,25 +56,52 @@ void ButtonSystem::manageButtons() {
 	}
 }
 
+#pragma region FUNCIONES DE BOTONES
 
-//Todas las funciones de los botones del juego
-void ButtonSystem::callFunction(ButtonTypes type, Entity* bC) {
-	// Incluye la id del button para incluir 
-	switch (type)
-	{
-	case selector_main:
-		break;
-	case upgrade_nexus:
-		break;
-	default:
-		break;
+	//Todas las funciones de los botones del juego
+	void ButtonSystem::callFunction(ButtonTypes type, Entity* bC) {
+		// Incluye la id del button para incluir 
+		switch (type)
+		{
+		case selector_main:
+			loadLevelSelector();
+			pauseAllButtons();
+			break;
+		case back_selector:
+			backToMainMenu();
+			break;
+		case start_game:
+			startGame();
+			break;
+		case upgrade_nexus:
+			break;
+		default:
+			break;
+		}
 	}
-}
-void ButtonSystem::pauseAllButtons() {
-	for (auto but : mngr_->getHandler(hdlr_but_id)) {
-		mngr_->getComponent<ButtonComponent>(but)->setActive(false);
+	void ButtonSystem::pauseAllButtons() {
+		for (auto but : mngr_->getHandler(hdlr_but_id)) {
+			auto bC = mngr_->getComponent<ButtonComponent>(but);
+			if(bC != nullptr) bC->setActive(false);
+		}
 	}
-}
+	void ButtonSystem::loadLevelSelector() {
+		Message m;
+		m.id = _m_LEVEL_SELECTOR;
+		mngr_->send(m, true);
+	}
+	void ButtonSystem::backToMainMenu() {
+		Message m;
+		m.id = _m_BACK_TO_MAINMENU;
+		mngr_->send(m);
+	}
+	void ButtonSystem::startGame() {
+		Message m;
+		m.id = _m_START_GAME;
+		mngr_->send(m);
+	}
+#pragma endregion
+
 
 Entity* ButtonSystem::addButton(const Vector2D& pos, const Vector2D& scale, gameTextures tex, gameTextures hov, ButtonTypes type) {
 	Entity* b = mngr_->addEntity(_grp_HUD_FOREGROUND);
@@ -92,6 +122,7 @@ Entity* ButtonSystem::addButton(const Vector2D& pos, const Vector2D& scale, game
 
 void ButtonSystem::addImage(const Vector2D& pos, const Vector2D& scale, const double rot, gameTextures t, grpId_type grpId) {
 	Entity* img = mngr_->addEntity(grpId);
+	mngr_->setHandler(hdlr_but_id, img);
 	Transform* tr = mngr_->addComponent<Transform>(img);
 	tr->setScale(scale);
 	Vector2D aux = tr->getScale();

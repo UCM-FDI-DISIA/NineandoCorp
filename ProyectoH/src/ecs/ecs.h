@@ -41,6 +41,7 @@ enum hdlrId : hdlrId_type {
 	_hdlr_LOW_TOWERS,
 	_hdlr_ENEMIES,
 	//botones de las escenas
+	_hdlr_BUTTON,
 	_hdlr_BUTTON_MAIN,
 	_hdlr_BUTTON_LVLSEL,
 	_hdlr_BUTTON_PLAY,
