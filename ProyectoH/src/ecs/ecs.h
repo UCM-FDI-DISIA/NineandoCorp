@@ -37,10 +37,13 @@ constexpr cmpId_type maxComponentId = _LAST_CMP_ID;
 using hdlrId_type = int;
 enum hdlrId : hdlrId_type { 
 	_hdlr_DRAG_AND_DROP,
-	_hdlr_BUTTON,
 	_hdlr_SUBMENU,
 	_hdlr_LOW_TOWERS,
 	_hdlr_ENEMIES,
+	//botones de las escenas
+	_hdlr_BUTTON_MAIN,
+	_hdlr_BUTTON_LVLSEL,
+	_hdlr_BUTTON_PLAY,
 	
 	// do not remove this
 	_LAST_HDLR_ID };
@@ -88,6 +91,7 @@ enum sysId : sysId_type {
 	_sys_MAINCONTROL,
 	_sys_ENEMIES,
 	_sys_LEVELSELECTOR,
+	_sys_BUTTON,
 
 	// do not remove this
 	_LAST_SYS_ID

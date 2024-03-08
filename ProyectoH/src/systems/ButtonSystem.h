@@ -2,21 +2,22 @@
 #include "../ecs/System.h"
 #include "../components/ButtonComponent.h"
 
-class HUDSystem : public System
+class ButtonSystem : public System
 {
-public:
+public: 
+	static constexpr sysId_type id = _sys_BUTTON;
+	const hdlrId_type hdlr_but_id;
 
-	static constexpr sysId_type id = _sys_HUD;
-
-	HUDSystem();
-	virtual ~HUDSystem();
+	ButtonSystem(hdlrId_type but_id);
+	virtual ~ButtonSystem();
 	void receive(const Message& m) override;
 	void initSystem() override;
-	void update() override;
-private: 
+	void update() override; 
+private:
+
 	void manageButtons();
 	/// <summary>
-	/// Crea un boton como entidad y lo añade al manager con grpId = _grp_HUD_FOREGROUND y hdlrId = _hdlr_BUTTON
+	/// Crea un boton como entidad y lo añade al manager con grpId = _grp_HUD_FOREGROUND y hdlrId = button_id
 	/// </summary>
 	/// <param name="pos">posicion del boton</param>
 	/// <param name="scale">escala del boton</param>
@@ -47,16 +48,9 @@ private:
 	/// </summary>
 	void pauseAllButtons();
 
-	/// <summary>
-	/// Arrastra el icono de la torre correspondiente dependiendo de la posicion del cursor
-	/// </summary>
-	/// <param name=""></param>
-	void dragTowerIcon(Entity* ); 
 
-	// Espacio designado para los botones de compra de las torres
-	float buttonsSpace_length_; 
-	float infoSpace_length_;
-
-	std::vector<std::pair<Entity*, Entity*>> tower_selector_; 
 };
+
+
+
 

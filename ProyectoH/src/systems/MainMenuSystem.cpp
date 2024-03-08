@@ -147,7 +147,7 @@ void MainMenuSystem::update() {
 	//Posicion actual del mouse
 	Vector2D pos = { (float)ih().getMousePos().first, (float)ih().getMousePos().second };
 
-	//hover 
+	// Compruba si la funcion hover de los botones se cumple para cambiar a la textura de hover del boton
 	for (auto en : mngr_->getHandler(_hdlr_BUTTON)) {
 		if (en != nullptr) {
 
@@ -160,12 +160,12 @@ void MainMenuSystem::update() {
 		}
 	}
 
-
+	//Comprueba si el boton a sido pulsado
 	if (ih().mouseButtonEvent()) {
 
 		if (ih().getMouseButtonState(InputHandler::MOUSEBUTTON::LEFT) == 1) {
 
-			//Recorre lista de entities de tipo HUD_FOREGROUND
+			//Recorre lista de handlers hdlrId = _hdlr_BUTTON
 			for (auto en : mngr_->getHandler(_hdlr_BUTTON)) {
 				if (en != nullptr) {
 					//comprueba la id del button y si no es none llama a la funcion correspondiente
@@ -179,12 +179,11 @@ void MainMenuSystem::update() {
 
 
 void MainMenuSystem::callFunction(ButtonTypes type, ButtonComponent* bC) {
-	// Incluye la id del button para incluir 
 	switch (type)
 	{
 	case selector_main:
 		loadLevelSelector();
-		pause();
+		pauseAllButtons();
 		break;
 	case upgrade_nexus:
 		break;
@@ -193,21 +192,13 @@ void MainMenuSystem::callFunction(ButtonTypes type, ButtonComponent* bC) {
 	}
 }
 
-void MainMenuSystem::funcionPrueba(Transform* tr) {
-	tr->addRotation(90.0);
-}
-
 void MainMenuSystem::loadLevelSelector() {
 	Message m;
 	m.id = _m_LEVEL_SELECTOR;
 	mngr_->send(m,true);
 }
 
-void MainMenuSystem::startLevel() {
-	Message m;
-	m.id = _m_START_GAME;
-	mngr_->send(m);
-}
+
 
 void MainMenuSystem::upgradeNexus(){
 	Message m;
@@ -259,7 +250,7 @@ void MainMenuSystem::addText(const Vector2D& pos, const Vector2D& scale, const d
 }
 
 
-void MainMenuSystem::pause() {
+void MainMenuSystem::pauseAllButtons() {
 	for (auto but : mngr_->getHandler(_hdlr_BUTTON)) {
 		mngr_->getComponent<ButtonComponent>(but)->setActive(false);
 	}
