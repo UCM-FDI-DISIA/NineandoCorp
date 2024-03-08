@@ -41,13 +41,24 @@ void TowerSystem::update() {
 			BulletTower* bt = mngr_->getComponent<BulletTower>(t);
 					
 			if (bt != nullptr) {
-			bt->setElapsedTime(game().getDeltaTime());
-				
-				if (bt->getElapsedTime() > bt->getTimeToShoot()*1000) {
+				bt->setElapsedTime(bt->getElapsedTime()+game().getDeltaTime());
+				//std::cout << bt->getElapsedTime() << "\n";
+				if (bt->getElapsedTime() > bt->getTimeToShoot()) {
 					bt->targetEnemy(mngr_->getHandler(_hdlr_ENEMIES));
-					bt->targetSecondEnemy(mngr_->getHandler(_hdlr_ENEMIES));
-					if(bt->getTarget() != nullptr)
-					if (bt->getSecondTarget() != nullptr) {
+					bt->setElapsedTime(0);
+					//bt->targetSecondEnemy(mngr_->getHandler(_hdlr_ENEMIES));
+					if (bt->getTarget() != nullptr) {
+						Vector2D dir = *(mngr_->getComponent<Transform>(bt->getTarget())->getPosition()) - *(TR->getPosition());
+						if (dir.getX() >= 0 && dir.getY() >= 0) mngr_->getComponent<FramedImage>(t)->setCurrentFrame(4 + mngr_->getComponent<UpgradeTowerComponent>(t)->getLevel());
+						else if (dir.getX() >= 0 && dir.getY() < 0) mngr_->getComponent<FramedImage>(t)->setCurrentFrame(12 + mngr_->getComponent<UpgradeTowerComponent>(t)->getLevel());
+						else if (dir.getX() < 0 && dir.getY() >= 0)mngr_->getComponent<FramedImage>(t)->setCurrentFrame(0 + mngr_->getComponent<UpgradeTowerComponent>(t)->getLevel());
+						else if (dir.getX() < 0 && dir.getY() < 0)mngr_->getComponent<FramedImage>(t)->setCurrentFrame(8 + mngr_->getComponent<UpgradeTowerComponent>(t)->getLevel());
+						shootBullet(bt->getTarget(), bt->getDamage(), BULLET_SPEED, TR->getPosition());
+						//bt->setTimeToShoot(bt->getTimeToShoot() + bt->getReloadTime());
+						
+						//std::cout << dir.getX() << " " << dir.getY() << "\n";
+					}
+					/*if (bt->getSecondTarget() != nullptr) {
 						Vector2D dir = *(mngr_->getComponent<Transform>(bt->getSecondTarget())->getPosition()) - *(TR->getPosition());
 						if (dir.getX() >= 0 && dir.getY() >= 0) mngr_->getComponent<FramedImage>(t)->setCurrentFrame(4 + mngr_->getComponent<UpgradeTowerComponent>(t)->getLevel());
 						else if (dir.getX() >= 0 && dir.getY() < 0) mngr_->getComponent<FramedImage>(t)->setCurrentFrame(12 + mngr_->getComponent<UpgradeTowerComponent>(t)->getLevel());
@@ -56,7 +67,7 @@ void TowerSystem::update() {
 						shootBullet(bt->getSecondTarget(), bt->getDamage(), BULLET_SPEED, TR->getPosition());	
 						bt->setTimeToShoot(bt->getTimeToShoot() + bt->getReloadTime());
 						std::cout << dir.getX() << " " << dir.getY() << "\n";
-					}
+					}*/
 				}
 			}
 			EnhancerTower* et = mngr_->getComponent<EnhancerTower>(t);
@@ -79,7 +90,7 @@ void TowerSystem::update() {
 
 			CrystalTower* ct = mngr_->getComponent<CrystalTower>(t);
 			if (ct != nullptr) {
-				ct->setElapsedTime(game().getDeltaTime());
+				ct->setElapsedTime(ct->getElapsedTime()+game().getDeltaTime());
 				if (ct->getElapsedTime() > ct->getTimeToShield()*1000) {
 					Message m;
 					m.id = _m_SHIELD_NEXUS;
@@ -89,14 +100,14 @@ void TowerSystem::update() {
 						m.shield_data.explosionDmg = ct->getExplosionDmg();
 					}
 					mngr_->send(m);
-					ct->setTimeToShield(ct->getTimeToShield()+ct->getReloadTime());
+					ct->setElapsedTime(0);
 				}
 			}
 
 			DiegoSniperTower* ds = mngr_->getComponent<DiegoSniperTower>(t);
 			if (ds != nullptr) {
-				ds->setElapsedTime(game().getDeltaTime());//Lo pasa a segundos
-				if (ds->getElapsedTime() > ds->getTimeToShoot()*1000) {//si esta cargada busca enemigo con mas vida
+				ds->setElapsedTime(ds->getElapsedTime()+game().getDeltaTime());//Lo pasa a segundos
+				if (ds->getElapsedTime() > ds->getTimeToShoot()) {//si esta cargada busca enemigo con mas vida
 					float health = 0;
 					Entity* target = nullptr;
 					std::cout << mngr_->getHandler(_hdlr_ENEMIES).size();
@@ -124,8 +135,9 @@ void TowerSystem::update() {
 						Vector2D spawn = { TR->getPosition()->getX(),	TR->getPosition()->getY() + DIEGO_OFFSET};
 						
 						shootBullet(target, ds->getDamage() * ds->getCritDamage(), DIEGO_SPEED, spawn);
-						ds->setTimeToShoot(ds->getTimeToShoot() + ds->getReloadTime());
+						
 					}
+					ds->setElapsedTime(0);
 				}
 			}
 			//Esto no hay que hacerlo en el update, si no en el LevelUp
@@ -201,40 +213,40 @@ void TowerSystem::addTower(twrId type, Vector2D pos, Height height) {
 	switch (type)
 	{
 	case _twr_FENIX:
-		mngr_->addComponent<PhoenixTower>(t, 2.5f, 5.0f, 2.0f);
+		mngr_->addComponent<PhoenixTower>(t, sdlutils().floatConst().at("FenixDano"), sdlutils().floatConst().at("FenixEnfriamiento"), sdlutils().floatConst().at("FenixTiempoDisparo"), sdlutils().floatConst().at("FenixRango"));
 		mngr_->addComponent<RenderComponent>(t, phoenixTowerTexture);
-		mngr_->addComponent<FramedImage>(t, 4, 2, 650, 900, 0, 0);
+		mngr_->addComponent<FramedImage>(t, sdlutils().intConst().at("FenixColumns"), sdlutils().intConst().at("FenixRows"), sdlutils().intConst().at("FenixWidth"), sdlutils().intConst().at("FenixHeight"), 0, 0);
 		break;
 	case _twr_BULLET://Pasar rango, recarga, daño y si dispara
-		mngr_->addComponent<BulletTower>(t, 100.0f/*&sdlutils().floatConst().at("BalasRango")*/, 0.5f/*&sdlutils().floatConst().at("BalasRecarga")*/, 5/*&sdlutils().intConst().at("BalasDano")*/);
+		mngr_->addComponent<BulletTower>(t, sdlutils().floatConst().at("BalasRango"),sdlutils().floatConst().at("BalasRecarga"), sdlutils().intConst().at("BalasDano"));
 		mngr_->addComponent<RenderComponent>(t, bulletTowerTexture);
-		mngr_->addComponent<FramedImage>(t, 4, 4, 650, 1000, 0, 0);
+		mngr_->addComponent<FramedImage>(t, sdlutils().intConst().at("BalasColumns"), sdlutils().intConst().at("BalasRows"), sdlutils().intConst().at("BalasWidth"), sdlutils().intConst().at("BalasHeight"), 0, 0);
 
 		break;
 	case _twr_DIRT:
-		mngr_->addComponent<DirtTower>(t, 100.0f, 0.0f, 0);
+		mngr_->addComponent<DirtTower>(t);
 		mngr_->addComponent<RenderComponent>(t, clayTowerTexture);
 		mngr_->addComponent<FramedImage>(t, 4, 4, 750, 1200, 0, 0);
 		break;
 	case _twr_POWER://Pasar rango, porcentaje incremento de ataque y vida extra
-		mngr_->addComponent<EnhancerTower>(t, 100.0f/*&sdlutils().floatConst().at("PotenciadoraRango")*/, 0.05f/*&sdlutils().floatConst().at("PotenciadoraAumentoDano")*/, 30.0f/*&sdlutils().floatConst().at("PotenciadoraAumentoVida")*/);
+		mngr_->addComponent<EnhancerTower>(t, sdlutils().floatConst().at("PotenciadoraRango"), sdlutils().floatConst().at("PotenciadoraAumentoDano"), sdlutils().floatConst().at("PotenciadoraAumentoVida"));
 		mngr_->addComponent<RenderComponent>(t, boosterTowerTexture);
-		mngr_->addComponent<FramedImage>(t, 5, 1, 640, 1000, 0, 0);
+		mngr_->addComponent<FramedImage>(t, sdlutils().intConst().at("PotenciadoraColumns"), sdlutils().intConst().at("PotenciadoraRows"), sdlutils().intConst().at("PotenciadoraWidth"), sdlutils().intConst().at("PotenciadoraHeight"), 0, 0);
 		break;
 	case _twr_DIEGO:
-		//mngr_->addComponent<DiegoSniperTower>(t, 1000.0f, 0, 1.0f, 3.0f, 50);
+		mngr_->addComponent<DiegoSniperTower>(t, sdlutils().floatConst().at("DiegoSniperRango"), sdlutils().floatConst().at("DiegoSniperCritProb1"), sdlutils().floatConst().at("DiegoSniperCritDano1"), sdlutils().floatConst().at("DiegoSniperRecarga"), sdlutils().intConst().at("DiegoSniperDano"));
 		mngr_->addComponent<RenderComponent>(t, sniperTowerTexture);
-		mngr_->addComponent<FramedImage>(t, 4, 4, 690, 1150, 0, 0);
+		mngr_->addComponent<FramedImage>(t, sdlutils().intConst().at("DiegoSniperColumns"), sdlutils().intConst().at("DiegoSniperRows"), sdlutils().intConst().at("DiegoSniperWidth"), sdlutils().intConst().at("DiegoSniperHeight"), 0, 0);
 		break;
 	case _twr_SLIME:
 		mngr_->addComponent<RenderComponent>(t, slimeTowerTexture);
-		mngr_->addComponent<FramedImage>(t, 4, 4, 750, 1050, 0, 0);
+		mngr_->addComponent<FramedImage>(t, sdlutils().intConst().at("SlimeColumns"), sdlutils().intConst().at("SlimeRows"), sdlutils().intConst().at("SlimeWidth"), sdlutils().intConst().at("SlimeHeight"), 0, 0);
 		
 		break;
 	case _twr_CRISTAL:
-		mngr_->addComponent<CrystalTower>(t,20/* &sdlutils().intConst().at("CristalEscudo")*/, 2.0f/*&sdlutils().floatConst().at("CristalRecarga")*/, 0/*&sdlutils().intConst().at("CristalDano")*/);
+		mngr_->addComponent<CrystalTower>(t,sdlutils().intConst().at("CristalEscudo"), sdlutils().floatConst().at("CristalRecarga"), sdlutils().intConst().at("CristalExplosion"));
 		mngr_->addComponent<RenderComponent>(t, cristalTowerTexture);
-		mngr_->addComponent<FramedImage>(t, 4, 1, 875, 1500, 0, 0);
+		mngr_->addComponent<FramedImage>(t, sdlutils().intConst().at("CristalColumns"), sdlutils().intConst().at("CristalRows"), sdlutils().intConst().at("CristalWidth"), sdlutils().intConst().at("CristalHeight"), 0, 0);
 		break;
 	default:
 		break;
