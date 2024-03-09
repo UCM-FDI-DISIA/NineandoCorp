@@ -1,4 +1,5 @@
 #include "BulletComponent.h"
+#include "FramedImage.h"
 
 BulletComponent::BulletComponent(Transform* tr, Entity* target, Entity* src, int damage, float speed):t(tr), targetEntity_(target), srcEntity(src), damage_(damage), speed_(speed) {
 	//initComponent();
@@ -16,6 +17,7 @@ void BulletComponent::doDamageTo(Entity* e, float damage){
 	m.entity_to_attack.e = e;
 	m.entity_to_attack.damage = damage;
 	mngr_->send(m);
+	onTravelEnds();
 }
 
 void BulletComponent::onTravelEnds() {
@@ -23,7 +25,13 @@ void BulletComponent::onTravelEnds() {
 }
 
 void BulletComponent::setDir() {
-	Vector2D vel = *(mngr_->getComponent<Transform>(targetEntity_)->getPosition()) - *(t->getPosition());
+	FramedImage* fi = mngr_->getComponent<FramedImage>(targetEntity_);
+	Vector2D targetPos = *(mngr_->getComponent<Transform>(targetEntity_)->getPosition());
+	if (fi != nullptr) { 
+		Vector2D offset = { (float)fi->getSrcRect().w / 2, (float)fi->getSrcRect().h / 2};//Se dirige hacia el centro del rect
+		targetPos = targetPos + offset; 
+	}
+	Vector2D vel = targetPos - *(t->getPosition());
 	vel = vel.normalize();
 	Vector2D norm = { 1, 0 };
 	float dot =	norm.getX() * vel.getX() + norm.getY() * vel.getY();

@@ -19,6 +19,8 @@
 
 enum Height{HIGH, LOW};
 
+const float BULLET_SPEED = 500.0f, FENIX_SPEED = 100.0f, DIEGO_SPEED = 600.0f, SLIME_SPEED = 100.0f, DIEGO_OFFSET = 25.0f;
+
 class TowerSystem : public System
 {
 public:
@@ -34,16 +36,10 @@ public:
 	void onAttackTower(Entity* e, int dmg); //Hace daño a la torre mandada por mensaje
 	void addTower(twrId type, Vector2D pos, Height height);
 	
+	//bool collidesWithEnemy();//Devuelve true si una torre colisiona con un enemigo
 
-
-
-
-
-
-
-	//bool collidesWithEnemy();//Devuelve true si una torre colisiona con un 
 protected:
-	void shootBullet(Entity* target, Entity* src, float damage, float speed, Vector2D spawnPos);
+	void shootBullet(Entity* target, Entity* src, float damage, float speed, Vector2D spawnPos, gameTextures texture,Vector2D bulletScale);
 	void shootFire(float shootingTime, int damage);
 	void eliminateDestroyedTowers(Entity* t);
 	std::vector<Entity*> towers;
