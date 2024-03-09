@@ -4,7 +4,7 @@
 #include "../components/Transform.h"
 #include "../components/HealthComponent.h"
 
-AttackComponent::AttackComponent(float range, float reloadTime, int damage, bool shootBullets) : range_(range), reloadTime_(reloadTime), damage_(damage), baseDamage_(damage), elapsedTime_(0) {
+AttackComponent::AttackComponent(float range, float reloadTime, int damage, bool shootBullets) : range_(range), reloadTime_(reloadTime), damage_(damage), baseDamage_(damage), elapsedTime_(reloadTime) {
 	target_ = nullptr; timeToShoot_ = reloadTime; loaded_ = false;
 }
 
