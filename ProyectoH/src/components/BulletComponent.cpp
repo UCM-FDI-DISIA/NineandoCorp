@@ -17,6 +17,7 @@ void BulletComponent::doDamageTo(Entity* e, float damage){
 	m.entity_to_attack.e = e;
 	m.entity_to_attack.damage = damage;
 	mngr_->send(m);
+	onTravelEnds();
 }
 
 void BulletComponent::onTravelEnds() {
@@ -28,7 +29,7 @@ void BulletComponent::setDir() {
 	Vector2D targetPos = *(mngr_->getComponent<Transform>(targetEntity_)->getPosition());
 	if (fi != nullptr) { 
 		Vector2D offset = { (float)fi->getSrcRect().w / 2, (float)fi->getSrcRect().h / 2};//Se dirige hacia el centro del rect
-		targetPos = targetPos - offset; 
+		targetPos = targetPos + offset; 
 	}
 	Vector2D vel = targetPos - *(t->getPosition());
 	vel = vel.normalize();

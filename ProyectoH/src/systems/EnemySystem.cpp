@@ -26,7 +26,7 @@ void EnemySystem::initSystem() {
 	mngr_->addComponent<RouteComponent>(enemie, route);
 	mngr_->addComponent<AttackComponent>(enemie, 100, 0.25, 20, false);
 	mngr_->addComponent<RenderComponent>(enemie, square);
-	mngr_->addComponent<HealthComponent>(enemie, 50000);
+	mngr_->addComponent<HealthComponent>(enemie, 500);
 	mngr_->setHandler(_hdlr_ENEMIES, enemie);
 }
 void  EnemySystem::receive(const Message& m) {
@@ -38,9 +38,12 @@ void  EnemySystem::receive(const Message& m) {
 		onRoundOver();
 		break;
 	case _m_ENTITY_TO_ATTACK:
-		if (mngr_->isAlive(m.entity_to_attack.e)) {
+		if (m.entity_to_attack.e != nullptr && mngr_->isAlive(m.entity_to_attack.e)) {
 			 HealthComponent* h = mngr_->getComponent<HealthComponent>(m.entity_to_attack.e);
-			 if (h->subtractHealth(m.entity_to_attack.damage)) { mngr_->deleteHandler(_hdlr_ENEMIES, m.entity_to_attack.e); mngr_->getComponent<AttackComponent>(m.entity_to_attack.src)->setTarget(nullptr); };
+			 if (h->subtractHealth(m.entity_to_attack.damage)) { 
+				 mngr_->deleteHandler(_hdlr_ENEMIES, m.entity_to_attack.e); 
+				 if(mngr_->hasComponent<AttackComponent>(m.entity_to_attack.src))mngr_->getComponent<AttackComponent>(m.entity_to_attack.src)->setTarget(nullptr);
+			 };
 		}		
 		break;
 	}

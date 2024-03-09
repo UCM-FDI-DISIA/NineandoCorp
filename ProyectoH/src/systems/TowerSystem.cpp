@@ -11,8 +11,10 @@ TowerSystem::~TowerSystem() {
 void TowerSystem::initSystem() {
 	active_ = true;
 
-	addTower(twrId::_twr_BULLET, { (float)sdlutils().width() / 2.f, 600.f }, LOW);
-	addTower(twrId::_twr_DIEGO, { (float)sdlutils().width() / 1.5f, 600.f }, LOW);
+	addTower(twrId::_twr_DIEGO, { (float)sdlutils().width() / 2.1f, 600.f }, LOW);
+	addTower(twrId::_twr_BULLET, { (float)sdlutils().width() / 1.8f, 600.f }, LOW);
+	addTower(twrId::_twr_BULLET, { (float)sdlutils().width() / 1.7f, 550.f }, LOW);
+	addTower(twrId::_twr_DIEGO, { (float)sdlutils().width() / 2.2f, 540.f }, LOW);
 }
 
 void TowerSystem::receive(const Message& m) {
@@ -45,7 +47,7 @@ void TowerSystem::update() {
 				bt->setElapsedTime(bt->getElapsedTime()+game().getDeltaTime());
 				//std::cout << bt->getElapsedTime() << "\n";
 				//std::cout << bt->getReloadTime() << "\n";
-				if (bt->getElapsedTime() > bt->getReloadTime()) {
+				if (bt->getElapsedTime() > 0.5) {
 					
 					bt->targetEnemy(mngr_->getHandler(_hdlr_ENEMIES));
 					bt->setElapsedTime(0);
@@ -264,7 +266,7 @@ void TowerSystem::onRoundOver() {
 void TowerSystem::onAttackTower(Entity* e, int dmg) {
 	/*std::list<Entity*> towers = mngr_->getHandler(_hdlr_LOW_TOWERS);
 	std::list<Entity*>::iterator findIter = std::find(towers.begin(), towers.end(), e);*/
-	if (mngr_->isAlive(e)) {
+	if (e != nullptr && mngr_->isAlive(e)) {
 		HealthComponent* h = mngr_->getComponent<HealthComponent>(e);
 		if (h->getHealth() - dmg <= 0) {
 			mngr_->deleteHandler(_hdlr_LOW_TOWERS, e); eliminateDestroyedTowers(e);
