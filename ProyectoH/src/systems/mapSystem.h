@@ -24,13 +24,14 @@
 
 enum tileId { lake, low, high };
 
+struct casilla {
+	Vector2D position;
+	bool isFree;
+	tileId id;
+};
+
 class mapSystem : public System {
 private:
-	struct casilla{
-		Vector2D position;
-		bool isFree;
-		tileId id;
-	};
 	// Para gestionar los mensajes correspondientes y actualizar los atributos
 	// winner_ y state_.
 	void onRoundStart();
@@ -60,4 +61,6 @@ public:
 
 	void loadMap(std::string filename);
 	void loadTile(const tmx::Map& map, const tmx::TileLayer& layer);
+
+	vector<vector<casilla>>* getMalla() { return &malla; };
 };

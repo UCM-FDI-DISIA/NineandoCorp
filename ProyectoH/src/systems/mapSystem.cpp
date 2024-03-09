@@ -2,13 +2,20 @@
 
 mapSystem::mapSystem(std::string filename): filename(filename), winner_(0){
 	int size = 1;
+	int sum = 0;
 	bool incremento = true;
-	for (int i = 0; i < 64; i++) {
+	for (int i = 0; i < 31; i++) {
+		sum += size;
 		malla.push_back(vector<casilla>(size));
-		if (incremento)
-			size++;
-		else
-			size--;
+		size++;
+	}
+	sum += size;
+	malla.push_back(vector<casilla>(size));
+	size--;
+	for (int i = 0; i < 31; i++) {
+		sum += size;
+		malla.push_back(vector<casilla>(size));
+		size--;
 	}
 }
 
@@ -66,6 +73,11 @@ void mapSystem::loadMap(std::string filename) {
 
 	
 }
+
+/// <summary> hola </summary>
+/// <param name='map'>mapa con los tiles</param>
+/// <param name='layer'>las capas</param>
+/// <returns> Lo que devuelve</returns>
 void mapSystem::loadTile(const tmx::Map& map, const tmx::TileLayer& layer){
 	const auto& tileSets = map.getTilesets();
 	const auto& layerIDs = layer.getTiles();
@@ -73,6 +85,7 @@ void mapSystem::loadTile(const tmx::Map& map, const tmx::TileLayer& layer){
 	int j = 0;
 	float sep = 1.34;
 	int n = 0;
+	int col = 0, fil = 0;
 	for (auto tile : layerIDs)
 	{
 		n++;
@@ -84,21 +97,21 @@ void mapSystem::loadTile(const tmx::Map& map, const tmx::TileLayer& layer){
 			if (tile.ID == 2 || tile.ID == 133) {
 
 				entityTile = mngr_->addEntity(_grp_TILES_L1);
-				malla[j][i].position = tilePosition;
-				malla[j][i].isFree = false;
-				malla[j][i].id = lake;
+				malla[col][fil].position = Vector2D(i,j);
+				malla[col][fil].isFree = true;
+				malla[col][fil].id = low;
 			}
 			else if (tile.ID > 80 && tile.ID < 100) {
 				entityTile = mngr_->addEntity(_grp_TILES_L2);
-				malla[j][i].position = tilePosition;
-				malla[j][i].isFree = true;
-				malla[j][i].id = low;
+				malla[col][fil].position = Vector2D(i, j);
+				malla[col][fil].isFree = false;
+				malla[col][fil].id = lake;
 			}
 			else {
 				entityTile = mngr_->addEntity(_grp_TILES_L3);
-				malla[j][i].position = tilePosition;
-				malla[j][i].isFree = true;
-				malla[j][i].id = high;
+				malla[col][fil].position = Vector2D(i, j);
+				malla[col][fil].isFree = true;
+				malla[col][fil].id = high;
 			}
 			mngr_->addComponent<FramedImage>(entityTile, 10, 16, m_chunkSize.x, m_chunkSize.y, tile.ID -1);
 			mngr_->addComponent<RenderComponent>(entityTile, gameTextures::tileSet);
@@ -107,6 +120,11 @@ void mapSystem::loadTile(const tmx::Map& map, const tmx::TileLayer& layer){
 				transform->setPosition(tilePosition);
 				/*transform->setWidth(32);
 				transform->setHeight(32);*/
+			}
+			fil++;
+			if (fil == malla[col].size()) {
+				fil = 0;
+				col++;
 			}
 		}
 		
