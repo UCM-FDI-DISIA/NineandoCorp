@@ -11,7 +11,7 @@ enum ButtonTypes {
 	//Level Selector
 	start_game, back_selector,
 	//Tower_menu
-	glass_menu,
+	crystal_menu,
 	slime_menu,
 	bullet_menu,
 	sniper_menu,
@@ -21,13 +21,13 @@ enum ButtonTypes {
 
 	//Upgrades main menu
 	upgrade_nexus, 
-	upgrade_glass_main,
+	upgrade_crystal_main,
 	upgrade_slime_main, upgrade_bullet_main, 
 	upgrade_sniper_main, upgrade_fenix_main,
 	upgrade_clay_main, upgrade_enhancer_main,
 
 	// ----- HUD -----//
-	glass_hud, 
+	crystal_drag,
 
 
 

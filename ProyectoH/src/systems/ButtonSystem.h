@@ -62,6 +62,11 @@ private:
 	/// Te carga PlayState
 	/// </summary>
 	void startGame();
+	/// <summary>
+	/// Envia mensaje para arrastrar 
+	/// </summary>
+	void dragTower(twrId tower);
+
 };
 
 

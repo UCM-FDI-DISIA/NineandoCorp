@@ -84,7 +84,7 @@ void MainMenuSystem::initSystem() {
 	// 2 TOWER BUTTON - CRISTAL
 	bS->addButton({ sdlutils().width() - 150.0f , (sdlutils().height() / 8.0f) * 2 },
 		{ 200.0f, 70.0f },
-		upgrade, upgrade_hover, ButtonTypes::glass_menu);
+		upgrade, upgrade_hover, ButtonTypes::crystal_menu);
 
 	// 2 TOWER CRISTAL IMAGE
 	bS->addImage({ sdlutils().width() - 310.0f , (sdlutils().height() / 8.0f) * 2 },

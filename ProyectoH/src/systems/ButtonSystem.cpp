@@ -73,6 +73,8 @@ void ButtonSystem::manageButtons() {
 		case start_game:
 			startGame();
 			break;
+		case crystal_drag:
+			break;
 		case upgrade_nexus:
 			break;
 		default:
@@ -98,6 +100,13 @@ void ButtonSystem::manageButtons() {
 	void ButtonSystem::startGame() {
 		Message m;
 		m.id = _m_START_GAME;
+		mngr_->send(m);
+	}
+
+	void ButtonSystem::dragTower(twrId tower) {
+		Message m;
+		m.id = _m_DRAG;
+		m.drag_data.towerId = tower;
 		mngr_->send(m);
 	}
 #pragma endregion

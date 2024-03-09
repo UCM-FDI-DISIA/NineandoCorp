@@ -5,36 +5,26 @@
 #include "../sdlutils/InputHandler.h"
 
 DragAndDrop::DragAndDrop() :
-	currState(State::NONE),
-	tr_(nullptr){
+	dragging_(false), //
+	tr_(nullptr) {
 
 }
 DragAndDrop::~DragAndDrop() {
 
 }
 
-void DragAndDrop::initComponent() {
-
+void DragAndDrop::initComponent(){
 	tr_ = mngr_->getComponent<Transform>(ent_);
 	assert(tr_ != nullptr);
 }
 
-/*void DragAndDrop::update() {
-	auto& ihdlr = ih();
-	float mouseX = ihdlr.getMousePos().first;
+void DragAndDrop::drag() {
+	Vector2D mPos = { (float)ih().getMousePos().first, (float)ih().getMousePos().second };
+	tr_->setPosition(mPos);
 
-	float mouseY = ihdlr.getMousePos().second;
+	//Posteriormente ajustar posicion a malla del mapa
 
-	tr_->getPosition()->set(mouseX, mouseY);
-	
-}*/
+}
 
-/*void DragAndDrop::handleInput() {
-	auto& ihdlr = ih();
 
-	if (ihdlr.mouseButtonEvent()) {
-		if (ihdlr.getMouseButtonState(InputHandler::MOUSEBUTTON::LEFT) == 1) {
-			drop();
-		}
-	}
-}*/
+

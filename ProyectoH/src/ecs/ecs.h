@@ -118,7 +118,8 @@ enum msgId : msgId_type {
 	_m_UPGRADE_NEXUS,
 	_m_UPGRADE_TOWER,
 	_m_BACK_TO_MAINMENU, 
-	_m_TEXT_MESSAGE
+	_m_TEXT_MESSAGE,
+	_m_DRAG,
 };
 
 using twrId_type = uint8_t;
@@ -174,6 +175,11 @@ inline Uint8* _deserialize_(float& v, Uint8* buf) {
 }
 struct Message {
 msgId_type id;
+	// _m_DRAG
+	struct {
+		twrId towerId;
+	}drag_data;
+
 	// _m_START_GAME
 	struct
 	{

@@ -39,7 +39,7 @@ void HUDSystem::initSystem() {
 	bS->addButton({ xAux * 2, heightH },
 		bSize,
 		gameTextures::none_box, gameTextures::none_box_hover,
-		ButtonTypes::none);
+		ButtonTypes::crystal_drag);
 	bS->addButton({ xAux * 2, heightH },
 		{ 55.0f, 80.0f },
 		gameTextures::crystal_tower_image, gameTextures::crystal_tower_image,
@@ -103,8 +103,13 @@ void HUDSystem::receive(const Message& m) {
 void HUDSystem::update() {
 }
 
-void HUDSystem::dragTowerIcon(Entity*)
-{
+void HUDSystem::dragTowerIcon(Entity* en){
+	while (mngr_->getComponent<ButtonComponent>(en)->isPressed({ (float)ih().getMousePos().first, (float)ih().getMousePos().second })) {
+		Vector2D mPos = { (float)ih().getMousePos().first, (float)ih().getMousePos().second };
+		auto tr = mngr_->getComponent<Transform>(en);
+		tr->setPosition(mPos);
+	}
+	
 }
 
 
