@@ -1,4 +1,5 @@
 #include "TowerSystem.h"
+#include "..//ecs/ecs.h"
 
 
 TowerSystem::TowerSystem() : active_(true) {
@@ -12,9 +13,9 @@ void TowerSystem::initSystem() {
 	active_ = true;
 
 	addTower(twrId::_twr_DIEGO, { (float)sdlutils().width() / 2.1f, 600.f }, LOW);
-	addTower(twrId::_twr_BULLET, { (float)sdlutils().width() / 1.8f, 600.f }, LOW);
-	addTower(twrId::_twr_BULLET, { (float)sdlutils().width() / 1.7f, 550.f }, LOW);
-	addTower(twrId::_twr_DIEGO, { (float)sdlutils().width() / 2.2f, 540.f }, LOW);
+	//addTower(twrId::_twr_BULLET, { (float)sdlutils().width() / 1.8f, 600.f }, LOW);
+	//addTower(twrId::_twr_BULLET, { (float)sdlutils().width() / 1.7f, 550.f }, LOW);
+	addTower(twrId::_twr_POWER, { (float)sdlutils().width() / 2.2f, 540.f }, LOW);
 }
 
 void TowerSystem::receive(const Message& m) {
@@ -41,8 +42,29 @@ void TowerSystem::update() {
 		//if(!mngr_->isAlive(t)){ eliminateDestroyedTowers(t); }//Eliminamos la torre de los arrays si esta muerta
 		//else {
 			Transform* TR = mngr_->getComponent<Transform>(t);
-			BulletTower* bt = mngr_->getComponent<BulletTower>(t);
-					
+
+			EnhancerTower* et = mngr_->getComponent<EnhancerTower>(t);
+			if (et != nullptr) {
+				int lvl = mngr_->getComponent<UpgradeTowerComponent>(t)->getLevel();
+				mngr_->getComponent<FramedImage>(t)->setCurrentFrame(lvl);
+				Vector2D myPos = mngr_->getComponent<Transform>(t)->getPosition();
+				//std::cout << et->getRange() << std::endl;
+				for (size_t i = 0; i < towers.size(); i++)//miramos las torres de alarededor para potenciarlas
+				{
+					Vector2D towerPos = mngr_->getComponent<Transform>(towers[i])->getPosition();
+					float distance = sqrt(pow(towerPos.getX() - myPos.getX(), 2) + pow(towerPos.getY() - myPos.getY(), 2));//distancia a la torre
+					if (distance <= et->getRange() && towers[i] != t) {//enRango
+						//std::cout << "Potenciada: " << i << std::endl;
+						DiegoSniperTower* ac = mngr_->getComponent<DiegoSniperTower>(towers[i]);
+						if (ac != nullptr) {
+							ac->setDamage(ac->getBaseDamage() * (1 + et->getDamageIncreasePercentage()));
+						}//incrementamos daño
+						HealthComponent* h = mngr_->getComponent<HealthComponent>(towers[i]);
+						if (h != nullptr) { h->setMaxHealth(h->getBaseHealth() + et->getTowersHPboost()); }//incrementamos vida
+					}
+				}
+			}
+			BulletTower* bt = mngr_->getComponent<BulletTower>(t);					
 			if (bt != nullptr) {
 				bt->setElapsedTime(bt->getElapsedTime()+game().getDeltaTime());
 				//std::cout << bt->getElapsedTime() << "\n";
@@ -75,23 +97,7 @@ void TowerSystem::update() {
 					}*/
 				}
 			}
-			EnhancerTower* et = mngr_->getComponent<EnhancerTower>(t);
-			if (et != nullptr) {
-				int lvl = mngr_->getComponent<UpgradeTowerComponent>(t)->getLevel();
-				mngr_->getComponent<FramedImage>(t)->setCurrentFrame(lvl);
-				Vector2D myPos = mngr_->getComponent<Transform>(t)->getPosition();
-				for (size_t i = 0; i < towers.size(); i++)//miramos las torres de alarededor para potenciarlas
-				{
-					Vector2D towerPos = mngr_->getComponent<Transform>(towers[i])->getPosition();
-					float distance = sqrt(pow(towerPos.getX() - myPos.getX(), 2) + pow(towerPos.getY() - myPos.getY(), 2));//distancia a la torre
-					if (distance <= et->getRange() && towers[i] != t) {//enRango
-						AttackComponent* ac = mngr_->getComponent<AttackComponent>(towers[i]);
-						if (ac != nullptr) {ac->setDamage(ac->getBaseDamage() * (1 + et->getDamageIncreasePercentage()));}//incrementamos daño
-						HealthComponent* h = mngr_->getComponent<HealthComponent>(towers[i]);
-						if (h != nullptr) { h->setMaxHealth(h->getBaseHealth() + et->getTowersHPboost()); }//incrementamos vida
-					}
-				}
-			}
+			
 
 			CrystalTower* ct = mngr_->getComponent<CrystalTower>(t);
 			if (ct != nullptr) {
@@ -233,11 +239,19 @@ void TowerSystem::addTower(twrId type, Vector2D pos, Height height) {
 		mngr_->addComponent<EnhancerTower>(t, sdlutils().floatConst().at("PotenciadoraRango"), sdlutils().floatConst().at("PotenciadoraAumentoDano"), sdlutils().floatConst().at("PotenciadoraAumentoVida"));
 		mngr_->addComponent<RenderComponent>(t, boosterTowerTexture);
 		mngr_->addComponent<FramedImage>(t, sdlutils().intConst().at("PotenciadoraColumns"), sdlutils().intConst().at("PotenciadoraRows"), sdlutils().intConst().at("PotenciadoraWidth"), sdlutils().intConst().at("PotenciadoraHeight"), 0, 0);
+		mngr_->getComponent<UpgradeTowerComponent>(t)->LevelUp();
+		mngr_->getComponent<UpgradeTowerComponent>(t)->LevelUp();
+		mngr_->getComponent<UpgradeTowerComponent>(t)->LevelUp();
+		mngr_->getComponent<UpgradeTowerComponent>(t)->LevelUp();
 		break;
 	case _twr_DIEGO:
 		mngr_->addComponent<DiegoSniperTower>(t, sdlutils().floatConst().at("DiegoSniperRango"), sdlutils().floatConst().at("DiegoSniperCritProb1"), sdlutils().floatConst().at("DiegoSniperCritDano1"), sdlutils().floatConst().at("DiegoSniperRecarga"), sdlutils().intConst().at("DiegoSniperDano"));
 		mngr_->addComponent<RenderComponent>(t, sniperTowerTexture);
 		mngr_->addComponent<FramedImage>(t, sdlutils().intConst().at("DiegoSniperColumns"), sdlutils().intConst().at("DiegoSniperRows"), sdlutils().intConst().at("DiegoSniperWidth"), sdlutils().intConst().at("DiegoSniperHeight"), 0, 0);
+		mngr_->getComponent<UpgradeTowerComponent>(t)->LevelUp();
+		mngr_->getComponent<UpgradeTowerComponent>(t)->LevelUp();
+		mngr_->getComponent<UpgradeTowerComponent>(t)->LevelUp();
+		mngr_->getComponent<UpgradeTowerComponent>(t)->LevelUp();
 		break;
 	case _twr_SLIME:
 		mngr_->addComponent<RenderComponent>(t, slimeTowerTexture);
