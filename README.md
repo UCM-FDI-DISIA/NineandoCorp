@@ -123,6 +123,10 @@ La evolución del escenario va en base a esta tabla:
 | 2| 2 | 2 |
 | 3| 3 | 2 |
 | 4| 5 | 2 |
+| 5| 5 | 2 |
+| 6| 6 | 3 |
+| 7| 6 | 3 |
+| 8| 8 | 4 |
 
 ##### 4.3.2 Zonas del escenario
 Una de las mecánicas más características del escenario son las zonas del mismo, 	puesto que estas limitan el tipo de torre que se pueden situar sobre ellas.
@@ -281,7 +285,7 @@ Por lo tanto, existen dos tiendas diferentes, una interna y una externa.
 - Nivel 4: 50/seg
 
 ## 6. Niveles
-H Defense estará compuesto por 4 niveles distintos entre sí, con diferentes lugares, y con el único objetivo de defender la torre principal.
+H Defense estará compuesto por 8 niveles distintos entre sí, con diferentes lugares, y con el único objetivo de defender la torre principal.
 
 ### 6.1. Oleadas
 
@@ -291,6 +295,7 @@ Cada oleada termina cuando se eliminan a todos los grupos de enemigos. Al termin
 
 ### 6.2 Diseño del nivel
 ![BocetosNiveles](ProyectoH/resources/images/Miscelanious/bocetos_niveles.png)
+![BocetosNiveles1](ProyectoH/resources/images/Miscelanious/bocetos_niveles1.png)
 
 Al comenzar el nivel el jugador puede comprar las primeras torretas con su dinero inicial, y las oleadas no comienzan hasta que el jugador pulsa el botón de empezar.
 
