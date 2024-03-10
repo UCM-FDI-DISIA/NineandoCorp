@@ -1,21 +1,8 @@
-#include "mapSystem.h"
+﻿#include "mapSystem.h"
 
 mapSystem::mapSystem(std::string filename): filename(filename), winner_(0){
-	int size = 1;
-	int sum = 0;
-	bool incremento = true;
 	for (int i = 0; i < 31; i++) {
-		sum += size;
-		malla.push_back(vector<casilla>(size));
-		size++;
-	}
-	sum += size;
-	malla.push_back(vector<casilla>(size));
-	size--;
-	for (int i = 0; i < 31; i++) {
-		sum += size;
-		malla.push_back(vector<casilla>(size));
-		size--;
+		malla.push_back(vector<casilla>(31));
 	}
 }
 
@@ -96,22 +83,24 @@ void mapSystem::loadTile(const tmx::Map& map, const tmx::TileLayer& layer){
 
 			if (tile.ID == 2 || tile.ID == 133) {
 
-				entityTile = mngr_->addEntity(_grp_TILES_L1);
-				malla[col][fil].position = Vector2D(i,j);
-				malla[col][fil].isFree = true;
-				malla[col][fil].id = low;
+				entityTile = mngr_->addEntity(_grp_TILES_L1); 
+				if (malla[fil-1][col-1].id == TILE_NONE) {
+					malla[fil-1][col-1].position = tilePosition;
+					malla[fil-1][col-1].isFree = true;
+					malla[fil-1][col-1].id = TILE_LOW;
+				}
 			}
 			else if (tile.ID > 80 && tile.ID < 100) {
 				entityTile = mngr_->addEntity(_grp_TILES_L2);
-				malla[col][fil].position = Vector2D(i, j);
-				malla[col][fil].isFree = false;
-				malla[col][fil].id = lake;
+				malla[fil - 1][col - 1].position = tilePosition;
+				malla[fil - 1][col - 1].isFree = false;
+				malla[fil - 1][col - 1].id = TILE_LAKE;
 			}
 			else {
 				entityTile = mngr_->addEntity(_grp_TILES_L3);
-				malla[col][fil].position = Vector2D(i, j);
-				malla[col][fil].isFree = true;
-				malla[col][fil].id = high;
+				malla[fil][col].position = tilePosition;
+				malla[fil][col].isFree = true;
+				malla[fil][col].id = TILE_HIGH;
 			}
 			mngr_->addComponent<FramedImage>(entityTile, 10, 16, m_chunkSize.x, m_chunkSize.y, tile.ID -1);
 			mngr_->addComponent<RenderComponent>(entityTile, gameTextures::tileSet);
@@ -121,16 +110,12 @@ void mapSystem::loadTile(const tmx::Map& map, const tmx::TileLayer& layer){
 				/*transform->setWidth(32);
 				transform->setHeight(32);*/
 			}
-			fil++;
-			if (fil == malla[col].size()) {
-				fil = 0;
-				col++;
-			}
 		}
-		
-			
-			
-		
+		fil++;
+		if (fil == 32) {
+			fil = 0;
+			col++;
+		}
 		i += m_chunkSize.x;
 		if (i >= (layer.getSize().x * (m_chunkSize.x)) + (WIN_WIDTH + 200) / 2) {
 			i = (WIN_WIDTH + 200) / 2;

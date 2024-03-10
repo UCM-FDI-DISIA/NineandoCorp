@@ -22,14 +22,6 @@
 #include <iostream>
 #include <cmath>
 
-enum tileId { lake, low, high };
-
-struct casilla {
-	Vector2D position;
-	bool isFree;
-	tileId id;
-};
-
 class mapSystem : public System {
 private:
 	// Para gestionar los mensajes correspondientes y actualizar los atributos

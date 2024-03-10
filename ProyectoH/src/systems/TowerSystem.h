@@ -1,6 +1,6 @@
 #pragma once
 #include "..//ecs/System.h"
-#include "..//sdlutils/VirtualTimer.h"
+#include "../systems/mapSystem.h"
 #include "../ecs/Manager.h"
 #include "..//components/Transform.h"
 #include "../components/AttackComponent.h"
@@ -25,7 +25,7 @@ class TowerSystem : public System
 {
 public:
 	static constexpr sysId_type id = _sys_TOWERS;
-	TowerSystem(vector<vector<casilla>>* malla);
+	TowerSystem(std::vector<std::vector<casilla>>* malla);
 	~TowerSystem();
 
 	void initSystem() override;
@@ -42,7 +42,7 @@ protected:
 	void shootBullet(Entity* target, Entity* src, float damage, float speed, Vector2D spawnPos);
 	void shootFire(float shootingTime, int damage);
 	void eliminateDestroyedTowers(Entity* t);
-	vector<vector<casilla>>* malla;
+	std::vector<std::vector<casilla>>* malla;
 	std::vector<Entity*> towers;
 	//std::vector<Entity*> lowTowers;
 	//std::vector<Entity*> enemies;//Falta el mensaje para acceder a los enemigos desde el receive

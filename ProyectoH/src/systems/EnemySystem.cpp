@@ -15,7 +15,7 @@ EnemySystem::~EnemySystem() {
 void EnemySystem::initSystem() {
 	active_ = true;
 
-	Entity* enemie = mngr_->addEntity(_grp_TOWERS_AND_ENEMIES);
+	/*Entity* enemie = mngr_->addEntity(_grp_TOWERS_AND_ENEMIES);
 	Transform* tr = mngr_->addComponent<Transform>(enemie);
 	tr->setPosition({(float)sdlutils().width()/2.f - 100.f, 300.f});
 	tr->setVelocity({ 0, 100 });
@@ -27,7 +27,7 @@ void EnemySystem::initSystem() {
 	mngr_->addComponent<AttackComponent>(enemie, 100, 0.25, 20, false);
 	mngr_->addComponent<RenderComponent>(enemie, square);
 	mngr_->addComponent<HealthComponent>(enemie, 100);
-	mngr_->setHandler(_hdlr_ENEMIES, enemie);
+	mngr_->setHandler(_hdlr_ENEMIES, enemie);*/
 }
 void  EnemySystem::receive(const Message& m) {
 	switch (m.id) {

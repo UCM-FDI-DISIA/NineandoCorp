@@ -1,7 +1,7 @@
 #include "TowerSystem.h"
 
 
-TowerSystem::TowerSystem(vector<vector<casilla>>* malla) : active_(true), malla(malla){
+TowerSystem::TowerSystem(std::vector<std::vector<casilla>>* malla) : active_(true), malla(malla){
 }
 
 TowerSystem::~TowerSystem() {
@@ -12,7 +12,17 @@ void TowerSystem::initSystem() {
 	active_ = true;
 
 	addTower(twrId::_twr_BULLET, { (float)sdlutils().width() / 2.f, 600.f }, LOW);
-	addTower(twrId::_twr_BULLET, (*malla)[54][2].position, LOW);
+	int sum = 0;
+	for (int i = 0; i < 31; i++) {
+		for (int j = 0; j < 31; j++) {
+			if ((*malla)[i][j].id == TILE_HIGH) {
+				Entity* e = mngr_->addEntity(_grp_TOWERS_AND_ENEMIES);
+				mngr_->addComponent<RenderComponent>(e, square);
+				mngr_->addComponent<Transform>(e)->setPosition((*malla)[i][j].position);
+				sum++;
+			}
+		}
+	}
 }
 
 void TowerSystem::receive(const Message& m) {

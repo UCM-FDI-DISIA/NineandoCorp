@@ -39,8 +39,8 @@ private:
 	SDL_Rect offset = build_sdlrect(0,0,0,0);
 
 	//limites de la camara
-	int limtop = 1000;
-	int limbot = -1000;
+	int limtop = 200;
+	int limbot = -1200;
 	int limleft = 1000;
 	int limright = -1000;
 
