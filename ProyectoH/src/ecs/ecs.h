@@ -42,6 +42,7 @@ enum hdlrId : hdlrId_type {
 	_hdlr_BUTTON,
 	_hdlr_SUBMENU,
 	_hdlr_LOW_TOWERS,
+	_hdlr_HIGH_TOWERS,
 	_hdlr_ENEMIES,
 	
 	// do not remove this

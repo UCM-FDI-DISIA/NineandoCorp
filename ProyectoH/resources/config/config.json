@@ -79,6 +79,10 @@
       "id": "BalasRango",
       "value": 100
     },
+    {
+      "id": "BalasVelocidad",
+      "value": 500
+    },
 
     {
       "id": "SlimeRecargaUpgrade",
@@ -91,6 +95,10 @@
     {
       "id": "SlimeTiempoSlime",
       "value": 0.5
+    },
+    {
+      "id": "SlimeVelocidad",
+      "value": 100
     },
 
     {
@@ -116,6 +124,14 @@
     {
       "id": "DiegoSniperRecarga",
       "value": 3
+    },
+    {
+      "id": "DiegoSniperVelocidad",
+      "value": 400
+    },
+    {
+      "id": "DiegoSniperOffset",
+      "value": 25
     },
 
     {
