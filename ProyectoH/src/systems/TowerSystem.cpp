@@ -12,12 +12,12 @@ TowerSystem::~TowerSystem() {
 void TowerSystem::initSystem() {
 	active_ = true;
 
-	addTower(twrId::_twr_DIEGO, { (float)sdlutils().width() / 1.7f, 500.f }, LOW);
-	addTower(twrId::_twr_DIEGO, { (float)sdlutils().width() / 2.2f, 500.f }, LOW);
-	addTower(twrId::_twr_DIEGO, { (float)sdlutils().width() / 1.5f, 550.f }, LOW);
-	addTower(twrId::_twr_DIEGO, { (float)sdlutils().width() / 1.7f, 600.f }, LOW);
-	addTower(twrId::_twr_DIEGO, { (float)sdlutils().width() / 2.4f, 600.f }, LOW);
-	addTower(twrId::_twr_DIEGO, { (float)sdlutils().width() / 1.5f, 650.f }, LOW);
+	addTower(twrId::_twr_BULLET, { (float)sdlutils().width() / 1.9f, 500.f }, LOW);
+	addTower(twrId::_twr_BULLET, { (float)sdlutils().width() / 2.2f, 500.f }, LOW);
+	addTower(twrId::_twr_BULLET, { (float)sdlutils().width() / 1.9f, 550.f }, LOW);
+	addTower(twrId::_twr_BULLET, { (float)sdlutils().width() / 1.9f, 600.f }, LOW);
+	addTower(twrId::_twr_BULLET, { (float)sdlutils().width() / 2.3f, 600.f }, LOW);
+	addTower(twrId::_twr_BULLET, { (float)sdlutils().width() / 2.3f, 630.f }, LOW);
 	//addTower(twrId::_twr_BULLET, { (float)sdlutils().width() / 1.8f, 600.f }, LOW);
 	//addTower(twrId::_twr_BULLET, { (float)sdlutils().width() / 1.7f, 550.f }, LOW);
 	//addTower(twrId::_twr_POWER, { (float)sdlutils().width() / 2.2f, 540.f }, LOW);
@@ -80,12 +80,16 @@ void TowerSystem::update() {
 					bt->setElapsedTime(0);
 					//bt->targetSecondEnemy(mngr_->getHandler(_hdlr_ENEMIES));
 					if (bt->getTarget() != nullptr ) {
+						Vector2D offset{ DIEGO_OFFSET, DIEGO_OFFSET };
+						int valFrame = 0;
 						Vector2D dir = *(mngr_->getComponent<Transform>(bt->getTarget())->getPosition()) - *(TR->getPosition());
-						if (dir.getX() >= 0 && dir.getY() >= 0) mngr_->getComponent<FramedImage>(t)->setCurrentFrame(4 + mngr_->getComponent<UpgradeTowerComponent>(t)->getLevel() - 1);
-						else if (dir.getX() >= 0 && dir.getY() < 0) mngr_->getComponent<FramedImage>(t)->setCurrentFrame(12 + mngr_->getComponent<UpgradeTowerComponent>(t)->getLevel() - 1);
-						else if (dir.getX() < 0 && dir.getY() >= 0)mngr_->getComponent<FramedImage>(t)->setCurrentFrame(0 + mngr_->getComponent<UpgradeTowerComponent>(t)->getLevel() - 1);
-						else if (dir.getX() < 0 && dir.getY() < 0)mngr_->getComponent<FramedImage>(t)->setCurrentFrame(8 + mngr_->getComponent<UpgradeTowerComponent>(t)->getLevel() - 1);
-						shootBullet(bt->getTarget(), t, bt->getDamage(), BULLET_SPEED, TR->getPosition(), bulletTexture, { 35, 35 });
+						if (dir.getX() >= 0 && dir.getY() >= 0) { valFrame = 4; offset.setX(DIEGO_OFFSET * 2.5); }
+						else if (dir.getX() >= 0 && dir.getY() < 0) { valFrame = 12; offset.setY(0); offset.setX(DIEGO_OFFSET * 2.5); }
+						else if (dir.getX() < 0 && dir.getY() >= 0) { offset.setX(0); }
+						else if (dir.getX() < 0 && dir.getY() < 0) { valFrame = 8; offset.setX(0); offset.setY(0); }
+						mngr_->getComponent<FramedImage>(t)->setCurrentFrame(valFrame + mngr_->getComponent<UpgradeTowerComponent>(t)->getLevel() );
+						Vector2D spawn = { TR->getPosition()->getX() + offset.getX(),	TR->getPosition()->getY() + offset.getY() };
+						shootBullet(bt->getTarget(), t, bt->getDamage(), BULLET_SPEED, spawn, bulletTexture, { 35, 35 });
 						//bt->setTimeToShoot(bt->getTimeToShoot() + bt->getReloadTime());
 						
 						//std::cout << dir.getX() << " " << dir.getY() << "\n";
@@ -247,19 +251,11 @@ void TowerSystem::addTower(twrId type, Vector2D pos, Height height) {
 		mngr_->addComponent<EnhancerTower>(t, sdlutils().floatConst().at("PotenciadoraRango"), sdlutils().floatConst().at("PotenciadoraAumentoDano"), sdlutils().floatConst().at("PotenciadoraAumentoVida"));
 		mngr_->addComponent<RenderComponent>(t, boosterTowerTexture);
 		mngr_->addComponent<FramedImage>(t, sdlutils().intConst().at("PotenciadoraColumns"), sdlutils().intConst().at("PotenciadoraRows"), sdlutils().intConst().at("PotenciadoraWidth"), sdlutils().intConst().at("PotenciadoraHeight"), 0, 0);
-		mngr_->getComponent<UpgradeTowerComponent>(t)->LevelUp();
-		mngr_->getComponent<UpgradeTowerComponent>(t)->LevelUp();
-		mngr_->getComponent<UpgradeTowerComponent>(t)->LevelUp();
-		mngr_->getComponent<UpgradeTowerComponent>(t)->LevelUp();
 		break;
 	case _twr_DIEGO:
 		mngr_->addComponent<DiegoSniperTower>(t, sdlutils().floatConst().at("DiegoSniperRango"), sdlutils().floatConst().at("DiegoSniperCritProb1"), sdlutils().floatConst().at("DiegoSniperCritDano1"), sdlutils().floatConst().at("DiegoSniperRecarga"), sdlutils().intConst().at("DiegoSniperDano"));
 		mngr_->addComponent<RenderComponent>(t, sniperTowerTexture);
 		mngr_->addComponent<FramedImage>(t, sdlutils().intConst().at("DiegoSniperColumns"), sdlutils().intConst().at("DiegoSniperRows"), sdlutils().intConst().at("DiegoSniperWidth"), sdlutils().intConst().at("DiegoSniperHeight"), 0, 0);
-		mngr_->getComponent<UpgradeTowerComponent>(t)->LevelUp();
-		mngr_->getComponent<UpgradeTowerComponent>(t)->LevelUp();
-		mngr_->getComponent<UpgradeTowerComponent>(t)->LevelUp();
-		mngr_->getComponent<UpgradeTowerComponent>(t)->LevelUp();
 		break;
 	case _twr_SLIME:
 		mngr_->addComponent<RenderComponent>(t, slimeTowerTexture);
