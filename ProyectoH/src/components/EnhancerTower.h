@@ -1,5 +1,7 @@
 #pragma once
-#include "..//ecs/Component.h"
+#include "../ecs/Component.h"
+#include "../ecs/Manager.h"
+#include "FramedImage.h"
 
 class EnhancerTower : public Component
 {

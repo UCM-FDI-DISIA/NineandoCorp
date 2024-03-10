@@ -6,13 +6,13 @@ CrystalTower::CrystalTower(int shieldVal, float timeToShield, int explosionDmg):
 void CrystalTower::levelUp(int level) {
 	switch (level) {
 	case 1:
-		setShieldVal(getShieldVal()+50);
+		setShieldVal(getShieldVal()+ sdlutils().floatConst().at("CristalEscudo1"));
 		break;
 	case 2:
-		setShieldVal(getShieldVal() + 50);
+		setShieldVal(getShieldVal() + sdlutils().floatConst().at("CristalEscudo1"));
 		break;
 	case 3:
-		setShieldVal(getShieldVal() + 50);
+		setShieldVal(getShieldVal() + sdlutils().floatConst().at("CristalEscudo1"));
 		break;
 	case 4:
 		isMaxLevel_ = true;

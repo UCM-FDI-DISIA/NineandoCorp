@@ -14,18 +14,18 @@ void DiegoSniperTower::setCritProb(float prob) { critProbability_ = prob; }
 void DiegoSniperTower::levelUp(int level) {
 	switch (level) {
 	case 1:
-		setDamage(75);
+		setDamage(sdlutils().floatConst().at("DiegoSniperDano1"));
 		break;
 	case 2:
-		setCritDamage(1.5f);
-		setCritProb(0.2f);
+		setCritDamage(sdlutils().floatConst().at("DiegoSniperCritDano1"));
+		setCritProb(sdlutils().floatConst().at("DiegoSniperCritProb1"));
 		break;
 	case 3:
-		setReloadTime(2.5f);
+		setTimeToShoot(getTimeToShoot()- sdlutils().floatConst().at("DiegoSniperRecargaUpdate1"));
 		break;
 	case 4:
-		setCritProb(0.3f);
-		setReloadTime(2.0f);
+		setCritProb(sdlutils().floatConst().at("DiegoSniperCritProb2"));
+		setTimeToShoot(getTimeToShoot() - sdlutils().floatConst().at("DiegoSniperRecargaUpdate1"));
 		break;
 	default:
 		break;

@@ -14,20 +14,21 @@ void EnhancerTower::setDamageIncreasePercentage(float damage) { damageIncreasePe
 void EnhancerTower::setTowersHPboost(float hp) { towersHPboost_ = hp; }
 
 void EnhancerTower::levelUp(int level) {
+	if(level!=4)mngr_->getComponent<FramedImage>(ent_)->setCurrentFrame(mngr_->getComponent<FramedImage>(ent_)->getCurrentFrame()+1);
 	switch (level) {
 	case 1:
-		setDamageIncreasePercentage(0.1f);
+		setDamageIncreasePercentage(sdlutils().floatConst().at("PotenciadoraDano1"));
 		break;
 	case 2:
-		setTowersHPboost(30.0f);
+		setTowersHPboost(sdlutils().floatConst().at("PotenciadoraAumentoVida"));
 		break;
 	case 3:
-		setDamageIncreasePercentage(0.15f);
+		setDamageIncreasePercentage(sdlutils().floatConst().at("PotenciadoraDano2"));
 		break;
 	case 4:
 		isMaxLevel_ = true;
-		setDamageIncreasePercentage(0.3f);
-		setTowersHPboost(50.0f);
+		setDamageIncreasePercentage(sdlutils().floatConst().at("PotenciadoraDano3"));
+		setTowersHPboost(sdlutils().floatConst().at("PotenciadoraVida2"));
 		break;
 	default:
 		break;

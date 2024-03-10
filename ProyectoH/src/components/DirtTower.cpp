@@ -8,16 +8,16 @@ void DirtTower::levelUp(int level) {
 	if (h != nullptr) {
 		switch (level) {
 		case 1:
-			h->setMaxHealth(300);		
+			h->setMaxHealth(sdlutils().floatConst().at("ArcillaVida1"));
 			break;
 		case 2:
-			h->setMaxHealth(600);
+			h->setMaxHealth(sdlutils().floatConst().at("ArcillaVida2"));
 			break;
 		case 3:
-			h->setMaxHealth(900);
+			h->setMaxHealth(sdlutils().floatConst().at("ArcillaVida3"));
 			break;
 		case 4:
-			h->setMaxHealth(1200);
+			h->setMaxHealth(sdlutils().floatConst().at("ArcillaVida40"));
 			break;
 		default:
 			break;
