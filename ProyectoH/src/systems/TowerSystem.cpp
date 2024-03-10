@@ -12,10 +12,15 @@ TowerSystem::~TowerSystem() {
 void TowerSystem::initSystem() {
 	active_ = true;
 
-	addTower(twrId::_twr_DIEGO, { (float)sdlutils().width() / 2.1f, 600.f }, LOW);
+	addTower(twrId::_twr_DIEGO, { (float)sdlutils().width() / 1.7f, 500.f }, LOW);
+	addTower(twrId::_twr_DIEGO, { (float)sdlutils().width() / 2.2f, 500.f }, LOW);
+	addTower(twrId::_twr_DIEGO, { (float)sdlutils().width() / 1.5f, 550.f }, LOW);
+	addTower(twrId::_twr_DIEGO, { (float)sdlutils().width() / 1.7f, 600.f }, LOW);
+	addTower(twrId::_twr_DIEGO, { (float)sdlutils().width() / 2.4f, 600.f }, LOW);
+	addTower(twrId::_twr_DIEGO, { (float)sdlutils().width() / 1.5f, 650.f }, LOW);
 	//addTower(twrId::_twr_BULLET, { (float)sdlutils().width() / 1.8f, 600.f }, LOW);
 	//addTower(twrId::_twr_BULLET, { (float)sdlutils().width() / 1.7f, 550.f }, LOW);
-	addTower(twrId::_twr_POWER, { (float)sdlutils().width() / 2.2f, 540.f }, LOW);
+	//addTower(twrId::_twr_POWER, { (float)sdlutils().width() / 2.2f, 540.f }, LOW);
 }
 
 void TowerSystem::receive(const Message& m) {
@@ -76,10 +81,10 @@ void TowerSystem::update() {
 					//bt->targetSecondEnemy(mngr_->getHandler(_hdlr_ENEMIES));
 					if (bt->getTarget() != nullptr ) {
 						Vector2D dir = *(mngr_->getComponent<Transform>(bt->getTarget())->getPosition()) - *(TR->getPosition());
-						if (dir.getX() >= 0 && dir.getY() >= 0) mngr_->getComponent<FramedImage>(t)->setCurrentFrame(4 + mngr_->getComponent<UpgradeTowerComponent>(t)->getLevel());
-						else if (dir.getX() >= 0 && dir.getY() < 0) mngr_->getComponent<FramedImage>(t)->setCurrentFrame(12 + mngr_->getComponent<UpgradeTowerComponent>(t)->getLevel());
-						else if (dir.getX() < 0 && dir.getY() >= 0)mngr_->getComponent<FramedImage>(t)->setCurrentFrame(0 + mngr_->getComponent<UpgradeTowerComponent>(t)->getLevel());
-						else if (dir.getX() < 0 && dir.getY() < 0)mngr_->getComponent<FramedImage>(t)->setCurrentFrame(8 + mngr_->getComponent<UpgradeTowerComponent>(t)->getLevel());
+						if (dir.getX() >= 0 && dir.getY() >= 0) mngr_->getComponent<FramedImage>(t)->setCurrentFrame(4 + mngr_->getComponent<UpgradeTowerComponent>(t)->getLevel() - 1);
+						else if (dir.getX() >= 0 && dir.getY() < 0) mngr_->getComponent<FramedImage>(t)->setCurrentFrame(12 + mngr_->getComponent<UpgradeTowerComponent>(t)->getLevel() - 1);
+						else if (dir.getX() < 0 && dir.getY() >= 0)mngr_->getComponent<FramedImage>(t)->setCurrentFrame(0 + mngr_->getComponent<UpgradeTowerComponent>(t)->getLevel() - 1);
+						else if (dir.getX() < 0 && dir.getY() < 0)mngr_->getComponent<FramedImage>(t)->setCurrentFrame(8 + mngr_->getComponent<UpgradeTowerComponent>(t)->getLevel() - 1);
 						shootBullet(bt->getTarget(), t, bt->getDamage(), BULLET_SPEED, TR->getPosition(), bulletTexture, { 35, 35 });
 						//bt->setTimeToShoot(bt->getTimeToShoot() + bt->getReloadTime());
 						
@@ -137,13 +142,16 @@ void TowerSystem::update() {
 					}
 					if (target != nullptr) {//Dispara con el critico
 						//std::cout << "shot";
+						Vector2D offset {DIEGO_OFFSET, DIEGO_OFFSET};
+						int valFrame = 0;
 						Vector2D dir = *(mngr_->getComponent<Transform>(target)->getPosition()) - *(TR->getPosition());
-						if (dir.getX() >= 0 && dir.getY() >= 0) mngr_->getComponent<FramedImage>(t)->setCurrentFrame(4 + mngr_->getComponent<UpgradeTowerComponent>(t)->getLevel());
-						else if (dir.getX() >= 0 && dir.getY() < 0) mngr_->getComponent<FramedImage>(t)->setCurrentFrame(12 + mngr_->getComponent<UpgradeTowerComponent>(t)->getLevel());
-						else if (dir.getX() < 0 && dir.getY() >= 0)mngr_->getComponent<FramedImage>(t)->setCurrentFrame(0 + mngr_->getComponent<UpgradeTowerComponent>(t)->getLevel());
-						else if (dir.getX() < 0 && dir.getY() < 0)mngr_->getComponent<FramedImage>(t)->setCurrentFrame(8 + mngr_->getComponent<UpgradeTowerComponent>(t)->getLevel());
+						if (dir.getX() >= 0 && dir.getY() >= 0) { valFrame = 4; offset.setX(DIEGO_OFFSET * 3.5); }
+						else if (dir.getX() >= 0 && dir.getY() < 0) { valFrame = 12; offset.setY(0); offset.setX(DIEGO_OFFSET * 3.5);}
+						else if (dir.getX() < 0 && dir.getY() >= 0){ offset.setX(0); }
+						else if (dir.getX() < 0 && dir.getY() < 0) { valFrame = 8; offset.setX(0); offset.setY(0);}
+						mngr_->getComponent<FramedImage>(t)->setCurrentFrame(valFrame + mngr_->getComponent<UpgradeTowerComponent>(t)->getLevel() - 1);
 						RenderComponent* rc = mngr_->getComponent<RenderComponent>(t);
-						Vector2D spawn = { TR->getPosition()->getX(),	TR->getPosition()->getY() + DIEGO_OFFSET};
+						Vector2D spawn = { TR->getPosition()->getX() + offset.getX(),	TR->getPosition()->getY() + offset.getY()};
 						
 						shootBullet(target, t, ds->getDamage() * ds->getCritDamage(), DIEGO_SPEED, spawn, sniperBulletTexture, {25, 20});
 						
