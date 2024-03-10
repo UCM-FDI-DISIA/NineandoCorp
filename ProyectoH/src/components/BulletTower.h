@@ -14,8 +14,8 @@ public:
 	Entity* getSecondTarget() { return secondTarget_; }
 
 private:
-	Entity* secondTarget_;
-	float timeToShoot2_;
+	Entity* secondTarget_;//Para la mejora maxima de la torre; 2 objetivos 
+	float timeToShoot2_;//Tiempo de disparo al segundo objetivo
 	bool isMaxLevel_;
 };
 

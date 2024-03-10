@@ -5,19 +5,6 @@
 BulletTower::BulletTower(float range, float reloadTime, int damage) 
 	: AttackComponent::AttackComponent(range, reloadTime, damage, true), isMaxLevel_(false), secondTarget_(nullptr) {}
 
-/*void BulletTower::update() {
-	AttackComponent::update();
-	//if (ent_->getComponent<TowerInfo>().info_.level == ent_->getComponent<TowerInfo>().info_.maxlevel) {
-	//	targetEnemy(mngr_->targetGroup, secondTarget_);
-	//	//Si esta a nivel maximo lockea otro target y dispara dos balas
-	//}
-	if (elapsedTime_ > timeToShoot2_ && isMaxLevel_) {
-		if ( secondTarget_ != nullptr) {
-			shoot(secondTarget_);
-			timeToShoot2_ += reloadTime_;
-		}//Dispara si esta recargado y tiene target
-	}
-}*/
 
 void BulletTower::levelUp(int level) {
 	switch (level) {
@@ -48,7 +35,6 @@ void BulletTower::targetSecondEnemy(const std::list<Entity*>& targetGroup) {
 			if (enemy != target_ && distance < range_ && distance < closestEnemy) {
 				secondTarget_ = enemy;
 				closestEnemy = distance;
-				//std::cout << "fglskdjg";
 			}
 		}
 	}

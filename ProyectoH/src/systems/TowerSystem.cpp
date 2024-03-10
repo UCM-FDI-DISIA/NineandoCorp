@@ -82,6 +82,7 @@ void TowerSystem::update() {
 					if (bt->getTarget() != nullptr ) {
 						Vector2D offset{ DIEGO_OFFSET, DIEGO_OFFSET };
 						int valFrame = 0;
+						
 						Vector2D dir = *(mngr_->getComponent<Transform>(bt->getTarget())->getPosition()) - *(TR->getPosition());
 						if (dir.getX() >= 0 && dir.getY() >= 0) { valFrame = 4; offset.setX(DIEGO_OFFSET * 2.5); }
 						else if (dir.getX() >= 0 && dir.getY() < 0) { valFrame = 12; offset.setY(0); offset.setX(DIEGO_OFFSET * 2.5); }
@@ -111,7 +112,7 @@ void TowerSystem::update() {
 			CrystalTower* ct = mngr_->getComponent<CrystalTower>(t);
 			if (ct != nullptr) {
 				ct->setElapsedTime(ct->getElapsedTime()+game().getDeltaTime());
-				if (ct->getElapsedTime() > ct->getTimeToShield()*1000) {
+				if (ct->getElapsedTime() > ct->getTimeToShield()) {
 					Message m;
 					m.id = _m_SHIELD_NEXUS;
 					m.shield_data.shield = ct->getShieldVal();
