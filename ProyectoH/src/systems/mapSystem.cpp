@@ -1,9 +1,7 @@
 ﻿#include "mapSystem.h"
 
 mapSystem::mapSystem(std::string filename): filename(filename), winner_(0){
-	for (int i = 0; i < 31; i++) {
-		malla.push_back(vector<casilla>(31));
-	}
+	net = new NetMap(31);
 }
 
 mapSystem::~mapSystem() {
@@ -83,24 +81,28 @@ void mapSystem::loadTile(const tmx::Map& map, const tmx::TileLayer& layer){
 
 			if (tile.ID == 2 || tile.ID == 133) {
 
-				entityTile = mngr_->addEntity(_grp_TILES_L1); 
-				if (malla[fil-1][col-1].id == TILE_NONE) {
-					malla[fil-1][col-1].position = tilePosition;
-					malla[fil-1][col-1].isFree = true;
-					malla[fil-1][col-1].id = TILE_LOW;
-				}
+				entityTile = mngr_->addEntity(_grp_TILES_L1);
+				Cell* c = new Cell();
+				c->position = { tilePosition.getX() + 48, tilePosition.getY() + 24 };
+				c->isFree = true;
+				c->id = TILE_LOW;
+				net->setCell(fil - 1, col - 1, c);
 			}
 			else if (tile.ID > 80 && tile.ID < 100) {
 				entityTile = mngr_->addEntity(_grp_TILES_L2);
-				malla[fil - 1][col - 1].position = tilePosition;
-				malla[fil - 1][col - 1].isFree = false;
-				malla[fil - 1][col - 1].id = TILE_LAKE;
+				Cell* c = new Cell();
+				c->position = { tilePosition.getX() + 48, tilePosition.getY() + 24 };
+				c->isFree = false;
+				c->id = TILE_LAKE;
+				net->setCell(fil - 1, col - 1, c);
 			}
 			else {
 				entityTile = mngr_->addEntity(_grp_TILES_L3);
-				malla[fil][col].position = tilePosition;
-				malla[fil][col].isFree = true;
-				malla[fil][col].id = TILE_HIGH;
+				Cell* c = new Cell();
+				c->position = { tilePosition.getX() + 48, tilePosition.getY() + 24};
+				c->isFree = true;
+				c->id = TILE_HIGH;
+				net->setCell(fil, col, c);
 			}
 			mngr_->addComponent<FramedImage>(entityTile, 10, 16, m_chunkSize.x, m_chunkSize.y, tile.ID -1);
 			mngr_->addComponent<RenderComponent>(entityTile, gameTextures::tileSet);

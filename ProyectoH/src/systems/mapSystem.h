@@ -21,6 +21,7 @@
 #include <limits>
 #include <iostream>
 #include <cmath>
+#include "../utils/NetMap.h"
 
 class mapSystem : public System {
 private:
@@ -38,7 +39,7 @@ private:
 	tmx::Vector2f m_chunkSize = tmx::Vector2f(64.f, 64.f);
 	tmx::Vector2u m_MapTileSize;
 	tmx::FloatRect m_globalBounds;
-	vector<vector<casilla>> malla;
+	NetMap* net;
 
 	std::string filename;
 	
@@ -54,5 +55,5 @@ public:
 	void loadMap(std::string filename);
 	void loadTile(const tmx::Map& map, const tmx::TileLayer& layer);
 
-	vector<vector<casilla>>* getMalla() { return &malla; };
+	NetMap* getMalla() { return net; };
 };

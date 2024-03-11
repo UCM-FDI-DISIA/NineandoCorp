@@ -210,12 +210,4 @@ msgId_type id;
 	}upgrade_nexus;
 };
 
-enum tileId { TILE_LAKE, TILE_LOW, TILE_HIGH, TILE_NONE };
-
-struct casilla {
-	Vector2D position;
-	bool isFree;
-	tileId id = TILE_NONE;
-};
-
 #endif // !ECS_H_

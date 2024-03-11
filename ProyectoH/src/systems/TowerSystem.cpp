@@ -1,7 +1,7 @@
 #include "TowerSystem.h"
 
 
-TowerSystem::TowerSystem(std::vector<std::vector<casilla>>* malla) : active_(true), malla(malla){
+TowerSystem::TowerSystem(NetMap* net) : active_(true), net(net){
 }
 
 TowerSystem::~TowerSystem() {
@@ -11,18 +11,22 @@ TowerSystem::~TowerSystem() {
 void TowerSystem::initSystem() {
 	active_ = true;
 
-	addTower(twrId::_twr_BULLET, { (float)sdlutils().width() / 2.f, 600.f }, LOW);
+	/*addTower(twrId::_twr_BULLET, { (float)sdlutils().width() / 2.f, 600.f }, LOW);
 	int sum = 0;
 	for (int i = 0; i < 31; i++) {
 		for (int j = 0; j < 31; j++) {
-			if ((*malla)[i][j].id == TILE_HIGH) {
+			if (net->getCell(i,j)->id != TILE_NONE) {
 				Entity* e = mngr_->addEntity(_grp_TOWERS_AND_ENEMIES);
 				mngr_->addComponent<RenderComponent>(e, square);
-				mngr_->addComponent<Transform>(e)->setPosition((*malla)[i][j].position);
+				mngr_->addComponent<Transform>(e)->setPosition(net->getCell(i,j)->position);
 				sum++;
 			}
 		}
-	}
+	}*/
+
+	square = mngr_->addEntity(_grp_TOWERS_AND_ENEMIES);
+	mngr_->addComponent<RenderComponent>(square, gameTextures::square);
+	mngr_->addComponent<Transform>(square);
 }
 
 void TowerSystem::receive(const Message& m) {
@@ -41,8 +45,11 @@ void TowerSystem::receive(const Message& m) {
 
 
 void TowerSystem::update() {
+	int x, y;
+	Uint32 mouseState = SDL_GetMouseState(&x, &y);
+	mngr_->getComponent<Transform>(square)->setPosition(net->searchCell(x,y)->position);
+
 	const auto& bullets = mngr_->getEntities(_grp_BULLETS);
-	
 	
 	for (auto& t : towers) {
 		//std::cout << towers.size() << std::endl;

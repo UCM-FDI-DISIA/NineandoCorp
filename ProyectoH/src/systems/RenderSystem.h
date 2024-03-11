@@ -5,13 +5,14 @@
 #include "../components/FramedImage.h"
 #include "../components/FramedImage.h"
 #include "../components/RenderComponent.h"
+#include "../utils/NetMap.h"
 
 
 class RenderSystem : public System {
 public:
 	static constexpr sysId_type id = _sys_RENDER;
 	// Constructor
-	RenderSystem();
+	RenderSystem(NetMap* net = nullptr);
 	virtual ~RenderSystem();
 	// Reaccionar a los mensajes recibidos (llamando a métodos correspondientes).
 	void receive(const Message& m) override;
@@ -37,6 +38,7 @@ private:
 	uint8_t winner_; // 0 - None, 1 - Asteroid, 2- Fighter
 
 	SDL_Rect offset = build_sdlrect(0,0,0,0);
+	NetMap* net;
 
 	//limites de la camara
 	int limtop = 200;

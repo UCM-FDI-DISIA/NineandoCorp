@@ -13,8 +13,7 @@ struct cmpIsometricY {
 };
 
 // Constructorss
-RenderSystem::RenderSystem() :
-	winner_(0)
+RenderSystem::RenderSystem(NetMap* net) : net(net), winner_(0)
 {
 	textures[square] = &sdlutils().images().at("square");
 	textures[tileSet] = &sdlutils().images().at("map");
@@ -100,6 +99,8 @@ void RenderSystem::update() {
 	else if (ih().isKeyDown(SDLK_DOWN) && offset.y > limbot) {
 		offset.y -= 50;
 	}
+	if(net != nullptr)
+		net->setOffset(offset);
 	//tmp->update();
 
 	//LAYER 1 TILEMAP
