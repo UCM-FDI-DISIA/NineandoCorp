@@ -13,7 +13,7 @@ struct cmpIsometricY {
 };
 
 // Constructorss
-RenderSystem::RenderSystem(NetMap* net) : net(net), winner_(0)
+RenderSystem::RenderSystem() : winner_(0)
 {
 	*offset = build_sdlrect(0, 0, 0, 0);
 

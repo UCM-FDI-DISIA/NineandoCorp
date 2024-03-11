@@ -13,15 +13,16 @@ Cell* NetMap::searchCell(float x, float y) const {
 
 	bool exit = false;
 	while (!exit) {
-		if (i == 31 || j == 31) {
-			return net[30][30];
-		}
-		if (net[i][j]->position.getX() + offset->x > x)
+		if (i == 31)
+			return net[j][30];
+		if(j == 31) 
+			return net[30][i];
+		if (net[j][i]->position.getX() + offset->x > x)
 			i++;
-		else if (net[i][j]->position.getY() + offset->y < y)
+		else if (net[j][i]->position.getY() + offset->y < y)
 			j++;
 		else
 			exit = true;;
 	}
-	return net[i][j];
+	return net[j][i];
 }

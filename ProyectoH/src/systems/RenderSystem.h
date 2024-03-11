@@ -12,7 +12,7 @@ class RenderSystem : public System {
 public:
 	static constexpr sysId_type id = _sys_RENDER;
 	// Constructor
-	RenderSystem(NetMap* net = nullptr);
+	RenderSystem();
 	virtual ~RenderSystem();
 	// Reaccionar a los mensajes recibidos (llamando a métodos correspondientes).
 	void receive(const Message& m) override;

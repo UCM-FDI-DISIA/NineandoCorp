@@ -10,20 +10,7 @@ TowerSystem::~TowerSystem() {
 
 void TowerSystem::initSystem() {
 	active_ = true;
-
-	/*addTower(twrId::_twr_BULLET, { (float)sdlutils().width() / 2.f, 600.f }, LOW);
-	int sum = 0;
-	for (int i = 0; i < 31; i++) {
-		for (int j = 0; j < 31; j++) {
-			if (net->getCell(i,j)->id != TILE_NONE) {
-				Entity* e = mngr_->addEntity(_grp_TOWERS_AND_ENEMIES);
-				mngr_->addComponent<RenderComponent>(e, square);
-				mngr_->addComponent<Transform>(e)->setPosition(net->getCell(i,j)->position);
-				sum++;
-			}
-		}
-	}*/
-
+	// Entidad para la demo
 	square = mngr_->addEntity(_grp_TOWERS_AND_ENEMIES);
 	mngr_->addComponent<RenderComponent>(square, gameTextures::square);
 	mngr_->addComponent<Transform>(square);
@@ -45,6 +32,7 @@ void TowerSystem::receive(const Message& m) {
 
 
 void TowerSystem::update() {
+	//Demo para la malla
 	int x, y;
 	Uint32 mouseState = SDL_GetMouseState(&x, &y);
 	mngr_->getComponent<Transform>(square)->setPosition(net->searchCell(x,y)->position);
