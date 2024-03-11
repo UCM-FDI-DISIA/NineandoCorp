@@ -218,8 +218,7 @@ void TowerSystem::update() {
 		
 		if (!mngr_->isAlive(bc->getTarget())) {//Si ha muerto por el camino
 			bc->onTravelEnds();
-		}
-		
+		}	
 		else if(((targetPos - myPos).magnitude() <= 5.0f)) { //Si choca con el enemigo
 			bc->doDamageTo(bc->getTarget(), bc->getDamage());
 			bc->onTravelEnds();
@@ -309,7 +308,7 @@ void TowerSystem::addTower(twrId type, Vector2D pos, Height height) {
 		mngr_->addComponent<FramedImage>(t, sdlutils().intConst().at("DiegoSniperColumns"), sdlutils().intConst().at("DiegoSniperRows"), sdlutils().intConst().at("DiegoSniperWidth"), sdlutils().intConst().at("DiegoSniperHeight"), 0, 0);
 		break;
 	case _twr_SLIME:
-		mngr_->addComponent<SlimeTowerComponent>(t, sdlutils().intConst().at("SlimeRango"), sdlutils().floatConst().at("SlimeTiempoSlime"), sdlutils().floatConst().at("SlimeRalentizacion"), sdlutils().intConst().at("SlimeDano"), sdlutils().intConst().at("SlimeRecarga"));
+		mngr_->addComponent<SlimeTowerComponent>(t, sdlutils().intConst().at("SlimeRango"), sdlutils().floatConst().at("SlimeTiempoSlime"), sdlutils().floatConst().at("SlimeRalentizacion"), sdlutils().intConst().at("SlimeDPS"), sdlutils().intConst().at("SlimeRecarga") ,sdlutils().intConst().at("SlimeDano"));
 		mngr_->addComponent<RenderComponent>(t, slimeTowerTexture);
 		mngr_->addComponent<FramedImage>(t, sdlutils().intConst().at("SlimeColumns"), sdlutils().intConst().at("SlimeRows"), sdlutils().intConst().at("SlimeWidth"), sdlutils().intConst().at("SlimeHeight"), 0, 0);
 

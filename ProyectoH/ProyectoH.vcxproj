@@ -36,6 +36,7 @@
     <ClInclude Include="src\components\PhoenixTower.h" />
     <ClInclude Include="src\components\RenderComponent.h" />
     <ClInclude Include="src\components\RouteComponent.h" />
+    <ClInclude Include="src\components\SlimeBullet.h" />
     <ClInclude Include="src\components\SlimeTowerComponent.h" />
     <ClInclude Include="src\components\Transform.h" />
     <ClInclude Include="src\components\UpgradeTowerComponent.h" />
@@ -96,6 +97,7 @@
     <ClCompile Include="src\components\NexusComponent.cpp" />
     <ClCompile Include="src\components\PhoenixTower.cpp" />
     <ClCompile Include="src\components\RouteComponent.cpp" />
+    <ClCompile Include="src\components\SlimeBullet.cpp" />
     <ClCompile Include="src\components\SlimeTowerComponent.cpp" />
     <ClCompile Include="src\components\Transform.cpp" />
     <ClCompile Include="src\components\UpgradeTowerComponent.cpp" />

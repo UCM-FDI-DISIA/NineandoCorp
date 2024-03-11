@@ -5,7 +5,7 @@ class SlimeTowerComponent : public AttackComponent
 {
 public:
 	static const cmpId id = cmpId::_SLIMETOWER;
-	SlimeTowerComponent(float range, float slimeDuration, float speedDecreasePer, float slimeDPS, float reloadTime);
+	SlimeTowerComponent(float range, float slimeDuration, float speedDecreasePer, float slimeDPS, float reloadTime, float damage);
 	void setSlimeDuration(float duration);
 	float getDuration() const;
 	void setSpeedDecrease(float percentage);

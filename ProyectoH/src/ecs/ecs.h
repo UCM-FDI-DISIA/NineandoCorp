@@ -31,6 +31,7 @@ enum cmpId : cmpId_type {
 	_PHOENIXTOWER,
 	_DIRTTOWER,
 	_SLIMETOWER,
+	_SLIMEBULLET,
 
 	// do not remove this
 	_LAST_CMP_ID
