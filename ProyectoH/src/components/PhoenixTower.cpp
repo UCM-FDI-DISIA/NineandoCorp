@@ -5,13 +5,13 @@ PhoenixTower::PhoenixTower(float damage, float coolingTime, float shootingTime, 
 void PhoenixTower::levelUp(int level) {
 	switch (level) {
 	case 1:
-		damage_ = sdlutils().intConst().at("FenixDPS1");
+		damage_ = sdlutils().floatConst().at("FenixDPS1");
 		break;
 	case 2:
 		coolingTime_ = sdlutils().floatConst().at("FenixEnfriamiento1");
 		break;
 	case 3:
-		damage_ = sdlutils().intConst().at("FenixDPS2");
+		damage_ = sdlutils().floatConst().at("FenixDPS2");
 		coolingTime_ = sdlutils().floatConst().at("FenixEnfriamiento2");
 		break;
 	case 4:
