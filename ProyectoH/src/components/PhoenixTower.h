@@ -11,12 +11,12 @@ public:
 	void levelUp(int level);
 
 	bool isMaxLevel() { return isMaxLevel_; }
-
+	float getDamage() { return damage_; }
 private:
 	bool isMaxLevel_ = false;
 	float coolingTime_;
 	float shootingTime_;
 	float elapsedTime_;
-	int damage_;
+	float damage_;
 	float range_;
 };

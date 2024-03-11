@@ -29,7 +29,7 @@
     ],
   "floatConst": [
 
-    
+
     {
       "id": "FenixEnfriamiento",
       "value": 2
@@ -62,7 +62,14 @@
       "id": "FenixTiempoDisparo",
       "value": 5
     },
-
+    {
+      "id": "FenixDPS1",
+      "value": 4
+    },
+    {
+      "id": "FenixDPS2",
+      "value": 5
+    },
 
     {
       "id": "BalasRecarga",
@@ -194,14 +201,7 @@
       "id": "FenixElevacion",
       "value": 1
     },
-    {
-      "id": "FenixDPS1",
-      "value": 4
-    },
-    {
-      "id": "FenixDPS2",
-      "value": 5
-    },
+    
     {
       "id": "FenixColumns",
       "value": 4

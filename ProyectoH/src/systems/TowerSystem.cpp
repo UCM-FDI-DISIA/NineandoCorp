@@ -256,8 +256,14 @@ void TowerSystem::shootBullet(Entity* target, Entity* src ,float damage, float s
 /// </summary>
 /// <param name="shootingTime">Tiempo en el que esta disparando fuego la torre de fenix</param>
 /// <param name="damage">Dano por segundo causado por la torre de fenix</param>
-void TowerSystem::shootFire(float shootingTime, int damage) {
-
+void TowerSystem::shootFire(float shootingTime, int damage, Vector2D spawnPos) {
+	Entity* fire = mngr_->addEntity(_grp_BULLETS);
+	Transform* t = mngr_->addComponent<Transform>(fire);
+	RenderComponent* r = mngr_->addComponent<RenderComponent>(fire, square);
+	Message m;
+	m.rect_data.rect = fire;
+	m.rect_data.id = _FENIX;
+	mngr_->send(m);
 }
 /// <summary>
 /// Anade una torre al sistema, con un tipo, una posicion y una elevacion. A cada torre le anade un render component, un 

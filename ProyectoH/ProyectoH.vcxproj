@@ -66,6 +66,7 @@
     <ClInclude Include="src\sdlutils\SoundEffect.h" />
     <ClInclude Include="src\sdlutils\Texture.h" />
     <ClInclude Include="src\sdlutils\VirtualTimer.h" />
+    <ClInclude Include="src\systems\CollisionSystem.h" />
     <ClInclude Include="src\systems\EnemySystem.h" />
     <ClInclude Include="src\systems\HUDSystem.h" />
     <ClInclude Include="src\systems\LevelSelectorSystem.h" />
@@ -116,6 +117,7 @@
     <ClCompile Include="src\sdlutils\sdlutils_demo.cpp" />
     <ClCompile Include="src\sdlutils\SoundEffect.cpp" />
     <ClCompile Include="src\sdlutils\Texture.cpp" />
+    <ClCompile Include="src\systems\CollisionSystem.cpp" />
     <ClCompile Include="src\systems\EnemySystem.cpp" />
     <ClCompile Include="src\systems\HUDSystem.cpp" />
     <ClCompile Include="src\systems\LevelSelectorSystem.cpp" />

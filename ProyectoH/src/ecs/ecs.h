@@ -92,7 +92,7 @@ enum sysId : sysId_type {
 	_sys_MAINCONTROL,
 	_sys_ENEMIES,
 	_sys_LEVELSELECTOR,
-
+	_sys_COLLISION,
 	// do not remove this
 	_LAST_SYS_ID
 };
@@ -117,7 +117,8 @@ enum msgId : msgId_type {
 	_m_UPGRADE_NEXUS,
 	_m_UPGRADE_TOWER,
 	_m_BACK_TO_MAINMENU, 
-	_m_TEXT_MESSAGE
+	_m_TEXT_MESSAGE,
+	_m_ADD_RECT
 };
 
 using twrId_type = uint8_t;
@@ -129,6 +130,13 @@ enum twrId : twrId_type {
 	_twr_FENIX,
 	_twr_DIRT,
 	_twr_POWER,
+};
+
+using rectId_type = uint8_t;
+enum rectId : rectId_type {
+	_FENIX,
+	_SLIME,
+	_ENEMY
 };
 
 inline Uint16 sdlnet_hton(Uint16 v) {
@@ -210,6 +218,11 @@ msgId_type id;
 	struct {
 		int lvl;
 	}upgrade_nexus;
+	//_m_ADD_RECT
+	struct {
+		Entity* rect;
+		rectId id;
+	}rect_data;
 };
 
 #endif // !ECS_H_
