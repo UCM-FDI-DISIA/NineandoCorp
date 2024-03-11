@@ -14,13 +14,17 @@ HealthComponent::addHealth(float health) {
 	currentHealth_ += health;
 }
 
-void
+//Devuelve si muere o no;
+bool
 HealthComponent::subtractHealth(float health) {
 	currentHealth_ -= health;
-	//std::cout << currentHealth_ << std::endl;
+	std::cout << currentHealth_ << std::endl;
 	if (currentHealth_ <= 0) {
+		//std::cout << "muerto" << std::endl;
 		mngr_->setAlive(ent_, false);
+		return true;
 	}
+	return false;
 }
 
 void

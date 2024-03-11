@@ -5,7 +5,7 @@
 struct cmpIsometricY {
 	cmpIsometricY(Manager* mngr_) { this->mngr_ = mngr_; }
 	bool operator ()(Entity* e1, Entity* e2) {
-		if (mngr_->getComponent<Transform>(e1)->getY() <= mngr_->getComponent<Transform>(e2)->getY())
+		if (mngr_->getComponent<Transform>(e1)->getY() < mngr_->getComponent<Transform>(e2)->getY())
 			return true;
 		return false;
 	}
@@ -13,11 +13,11 @@ struct cmpIsometricY {
 };
 
 // Constructorss
-RenderSystem::RenderSystem() :
-	winner_(0)
+RenderSystem::RenderSystem() : winner_(0)
 {
 	cursorTexture = &sdlutils().images().at("cursor");
 	cursorTexture2 = &sdlutils().images().at("cursorpress");
+	*offset = build_sdlrect(0, 0, 0, 0);
 
 	textures[square] = &sdlutils().images().at("square");
 	textures[tileSet] = &sdlutils().images().at("map");
@@ -30,7 +30,9 @@ RenderSystem::RenderSystem() :
 	textures[boosterTowerTexture] = &sdlutils().images().at("booster_tower");
 	textures[sniperTowerTexture] = &sdlutils().images().at("sniper_tower");
 	textures[clayTowerTexture] = &sdlutils().images().at("clay_tower");
-	textures[bulletTexture] = &sdlutils().images().at("bullet");
+	textures[bulletTexture] = &sdlutils().images().at("canon_bullet");
+	textures[sniperBulletTexture] = &sdlutils().images().at("sniper_bullet");
+	textures[slimeBulletTexture] = &sdlutils().images().at("slime_bullet");
 	textures[nexusTexture] = &sdlutils().images().at("nexus_tower");
 	textures[box] = &sdlutils().images().at("box"); 
 	textures[box_hover] = &sdlutils().images().at("box_hover");
@@ -54,8 +56,7 @@ RenderSystem::RenderSystem() :
 	textures[power_tower_image] = &sdlutils().images().at("power_tower_image");
 	textures[nexus_level_3_image] = &sdlutils().images().at("nexus_level_3_image");
 
-	textTextures[nexus_level] = &sdlutils().msgs().at("nexus_level_text");
-	currStTxt = sttTxtSize;
+	textures[nexus_level_text] = &sdlutils().msgs().at("nexus_level_text");
 }
 
 
@@ -77,9 +78,6 @@ void RenderSystem::receive(const Message& m) {
 	case _m_PAUSE:
 		onPause();
 		break;
-	case _m_TEXT_MESSAGE:
-		putText(m);
-		break;
 	case _m_RESUME:
 		onResume();
 		break;
@@ -87,6 +85,10 @@ void RenderSystem::receive(const Message& m) {
 }
 // Inicializar el sistema, etc.
 void RenderSystem::initSystem() {
+	Message m;
+	m.id = _m_OFFSET_CONTEXT;
+	m.offset_context.offset = offset;
+	mngr_->send(m, true);
 }
 
 //Renderiza cada entity por grupos
@@ -95,17 +97,17 @@ void RenderSystem::update() {
 
 	//Este control tiene que estar en el main control sistem
 	////Control de camara
-	if (ih().isKeyDown(SDLK_UP) && offset.y < limtop) {
-		offset.y += 50;
+	if (ih().isKeyDown(SDLK_UP) && offset->y < limtop) {
+		offset->y += 50;
 	}
-	else if (ih().isKeyDown(SDLK_LEFT) && offset.x < limleft) {
-		offset.x += 50;
+	else if (ih().isKeyDown(SDLK_LEFT) && offset->x < limleft) {
+		offset->x += 50;
 	}
-	else if (ih().isKeyDown(SDLK_RIGHT) && offset.x > limright) {
-		offset.x -= 50;
+	else if (ih().isKeyDown(SDLK_RIGHT) && offset->x > limright) {
+		offset->x -= 50;
 	}
-	else if (ih().isKeyDown(SDLK_DOWN) && offset.y > limbot) {
-		offset.y -= 50;
+	else if (ih().isKeyDown(SDLK_DOWN) && offset->y > limbot) {
+		offset->y -= 50;
 	}
 	//tmp->update();
 
@@ -116,8 +118,8 @@ void RenderSystem::update() {
 		gameTextures textureId = mngr_->getComponent<RenderComponent>(t)->getTexture();
 		SDL_Rect srcRect = mngr_->getComponent<FramedImage>(t)->getSrcRect();
 		SDL_Rect trRect = tr->getRect();
-		trRect.x += offset.x;
-		trRect.y += offset.y;
+		trRect.x += offset->x;
+		trRect.y += offset->y;
 		textures[textureId]->render(srcRect, trRect);
 	}
 
@@ -128,8 +130,8 @@ void RenderSystem::update() {
 		gameTextures textureId = mngr_->getComponent<RenderComponent>(t)->getTexture();
 		SDL_Rect srcRect = mngr_->getComponent<FramedImage>(t)->getSrcRect();
 		SDL_Rect trRect = tr->getRect();
-		trRect.x += offset.x;
-		trRect.y += offset.y;
+		trRect.x += offset->x;
+		trRect.y += offset->y;
 		textures[textureId]->render(srcRect, trRect);
 	}
 
@@ -140,8 +142,8 @@ void RenderSystem::update() {
 		gameTextures textureId = mngr_->getComponent<RenderComponent>(t)->getTexture();
 		SDL_Rect srcRect = mngr_->getComponent<FramedImage>(t)->getSrcRect();
 		SDL_Rect trRect = tr->getRect();
-		trRect.x += offset.x;
-		trRect.y += offset.y;
+		trRect.x += offset->x;
+		trRect.y += offset->y;
 		textures[textureId]->render(srcRect, trRect);
 	}
 
@@ -157,8 +159,8 @@ void RenderSystem::update() {
 		FramedImage* fi = mngr_->getComponent<FramedImage>(t);
 		if (fi != nullptr)srcRect = fi->getSrcRect();
 		SDL_Rect trRect = tr->getRect();
-		trRect.x += offset.x;
-		trRect.y += offset.y;
+		trRect.x += offset->x;
+		trRect.y += offset->y;
 		if (fi != nullptr)textures[textureId]->render(srcRect, trRect, tr->getRotation());
 		else textures[textureId]->render(trRect, tr->getRotation());
 	}
@@ -169,8 +171,8 @@ void RenderSystem::update() {
 		Transform* tr = mngr_->getComponent<Transform>(b);
 		gameTextures textureId = mngr_->getComponent<RenderComponent>(b)->getTexture();
 		SDL_Rect trRect = tr->getRect();
-		trRect.x += offset.x;
-		trRect.y += offset.y;
+		trRect.x += offset->x;
+		trRect.y += offset->y;
 		textures[textureId]->render(trRect, tr->getRotation());
 	}
 
@@ -198,11 +200,6 @@ void RenderSystem::update() {
 		textures[textureId]->render(tr->getRect(), tr->getRotation());
 	}
 
-	// TEXTS
-	if (currStTxt != stateText::sttTxtSize) {
-		textTextures[currStTxt]->render(textTr[currStTxt]->getRect());
-	}
-
 	//Renderizar cursor
 	int x, y;
 	bool pointerdown = false;
@@ -227,18 +224,6 @@ void RenderSystem::update() {
 	sdlutils().presentRenderer();
 }
 
-//// Creates an Entity with correspondant text texture and transform
-//void RenderSystem::addText(stateText stt) {
-//	int scale = sdlutils().intConst().at("textScale");
-//	Entity* text = mngr_->addEntity();
-//	Vector2D size = Vector2D(textTextures[startText]->width(), textTextures[startText]->height()) * scale;
-//	textTr[stt] = mngr_->addComponent<Transform>(text);
-//	textTr[stt]->setPosition(
-//		Vector2D(sdlutils().width() / 2, sdlutils().intConst().at("pressSpaceMessageY"))
-//		- size / 2);
-//	textTr[stt]->setScale(size);
-//}
-
 
 // Para gestionar los mensajes correspondientes y actualizar los atributos
 // winner_ y state_.
@@ -254,9 +239,4 @@ void RenderSystem::onPause() {
 }
 // Hides pause message
 void RenderSystem::onResume() {
-}
-
-void  RenderSystem::putText(const Message &m) {
-	currStTxt = m.text_message.text;
-	textTr[currStTxt] = mngr_->getComponent<Transform>(m.text_message.ent);
 }

@@ -1,6 +1,6 @@
 #pragma once
 #include "..//ecs/System.h"
-#include "..//sdlutils/VirtualTimer.h"
+#include "../systems/mapSystem.h"
 #include "../ecs/Manager.h"
 #include "..//components/Transform.h"
 #include "../components/AttackComponent.h"
@@ -9,20 +9,24 @@
 #include "..//components/CrystalTower.h"
 #include "..//components/RenderComponent.h"
 #include "..//components/DiegoSniperTower.h"
+#include "..//components/PhoenixTower.h"
+#include "..//components/DirtTower.h"
 #include "../components/FramedImage.h"
 #include "../components/UpgradeTowerComponent.h"
+#include "../game/Game.h"
+#include "../utils/NetMap.h"
 #include <list>
 #include <algorithm>
 
 enum Height{HIGH, LOW};
 
-const float BULLET_SPEED = 1000.0f, FENIX_SPEED = 100.0f, DIEGO_SPEED = 400.0f, SLIME_SPEED = 100.0f, DIEGO_OFFSET = 25.0f;
+const float BULLET_SPEED = 500.0f, FENIX_SPEED = 100.0f, DIEGO_SPEED = 600.0f, SLIME_SPEED = 100.0f, DIEGO_OFFSET = 25.0f;
 
 class TowerSystem : public System
 {
 public:
 	static constexpr sysId_type id = _sys_TOWERS;
-	TowerSystem();
+	TowerSystem(NetMap* malla);
 	~TowerSystem();
 
 	void initSystem() override;
@@ -36,12 +40,15 @@ public:
 	//bool collidesWithEnemy();//Devuelve true si una torre colisiona con un enemigo
 
 protected:
-	void shootBullet(Entity* target, float damage, float speed, Vector2D spawnPos);
+	void shootBullet(Entity* target, Entity* src, float damage, float speed, Vector2D spawnPos, gameTextures texture,Vector2D bulletScale);
+	void shootFire(float shootingTime, int damage);
 	void eliminateDestroyedTowers(Entity* t);
+	NetMap* net;
 	std::vector<Entity*> towers;
 	//std::vector<Entity*> lowTowers;
 	//std::vector<Entity*> enemies;//Falta el mensaje para acceder a los enemigos desde el receive
 	bool active_;
-	VirtualTimer timer_;
+
+	Entity* square;
 };
 

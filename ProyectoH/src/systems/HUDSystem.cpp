@@ -21,6 +21,7 @@ void HUDSystem::initSystem() {
 	Vector2D bSize = Vector2D(100.0f, 100.0f);
 	bS->addImage({ (float)sdlutils().width() / 2 , heightH },
 		{ (float)sdlutils().width() + 30.0f, 200.0f },
+
 		0.0,
 		gameTextures::box,
 		_grp_HUD_BACKGROUND);
@@ -34,6 +35,7 @@ void HUDSystem::initSystem() {
 		{ 55.0f, 80.0f }, 
 		gameTextures::bullet_tower_image, gameTextures::bullet_tower_image,
 		ButtonTypes::none);
+
 
 	// cristal tower
 	bS->addButton({ xAux * 2, heightH },
@@ -95,6 +97,7 @@ void HUDSystem::initSystem() {
 		gameTextures::power_tower_image, gameTextures::power_tower_image,
 		ButtonTypes::none);
 	
+
 }
 
 void HUDSystem::receive(const Message& m) {

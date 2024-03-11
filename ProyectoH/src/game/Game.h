@@ -59,6 +59,10 @@ public:
 		gameStateMachine->changeState(new T(std::forward<Ts>(args)...));
 	}
 
+	inline void exitGame() {
+		exit = true;
+	}
+
 	inline GameState* currentState() {return gameStateMachine->currentState(); }
 };
 

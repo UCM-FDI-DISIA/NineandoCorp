@@ -23,6 +23,8 @@
 
 [GDD](#GDD)
 
+[GRÁFICA DE DATOS](https://docs.google.com/spreadsheets/d/17VJqKdXs5HxnRE7XhKgaJPYE78I2Osd8cGOCqmh4Tbk/edit?usp=drive_link)
+
 ## GDD
 ---
 ### Índice
@@ -123,6 +125,10 @@ La evolución del escenario va en base a esta tabla:
 | 2| 2 | 2 |
 | 3| 3 | 2 |
 | 4| 5 | 2 |
+| 5| 5 | 2 |
+| 6| 6 | 3 |
+| 7| 6 | 3 |
+| 8| 8 | 4 |
 
 ##### 4.3.2 Zonas del escenario
 Una de las mecánicas más características del escenario son las zonas del mismo, 	puesto que estas limitan el tipo de torre que se pueden situar sobre ellas.
@@ -139,7 +145,7 @@ Estas zonas son:
 Durante el transcurso de los niveles aparecerán una vez pasada x rondas un fenómeno meteorológico que modificará el escenario, antes de que ocurran dichos desastres se le avisará al jugador en pantalla cuantas rondas le quedan para que ocurra. Pueden  ser:
 - Tornados: estos reubicarán a los enemigos cambiandolos a otros caminos.
 - Terremoto: destruirán las torres de arcilla que se ubiquen en los caminos y baja la velocidad de los enemigos durante el periodo que dure el fenómeno meteorológico.
-- Tormenta: caerán rayos que paralicen las torretas y enemigos según donde caiga. Además, se desactivan las torres Fénix durante el periodo de tormenta impidiendo que lanzan fuego.
+- Tormenta: caerán rayos que paralicen las torretas y enemigos según donde caiga. Además, se desactivan las torres Fénix durante el periodo de tormenta impidiendo que lanzan fuego. Las torres paralizadas tendrán un icono encima que lo indique.
 - Meteoritos:  caerán meteoritos que destruye las torretas y enemigos haciendo daño en área según donde caiga, se potencia las torres Fénix, ya que absorben el calor de los meteoritos.
 - Tsunami: cuando este fenómeno meteorológico suceda, el tsunami limpiará el mapa de torres y enemigos. Además, crea nuevas zonas de agua dando menos opciones de zonas para poner torres.
 
@@ -159,14 +165,14 @@ Tipo de tropa:
 
 -Aéreas: las tropas aéreas son tropas que disparan a distancia. Además, siguen el camino hasta el nexo y su peculiaridad es que atacan a la torres de las zonas de pradera y montaña que estén en su rango de ataque. 
 
--Jefes finales: encontraremos 4 jefes finales que se desbloquearán durante el paso de niveles. La aparición de los jefes viene dado por el número de rondas que hayas completado para el primer jefe 8 oleadas, para el segundo 16, el tercero 32 y el cuarto 64. Los jefes tendrán características básicas según el tipo de tropa que sea, podrán ser melé, de rango o aéreo. Además, de tener sus podrias estadísticas y habilidades especiales. 
+-Jefes finales: encontraremos 4 jefes finales que se desbloquearán durante el paso de niveles. La aparición de los jefes viene dada por el nivel en el que se encuentre el jugador y el número de rondas que hayas completado. Los jefes tendrán características básicas según el tipo de tropa que sea, podrán ser melé, de rango o aéreo. Además, de tener sus propias estadísticas y habilidades especiales.
 
 Nos encontraremos con los siguientes tipos de tropas:
 
 
 | ENEMIGO | FOTO | Habilidades | Estadísticas |
 | :---: | :---: | :---: | :---: |
-| **Maestro de las Almas**| ![MaestroAlmas](ProyectoH/resources/images/Enemies/maestro_de_almas.png) | Habilidad especial: <br/>Provoca ceguera a la torre que golpea<br/>(impide a la torre atacar durante un tiempo específico). | <ul><li>Tipo de tropa: terrestre de rango<li>Vida: 200<li>Daño: 10 <li>Tiempo de ataque: 1s<li> Tipo de ataque: cercano <li>Velocidad: 3<li>Objetivo: torres pradera / nexo<ul/>
+| **Maestro de las Almas**| ![MaestroAlmas](ProyectoH/resources/images/Enemies/maestro_de_almas.png) | Habilidad especial: <br/>Provoca ceguera a la torre que golpea<br/>(impide a la torre atacar durante un tiempo específico). Las torres cegadas tendrán un icono encima que lo indique. | <ul><li>Tipo de tropa: terrestre de rango<li>Vida: 200<li>Daño: 10 <li>Tiempo de ataque: 1s<li> Tipo de ataque: cercano <li>Velocidad: 3<li>Objetivo: torres pradera / nexo<ul/>
 | **Acechante Eléctrico** | ![AcechanteElectrico](ProyectoH/resources/images/Enemies/acechante_electrico.png) | Habilidad especial: En un tiempo específico la tropa ejecuta una descarga que potencia la velocidad de los aliados cercanos(Se queda quieto para hacerlo y luego sigue corriendo). Si golpea el escudo del nexo lo inhabilita. | <ul><li>Tipo de tropa: terrestre melé<li>Vida: 150<li>Daño: 20 <li>Tiempo de ataque: 1s<li> Tipo de ataque: cercano <li>Velocidad: 7<li>Objetivo: nexo<ul/>
 | **Maldito** | ![CaballeroMaldito](ProyectoH/resources/images/Enemies/caballero_maldito.png) | Ninguna | <ul><li>Tipo de tropa: terrestre melé<li>Vida: 100<li>Daño: 10 <li>Tiempo de ataque: 1s<li> Tipo de ataque: cercano <li>Velocidad: 3<li>Objetivo: nexo<ul/>
 | **Golem** | ![Golem](ProyectoH/resources/images/Enemies/golem.png) | Habilidad especial: Regenera 10  de vida por segundo. | <ul><li>Tipo de tropa: terrestre melé<li>Vida: 2500<li>Daño: 60 <li>Tiempo de ataque: 3s<li> Tipo de ataque: cercano <li>Velocidad: 2<li>Objetivo: nexo<ul/>
@@ -251,7 +257,7 @@ Nos encontramos con los siguientes tipos de torretas:
     - Puntos de vida: 500.
 
 - **Torre potenciadora**:
-    - Mecánica especial:  En un área circular próxima a la torre aumenta en un 5% las estadísticas de las torretas cercanas (Aumento del daño).
+    - Mecánica especial:  En un área circular próxima a la torre aumenta en un 5% las estadísticas de las torretas cercanas (Aumento del daño).Las torres potenciadas tendrán un icono encima que lo indique.
 
     - Mejora Nivel 1:  Mejora el daño al 10%. 
     - Mejora Nivel 2:  Mejora la vida de las torretas cercanas en 30 puntos.
@@ -281,16 +287,17 @@ Por lo tanto, existen dos tiendas diferentes, una interna y una externa.
 - Nivel 4: 50/seg
 
 ## 6. Niveles
-H Defense estará compuesto por 4 niveles distintos entre sí, con diferentes lugares, y con el único objetivo de defender la torre principal.
+H Defense estará compuesto por 8 niveles distintos entre sí, con diferentes lugares, y con el único objetivo de defender la torre principal.
 
 ### 6.1. Oleadas
 
 Las oleadas están formadas por varios grupos de enemigos. Cada grupo de enemigos tiene un punto de aparición, que debe estar en el borde del mapa, y cuando aparece un grupo se muestra su ruta durante aproximadamente 3 segundos (hay una animación del camino hacia el nexo). El grupo no aparece hasta que la ruta termina de ser dibujada. El jugador debe memorizar la ruta porque al dibujarse desaparecerá. Los enemigos avanzan por su ruta, y tienen un área de detección. Los enemigos atacarán a la primera torre que entre en su rango de detección.
 
-Cada oleada termina cuando se eliminan a todos los grupos de enemigos. Al terminar cada oleada, se le dará al jugador 5 segundos para prepararse para la siguiente.
+Cada oleada termina cuando se eliminan a todos los grupos de enemigos. Al terminar cada oleada, el jugador podrá empezar la siguiente cuando quiera.
 
 ### 6.2 Diseño del nivel
 ![BocetosNiveles](ProyectoH/resources/images/Miscelanious/bocetos_niveles.png)
+![BocetosNiveles1](ProyectoH/resources/images/Miscelanious/bocetos_niveles1.png)
 
 Al comenzar el nivel el jugador puede comprar las primeras torretas con su dinero inicial, y las oleadas no comienzan hasta que el jugador pulsa el botón de empezar.
 
@@ -298,7 +305,7 @@ Durante el nivel podrás colocar las diferentes torres en sus respectivos lugare
 
 Por los caminos aparecerán los diferentes enemigos aumentando la dificultad con el paso de los niveles, teniendo como destino la torre inicial. 
 
-Para pasar de nivel, tendremos en cuenta las oleadas de enemigos que se van superando. En el nivel 1 el jugador deberá defenderse durante 10 oleadas. Al pasarlas, desbloqueará el nivel 2. En el nivel 2 habrá 20 oleadas, en el nivel 3, 30 oleadas y en el nivel 4, 40 oleadas. Al pasar cada nivel aparecerán enemigos más fuertes (sin mejorar stats) y con distintas habilidades.
+Para pasar de nivel, tendremos en cuenta las oleadas de enemigos que se van superando. En el nivel 1 el jugador deberá defenderse durante 2 oleadas. Al pasarlas, desbloqueará el nivel 2. En el nivel 2 habrá 3 oleadas, en el nivel 3, 4 oleadas y en el nivel 4, 7 oleadas, nivel 5, 12, en el 6 20, en el 7, 33, y por último, en el nivel 8, 55 oleadas. El número de oleadas irá creciendo exponencialmente según el nivel. Al pasar cada nivel aparecerán enemigos más fuertes (sin mejorar stats) y con distintas habilidades.
 
 <!-- ### 6.3 Modo infinito
 

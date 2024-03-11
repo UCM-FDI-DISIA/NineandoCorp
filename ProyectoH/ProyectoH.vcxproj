@@ -28,10 +28,12 @@
     <ClInclude Include="src\components\DirtTower.h" />
     <ClInclude Include="src\components\DragAndDrop.h" />
     <ClInclude Include="src\components\EnhancerTower.h" />
+    <ClInclude Include="src\components\FireComponent.h" />
     <ClInclude Include="src\components\FramedImage.h" />
     <ClInclude Include="src\components\HealthComponent.h" />
     <ClInclude Include="src\components\MovementComponent.h" />
     <ClInclude Include="src\components\NexusComponent.h" />
+    <ClInclude Include="src\components\PhoenixTower.h" />
     <ClInclude Include="src\components\RenderComponent.h" />
     <ClInclude Include="src\components\RouteComponent.h" />
     <ClInclude Include="src\components\Transform.h" />
@@ -74,6 +76,7 @@
     <ClInclude Include="src\systems\TowerSystem.h" />
     <ClInclude Include="src\utils\Collisions.h" />
     <ClInclude Include="src\utils\mpl.h" />
+    <ClInclude Include="src\utils\NetMap.h" />
     <ClInclude Include="src\utils\Singleton.h" />
     <ClInclude Include="src\utils\Vector2D.h" />
   </ItemGroup>
@@ -87,11 +90,12 @@
     <ClCompile Include="src\components\DirtTower.cpp" />
     <ClCompile Include="src\components\DragAndDrop.cpp" />
     <ClCompile Include="src\components\EnhancerTower.cpp" />
+    <ClCompile Include="src\components\FireComponent.cpp" />
     <ClCompile Include="src\components\FramedImage.cpp" />
     <ClCompile Include="src\components\HealthComponent.cpp" />
     <ClCompile Include="src\components\MovementComponent.cpp" />
     <ClCompile Include="src\components\NexusComponent.cpp" />
-    <ClCompile Include="src\components\RenderComponent.cpp" />
+    <ClCompile Include="src\components\PhoenixTower.cpp" />
     <ClCompile Include="src\components\RouteComponent.cpp" />
     <ClCompile Include="src\components\Transform.cpp" />
     <ClCompile Include="src\components\UpgradeTowerComponent.cpp" />
@@ -122,6 +126,7 @@
     <ClCompile Include="src\systems\RenderSystem.cpp" />
     <ClCompile Include="src\systems\TowerSystem.cpp" />
     <ClCompile Include="src\utils\Collisions.cpp" />
+    <ClCompile Include="src\utils\NetMap.cpp" />
     <ClCompile Include="src\utils\Vector2D.cpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">

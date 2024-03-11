@@ -4,7 +4,7 @@
 #include "../components/Transform.h"
 #include "../components/HealthComponent.h"
 
-AttackComponent::AttackComponent(float range, float reloadTime, int damage, bool shootBullets) : range_(range), reloadTime_(reloadTime), damage_(damage), baseDamage_(damage) {
+AttackComponent::AttackComponent(float range, float reloadTime, int damage, bool shootBullets) : range_(range), reloadTime_(reloadTime), damage_(damage), baseDamage_(damage), elapsedTime_(reloadTime) {
 	target_ = nullptr; timeToShoot_ = reloadTime; loaded_ = false;
 }
 
@@ -15,28 +15,31 @@ void AttackComponent::initComponent() {
 
 void AttackComponent::doDamageTo(Entity* e, float damage) {//Causa un daño a una entidad
 	Message m;
-	m.id = _m_ENTITY_TO_ATTACK;
-	m.entity_to_attack.e = e;
-	m.entity_to_attack.damage = damage;
+	m.id = _m_TOWER_TO_ATTACK;
+	m.tower_to_attack.e = e;
+	m.tower_to_attack.damage = damage;
 	mngr_->send(m);
 }
 
 void AttackComponent::targetEnemy(const std::list<Entity*>& targetGroup) {//Busca un target
 	if (target_ == nullptr) {//Si no hay enemigo targeteado se busca uno
 		double closestEnemy = INT32_MAX;
-		for (auto enemy : targetGroup)
+		for (const auto& enemy : targetGroup)
 		{
-			float distance = getDistance(mngr_->getComponent<Transform>(enemy)->getPosition());
-			if(distance < range_ && distance < closestEnemy){
-				target_ = enemy;
-				closestEnemy = distance;
-			}
+			if (mngr_->hasComponent<Transform>(enemy)) {
+				float distance = getDistance(mngr_->getComponent<Transform>(enemy)->getPosition());
+				if (distance < range_ && distance < closestEnemy) {
+					target_ = enemy;
+					closestEnemy = distance;
+				}
+			}		
 		}		
 	}	
-	else if(mngr_->isAlive(target_)){
-		if (getDistance(mngr_->getComponent<Transform>(target_)->getPosition()) > range_) {//el target ha salido de rango luego lo pierde
-			target_ = nullptr;
-		}
+	else if(target_ != nullptr && mngr_->isAlive(target_)){
+		target_ = nullptr;
+		//if (getDistance(mngr_->getComponent<Transform>(target_)->getPosition()) > range_) {//el target ha salido de rango luego lo pierde
+		//	target_ = nullptr;
+		//}
 	}
 }
 

@@ -4,6 +4,7 @@
 #include "..//components/HealthComponent.h"
 #include "..//components/AttackComponent.h"
 #include "..//sdlutils/VirtualTimer.h"
+#include "../game/Game.h"
 class EnemySystem: public System
 {
 
@@ -23,6 +24,5 @@ protected:
 
 	std::vector<Transform*> enemiesTransforms;
 	bool active_;
-	VirtualTimer timer_;
 };
 
