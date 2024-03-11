@@ -6,6 +6,9 @@ class DirtTower : public AttackComponent
 public:
 	static const cmpId id = cmpId::_DIRTTOWER;
 
-	DirtTower(float range, float reloadTime, int damage);
+	DirtTower();
+
+private:
+	int reflectDamage_ = 0;
 };
 

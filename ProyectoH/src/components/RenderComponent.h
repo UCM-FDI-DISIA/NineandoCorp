@@ -26,7 +26,7 @@ enum gameTextures {
 	nexus_level_text,
 	
 	//others
-	bulletTexture, 
+	bulletTexture,sniperBulletTexture,slimeBulletTexture,
 
 
 	gmTxtrSize

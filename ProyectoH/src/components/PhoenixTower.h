@@ -6,7 +6,7 @@ public:
 
 	static const cmpId id = cmpId::_PHOENIXTOWER;
 
-	PhoenixTower(float damage, float coolingTime, float shootingTime);
+	PhoenixTower(float damage, float coolingTime, float shootingTime, float range);
 
 	void levelUp(int level);
 
@@ -17,5 +17,6 @@ private:
 	float coolingTime_;
 	float shootingTime_;
 	float elapsedTime_;
-	float damage_;
+	int damage_;
+	float range_;
 };

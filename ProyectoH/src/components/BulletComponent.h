@@ -17,8 +17,6 @@ public:
 
 	BulletComponent(Transform* tr, Entity* target, Entity* src, int damage, float speed);
 	BulletComponent() {};
-	//void initComponent() override;
-	void setBullet(Entity* target, int damage) { targetEntity_ = target; damage_ = damage; };
 	void doDamageTo(Entity* e, float damage);
 	void setDir();
 	void onTravelEnds();

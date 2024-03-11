@@ -1,6 +1,6 @@
 #include "PhoenixTower.h"
 
-PhoenixTower::PhoenixTower(float damage, float coolingTime, float shootingTime) :damage_(damage), coolingTime_(coolingTime), shootingTime_(shootingTime) {}
+PhoenixTower::PhoenixTower(float damage, float coolingTime, float shootingTime, float range) :damage_(damage), coolingTime_(coolingTime), shootingTime_(shootingTime), range_(range), elapsedTime_(0) {}
 
 void PhoenixTower::levelUp(int level) {
 	switch (level) {

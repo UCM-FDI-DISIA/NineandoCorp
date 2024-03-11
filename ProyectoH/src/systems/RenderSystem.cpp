@@ -28,7 +28,9 @@ RenderSystem::RenderSystem() : winner_(0)
 	textures[boosterTowerTexture] = &sdlutils().images().at("booster_tower");
 	textures[sniperTowerTexture] = &sdlutils().images().at("sniper_tower");
 	textures[clayTowerTexture] = &sdlutils().images().at("clay_tower");
-	textures[bulletTexture] = &sdlutils().images().at("bullet");
+	textures[bulletTexture] = &sdlutils().images().at("canon_bullet");
+	textures[sniperBulletTexture] = &sdlutils().images().at("sniper_bullet");
+	textures[slimeBulletTexture] = &sdlutils().images().at("slime_bullet");
 	textures[nexusTexture] = &sdlutils().images().at("nexus_tower");
 	cursorTexture = &sdlutils().images().at("cursor");
 	cursorTexture2 = &sdlutils().images().at("cursorpress");

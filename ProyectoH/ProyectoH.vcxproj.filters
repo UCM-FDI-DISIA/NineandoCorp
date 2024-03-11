@@ -236,6 +236,8 @@
     </ClInclude>
     <ClInclude Include="src\utils\NetMap.h">
       <Filter>Header Files\utils</Filter>
+    <ClInclude Include="src\components\FireComponent.h">
+      <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -373,6 +375,8 @@
     </ClCompile>
     <ClCompile Include="src\utils\NetMap.cpp">
       <Filter>Source Files\utils</Filter>
+    <ClCompile Include="src\components\FireComponent.cpp">
+      <Filter>Source Files\components</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

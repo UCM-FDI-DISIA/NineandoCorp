@@ -27,317 +27,452 @@
             ]
          }
     ],
-    "floatConst": [
-        {
-            "id": "BalasRecarga",
-            "value": 0.5
-        },
-        {
-            "id": "BalasRango",
-            "value": 100
-        },
-        {
-            "id": "FenixDano",
-            "value": 2.5
-        },
-        {
-            "id": "SlimeRecargaUpgrade",
-            "value": 0.5
-        },
-        {
-            "id": "SlimeRalentizacion",
-            "value": 0.3
-        },
-        {
-            "id": "SlimeTiempoSlime",
-            "value": 0.5
-        },
-        {
-            "id": "DiegoSniperCritico1",
-            "value": 0.2
-        },
-        {
-            "id": "DiegoSniperRecargaUpgrade1",
-            "value": 0.5
-        },
-        {
-            "id": "DiegoSniperCritico2",
-            "value": 0.3
-        },
-        {
-            "id": "FenixEnfriamiento1",
-            "value": 1.5
-        },
-        {
-            "id": "PotenciadoraRango",
-            "value": 100
-        },
-        {
-            "id": "PotenciadoraAumentoDano",
-            "value": 0.05
-        },
-        {
-            "id": "PotenciadoraAumentoVida",
-            "value": 30
-        },
-        {
-            "id": "PotenciadoraDano1",
-            "value": 0.1
-        },
-        {
-            "id": "PotenciadoraDano2",
-            "value": 0.15
-        },
-        {
-            "id": "PotenciadoraDano3",
-            "value": 0.2
-        },
-        {
-            "id": "CristalRecarga",
-            "value": 20
-        }
-    ],
+  "floatConst": [
 
-    "intConst": [
-        {
-            "id": "CristalVida",
-            "value": 50
-        },
-        {
-            "id": "CristalRango",
-            "value": 0
-        },
-        {
-            "id": "CristalPrecio",
-            "value": 200
-        },
-        
-        {
-            "id": "CristalDano",
-            "value": 0
-        },
-        {
-            "id": "CristalEscudo",
-            "value":  20
-        },
-        {
-            "id": "CristalElevacion",
-            "value": 0
-        },
-        {
-            "id": "SlimeVida",
-            "value": 100
-        },
-        {
-            "id": "SlimeRango",
-            "value": 100
-        },
-        {
-            "id": "SlimePrecio",
-            "value": 400
-        },
-        {
-            "id": "SlimeRecarga",
-            "value": 5
-        },
-        {
-            "id": "SlimeDano",
-            "value": 0
-        },
-        {
-            "id": "SlimeElevacion",
-            "value": 0
-        },
-        {
-            "id": "BalasVida",
-            "value": 25
-        },
-        
-        {
-            "id": "BalasPrecio",
-            "value": 100
-        },
-        {
-            "id": "BalasDano",
-            "value": 5
-        },
-        {
-            "id": "BalasElevacion",
-            "value": 0
-        },
-        {
-            "id": "DiegoSniperVida",
-            "value": 50
-        },
-        {
-            "id": "DiegoSniperRango",
-            "value": 300
-        },
-        {
-            "id": "DiegoSniperPrecio",
-            "value": 500
-        },
-        {
-            "id": "DiegoSniperRecarga",
-            "value": 3
-        },
-        {
-            "id": "DiegoSniperDano",
-            "value": 50
-        },
-        {
-            "id": "DiegoSniperElevacion",
-            "value": 1
-        },
-        {
-            "id": "FenixVida",
-            "value": 50
-        },
-        {
-            "id": "FenixRango",
-            "value": 100
-        },
-        {
-            "id": "FenixPrecio",
-            "value": 500
-        },
-        {
-            "id": "FenixRecarga",
-            "value": 2
-        },
-        {
-            "id": "FenixElevacion",
-            "value": 1
-        },
-        {
-            "id": "ArcillaVida",
-            "value": 500
-        },
-        {
-            "id": "ArcillaRango",
-            "value": 0
-        },
-        {
-            "id": "ArcillaPrecio",
-            "value": 200
-        },
-        {
-            "id": "ArcillaRecarga",
-            "value": 0
-        },
-        {
-            "id": "ArcillaDano",
-            "value": 0
-        },
-        {
-            "id": "ArcillaElevacion",
-            "value": 0
-        },
-        {
-            "id": "PotenciadoraVida",
-            "value": 75
-        },
-        
-        {
-            "id": "PotenciadoraPrecio",
-            "value": 400
-        },
-        {
-            "id": "PotenciadoraRecarga",
-            "value": 0
-        },
-        {
-            "id": "PotenciadoraDano",
-            "value": 0
-        },
-        {
-            "id": "PotenciadoraElevacion",
-            "value": 2
-        },
-        {
-            "id": "CristalEscudo", 
-            "value": 50
-        },
-        {
-            "id": "CristalExplosion", 
-            "value": 30
-        },
-        {
-            "id": "SlimeDPS", 
-            "value": 1
-        },
-        {
-            "id": "BalasDano1", 
-            "value": 10
-        },
-        {
-            "id": "BalasDano2", 
-            "value": 20
-        },
-        {
-            "id": "BalasDano3", 
-            "value": 35
-        },
-        {
-            "id": "BalasDobleObj", 
-            "value": 1
-        },
-        {
-            "id": "DiegoSniperDano",
-            "value": 75
-        },
-        {
-            "id": "DiegoSniperRecargaUpgrade2", 
-            "value": 1
-        },
-        {
-            "id": "FenixDPS1", 
-            "value": 4
-        },
-        {
-            "id": "FenixDPS2", 
-            "value": 5
-        },
-        {
-            "id": "FenixEnfriamiento2", 
-            "value": 1
-        },
-        {
-            "id": "FenixArea", 
-            "value": 15
-        },
-        {
-            "id": "FenixEnfriamientoCero", 
-            "value": 0
-        },
-        {
-            "id": "ArcillaVida1", 
-            "value": 750
-        },
-        {
-            "id": "ArcillaVida2",
-            "value": 1000
-        },
-        {
-            "id": "ArcillaVida3", 
-            "value": 1250
-        },
-        {
-            "id": "ArcillaVida4", 
-            "value": 1500
-        },
-        {
-            "id": "ArcillaDanoReflejado", 
-            "value": 3
-        },
-        {
-            "id": "PotenciadoraVida1", 
-            "value": 30
-        },
-        {
-            "id": "PotenciadoraVida2", 
-            "value": 50
-        }
-    ]
+    {
+      "id": "FenixDPS1",
+      "value": 4
+    },
+    {
+      "id": "FenixDPS2",
+      "value": 5
+    },
+    {
+      "id": "FenixEnfriamiento",
+      "value": 2
+    },
+    {
+      "id": "FenixEnfriamiento1",
+      "value": 1.5
+    },
+    {
+      "id": "FenixEnfriamiento2",
+      "value": 1
+    },
+    {
+      "id": "FenixEnfriamientoCero",
+      "value": 0
+    },
+    {
+      "id": "FenixArea",
+      "value": 15
+    },
+    {
+      "id": "FenixRango",
+      "value": 100
+    },
+    {
+      "id": "FenixDano",
+      "value": 2.5
+    },
+    {
+      "id": "FenixTiempoDisparo",
+      "value": 5
+    },
+
+
+    {
+      "id": "BalasRecarga",
+      "value": 0.5
+    },
+    {
+      "id": "BalasRango",
+      "value": 100
+    },
+    {
+      "id": "BalasVelocidad",
+      "value": 500
+    },
+
+    {
+      "id": "SlimeRecargaUpgrade",
+      "value": 0.5
+    },
+    {
+      "id": "SlimeRalentizacion",
+      "value": 0.3
+    },
+    {
+      "id": "SlimeTiempoSlime",
+      "value": 0.5
+    },
+    {
+      "id": "SlimeVelocidad",
+      "value": 100
+    },
+
+    {
+      "id": "DiegoSniperCritProb1",
+      "value": 0.2
+    },
+    {
+      "id": "DiegoSniperCritDano1",
+      "value": 1.5
+    },
+    {
+      "id": "DiegoSniperRecargaUpgrade1",
+      "value": 0.5
+    },
+    {
+      "id": "DiegoSniperCritico2",
+      "value": 0.3
+    },
+    {
+      "id": "DiegoSniperRango",
+      "value": 300
+    },
+    {
+      "id": "DiegoSniperRecarga",
+      "value": 3
+    },
+    {
+      "id": "DiegoSniperVelocidad",
+      "value": 400
+    },
+    {
+      "id": "DiegoSniperOffset",
+      "value": 25
+    },
+
+    {
+      "id": "PotenciadoraRango",
+      "value": 100
+    },
+    {
+      "id": "PotenciadoraAumentoDano",
+      "value": 0.05
+    },
+    {
+      "id": "PotenciadoraAumentoVida",
+      "value": 30
+    },
+    {
+      "id": "PotenciadoraDano1",
+      "value": 0.1
+    },
+    {
+      "id": "PotenciadoraDano2",
+      "value": 0.15
+    },
+    {
+      "id": "PotenciadoraDano3",
+      "value": 0.2
+    },
+
+    {
+      "id": "CristalRecarga",
+      "value": 20
+    }
+  ],
+
+  "intConst": [
+
+    {
+      "id": "FenixVida",
+      "value": 50
+    },
+
+    {
+      "id": "FenixPrecio",
+      "value": 500
+    },
+
+    {
+      "id": "FenixElevacion",
+      "value": 1
+    },
+
+    {
+      "id": "FenixColumns",
+      "value": 4
+    },
+
+    {
+      "id": "FenixRows",
+      "value": 2
+    },
+
+    {
+      "id": "FenixWidth",
+      "value": 650
+    },
+    {
+      "id": "FenixHeight",
+      "value": 900
+    },
+
+    {
+      "id": "BalasVida",
+      "value": 25
+    },
+    {
+      "id": "BalasPrecio",
+      "value": 100
+    },
+    {
+      "id": "BalasDano",
+      "value": 5
+    },
+    {
+      "id": "BalasDano1",
+      "value": 10
+    },
+    {
+      "id": "BalasDano2",
+      "value": 20
+    },
+    {
+      "id": "BalasDano3",
+      "value": 35
+    },
+    {
+      "id": "BalasDobleObj",
+      "value": 1
+    },
+    {
+      "id": "BalasElevacion",
+      "value": 0
+    },
+
+    {
+      "id": "BalasColumns",
+      "value": 4
+    },
+    {
+      "id": "BalasRows",
+      "value": 4
+    },
+    {
+      "id": "BalasWidth",
+      "value": 650
+    },
+    {
+      "id": "BalasHeight",
+      "value": 1000
+    },
+
+
+    {
+      "id": "SlimeVida",
+      "value": 100
+    },
+    {
+      "id": "SlimeRango",
+      "value": 100
+    },
+    {
+      "id": "SlimePrecio",
+      "value": 400
+    },
+    {
+      "id": "SlimeRecarga",
+      "value": 5
+    },
+    {
+      "id": "SlimeDano",
+      "value": 0
+    },
+    {
+      "id": "SlimeElevacion",
+      "value": 0
+    },
+    {
+      "id": "SlimeDPS",
+      "value": 1
+    },
+
+    {
+      "id": "SlimeColumns",
+      "value": 4
+    },
+    {
+      "id": "SlimeRows",
+      "value": 4
+    },
+    {
+      "id": "SlimeWidth",
+      "value": 750
+    },
+    {
+      "id": "SlimeHeight",
+      "value": 1050
+    },
+
+    {
+      "id": "DiegoSniperVida",
+      "value": 50
+    },
+
+    {
+      "id": "DiegoSniperPrecio",
+      "value": 500
+    },
+    {
+      "id": "DiegoSniperDano",
+      "value": 50
+    },
+    {
+      "id": "DiegoSniperDano1",
+      "value": 75
+    },
+    {
+      "id": "DiegoSniperElevacion",
+      "value": 1
+    },
+    {
+      "id": "DiegoSniperRecargaUpgrade2",
+      "value": 1
+    },
+
+    {
+      "id": "DiegoSniperColumns",
+      "value": 4
+    },
+    {
+      "id": "DiegoSniperRows",
+      "value": 4
+    },
+    {
+      "id": "DiegoSniperWidth",
+      "value": 690
+    },
+    {
+      "id": "DiegoSniperHeight",
+      "value": 1150
+    },
+
+    {
+      "id": "PotenciadoraVida",
+      "value": 75
+    },
+    {
+      "id": "PotenciadoraPrecio",
+      "value": 400
+    },
+    {
+      "id": "PotenciadoraElevacion",
+      "value": 2
+    },
+    {
+      "id": "PotenciadoraVida1",
+      "value": 30
+    },
+    {
+      "id": "PotenciadoraVida2",
+      "value": 50
+    },
+    {
+      "id": "PotenciadoraColumns",
+      "value": 5
+    },
+    {
+      "id": "PotenciadoraRows",
+      "value": 1
+    },
+    {
+      "id": "PotenciadoraWidth",
+      "value": 640
+    },
+    {
+      "id": "PotenciadoraHeight",
+      "value": 1000
+    },
+
+    {
+      "id": "CristalVida",
+      "value": 50
+    },
+    {
+      "id": "CristalRango",
+      "value": 0
+    },
+    {
+      "id": "CristalPrecio",
+      "value": 200
+    },
+    {
+      "id": "CristalEscudo",
+      "value": 20
+    },
+    {
+      "id": "CristalElevacion",
+      "value": 0
+    },
+    {
+      "id": "CristalEscudo1",
+      "value": 50
+    },
+    {
+      "id": "CristalExplosion",
+      "value": 30
+    },
+
+    {
+      "id": "CristalColumns",
+      "value": 4
+    },
+    {
+      "id": "CristalRows",
+      "value": 1
+    },
+    {
+      "id": "CristalWidth",
+      "value": 875
+    },
+    {
+      "id": "CristalHeight",
+      "value": 1500
+    },
+
+    {
+      "id": "ArcillaVida",
+      "value": 500
+    },
+    {
+      "id": "ArcillaPrecio",
+      "value": 200
+    },
+    {
+      "id": "ArcillaElevacion",
+      "value": 0
+    },
+    {
+      "id": "ArcillaVida1",
+      "value": 750
+    },
+    {
+      "id": "ArcillaVida2",
+      "value": 1000
+    },
+    {
+      "id": "ArcillaVida3",
+      "value": 1250
+    },
+    {
+      "id": "ArcillaVida4",
+      "value": 1500
+    },
+    {
+      "id": "ArcillaDanoReflejado",
+      "value": 3
+    },
+    {
+      "id": "ArcillaColumns",
+      "value": 4
+    },
+    {
+      "id": "ArcillaRows",
+      "value": 4
+    },
+    {
+      "id": "ArcillaWidth",
+      "value": 720
+    },
+    {
+      "id": "ArcillaHeight",
+      "value": 1200
+    }
+
+  ]
 
 }
