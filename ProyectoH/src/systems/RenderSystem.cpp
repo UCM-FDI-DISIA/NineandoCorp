@@ -13,9 +13,10 @@ struct cmpIsometricY {
 };
 
 // Constructorss
-RenderSystem::RenderSystem() :
-	winner_(0)
+RenderSystem::RenderSystem() : winner_(0)
 {
+	*offset = build_sdlrect(0, 0, 0, 0);
+
 	textures[square] = &sdlutils().images().at("square");
 	textures[tileSet] = &sdlutils().images().at("map");
 	textures[play] = &sdlutils().images().at("play");
@@ -82,6 +83,10 @@ void RenderSystem::receive(const Message& m) {
 }
 // Inicializar el sistema, etc.
 void RenderSystem::initSystem() {
+	Message m;
+	m.id = _m_OFFSET_CONTEXT;
+	m.offset_context.offset = offset;
+	mngr_->send(m, true);
 }
 
 //Renderiza cada entity por grupos
@@ -90,17 +95,17 @@ void RenderSystem::update() {
 
 	//Este control tiene que estar en el main control sistem
 	////Control de camara
-	if (ih().isKeyDown(SDLK_UP) && offset.y < limtop) {
-		offset.y += 50;
+	if (ih().isKeyDown(SDLK_UP) && offset->y < limtop) {
+		offset->y += 50;
 	}
-	else if (ih().isKeyDown(SDLK_LEFT) && offset.x < limleft) {
-		offset.x += 50;
+	else if (ih().isKeyDown(SDLK_LEFT) && offset->x < limleft) {
+		offset->x += 50;
 	}
-	else if (ih().isKeyDown(SDLK_RIGHT) && offset.x > limright) {
-		offset.x -= 50;
+	else if (ih().isKeyDown(SDLK_RIGHT) && offset->x > limright) {
+		offset->x -= 50;
 	}
-	else if (ih().isKeyDown(SDLK_DOWN) && offset.y > limbot) {
-		offset.y -= 50;
+	else if (ih().isKeyDown(SDLK_DOWN) && offset->y > limbot) {
+		offset->y -= 50;
 	}
 	//tmp->update();
 
@@ -111,8 +116,8 @@ void RenderSystem::update() {
 		gameTextures textureId = mngr_->getComponent<RenderComponent>(t)->getTexture();
 		SDL_Rect srcRect = mngr_->getComponent<FramedImage>(t)->getSrcRect();
 		SDL_Rect trRect = tr->getRect();
-		trRect.x += offset.x;
-		trRect.y += offset.y;
+		trRect.x += offset->x;
+		trRect.y += offset->y;
 		textures[textureId]->render(srcRect, trRect);
 	}
 
@@ -123,8 +128,8 @@ void RenderSystem::update() {
 		gameTextures textureId = mngr_->getComponent<RenderComponent>(t)->getTexture();
 		SDL_Rect srcRect = mngr_->getComponent<FramedImage>(t)->getSrcRect();
 		SDL_Rect trRect = tr->getRect();
-		trRect.x += offset.x;
-		trRect.y += offset.y;
+		trRect.x += offset->x;
+		trRect.y += offset->y;
 		textures[textureId]->render(srcRect, trRect);
 	}
 
@@ -135,8 +140,8 @@ void RenderSystem::update() {
 		gameTextures textureId = mngr_->getComponent<RenderComponent>(t)->getTexture();
 		SDL_Rect srcRect = mngr_->getComponent<FramedImage>(t)->getSrcRect();
 		SDL_Rect trRect = tr->getRect();
-		trRect.x += offset.x;
-		trRect.y += offset.y;
+		trRect.x += offset->x;
+		trRect.y += offset->y;
 		textures[textureId]->render(srcRect, trRect);
 	}
 
@@ -152,8 +157,8 @@ void RenderSystem::update() {
 		FramedImage* fi = mngr_->getComponent<FramedImage>(t);
 		if (fi != nullptr)srcRect = fi->getSrcRect();
 		SDL_Rect trRect = tr->getRect();
-		trRect.x += offset.x;
-		trRect.y += offset.y;
+		trRect.x += offset->x;
+		trRect.y += offset->y;
 		if (fi != nullptr)textures[textureId]->render(srcRect, trRect, tr->getRotation());
 		else textures[textureId]->render(trRect, tr->getRotation());
 	}
@@ -164,8 +169,8 @@ void RenderSystem::update() {
 		Transform* tr = mngr_->getComponent<Transform>(b);
 		gameTextures textureId = mngr_->getComponent<RenderComponent>(b)->getTexture();
 		SDL_Rect trRect = tr->getRect();
-		trRect.x += offset.x;
-		trRect.y += offset.y;
+		trRect.x += offset->x;
+		trRect.y += offset->y;
 		textures[textureId]->render(trRect, tr->getRotation());
 	}
 

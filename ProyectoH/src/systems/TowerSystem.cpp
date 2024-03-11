@@ -1,7 +1,7 @@
 #include "TowerSystem.h"
 
 
-TowerSystem::TowerSystem() : active_(true) {
+TowerSystem::TowerSystem(NetMap* net) : active_(true), net(net){
 }
 
 TowerSystem::~TowerSystem() {
@@ -10,6 +10,10 @@ TowerSystem::~TowerSystem() {
 
 void TowerSystem::initSystem() {
 	active_ = true;
+	// Entidad para la demo
+	square = mngr_->addEntity(_grp_TOWERS_AND_ENEMIES);
+	mngr_->addComponent<RenderComponent>(square, gameTextures::square);
+	mngr_->addComponent<Transform>(square);
 
 	addTower(twrId::_twr_DIEGO, { (float)sdlutils().width() / 2.1f, 600.f }, LOW);
 	addTower(twrId::_twr_BULLET, { (float)sdlutils().width() / 1.8f, 600.f }, LOW);
@@ -33,8 +37,12 @@ void TowerSystem::receive(const Message& m) {
 
 
 void TowerSystem::update() {
+	//Demo para la malla
+	int x, y;
+	Uint32 mouseState = SDL_GetMouseState(&x, &y);
+	mngr_->getComponent<Transform>(square)->setPosition(net->searchCell(x,y)->position - Vector2D(mngr_->getComponent<Transform>(square)->getScale()->getX() / 2, mngr_->getComponent<Transform>(square)->getScale()->getX() / 2));
+
 	const auto& bullets = mngr_->getEntities(_grp_BULLETS);
-	
 	
 	for (auto& t : towers) {
 		//std::cout << towers.size() << std::endl;
@@ -86,7 +94,7 @@ void TowerSystem::update() {
 					float distance = sqrt(pow(towerPos.getX() - myPos.getX(), 2) + pow(towerPos.getY() - myPos.getY(), 2));//distancia a la torre
 					if (distance <= et->getRange() && towers[i] != t) {//enRango
 						AttackComponent* ac = mngr_->getComponent<AttackComponent>(towers[i]);
-						if (ac != nullptr) {ac->setDamage(ac->getBaseDamage() * (1 + et->getDamageIncreasePercentage()));}//incrementamos daño
+						if (ac != nullptr) {ac->setDamage(ac->getBaseDamage() * (1 + et->getDamageIncreasePercentage()));}//incrementamos daÃ±o
 						HealthComponent* h = mngr_->getComponent<HealthComponent>(towers[i]);
 						if (h != nullptr) { h->setMaxHealth(h->getBaseHealth() + et->getTowersHPboost()); }//incrementamos vida
 					}

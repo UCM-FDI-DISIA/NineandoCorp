@@ -116,7 +116,8 @@ enum msgId : msgId_type {
 	_m_UPGRADE_NEXUS,
 	_m_UPGRADE_TOWER,
 	_m_BACK_TO_MAINMENU, 
-	_m_TEXT_MESSAGE
+	_m_TEXT_MESSAGE,
+	_m_OFFSET_CONTEXT
 };
 
 using twrId_type = uint8_t;
@@ -209,6 +210,10 @@ msgId_type id;
 	struct {
 		int lvl;
 	}upgrade_nexus;
+
+	struct {
+		SDL_Rect* offset;
+	}offset_context;
 };
 
 #endif // !ECS_H_
