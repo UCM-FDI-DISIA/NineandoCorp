@@ -6,6 +6,9 @@ class Transform;
 class DragAndDrop : public Component
 {
 public:
+
+	static const cmpId id = cmpId::_DRAG_AND_DROP;
+
 	DragAndDrop();
 	virtual ~DragAndDrop();
 
@@ -25,7 +28,9 @@ public:
 	
 	/// <returns> si el objeto esta siendo arrastrado</returns>
 	inline bool isDragged() { return dragging_; }
-
+	/// <summary>
+	/// Sigue al cursor y se situa en la casilla mas cercana
+	/// </summary>
 	void drag();
 private:
 	bool dragging_;

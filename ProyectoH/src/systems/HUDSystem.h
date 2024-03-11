@@ -2,6 +2,7 @@
 #include "../ecs/System.h"
 #include "../components/ButtonComponent.h"
 #include "ButtonSystem.h"
+#include "../components/DragAndDrop.h"
 
 class HUDSystem : public System
 {
@@ -30,6 +31,7 @@ private:
 
 	// Para la interaccion con el HUD, no tocar de momento
 	std::vector<Entity*> towers_imgs;
+	std::vector<Vector2D> initial_pos;
 	std::vector<std::pair<Entity*, Entity*>> tower_selector_; 
 };
 

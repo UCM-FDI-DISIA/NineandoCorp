@@ -34,7 +34,7 @@ public:
 	/// <param name="rot">rotacion de la imagen</param>
 	/// <param name="t">textura de la imagen</param>
 	/// <param name="grpId">id del grupo con el que se añade la entidad al manager</param>
-	void addImage(const Vector2D& pos, const Vector2D& scale, const double rot, gameTextures t, grpId_type grpId);
+	Entity* addImage(const Vector2D& pos, const Vector2D& scale, const double rot, gameTextures t, grpId_type grpId);
 private:
 	/// <summary>
 	/// Llama a las funciones correspondientes dependiendo del tipo del boton cuando este es pulsado

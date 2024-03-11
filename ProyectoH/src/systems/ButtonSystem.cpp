@@ -152,7 +152,7 @@ Entity* ButtonSystem::addButton(const Vector2D& pos, const Vector2D& scale, game
 	return b;
 }
 
-void ButtonSystem::addImage(const Vector2D& pos, const Vector2D& scale, const double rot, gameTextures t, grpId_type grpId) {
+Entity* ButtonSystem::addImage(const Vector2D& pos, const Vector2D& scale, const double rot, gameTextures t, grpId_type grpId) {
 	Entity* img = mngr_->addEntity(grpId);
 	mngr_->setHandler(hdlr_but_id, img);
 	Transform* tr = mngr_->addComponent<Transform>(img);
@@ -161,4 +161,5 @@ void ButtonSystem::addImage(const Vector2D& pos, const Vector2D& scale, const do
 	tr->setPosition(pos - aux / 2);
 	tr->setRotation(rot);
 	mngr_->addComponent<RenderComponent>(img, t);
+	return img;
 }

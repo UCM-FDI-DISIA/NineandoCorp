@@ -30,6 +30,7 @@ enum cmpId : cmpId_type {
 	_NEXUS,
 	_PHOENIXTOWER,
 	_DIRTTOWER,
+	_DRAG_AND_DROP,
 
 	// do not remove this
 	_LAST_CMP_ID

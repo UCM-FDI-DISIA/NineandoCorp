@@ -12,6 +12,7 @@ HUDSystem::~HUDSystem(){
 
 void HUDSystem::initSystem() {
 	towers_imgs.resize(7);
+	initial_pos.resize(7);
 
 	ButtonSystem* bS = mngr_->getSystem<ButtonSystem>();
 
@@ -34,10 +35,12 @@ void HUDSystem::initSystem() {
 		gameTextures::none_box, gameTextures::none_box_hover,
 		ButtonTypes::bullet_drag);
 
-	towers_imgs[_twr_BULLET] = bS->addButton({ xAux, heightH },
-		{ 55.0f, 80.0f },
-		gameTextures::bullet_tower_image, gameTextures::bullet_tower_image,
-		ButtonTypes::none);
+	towers_imgs[_twr_BULLET] = bS->addImage({ xAux, heightH },
+		{ 55.0f, 80.0f }, 0.0f,
+		gameTextures::bullet_tower_image,
+		_grp_HUD_FOREGROUND);
+	mngr_->addComponent<DragAndDrop>(towers_imgs[_twr_BULLET]);
+	initial_pos[_twr_BULLET] = { xAux, heightH };
 
 
 	// cristal tower
@@ -49,6 +52,8 @@ void HUDSystem::initSystem() {
 		{ 55.0f, 80.0f },
 		gameTextures::crystal_tower_image, gameTextures::crystal_tower_image,
 		ButtonTypes::none);
+	mngr_->addComponent<DragAndDrop>(towers_imgs[_twr_CRISTAL]);
+	initial_pos[_twr_CRISTAL] = { xAux * 2, heightH };
 
 	//phoenix_tower
 	bS->addButton({ xAux * 3, heightH },
@@ -59,6 +64,8 @@ void HUDSystem::initSystem() {
 		{ 60.0f, 80.0f },
 		gameTextures::phoenix_tower_image, gameTextures::phoenix_tower_image,
 		ButtonTypes::none);
+	mngr_->addComponent<DragAndDrop>(towers_imgs[_twr_FENIX]);
+	initial_pos[_twr_FENIX] = { xAux * 3, heightH };
 
 	//dirt_tower
 	bS->addButton({ xAux * 4, heightH },
@@ -69,6 +76,8 @@ void HUDSystem::initSystem() {
 		{ 60.0f, 80.0f },
 		gameTextures::clay_tower_image, gameTextures::clay_tower_image,
 		ButtonTypes::none);
+	mngr_->addComponent<DragAndDrop>(towers_imgs[_twr_CLAY]);
+	initial_pos[_twr_CLAY] = { xAux * 4, heightH };
 
 	//sniper_tower
 	bS->addButton({ xAux * 5, heightH },
@@ -79,6 +88,8 @@ void HUDSystem::initSystem() {
 		{ 45.0f, 80.0f },
 		gameTextures::sniper_tower_image, gameTextures::sniper_tower_image,
 		ButtonTypes::none);
+	mngr_->addComponent<DragAndDrop>(towers_imgs[_twr_DIEGO]);
+	initial_pos[_twr_DIEGO] = { xAux * 5, heightH };
 
 	//slime_tower
 	bS->addButton({ xAux * 6, heightH },
@@ -89,6 +100,8 @@ void HUDSystem::initSystem() {
 		{ 60.0f, 80.0f },
 		gameTextures::slime_tower_image, gameTextures::slime_tower_image,
 		ButtonTypes::none);
+	mngr_->addComponent<DragAndDrop>(towers_imgs[_twr_SLIME]);
+	initial_pos[_twr_SLIME] = { xAux * 6, heightH };
 
 	//boost_tower
 	bS->addButton({ xAux * 7, heightH },
@@ -99,8 +112,8 @@ void HUDSystem::initSystem() {
 		{ 55.0f, 80.0f },
 		gameTextures::power_tower_image, gameTextures::power_tower_image,
 		ButtonTypes::none));
-	
-
+	mngr_->addComponent<DragAndDrop>(towers_imgs[_twr_POWER]);
+	initial_pos[_twr_POWER] = { xAux * 7, heightH };
 }
 
 void HUDSystem::receive(const Message& m) {
@@ -112,15 +125,35 @@ void HUDSystem::receive(const Message& m) {
 	default:
 		break;
 	}
-}
+}	
 void HUDSystem::update() {
+	int i = 0;
+	for (auto en : towers_imgs) {
+		auto dC = mngr_->getComponent<DragAndDrop>(en);
+		if (dC != nullptr && dC->isDragged()) {
+				dC->drag();
+				if (ih().mouseButtonEvent()) {
+					// click derecho para reset 
+					if (ih().getMouseButtonState(InputHandler::MOUSEBUTTON::RIGHT) == 1) {
+						auto tr = mngr_->getComponent<Transform>(en);
+						Vector2D aux = tr->getScale();
+						tr->setPosition(initial_pos[i] - aux / 2);
+						dC->enableDrag(false);
+					}
+					//click izquierdo para colocar la torre
+					else if (ih().getMouseButtonState(InputHandler::MOUSEBUTTON::LEFT) == 1) {
+						Message m;
+					}
+				}
+		}
+		i++;
+	}
+	
+
 }
 
 void HUDSystem::dragTowerIcon(Entity* en){
-		Vector2D mPos = { (float)ih().getMousePos().first, (float)ih().getMousePos().second };
-		auto tr = mngr_->getComponent<Transform>(en);
-		tr->setPosition(mPos);
-	
+	mngr_->getComponent<DragAndDrop>(en)->enableDrag(true);
 }
 
 

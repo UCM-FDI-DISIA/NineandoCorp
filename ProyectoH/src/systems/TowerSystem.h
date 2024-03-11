@@ -36,6 +36,7 @@ public:
 	void onRoundStart();
 	void onAttackTower(Entity* e, int dmg); //Hace daño a la torre mandada por mensaje
 	void addTower(twrId type, Vector2D pos, Height height);
+	inline NetMap* getNet() { return net; };
 	
 	//bool collidesWithEnemy();//Devuelve true si una torre colisiona con un enemigo
 

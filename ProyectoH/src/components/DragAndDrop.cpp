@@ -3,6 +3,7 @@
 #include "Transform.h"
 #include <cassert>
 #include "../sdlutils/InputHandler.h"
+#include "../systems/TowerSystem.h"
 
 DragAndDrop::DragAndDrop() :
 	dragging_(false), //
@@ -18,12 +19,15 @@ void DragAndDrop::initComponent(){
 	assert(tr_ != nullptr);
 }
 
+
 void DragAndDrop::drag() {
-	Vector2D mPos = { (float)ih().getMousePos().first, (float)ih().getMousePos().second };
-	tr_->setPosition(mPos);
+	
+			auto tS = mngr_->getSystem<TowerSystem>();
+			auto net = tS->getNet();
+			Vector2D mPos = { (float)ih().getMousePos().first, (float)ih().getMousePos().second };
+			tr_->setPosition(net->searchCell(mPos.getX(), mPos.getY())->position - Vector2D(tr_->getScale()->getX() / 2, tr_->getScale()->getX() / 2));
 
-	//Posteriormente ajustar posicion a malla del mapa
-
+			//Posteriormente ajustar posicion a malla del mapa
 }
 
 
