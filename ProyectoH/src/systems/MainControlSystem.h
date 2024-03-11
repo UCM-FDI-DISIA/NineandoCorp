@@ -30,11 +30,15 @@ protected:
 	Entity* nexo;
 
 	// Niveles de nexo y torres
-	vector<int> levels_;
+	vector<int> turrentLevels_;
+	int nexusLevel_;
 
 	void onRoundOver();
 	void onRoundStart();
 	void subtractCoins(int num);
+
+	void upgradeNexus();
+	void upgradeTower(twrId_type id);
 	
 	inline void resetButtons() {
 		for (auto b : mngr_->getHandler(_hdlr_BUTTON)) {

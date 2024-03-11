@@ -7,12 +7,15 @@ MainControlSystem::MainControlSystem() :active_(false)
 
 void MainControlSystem::initSystem() {
 
-	// Tamaño al array
-	levels_.resize(8);
+	// Tamaño al array de torres
+	turrentLevels_.resize(7);
+
 	// Inicialización del nivel de las torres y nexo
-	for (int i = 0; i < levels_.size(); i++) {
-		levels_[i] = 0;
+	for (int i = 0; i < turrentLevels_.size(); i++) {
+		turrentLevels_[i] = 0;
 	}
+
+	int nexusLevel_ = 0;
 }
 
 void MainControlSystem::receive(const Message& m) {
@@ -44,7 +47,25 @@ void MainControlSystem::receive(const Message& m) {
 
 		}
 		else mngr_->getComponent<HealthComponent>(nexo)->subtractHealth(m.nexus_attack_data.damage);
+		break;
+	case _m_UPGRADE_NEXUS:
+		upgradeNexus();
+		break;
+	case _m_UPGRADE_TOWER:
+		upgradeTower(m.upgrade_tower.towerId);
+		break;
+	case _m_LEVELS_INFO:
+		// Creo que esto no hace falta usarlo al final
+		break;
 	}
+}
+
+void MainControlSystem::upgradeNexus() {
+	nexusLevel_++;
+}
+
+void MainControlSystem::upgradeTower(twrId_type id) {
+	turrentLevels_[id]++;
 }
 
 void MainControlSystem::update() {
