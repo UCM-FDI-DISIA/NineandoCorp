@@ -1,4 +1,5 @@
 #include "NetMap.h"
+#include <math.h>
 
 
 NetMap::NetMap(int size) {
@@ -10,6 +11,8 @@ NetMap::NetMap(int size) {
 
 Cell* NetMap::searchCell(float x, float y) const {
 	int i = 0, j = 0;
+	Vector2D offsetPosition = Vector2D(offset->x, offset->y); 
+	Vector2D targetPosition = Vector2D(x, y);
 
 	bool exit = false;
 	while (!exit) {
@@ -17,12 +20,16 @@ Cell* NetMap::searchCell(float x, float y) const {
 			return net[j][30];
 		if(j == 31) 
 			return net[30][i];
-		if (net[j][i]->position.getX() - 48 + offset->x > x)
-			i++;
-		else if (net[j][i]->position.getY()+24 + offset->y < y)
-			j++;
-		else
-			exit = true;;
+
+		Vector2D aux = (net[j][i]->position + offsetPosition) - targetPosition;
+		if (abs(aux.magnitude()) < 32)
+			exit = true;
+		else if (aux.getX() > 0) {
+				j++;
+		}
+		else {
+				i++;
+		}
 	}
 	return net[j][i];
 }
