@@ -14,7 +14,6 @@
 #include "../components/FramedImage.h"
 #include "../components/UpgradeTowerComponent.h"
 #include "../game/Game.h"
-#include "../utils/NetMap.h"
 #include <list>
 #include <algorithm>
 
@@ -26,7 +25,7 @@ class TowerSystem : public System
 {
 public:
 	static constexpr sysId_type id = _sys_TOWERS;
-	TowerSystem(NetMap* malla);
+	TowerSystem();
 	~TowerSystem();
 
 	void initSystem() override;
@@ -43,7 +42,6 @@ protected:
 	void shootBullet(Entity* target, Entity* src, float damage, float speed, Vector2D spawnPos, gameTextures texture,Vector2D bulletScale);
 	void shootFire(float shootingTime, int damage);
 	void eliminateDestroyedTowers(Entity* t);
-	NetMap* net;
 	std::vector<Entity*> towers;
 	//std::vector<Entity*> lowTowers;
 	//std::vector<Entity*> enemies;//Falta el mensaje para acceder a los enemigos desde el receive
