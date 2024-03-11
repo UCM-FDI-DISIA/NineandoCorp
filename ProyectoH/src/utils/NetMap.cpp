@@ -24,11 +24,14 @@ Cell* NetMap::searchCell(float x, float y) const {
 		Vector2D aux = (net[j][i]->position + offsetPosition) - targetPosition;
 		if (abs(aux.magnitude()) < 32)
 			exit = true;
+		else if (aux.getY() > 0) {
+			return net[j][i];
+		}
 		else if (aux.getX() > 0) {
-				j++;
+				i++;
 		}
 		else {
-				i++;
+				j++;
 		}
 	}
 	return net[j][i];
