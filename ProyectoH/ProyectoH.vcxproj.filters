@@ -238,7 +238,7 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="src\components\SlimeTowerComponent.h">
-      <Filter>Header Files</Filter>
+      <Filter>Header Files\components</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -378,7 +378,7 @@
       <Filter>Source Files\components</Filter>
     </ClCompile>
     <ClCompile Include="src\components\SlimeTowerComponent.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Source Files\components</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
