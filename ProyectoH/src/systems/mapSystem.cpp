@@ -25,6 +25,9 @@ void mapSystem::receive(const Message& m) {
 	case _m_PAUSE:
 		onPause();
 		break;
+	case _m_OFFSET_CONTEXT:
+		net->setOffset(m.offset_context.offset);
+		break;
 	case _m_RESUME:
 		onResume();
 		break;

@@ -37,8 +37,7 @@ private:
 
 	uint8_t winner_; // 0 - None, 1 - Asteroid, 2- Fighter
 
-	SDL_Rect offset = build_sdlrect(0,0,0,0);
-	NetMap* net;
+	SDL_Rect* offset = new SDL_Rect();
 
 	//limites de la camara
 	int limtop = 200;
