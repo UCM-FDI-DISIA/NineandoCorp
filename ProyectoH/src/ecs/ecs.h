@@ -123,7 +123,7 @@ enum msgId : msgId_type {
 	_m_BACK_TO_MAINMENU, 
 	_m_TEXT_MESSAGE,
 	_m_DRAG,
-	_m_LEVELS_INFO
+	_m_LEVELS_INFO,
 	_m_OFFSET_CONTEXT
 };
 
@@ -134,7 +134,7 @@ enum twrId : twrId_type {
 	_twr_SLIME,
 	_twr_DIEGO,
 	_twr_FENIX,
-	_twr_DIRT,
+	_twr_CLAY,
 	_twr_POWER,
 };
 
@@ -225,7 +225,7 @@ msgId_type id;
 
 	// _m_LEVELS_INFO
 	struct {
-		vector<int> lvls;
+		std::vector<int> lvls;
 	};
 
 

@@ -232,7 +232,7 @@ void TowerSystem::addTower(twrId type, Vector2D pos, Height height) {
 		mngr_->addComponent<FramedImage>(t, sdlutils().intConst().at("BalasColumns"), sdlutils().intConst().at("BalasRows"), sdlutils().intConst().at("BalasWidth"), sdlutils().intConst().at("BalasHeight"), 0, 0);
 
 		break;
-	case _twr_DIRT:
+	case _twr_CLAY:
 		mngr_->addComponent<DirtTower>(t);
 		mngr_->addComponent<RenderComponent>(t, clayTowerTexture);
 		mngr_->addComponent<FramedImage>(t, sdlutils().intConst().at("ArcillaColumns"), sdlutils().intConst().at("ArcillaRows"), sdlutils().intConst().at("ArcillaWidth"), sdlutils().intConst().at("ArcillaHeight"), 0, 0);

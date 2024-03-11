@@ -27,6 +27,8 @@ private:
 	float buttonsSpace_length_; 
 	float infoSpace_length_;
 
+
+	// Para la interaccion con el HUD, no tocar de momento
 	std::vector<std::pair<Entity*, Entity*>> tower_selector_; 
 };
 

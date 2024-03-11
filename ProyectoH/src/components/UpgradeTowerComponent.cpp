@@ -27,7 +27,7 @@ void UpgradeTowerComponent::LevelUp() {
 		case _twr_FENIX:
 
 			break;
-		case _twr_DIRT:
+		case _twr_CLAY:
 
 			break;
 		case _twr_POWER:
