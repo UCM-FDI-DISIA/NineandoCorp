@@ -30,8 +30,10 @@ void TowerSystem::receive(const Message& m) {
 		onRoundOver();
 		break;
 	case _m_TOWER_TO_ATTACK:
-
 		onAttackTower(m.tower_to_attack.e, m.tower_to_attack.damage);
+		break;
+	case _m_ADD_TOWER:
+		addTower(m.add_tower_data.towerId, m.add_tower_data.pos, LOW);
 	}
 }
 

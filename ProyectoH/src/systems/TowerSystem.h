@@ -18,7 +18,7 @@
 #include <list>
 #include <algorithm>
 
-enum Height{HIGH, LOW};
+
 
 const float BULLET_SPEED = 500.0f, FENIX_SPEED = 100.0f, DIEGO_SPEED = 600.0f, SLIME_SPEED = 100.0f, DIEGO_OFFSET = 25.0f;
 
@@ -35,6 +35,13 @@ public:
 	void onRoundOver();
 	void onRoundStart();
 	void onAttackTower(Entity* e, int dmg); //Hace daño a la torre mandada por mensaje
+
+	/// <summary>
+	/// instancia torre en escena
+	/// </summary>
+	/// <param name="type">id de la torre</param>
+	/// <param name="pos">posicion</param>
+	/// <param name="height">si pertenece a pradera o montaña</param>
 	void addTower(twrId type, Vector2D pos, Height height);
 	inline NetMap* getNet() { return net; };
 	

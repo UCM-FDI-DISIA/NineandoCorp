@@ -7,10 +7,14 @@
 #include "../sdlutils/SDLNetUtils.h"
 #include <vector>
 
+
 class Entity;
 class Manager;
 
+
 using uint8_t = unsigned char;
+
+enum Height { HIGH = 0, LOW };
 
 using cmpId_type = int;
 enum cmpId : cmpId_type {
@@ -125,10 +129,11 @@ enum msgId : msgId_type {
 	_m_ENEMY_BOOK,
 	_m_UPGRADE_NEXUS,
 	_m_UPGRADE_TOWER,
-	_m_BACK_TO_MAINMENU, 
+	_m_BACK_TO_MAINMENU,
 	_m_TEXT_MESSAGE,
 	_m_DRAG,
 	_m_LEVELS_INFO,
+	_m_ADD_TOWER,
 	_m_OFFSET_CONTEXT
 };
 
@@ -180,6 +185,15 @@ inline Uint8* _deserialize_(float& v, Uint8* buf) {
 }
 struct Message {
 msgId_type id;
+	//_m_ADD_TOWER
+	struct
+	{
+		twrId towerId;
+		Vector2D pos;
+		Height height;
+
+	} add_tower_data;
+
 	// _m_DRAG
 	struct {
 		twrId towerId;
