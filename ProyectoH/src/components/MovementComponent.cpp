@@ -4,7 +4,9 @@ MovementComponent::Move() {
 	if (!stop_) {
 		transform_->translate();
 	}
-	
+	else {
+		std::cout << transform_->getPosition()->getX()<<" " << transform_->getPosition()->getY();
+	}
 }
 
 void

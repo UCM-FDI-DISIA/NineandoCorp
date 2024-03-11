@@ -23,8 +23,10 @@ void EnemySystem::initSystem() {
 	std::vector<Vector2D> route;
 	route.push_back({ (float)sdlutils().width() / 2.f, 300.f });
 	route.push_back({ (float)sdlutils().width() / 2.f, 600.f });
+	route.push_back({ 300, 600.f });
+
 	mngr_->addComponent<RouteComponent>(enemie, route);
-	mngr_->addComponent<AttackComponent>(enemie, 100, 0.25, 20, false);
+	mngr_->addComponent<AttackComponent>(enemie, 200, 0.25, 20, false);
 	mngr_->addComponent<RenderComponent>(enemie, square);
 	mngr_->addComponent<HealthComponent>(enemie, 500);
 	mngr_->setHandler(_hdlr_ENEMIES, enemie);
@@ -68,7 +70,7 @@ void EnemySystem::update() {
 		RouteComponent* rc = mngr_->getComponent<RouteComponent>(e);
 		MovementComponent* mc = mngr_->getComponent<MovementComponent>(e);
 		AttackComponent* ac = mngr_->getComponent<AttackComponent>(e);
-
+		bool para = false;
 		if (rc != nullptr) {
 			rc->checkdestiny();
 			if (mc != nullptr && !mc->getStop()) {
@@ -77,18 +79,25 @@ void EnemySystem::update() {
 
 		}
 		if (ac != nullptr) {
-			ac->setElapsedTime(game().getDeltaTime());
-			if (ac->getElapsedTime() > ac->getTimeToShoot() * 1000) {
+			ac->setElapsedTime(ac->getElapsedTime() + game().getDeltaTime());
+			if (ac->getElapsedTime() > ac->getReloadTime()) {
 				ac->setLoaded(true);
 				ac->targetEnemy(towers);
-
-				if (ac->getTarget() != nullptr && mngr_->isAlive(ac->getTarget())) {
+				
+				if (ac->getTarget() != nullptr) {
+					mc->setStop(true);
+					
+					std::cout << "atacando";
 					ac->doDamageTo(ac->getTarget(), ac->getDamage());
-					ac->setTimeToShoot(ac->getTimeToShoot() + ac->getReloadTime());
+					ac->setElapsedTime(0.0f);
 					ac->setLoaded(false);
+				}
+				else{
+					mc->setStop(false);
+					
+					}
 				}
 			}
 		}
 
 	}
-}
