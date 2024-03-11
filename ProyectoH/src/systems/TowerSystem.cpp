@@ -1,7 +1,7 @@
 #include "TowerSystem.h"
 
 
-TowerSystem::TowerSystem(NetMap* net) : active_(true), net(net){
+TowerSystem::TowerSystem() : active_(true){
 }
 
 TowerSystem::~TowerSystem() {
@@ -10,10 +10,6 @@ TowerSystem::~TowerSystem() {
 
 void TowerSystem::initSystem() {
 	active_ = true;
-	// Entidad para la demo
-	square = mngr_->addEntity(_grp_TOWERS_AND_ENEMIES);
-	mngr_->addComponent<RenderComponent>(square, gameTextures::square);
-	mngr_->addComponent<Transform>(square);
 
 	addTower(twrId::_twr_DIEGO, { (float)sdlutils().width() / 2.1f, 600.f }, LOW);
 	addTower(twrId::_twr_BULLET, { (float)sdlutils().width() / 1.8f, 600.f }, LOW);
@@ -37,11 +33,6 @@ void TowerSystem::receive(const Message& m) {
 
 
 void TowerSystem::update() {
-	//Demo para la malla
-	int x, y;
-	Uint32 mouseState = SDL_GetMouseState(&x, &y);
-	mngr_->getComponent<Transform>(square)->setPosition(net->searchCell(x,y)->position - Vector2D(mngr_->getComponent<Transform>(square)->getScale()->getX() / 2, mngr_->getComponent<Transform>(square)->getScale()->getX() / 2));
-
 	const auto& bullets = mngr_->getEntities(_grp_BULLETS);
 	
 	for (auto& t : towers) {

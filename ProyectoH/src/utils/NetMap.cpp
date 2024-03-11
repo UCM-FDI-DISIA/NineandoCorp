@@ -9,10 +9,9 @@ NetMap::NetMap(int size) {
 	}
 };
 
-Cell* NetMap::searchCell(float x, float y) const {
+Cell* NetMap::searchCell(Vector2D &targetPosition) const {
 	int i = 0, j = 0;
 	Vector2D offsetPosition = Vector2D(offset->x, offset->y); 
-	Vector2D targetPosition = Vector2D(x, y);
 
 	bool exit = false;
 	while (!exit) {
