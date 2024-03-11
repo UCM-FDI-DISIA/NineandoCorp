@@ -11,6 +11,7 @@
 #include "..//components/DiegoSniperTower.h"
 #include "..//components/PhoenixTower.h"
 #include "..//components/DirtTower.h"
+#include "..//components/SlimeTowerComponent.h"
 #include "../components/FramedImage.h"
 #include "../components/UpgradeTowerComponent.h"
 #include "../game/Game.h"

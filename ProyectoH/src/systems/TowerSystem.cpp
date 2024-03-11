@@ -17,7 +17,7 @@ void TowerSystem::initSystem() {
 	addTower(twrId::_twr_BULLET, { (float)sdlutils().width() / 1.9f, 550.f }, LOW);
 	addTower(twrId::_twr_DIEGO, { (float)sdlutils().width() / 1.9f, 600.f }, LOW);
 	addTower(twrId::_twr_BULLET, { (float)sdlutils().width() / 2.3f, 600.f }, LOW);
-	addTower(twrId::_twr_DIEGO, { (float)sdlutils().width() / 2.3f, 630.f }, LOW);
+	addTower(twrId::_twr_SLIME, { (float)sdlutils().width() / 2.3f, 630.f }, LOW);
 	//addTower(twrId::_twr_BULLET, { (float)sdlutils().width() / 1.8f, 600.f }, LOW);
 	//addTower(twrId::_twr_BULLET, { (float)sdlutils().width() / 1.7f, 550.f }, LOW);
 	//addTower(twrId::_twr_POWER, { (float)sdlutils().width() / 2.2f, 540.f }, LOW);
@@ -139,6 +139,30 @@ void TowerSystem::update() {
 					ct->setElapsedTime(0);
 				}
 			}
+			//
+			// 
+			SlimeTowerComponent* st = mngr_->getComponent<SlimeTowerComponent>(t);
+			if (st != nullptr) {
+				st->setElapsedTime(st->getElapsedTime() + game().getDeltaTime());//Lo pasa a segundos
+				if (st->getElapsedTime() > st->getTimeToShoot()) {
+					st->targetEnemy(mngr_->getHandler(_hdlr_ENEMIES));
+					if (st->getTarget() != nullptr) {
+						Vector2D offset{ DIEGO_OFFSET, DIEGO_OFFSET };
+						int valFrame = 0;
+						Vector2D dir = *(mngr_->getComponent<Transform>(st->getTarget())->getPosition()) - *(TR->getPosition());
+						if (dir.getX() >= 0 && dir.getY() >= 0) { valFrame = 4; offset.setX(DIEGO_OFFSET * 3.5); }
+						else if (dir.getX() >= 0 && dir.getY() < 0) { valFrame = 12; offset.setY(0); offset.setX(DIEGO_OFFSET * 3.5); }
+						else if (dir.getX() < 0 && dir.getY() >= 0) { offset.setX(0); }
+						else if (dir.getX() < 0 && dir.getY() < 0) { valFrame = 8; offset.setX(0); offset.setY(0); }
+						mngr_->getComponent<FramedImage>(t)->setCurrentFrame(valFrame + mngr_->getComponent<UpgradeTowerComponent>(t)->getLevel());
+						RenderComponent* rc = mngr_->getComponent<RenderComponent>(t);
+						Vector2D spawn = { TR->getPosition()->getX() + offset.getX(),	TR->getPosition()->getY() + offset.getY() };
+						shootBullet(st->getTarget(), t, st->getDamage(), sdlutils().floatConst().at("SlimeVelocidad"), spawn, slimeBulletTexture, { 25, 25 });
+						st->setElapsedTime(0);
+					}
+				}
+			}
+
 			//Cada cierto tiempo dispara al enemigo que tiene mas vida que esta en rango, 
 			//con el dano de critico anadido. Falta que haga el critico en funcion de una probabilida
 			DiegoSniperTower* ds = mngr_->getComponent<DiegoSniperTower>(t);
@@ -285,6 +309,7 @@ void TowerSystem::addTower(twrId type, Vector2D pos, Height height) {
 		mngr_->addComponent<FramedImage>(t, sdlutils().intConst().at("DiegoSniperColumns"), sdlutils().intConst().at("DiegoSniperRows"), sdlutils().intConst().at("DiegoSniperWidth"), sdlutils().intConst().at("DiegoSniperHeight"), 0, 0);
 		break;
 	case _twr_SLIME:
+		mngr_->addComponent<SlimeTowerComponent>(t, sdlutils().intConst().at("SlimeRango"), sdlutils().floatConst().at("SlimeTiempoSlime"), sdlutils().floatConst().at("SlimeRalentizacion"), sdlutils().intConst().at("SlimeDano"), sdlutils().intConst().at("SlimeRecarga"));
 		mngr_->addComponent<RenderComponent>(t, slimeTowerTexture);
 		mngr_->addComponent<FramedImage>(t, sdlutils().intConst().at("SlimeColumns"), sdlutils().intConst().at("SlimeRows"), sdlutils().intConst().at("SlimeWidth"), sdlutils().intConst().at("SlimeHeight"), 0, 0);
 
