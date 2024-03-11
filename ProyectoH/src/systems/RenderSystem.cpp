@@ -209,7 +209,7 @@ void RenderSystem::update() {
 		pointerdown = false;
 	}
 
-	SDL_Rect cursorRect = { x, y, 41, 64 };
+	SDL_Rect cursorRect = { x-10, y-4, 41, 64 };
 
 	if (pointerdown)
 	{
