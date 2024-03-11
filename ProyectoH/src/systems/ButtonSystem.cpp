@@ -67,6 +67,10 @@ void ButtonSystem::manageButtons() {
 			loadLevelSelector();
 			pauseAllButtons();
 			break;
+		case enemies_main:
+			EnemyBook();
+			pauseAllButtons();
+			break;
 		case back_selector:
 			backToMainMenu();
 			break;
@@ -113,6 +117,11 @@ void ButtonSystem::manageButtons() {
 	void ButtonSystem::loadLevelSelector() {
 		Message m;
 		m.id = _m_LEVEL_SELECTOR;
+		mngr_->send(m, true);
+	}
+	void ButtonSystem::EnemyBook() {
+		Message m;
+		m.id = _m_ENEMY_BOOK;
 		mngr_->send(m, true);
 	}
 	void ButtonSystem::backToMainMenu() {

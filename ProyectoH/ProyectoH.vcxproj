@@ -43,6 +43,7 @@
     <ClInclude Include="src\ecs\Entity.h" />
     <ClInclude Include="src\ecs\Manager.h" />
     <ClInclude Include="src\ecs\System.h" />
+    <ClInclude Include="src\gameStates\EnemyBookState.h" />
     <ClInclude Include="src\gameStates\GameOverState.h" />
     <ClInclude Include="src\gameStates\LevelSelectorState.h" />
     <ClInclude Include="src\gameStates\MainMenuState.h" />
@@ -66,6 +67,7 @@
     <ClInclude Include="src\sdlutils\Texture.h" />
     <ClInclude Include="src\sdlutils\VirtualTimer.h" />
     <ClInclude Include="src\systems\ButtonSystem.h" />
+    <ClInclude Include="src\systems\EnemyBookSystem.h" />
     <ClInclude Include="src\systems\EnemySystem.h" />
     <ClInclude Include="src\systems\HUDSystem.h" />
     <ClInclude Include="src\systems\LevelSelectorSystem.h" />
@@ -81,6 +83,7 @@
     <ClInclude Include="src\utils\Vector2D.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="EnemyBookState.cpp" />
     <ClCompile Include="src\components\AttackComponent.cpp" />
     <ClCompile Include="src\components\BulletComponent.cpp" />
     <ClCompile Include="src\components\BulletTower.cpp" />
@@ -117,6 +120,7 @@
     <ClCompile Include="src\sdlutils\SoundEffect.cpp" />
     <ClCompile Include="src\sdlutils\Texture.cpp" />
     <ClCompile Include="src\systems\ButtonSystem.cpp" />
+    <ClCompile Include="src\systems\EnemyBookSystem.cpp" />
     <ClCompile Include="src\systems\EnemySystem.cpp" />
     <ClCompile Include="src\systems\HUDSystem.cpp" />
     <ClCompile Include="src\systems\LevelSelectorSystem.cpp" />

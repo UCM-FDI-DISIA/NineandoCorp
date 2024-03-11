@@ -47,6 +47,7 @@ enum hdlrId : hdlrId_type {
 	_hdlr_BUTTON,
 	_hdlr_BUTTON_MAIN,
 	_hdlr_BUTTON_LVLSEL,
+	_hdlr_BUTTON_ENEMYBOOK,
 	_hdlr_BUTTON_PLAY,
 	
 	// do not remove this
@@ -76,7 +77,8 @@ enum gmSttId : gmSttId_type {
 	_gmStt_PAUSE,
 	_gmStt_GAMEOVER,
 	_gmStt_MAINMENU,
-	_gmStt_LEVELSELECTOR, 
+	_gmStt_LEVELSELECTOR,
+	_gmStt_ENEMYBOOK,
 
 	// do not remove this
 	_LAST_GMSTT_ID
@@ -95,6 +97,7 @@ enum sysId : sysId_type {
 	_sys_MAINCONTROL,
 	_sys_ENEMIES,
 	_sys_LEVELSELECTOR,
+	_sys_ENEMYBOOK,
 	_sys_BUTTON,
 
 	// do not remove this
@@ -118,6 +121,7 @@ enum msgId : msgId_type {
 	_m_RESUME,
 	_m_START_GAME,
 	_m_LEVEL_SELECTOR,
+	_m_ENEMY_BOOK,
 	_m_UPGRADE_NEXUS,
 	_m_UPGRADE_TOWER,
 	_m_BACK_TO_MAINMENU, 
@@ -185,6 +189,11 @@ msgId_type id;
 	{
 		//nivel 
 	}start_game_data;
+	//_m_ENEMY_BOOK
+	struct
+	{
+		//nose
+	}start_enemy_book;
 
     // _m_TOWERS_TO_ATTACK
     struct {

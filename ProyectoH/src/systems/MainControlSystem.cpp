@@ -27,6 +27,9 @@ void MainControlSystem::receive(const Message& m) {
 	case _m_LEVEL_SELECTOR:
 		game().pushState<LevelSelectorState>(mngr_);
 		break;
+	case _m_ENEMY_BOOK:
+		game().pushState<EnemyBookState>(mngr_);
+		break;
 	case _m_BACK_TO_MAINMENU:
 		game().popState();
 		resetButtons();
