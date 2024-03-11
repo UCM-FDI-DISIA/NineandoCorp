@@ -29,6 +29,12 @@ enum ButtonTypes {
 
 	// ----- HUD -----//
 	crystal_drag,
+	slime_drag,
+	sniper_drag,
+	clay_drag,
+	bullet_drag,
+	fenix_drag,
+	enhancer_drag,
 
 
 

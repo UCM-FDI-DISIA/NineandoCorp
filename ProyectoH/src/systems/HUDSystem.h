@@ -21,7 +21,7 @@ private:
 	/// Arrastra el icono de la torre correspondiente dependiendo de la posicion del cursor
 	/// </summary>
 	/// <param name=""></param>
-	void dragTowerIcon(Entity* ); 
+	void dragTowerIcon(Entity* e); 
 
 	// Espacio designado para los botones de compra de las torres
 	float buttonsSpace_length_; 
@@ -29,6 +29,7 @@ private:
 
 
 	// Para la interaccion con el HUD, no tocar de momento
+	std::vector<Entity*> towers_imgs;
 	std::vector<std::pair<Entity*, Entity*>> tower_selector_; 
 };
 

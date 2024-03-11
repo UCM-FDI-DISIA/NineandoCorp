@@ -8,7 +8,7 @@ ButtonSystem::ButtonSystem(hdlrId_type but_id) :
 
 ButtonSystem::~ButtonSystem(){
 }
-void ButtonSystem::update() {
+void ButtonSystem::update () {
 	manageButtons();
 }
 
@@ -73,8 +73,31 @@ void ButtonSystem::manageButtons() {
 		case start_game:
 			startGame();
 			break;
+
+		/*--- SELECCIÓN DE TORRES PARA DRAG ---*/
 		case crystal_drag:
+			dragTower(_twr_CRISTAL);
 			break;
+		case bullet_drag:
+			dragTower(_twr_BULLET);
+			break;
+		case fenix_drag:
+			dragTower(_twr_FENIX);
+			break;
+		case clay_drag:
+			dragTower(_twr_CLAY);
+			break;
+		case sniper_drag:
+			dragTower(_twr_DIEGO);
+			break;
+		case enhancer_drag:
+			dragTower(_twr_POWER);
+			break;
+		case slime_drag:
+			dragTower(_twr_SLIME);
+			break;
+		/*----------------------------------------*/
+			 
 		case upgrade_nexus:
 			break;
 		default:
