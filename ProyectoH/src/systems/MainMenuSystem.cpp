@@ -23,6 +23,7 @@ void MainMenuSystem::initSystem() {
 	addText({ 50.0f, (sdlutils().height() / 2.0f) + 50.0f}, 
 		{ 300.0f, 75.0f}, 0.0f, _grp_GENERAL);
 
+
 	// BACKGROUND
 	bS->addImage({ sdlutils().width() / 2.0f, (sdlutils().height() / 2.0f) },
 		{ 2400 , 1800 }, 
@@ -65,6 +66,11 @@ void MainMenuSystem::initSystem() {
 	bS->addButton({ sdlutils().width() / 2.0f, (sdlutils().height() / 2.0f) + 265},
 		{ 200, 200 },
 		gameTextures::close, gameTextures::close_hover, ButtonTypes::back_selector);
+
+	// EXIT BUTTON
+	bS->addButton({25.f, 25.f },
+		{ 50, 50 },
+		gameTextures::close, gameTextures::close_hover, ButtonTypes::exit_button);
 
 	// NEXUS UPGRADE BUTTON
 	bS->addButton({ 200.0f , sdlutils().height() / 2.0f + 200.0f },
@@ -140,13 +146,16 @@ void MainMenuSystem::initSystem() {
 	bS->addImage({ sdlutils().width() - 310.0f , (sdlutils().height() / 8.0f) * 7 },
 		{ towerImagesSize },
 		0, gameTextures::power_tower_image, _grp_HUD_BACKGROUND);
+
+	// NEXUS LEVEL TEXT
+	addText({ 50.0f, (sdlutils().height() / 2.0f) + 50.0f },
+		{ 300.0f, 75.0f }, 0.0f, _grp_HUD_BACKGROUND);
 }
 
 void MainMenuSystem::receive(const Message& m) {
 }
 
 void MainMenuSystem::update() {
-	
 }
 
 void MainMenuSystem::addText(const Vector2D& pos, const Vector2D& scale, const double rot, grpId_type grpId) {
@@ -158,11 +167,6 @@ void MainMenuSystem::addText(const Vector2D& pos, const Vector2D& scale, const d
 	textTransform->setScale(scale);
 	textTransform->setRotation(rot);
 
-	Message m;
-	m.id = _m_TEXT_MESSAGE;
-	m.text_message.ent = textEntity;
-	m.text_message.text = stateText::nexus_level;
-	mngr_->send(m, true);
-	// Añadir Texto
+	mngr_->addComponent<RenderComponent>(textEntity, nexus_level_text);
 }
 

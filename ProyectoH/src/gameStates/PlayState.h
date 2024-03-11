@@ -13,10 +13,8 @@ class PlayState : public GameState
 {
 public:
 	PlayState();
-	virtual ~PlayState() {};
+	virtual ~PlayState() { delete mngr_; };
 
-	void handleInput();
 	void update() override;
-	//Entity* enemy = mngr_->addEntity(_grp_TOWERS_AND_ENEMIES);
 };
 

@@ -1,6 +1,7 @@
 #include "EnemySystem.h"
 #include "..//components/MovementComponent.h"
 #include "..//components/RouteComponent.h"
+#include "..//components/HealthComponent.h"
 #include "../ecs/Manager.h"
 
 EnemySystem::EnemySystem() {
@@ -13,6 +14,20 @@ EnemySystem::~EnemySystem() {
 
 void EnemySystem::initSystem() {
 	active_ = true;
+
+	Entity* enemie = mngr_->addEntity(_grp_TOWERS_AND_ENEMIES);
+	Transform* tr = mngr_->addComponent<Transform>(enemie);
+	tr->setPosition({(float)sdlutils().width()/2.f - 100.f, 300.f});
+	tr->setVelocity({ 0, 100 });
+	mngr_->addComponent<MovementComponent>(enemie);
+	std::vector<Vector2D> route;
+	route.push_back({ (float)sdlutils().width() / 2.f, 300.f });
+	route.push_back({ (float)sdlutils().width() / 2.f, 600.f });
+	mngr_->addComponent<RouteComponent>(enemie, route);
+	mngr_->addComponent<AttackComponent>(enemie, 100, 0.25, 20, false);
+	mngr_->addComponent<RenderComponent>(enemie, square);
+	mngr_->addComponent<HealthComponent>(enemie, 500);
+	mngr_->setHandler(_hdlr_ENEMIES, enemie);
 }
 void  EnemySystem::receive(const Message& m) {
 	switch (m.id) {
@@ -23,7 +38,13 @@ void  EnemySystem::receive(const Message& m) {
 		onRoundOver();
 		break;
 	case _m_ENTITY_TO_ATTACK:
-		mngr_->getComponent<HealthComponent>(m.entity_to_attack.e)->subtractHealth(m.entity_to_attack.damage);
+		if (m.entity_to_attack.e != nullptr && mngr_->isAlive(m.entity_to_attack.e)) {
+			 HealthComponent* h = mngr_->getComponent<HealthComponent>(m.entity_to_attack.e);
+			 if (h->subtractHealth(m.entity_to_attack.damage)) { 
+				 mngr_->deleteHandler(_hdlr_ENEMIES, m.entity_to_attack.e); 
+				 if(mngr_->hasComponent<AttackComponent>(m.entity_to_attack.src))mngr_->getComponent<AttackComponent>(m.entity_to_attack.src)->setTarget(nullptr);
+			 };
+		}		
 		break;
 	}
 
@@ -43,6 +64,7 @@ void EnemySystem::update() {
 	const auto& enemies = mngr_->getHandler(_hdlr_ENEMIES);
 	const auto& towers = mngr_->getHandler(_hdlr_LOW_TOWERS);
 	for (auto& e : enemies) {
+		//std::cout << enemies.size();
 		RouteComponent* rc = mngr_->getComponent<RouteComponent>(e);
 		MovementComponent* mc = mngr_->getComponent<MovementComponent>(e);
 		AttackComponent* ac = mngr_->getComponent<AttackComponent>(e);
@@ -55,12 +77,12 @@ void EnemySystem::update() {
 
 		}
 		if (ac != nullptr) {
-			ac->setElapsedTime(timer_.currTime() / 1000);
-			if (ac->getElapsedTime() > ac->getTimeToShoot()) {
+			ac->setElapsedTime(game().getDeltaTime());
+			if (ac->getElapsedTime() > ac->getTimeToShoot() * 1000) {
 				ac->setLoaded(true);
-				ac->targetEnemy(mngr_->getHandler(_hdlr_ENEMIES));
+				ac->targetEnemy(towers);
 
-				if (ac->getTarget() != nullptr) {
+				if (ac->getTarget() != nullptr && mngr_->isAlive(ac->getTarget())) {
 					ac->doDamageTo(ac->getTarget(), ac->getDamage());
 					ac->setTimeToShoot(ac->getTimeToShoot() + ac->getReloadTime());
 					ac->setLoaded(false);

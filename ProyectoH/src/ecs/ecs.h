@@ -28,6 +28,8 @@ enum cmpId : cmpId_type {
 	_CRISTALTOWER,
 	_DIEGOTOWER,
 	_NEXUS,
+	_PHOENIXTOWER,
+	_DIRTTOWER,
 
 	// do not remove this
 	_LAST_CMP_ID
@@ -39,6 +41,7 @@ enum hdlrId : hdlrId_type {
 	_hdlr_DRAG_AND_DROP,
 	_hdlr_SUBMENU,
 	_hdlr_LOW_TOWERS,
+	_hdlr_HIGH_TOWERS,
 	_hdlr_ENEMIES,
 	//botones de las escenas
 	_hdlr_BUTTON,
@@ -121,6 +124,7 @@ enum msgId : msgId_type {
 	_m_TEXT_MESSAGE,
 	_m_DRAG,
 	_m_LEVELS_INFO
+	_m_OFFSET_CONTEXT
 };
 
 using twrId_type = uint8_t;
@@ -132,11 +136,6 @@ enum twrId : twrId_type {
 	_twr_FENIX,
 	_twr_DIRT,
 	_twr_POWER,
-};
-
-// Correspondant text to each state
-enum stateText {
-	nexus_level, sttTxtSize
 };
 
 inline Uint16 sdlnet_hton(Uint16 v) {
@@ -193,6 +192,7 @@ msgId_type id;
 	} towers_to_attack;
 	// _m_ENTITY_TO_ATTACK
 	struct {
+		Entity* src;
 		Entity* e;
 		float damage;
 	} entity_to_attack;
@@ -218,12 +218,6 @@ msgId_type id;
 		int lvl;
 	}upgrade_tower;
 
-	//_m_TEXT_MESSAGE
-	struct {
-		Entity* ent;
-		stateText text;
-	}text_message;
-
 	// _m_UPGRADE_NEXUS
 	struct {
 		int lvl;
@@ -235,6 +229,9 @@ msgId_type id;
 	};
 
 
+	struct {
+		SDL_Rect* offset;
+	}offset_context;
 };
 
 #endif // !ECS_H_

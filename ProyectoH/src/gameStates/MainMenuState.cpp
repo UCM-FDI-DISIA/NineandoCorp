@@ -11,5 +11,5 @@ MainMenuState::MainMenuState(Manager* mngr) : GameState(_gmStt_MAINMENU, mngr) {
 }
 
 MainMenuState::~MainMenuState() {
-
+	delete mngr_;
 }
