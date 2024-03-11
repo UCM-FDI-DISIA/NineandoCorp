@@ -23,6 +23,8 @@
 
 [GDD](#GDD)
 
+[GRÁFICA DE DATOS](https://docs.google.com/spreadsheets/d/17VJqKdXs5HxnRE7XhKgaJPYE78I2Osd8cGOCqmh4Tbk/edit?usp=drive_link)
+
 ## GDD
 ---
 ### Índice
