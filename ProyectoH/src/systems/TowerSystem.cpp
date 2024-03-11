@@ -224,9 +224,12 @@ void TowerSystem::update() {
 		}	
 		else if(((targetPos - myPos).magnitude() <= 5.0f)) { //Si choca con el enemigo
 			if (sb != nullptr) {
-				/*Entity* area = mngr_->addEntity(_grp_AOE);
-				mngr_->addComponent<Transform>(area);
-				mngr_->addComponent<RenderComponent>(area, square);*/
+				Entity* area = mngr_->addEntity(_grp_SLIMEAREA);
+				Transform* tr = mngr_->addComponent<Transform>(area);
+				tr->setPosition(t->getPosition());
+				tr->setScale({ 200, 200 });
+				mngr_->addComponent<RenderComponent>(area, slimeArea);
+				mngr_->addComponent<FramedImage>(area, 9, 1, 500, 400, 0, 5, 8);
 			}
 			bc->doDamageTo(bc->getTarget(), bc->getDamage());
 			bc->onTravelEnds();

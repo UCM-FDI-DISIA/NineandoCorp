@@ -234,6 +234,10 @@
       "file": "resources/images/Towers/SlimeBullet.png"
     },
     {
+      "id": "slime_area",
+      "file": "resources/images/Towers/SlimeArea.png"
+    },
+    {
       "id": "canon_bullet",
       "file": "resources/images/Towers/CannonBallBig.png"
     },
