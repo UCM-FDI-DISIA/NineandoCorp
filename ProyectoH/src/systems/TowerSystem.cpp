@@ -15,9 +15,9 @@ void TowerSystem::initSystem() {
 	addTower(twrId::_twr_BULLET, { (float)sdlutils().width() / 1.9f, 500.f }, LOW);
 	addTower(twrId::_twr_BULLET, { (float)sdlutils().width() / 2.2f, 500.f }, LOW);
 	addTower(twrId::_twr_BULLET, { (float)sdlutils().width() / 1.9f, 550.f }, LOW);
-	addTower(twrId::_twr_BULLET, { (float)sdlutils().width() / 1.9f, 600.f }, LOW);
+	addTower(twrId::_twr_DIEGO, { (float)sdlutils().width() / 1.9f, 600.f }, LOW);
 	addTower(twrId::_twr_BULLET, { (float)sdlutils().width() / 2.3f, 600.f }, LOW);
-	addTower(twrId::_twr_BULLET, { (float)sdlutils().width() / 2.3f, 630.f }, LOW);
+	addTower(twrId::_twr_DIEGO, { (float)sdlutils().width() / 2.3f, 630.f }, LOW);
 	//addTower(twrId::_twr_BULLET, { (float)sdlutils().width() / 1.8f, 600.f }, LOW);
 	//addTower(twrId::_twr_BULLET, { (float)sdlutils().width() / 1.7f, 550.f }, LOW);
 	//addTower(twrId::_twr_POWER, { (float)sdlutils().width() / 2.2f, 540.f }, LOW);
@@ -168,11 +168,11 @@ void TowerSystem::update() {
 						else if (dir.getX() >= 0 && dir.getY() < 0) { valFrame = 12; offset.setY(0); offset.setX(DIEGO_OFFSET * 3.5);}
 						else if (dir.getX() < 0 && dir.getY() >= 0){ offset.setX(0); }
 						else if (dir.getX() < 0 && dir.getY() < 0) { valFrame = 8; offset.setX(0); offset.setY(0);}
-						mngr_->getComponent<FramedImage>(t)->setCurrentFrame(valFrame + mngr_->getComponent<UpgradeTowerComponent>(t)->getLevel() - 1);
+						mngr_->getComponent<FramedImage>(t)->setCurrentFrame(valFrame + mngr_->getComponent<UpgradeTowerComponent>(t)->getLevel());
 						RenderComponent* rc = mngr_->getComponent<RenderComponent>(t);
 						Vector2D spawn = { TR->getPosition()->getX() + offset.getX(),	TR->getPosition()->getY() + offset.getY()};
 						
-						shootBullet(target, t, ds->getDamage() * ds->getCritDamage(), DIEGO_OFFSET, spawn, sniperBulletTexture, {25, 20});
+						shootBullet(target, t, ds->getDamage() * ds->getCritDamage(), sdlutils().floatConst().at("DiegoSniperVelocidad"), spawn, sniperBulletTexture, {25, 20});
 						
 					}
 					ds->setElapsedTime(0);
@@ -187,7 +187,7 @@ void TowerSystem::update() {
 		FramedImage* fi = mngr_->getComponent<FramedImage>(bc->getTarget());
 		Vector2D targetPos = *(mngr_->getComponent<Transform>(bc->getTarget())->getPosition());
 		if (fi != nullptr) {
-			Vector2D offset = { (float)fi->getSrcRect().w / 2, (float)fi->getSrcRect().h / 2 };//Se dirige hacia el centro del rect
+			Vector2D offset = { (float)fi->getSrcRect().w / 4, (float)fi->getSrcRect().h / 4 };//Se dirige hacia el centro del rect
 			targetPos = targetPos + offset;
 		}
 		Vector2D myPos = *(t->getPosition());

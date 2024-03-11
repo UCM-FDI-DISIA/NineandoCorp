@@ -28,7 +28,7 @@ void BulletComponent::setDir() {
 	FramedImage* fi = mngr_->getComponent<FramedImage>(targetEntity_);
 	Vector2D targetPos = *(mngr_->getComponent<Transform>(targetEntity_)->getPosition());
 	if (fi != nullptr) { 
-		Vector2D offset = { (float)fi->getSrcRect().w / 2, (float)fi->getSrcRect().h / 2};//Se dirige hacia el centro del rect
+		Vector2D offset = { (float)fi->getSrcRect().w / 4, (float)fi->getSrcRect().h / 4};//Se dirige hacia el centro del rect
 		targetPos = targetPos + offset; 
 	}
 	Vector2D vel = targetPos - *(t->getPosition());
