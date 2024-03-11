@@ -120,6 +120,7 @@ enum msgId : msgId_type {
 	_m_BACK_TO_MAINMENU, 
 	_m_TEXT_MESSAGE,
 	_m_DRAG,
+	_m_LEVELS_INFO
 };
 
 using twrId_type = uint8_t;
@@ -227,6 +228,13 @@ msgId_type id;
 	struct {
 		int lvl;
 	}upgrade_nexus;
+
+	// _m_LEVELS_INFO
+	struct {
+		vector<int> lvls;
+	};
+
+
 };
 
 #endif // !ECS_H_

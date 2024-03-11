@@ -1,12 +1,18 @@
 #include "MainControlSystem.h"
 
 MainControlSystem::MainControlSystem() :active_(false)
-	{
+{
 	
 }
 
 void MainControlSystem::initSystem() {
-	
+
+	// Tamaño al array
+	levels_.resize(8);
+	// Inicialización del nivel de las torres y nexo
+	for (int i = 0; i < levels_.size(); i++) {
+		levels_[i] = 0;
+	}
 }
 
 void MainControlSystem::receive(const Message& m) {

@@ -3,6 +3,7 @@
 #include "..//sdlutils/VirtualTimer.h"
 #include "../game/Game.h"
 #include "../components/NexusComponent.h"
+#include <vector>
 
 class MainControlSystem : public System
 {
@@ -27,6 +28,9 @@ protected:
 	double elapsedTime_;
 	VirtualTimer timer_;
 	Entity* nexo;
+
+	// Niveles de nexo y torres
+	vector<int> levels_;
 
 	void onRoundOver();
 	void onRoundStart();
