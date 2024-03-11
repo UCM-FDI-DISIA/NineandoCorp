@@ -21,7 +21,7 @@ RouteComponent::checkdestiny() {
 		else {
 			destiny_++;
 			changevelocity(route_[destiny_]);
-			std::cout << "e";
+			//std::cout << "e";
 		}
 
 	}

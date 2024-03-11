@@ -27,6 +27,7 @@ void EnemySystem::initSystem() {
 	mngr_->addComponent<AttackComponent>(enemie, 100, 0.25, 20, false);
 	mngr_->addComponent<RenderComponent>(enemie, square);
 	mngr_->addComponent<HealthComponent>(enemie, 50000);
+	mngr_->addComponent<FramedImage>(enemie, 1, 1, 122, 117, 0, 0, 1);
 	mngr_->setHandler(_hdlr_ENEMIES, enemie);
 }
 void  EnemySystem::receive(const Message& m) {

@@ -53,7 +53,7 @@ void TowerSystem::onAttackTower(Entity* e, int dmg) {
 //Realiza las funcionalidades de las torres, accediendo a los atributos de los componentes y realizando la mecanica de cada torre
 void TowerSystem::update() {
 	const auto& bullets = mngr_->getEntities(_grp_BULLETS);
-	
+	const float DIEGO_OFFSET = sdlutils().floatConst().at("DiegoSniperOffset");
 	
 	for (auto& t : towers) {
 
@@ -83,7 +83,7 @@ void TowerSystem::update() {
 			//Cada cierto tiempo targetea a un enemigo y le dispara, cambiando su imagen en funci�n de la direcci�n del disparo
 			BulletTower* bt = mngr_->getComponent<BulletTower>(t);					
 			if (bt != nullptr) {
-				Vector2D offset{ sdlutils().floatConst().at("DiegoSniperOffset"), sdlutils().floatConst().at("DiegoSniperOffset") };//Offset para el punto de spawn de la bala
+				Vector2D offset{ DIEGO_OFFSET, DIEGO_OFFSET };//Offset para el punto de spawn de la bala
 				int valFrame = 0;//Valor del frame que se ha de escoger del spritesheet para renderizar la torre en la direccion correcta
 				bt->setElapsedTime(bt->getElapsedTime()+game().getDeltaTime());
 				if (bt->getElapsedTime() > 0.5) {
@@ -94,8 +94,8 @@ void TowerSystem::update() {
 						//Se coge el vector de la torre al objetivo, y en funcion de su direccion en los dos ejes se escoje el frame para la torre y 
 						//el punto desde el que sale la bala, que debe ser el canon de la torre. Para eso se usa el offset
 						Vector2D dir = *(mngr_->getComponent<Transform>(bt->getTarget())->getPosition()) - *(TR->getPosition());
-						if (dir.getX() >= 0 && dir.getY() >= 0) { valFrame = 4; offset.setX(sdlutils().floatConst().at("DiegoSniperOffset") * 2.5); }
-						else if (dir.getX() >= 0 && dir.getY() < 0) { valFrame = 12; offset.setY(0); offset.setX(sdlutils().floatConst().at("DiegoSniperOffset") * 2.5); }
+						if (dir.getX() >= 0 && dir.getY() >= 0) { valFrame = 4; offset.setX(DIEGO_OFFSET * 2.5); }
+						else if (dir.getX() >= 0 && dir.getY() < 0) { valFrame = 12; offset.setY(0); offset.setX(DIEGO_OFFSET * 2.5); }
 						else if (dir.getX() < 0 && dir.getY() >= 0) { offset.setX(0); }
 						else if (dir.getX() < 0 && dir.getY() < 0) { valFrame = 8; offset.setX(0); offset.setY(0); }
 						mngr_->getComponent<FramedImage>(t)->setCurrentFrame(valFrame + mngr_->getComponent<UpgradeTowerComponent>(t)->getLevel());
@@ -107,8 +107,8 @@ void TowerSystem::update() {
 						if (bt->getSecondTarget() != nullptr) {;
 
 							Vector2D dir = *(mngr_->getComponent<Transform>(bt->getSecondTarget())->getPosition()) - *(TR->getPosition());
-							if (dir.getX() >= 0 && dir.getY() >= 0) { valFrame = 4; offset.setX(sdlutils().floatConst().at("DiegoSniperOffset") * 2.5); }
-							else if (dir.getX() >= 0 && dir.getY() < 0) { valFrame = 12; offset.setY(0); offset.setX(sdlutils().floatConst().at("DiegoSniperOffset") * 2.5); }
+							if (dir.getX() >= 0 && dir.getY() >= 0) { valFrame = 4; offset.setX(DIEGO_OFFSET * 2.5); }
+							else if (dir.getX() >= 0 && dir.getY() < 0) { valFrame = 12; offset.setY(0); offset.setX(DIEGO_OFFSET * 2.5); }
 							else if (dir.getX() < 0 && dir.getY() >= 0) { offset.setX(0); }
 							else if (dir.getX() < 0 && dir.getY() < 0) { valFrame = 8; offset.setX(0); offset.setY(0); }
 							shootBullet(bt->getSecondTarget(), t, bt->getDamage(), sdlutils().floatConst().at("BalasVelocidad"), TR->getPosition(), bulletTexture, { 35, 35 });
@@ -161,18 +161,18 @@ void TowerSystem::update() {
 						}					
 					}
 					if (target != nullptr) {//Dispara con el critico
-						Vector2D offset { sdlutils().floatConst().at("DiegoSniperOffset"), sdlutils().floatConst().at("DiegoSniperOffset") };
+						Vector2D offset { DIEGO_OFFSET, DIEGO_OFFSET };
 						int valFrame = 0;
 						Vector2D dir = *(mngr_->getComponent<Transform>(target)->getPosition()) - *(TR->getPosition());
-						if (dir.getX() >= 0 && dir.getY() >= 0) { valFrame = 4; offset.setX(sdlutils().floatConst().at("DiegoSniperOffset") * 3.5); }
-						else if (dir.getX() >= 0 && dir.getY() < 0) { valFrame = 12; offset.setY(0); offset.setX(sdlutils().floatConst().at("DiegoSniperOffset") * 3.5);}
+						if (dir.getX() >= 0 && dir.getY() >= 0) { valFrame = 4; offset.setX(DIEGO_OFFSET * 3.5); }
+						else if (dir.getX() >= 0 && dir.getY() < 0) { valFrame = 12; offset.setY(0); offset.setX(DIEGO_OFFSET * 3.5);}
 						else if (dir.getX() < 0 && dir.getY() >= 0){ offset.setX(0); }
 						else if (dir.getX() < 0 && dir.getY() < 0) { valFrame = 8; offset.setX(0); offset.setY(0);}
 						mngr_->getComponent<FramedImage>(t)->setCurrentFrame(valFrame + mngr_->getComponent<UpgradeTowerComponent>(t)->getLevel() - 1);
 						RenderComponent* rc = mngr_->getComponent<RenderComponent>(t);
 						Vector2D spawn = { TR->getPosition()->getX() + offset.getX(),	TR->getPosition()->getY() + offset.getY()};
 						
-						shootBullet(target, t, ds->getDamage() * ds->getCritDamage(), sdlutils().floatConst().at("DiegoSniperOffset"), spawn, sniperBulletTexture, {25, 20});
+						shootBullet(target, t, ds->getDamage() * ds->getCritDamage(), DIEGO_OFFSET, spawn, sniperBulletTexture, {25, 20});
 						
 					}
 					ds->setElapsedTime(0);
@@ -184,10 +184,19 @@ void TowerSystem::update() {
 	for (auto& b : bullets) {
 		Transform* t = mngr_->getComponent<Transform>(b);
 		BulletComponent* bc = mngr_->getComponent<BulletComponent>(b);	
+		FramedImage* fi = mngr_->getComponent<FramedImage>(bc->getTarget());
+		Vector2D targetPos = *(mngr_->getComponent<Transform>(bc->getTarget())->getPosition());
+		if (fi != nullptr) {
+			Vector2D offset = { (float)fi->getSrcRect().w / 2, (float)fi->getSrcRect().h / 2 };//Se dirige hacia el centro del rect
+			targetPos = targetPos + offset;
+		}
+		Vector2D myPos = *(t->getPosition());
+		
 		if (!mngr_->isAlive(bc->getTarget())) {//Si ha muerto por el camino
 			bc->onTravelEnds();
 		}
-		else if(((*(t->getPosition()) - *(mngr_->getComponent<Transform>(bc->getTarget())->getPosition())).magnitude() <= 5.0f)) { //Si choca con el enemigo
+		
+		else if(((targetPos - myPos).magnitude() <= 5.0f)) { //Si choca con el enemigo
 			bc->doDamageTo(bc->getTarget(), bc->getDamage());
 			bc->onTravelEnds();
 		}
