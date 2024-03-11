@@ -5,6 +5,7 @@
 #include "../components/FramedImage.h"
 #include "../components/FramedImage.h"
 #include "../components/RenderComponent.h"
+#include "../utils/NetMap.h"
 
 
 class RenderSystem : public System {
@@ -36,11 +37,11 @@ private:
 
 	uint8_t winner_; // 0 - None, 1 - Asteroid, 2- Fighter
 
-	SDL_Rect offset = build_sdlrect(0,0,0,0);
+	SDL_Rect* offset = new SDL_Rect();
 
 	//limites de la camara
-	int limtop = 1000;
-	int limbot = -1000;
+	int limtop = 200;
+	int limbot = -1200;
 	int limleft = 1000;
 	int limright = -1000;
 
