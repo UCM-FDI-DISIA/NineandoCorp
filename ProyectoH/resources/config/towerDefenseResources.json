@@ -379,7 +379,19 @@
         {
             "id": "nexus_level_3_image",
             "file": "resources/images/nexus/nexus_level_3_image.png"
-        }
+        },
+        {
+          "id": "canon_bullet",
+          "file": "resources/images/towers/bullet.png"
+        },
+        {
+          "id": "sniper_bullet",
+          "file": "resources/images/towers/SniperBullet.png"
+        },
+      {
+        "id": "slime_bullet",
+        "file": "resources/images/towers/SlimeBullet.png"
+      }
 
 
     ],

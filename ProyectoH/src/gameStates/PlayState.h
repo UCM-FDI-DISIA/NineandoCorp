@@ -14,5 +14,7 @@ class PlayState : public GameState
 public:
 	PlayState();
 	virtual ~PlayState() { delete mngr_; };
+
+	void update() override;
 };
 

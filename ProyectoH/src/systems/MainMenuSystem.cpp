@@ -68,7 +68,7 @@ void MainMenuSystem::initSystem() {
 		gameTextures::close, gameTextures::close_hover, ButtonTypes::back_selector);
 
 	// EXIT BUTTON
-	addButton({25.f, 25.f },
+	bS->addButton({25.f, 25.f },
 		{ 50, 50 },
 		gameTextures::close, gameTextures::close_hover, ButtonTypes::exit_button);
 
