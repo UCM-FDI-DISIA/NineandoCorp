@@ -1,5 +1,6 @@
 ﻿#include "TowerSystem.h"
 #include "..//ecs/ecs.h"
+#include "..//components/SlimeBullet.h"
 
 
 TowerSystem::TowerSystem() : active_(true) {
@@ -12,13 +13,13 @@ TowerSystem::~TowerSystem() {
 void TowerSystem::initSystem() {
 	active_ = true;
 
-	addTower(twrId::_twr_BULLET, { (float)sdlutils().width() / 1.9f, 500.f }, LOW);
-	addTower(twrId::_twr_BULLET, { (float)sdlutils().width() / 2.2f, 500.f }, LOW);
+	//addTower(twrId::_twr_BULLET, { (float)sdlutils().width() / 1.9f, 500.f }, LOW);
+	//addTower(twrId::_twr_BULLET, { (float)sdlutils().width() / 2.2f, 500.f }, LOW);
 	addTower(twrId::_twr_BULLET, { (float)sdlutils().width() / 1.9f, 550.f }, LOW);
-	addTower(twrId::_twr_DIEGO, { (float)sdlutils().width() / 1.9f, 600.f }, LOW);
+	//addTower(twrId::_twr_DIEGO, { (float)sdlutils().width() / 1.9f, 600.f }, LOW);
 	addTower(twrId::_twr_BULLET, { (float)sdlutils().width() / 2.3f, 600.f }, LOW);
 	addTower(twrId::_twr_SLIME, { (float)sdlutils().width() / 2.3f, 630.f }, LOW);
-	//addTower(twrId::_twr_BULLET, { (float)sdlutils().width() / 1.8f, 600.f }, LOW);
+	addTower(twrId::_twr_BULLET, { (float)sdlutils().width() / 1.8f, 600.f }, LOW);
 	//addTower(twrId::_twr_BULLET, { (float)sdlutils().width() / 1.7f, 550.f }, LOW);
 	//addTower(twrId::_twr_POWER, { (float)sdlutils().width() / 2.2f, 540.f }, LOW);
 }
@@ -98,9 +99,9 @@ void TowerSystem::update() {
 						else if (dir.getX() >= 0 && dir.getY() < 0) { valFrame = 12; offset.setY(0); offset.setX(DIEGO_OFFSET * 2.5); }
 						else if (dir.getX() < 0 && dir.getY() >= 0) { offset.setX(0); }
 						else if (dir.getX() < 0 && dir.getY() < 0) { valFrame = 8; offset.setX(0); offset.setY(0); }
-						mngr_->getComponent<FramedImage>(t)->setCurrentFrame(valFrame + mngr_->getComponent<UpgradeTowerComponent>(t)->getLevel());
+						//mngr_->getComponent<FramedImage>(t)->setCurrentFrame(valFrame + mngr_->getComponent<UpgradeTowerComponent>(t)->getLevel());
 						Vector2D spawn = { TR->getPosition()->getX() + offset.getX(),	TR->getPosition()->getY() + offset.getY() };//Punto de spawn de la bala con el offset
-						shootBullet(bt->getTarget(), t, bt->getDamage(), sdlutils().floatConst().at("BalasVelocidad"), spawn, bulletTexture, { 35, 35 });//Dispara la bala
+						shootBullet(bt->getTarget(), t, bt->getDamage(), sdlutils().floatConst().at("BalasVelocidad"), spawn, bulletTexture, { 35, 35 }, _twr_BULLET);//Dispara la bala
 					}
 					if (bt->isMaxLevel()) {//Mejora maxima de la torre de balas: targetear a un segundo enemigo. Funciona igual que el primer targeteo
 						bt->targetSecondEnemy(mngr_->getHandler(_hdlr_ENEMIES));
@@ -111,11 +112,11 @@ void TowerSystem::update() {
 							else if (dir.getX() >= 0 && dir.getY() < 0) { valFrame = 12; offset.setY(0); offset.setX(DIEGO_OFFSET * 2.5); }
 							else if (dir.getX() < 0 && dir.getY() >= 0) { offset.setX(0); }
 							else if (dir.getX() < 0 && dir.getY() < 0) { valFrame = 8; offset.setX(0); offset.setY(0); }
-							shootBullet(bt->getSecondTarget(), t, bt->getDamage(), sdlutils().floatConst().at("BalasVelocidad"), TR->getPosition(), bulletTexture, { 35, 35 });
+							shootBullet(bt->getSecondTarget(), t, bt->getDamage(), sdlutils().floatConst().at("BalasVelocidad"), TR->getPosition(), bulletTexture, { 35, 35 }, _twr_BULLET);
 
 							mngr_->getComponent<FramedImage>(t)->setCurrentFrame(valFrame + mngr_->getComponent<UpgradeTowerComponent>(t)->getLevel());
 							Vector2D spawn = { TR->getPosition()->getX() + offset.getX(),	TR->getPosition()->getY() + offset.getY() };//Punto de spawn de la bala con el offset
-							shootBullet(bt->getTarget(), t, bt->getDamage(), sdlutils().floatConst().at("BalasVelocidad"), spawn, bulletTexture, { 35, 35 });//Dispara la bala
+		
 						}
 					}
 					
@@ -157,7 +158,8 @@ void TowerSystem::update() {
 						mngr_->getComponent<FramedImage>(t)->setCurrentFrame(valFrame + mngr_->getComponent<UpgradeTowerComponent>(t)->getLevel());
 						RenderComponent* rc = mngr_->getComponent<RenderComponent>(t);
 						Vector2D spawn = { TR->getPosition()->getX() + offset.getX(),	TR->getPosition()->getY() + offset.getY() };
-						shootBullet(st->getTarget(), t, st->getDamage(), sdlutils().floatConst().at("SlimeVelocidad"), spawn, slimeBulletTexture, { 25, 25 });
+						Entity* bullet = shootBullet(st->getTarget(), t, st->getDamage(), sdlutils().floatConst().at("SlimeVelocidad"), spawn, slimeBulletTexture, { 25, 25 }, _twr_SLIME);
+						mngr_->addComponent<SlimeBullet>(bullet, st->getDuration(), st->getSpeedDecrease(), st->getDPS());
 						st->setElapsedTime(0);
 					}
 				}
@@ -196,7 +198,7 @@ void TowerSystem::update() {
 						RenderComponent* rc = mngr_->getComponent<RenderComponent>(t);
 						Vector2D spawn = { TR->getPosition()->getX() + offset.getX(),	TR->getPosition()->getY() + offset.getY()};
 						
-						shootBullet(target, t, ds->getDamage() * ds->getCritDamage(), sdlutils().floatConst().at("DiegoSniperVelocidad"), spawn, sniperBulletTexture, {25, 20});
+						shootBullet(target, t, ds->getDamage() * ds->getCritDamage(), sdlutils().floatConst().at("DiegoSniperVelocidad"), spawn, sniperBulletTexture, {25, 20}, _twr_DIEGO);
 						
 					}
 					ds->setElapsedTime(0);
@@ -208,6 +210,7 @@ void TowerSystem::update() {
 	for (auto& b : bullets) {
 		Transform* t = mngr_->getComponent<Transform>(b);
 		BulletComponent* bc = mngr_->getComponent<BulletComponent>(b);	
+		SlimeBullet* sb = mngr_->getComponent<SlimeBullet>(b);
 		FramedImage* fi = mngr_->getComponent<FramedImage>(bc->getTarget());
 		Vector2D targetPos = *(mngr_->getComponent<Transform>(bc->getTarget())->getPosition());
 		if (fi != nullptr) {
@@ -220,6 +223,11 @@ void TowerSystem::update() {
 			bc->onTravelEnds();
 		}	
 		else if(((targetPos - myPos).magnitude() <= 5.0f)) { //Si choca con el enemigo
+			if (sb != nullptr) {
+				/*Entity* area = mngr_->addEntity(_grp_AOE);
+				mngr_->addComponent<Transform>(area);
+				mngr_->addComponent<RenderComponent>(area, square);*/
+			}
 			bc->doDamageTo(bc->getTarget(), bc->getDamage());
 			bc->onTravelEnds();
 		}
@@ -242,13 +250,14 @@ void TowerSystem::eliminateDestroyedTowers(Entity* t) {//elimina del array las t
 /// <param name="damage">Dano</param>
 /// <param name="speed">Velocidad</param>
 /// <param name="spawnPos">Posicion de spawn, que deberia ser la de la posicion del canon de la torre</param>
-void TowerSystem::shootBullet(Entity* target, Entity* src ,float damage, float speed, Vector2D spawnPos, gameTextures texture, Vector2D bulletScale) {
+Entity* TowerSystem::shootBullet(Entity* target, Entity* src ,float damage, float speed, Vector2D spawnPos, gameTextures texture, Vector2D bulletScale, twrId id) {
 	Entity* bullet = mngr_->addEntity(_grp_BULLETS);//crea bala
 	Transform* t = mngr_->addComponent<Transform>(bullet);//transform
 	t->setPosition(spawnPos);
 	t->setScale(bulletScale);
 	mngr_->addComponent<BulletComponent>(bullet, t, target, src, damage, speed);//bullet component
 	mngr_->addComponent<RenderComponent>(bullet, texture);//habra que hacer switch
+	return bullet;
 }
 /// <summary>
 /// Debe spawnear una entidad con un fireComponent que tenga un rect y se detecte la colision con enemigos en un collision system
@@ -296,6 +305,10 @@ void TowerSystem::addTower(twrId type, Vector2D pos, Height height) {
 		mngr_->addComponent<BulletTower>(t, sdlutils().floatConst().at("BalasRango"), sdlutils().floatConst().at("BalasRecarga"), sdlutils().intConst().at("BalasDano"));
 		mngr_->addComponent<RenderComponent>(t, bulletTowerTexture);
 		mngr_->addComponent<FramedImage>(t, sdlutils().intConst().at("BalasColumns"), sdlutils().intConst().at("BalasRows"), sdlutils().intConst().at("BalasWidth"), sdlutils().intConst().at("BalasHeight"), 0, 0);
+		//mngr_->getComponent<UpgradeTowerComponent>(t)->LevelUp();
+		//mngr_->getComponent<UpgradeTowerComponent>(t)->LevelUp();
+		//mngr_->getComponent<UpgradeTowerComponent>(t)->LevelUp();
+		//mngr_->getComponent<UpgradeTowerComponent>(t)->LevelUp();
 
 		break;
 	case _twr_DIRT:

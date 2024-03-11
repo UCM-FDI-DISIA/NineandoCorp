@@ -37,7 +37,7 @@ public:
 	void addTower(twrId type, Vector2D pos, Height height);
 
 protected:
-	void shootBullet(Entity* target, Entity* src, float damage, float speed, Vector2D spawnPos, gameTextures texture,Vector2D bulletScale);
+	Entity* shootBullet(Entity* target, Entity* src, float damage, float speed, Vector2D spawnPos, gameTextures texture,Vector2D bulletScale, twrId id);
 	void shootFire(float shootingTime, int damage, Vector2D spawn);
 	void eliminateDestroyedTowers(Entity* t);
 	std::vector<Entity*> towers;

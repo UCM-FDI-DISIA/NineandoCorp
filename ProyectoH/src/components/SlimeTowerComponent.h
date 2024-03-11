@@ -10,8 +10,11 @@ public:
 	float getDuration() const;
 	void setSpeedDecrease(float percentage);
 	float getSpeedDecrease() const;
+	void setDPS(float dps);
+	float getDPS() const;
 private:
 	float slimeDuration_;
 	float speedDecreasePer_;
+	float slimeDPS_;
 };
 

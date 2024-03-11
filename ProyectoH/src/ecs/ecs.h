@@ -59,6 +59,7 @@ enum grpId : grpId_type {
 	_grp_TILES_L3,
 	_grp_TOWERS_AND_ENEMIES,
 	_grp_BULLETS,
+	_grp_AOE,
 	_grp_HUD_BACKGROUND,
 	_grp_HUD_FOREGROUND,
 	_grp_HUD_DRAG_AND_DROP,

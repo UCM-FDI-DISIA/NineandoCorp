@@ -9,13 +9,13 @@ BulletTower::BulletTower(float range, float reloadTime, int damage)
 void BulletTower::levelUp(int level) {
 	switch (level) {
 	case 1:
-		setDamage(sdlutils().floatConst().at("BalasDano1"));
+		setDamage(sdlutils().intConst().at("BalasDano1"));
 		break;
 	case 2:
-		setDamage(sdlutils().floatConst().at("BalasDano2"));
+		setDamage(sdlutils().intConst().at("BalasDano2"));
 		break;
 	case 3:
-		setDamage(sdlutils().floatConst().at("BalasDano3"));
+		setDamage(sdlutils().intConst().at("BalasDano3"));
 		break;
 	case 4:
 		isMaxLevel_ = true;
