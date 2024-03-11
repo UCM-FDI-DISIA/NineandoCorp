@@ -17,9 +17,9 @@ Cell* NetMap::searchCell(float x, float y) const {
 			return net[j][30];
 		if(j == 31) 
 			return net[30][i];
-		if (net[j][i]->position.getX() + offset->x > x)
+		if (net[j][i]->position.getX() - 48 + offset->x > x)
 			i++;
-		else if (net[j][i]->position.getY() + offset->y < y)
+		else if (net[j][i]->position.getY()+24 + offset->y < y)
 			j++;
 		else
 			exit = true;;

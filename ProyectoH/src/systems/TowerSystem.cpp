@@ -35,7 +35,7 @@ void TowerSystem::update() {
 	//Demo para la malla
 	int x, y;
 	Uint32 mouseState = SDL_GetMouseState(&x, &y);
-	mngr_->getComponent<Transform>(square)->setPosition(net->searchCell(x,y)->position);
+	mngr_->getComponent<Transform>(square)->setPosition(net->searchCell(x,y)->position - Vector2D(mngr_->getComponent<Transform>(square)->getScale()->getX() / 2, mngr_->getComponent<Transform>(square)->getScale()->getX() / 2));
 
 	const auto& bullets = mngr_->getEntities(_grp_BULLETS);
 	
