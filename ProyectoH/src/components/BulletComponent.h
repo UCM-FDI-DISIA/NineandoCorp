@@ -6,11 +6,11 @@
 
 class BulletComponent : public Component {
 protected:
-	Transform* t;
-	Entity* targetEntity_;
-	Entity* srcEntity;
-	int damage_;
-	float speed_;
+	Transform* t;//Transform de la bala
+	Entity* targetEntity_;//Entidad enemigo
+	Entity* srcEntity;//Entidad origen
+	int damage_;//Dano de la bala
+	float speed_;//Velocidad de la bala
 
 public:
 	static const cmpId id = cmpId::_BULLET;

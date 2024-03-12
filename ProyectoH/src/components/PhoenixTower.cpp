@@ -5,17 +5,17 @@ PhoenixTower::PhoenixTower(float damage, float coolingTime, float shootingTime, 
 void PhoenixTower::levelUp(int level) {
 	switch (level) {
 	case 1:
-		damage_ = 4.0f;
+		damage_ = sdlutils().floatConst().at("FenixDPS1");
 		break;
 	case 2:
-		coolingTime_ = 1.5f;
+		coolingTime_ = sdlutils().floatConst().at("FenixEnfriamiento1");
 		break;
 	case 3:
-		damage_ = 5;
-		coolingTime_ = 1.0f;
+		damage_ = sdlutils().floatConst().at("FenixDPS2");
+		coolingTime_ = sdlutils().floatConst().at("FenixEnfriamiento2");
 		break;
 	case 4:
-		coolingTime_ = 0.0f;
+		coolingTime_ = sdlutils().floatConst().at("FenixEnfriamientoCero");
 		//Falta anadir la opcion de aumentar el rango del fuego
 		break;
 	}

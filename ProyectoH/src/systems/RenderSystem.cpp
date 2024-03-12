@@ -53,6 +53,7 @@ RenderSystem::RenderSystem() : winner_(0)
 	textures[dirt_tower_image] = &sdlutils().images().at("dirt_tower_image");
 	textures[power_tower_image] = &sdlutils().images().at("power_tower_image");
 	textures[nexus_level_3_image] = &sdlutils().images().at("nexus_level_3_image");
+	textures[slimeArea] = &sdlutils().images().at("slime_area");
 
 	textures[nexus_level_text] = &sdlutils().msgs().at("nexus_level_text");
 }
@@ -142,6 +143,21 @@ void RenderSystem::update() {
 		SDL_Rect trRect = tr->getRect();
 		trRect.x += offset->x;
 		trRect.y += offset->y;
+		textures[textureId]->render(srcRect, trRect);
+	}
+
+	//SLIME AREA
+	const auto& slimes = mngr_->getEntities(_grp_SLIMEAREA);
+	for (auto& slime : slimes)
+	{
+		Transform* tr = mngr_->getComponent<Transform>(slime);
+		gameTextures textureId = mngr_->getComponent<RenderComponent>(slime)->getTexture();
+		FramedImage* img = mngr_->getComponent<FramedImage>(slime);
+		SDL_Rect srcRect = img->getSrcRect();
+		img->updateCurrentFrame();
+		SDL_Rect trRect = tr->getRect();
+		trRect.x += offset.x;
+		trRect.y += offset.y;
 		textures[textureId]->render(srcRect, trRect);
 	}
 

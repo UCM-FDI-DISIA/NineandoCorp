@@ -3,6 +3,7 @@
 #define COMPONENT_H_
 
 #include "ecs.h"
+#include "../sdlutils/SDLUtils.h"
 
 struct Component 
 {
