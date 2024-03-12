@@ -384,6 +384,10 @@
     {
       "id": "nexus_level_3_image",
       "file": "resources/images/nexus/nexus_level_3_image.png"
+    },
+    {
+      "id": "fireball",
+      "file": "resources/images/Towers/fireball.png"
     }
 
   ],
