@@ -168,8 +168,8 @@ void RenderSystem::update() {
 		SDL_Rect srcRect = img->getSrcRect();
 		img->updateCurrentFrame();
 		SDL_Rect trRect = tr->getRect();
-		trRect.x += offset.x;
-		trRect.y += offset.y;
+		trRect.x += offset->x;
+		trRect.y += offset->y;
 		textures[textureId]->render(srcRect, trRect);
 	}
 

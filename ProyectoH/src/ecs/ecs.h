@@ -30,6 +30,8 @@ enum cmpId : cmpId_type {
 	_NEXUS,
 	_PHOENIXTOWER,
 	_DIRTTOWER,
+	_SLIMETOWER,
+	_SLIMEBULLET,
 
 	// do not remove this
 	_LAST_CMP_ID
@@ -60,6 +62,7 @@ enum grpId : grpId_type {
 	_grp_HUD_BACKGROUND,
 	_grp_HUD_FOREGROUND,
 	_grp_HUD_DRAG_AND_DROP,
+	_grp_SLIMEAREA,
 	
 	// do not remove this
 	_LAST_GRP_ID
@@ -91,11 +94,24 @@ enum sysId : sysId_type {
 	_sys_MAINCONTROL,
 	_sys_ENEMIES,
 	_sys_LEVELSELECTOR,
+	_sys_COLLISION,
 
 	// do not remove this
 	_LAST_SYS_ID
 };
+
 constexpr sysId_type maxSystemId = _LAST_SYS_ID;
+
+using rectId_type = uint8_t;
+enum rectId : rectId_type {
+	_FENIX,
+	_SLIME,
+	_ENEMY,
+
+	_LAST_RECT_ID
+};
+
+constexpr rectId_type lastRectId = _LAST_RECT_ID;
 
 using msgId_type = uint8_t;
 enum msgId : msgId_type {
@@ -117,7 +133,8 @@ enum msgId : msgId_type {
 	_m_UPGRADE_TOWER,
 	_m_BACK_TO_MAINMENU, 
 	_m_TEXT_MESSAGE,
-	_m_OFFSET_CONTEXT
+	_m_OFFSET_CONTEXT,
+	_m_ADD_RECT
 };
 
 using twrId_type = uint8_t;
@@ -210,6 +227,11 @@ msgId_type id;
 	struct {
 		int lvl;
 	}upgrade_nexus;
+
+	struct {
+		Entity* rect;
+		rectId id;
+	}rect_data;
 
 	struct {
 		SDL_Rect* offset;

@@ -17,7 +17,7 @@ enum gameTextures {
 	power_tower_image, nexus_level_3_image,
 	// towers
 	square, bulletTowerTexture, cristalTowerTexture, phoenixTowerTexture,
-	slimeTowerTexture, boosterTowerTexture, sniperTowerTexture, clayTowerTexture, nexusTexture, fireTexture
+	slimeTowerTexture, boosterTowerTexture, sniperTowerTexture, clayTowerTexture, nexusTexture, fireTexture,
 	
 	//enemies
 
