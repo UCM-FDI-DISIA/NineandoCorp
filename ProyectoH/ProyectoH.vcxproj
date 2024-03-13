@@ -20,6 +20,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\components\AttackComponent.h" />
+    <ClInclude Include="src\components\BlindComponent.h" />
     <ClInclude Include="src\components\BulletComponent.h" />
     <ClInclude Include="src\components\BulletTower.h" />
     <ClInclude Include="src\components\ButtonComponent.h" />
@@ -78,11 +79,13 @@
     <ClInclude Include="src\systems\TowerSystem.h" />
     <ClInclude Include="src\utils\Collisions.h" />
     <ClInclude Include="src\utils\mpl.h" />
+    <ClInclude Include="src\utils\NetMap.h" />
     <ClInclude Include="src\utils\Singleton.h" />
     <ClInclude Include="src\utils\Vector2D.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\components\AttackComponent.cpp" />
+    <ClCompile Include="src\components\BlindComponent.cpp" />
     <ClCompile Include="src\components\BulletComponent.cpp" />
     <ClCompile Include="src\components\BulletTower.cpp" />
     <ClCompile Include="src\components\ButtonComponent.cpp" />
@@ -129,6 +132,7 @@
     <ClCompile Include="src\systems\RenderSystem.cpp" />
     <ClCompile Include="src\systems\TowerSystem.cpp" />
     <ClCompile Include="src\utils\Collisions.cpp" />
+    <ClCompile Include="src\utils\NetMap.cpp" />
     <ClCompile Include="src\utils\Vector2D.cpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">

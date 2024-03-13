@@ -1,6 +1,6 @@
 #pragma once
 #include "..//ecs/System.h"
-#include "..//sdlutils/VirtualTimer.h"
+#include "../systems/mapSystem.h"
 #include "../ecs/Manager.h"
 #include "..//components/Transform.h"
 #include "../components/AttackComponent.h"
@@ -42,5 +42,7 @@ protected:
 	void eliminateDestroyedTowers(Entity* t);
 	std::vector<Entity*> towers;
 	bool active_;
+
+	Entity* square;
 };
 
