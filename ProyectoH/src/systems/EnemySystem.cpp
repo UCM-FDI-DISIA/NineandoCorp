@@ -26,7 +26,7 @@ void EnemySystem::initSystem() {
 	route.push_back({ 300, 600.f });
 
 	mngr_->addComponent<RouteComponent>(enemie, route);
-	mngr_->addComponent<AttackComponent>(enemie, 200, 0.25, 20, false);
+	mngr_->addComponent<AttackComponent>(enemie, 0, 0.25, 20, false);
 	mngr_->addComponent<RenderComponent>(enemie, square);
 	mngr_->addComponent<HealthComponent>(enemie, 50000);
 	mngr_->addComponent<FramedImage>(enemie, 1, 1, 122, 117, 0, 0, 1);

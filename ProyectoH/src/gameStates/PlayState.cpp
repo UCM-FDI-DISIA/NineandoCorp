@@ -8,5 +8,6 @@ PlayState::PlayState() : GameState(_gmStt_PLAY) {
 	mngr_->addSystem<mapSystem>("../ProyectoH/resources/tileMap/nivelPrueba.tmx");
 	mngr_->addSystem<HUDSystem>();
 	mngr_->addSystem<TowerSystem>();
-	//mngr_->addSystem<EnemySystem>();
+	mngr_->addSystem<EnemySystem>();
+	mngr_->addSystem<CollisionSystem>();
 }
