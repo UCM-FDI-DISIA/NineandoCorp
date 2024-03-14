@@ -15,11 +15,12 @@ void TowerSystem::initSystem() {
 
 	//addTower(twrId::_twr_BULLET, { (float)sdlutils().width() / 1.9f, 500.f }, LOW);
 	//addTower(twrId::_twr_BULLET, { (float)sdlutils().width() / 2.2f, 500.f }, LOW);
-	addTower(twrId::_twr_BULLET, { (float)sdlutils().width() / 1.9f, 550.f }, LOW);
+	//addTower(twrId::_twr_BULLET, { (float)sdlutils().width() / 1.9f, 550.f }, LOW);
 	//addTower(twrId::_twr_DIEGO, { (float)sdlutils().width() / 1.9f, 600.f }, LOW);
-	addTower(twrId::_twr_BULLET, { (float)sdlutils().width() / 2.3f, 600.f }, LOW);
-	addTower(twrId::_twr_SLIME, { (float)sdlutils().width() / 2.3f, 630.f }, LOW);
-	addTower(twrId::_twr_BULLET, { (float)sdlutils().width() / 1.8f, 600.f }, LOW);
+	//addTower(twrId::_twr_BULLET, { (float)sdlutils().width() / 2.3f, 600.f }, LOW);
+	//addTower(twrId::_twr_SLIME, { (float)sdlutils().width() / 2.3f, 630.f }, LOW);
+	//addTower(twrId::_twr_BULLET, { (float)sdlutils().width() / 1.8f, 600.f }, LOW);
+	addTower(twrId::_twr_FENIX, { (float)sdlutils().width() / 1.8f, 600.f }, LOW);
 	//addTower(twrId::_twr_BULLET, { (float)sdlutils().width() / 1.7f, 550.f }, LOW);
 	//addTower(twrId::_twr_POWER, { (float)sdlutils().width() / 2.2f, 540.f }, LOW);
 }
@@ -54,7 +55,7 @@ void TowerSystem::onAttackTower(Entity* e, int dmg) {
 //Realiza las funcionalidades de las torres, accediendo a los atributos de los componentes y realizando la mecanica de cada torre
 void TowerSystem::update() {
 	const auto& bullets = mngr_->getEntities(_grp_BULLETS);
-	const float DIEGO_OFFSET = sdlutils().floatConst().at("DiegoSniperOffset");
+	const float DIEGO_OFFSET = floatAt("DiegoSniperOffset");
 	
 	for (auto& t : towers) {
 
@@ -101,7 +102,7 @@ void TowerSystem::update() {
 						else if (dir.getX() < 0 && dir.getY() < 0) { valFrame = 8; offset.setX(0); offset.setY(0); }
 						//mngr_->getComponent<FramedImage>(t)->setCurrentFrame(valFrame + mngr_->getComponent<UpgradeTowerComponent>(t)->getLevel());
 						Vector2D spawn = { TR->getPosition()->getX() + offset.getX(),	TR->getPosition()->getY() + offset.getY() };//Punto de spawn de la bala con el offset
-						shootBullet(bt->getTarget(), t, bt->getDamage(), sdlutils().floatConst().at("BalasVelocidad"), spawn, bulletTexture, { 35, 35 }, _twr_BULLET);//Dispara la bala
+						shootBullet(bt->getTarget(), t, bt->getDamage(), floatAt("BalasVelocidad"), spawn, bulletTexture, { 35, 35 }, _twr_BULLET);//Dispara la bala
 					}
 					if (bt->isMaxLevel()) {//Mejora maxima de la torre de balas: targetear a un segundo enemigo. Funciona igual que el primer targeteo
 						bt->targetSecondEnemy(mngr_->getHandler(_hdlr_ENEMIES));
@@ -112,7 +113,7 @@ void TowerSystem::update() {
 							else if (dir.getX() >= 0 && dir.getY() < 0) { valFrame = 12; offset.setY(0); offset.setX(DIEGO_OFFSET * 2.5); }
 							else if (dir.getX() < 0 && dir.getY() >= 0) { offset.setX(0); }
 							else if (dir.getX() < 0 && dir.getY() < 0) { valFrame = 8; offset.setX(0); offset.setY(0); }
-							shootBullet(bt->getSecondTarget(), t, bt->getDamage(), sdlutils().floatConst().at("BalasVelocidad"), TR->getPosition(), bulletTexture, { 35, 35 }, _twr_BULLET);
+							shootBullet(bt->getSecondTarget(), t, bt->getDamage(), floatAt("BalasVelocidad"), TR->getPosition(), bulletTexture, { 35, 35 }, _twr_BULLET);
 
 							mngr_->getComponent<FramedImage>(t)->setCurrentFrame(valFrame + mngr_->getComponent<UpgradeTowerComponent>(t)->getLevel());
 							Vector2D spawn = { TR->getPosition()->getX() + offset.getX(),	TR->getPosition()->getY() + offset.getY() };//Punto de spawn de la bala con el offset
@@ -158,7 +159,7 @@ void TowerSystem::update() {
 						mngr_->getComponent<FramedImage>(t)->setCurrentFrame(valFrame + mngr_->getComponent<UpgradeTowerComponent>(t)->getLevel());
 						RenderComponent* rc = mngr_->getComponent<RenderComponent>(t);
 						Vector2D spawn = { TR->getPosition()->getX() + offset.getX(),	TR->getPosition()->getY() + offset.getY() };
-						Entity* bullet = shootBullet(st->getTarget(), t, st->getDamage(), sdlutils().floatConst().at("SlimeVelocidad"), spawn, slimeBulletTexture, { 25, 25 }, _twr_SLIME);
+						Entity* bullet = shootBullet(st->getTarget(), t, st->getDamage(), floatAt("SlimeVelocidad"), spawn, slimeBulletTexture, { 25, 25 }, _twr_SLIME);
 						mngr_->addComponent<SlimeBullet>(bullet, st->getDuration(), st->getSpeedDecrease(), st->getDPS());
 						st->setElapsedTime(0);
 					}
@@ -198,13 +199,29 @@ void TowerSystem::update() {
 						RenderComponent* rc = mngr_->getComponent<RenderComponent>(t);
 						Vector2D spawn = { TR->getPosition()->getX() + offset.getX(),	TR->getPosition()->getY() + offset.getY()};
 						
-						shootBullet(target, t, ds->getDamage() * ds->getCritDamage(), sdlutils().floatConst().at("DiegoSniperVelocidad"), spawn, sniperBulletTexture, {25, 20}, _twr_DIEGO);
+						shootBullet(target, t, ds->getDamage() * ds->getCritDamage(), floatAt("DiegoSniperVelocidad"), spawn, sniperBulletTexture, {25, 20}, _twr_DIEGO);
 						
 					}
 					ds->setElapsedTime(0);
 				}
 				if (!mngr_->isAlive(t)) { eliminateDestroyedTowers(t); };
-			}		
+			}	
+
+			PhoenixTower* pt = mngr_->getComponent<PhoenixTower>(t);
+			if (pt != nullptr) {
+				pt->setElapsedTime(pt->getElapsedTime() + game().getDeltaTime());
+				if (pt->getElapsedTime() > pt->getCoolingTime() && !pt->isShooting()) {
+					Vector2D spawn(TR->getPosition()->getX() - floatAt("FenixOffsetX"), TR->getPosition()->getY() - floatAt("FenixOffsetY"));
+					pt->setFire(shootFire(spawn, 90.0f));
+					pt->setIsShooting(true);
+					pt->setElapsedTime(0);
+				}
+				if (pt->isShooting() && pt->getElapsedTime()>pt->getShootingTime()) {
+					if (pt->getFire() != nullptr)mngr_->setAlive(pt->getFire(), false);
+					pt->setIsShooting(false);
+					pt->setElapsedTime(0);
+				}
+			}
 	}
 	//Mueve y dirige las balas, y destruye las balas si su objetivo muere o si choca con el objetivo, causandole dano
 	for (auto& b : bullets) {
@@ -224,7 +241,7 @@ void TowerSystem::update() {
 		}	
 		else if(((targetPos - myPos).magnitude() <= 5.0f)) { //Si choca con el enemigo
 			if (sb != nullptr) {
-				Entity* area = mngr_->addEntity(_grp_SLIMEAREA);
+				Entity* area = mngr_->addEntity(_grp_AREAOFATTACK);
 				Transform* tr = mngr_->addComponent<Transform>(area);					
 				Vector2D scale =  { 250, 200 } ;
 				tr->setScale(scale);
@@ -269,14 +286,21 @@ Entity* TowerSystem::shootBullet(Entity* target, Entity* src ,float damage, floa
 /// </summary>
 /// <param name="shootingTime">Tiempo en el que esta disparando fuego la torre de fenix</param>
 /// <param name="damage">Dano por segundo causado por la torre de fenix</param>
-void TowerSystem::shootFire(float shootingTime, int damage, Vector2D spawnPos) {
-	Entity* fire = mngr_->addEntity(_grp_BULLETS);
+Entity* TowerSystem::shootFire(Vector2D spawnPos, float rot) {
+	Entity* fire = mngr_->addEntity(_grp_AREAOFATTACK);
 	Transform* t = mngr_->addComponent<Transform>(fire);
-	RenderComponent* r = mngr_->addComponent<RenderComponent>(fire, square);
+	t->setPosition(spawnPos);
+	t->setScale({ 150.0f, 150.0f });
+	t->setRotation(rot);
+	mngr_->addComponent<RenderComponent>(fire, fireTexture);
+	mngr_->addComponent<FramedImage>(fire, intAt("FireFrames"), 1, intAt("FireLength"), intAt("FireLength"), 0, intAt("FireFrames"), intAt("FireFrames"));
 	Message m;
+	m.id = _m_ADD_RECT;
 	m.rect_data.rect = fire;
 	m.rect_data.id = _FENIX;
 	mngr_->send(m);
+
+	return fire;
 }
 /// <summary>
 /// Anade una torre al sistema, con un tipo, una posicion y una elevacion. A cada torre le anade un render component, un 
@@ -302,14 +326,14 @@ void TowerSystem::addTower(twrId type, Vector2D pos, Height height) {
 	switch (type)
 	{
 	case _twr_FENIX://Dano, Enfriamiento, TiempoDisparo, Rango
-		mngr_->addComponent<PhoenixTower>(t, sdlutils().floatConst().at("FenixDano"), sdlutils().floatConst().at("FenixEnfriamiento"), sdlutils().floatConst().at("FenixTiempoDisparo"), sdlutils().floatConst().at("FenixRango"));
+		mngr_->addComponent<PhoenixTower>(t, floatAt("FenixDano"), floatAt("FenixEnfriamiento"), floatAt("FenixTiempoDisparo"), floatAt("FenixRango"));
 		mngr_->addComponent<RenderComponent>(t, phoenixTowerTexture);
-		mngr_->addComponent<FramedImage>(t, sdlutils().intConst().at("FenixColumns"), sdlutils().intConst().at("FenixRows"), sdlutils().intConst().at("FenixWidth"), sdlutils().intConst().at("FenixHeight"), 0, 0);
+		mngr_->addComponent<FramedImage>(t, intAt("FenixColumns"), intAt("FenixRows"), intAt("FenixWidth"), intAt("FenixHeight"), 0, 0);
 		break;
 	case _twr_BULLET://Pasar rango, recarga, da?o y si dispara
-		mngr_->addComponent<BulletTower>(t, sdlutils().floatConst().at("BalasRango"), sdlutils().floatConst().at("BalasRecarga"), sdlutils().intConst().at("BalasDano"));
+		mngr_->addComponent<BulletTower>(t, floatAt("BalasRango"), floatAt("BalasRecarga"), floatAt("BalasDano"));
 		mngr_->addComponent<RenderComponent>(t, bulletTowerTexture);
-		mngr_->addComponent<FramedImage>(t, sdlutils().intConst().at("BalasColumns"), sdlutils().intConst().at("BalasRows"), sdlutils().intConst().at("BalasWidth"), sdlutils().intConst().at("BalasHeight"), 0, 0);
+		mngr_->addComponent<FramedImage>(t, intAt("BalasColumns"), intAt("BalasRows"), intAt("BalasWidth"), intAt("BalasHeight"), 0, 0);
 		//mngr_->getComponent<UpgradeTowerComponent>(t)->LevelUp();
 		//mngr_->getComponent<UpgradeTowerComponent>(t)->LevelUp();
 		//mngr_->getComponent<UpgradeTowerComponent>(t)->LevelUp();
@@ -319,28 +343,28 @@ void TowerSystem::addTower(twrId type, Vector2D pos, Height height) {
 	case _twr_DIRT:
 		mngr_->addComponent<DirtTower>(t);
 		mngr_->addComponent<RenderComponent>(t, clayTowerTexture);
-		mngr_->addComponent<FramedImage>(t, sdlutils().intConst().at("ArcillaColumns"), sdlutils().intConst().at("ArcillaRows"), sdlutils().intConst().at("ArcillaWidth"), sdlutils().intConst().at("ArcillaHeight"), 0, 0);
+		mngr_->addComponent<FramedImage>(t, intAt("ArcillaColumns"), intAt("ArcillaRows"), intAt("ArcillaWidth"), intAt("ArcillaHeight"), 0, 0);
 		break;
 	case _twr_POWER://Pasar rango, porcentaje incremento de ataque y vida extra
-		mngr_->addComponent<EnhancerTower>(t, sdlutils().floatConst().at("PotenciadoraRango"), sdlutils().floatConst().at("PotenciadoraAumentoDano"), sdlutils().floatConst().at("PotenciadoraAumentoVida"));
+		mngr_->addComponent<EnhancerTower>(t, floatAt("PotenciadoraRango"), floatAt("PotenciadoraAumentoDano"), floatAt("PotenciadoraAumentoVida"));
 		mngr_->addComponent<RenderComponent>(t, boosterTowerTexture);
-		mngr_->addComponent<FramedImage>(t, sdlutils().intConst().at("PotenciadoraColumns"), sdlutils().intConst().at("PotenciadoraRows"), sdlutils().intConst().at("PotenciadoraWidth"), sdlutils().intConst().at("PotenciadoraHeight"), 0, 0);
+		mngr_->addComponent<FramedImage>(t, intAt("PotenciadoraColumns"), intAt("PotenciadoraRows"), intAt("PotenciadoraWidth"), intAt("PotenciadoraHeight"), 0, 0);
 		break;
 	case _twr_DIEGO://Rango, Probabilidad de critico, Dano por critico, Tiempo de recarga y Dano
-		mngr_->addComponent<DiegoSniperTower>(t, sdlutils().floatConst().at("DiegoSniperRango"), sdlutils().floatConst().at("DiegoSniperCritProb1"), sdlutils().floatConst().at("DiegoSniperCritDano1"), sdlutils().floatConst().at("DiegoSniperRecarga"), sdlutils().intConst().at("DiegoSniperDano"));
+		mngr_->addComponent<DiegoSniperTower>(t, floatAt("DiegoSniperRango"), floatAt("DiegoSniperCritProb1"), floatAt("DiegoSniperCritDano1"), floatAt("DiegoSniperRecarga"), intAt("DiegoSniperDano"));
 		mngr_->addComponent<RenderComponent>(t, sniperTowerTexture);
-		mngr_->addComponent<FramedImage>(t, sdlutils().intConst().at("DiegoSniperColumns"), sdlutils().intConst().at("DiegoSniperRows"), sdlutils().intConst().at("DiegoSniperWidth"), sdlutils().intConst().at("DiegoSniperHeight"), 0, 0);
+		mngr_->addComponent<FramedImage>(t, intAt("DiegoSniperColumns"), intAt("DiegoSniperRows"), intAt("DiegoSniperWidth"), intAt("DiegoSniperHeight"), 0, 0);
 		break;
 	case _twr_SLIME:
-		mngr_->addComponent<SlimeTowerComponent>(t, sdlutils().intConst().at("SlimeRango"), sdlutils().floatConst().at("SlimeTiempoSlime"), sdlutils().floatConst().at("SlimeRalentizacion"), sdlutils().intConst().at("SlimeDPS"), sdlutils().intConst().at("SlimeRecarga") ,sdlutils().intConst().at("SlimeDano"));
+		mngr_->addComponent<SlimeTowerComponent>(t, intAt("SlimeRango"), floatAt("SlimeTiempoSlime"), floatAt("SlimeRalentizacion"), intAt("SlimeDPS"), intAt("SlimeRecarga") ,intAt("SlimeDano"));
 		mngr_->addComponent<RenderComponent>(t, slimeTowerTexture);
-		mngr_->addComponent<FramedImage>(t, sdlutils().intConst().at("SlimeColumns"), sdlutils().intConst().at("SlimeRows"), sdlutils().intConst().at("SlimeWidth"), sdlutils().intConst().at("SlimeHeight"), 0, 0);
+		mngr_->addComponent<FramedImage>(t, intAt("SlimeColumns"), intAt("SlimeRows"), intAt("SlimeWidth"), intAt("SlimeHeight"), 0, 0);
 
 		break;
 	case _twr_CRISTAL://Escudo, Tiempo de recarga y dano por explosion
-		mngr_->addComponent<CrystalTower>(t, sdlutils().intConst().at("CristalEscudo"), sdlutils().floatConst().at("CristalRecarga"), sdlutils().intConst().at("CristalExplosion"));
+		mngr_->addComponent<CrystalTower>(t, intAt("CristalEscudo"), floatAt("CristalRecarga"), intAt("CristalExplosion"));
 		mngr_->addComponent<RenderComponent>(t, cristalTowerTexture);
-		mngr_->addComponent<FramedImage>(t, sdlutils().intConst().at("CristalColumns"), sdlutils().intConst().at("CristalRows"), sdlutils().intConst().at("CristalWidth"), sdlutils().intConst().at("CristalHeight"), 0, 0);
+		mngr_->addComponent<FramedImage>(t, intAt("CristalColumns"), intAt("CristalRows"), intAt("CristalWidth"), intAt("CristalHeight"), 0, 0);
 		break;
 	default:
 		break;

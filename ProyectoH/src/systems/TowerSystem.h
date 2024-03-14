@@ -35,10 +35,12 @@ public:
 	void onRoundStart();
 	void onAttackTower(Entity* e, int dmg); //Hace daño a la torre mandada por mensaje
 	void addTower(twrId type, Vector2D pos, Height height);
+	int intAt(basic_string<char> s) { return sdlutils().intConst().at(s); }
+	float floatAt(basic_string<char> s) { return sdlutils().floatConst().at(s); }
 
 protected:
 	Entity* shootBullet(Entity* target, Entity* src, float damage, float speed, Vector2D spawnPos, gameTextures texture,Vector2D bulletScale, twrId id);
-	void shootFire(float shootingTime, int damage, Vector2D spawn);
+	Entity* shootFire(Vector2D spawn, float rot);
 	void eliminateDestroyedTowers(Entity* t);
 	std::vector<Entity*> towers;
 	bool active_;

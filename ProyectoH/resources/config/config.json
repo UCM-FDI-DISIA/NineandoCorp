@@ -70,7 +70,14 @@
       "id": "FenixDPS2",
       "value": 5
     },
-
+    {
+      "id": "FenixOffsetY",
+      "value": 100
+    },
+    {
+      "id": "FenixOffsetX",
+      "value": 20
+    },
     {
       "id": "BalasRecarga",
       "value": 0.5
@@ -476,6 +483,14 @@
     {
       "id": "ArcillaHeight",
       "value": 1200
+    },
+    {
+      "id": "FireLength",
+      "value": 800
+    },
+    {
+      "id": "FireFrames",
+      "value":  10
     }
 
   ]

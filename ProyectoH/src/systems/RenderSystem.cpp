@@ -158,8 +158,8 @@ void RenderSystem::update() {
 		textures[textureId]->render(srcRect, trRect);
 	}
 
-	//SLIME AREA
-	const auto& slimes = mngr_->getEntities(_grp_SLIMEAREA);
+	//AREA OF ATTACK (SLIME AND FENIX)
+	const auto& slimes = mngr_->getEntities(_grp_AREAOFATTACK);
 	for (auto& slime : slimes)
 	{
 		Transform* tr = mngr_->getComponent<Transform>(slime);
@@ -170,7 +170,7 @@ void RenderSystem::update() {
 		SDL_Rect trRect = tr->getRect();
 		trRect.x += offset->x;
 		trRect.y += offset->y;
-		textures[textureId]->render(srcRect, trRect);
+		textures[textureId]->render(srcRect, trRect, tr->getRotation());
 	}
 
 	//Este grupo tiene que estar ordenado de arriba a abajo de la pantalla segun su transform (posicion y)

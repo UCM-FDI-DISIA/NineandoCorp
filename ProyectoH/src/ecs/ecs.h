@@ -62,7 +62,7 @@ enum grpId : grpId_type {
 	_grp_HUD_BACKGROUND,
 	_grp_HUD_FOREGROUND,
 	_grp_HUD_DRAG_AND_DROP,
-	_grp_SLIMEAREA,
+	_grp_AREAOFATTACK,
 	
 	// do not remove this
 	_LAST_GRP_ID
