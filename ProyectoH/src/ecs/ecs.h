@@ -149,6 +149,25 @@ enum twrId : twrId_type {
 	_twr_DIRT,
 	_twr_POWER,
 };
+using enmId_type = uint8_t;
+enum enmId : enmId_type {
+	_enm_MALMAS,
+	_enm_AELECTRICO,
+	_enm_MALDITO,
+	_enm_GOLEM,
+	_enm_DALADO,
+	_enm_GOBLIN,
+	_enm_ELFO,
+	_enm_MMUERTE,
+	_enm_ANGEL,
+	_enm_DINFERNAL,
+	_enm_DREAL,
+	_enm_CMALDITO,
+	_enm_PRINCIPITO,
+	_enm_MONJE,
+	_enm_MUERTE,
+
+};
 
 inline Uint16 sdlnet_hton(Uint16 v) {
 	Uint16 nv;

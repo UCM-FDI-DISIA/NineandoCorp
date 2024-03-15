@@ -15,12 +15,13 @@ private:
 	//float speed;
 	Vector2D* scale;
 	Vector2D* velocity;
+	float speed_;
 
 public:
 	static const cmpId id = cmpId::_TRANSFORM;
 
 	// Constructor
-	Transform() : Component(), position(new Vector2D(0, 0)), rotation(0), scale(new Vector2D(100, 100)), velocity(new Vector2D(0, 0)) {};
+	Transform() : Component(), position(new Vector2D(0, 0)), rotation(0), scale(new Vector2D(100, 100)), velocity(new Vector2D(0, 0)),speed_(0.1f) {};
 	// Destructor
 	virtual ~Transform() { delete position; delete scale; rotation = 0; delete velocity; };
 
@@ -69,6 +70,8 @@ public:
 	void setVelX(float velx);
 	// Sets velocity Y
 	void setVelY(float vely);
+
+	void setSpeed(float s);
 
 	// Adds inserted value to rotation
 	void addRotation(float rot);

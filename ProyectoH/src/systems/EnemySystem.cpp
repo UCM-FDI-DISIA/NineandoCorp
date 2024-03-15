@@ -26,7 +26,7 @@ void EnemySystem::initSystem() {
 	route.push_back({ 300, 600.f });
 
 	mngr_->addComponent<RouteComponent>(enemie, route);
-	mngr_->addComponent<AttackComponent>(enemie, 0, 0.25, 20, false);
+	mngr_->addComponent<AttackComponent>(enemie, 100, 0.25, 20, false);
 	mngr_->addComponent<RenderComponent>(enemie, square);
 	mngr_->addComponent<HealthComponent>(enemie, 50000);
 	mngr_->addComponent<FramedImage>(enemie, 1, 1, 122, 117, 0, 0, 1);
@@ -114,5 +114,58 @@ void EnemySystem::update() {
 				}
 			}
 		}
-
 	}
+void EnemySystem::addEnemy(enmId type, Vector2D pos) {
+	Entity* t = mngr_->addEntity(_grp_TOWERS_AND_ENEMIES);
+	Transform* tr = mngr_->addComponent<Transform>(t);//transform
+	tr->setPosition(pos);
+	tr->setScale({ 100.0f, 150.0f });
+	switch (type) {
+	case _enm_MALMAS:
+		tr->setSpeed(0.3f);
+		break;
+	case _enm_AELECTRICO:
+		tr->setSpeed(0.7f);
+		break;
+	case _enm_MALDITO:
+		tr->setSpeed(0.3f);
+		break;
+	case _enm_GOLEM:
+		tr->setSpeed(0.2f);
+		break;
+	case _enm_DALADO:
+		tr->setSpeed(0.3f);
+		break;
+	case _enm_GOBLIN:
+		tr->setSpeed(0.3f);
+		break;
+	case _enm_ELFO:
+		tr->setSpeed(0.3f);
+		break;
+	case _enm_MMUERTE:
+		tr->setSpeed(0.3f);
+		break;
+	case _enm_ANGEL:
+		tr->setSpeed(0.3f);
+		break;
+	case _enm_DINFERNAL:
+		tr->setSpeed(0.3f);
+		break;
+	case _enm_DREAL:
+		tr->setSpeed(0.3f);
+		break;
+	case _enm_CMALDITO:
+		tr->setSpeed(0.3f);
+		break;
+	case _enm_PRINCIPITO:
+		tr->setSpeed(0.3f);
+		break;
+	case _enm_MONJE:
+		tr->setSpeed(0.3f);
+		break;
+	case _enm_MUERTE:
+		tr->setSpeed(0.3f);
+		break;
+	}
+			
+}

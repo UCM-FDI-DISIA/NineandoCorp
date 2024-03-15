@@ -38,6 +38,8 @@ public:
 	void setTimeToShoot(float t);
 	void setElapsedTime(float elapsed);
 	void setTarget(Entity* e) { target_ = e; };
+	bool getNexo() { return nexo_; }
+	void setNexo(bool n) { nexo_=n; }
 
 protected:
 	
@@ -50,6 +52,7 @@ protected:
 	float range_;//Rango de deteccion
 	float timeToShoot_;//Tiempo por dispaor
 	float elapsedTime_;
+	bool nexo_;
 
 	bool loaded_;
 };

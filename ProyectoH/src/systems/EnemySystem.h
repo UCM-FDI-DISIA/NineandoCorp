@@ -19,6 +19,7 @@ public:
 	void onRoundOver();
 	void onRoundStart();
 	void collideswithEnemy();
+	void addEnemy(enmId type, Vector2D pos);
 
 protected:
 
