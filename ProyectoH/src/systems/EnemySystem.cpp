@@ -40,6 +40,13 @@ void  EnemySystem::receive(const Message& m) {
 	case _m_ROUND_OVER:
 		onRoundOver();
 		break;
+	case _m_RESET_SPEED:
+		for (const auto& enemy : mngr_->getHandler(_hdlr_ENEMIES))
+		{
+			MovementComponent* mc = mngr_->getComponent<MovementComponent>(enemy);
+			if (mc != nullptr) { mc->activateSlow(m.reset_speed.speed, false); }
+		}
+		break;
 	case _m_ENTITY_TO_ATTACK:
 		if (m.entity_to_attack.e != nullptr && mngr_->isAlive(m.entity_to_attack.e)) {
 			 HealthComponent* h = mngr_->getComponent<HealthComponent>(m.entity_to_attack.e);
@@ -56,8 +63,8 @@ void  EnemySystem::receive(const Message& m) {
 				mc->activateSlow(m.decrease_speed.slowPercentage, true);
 			}
 		}
+		break;
 	}
-
 }
 void EnemySystem::onRoundStart() {
 	const auto& enemies = mngr_->getHandler(_hdlr_ENEMIES);
