@@ -74,6 +74,6 @@ public:
 	void addRotation(float rot);
 
 	// Updates position based on velocity and deltaTime
-	void translate();
+	void translate(float decreaseVal = 0);
 };
 #endif

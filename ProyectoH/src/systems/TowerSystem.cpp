@@ -17,7 +17,7 @@ void TowerSystem::initSystem() {
 	//addTower(twrId::_twr_BULLET, { (float)sdlutils().width() / 2.2f, 500.f }, LOW);
 	//addTower(twrId::_twr_BULLET, { (float)sdlutils().width() / 1.9f, 550.f }, LOW);
 	//addTower(twrId::_twr_DIEGO, { (float)sdlutils().width() / 1.9f, 600.f }, LOW);
-	addTower(twrId::_twr_SLIME, { (float)sdlutils().width() / 3.0f, 600.f }, LOW);
+	//addTower(twrId::_twr_SLIME, { (float)sdlutils().width() / 3.0f, 600.f }, LOW);
 	addTower(twrId::_twr_SLIME, { (float)sdlutils().width() / 2.3f, 630.f }, LOW);
 	//addTower(twrId::_twr_BULLET, { (float)sdlutils().width() / 1.8f, 600.f }, LOW);
 	addTower(twrId::_twr_FENIX, { (float)sdlutils().width() / 1.8f, 600.f }, LOW);
@@ -357,7 +357,7 @@ void TowerSystem::addTower(twrId type, Vector2D pos, Height height) {
 		mngr_->addComponent<FramedImage>(t, intAt("DiegoSniperColumns"), intAt("DiegoSniperRows"), intAt("DiegoSniperWidth"), intAt("DiegoSniperHeight"), 0, 0);
 		break;
 	case _twr_SLIME:
-		mngr_->addComponent<SlimeTowerComponent>(t, intAt("SlimeRango"), /*floatAt("SlimeTiempoSlime")*/2.0, floatAt("SlimeRalentizacion"), intAt("SlimeDPS"), intAt("SlimeRecarga") ,intAt("SlimeDano"));
+		mngr_->addComponent<SlimeTowerComponent>(t, intAt("SlimeRango"), /*floatAt("SlimeTiempoSlime")*/2.0, /*floatAt("SlimeRalentizacion")*/0.3f, intAt("SlimeDPS"), intAt("SlimeRecarga") ,intAt("SlimeDano"));
 		mngr_->addComponent<RenderComponent>(t, slimeTowerTexture);
 		mngr_->addComponent<FramedImage>(t, intAt("SlimeColumns"), intAt("SlimeRows"), intAt("SlimeWidth"), intAt("SlimeHeight"), 0, 0);
 

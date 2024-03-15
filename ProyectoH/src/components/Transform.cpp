@@ -46,6 +46,6 @@ void Transform::setVelY(float vely) { velocity->setY(vely); };
 void Transform::addRotation(float rot) { rotation += rot; };
 
 // Updates position based on velocity and deltaTime
-void Transform::translate() {
-	*position = *position + (*velocity * game().getDeltaTime());
+void Transform::translate(float decreaseVal) {
+	*position = *position + (*velocity * game().getDeltaTime() * (1.0f - decreaseVal));
 };

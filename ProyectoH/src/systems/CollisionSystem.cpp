@@ -44,7 +44,7 @@ void CollisionSystem::addRect(Entity* rect, rectId id) {
 }
 
 void CollisionSystem::update() {
-	const float timeInterval = 1.0f;
+	const float timeInterval = 0.25f;
 	const auto& slimes = mngr_->getEntities(_grp_AREAOFATTACK);
 	const auto& enemies = mngr_->getHandler(_hdlr_ENEMIES);
 	for (const auto& er : enemies) {
@@ -68,20 +68,37 @@ void CollisionSystem::update() {
 			
 			SlimeBullet* sb = mngr_->getComponent<SlimeBullet>(sr);	
 			if (sb != nullptr) {
+				
 				sb->setElapsedTime(sb->getElapsedTime() + game().getDeltaTime());
 				if (sb->getElapsedTime() > timeInterval) {
+					sb->setElapsedTime(0);
 					SDL_Rect slime = mngr_->getComponent<Transform>(sr)->getRect();
 					if (SDL_HasIntersection(&slime, &enemy)) {
 						Message m;
 						m.id = _m_ENTITY_TO_ATTACK;
 						m.entity_to_attack.e = er;
 						m.entity_to_attack.src = sr;
-						m.entity_to_attack.damage = sb->getDPS();
+						m.entity_to_attack.damage = sb->getDPS() / timeInterval;
 						mngr_->send(m);
+						Message m1;
+						m1.id = _m_DECREASE_SPEED;
+						m1.decrease_speed.e = er;
+						m1.decrease_speed.slowPercentage = sb->getSpeedDecrease();
+						mngr_->send(m1);
 					}
 				}
 				sb->setElapsedDuration(sb->getElapsedDuration() + game().getDeltaTime());
-				if (sb->getElapsedDuration() > sb->getDuration()) { mngr_->setAlive(sr, false); }
+				if (sb->getElapsedDuration() > sb->getDuration()) { 
+					for (const auto& er : enemies)
+					{
+						Message m1;
+						m1.id = _m_DECREASE_SPEED;
+						m1.decrease_speed.e = er;
+						m1.decrease_speed.slowPercentage = 0;
+						mngr_->send(m1);
+					}
+					mngr_->setAlive(sr, false); 
+				}
 			}				
 		}
 	}	

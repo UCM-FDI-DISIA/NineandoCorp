@@ -134,7 +134,8 @@ enum msgId : msgId_type {
 	_m_BACK_TO_MAINMENU, 
 	_m_TEXT_MESSAGE,
 	_m_OFFSET_CONTEXT,
-	_m_ADD_RECT
+	_m_ADD_RECT,
+	_m_DECREASE_SPEED,
 };
 
 using twrId_type = uint8_t;
@@ -216,6 +217,11 @@ msgId_type id;
 	struct {
 		int damage;
 	}nexus_attack_data;
+	//_m_DECREASE_SPEED
+	struct {
+		float slowPercentage;
+		Entity* e;
+	}decrease_speed;
 
 	// _m_UPGRADE_TOWER
 	struct {

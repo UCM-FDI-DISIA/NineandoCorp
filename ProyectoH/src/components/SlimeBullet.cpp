@@ -1,7 +1,7 @@
 #include "SlimeBullet.h"
 
 SlimeBullet::SlimeBullet(float slimeDuration, float speedDecreasePer, float slimeDPS) 
-	: slimeDuration_(slimeDuration), speedDecreasePer_(speedDecreasePer), slimeDPS_(slimeDPS), elapsedTime_(0), elapsedDuration_(0) {}
+	: slimeDuration_(slimeDuration), speedDecreasePer_(speedDecreasePer), slimeDPS_(slimeDPS), elapsedTime_(1), elapsedDuration_(0) {}
 
 float SlimeBullet::getSpeedDecrease() const { return speedDecreasePer_; }
 

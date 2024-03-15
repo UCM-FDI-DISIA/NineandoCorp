@@ -49,6 +49,13 @@ void  EnemySystem::receive(const Message& m) {
 			 };
 		}		
 		break;
+	case _m_DECREASE_SPEED:
+		if (m.decrease_speed.e != nullptr) {
+			MovementComponent* mc = mngr_->getComponent<MovementComponent>(m.decrease_speed.e);
+			if (mc != nullptr) {
+				mc->activateSlow(m.decrease_speed.slowPercentage, true);
+			}
+		}
 	}
 
 }
