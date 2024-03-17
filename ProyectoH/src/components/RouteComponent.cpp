@@ -30,6 +30,7 @@ RouteComponent::checkdestiny() {
 void
 RouteComponent::changevelocity(Vector2D destino) {
 	Vector2D v = destino - *(transform_->getPosition());
-	v.normalize();
-	transform_->setVelocity(v.normalize() * transform_->getVelocity()->magnitude());
+	v=v.normalize();
+	//transform_->setVelocity(v.normalize() * transform_->getVelocity()->magnitude());
+	transform_->setVelocity(v);
 }
