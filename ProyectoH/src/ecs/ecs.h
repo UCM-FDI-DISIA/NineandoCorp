@@ -32,9 +32,13 @@ enum cmpId : cmpId_type {
 	_DIRTTOWER,
 	_SLIMETOWER,
 	_SLIMEBULLET,
+<<<<<<< Updated upstream
 	_TOWERSTATES,
 	_MAESTROALMAS,
 	_GOLEM,
+=======
+	_FIRE,
+>>>>>>> Stashed changes
 
 	// do not remove this
 	_LAST_CMP_ID
@@ -141,6 +145,7 @@ enum msgId : msgId_type {
 	_m_ADD_RECT,
 	_m_DECREASE_SPEED,
 	_m_RESET_SPEED,
+	_m_REMOVE_RECT,
 };
 
 using twrId_type = uint8_t;
@@ -266,7 +271,7 @@ msgId_type id;
 	struct {
 		int lvl;
 	}upgrade_nexus;
-
+	//_m_ADD_RECT
 	struct {
 		Entity* rect;
 		rectId id;
