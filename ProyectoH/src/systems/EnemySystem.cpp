@@ -2,6 +2,7 @@
 #include "..//components/MovementComponent.h"
 #include "..//components/RouteComponent.h"
 #include "..//components/HealthComponent.h"
+#include "..//components/MaestroAlmasComponent.h"
 #include "../ecs/Manager.h"
 
 EnemySystem::EnemySystem() {
@@ -70,6 +71,7 @@ void EnemySystem::update() {
 		RouteComponent* rc = mngr_->getComponent<RouteComponent>(e);
 		MovementComponent* mc = mngr_->getComponent<MovementComponent>(e);
 		AttackComponent* ac = mngr_->getComponent<AttackComponent>(e);
+		MaestroAlmasComponent* ma = mngr_->getComponent<MaestroAlmasComponent>(e);
 		bool para = false;
 		if (rc != nullptr) {
 			rc->checkdestiny();
@@ -86,11 +88,17 @@ void EnemySystem::update() {
 				
 				if (ac->getTarget() != nullptr) {
 					mc->setStop(true);
-					
-					std::cout << "atacando";
-					ac->doDamageTo(ac->getTarget(), ac->getDamage());
-					ac->setElapsedTime(0.0f);
-					ac->setLoaded(false);
+					if (ma != nullptr) {
+						ma->CiegaTorre(ac->getTarget());
+						ac->setElapsedTime(0.0f);
+						ac->setLoaded(false);
+					}
+					else {
+						std::cout << "atacando";
+						ac->doDamageTo(ac->getTarget(), ac->getDamage());
+						ac->setElapsedTime(0.0f);
+						ac->setLoaded(false);
+					}
 				}
 				else{
 					mc->setStop(false);
@@ -99,6 +107,7 @@ void EnemySystem::update() {
 				}
 			}
 		}
+	
 	}
 void EnemySystem::addEnemy(enmId type, Vector2D pos) {
 	Entity* t = mngr_->addEntity(_grp_TOWERS_AND_ENEMIES);

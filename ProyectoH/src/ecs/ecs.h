@@ -32,6 +32,9 @@ enum cmpId : cmpId_type {
 	_DIRTTOWER,
 	_SLIMETOWER,
 	_SLIMEBULLET,
+	_TOWERSTATES,
+	_MAESTROALMAS,
+	_GOLEM,
 
 	// do not remove this
 	_LAST_CMP_ID
@@ -122,6 +125,7 @@ enum msgId : msgId_type {
 	_m_ENTITY_TO_ATTACK,
 	_m_ATTACK_NEXUS,
 	_m_TOWER_TO_ATTACK,
+	_m_TOWER_TO_BLIND,
 	_m_SHIELD_NEXUS,
 	_m_GAMEOVER,
 	_m_GAMESTART,
@@ -216,6 +220,11 @@ msgId_type id;
     struct {
 		std::vector<Entity*> towers;
 	} towers_to_attack;
+	// _m_TOWER_TO_BLIND
+	struct {
+		Entity* e;
+		float damage;
+	} tower_to_blind;
 	// _m_ENTITY_TO_ATTACK
 	struct {
 		Entity* src;

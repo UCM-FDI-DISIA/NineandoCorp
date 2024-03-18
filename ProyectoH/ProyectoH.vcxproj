@@ -31,7 +31,9 @@
     <ClInclude Include="src\components\EnhancerTower.h" />
     <ClInclude Include="src\components\FireComponent.h" />
     <ClInclude Include="src\components\FramedImage.h" />
+    <ClInclude Include="src\components\GolemComponent.h" />
     <ClInclude Include="src\components\HealthComponent.h" />
+    <ClInclude Include="src\components\MaestroAlmasComponent.h" />
     <ClInclude Include="src\components\MovementComponent.h" />
     <ClInclude Include="src\components\NexusComponent.h" />
     <ClInclude Include="src\components\PhoenixTower.h" />
@@ -39,6 +41,7 @@
     <ClInclude Include="src\components\RouteComponent.h" />
     <ClInclude Include="src\components\SlimeBullet.h" />
     <ClInclude Include="src\components\SlimeTowerComponent.h" />
+    <ClInclude Include="src\components\TowerStates.h" />
     <ClInclude Include="src\components\Transform.h" />
     <ClInclude Include="src\components\UpgradeTowerComponent.h" />
     <ClInclude Include="src\ecs\Component.h" />
@@ -96,13 +99,16 @@
     <ClCompile Include="src\components\EnhancerTower.cpp" />
     <ClCompile Include="src\components\FireComponent.cpp" />
     <ClCompile Include="src\components\FramedImage.cpp" />
+    <ClCompile Include="src\components\GolemComponent.cpp" />
     <ClCompile Include="src\components\HealthComponent.cpp" />
+    <ClCompile Include="src\components\MaestroAlmasComponent.cpp" />
     <ClCompile Include="src\components\MovementComponent.cpp" />
     <ClCompile Include="src\components\NexusComponent.cpp" />
     <ClCompile Include="src\components\PhoenixTower.cpp" />
     <ClCompile Include="src\components\RouteComponent.cpp" />
     <ClCompile Include="src\components\SlimeBullet.cpp" />
     <ClCompile Include="src\components\SlimeTowerComponent.cpp" />
+    <ClCompile Include="src\components\TowerStates.cpp" />
     <ClCompile Include="src\components\Transform.cpp" />
     <ClCompile Include="src\components\UpgradeTowerComponent.cpp" />
     <ClCompile Include="src\ecs\Manager.cpp" />
