@@ -2,6 +2,7 @@
 #include "..//components/MovementComponent.h"
 #include "..//components/RouteComponent.h"
 #include "..//components/HealthComponent.h"
+#include "..//components/generateEnemies.h"
 #include "../ecs/Manager.h"
 
 EnemySystem::EnemySystem() {
@@ -20,7 +21,7 @@ void EnemySystem::initSystem() {
 void  EnemySystem::receive(const Message& m) {
 	switch (m.id) {
 	case _m_ROUND_START:
-		onRoundStart();
+		onRoundStart(m.create_spawns_data.n_grp);
 		break;
 	case _m_ROUND_OVER:
 		onRoundOver();
@@ -51,16 +52,31 @@ void  EnemySystem::receive(const Message& m) {
 		break;
 	}
 }
-void EnemySystem::onRoundStart() {
-	const auto& enemies = mngr_->getHandler(_hdlr_ENEMIES);
+void EnemySystem::onRoundStart(unsigned int n_grp) {
+	/*const auto& enemies = mngr_->getHandler(_hdlr_ENEMIES);
 
 	for (auto& t : enemies) {
 		enemiesTransforms.push_back(mngr_->getComponent<Transform>(t));
+	}*/
+	for (auto i = 0; i < n_grp; i++)
+	{
+		auto e = mngr_->addEntity(_grp_SPAWN);
+		auto tr = mngr_->addComponent<generateEnemies>(e);
+		spawnsVector.push_back(e);
 	}
 }
+void EnemySystem::onWaveStart(unsigned int level, unsigned int wave) {
+	for (auto i = 0; i < spawnsVector.size(); i++)
+	{
+		mngr_->getComponent<generateEnemies>(spawnsVector[i])->setLevel(level);
+		mngr_->getComponent<generateEnemies>(spawnsVector[i])->setWave(wave);
+		mngr_->getComponent<generateEnemies>(spawnsVector[i])->setGrp(i);
+		mngr_->getComponent<generateEnemies>(spawnsVector[i])->addGroupEnemies();
 
+	}
+}
 void EnemySystem::onRoundOver() {
-	enemiesTransforms.clear();
+	/*enemiesTransforms.clear();*/
 }
 void EnemySystem::update() {
 	const auto& enemies = mngr_->getHandler(_hdlr_ENEMIES);

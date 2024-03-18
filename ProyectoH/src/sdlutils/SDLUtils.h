@@ -61,6 +61,12 @@ public:
 		int numRutes;
 		std::vector<Vector2D> points;
 	};
+	struct spawnGroupData
+	{
+		std::vector<std::string> typeEnemy;
+		std::vector<int> numEnemies;
+		int timeSpawn;
+	};
 
 	virtual ~SDLUtils();
 
@@ -161,6 +167,9 @@ public:
 	inline auto& floatConst() {
 		return floatConstAccessWrapper_;
 	}
+	inline auto& spawns() {
+		return spawnAccessWrapper_;
+	}
 
 // Access to the random number generator. It is important to always
 // use this generator, this way you can regenerate the same sequence
@@ -210,6 +219,7 @@ private:
 	sdl_resource_table<int> floatConst_;
 	sdl_resource_table<int> intConst_;
 	sdl_resource_table<RuteData> rutes_;
+	sdl_resource_table<spawnGroupData> spawn_;
 
 	map_access_wrapper<Font> fontsAccessWrapper_;
 	map_access_wrapper<Texture> imagesAccessWrapper_;
@@ -219,6 +229,7 @@ private:
 	map_access_wrapper<int> floatConstAccessWrapper_;
 	map_access_wrapper<int> intConstAccessWrapper_;
 	map_access_wrapper<RuteData> rutesAccessWrapper_;
+	map_access_wrapper<spawnGroupData> spawnAccessWrapper_;
 
 	RandomNumberGenerator random_; // (pseudo) random numbers generator
 	VirtualTimer timer_; // virtual timer

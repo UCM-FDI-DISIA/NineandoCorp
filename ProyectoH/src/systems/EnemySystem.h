@@ -17,13 +17,15 @@ public:
 	void initSystem() override;
 	void receive(const Message& m) override;
 	void onRoundOver();
-	void onRoundStart();
+	void onRoundStart(unsigned int n_grp);
+	void onWaveStart(unsigned int level, unsigned int wave);
 	void collideswithEnemy();
 	void addEnemy(enmId type, Vector2D pos);
 
 protected:
 
 	std::vector<Transform*> enemiesTransforms;
+	std::vector<Entity*> spawnsVector;
 	bool active_;
 };
 

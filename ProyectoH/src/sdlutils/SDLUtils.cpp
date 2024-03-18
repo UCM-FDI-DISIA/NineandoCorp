@@ -22,7 +22,8 @@ SDLUtils::SDLUtils(std::string windowTitle, int width, int height) :
 	musicsAccessWrapper_(musics_, "Musics Table"), ///
 	floatConstAccessWrapper_(floatConst_, "Float Constant Table"),
 	intConstAccessWrapper_(intConst_, "Int Constant Table"),
-	rutesAccessWrapper_(rutes_, "Rutes Table")
+	rutesAccessWrapper_(rutes_, "Rutes Table"),
+	spawnAccessWrapper_(spawn_, "Enemies Spawn Table")
 {
 
 	initWindow();
@@ -328,6 +329,68 @@ void SDLUtils::loadConstants(std::string filename) {
 		}
 		else {
 			throw "'intConst' is not an array in '" + filename + "'";
+		}
+	}
+	jValue = root["spawneoEnemies"];
+	if (jValue != nullptr) {
+		if (jValue->IsArray()) {
+			msgs_.reserve(jValue->AsArray().size());
+			for (auto& v : jValue->AsArray()) {
+				if (v->IsObject()) {
+					for (auto& e : v->AsObject()) {
+						std::string nivel = e.first.c_str();
+						std::cout << "Loading int with id: " << nivel
+							<< std::endl;
+						if(e.second->IsArray()){
+							for (auto& i : e.second->AsArray()) {
+								if (i->IsObject()) {
+									for (auto& o : i->AsObject()) {
+										std::string oleada = o.first.c_str();
+										std::cout << "Loading int with id: " << oleada
+											<< std::endl;
+										if (o.second->IsArray()) {
+											for (auto& g : o.second->AsArray()) {
+												if (g->IsObject()) {
+													for (auto& gr : g->AsObject()) {
+														std::string grupo = gr.first.c_str();
+														std::cout << "Loading int with id: " << grupo
+															<< std::endl;
+														if (gr.second->IsArray()) {
+															for (auto& el : gr.second->AsArray()) {
+																if (el->IsObject()) {
+																	JSONObject vObj = el->AsObject();
+																	std::string key = vObj["spawn"]->AsString();
+																	spawnGroupData group;
+																	if(!vObj["typeEnemy"]->AsArray().empty()){
+																		for (auto& arrayType : vObj["typeEnemy"]->AsArray()) {
+
+																			group.typeEnemy.push_back(arrayType->AsString());
+																		}
+																	}
+																	if (!vObj["numEnemies"]->AsArray().empty()) {
+																		for (auto& arrayNum : vObj["numEnemies"]->AsArray()) {
+																			group.numEnemies.push_back(arrayNum->AsNumber());
+																		}
+																	}
+																	
+																	group.timeSpawn = static_cast<int>(vObj["timeSpawn"]->AsNumber());
+																	std::cout << "Loading int with id: " << key
+																		<< std::endl;
+																	spawn_.emplace(nivel + oleada+grupo,group);
+																}
+															}
+														}
+													}
+												}
+											}
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
 		}
 	}
 	// TODO improve syntax error checks below, now we do not check

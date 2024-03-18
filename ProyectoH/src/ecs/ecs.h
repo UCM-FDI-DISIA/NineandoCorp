@@ -32,6 +32,7 @@ enum cmpId : cmpId_type {
 	_DIRTTOWER,
 	_SLIMETOWER,
 	_SLIMEBULLET,
+	_GENERATENEMIES,
 
 	// do not remove this
 	_LAST_CMP_ID
@@ -46,7 +47,7 @@ enum hdlrId : hdlrId_type {
 	_hdlr_LOW_TOWERS,
 	_hdlr_HIGH_TOWERS,
 	_hdlr_ENEMIES,
-	
+	_hdlr_SPAWNS,
 	// do not remove this
 	_LAST_HDLR_ID };
 constexpr hdlrId_type maxHdlrId = _LAST_HDLR_ID;
@@ -63,6 +64,7 @@ enum grpId : grpId_type {
 	_grp_HUD_FOREGROUND,
 	_grp_HUD_DRAG_AND_DROP,
 	_grp_AREAOFATTACK,
+	_grp_SPAWN,
 	
 	// do not remove this
 	_LAST_GRP_ID
@@ -266,6 +268,13 @@ msgId_type id;
 	struct {
 		SDL_Rect* offset;
 	}offset_context;
+
+	// _m_ROUND_START
+	struct {
+		unsigned int level;
+		unsigned int wave;
+		unsigned int n_grp;
+	} create_spawns_data;
 };
 
 #endif // !ECS_H_
