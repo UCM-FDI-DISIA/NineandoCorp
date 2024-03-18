@@ -43,6 +43,7 @@ RenderSystem::RenderSystem() : winner_(0)
 	textures[power_tower_image] = &sdlutils().images().at("power_tower_image");
 	textures[fireTexture] = &sdlutils().images().at("fireball");
 	textures[slimeArea] = &sdlutils().images().at("slime_area");
+	textures[shield] = &sdlutils().images().at("shield");
 
 	//HUD
 	cursorTexture = &sdlutils().images().at("cursor");

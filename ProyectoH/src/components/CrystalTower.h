@@ -22,7 +22,7 @@ public:
 private:
 	int shieldVal_;//Valor del escudo; como los puntos de vida
 	float timeToShield_;//Tiempo para actualizar el escudo
-	float elapsedTime_ = 0.0f;
+	float elapsedTime_;
 	int explosionDmg_;//Dano del escudo; para la mejora maxima
 	bool isMaxLevel_ = false;
 };

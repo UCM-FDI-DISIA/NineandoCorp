@@ -82,6 +82,7 @@
     <ClInclude Include="src\utils\NetMap.h" />
     <ClInclude Include="src\utils\Singleton.h" />
     <ClInclude Include="src\utils\Vector2D.h" />
+    <ClInclude Include="U:\hlocal\Gabriel Barroso\NineandoCorp\ProyectoH\src\components\ShieldComponent.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\components\AttackComponent.cpp" />
@@ -134,6 +135,7 @@
     <ClCompile Include="src\utils\Collisions.cpp" />
     <ClCompile Include="src\utils\NetMap.cpp" />
     <ClCompile Include="src\utils\Vector2D.cpp" />
+    <ClCompile Include="U:\hlocal\Gabriel Barroso\NineandoCorp\ProyectoH\src\components\ShieldComponent.cpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>

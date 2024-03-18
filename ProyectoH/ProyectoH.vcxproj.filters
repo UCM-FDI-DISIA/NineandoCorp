@@ -249,6 +249,12 @@
     <ClInclude Include="src\components\SlimeBullet.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="src\components\BlindComponent.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="U:\hlocal\Gabriel Barroso\NineandoCorp\ProyectoH\src\components\ShieldComponent.h">
+      <Filter>Header Files\components</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\json\JSONValue.cpp">
@@ -396,6 +402,12 @@
       <Filter>Source Files\systems</Filter>
     </ClCompile>
     <ClCompile Include="src\components\SlimeBullet.cpp">
+      <Filter>Source Files\components</Filter>
+    </ClCompile>
+    <ClCompile Include="src\components\BlindComponent.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="U:\hlocal\Gabriel Barroso\NineandoCorp\ProyectoH\src\components\ShieldComponent.cpp">
       <Filter>Source Files\components</Filter>
     </ClCompile>
   </ItemGroup>

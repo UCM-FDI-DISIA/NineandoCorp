@@ -1,6 +1,7 @@
 ﻿#include "TowerSystem.h"
 #include "..//ecs/ecs.h"
 #include "..//components/SlimeBullet.h"
+#include "..//components/ShieldComponent.h"
 
 
 TowerSystem::TowerSystem() : active_(true) {
@@ -17,9 +18,9 @@ void TowerSystem::initSystem() {
 	//addTower(twrId::_twr_BULLET, { (float)sdlutils().width() / 2.2f, 500.f }, LOW);
 	//addTower(twrId::_twr_BULLET, { (float)sdlutils().width() / 1.9f, 550.f }, LOW);
 	//addTower(twrId::_twr_DIEGO, { (float)sdlutils().width() / 1.9f, 600.f }, LOW);
-	//addTower(twrId::_twr_SLIME, { (float)sdlutils().width() / 3.0f, 600.f }, LOW);
+	addTower(twrId::_twr_DIRT, { (float)sdlutils().width() / 3.0f, 600.f }, LOW);
 	addTower(twrId::_twr_SLIME, { (float)sdlutils().width() / 2.3f, 630.f }, LOW);
-	//addTower(twrId::_twr_BULLET, { (float)sdlutils().width() / 1.8f, 600.f }, LOW);
+	addTower(twrId::_twr_CRISTAL, { (float)sdlutils().width() / 1.8f, 600.f }, LOW);
 	addTower(twrId::_twr_FENIX, { (float)sdlutils().width() / 1.8f, 600.f }, LOW);
 	//addTower(twrId::_twr_BULLET, { (float)sdlutils().width() / 1.7f, 550.f }, LOW);
 	//addTower(twrId::_twr_POWER, { (float)sdlutils().width() / 2.2f, 540.f }, LOW);
@@ -145,15 +146,13 @@ void TowerSystem::update() {
 			CrystalTower* ct = mngr_->getComponent<CrystalTower>(t);
 			if (ct != nullptr) {
 				ct->setElapsedTime(ct->getElapsedTime()+game().getDeltaTime());
-				if (ct->getElapsedTime() > ct->getTimeToShield()) {
-					Message m;
-					m.id = _m_SHIELD_NEXUS;
-					m.shield_data.shield = ct->getShieldVal();
-					if (ct->isMaxLevel()) {
-						m.shield_data.explodes = true;
-						m.shield_data.explosionDmg = ct->getExplosionDmg();
-					}
-					mngr_->send(m);
+				if (ct->getElapsedTime() > ct->getTimeToShield()) {					
+					for (auto& tower : towers)
+					{
+						ShieldComponent* s = mngr_->getComponent<ShieldComponent>(tower);
+						if (s->getShield() <= 0) { addShield(TR->getPosition()); }
+						s->setShield(s->getMaxShield());
+					}				
 					ct->setElapsedTime(0);
 				}
 			}
@@ -304,6 +303,17 @@ Entity* TowerSystem::shootFire(Vector2D spawnPos, float rot) {
 
 	return fire;
 }
+
+void TowerSystem::addShield(Vector2D pos) {
+	auto ent = mngr_->addEntity(_grp_TOWERS_AND_ENEMIES);
+	auto t = mngr_->addComponent<Transform>(ent);
+	t->setScale({300, 155});
+	t->setPosition(pos + Vector2D(-105, 20));
+	mngr_->addComponent<RenderComponent>(ent, shield);
+	mngr_->addComponent<FramedImage>(ent, 1, 1, 626, 352, 0, 0, 0);
+}
+
+
 /// <summary>
 /// Anade una torre al sistema, con un tipo, una posicion y una elevacion. A cada torre le anade un render component, un 
 /// framed image, un transform, su componente especifico, un health component y un upgrade tower component, con sus atributos correspondientes sacados de un json.
@@ -315,6 +325,7 @@ Entity* TowerSystem::shootFire(Vector2D spawnPos, float rot) {
 void TowerSystem::addTower(twrId type, Vector2D pos, Height height) {
 	Entity* t = mngr_->addEntity(_grp_TOWERS_AND_ENEMIES);//Se a?ade al mngr
 	Transform* tr = mngr_->addComponent<Transform>(t);//transform
+	mngr_->addComponent<ShieldComponent>(t, 0);
 	tr->setPosition(pos);
 	tr->setScale({ 100.0f, 150.0f });
 	mngr_->addComponent<UpgradeTowerComponent>(t, type, 4);
@@ -336,11 +347,6 @@ void TowerSystem::addTower(twrId type, Vector2D pos, Height height) {
 		mngr_->addComponent<BulletTower>(t, floatAt("BalasRango"), floatAt("BalasRecarga"), floatAt("BalasDano"));
 		mngr_->addComponent<RenderComponent>(t, bulletTowerTexture);
 		mngr_->addComponent<FramedImage>(t, intAt("BalasColumns"), intAt("BalasRows"), intAt("BalasWidth"), intAt("BalasHeight"), 0, 0);
-		//mngr_->getComponent<UpgradeTowerComponent>(t)->LevelUp();
-		//mngr_->getComponent<UpgradeTowerComponent>(t)->LevelUp();
-		//mngr_->getComponent<UpgradeTowerComponent>(t)->LevelUp();
-		//mngr_->getComponent<UpgradeTowerComponent>(t)->LevelUp();
-
 		break;
 	case _twr_DIRT:
 		mngr_->addComponent<DirtTower>(t);

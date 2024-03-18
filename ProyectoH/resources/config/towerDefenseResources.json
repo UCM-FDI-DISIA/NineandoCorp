@@ -388,6 +388,10 @@
     {
       "id": "fireball",
       "file": "resources/images/Towers/fireball.png"
+    },
+    {
+      "id": "shield",
+      "file": "resources/images/Towers/shield.png"
     }
 
   ],
