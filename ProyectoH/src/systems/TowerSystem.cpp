@@ -158,8 +158,10 @@ void TowerSystem::update() {
 					for (auto& tower : towers)
 					{
 						ShieldComponent* s = mngr_->getComponent<ShieldComponent>(tower);
-						if (s->getShield() <= 0) {addShield(mngr_->getComponent<Transform>(tower)->getPosition()); }
-						s->setShield(s->getMaxShield());
+						if (s->getShield() <= 0) {
+						s->setImg(addShield(mngr_->getComponent<Transform>(tower)->getPosition()));//añade el escudo visible y lo asigna al shieldComponent
+						}
+						s->setShield(s->getMaxShield());//Regenera escudos
 
 					}				
 					ct->setElapsedTime(0);

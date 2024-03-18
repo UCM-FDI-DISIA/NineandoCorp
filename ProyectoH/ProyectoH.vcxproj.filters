@@ -252,7 +252,7 @@
     <ClInclude Include="src\components\BlindComponent.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="U:\hlocal\Gabriel Barroso\NineandoCorp\ProyectoH\src\components\ShieldComponent.h">
+    <ClInclude Include="src\components\ShieldComponent.h">
       <Filter>Header Files\components</Filter>
     </ClInclude>
   </ItemGroup>
@@ -407,7 +407,7 @@
     <ClCompile Include="src\components\BlindComponent.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="U:\hlocal\Gabriel Barroso\NineandoCorp\ProyectoH\src\components\ShieldComponent.cpp">
+    <ClCompile Include="src\components\ShieldComponent.cpp">
       <Filter>Source Files\components</Filter>
     </ClCompile>
   </ItemGroup>
