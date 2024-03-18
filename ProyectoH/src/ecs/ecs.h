@@ -32,13 +32,10 @@ enum cmpId : cmpId_type {
 	_DIRTTOWER,
 	_SLIMETOWER,
 	_SLIMEBULLET,
-<<<<<<< Updated upstream
 	_TOWERSTATES,
 	_MAESTROALMAS,
 	_GOLEM,
-=======
 	_FIRE,
->>>>>>> Stashed changes
 
 	// do not remove this
 	_LAST_CMP_ID
