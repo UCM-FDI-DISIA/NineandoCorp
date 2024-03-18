@@ -238,15 +238,13 @@
       <Filter>Header Files\utils</Filter>
     </ClInclude>
     <ClInclude Include="src\components\FireComponent.h">
-      <Filter>Header Files</Filter>
+      <Filter>Header Files\components</Filter>
     </ClInclude>
-<<<<<<< Updated upstream
     <ClInclude Include="src\components\SlimeTowerComponent.h">
       <Filter>Header Files\components</Filter>
-=======
+    </ClInclude>
     <ClInclude Include="src\systems\CollisionSystem.h">
-      <Filter>Header Files</Filter>
->>>>>>> Stashed changes
+      <Filter>Header Files\systems</Filter>
     </ClInclude>
     <ClInclude Include="src\components\SlimeBullet.h">
       <Filter>Header Files</Filter>
@@ -391,13 +389,11 @@
     <ClCompile Include="src\components\FireComponent.cpp">
       <Filter>Source Files\components</Filter>
     </ClCompile>
-<<<<<<< Updated upstream
     <ClCompile Include="src\components\SlimeTowerComponent.cpp">
       <Filter>Source Files\components</Filter>
-=======
+    </ClCompile>
     <ClCompile Include="src\systems\CollisionSystem.cpp">
-      <Filter>Source Files</Filter>
->>>>>>> Stashed changes
+      <Filter>Source Files\systems</Filter>
     </ClCompile>
     <ClCompile Include="src\components\SlimeBullet.cpp">
       <Filter>Source Files\components</Filter>

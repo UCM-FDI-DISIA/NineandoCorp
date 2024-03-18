@@ -15,10 +15,10 @@ struct cmpIsometricY {
 // Constructorss
 RenderSystem::RenderSystem() : winner_(0)
 {
-
-	//Towers
+	//Camera offset
 	*offset = build_sdlrect(0, 0, 0, 0);
 
+	//Towers
 	textures[square] = &sdlutils().images().at("square");
 	textures[tileSet] = &sdlutils().images().at("map");
 	textures[play] = &sdlutils().images().at("play");
@@ -77,21 +77,6 @@ RenderSystem::~RenderSystem() {
 // Reaccionar a los mensajes recibidos (llamando a métodos correspondientes).
 void RenderSystem::receive(const Message& m) {
 	switch (m.id) {
-	case _m_ROUND_START:
-		onRoundStart();
-		break;
-	case _m_GAMESTART:
-		onGameStart();
-		break;
-	case _m_GAMEOVER:
-		//onGameOver(m.winner_data.n);
-		break;
-	case _m_PAUSE:
-		onPause();
-		break;
-	case _m_RESUME:
-		onResume();
-		break;
 	}
 }
 // Inicializar el sistema, etc.
@@ -249,20 +234,5 @@ void RenderSystem::update() {
 
 	sdlutils().presentRenderer();
 }
-
-
-// Para gestionar los mensajes correspondientes y actualizar los atributos
-// winner_ y state_.
-void RenderSystem::onRoundStart() {
-}
-void RenderSystem::onGameStart() {
-}
 void RenderSystem::onGameOver(Uint8 winner) {
-}
-
-// Displays pause message
-void RenderSystem::onPause() {
-}
-// Hides pause message
-void RenderSystem::onResume() {
 }
