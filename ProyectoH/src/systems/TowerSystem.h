@@ -41,7 +41,7 @@ public:
 protected:
 	Entity* shootBullet(Entity* target, Entity* src, float damage, float speed, Vector2D spawnPos, gameTextures texture,Vector2D bulletScale, twrId id);
 	Entity* shootFire(Vector2D spawn, float rot);
-	void addShield(Vector2D pos);
+	Entity* addShield(Vector2D pos);
 	void eliminateDestroyedTowers(Entity* t);
 	std::vector<Entity*> towers;
 	bool active_;

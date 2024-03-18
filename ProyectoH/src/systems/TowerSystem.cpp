@@ -47,10 +47,18 @@ void TowerSystem::receive(const Message& m) {
 void TowerSystem::onAttackTower(Entity* e, int dmg) {
 	if (e != nullptr && mngr_->isAlive(e)) {
 		HealthComponent* h = mngr_->getComponent<HealthComponent>(e);
-		if (h->getHealth() - dmg <= 0) {
+		ShieldComponent* s = mngr_->getComponent<ShieldComponent>(e);
+		
+		if (s->getShield() <= 0 && h->getHealth() - dmg <= 0) {
 			mngr_->deleteHandler(_hdlr_LOW_TOWERS, e); eliminateDestroyedTowers(e);
+			mngr_->setAlive(s->getImg(), false);
 		}
-		h->subtractHealth(dmg);
+		else {
+			s->subtractShield(dmg);
+			if (s->getShield() <= 0) {
+				h->subtractHealth(dmg);
+			}
+		}	
 	}
 }
 //Realiza las funcionalidades de las torres, accediendo a los atributos de los componentes y realizando la mecanica de cada torre
@@ -150,8 +158,9 @@ void TowerSystem::update() {
 					for (auto& tower : towers)
 					{
 						ShieldComponent* s = mngr_->getComponent<ShieldComponent>(tower);
-						if (s->getShield() <= 0) { addShield(TR->getPosition()); }
+						if (s->getShield() <= 0) {addShield(mngr_->getComponent<Transform>(tower)->getPosition()); }
 						s->setShield(s->getMaxShield());
+
 					}				
 					ct->setElapsedTime(0);
 				}
@@ -304,13 +313,14 @@ Entity* TowerSystem::shootFire(Vector2D spawnPos, float rot) {
 	return fire;
 }
 
-void TowerSystem::addShield(Vector2D pos) {
+Entity* TowerSystem::addShield(Vector2D pos) {
 	auto ent = mngr_->addEntity(_grp_TOWERS_AND_ENEMIES);
 	auto t = mngr_->addComponent<Transform>(ent);
 	t->setScale({300, 155});
-	t->setPosition(pos + Vector2D(-105, 20));
+	t->setPosition(pos + Vector2D(-100, 10));
 	mngr_->addComponent<RenderComponent>(ent, shield);
 	mngr_->addComponent<FramedImage>(ent, 1, 1, 626, 352, 0, 0, 0);
+	return ent;
 }
 
 

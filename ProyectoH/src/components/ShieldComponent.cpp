@@ -1,12 +1,13 @@
 #include "ShieldComponent.h"
 
-ShieldComponent::ShieldComponent(float l) : maxHealth_(l), baseHealth_(l) { };
+ShieldComponent::ShieldComponent(float l) : maxHealth_(l), baseHealth_(l){ };
 
 
 void
 ShieldComponent::initComponent() {
 	// Añadir mas cosas de init 
 	currentHealth_ = maxHealth_;
+	imgShield_ = nullptr;
 }
 
 void
@@ -41,3 +42,5 @@ void
 ShieldComponent::setMaxShield(float health) {
 	maxHealth_ = health;
 }
+
+
