@@ -1,5 +1,6 @@
 #pragma once
 #include "../ecs/Component.h"
+#include "../components/Transform.h"
 
 class PhoenixTower : public Component {
 public:
@@ -7,6 +8,8 @@ public:
 	static const cmpId id = cmpId::_PHOENIXTOWER;
 
 	PhoenixTower(float damage, float coolingTime, float shootingTime, float range);
+
+	~PhoenixTower();
 
 	void levelUp(int level);
 
@@ -22,6 +25,7 @@ public:
 	void setElapsedTime(float elapsed) { elapsedTime_ = elapsed; }
 	void setIsShooting(bool shooting) { shooting_ = shooting; }
 	void setFire(Entity* fire) { fire_ = fire; }
+	void removeFire();
 private:
 	bool isMaxLevel_ = false;
 	float coolingTime_;

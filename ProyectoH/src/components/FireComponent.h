@@ -6,15 +6,21 @@ class FireComponent : public Component
 {
 protected:
 	SDL_Rect collisionRect_;
-	int damage_;
-	float speed_;
-	Entity* target_;
-	Transform* tr_;
+	float damage_;
+	float rotation_;
+	float elapsedTime_=0;
 
 public:
-	FireComponent(Transform* tr, Entity* target, int damage, float speed);
+	static const cmpId id = cmpId::_FIRE;
 
+	FireComponent(float damage, float rot);
 
 	SDL_Rect getRect() { return collisionRect_; }
+	float getDamage() { return damage_; }
+	float getRotation() { return rotation_; }
+	float getElapsedTime() { return elapsedTime_; }
+
+	void setElapsedTime(float el) { elapsedTime_ = el; }
+
 };
 

@@ -156,6 +156,7 @@ void RenderSystem::update() {
 		SDL_Rect trRect = tr->getRect();
 		trRect.x += offset->x;
 		trRect.y += offset->y;
+		SDL_RenderFillRect(sdlutils().renderer(), &trRect);
 		textures[textureId]->render(srcRect, trRect, tr->getRotation());
 	}
 

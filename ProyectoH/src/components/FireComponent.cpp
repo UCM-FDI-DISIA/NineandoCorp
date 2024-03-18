@@ -1,4 +1,4 @@
 #include "FireComponent.h"
 
-FireComponent::FireComponent(Transform* tr, Entity* target, int damage, float speed) :
-	tr_(tr), target_(target), damage_(damage), speed_(speed) {}
+FireComponent::FireComponent(float damage, float rot) :	
+	damage_(damage), rotation_(rot) {}

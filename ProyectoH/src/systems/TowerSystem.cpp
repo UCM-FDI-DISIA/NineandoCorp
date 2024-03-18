@@ -223,12 +223,12 @@ void TowerSystem::update() {
 				pt->setElapsedTime(pt->getElapsedTime() + game().getDeltaTime());
 				if (pt->getElapsedTime() > pt->getCoolingTime() && !pt->isShooting()) {
 					Vector2D spawn(TR->getPosition()->getX() - floatAt("FenixOffsetX"), TR->getPosition()->getY() - floatAt("FenixOffsetY"));
-					pt->setFire(shootFire(spawn, 90.0f));
+					pt->setFire(shootFire(spawn, 90.0f, pt->getDamage()));
 					pt->setIsShooting(true);
 					pt->setElapsedTime(0);
 				}
 				if (pt->isShooting() && pt->getElapsedTime()>pt->getShootingTime()) {
-					if (pt->getFire() != nullptr)mngr_->setAlive(pt->getFire(), false);
+					if (pt->getFire() != nullptr)pt->removeFire();
 					pt->setIsShooting(false);
 					pt->setElapsedTime(0);
 				}
@@ -298,14 +298,15 @@ Entity* TowerSystem::shootBullet(Entity* target, Entity* src ,float damage, floa
 /// </summary>
 /// <param name="shootingTime">Tiempo en el que esta disparando fuego la torre de fenix</param>
 /// <param name="damage">Dano por segundo causado por la torre de fenix</param>
-Entity* TowerSystem::shootFire(Vector2D spawnPos, float rot) {
+Entity* TowerSystem::shootFire(Vector2D spawnPos, float rot, float dmg) {
 	Entity* fire = mngr_->addEntity(_grp_AREAOFATTACK);
 	Transform* t = mngr_->addComponent<Transform>(fire);
 	t->setPosition(spawnPos);
 	t->setScale({ 150.0f, 150.0f });
 	t->setRotation(rot);
 	mngr_->addComponent<RenderComponent>(fire, fireTexture);
-	mngr_->addComponent<FramedImage>(fire, intAt("FireFrames"), 1, intAt("FireLength"), intAt("FireLength"), 0, intAt("FireFrames"), intAt("FireFrames"));
+	mngr_->addComponent<FramedImage>(fire, intAt("FireFrames"), 1, intAt("FireWidth"), intAt("FireHeight"), 0, intAt("FireFrames"), intAt("FireFrames"));
+	mngr_->addComponent<FireComponent>(fire, dmg, rot);
 	Message m;
 	m.id = _m_ADD_RECT;
 	m.rect_data.rect = fire;

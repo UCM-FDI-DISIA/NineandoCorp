@@ -14,6 +14,7 @@
 #include "..//components/SlimeTowerComponent.h"
 #include "../components/FramedImage.h"
 #include "../components/UpgradeTowerComponent.h"
+#include "../components/FireComponent.h"
 #include "../game/Game.h"
 #include <list>
 #include <algorithm>
@@ -40,8 +41,8 @@ public:
 
 protected:
 	Entity* shootBullet(Entity* target, Entity* src, float damage, float speed, Vector2D spawnPos, gameTextures texture,Vector2D bulletScale, twrId id);
-	Entity* shootFire(Vector2D spawn, float rot);
 	Entity* addShield(Vector2D pos);
+	Entity* shootFire(Vector2D spawn, float rot, float dmg);
 	void eliminateDestroyedTowers(Entity* t);
 	std::vector<Entity*> towers;
 	bool active_;
