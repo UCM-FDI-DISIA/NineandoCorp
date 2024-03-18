@@ -56,6 +56,22 @@ void TowerSystem::onAttackTower(Entity* e, int dmg) {
 void TowerSystem::update() {
 	const auto& bullets = mngr_->getEntities(_grp_BULLETS);
 	const float DIEGO_OFFSET = floatAt("DiegoSniperOffset");
+
+	float health = 0;
+	Entity* targetMostHP = nullptr;
+	for (const auto& enemy : mngr_->getHandler(_hdlr_ENEMIES))
+	{
+
+		if (mngr_->isAlive(enemy)) {
+			HealthComponent* h = mngr_->getComponent<HealthComponent>(enemy);
+			if (h != nullptr) {//se guarda la referencia al enemigo con mas vida
+				if (h->getHealth() > health) {
+					targetMostHP = enemy;
+					health = h->getHealth();
+				}
+			}
+		}
+	}
 	
 	for (auto& t : towers) {
 
@@ -171,26 +187,11 @@ void TowerSystem::update() {
 			DiegoSniperTower* ds = mngr_->getComponent<DiegoSniperTower>(t);
 			if (ds != nullptr) {
 				ds->setElapsedTime(ds->getElapsedTime()+game().getDeltaTime());//Lo pasa a segundos
-				if (ds->getElapsedTime() > ds->getTimeToShoot()) {//si esta cargada busca enemigo con mas vida
-					float health = 0;
-					Entity* target = nullptr;
-					for (const auto& enemy : mngr_->getHandler(_hdlr_ENEMIES))
-					{	
-						
-						if (mngr_->isAlive(enemy)) {
-							HealthComponent* h = mngr_->getComponent<HealthComponent>(enemy);
-							if (h != nullptr) {//se guarda la referencia al enemigo con mas vida
-								if (h->getHealth() > health) {
-									target = enemy;
-									health = h->getHealth();
-								}		
-							}
-						}					
-					}
-					if (target != nullptr) {//Dispara con el critico
+				if (ds->getElapsedTime() > ds->getTimeToShoot()) {//si esta cargada busca enemigo con mas vida								
+					if (targetMostHP != nullptr) {//Dispara con el critico
 						Vector2D offset { DIEGO_OFFSET, DIEGO_OFFSET };
 						int valFrame = 0;
-						Vector2D dir = *(mngr_->getComponent<Transform>(target)->getPosition()) - *(TR->getPosition());
+						Vector2D dir = *(mngr_->getComponent<Transform>(targetMostHP)->getPosition()) - *(TR->getPosition());
 						if (dir.getX() >= 0 && dir.getY() >= 0) { valFrame = 4; offset.setX(DIEGO_OFFSET * 3.5); }
 						else if (dir.getX() >= 0 && dir.getY() < 0) { valFrame = 12; offset.setY(0); offset.setX(DIEGO_OFFSET * 3.5);}
 						else if (dir.getX() < 0 && dir.getY() >= 0){ offset.setX(0); }
@@ -199,7 +200,7 @@ void TowerSystem::update() {
 						RenderComponent* rc = mngr_->getComponent<RenderComponent>(t);
 						Vector2D spawn = { TR->getPosition()->getX() + offset.getX(),	TR->getPosition()->getY() + offset.getY()};
 						
-						shootBullet(target, t, ds->getDamage() * ds->getCritDamage(), floatAt("DiegoSniperVelocidad"), spawn, sniperBulletTexture, {25, 20}, _twr_DIEGO);
+						shootBullet(targetMostHP, t, ds->getDamage() * ds->getCritDamage(), floatAt("DiegoSniperVelocidad"), spawn, sniperBulletTexture, {25, 20}, _twr_DIEGO);
 						
 					}
 					ds->setElapsedTime(0);
