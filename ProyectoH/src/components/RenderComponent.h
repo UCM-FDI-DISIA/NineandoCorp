@@ -5,9 +5,7 @@
 // Correspondant texture to each type of entity
 enum gameTextures {
 	//map
-	tileSet, hillTexture, roadTexture, mountainTexture, lakeTexture1, lakeTexture2, lakeTexture3, lakeTexture4,
-	lakeTexture5, lakeTexture6, lakeTexture7, lakeTexture8, lakeTexture9, lakeTexture10,
-	lakeTexture11,
+	tileSet,
 	//UI
 	play, play_hover, box, box_hover, large_box, 
 	close, close_hover, enemies_button, enemies_button_hover, 

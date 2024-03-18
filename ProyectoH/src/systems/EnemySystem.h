@@ -20,7 +20,6 @@ public:
 	void onRoundStart(unsigned int n_grp);
 	void onWaveStart(unsigned int level, unsigned int wave);
 	void collideswithEnemy();
-	void addEnemy(enmId type, Vector2D pos);
 
 protected:
 
