@@ -922,7 +922,7 @@
             "id": "nivel4",
             "nivel4": [
                 {
-                    "id": "oleada2",
+                    "id": "oleada1",
                     "oleada1": [
                         {
                             "id": "grupo1",
@@ -7671,7 +7671,7 @@
                             
                         },
                         {
-                            "id": "grupo1",
+                            "id": "grupo2",
                             "grupo2": 
                                 {
                                     "spawn": "2",
@@ -11511,7 +11511,7 @@
                             
                         },
                         {
-                            "id": "grupo12",
+                            "id": "grupo2",
                             "grupo2": 
                                 {
                                     "spawn": "2",
@@ -11614,7 +11614,7 @@
                             
                         },
                         {
-                            "id": "grupo1",
+                            "id": "grupo8",
                             "grupo8": 
                                 {
                                     "spawn": "8",
@@ -11851,7 +11851,7 @@
                             
                         },
                         {
-                            "id": "grupo16",
+                            "id": "grupo6",
                             "grupo6": 
                                 {
                                     "spawn": "6",
@@ -15543,7 +15543,7 @@
                             
                         },
                         {
-                            "id": "grupo15",
+                            "id": "grupo5",
                             "grupo5": 
                                 {
                                     "spawn": "5",
