@@ -72,6 +72,24 @@ private:
 	/// </summary>
 	void dragTower(twrId tower);
 
+	void upgradeNexusMain();
+
+	void upgradeCrystalMain();
+
+	void upgradeSlimeMain();
+
+	void upgradeBulletMain();
+
+	void upgradeSniperMain();
+
+	void upgradeFenixMain();
+
+	void upgradeClayMain();
+
+	void upgradeEnhancerMain();
+
+
+
 };
 
 

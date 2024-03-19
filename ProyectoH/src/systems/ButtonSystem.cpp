@@ -78,6 +78,25 @@ void ButtonSystem::manageButtons() {
 			startGame();
 			break;
 
+		/*--- MEJORAS DEL MENU ---*/
+		case upgrade_nexus:
+			break;
+		case upgrade_crystal_main:
+			break;
+		case upgrade_slime_main:
+			break;
+		case upgrade_bullet_main:
+			break;
+		case upgrade_sniper_main:
+			break;
+		case upgrade_fenix_main:
+			break;
+		case upgrade_clay_main:
+			break;
+		case upgrade_enhancer_main:
+			break;
+
+
 		/*--- SELECCIÓN DE TORRES PARA DRAG ---*/
 		case crystal_drag:
 			dragTower(_twr_CRISTAL);
@@ -101,9 +120,6 @@ void ButtonSystem::manageButtons() {
 			dragTower(_twr_SLIME);
 			break;
 		/*----------------------------------------*/
-			 
-		case upgrade_nexus:
-			break;
 		default:
 			break;
 		}
@@ -133,6 +149,30 @@ void ButtonSystem::manageButtons() {
 		Message m;
 		m.id = _m_START_GAME;
 		mngr_->send(m);
+	}
+	void ButtonSystem::upgradeNexusMain() {
+
+	}
+	void ButtonSystem::upgradeCrystalMain() {
+
+	}
+	void ButtonSystem::upgradeSlimeMain() {
+
+	}
+	void ButtonSystem::upgradeBulletMain() {
+
+	}
+	void ButtonSystem::upgradeSniperMain() {
+
+	}
+	void ButtonSystem::upgradeFenixMain() {
+
+	}
+	void ButtonSystem::upgradeClayMain() {
+
+	}
+	void ButtonSystem::upgradeEnhancerMain() {
+
 	}
 
 	void ButtonSystem::dragTower(twrId tower) {
