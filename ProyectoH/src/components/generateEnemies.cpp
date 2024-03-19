@@ -38,8 +38,10 @@ void generateEnemies::generateEnemy() {
 		type = _enm_MONJE;
 	else if (enemyType == "muerte")
 		type = _enm_MUERTE;
-
+	
+	
 	addEnemy(type, route);
+	
 
 }
 void generateEnemies::addGroupEnemies(){

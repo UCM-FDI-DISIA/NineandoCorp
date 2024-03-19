@@ -75,9 +75,21 @@ void EnemySystem::onWaveStart(unsigned int level, unsigned int wave) {
 	}
 }
 void EnemySystem::onRoundOver() {
-	/*enemiesTransforms.clear();*/
+	spawnsVector.clear();
 }
 void EnemySystem::update() {
+	for (auto& s : spawnsVector) {
+		auto spawn = mngr_->getComponent<generateEnemies>(s);
+		if ( spawn->getElapsedTime() >= spawn->getSpawnGroup()->timeSpawn) {
+			spawn->generateEnemy();
+			spawn->next_Enemy();
+			spawn->setElapsedTime(0.0);
+		}
+		else {
+			spawn->setElapsedTime(spawn->getElapsedTime() + game().getDeltaTime());
+		}
+	}
+	
 	const auto& enemies = mngr_->getHandler(_hdlr_ENEMIES);
 	const auto& towers = mngr_->getHandler(_hdlr_LOW_TOWERS);
 	for (auto& e : enemies) {
