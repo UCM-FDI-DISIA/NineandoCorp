@@ -4,7 +4,7 @@
 PhoenixTower::PhoenixTower(float damage, float coolingTime, float shootingTime, float range) :damage_(damage), coolingTime_(coolingTime), shootingTime_(shootingTime), range_(range), elapsedTime_(0), shooting_(false), fire_(nullptr) {}
 
 PhoenixTower::~PhoenixTower() {
-	mngr_->setAlive(fire_, false);
+	//mngr_->setAlive(fire_, false);
 }
 
 void PhoenixTower::levelUp(int level) {

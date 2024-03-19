@@ -20,7 +20,7 @@ void TowerSystem::initSystem() {
 	//addTower(twrId::_twr_DIEGO, { (float)sdlutils().width() / 1.9f, 600.f }, LOW);
 	addTower(twrId::_twr_DIRT, { (float)sdlutils().width() / 3.0f, 600.f }, LOW);
 	addTower(twrId::_twr_SLIME, { (float)sdlutils().width() / 2.3f, 630.f }, LOW);
-	addTower(twrId::_twr_CRISTAL, { (float)sdlutils().width() / 1.8f, 600.f }, LOW);
+	addTower(twrId::_twr_CRISTAL, { (float)sdlutils().width() / 1.8f, 660.f }, LOW);
 	addTower(twrId::_twr_FENIX, { (float)sdlutils().width() / 1.8f, 600.f }, LOW);
 	//addTower(twrId::_twr_BULLET, { (float)sdlutils().width() / 1.7f, 550.f }, LOW);
 	//addTower(twrId::_twr_POWER, { (float)sdlutils().width() / 2.2f, 540.f }, LOW);
@@ -50,10 +50,10 @@ void TowerSystem::onAttackTower(Entity* e, int dmg) {
 		ShieldComponent* s = mngr_->getComponent<ShieldComponent>(e);
 		
 		if (s->getShield() <= 0 && h->getHealth() - dmg <= 0) {
-			mngr_->deleteHandler(_hdlr_LOW_TOWERS, e); eliminateDestroyedTowers(e);
-			mngr_->setAlive(s->getImg(), false);
+			mngr_->deleteHandler(_hdlr_LOW_TOWERS, e); eliminateDestroyedTowers(e);		
 		}
 		else {
+			if(s->getShield() > 0 && s->getShield() - dmg <= 0 ){ mngr_->setAlive(s->getImg(), false); }
 			s->subtractShield(dmg);
 			if (s->getShield() <= 0) {
 				h->subtractHealth(dmg);
@@ -161,6 +161,7 @@ void TowerSystem::update() {
 						if (s->getShield() <= 0) {
 						s->setImg(addShield(mngr_->getComponent<Transform>(tower)->getPosition()));//añade el escudo visible y lo asigna al shieldComponent
 						}
+						s->setMaxShield(50.0f);
 						s->setShield(s->getMaxShield());//Regenera escudos
 
 					}				
@@ -305,7 +306,7 @@ Entity* TowerSystem::shootFire(Vector2D spawnPos, float rot, float dmg) {
 	t->setScale({ 150.0f, 150.0f });
 	t->setRotation(rot);
 	mngr_->addComponent<RenderComponent>(fire, fireTexture);
-	mngr_->addComponent<FramedImage>(fire, intAt("FireFrames"), 1, intAt("FireWidth"), intAt("FireHeight"), 0, intAt("FireFrames"), intAt("FireFrames"));
+	mngr_->addComponent<FramedImage>(fire, intAt("FireFrames"), 1, /*intAt("FireWidth")*/20, /*intAt("FireHeight")*/40, 0, intAt("FireFrames"), intAt("FireFrames"));
 	mngr_->addComponent<FireComponent>(fire, dmg, rot);
 	Message m;
 	m.id = _m_ADD_RECT;

@@ -22,7 +22,7 @@ ShieldComponent::subtractShield(float health) {
 	//std::cout << currentHealth_ << std::endl;
 	if (currentHealth_ <= 0) {
 		//std::cout << "muerto" << std::endl;
-		mngr_->setAlive(ent_, false);
+		
 		return true;
 	}
 	return false;
