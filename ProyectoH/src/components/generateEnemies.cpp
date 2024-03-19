@@ -59,18 +59,18 @@ void generateEnemies::addEnemy(enmId type, std::vector<Vector2D> route) {
 	switch (type) {
 	case _enm_MALMAS:
 		tr->setSpeed(30.0f);
-		mngr_->addComponent<RenderComponent>(t, square);
-		mngr_->addComponent<HealthComponent>(t, 50000);
+		mngr_->addComponent<RenderComponent>(t, maestro);
+		mngr_->addComponent<HealthComponent>(t, 150);
 		mngr_->addComponent<RouteComponent>(t, route);
-		mngr_->addComponent<AttackComponent>(t, 100, 0.25, 20, false);
+		mngr_->addComponent<AttackComponent>(t, 100, 1.0, 0, true);
 		mngr_->addComponent<FramedImage>(t, 1, 1, 122, 117, 0, 0, 1);
 		break;
 	case _enm_AELECTRICO:
 		tr->setSpeed(70.0f);
-		mngr_->addComponent<RenderComponent>(t, square);
-		mngr_->addComponent<HealthComponent>(t, 50000);
+		mngr_->addComponent<RenderComponent>(t, acechante);
+		mngr_->addComponent<HealthComponent>(t, 150);
 		mngr_->addComponent<RouteComponent>(t, route);
-		mngr_->addComponent<AttackComponent>(t, 100, 0.25, 20, false);
+		mngr_->addComponent<AttackComponent>(t, 0, 1, 20, false);
 		mngr_->addComponent<FramedImage>(t, 1, 1, 122, 117, 0, 0, 1);
 		break;
 	case _enm_MALDITO:
