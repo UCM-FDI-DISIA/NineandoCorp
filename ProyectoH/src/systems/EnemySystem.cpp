@@ -16,7 +16,6 @@ EnemySystem::~EnemySystem() {
 void EnemySystem::initSystem() {
 	active_ = true;
 
-	addEnemy(_enm_ANGEL, { 0,0 });
 }
 void  EnemySystem::receive(const Message& m) {
 	switch (m.id) {
