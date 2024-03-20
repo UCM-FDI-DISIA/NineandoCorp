@@ -22,7 +22,8 @@ public:
 	// - Dibujar enemigos, torres, tiles, interfaces y texto.
 	void update() override;
 private:
-
+	void onPause();
+	void onResume();
 	void onGameOver(Uint8 winner);
 
 	uint8_t winner_; // 0 - None, 1 - Enemigos, 2- Jugador

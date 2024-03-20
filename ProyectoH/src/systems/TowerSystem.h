@@ -54,7 +54,7 @@ protected:
 	void eliminateDestroyedTowers(Entity* t);
 	std::vector<Entity*> towers;
 	bool active_;
-
+	NetMap* net;
 	Entity* square;
 };
 

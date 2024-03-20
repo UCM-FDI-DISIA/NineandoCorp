@@ -15,8 +15,6 @@ public:
 	void initSystem()override;
 	void update()override;
 	void receive(const Message& m)override;
-	void onRoundOver() {};
-	void onRoundStart() {};
 	void addRect(Entity* rect, const rectId id);
 	void removeRect(Entity* rect, const rectId id);
 

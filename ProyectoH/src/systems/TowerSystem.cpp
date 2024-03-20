@@ -27,12 +27,6 @@ void TowerSystem::initSystem() {
 
 void TowerSystem::receive(const Message& m) {
 	switch (m.id) {
-	case _m_ROUND_START:
-		onRoundStart();
-		break;
-	case _m_ROUND_OVER:
-		onRoundOver();
-		break;
 	case _m_TOWER_TO_ATTACK://Mandado por el enemySystem al atacar una torre
 		onAttackTower(m.tower_to_attack.e, m.tower_to_attack.damage);
 		break;
@@ -377,14 +371,3 @@ void TowerSystem::addTower(twrId type, Vector2D pos, Height height) {
 	towers.push_back(t);
 }
 
-void TowerSystem::onAttackTower(Entity* e, int dmg) {
-	/*std::list<Entity*> towers = mngr_->getHandler(_hdlr_LOW_TOWERS);
-	std::list<Entity*>::iterator findIter = std::find(towers.begin(), towers.end(), e);*/
-	if (e != nullptr && mngr_->isAlive(e)) {
-		HealthComponent* h = mngr_->getComponent<HealthComponent>(e);
-		if (h->getHealth() - dmg <= 0) {
-			mngr_->deleteHandler(_hdlr_LOW_TOWERS, e); eliminateDestroyedTowers(e);
-		}
-		h->subtractHealth(dmg);
-	}
-}

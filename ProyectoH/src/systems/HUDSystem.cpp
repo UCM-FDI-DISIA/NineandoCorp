@@ -146,7 +146,7 @@ void HUDSystem::update() {
 						auto net = tS->getNet();
 						auto tr = mngr_->getComponent<Transform>(en);
 						Vector2D mPos = { (float)ih().getMousePos().first, (float)ih().getMousePos().second };
-						Vector2D pos = (net->searchCell(mPos.getX(), mPos.getY())->position - Vector2D(tr->getScale()->getX() / 2, tr->getScale()->getX() / 2));
+						Vector2D pos = net->searchCell(mPos)->position;
 						dC->drop(pos, Height::LOW);
 						
 						//resetea el icono de la torre

@@ -33,7 +33,7 @@ void DragAndDrop::drag() {
 	auto tS = mngr_->getSystem<TowerSystem>();
 	auto net = tS->getNet();
 	Vector2D mPos = { (float)ih().getMousePos().first, (float)ih().getMousePos().second };
-	tr_->setPosition(net->searchCell(mPos.getX(), mPos.getY())->position - Vector2D(tr_->getScale()->getX() / 2, tr_->getScale()->getX() / 2));
+	tr_->setPosition(mPos);
 
 			//Posteriormente ajustar posicion a malla del mapa
 }

@@ -304,7 +304,7 @@ msgId_type id;
 	struct {
 		bool onPause;
 	}start_pause;
-
+	struct{
 		int lvl;
 	}upgrade_nexus;
 	//_m_ADD_RECT

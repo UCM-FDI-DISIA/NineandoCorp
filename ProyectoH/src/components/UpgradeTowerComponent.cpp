@@ -32,7 +32,7 @@ void UpgradeTowerComponent::LevelUp() {
 			break;
 		case _twr_FENIX:
 			break;
-		case _twr_DIRT:
+		case _twr_CLAY:
 			mngr_->getComponent<DirtTower>(ent_)->levelUp(currentLevel_);
 			break;
 		case _twr_POWER:
