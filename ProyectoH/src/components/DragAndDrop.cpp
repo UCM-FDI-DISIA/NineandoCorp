@@ -35,7 +35,6 @@ void DragAndDrop::drag() {
 	Vector2D mPos = { (float)ih().getMousePos().first, (float)ih().getMousePos().second };
 	tr_->setPosition(net->searchCell(mPos)->position);
 
-			//Posteriormente ajustar posicion a malla del mapa
 }
 
 

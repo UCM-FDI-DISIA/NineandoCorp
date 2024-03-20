@@ -77,7 +77,6 @@ void ButtonSystem::manageButtons() {
 		case start_game:
 			startGame();
 			break;
-
 		/*--- MEJORAS DEL MENU ---*/
 		case upgrade_nexus:
 			upgradeTower(_twr_NEXUS);
@@ -172,7 +171,9 @@ void ButtonSystem::manageButtons() {
 	}
 
 	void ButtonSystem::dragTower(twrId tower) {
-		
+		Message m;
+		m.id = _m_DRAG;
+		m.drag_data.towerId = tower;
 	}
 #pragma endregion
 

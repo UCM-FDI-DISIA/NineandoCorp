@@ -164,6 +164,7 @@ void HUDSystem::update() {
 }
 
 void HUDSystem::dragTowerIcon(Entity* en){
+	//debugear tipo de torre
 	mngr_->getComponent<DragAndDrop>(en)->enableDrag(true);
 }
 
