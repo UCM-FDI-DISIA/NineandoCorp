@@ -89,7 +89,7 @@
     {
       "id": "BalasVelocidad",
       "value": 500
-    },
+    },      
 
     {
       "id": "SlimeRecargaUpgrade",
@@ -196,308 +196,312 @@
     }
   ],
 
-    "intConst": [
+  "intConst": [
 
-        {
-            "id": "FenixVida",
-            "value": 50
-        },
+    {
+      "id": "FenixVida",
+      "value": 50
+    },
 
-        {
-            "id": "FenixPrecio",
-            "value": 500
-        },
+    {
+      "id": "FenixPrecio",
+      "value": 500
+    },
 
-        {
-            "id": "FenixElevacion",
-            "value": 1
-        },
+    {
+      "id": "FenixElevacion",
+      "value": 1
+    },
 
-        {
-            "id": "FenixColumns",
-            "value": 4
-        },
+    {
+      "id": "FenixColumns",
+      "value": 4
+    },
 
-        {
-            "id": "FenixRows",
-            "value": 2
-        },
+    {
+      "id": "FenixRows",
+      "value": 2
+    },
 
-        {
-            "id": "FenixWidth",
-            "value": 650
-        },
-        {
-            "id": "FenixHeight",
-            "value": 900
-        },
+    {
+      "id": "FenixWidth",
+      "value": 650
+    },
+    {
+      "id": "FenixHeight",
+      "value": 900
+    },
 
-        {
-            "id": "BalasVida",
-            "value": 25
-        },
-        {
-            "id": "BalasPrecio",
-            "value": 100
-        },
-        {
-            "id": "BalasDano",
-            "value": 5
-        },
-        {
-            "id": "BalasDano1",
-            "value": 10
-        },
-        {
-            "id": "BalasDano2",
-            "value": 20
-        },
-        {
-            "id": "BalasDano3",
-            "value": 35
-        },
-        {
-            "id": "BalasDobleObj",
-            "value": 1
-        },
-        {
-            "id": "BalasElevacion",
-            "value": 0
-        },
+    {
+      "id": "BalasVida",
+      "value": 25
+    },
+    {
+      "id": "BalasPrecio",
+      "value": 100
+    },
+    {
+      "id": "BalasDano",
+      "value": 5
+    },
+    {
+      "id": "BalasDano1",
+      "value": 10
+    },
+    {
+      "id": "BalasDano2",
+      "value": 20
+    },
+    {
+      "id": "BalasDano3",
+      "value": 35
+    },
+    {
+      "id": "BalasDobleObj",
+      "value": 1
+    },
+    {
+      "id": "BalasElevacion",
+      "value": 0
+    },
 
-        {
-            "id": "BalasColumns",
-            "value": 4
-        },
-        {
-            "id": "BalasRows",
-            "value": 4
-        },
-        {
-            "id": "BalasWidth",
-            "value": 650
-        },
-        {
-            "id": "BalasHeight",
-            "value": 1000
-        },
+    {
+      "id": "BalasColumns",
+      "value": 4
+    },
+    {
+      "id": "BalasRows",
+      "value": 4
+    },
+    {
+      "id": "BalasWidth",
+      "value": 650
+    },
+    {
+      "id": "BalasHeight",
+      "value": 1000
+    },
 
 
-        {
-            "id": "SlimeVida",
-            "value": 100
-        },
-        {
-            "id": "SlimeRango",
-            "value": 100
-        },
-        {
-            "id": "SlimePrecio",
-            "value": 400
-        },
-        {
-            "id": "SlimeRecarga",
-            "value": 5
-        },
-        {
-            "id": "SlimeDano",
-            "value": 0
-        },
-        {
-            "id": "SlimeElevacion",
-            "value": 0
-        },
-        {
-            "id": "SlimeDPS",
-            "value": 1
-        },
+    {
+      "id": "SlimeVida",
+      "value": 100
+    },
+    {
+      "id": "SlimeRango",
+      "value": 100
+    },
+    {
+      "id": "SlimePrecio",
+      "value": 400
+    },
+    {
+      "id": "SlimeRecarga",
+      "value": 5
+    },
+    {
+      "id": "SlimeDano",
+      "value": 0
+    },
+    {
+      "id": "SlimeElevacion",
+      "value": 0
+    },
+    {
+      "id": "SlimeDPS",
+      "value": 1
+    },
 
-        {
-            "id": "SlimeColumns",
-            "value": 4
-        },
-        {
-            "id": "SlimeRows",
-            "value": 4
-        },
-        {
-            "id": "SlimeWidth",
-            "value": 750
-        },
-        {
-            "id": "SlimeHeight",
-            "value": 1050
-        },
+    {
+      "id": "SlimeColumns",
+      "value": 4
+    },
+    {
+      "id": "SlimeRows",
+      "value": 4
+    },
+    {
+      "id": "SlimeWidth",
+      "value": 750
+    },
+    {
+      "id": "SlimeHeight",
+      "value": 1050
+    },
 
-        {
-            "id": "DiegoSniperVida",
-            "value": 50
-        },
+    {
+      "id": "DiegoSniperVida",
+      "value": 50
+    },
 
-        {
-            "id": "DiegoSniperPrecio",
-            "value": 500
-        },
-        {
-            "id": "DiegoSniperDano",
-            "value": 50
-        },
-        {
-            "id": "DiegoSniperDano1",
-            "value": 75
-        },
-        {
-            "id": "DiegoSniperElevacion",
-            "value": 1
-        },
-        {
-            "id": "DiegoSniperRecargaUpgrade2",
-            "value": 1
-        },
+    {
+      "id": "DiegoSniperPrecio",
+      "value": 500
+    },
+    {
+      "id": "DiegoSniperDano",
+      "value": 50
+    },
+    {
+      "id": "DiegoSniperDano1",
+      "value": 75
+    },
+    {
+      "id": "DiegoSniperElevacion",
+      "value": 1
+    },
+    {
+      "id": "DiegoSniperRecargaUpgrade2",
+      "value": 1
+    },
 
-        {
-            "id": "DiegoSniperColumns",
-            "value": 4
-        },
-        {
-            "id": "DiegoSniperRows",
-            "value": 4
-        },
-        {
-            "id": "DiegoSniperWidth",
-            "value": 690
-        },
-        {
-            "id": "DiegoSniperHeight",
-            "value": 1150
-        },
+    {
+      "id": "DiegoSniperColumns",
+      "value": 4
+    },
+    {
+      "id": "DiegoSniperRows",
+      "value": 4
+    },
+    {
+      "id": "DiegoSniperWidth",
+      "value": 690
+    },
+    {
+      "id": "DiegoSniperHeight",
+      "value": 1150
+    },
 
-        {
-            "id": "PotenciadoraVida",
-            "value": 75
-        },
-        {
-            "id": "PotenciadoraPrecio",
-            "value": 400
-        },
-        {
-            "id": "PotenciadoraElevacion",
-            "value": 2
-        },
-        {
-            "id": "PotenciadoraVida1",
-            "value": 30
-        },
-        {
-            "id": "PotenciadoraVida2",
-            "value": 50
-        },
-        {
-            "id": "PotenciadoraColumns",
-            "value": 5
-        },
-        {
-            "id": "PotenciadoraRows",
-            "value": 1
-        },
-        {
-            "id": "PotenciadoraWidth",
-            "value": 640
-        },
-        {
-            "id": "PotenciadoraHeight",
-            "value": 1000
-        },
+    {
+      "id": "PotenciadoraVida",
+      "value": 75
+    },
+    {
+      "id": "PotenciadoraPrecio",
+      "value": 400
+    },
+    {
+      "id": "PotenciadoraElevacion",
+      "value": 2
+    },
+    {
+      "id": "PotenciadoraVida1",
+      "value": 30
+    },
+    {
+      "id": "PotenciadoraVida2",
+      "value": 50
+    },
+    {
+      "id": "PotenciadoraColumns",
+      "value": 5
+    },
+    {
+      "id": "PotenciadoraRows",
+      "value": 1
+    },
+    {
+      "id": "PotenciadoraWidth",
+      "value": 640
+    },
+    {
+      "id": "PotenciadoraHeight",
+      "value": 1000
+    },
 
-        {
-            "id": "CristalVida",
-            "value": 50
-        },
-        {
-            "id": "CristalRango",
-            "value": 200
-        },
-        {
-            "id": "CristalPrecio",
-            "value": 200
-        },
-        {
-            "id": "CristalEscudo",
-            "value": 20
-        },
-        {
-            "id": "CristalElevacion",
-            "value": 0
-        },
-        {
-            "id": "CristalEscudo1",
-            "value": 50
-        },
-        {
-            "id": "CristalExplosion",
-            "value": 30
-        },
+    {
+      "id": "CristalVida",
+      "value": 50
+    },
+    {
+      "id": "CristalRango",
+      "value": 200
+    },
+    {
+      "id": "CristalPrecio",
+      "value": 200
+    },
+    {
+      "id": "CristalEscudo",
+      "value": 20
+    },
+    {
+      "id": "CristalElevacion",
+      "value": 0
+    },
+    {
+      "id": "CristalEscudo1",
+      "value": 50
+    },
+    {
+      "id": "CristalExplosion",
+      "value": 30
+    },
 
-        {
-            "id": "CristalColumns",
-            "value": 4
-        },
-        {
-            "id": "CristalRows",
-            "value": 1
-        },
-        {
-            "id": "CristalWidth",
-            "value": 875
-        },
-        {
-            "id": "CristalHeight",
-            "value": 1500
-        },
+    {
+      "id": "CristalColumns",
+      "value": 4
+    },
+    {
+      "id": "CristalRows",
+      "value": 1
+    },
+    {
+      "id": "CristalWidth",
+      "value": 875
+    },
+    {
+      "id": "CristalHeight",
+      "value": 1500
+    },
 
-        {
-            "id": "ArcillaVida",
-            "value": 500
-        },
-        {
-            "id": "ArcillaPrecio",
-            "value": 200
-        },
-        {
-            "id": "ArcillaElevacion",
-            "value": 0
-        },
+    {
+      "id": "ArcillaVida",
+      "value": 500
+    },
+    {
+      "id": "ArcillaPrecio",
+      "value": 200
+    },
+    {
+      "id": "ArcillaElevacion",
+      "value": 0
+    },
 
-        {
-            "id": "ArcillaDanoReflejado",
-            "value": 3
-        },
-        {
-            "id": "ArcillaColumns",
-            "value": 4
-        },
-        {
-            "id": "ArcillaRows",
-            "value": 4
-        },
-        {
-            "id": "ArcillaWidth",
-            "value": 720
-        },
-        {
-            "id": "ArcillaHeight",
-            "value": 1200
-        },
-        {
-            "id": "FireLength",
-            "value": 800
-        },
-        {
-            "id": "FireFrames",
-            "value": 10
-        }
+    {
+      "id": "ArcillaDanoReflejado",
+      "value": 3
+    },
+    {
+      "id": "ArcillaColumns",
+      "value": 4
+    },
+    {
+      "id": "ArcillaRows",
+      "value": 4
+    },
+    {
+      "id": "ArcillaWidth",
+      "value": 720
+    },
+    {
+      "id": "ArcillaHeight",
+      "value": 1200
+    },
+    {
+      "id": "FireWidth",
+      "value": 800
+    },
+    {
+      "id": "FireHeight",
+      "value": 320
+    },
+    {
+      "id": "FireFrames",
+      "value": 10
+    }
 
-    ],
+  ],
     
     "spawneoEnemies": [
         {

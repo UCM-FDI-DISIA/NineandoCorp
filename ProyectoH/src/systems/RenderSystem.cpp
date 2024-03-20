@@ -145,12 +145,12 @@ void RenderSystem::update() {
 	}
 
 	//AREA OF ATTACK (SLIME AND FENIX)
-	const auto& slimes = mngr_->getEntities(_grp_AREAOFATTACK);
-	for (auto& slime : slimes)
+	const auto& areas = mngr_->getEntities(_grp_AREAOFATTACK);
+	for (auto& area : areas)
 	{
-		Transform* tr = mngr_->getComponent<Transform>(slime);
-		gameTextures textureId = mngr_->getComponent<RenderComponent>(slime)->getTexture();
-		FramedImage* img = mngr_->getComponent<FramedImage>(slime);
+		Transform* tr = mngr_->getComponent<Transform>(area);
+		gameTextures textureId = mngr_->getComponent<RenderComponent>(area)->getTexture();
+		FramedImage* img = mngr_->getComponent<FramedImage>(area);
 		SDL_Rect srcRect = img->getSrcRect();
 		img->updateCurrentFrame();
 		SDL_Rect trRect = tr->getRect();
