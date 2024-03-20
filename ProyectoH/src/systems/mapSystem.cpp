@@ -13,23 +13,11 @@ void mapSystem::initSystem(){
 
 void mapSystem::receive(const Message& m) {
 	switch (m.id) {
-	case _m_ROUND_START:
-		onRoundStart();
-		break;
-	case _m_GAMESTART:
+	case _m_START_GAME:
 		onGameStart();
-		break;
-	case _m_GAMEOVER:
-		//onGameOver(m.winner_data.n);
-		break;
-	case _m_PAUSE:
-		onPause();
 		break;
 	case _m_OFFSET_CONTEXT:
 		net->setOffset(m.offset_context.offset);
-		break;
-	case _m_RESUME:
-		onResume();
 		break;
 	}
 }
@@ -128,20 +116,7 @@ void mapSystem::loadTile(const tmx::Map& map, const tmx::TileLayer& layer){
 		}
 	}
 }
-// Para gestionar los mensajes correspondientes y actualizar los atributos
-// winner_ y state_.
-void mapSystem::onRoundStart() {
-
-	loadMap(filename);
-}
+// Para gestionar los mensa
 void mapSystem::onGameStart() {
-}
-void mapSystem::onGameOver(Uint8 winner) {
-}
-
-// Displays pause message
-void mapSystem::onPause() {
-}
-// Hides pause message
-void mapSystem::onResume() {
+	loadMap(filename);
 }

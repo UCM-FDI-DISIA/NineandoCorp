@@ -66,15 +66,6 @@ RenderSystem::~RenderSystem() {
 // Reaccionar a los mensajes recibidos (llamando a métodos correspondientes).
 void RenderSystem::receive(const Message& m) {
 	switch (m.id) {
-	case _m_ROUND_START:
-		onRoundStart();
-		break;
-	case _m_GAMESTART:
-		onGameStart();
-		break;
-	case _m_GAMEOVER:
-		//onGameOver(m.winner_data.n);
-		break;
 	case _m_PAUSE:
 		onPause();
 		break;
@@ -227,13 +218,6 @@ void RenderSystem::update() {
 
 // Para gestionar los mensajes correspondientes y actualizar los atributos
 // winner_ y state_.
-void RenderSystem::onRoundStart() {
-}
-void RenderSystem::onGameStart() {
-}
-void RenderSystem::onGameOver(Uint8 winner) {
-}
-
 // Displays pause message
 void RenderSystem::onPause() {
 }

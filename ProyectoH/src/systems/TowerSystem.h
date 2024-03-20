@@ -32,8 +32,6 @@ public:
 	void initSystem() override;
 	void receive(const Message& m) override;
 	void update();
-	void onRoundOver();
-	void onRoundStart();
 	void onAttackTower(Entity* e, int dmg); //Hace daño a la torre mandada por mensaje
 
 	/// <summary>

@@ -31,23 +31,24 @@ void EnemySystem::initSystem() {
 }
 void  EnemySystem::receive(const Message& m) {
 	switch (m.id) {
-	case _m_ROUND_START:
-		onRoundStart();
-		break;
-	case _m_ROUND_OVER:
-		onRoundOver();
-		break;
 	case _m_ENTITY_TO_ATTACK:
 		if (m.entity_to_attack.e != nullptr && mngr_->isAlive(m.entity_to_attack.e)) {
-			 HealthComponent* h = mngr_->getComponent<HealthComponent>(m.entity_to_attack.e);
-			 if (h->subtractHealth(m.entity_to_attack.damage)) { 
-				 mngr_->deleteHandler(_hdlr_ENEMIES, m.entity_to_attack.e); 
-				 if(mngr_->hasComponent<AttackComponent>(m.entity_to_attack.src))mngr_->getComponent<AttackComponent>(m.entity_to_attack.src)->setTarget(nullptr);
-			 };
-		}		
+			HealthComponent* h = mngr_->getComponent<HealthComponent>(m.entity_to_attack.e);
+			if (h->subtractHealth(m.entity_to_attack.damage)) {
+				mngr_->deleteHandler(_hdlr_ENEMIES, m.entity_to_attack.e);
+				if (mngr_->hasComponent<AttackComponent>(m.entity_to_attack.src))mngr_->getComponent<AttackComponent>(m.entity_to_attack.src)->setTarget(nullptr);
+			};
+		}
+		break;
+
+	case _m_START_GAME:
+		onRoundStart();
+		break;
+
+	case _m_OVER_GAME:
+		onRoundOver();
 		break;
 	}
-
 }
 void EnemySystem::onRoundStart() {
 	const auto& enemies = mngr_->getHandler(_hdlr_ENEMIES);

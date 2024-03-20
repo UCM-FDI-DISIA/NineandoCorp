@@ -34,14 +34,8 @@ void MainControlSystem::receive(const Message& m) {
 		game().popState();
 		resetButtons();
 		break;
-	case _m_ROUND_START:
-		onRoundStart();
-		break;
 	case _m_PAUSE:
 		game().pushState<PauseState>(mngr_);
-		break;
-	case _m_ROUND_OVER:
-		onRoundOver();
 		break;
 	case _m_SHIELD_NEXUS:
 		mngr_->getComponent<NexusComponent>(nexo)->activateShield();
@@ -72,6 +66,7 @@ void MainControlSystem::upgradeNexus() {
 
 void MainControlSystem::upgradeTower(twrId_type id) {
 	turrentLevels_[id]++;
+	std::cout << turrentLevels_[id];	// QUITAR
 }
 
 void MainControlSystem::update() {

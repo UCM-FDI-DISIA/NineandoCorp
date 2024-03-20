@@ -23,12 +23,6 @@ void TowerSystem::initSystem() {
 
 void TowerSystem::receive(const Message& m) {
 	switch (m.id) {
-	case _m_ROUND_START:
-		onRoundStart();
-		break;
-	case _m_ROUND_OVER:
-		onRoundOver();
-		break;
 	case _m_TOWER_TO_ATTACK:
 		onAttackTower(m.tower_to_attack.e, m.tower_to_attack.damage);
 		break;
@@ -263,14 +257,6 @@ void TowerSystem::addTower(twrId type, Vector2D pos, Height height) {
 		break;
 	}
 	towers.push_back(t);
-}
-
-void TowerSystem::onRoundStart() {
-	
-}
-
-void TowerSystem::onRoundOver() {
-	
 }
 
 void TowerSystem::onAttackTower(Entity* e, int dmg) {
