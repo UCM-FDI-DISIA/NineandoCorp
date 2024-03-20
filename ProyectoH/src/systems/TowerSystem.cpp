@@ -23,7 +23,7 @@ void TowerSystem::initSystem() {
 	addTower(twrId::_twr_CRISTAL, { (float)sdlutils().width() / 1.8f, 660.f }, LOW);
 	addTower(twrId::_twr_POWER, { (float)sdlutils().width() / 1.8f, 600.f }, LOW);
 	addTower(twrId::_twr_DIEGO, { (float)sdlutils().width() / 2.0f, 630.f }, LOW);
-	addTower(twrId::_twr_BULLET, { (float)sdlutils().width() / 1.9f, 630.f }, LOW);
+	addTower(twrId::_twr_BULLET, { (float)sdlutils().width() / 1.9f, 700.f }, LOW);
 	//addTower(twrId::_twr_BULLET, { (float)sdlutils().width() / 1.7f, 550.f }, LOW);
 	//addTower(twrId::_twr_POWER, { (float)sdlutils().width() / 2.2f, 540.f }, LOW);
 }
@@ -41,6 +41,23 @@ void TowerSystem::receive(const Message& m) {
 	}
 }
 
+void TowerSystem::clearShieldsArea(Entity* e) {
+	CrystalTower* eh = mngr_->getComponent<CrystalTower>(e);
+	if (eh != nullptr) {
+		Vector2D myPos = mngr_->getComponent<Transform>(e)->getPosition();
+		for (auto& tower : towers)
+		{
+			Vector2D towerPos = mngr_->getComponent<Transform>(tower)->getPosition();
+			float distance = sqrt(pow(towerPos.getX() - myPos.getX(), 2) + pow(towerPos.getY() - myPos.getY(), 2));//distancia a la torre
+			if (distance < eh->getRange()) {//En rango
+				ShieldComponent* s = mngr_->getComponent<ShieldComponent>(tower);
+				s->setShield(0);
+				mngr_->setAlive(s->getImg(), false);
+			}
+		}
+	}
+}
+
 /// <summary>
 /// Ataca a torre
 /// </summary>
@@ -51,7 +68,9 @@ void TowerSystem::onAttackTower(Entity* e, int dmg) {
 		HealthComponent* h = mngr_->getComponent<HealthComponent>(e);
 		ShieldComponent* s = mngr_->getComponent<ShieldComponent>(e);
 		
+		
 		if (s->getShield() <= 0 && h->getHealth() - dmg <= 0) {
+			clearShieldsArea(e);
 			h->subtractHealth(dmg);
 			mngr_->deleteHandler(_hdlr_LOW_TOWERS, e); eliminateDestroyedTowers(e);	
 		}
