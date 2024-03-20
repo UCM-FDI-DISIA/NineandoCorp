@@ -16,11 +16,6 @@ EnemySystem::~EnemySystem() {
 void EnemySystem::initSystem() {
 	active_ = true;
 
-	Entity* enemie = mngr_->addEntity(_grp_TOWERS_AND_ENEMIES);
-	Transform* tr = mngr_->addComponent<Transform>(enemie);
-	tr->setPosition({(float)sdlutils().width()/2.f - 100.f, 300.f});
-	tr->setVelocity({ 0, 100 });
-	mngr_->addComponent<MovementComponent>(enemie);
 	std::vector<Vector2D> route;
 	route.push_back({ 30, 27 });
 	route.push_back({ 27, 24 });
@@ -29,17 +24,15 @@ void EnemySystem::initSystem() {
 	route.push_back({ 13, 15});
 	mngr_->getComponent<generateEnemies>(spawnsVector[0])->addEnemy(_enm_ANGEL, route);
 
-	mngr_->addComponent<RouteComponent>(enemie, route, netmap);
-	mngr_->addComponent<AttackComponent>(enemie, 100, 0.25, 20, false);
-	mngr_->addComponent<RenderComponent>(enemie, square);
-	mngr_->addComponent<HealthComponent>(enemie, 50000);
-	mngr_->addComponent<FramedImage>(enemie, 1, 1, 122, 117, 0, 0, 1);
-	mngr_->setHandler(_hdlr_ENEMIES, enemie);
+
 }
 void  EnemySystem::receive(const Message& m) {
 	switch (m.id) {
 	case _m_ROUND_START:
 		onRoundStart(m.create_spawns_data.n_grp);
+		break;
+	case _m_START_GAME:
+		onWaveStart(m.create_spawns_data.level, m.create_spawns_data.wave);
 		break;
 	case _m_ROUND_OVER:
 		onRoundOver();
@@ -74,11 +67,6 @@ void  EnemySystem::receive(const Message& m) {
 	}
 }
 void EnemySystem::onRoundStart(unsigned int n_grp) {
-	/*const auto& enemies = mngr_->getHandler(_hdlr_ENEMIES);
-
-	for (auto& t : enemies) {
-		enemiesTransforms.push_back(mngr_->getComponent<Transform>(t));
-	}*/
 	for (auto i = 0; i < n_grp; i++)
 	{
 		auto e = mngr_->addEntity(_grp_SPAWN);
@@ -97,9 +85,21 @@ void EnemySystem::onWaveStart(unsigned int level, unsigned int wave) {
 	}
 }
 void EnemySystem::onRoundOver() {
-	/*enemiesTransforms.clear();*/
+	spawnsVector.clear();
 }
 void EnemySystem::update() {
+	for (auto& s : spawnsVector) {
+		auto spawn = mngr_->getComponent<generateEnemies>(s);
+		if (!spawn->getSpawnGroup()->typeEnemy.empty() && spawn->getElapsedTime() >= spawn->getSpawnGroup()->timeSpawn) {
+			spawn->generateEnemy();
+			spawn->next_Enemy();
+			spawn->setElapsedTime(0.0);
+		}
+		else {
+			spawn->setElapsedTime(spawn->getElapsedTime() + game().getDeltaTime());
+		}
+	}
+	
 	const auto& enemies = mngr_->getHandler(_hdlr_ENEMIES);
 	const auto& towers = mngr_->getHandler(_hdlr_LOW_TOWERS);
 	for (auto& e : enemies) {

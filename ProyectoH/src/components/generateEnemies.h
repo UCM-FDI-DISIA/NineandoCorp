@@ -7,6 +7,7 @@
 #include "..//components/RouteComponent.h"
 #include "..//components/RenderComponent.h"
 #include "..//components/FramedImage.h"
+#include "../game/Game.h"
 
 class generateEnemies : public Component {
 private:
@@ -15,6 +16,8 @@ private:
 	SDLUtils::spawnGroupData* spawnGroup;
 	int nextEnemy = 0;
 	enmId type;
+
+	double elapsedTime = 0.0;
 public:
 	static const cmpId id = cmpId::_GENERATENEMIES;
 	generateEnemies() :Component(), level(1), wave(1), grp(1) {};
@@ -27,4 +30,8 @@ public:
 	void setWave(unsigned int newWave) { wave = newWave; }
 	void setGrp(unsigned int newGrp) { grp = newGrp; }
 	void addGroupEnemies();
+	SDLUtils::spawnGroupData* getSpawnGroup() const { return spawnGroup; }
+	double getElapsedTime() const { return elapsedTime; }
+	void setElapsedTime(double time) { elapsedTime = time; }
+	void next_Enemy() { nextEnemy++; }
 };

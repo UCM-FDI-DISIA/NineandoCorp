@@ -67,7 +67,22 @@ RenderSystem::RenderSystem() : winner_(0)
 	textures[square] = &sdlutils().images().at("square");
 	textures[tileSet] = &sdlutils().images().at("map");
 
-
+	//Enemies
+	textures[goblin] = &sdlutils().images().at("goblin");
+	textures[maltido] = &sdlutils().images().at("maldito");
+	textures[elfo] = &sdlutils().images().at("elfo");
+	textures[golem] = &sdlutils().images().at("golem");
+	textures[angel] = &sdlutils().images().at("angel");
+	textures[maestro] = &sdlutils().images().at("maestro");
+	textures[acechante] = &sdlutils().images().at("acechante");
+	textures[defensor] = &sdlutils().images().at("defensor");
+	textures[demonioAlado] = &sdlutils().images().at("demonioAlado");
+	textures[demonioInfernal] = &sdlutils().images().at("demonioInfernal");
+	textures[mensajero] = &sdlutils().images().at("mensajero");
+	textures[CMaldito] = &sdlutils().images().at("maldito");
+	textures[principito] = &sdlutils().images().at("principito");
+	textures[monje] = &sdlutils().images().at("monje");
+	textures[muerte] = &sdlutils().images().at("muerte");
 }
 
 
