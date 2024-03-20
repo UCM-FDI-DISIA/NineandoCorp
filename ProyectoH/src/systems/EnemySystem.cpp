@@ -22,6 +22,9 @@ void  EnemySystem::receive(const Message& m) {
 	case _m_ROUND_START:
 		onRoundStart(m.create_spawns_data.n_grp);
 		break;
+	case _m_START_GAME:
+		onWaveStart(m.create_spawns_data.level, m.create_spawns_data.wave);
+		break;
 	case _m_ROUND_OVER:
 		onRoundOver();
 		break;
@@ -52,11 +55,6 @@ void  EnemySystem::receive(const Message& m) {
 	}
 }
 void EnemySystem::onRoundStart(unsigned int n_grp) {
-	/*const auto& enemies = mngr_->getHandler(_hdlr_ENEMIES);
-
-	for (auto& t : enemies) {
-		enemiesTransforms.push_back(mngr_->getComponent<Transform>(t));
-	}*/
 	for (auto i = 0; i < n_grp; i++)
 	{
 		auto e = mngr_->addEntity(_grp_SPAWN);
@@ -80,7 +78,7 @@ void EnemySystem::onRoundOver() {
 void EnemySystem::update() {
 	for (auto& s : spawnsVector) {
 		auto spawn = mngr_->getComponent<generateEnemies>(s);
-		if ( spawn->getElapsedTime() >= spawn->getSpawnGroup()->timeSpawn) {
+		if (!spawn->getSpawnGroup()->typeEnemy.empty() && spawn->getElapsedTime() >= spawn->getSpawnGroup()->timeSpawn) {
 			spawn->generateEnemy();
 			spawn->next_Enemy();
 			spawn->setElapsedTime(0.0);
