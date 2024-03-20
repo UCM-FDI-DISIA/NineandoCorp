@@ -1,6 +1,8 @@
 #pragma once
 #include "../ecs/System.h"
 #include "../components/ButtonComponent.h"
+#include "ButtonSystem.h"
+#include "../components/DragAndDrop.h"
 
 class HUDSystem : public System
 {
@@ -14,12 +16,22 @@ public:
 	void initSystem() override;
 	void update() override;
 private: 
-	void manageButtons();
-	void addButton(const Vector2D& pos, const Vector2D& scale, gameTextures tex, gameTextures hov, ButtonTypes type);
-	//void addImage(const Vector2D &pos, Vector2D(scale), double rot, gameTextures t, grpId_type grpId);
 
-	void addImage(const Vector2D& pos, const Vector2D& scale, const double rot, gameTextures t, grpId_type grpId);
-	void callFunction(ButtonTypes type, ButtonComponent* en);
-	void pause();
+	
+	/// <summary>
+	/// Arrastra el icono de la torre correspondiente dependiendo de la posicion del cursor
+	/// </summary>
+	/// <param name=""></param>
+	void dragTowerIcon(Entity* e); 
+
+	// Espacio designado para los botones de compra de las torres
+	float buttonsSpace_length_; 
+	float infoSpace_length_;
+
+
+	// Para la interaccion con el HUD, no tocar de momento
+	std::vector<Entity*> towers_imgs;
+	std::vector<Vector2D> initial_pos;
+	std::vector<std::pair<Entity*, Entity*>> tower_selector_; 
 };
 

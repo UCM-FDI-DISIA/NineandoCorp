@@ -35,6 +35,9 @@ void TowerSystem::receive(const Message& m) {
 		break;
 	case _m_TOWER_TO_ATTACK://Mandado por el enemySystem al atacar una torre
 		onAttackTower(m.tower_to_attack.e, m.tower_to_attack.damage);
+		break;
+	case _m_ADD_TOWER:
+		addTower(m.add_tower_data.towerId, m.add_tower_data.pos, LOW);
 	}
 }
 
@@ -342,7 +345,7 @@ void TowerSystem::addTower(twrId type, Vector2D pos, Height height) {
 		//mngr_->getComponent<UpgradeTowerComponent>(t)->LevelUp();
 
 		break;
-	case _twr_DIRT:
+	case _twr_CLAY:
 		mngr_->addComponent<DirtTower>(t);
 		mngr_->addComponent<RenderComponent>(t, clayTowerTexture);
 		mngr_->addComponent<FramedImage>(t, intAt("ArcillaColumns"), intAt("ArcillaRows"), intAt("ArcillaWidth"), intAt("ArcillaHeight"), 0, 0);
@@ -374,10 +377,14 @@ void TowerSystem::addTower(twrId type, Vector2D pos, Height height) {
 	towers.push_back(t);
 }
 
-void TowerSystem::onRoundStart() {
-	
-}
-
-void TowerSystem::onRoundOver() {
-	
+void TowerSystem::onAttackTower(Entity* e, int dmg) {
+	/*std::list<Entity*> towers = mngr_->getHandler(_hdlr_LOW_TOWERS);
+	std::list<Entity*>::iterator findIter = std::find(towers.begin(), towers.end(), e);*/
+	if (e != nullptr && mngr_->isAlive(e)) {
+		HealthComponent* h = mngr_->getComponent<HealthComponent>(e);
+		if (h->getHealth() - dmg <= 0) {
+			mngr_->deleteHandler(_hdlr_LOW_TOWERS, e); eliminateDestroyedTowers(e);
+		}
+		h->subtractHealth(dmg);
+	}
 }

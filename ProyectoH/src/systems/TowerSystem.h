@@ -19,7 +19,7 @@
 #include <list>
 #include <algorithm>
 
-enum Height{HIGH, LOW};
+
 
 
 class TowerSystem : public System
@@ -32,12 +32,21 @@ public:
 	void initSystem() override;
 	void receive(const Message& m) override;
 	void update();
-	void onRoundOver();
-	void onRoundStart();
-	void onAttackTower(Entity* e, int dmg); //Hace daño a la torre mandada por mensaje
+	void onAttackTower(Entity* e, int dmg); //Hace daï¿½o a la torre mandada por mensaje
+
+	/// <summary>
+	/// instancia torre en escena
+	/// </summary>
+	/// <param name="type">id de la torre</param>
+	/// <param name="pos">posicion</param>
+	/// <param name="height">si pertenece a pradera o montaï¿½a</param>
 	void addTower(twrId type, Vector2D pos, Height height);
+
+	inline NetMap* getNet() { return net; };
+	
 	int intAt(basic_string<char> s) { return sdlutils().intConst().at(s); }
 	float floatAt(basic_string<char> s) { return sdlutils().floatConst().at(s); }
+
 
 protected:
 	Entity* shootBullet(Entity* target, Entity* src, float damage, float speed, Vector2D spawnPos, gameTextures texture,Vector2D bulletScale, twrId id);

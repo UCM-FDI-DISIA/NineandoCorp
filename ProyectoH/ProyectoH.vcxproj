@@ -50,6 +50,7 @@
     <ClInclude Include="src\ecs\Entity.h" />
     <ClInclude Include="src\ecs\Manager.h" />
     <ClInclude Include="src\ecs\System.h" />
+    <ClInclude Include="src\gameStates\EnemyBookState.h" />
     <ClInclude Include="src\gameStates\GameOverState.h" />
     <ClInclude Include="src\gameStates\LevelSelectorState.h" />
     <ClInclude Include="src\gameStates\MainMenuState.h" />
@@ -88,6 +89,7 @@
     <ClInclude Include="src\utils\Vector2D.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="EnemyBookState.cpp" />
     <ClCompile Include="C:\hlocal\NineandoCorp\NineandoCorp\ProyectoH\src\components\MensajeroMuerteComponent.cpp" />
     <ClCompile Include="src\components\AttackComponent.cpp" />
     <ClCompile Include="src\components\BlindComponent.cpp" />
@@ -130,6 +132,8 @@
     <ClCompile Include="src\sdlutils\sdlutils_demo.cpp" />
     <ClCompile Include="src\sdlutils\SoundEffect.cpp" />
     <ClCompile Include="src\sdlutils\Texture.cpp" />
+    <ClCompile Include="src\systems\ButtonSystem.cpp" />
+    <ClCompile Include="src\systems\EnemyBookSystem.cpp" />
     <ClCompile Include="src\systems\CollisionSystem.cpp" />
     <ClCompile Include="src\systems\EnemySystem.cpp" />
     <ClCompile Include="src\systems\HUDSystem.cpp" />

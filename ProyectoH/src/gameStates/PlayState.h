@@ -8,11 +8,14 @@
 #include "../systems/CollisionSystem.h"
 #include "../components/MovementComponent.h"
 #include "../components/RouteComponent.h"
+#include "../systems/ButtonSystem.h"
 
 class PlayState : public GameState
 {
 public:
 	PlayState();
 	virtual ~PlayState() { delete mngr_; };
+
+	void update() override;
 };
 

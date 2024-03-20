@@ -1,5 +1,4 @@
 {
-
   "images": [
     {
       "id": "map",
@@ -390,7 +389,7 @@
       "file": "resources/images/Towers/fireball.png"
     }
 
-  ],
+    ],
 
   "fonts":[
     {

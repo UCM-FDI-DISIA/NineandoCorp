@@ -7,10 +7,14 @@
 #include "../sdlutils/SDLNetUtils.h"
 #include <vector>
 
+
 class Entity;
 class Manager;
 
+
 using uint8_t = unsigned char;
+
+enum Height { HIGH = 0, LOW };
 
 using cmpId_type = int;
 enum cmpId : cmpId_type {
@@ -30,6 +34,7 @@ enum cmpId : cmpId_type {
 	_NEXUS,
 	_PHOENIXTOWER,
 	_DIRTTOWER,
+	_DRAG_AND_DROP,
 	_SLIMETOWER,
 	_SLIMEBULLET,
 	_TOWERSTATES,
@@ -46,11 +51,17 @@ constexpr cmpId_type maxComponentId = _LAST_CMP_ID;
 using hdlrId_type = int;
 enum hdlrId : hdlrId_type { 
 	_hdlr_DRAG_AND_DROP,
-	_hdlr_BUTTON,
 	_hdlr_SUBMENU,
 	_hdlr_LOW_TOWERS,
 	_hdlr_HIGH_TOWERS,
 	_hdlr_ENEMIES,
+	//botones de las escenas
+	_hdlr_BUTTON,
+	_hdlr_BUTTON_MAIN,
+	_hdlr_BUTTON_PAUSE,
+	_hdlr_BUTTON_LVLSEL,
+	_hdlr_BUTTON_ENEMYBOOK,
+	_hdlr_BUTTON_PLAY,
 	
 	// do not remove this
 	_LAST_HDLR_ID };
@@ -80,7 +91,8 @@ enum gmSttId : gmSttId_type {
 	_gmStt_PAUSE,
 	_gmStt_GAMEOVER,
 	_gmStt_MAINMENU,
-	_gmStt_LEVELSELECTOR, 
+	_gmStt_LEVELSELECTOR,
+	_gmStt_ENEMYBOOK,
 
 	// do not remove this
 	_LAST_GMSTT_ID
@@ -99,6 +111,9 @@ enum sysId : sysId_type {
 	_sys_MAINCONTROL,
 	_sys_ENEMIES,
 	_sys_LEVELSELECTOR,
+	_sys_ENEMYBOOK,
+	_sys_PAUSE,
+	_sys_BUTTON,
 	_sys_COLLISION,
 
 	// do not remove this
@@ -120,8 +135,6 @@ constexpr rectId_type lastRectId = _LAST_RECT_ID;
 
 using msgId_type = uint8_t;
 enum msgId : msgId_type {
-	_m_ROUND_START, //
-	_m_ROUND_OVER,
 	_m_SHOOT,
 	_m_TOWERS_TO_ATTACK,
 	_m_ENTITY_TO_ATTACK,
@@ -129,16 +142,18 @@ enum msgId : msgId_type {
 	_m_TOWER_TO_ATTACK,
 	_m_TOWER_TO_BLIND,
 	_m_SHIELD_NEXUS,
-	_m_GAMEOVER,
-	_m_GAMESTART,
 	_m_PAUSE,
 	_m_RESUME,
 	_m_START_GAME,
+	_m_OVER_GAME,
 	_m_LEVEL_SELECTOR,
-	_m_UPGRADE_NEXUS,
+	_m_ENEMY_BOOK,
 	_m_UPGRADE_TOWER,
-	_m_BACK_TO_MAINMENU, 
+	_m_BACK_TO_MAINMENU,
 	_m_TEXT_MESSAGE,
+	_m_DRAG,
+	_m_LEVELS_INFO,
+	_m_ADD_TOWER,
 	_m_OFFSET_CONTEXT,
 	_m_ADD_RECT,
 	_m_DECREASE_SPEED,
@@ -153,8 +168,10 @@ enum twrId : twrId_type {
 	_twr_SLIME,
 	_twr_DIEGO,
 	_twr_FENIX,
-	_twr_DIRT,
+	_twr_CLAY,
 	_twr_POWER,
+	_twr_NEXUS,
+	_twr_SIZE
 };
 using enmId_type = uint8_t;
 enum enmId : enmId_type {
@@ -213,11 +230,30 @@ inline Uint8* _deserialize_(float& v, Uint8* buf) {
 }
 struct Message {
 msgId_type id;
+	//_m_ADD_TOWER
+	struct
+	{
+		twrId towerId;
+		Vector2D pos;
+		Height height;
+
+	} add_tower_data;
+
+	// _m_DRAG
+	struct {
+		twrId towerId;
+	}drag_data;
+
 	// _m_START_GAME
 	struct
 	{
 		//nivel 
 	}start_game_data;
+	//_m_ENEMY_BOOK
+	struct
+	{
+		//nose
+	}start_enemy_book;
 
     // _m_TOWERS_TO_ATTACK
     struct {
@@ -261,12 +297,14 @@ msgId_type id;
 
 	// _m_UPGRADE_TOWER
 	struct {
-		twrId_type towerId;
-		int lvl;
+		twrId towerId;
 	}upgrade_tower;
 
-	// _m_UPGRADE_NEXUS
+	// _m_PAUSE
 	struct {
+		bool onPause;
+	}start_pause;
+
 		int lvl;
 	}upgrade_nexus;
 	//_m_ADD_RECT

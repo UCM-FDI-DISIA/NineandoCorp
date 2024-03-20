@@ -4,16 +4,15 @@
 #include "../components/RenderComponent.h"
 #include "../components/Transform.h"
 #include "../components/ButtonComponent.h"
-
-class LevelSelectorSystem : public System
+class EnemyBookSystem : public System
 {
 public:
-	static constexpr sysId_type id = _sys_LEVELSELECTOR;
-	LevelSelectorSystem();
-	virtual ~LevelSelectorSystem();
+	static constexpr sysId_type id = _sys_ENEMYBOOK;
+	EnemyBookSystem();
+	virtual ~EnemyBookSystem();
 
 	void initSystem() override;
 	void receive(const Message& m) override;
-	void update() override; 
+	void update() override;
 };
 

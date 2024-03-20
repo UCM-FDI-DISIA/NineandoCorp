@@ -36,12 +36,20 @@ void  EnemySystem::receive(const Message& m) {
 		break;
 	case _m_ENTITY_TO_ATTACK:
 		if (m.entity_to_attack.e != nullptr && mngr_->isAlive(m.entity_to_attack.e)) {
-			 HealthComponent* h = mngr_->getComponent<HealthComponent>(m.entity_to_attack.e);
-			 if (h->subtractHealth(m.entity_to_attack.damage)) { 
-				 mngr_->deleteHandler(_hdlr_ENEMIES, m.entity_to_attack.e); 
-				 if(mngr_->hasComponent<AttackComponent>(m.entity_to_attack.src))mngr_->getComponent<AttackComponent>(m.entity_to_attack.src)->setTarget(nullptr);
-			 };
-		}		
+			HealthComponent* h = mngr_->getComponent<HealthComponent>(m.entity_to_attack.e);
+			if (h->subtractHealth(m.entity_to_attack.damage)) {
+				mngr_->deleteHandler(_hdlr_ENEMIES, m.entity_to_attack.e);
+				if (mngr_->hasComponent<AttackComponent>(m.entity_to_attack.src))mngr_->getComponent<AttackComponent>(m.entity_to_attack.src)->setTarget(nullptr);
+			};
+		}
+		break;
+
+	case _m_START_GAME:
+		onRoundStart();
+		break;
+
+	case _m_OVER_GAME:
+		onRoundOver();
 		break;
 	case _m_DECREASE_SPEED:
 		if (m.decrease_speed.e != nullptr) {
