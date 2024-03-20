@@ -6,6 +6,7 @@
 #include "..//components/GolemComponent.h"
 #include "../ecs/Manager.h"
 #include "..//components/AcechanteComponent.h"
+#include "../components/MaestroAlmasComponent.h"
 
 EnemySystem::EnemySystem() {
 

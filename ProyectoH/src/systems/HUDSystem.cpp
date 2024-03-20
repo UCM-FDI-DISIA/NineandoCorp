@@ -142,8 +142,8 @@ void HUDSystem::update() {
 					}
 					//click izquierdo para colocar la torre
 					else if (ih().getMouseButtonState(InputHandler::MOUSEBUTTON::LEFT) == 1) {
-						auto tS = mngr_->getSystem<TowerSystem>();
-						auto net = tS->getNet();
+						auto tS = mngr_->getSystem<mapSystem>();
+						auto net = tS->getMalla();
 						auto tr = mngr_->getComponent<Transform>(en);
 						Vector2D mPos = { (float)ih().getMousePos().first, (float)ih().getMousePos().second };
 						Vector2D pos = net->searchCell(mPos)->position;

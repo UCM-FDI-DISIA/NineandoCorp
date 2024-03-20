@@ -30,10 +30,10 @@ void DragAndDrop::drop(const Vector2D& pos, Height h){
 
 
 void DragAndDrop::drag() {
-	auto tS = mngr_->getSystem<TowerSystem>();
-	auto net = tS->getNet();
+	auto mS = mngr_->getSystem<mapSystem>();
+	auto net = mS->getMalla();
 	Vector2D mPos = { (float)ih().getMousePos().first, (float)ih().getMousePos().second };
-	tr_->setPosition(mPos);
+	tr_->setPosition(net->searchCell(mPos)->position);
 
 			//Posteriormente ajustar posicion a malla del mapa
 }
