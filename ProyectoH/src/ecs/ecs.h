@@ -148,7 +148,6 @@ enum msgId : msgId_type {
 	_m_OVER_GAME,
 	_m_LEVEL_SELECTOR,
 	_m_ENEMY_BOOK,
-	_m_UPGRADE_NEXUS,
 	_m_UPGRADE_TOWER,
 	_m_BACK_TO_MAINMENU,
 	_m_TEXT_MESSAGE,
@@ -171,7 +170,8 @@ enum twrId : twrId_type {
 	_twr_FENIX,
 	_twr_CLAY,
 	_twr_POWER,
-	_twr_NEXUS
+	_twr_NEXUS,
+	_twr_SIZE
 };
 using enmId_type = uint8_t;
 enum enmId : enmId_type {
@@ -297,8 +297,7 @@ msgId_type id;
 
 	// _m_UPGRADE_TOWER
 	struct {
-		twrId_type towerId;
-		int lvl;
+		twrId towerId;
 	}upgrade_tower;
 
 	// _m_PAUSE

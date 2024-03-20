@@ -80,20 +80,28 @@ void ButtonSystem::manageButtons() {
 
 		/*--- MEJORAS DEL MENU ---*/
 		case upgrade_nexus:
+			upgradeTower(_twr_NEXUS);
 			break;
 		case upgrade_crystal_main:
+			upgradeTower(_twr_CRISTAL);
 			break;
 		case upgrade_slime_main:
+			upgradeTower(_twr_SLIME);
 			break;
 		case upgrade_bullet_main:
+			upgradeTower(_twr_BULLET);
 			break;
 		case upgrade_sniper_main:
+			upgradeTower(_twr_DIEGO);
 			break;
 		case upgrade_fenix_main:
+			upgradeTower(_twr_FENIX);
 			break;
 		case upgrade_clay_main:
+			upgradeTower(_twr_CLAY);
 			break;
 		case upgrade_enhancer_main:
+			upgradeTower(_twr_POWER);
 			break;
 
 
@@ -155,35 +163,11 @@ void ButtonSystem::manageButtons() {
 		m.id = _m_START_GAME;
 		mngr_->send(m);
 	}
-	void ButtonSystem::upgradeNexusMain() {
-		upgradeTower(_twr_NEXUS);
-	}
-	void ButtonSystem::upgradeCrystalMain() {
-		upgradeTower(_twr_CRISTAL);
-	}
-	void ButtonSystem::upgradeSlimeMain() {
-		upgradeTower(_twr_SLIME);
-	}
-	void ButtonSystem::upgradeBulletMain() {
-		upgradeTower(_twr_BULLET);
-	}
-	void ButtonSystem::upgradeSniperMain() {
-		upgradeTower(_twr_DIEGO);
-	}
-	void ButtonSystem::upgradeFenixMain() {
-		upgradeTower(_twr_FENIX);
-	}
-	void ButtonSystem::upgradeClayMain() {
-		upgradeTower(_twr_CLAY);
-	}
-	void ButtonSystem::upgradeEnhancerMain() {
-		upgradeTower(_twr_POWER);
-	}
 
 	void ButtonSystem::upgradeTower(twrId t) {
 		Message m;
 		m.id = _m_UPGRADE_TOWER;
-		m.drag_data.towerId = t;
+		m.upgrade_tower.towerId = t;
 		mngr_->send(m);
 	}
 

@@ -80,7 +80,7 @@ void MainMenuSystem::initSystem() {
 	// 1 TOWER BUTTON - BULLET
 	bS->addButton({ sdlutils().width() - 150.0f , (sdlutils().height() /8.0f) * 1 },
 		{ 200.0f, 70.0f },
-		upgrade, upgrade_hover, ButtonTypes::bullet_menu);
+		upgrade, upgrade_hover, ButtonTypes::upgrade_bullet_main);
 
 	// 1 TOWER BULLET IMAGE
 	bS->addImage({ sdlutils().width() - 310.0f , (sdlutils().height() / 8.0f) * 1 },
@@ -90,7 +90,7 @@ void MainMenuSystem::initSystem() {
 	// 2 TOWER BUTTON - CRISTAL
 	bS->addButton({ sdlutils().width() - 150.0f , (sdlutils().height() / 8.0f) * 2 },
 		{ 200.0f, 70.0f },
-		upgrade, upgrade_hover, ButtonTypes::crystal_menu);
+		upgrade, upgrade_hover, ButtonTypes::upgrade_crystal_main);
 
 	// 2 TOWER CRISTAL IMAGE
 	bS->addImage({ sdlutils().width() - 310.0f , (sdlutils().height() / 8.0f) * 2 },
@@ -100,7 +100,7 @@ void MainMenuSystem::initSystem() {
 	// 3 TOWER BUTTON - SLIME
 	bS->addButton({ sdlutils().width() - 150.0f , (sdlutils().height() / 8.0f) * 3 },
 		{ 200.0f, 70.0f },
-		upgrade, upgrade_hover, ButtonTypes::slime_menu);
+		upgrade, upgrade_hover, ButtonTypes::upgrade_slime_main);
 
 	// 3 TOWER SLIME IMAGE
 	bS->addImage({ sdlutils().width() - 310.0f , (sdlutils().height() / 8.0f) * 3 },
@@ -110,7 +110,7 @@ void MainMenuSystem::initSystem() {
 	// 4 TOWER BUTTON - SNIPER
 	bS->addButton({ sdlutils().width() - 150.0f , (sdlutils().height() / 8.0f) * 4 },
 		{ 200.0f, 70.0f },
-		upgrade, upgrade_hover, ButtonTypes::sniper_menu);
+		upgrade, upgrade_hover, ButtonTypes::upgrade_sniper_main);
 
 	// 4 TOWER SNIPER IMAGE
 	bS->addImage({ sdlutils().width() - 310.0f , (sdlutils().height() / 8.0f) * 4 },
@@ -120,7 +120,7 @@ void MainMenuSystem::initSystem() {
 	// 5 TOWER BUTTON - FENIX
 	bS->addButton({ sdlutils().width() - 150.0f , (sdlutils().height() / 8.0f) * 5 },
 		{ 200.0f, 70.0f },
-		upgrade, upgrade_hover, ButtonTypes::fenix_menu);
+		upgrade, upgrade_hover, ButtonTypes::upgrade_fenix_main);
 
 	// 5 TOWER FENIX IMAGE
 	bS->addImage({ sdlutils().width() - 310.0f , (sdlutils().height() / 8.0f) * 5 },
@@ -130,7 +130,7 @@ void MainMenuSystem::initSystem() {
 	// 6 TOWER BUTTON - DIRT
 	bS->addButton({ sdlutils().width() - 150.0f , (sdlutils().height() / 8.0f) * 6 },
 		{ 200.0f, 70.0f },
-		upgrade, upgrade_hover, ButtonTypes::clay_menu);
+		upgrade, upgrade_hover, ButtonTypes::upgrade_clay_main);
 
 	// 6 TOWER DIRT IMAGE
 	bS->addImage({ sdlutils().width() - 310.0f , (sdlutils().height() / 8.0f) * 6 },
@@ -140,7 +140,7 @@ void MainMenuSystem::initSystem() {
 	// 7 TOWER BUTTON - ENHANCER
 	bS->addButton({ sdlutils().width() - 150.0f , (sdlutils().height() / 8.0f) * 7 },
 		{ 200.0f, 70.0f },
-		upgrade, upgrade_hover, ButtonTypes::enhancer_menu);
+		upgrade, upgrade_hover, ButtonTypes::upgrade_enhancer_main);
 
 	// 7 TOWER POWER IMAGE
 	bS->addImage({ sdlutils().width() - 310.0f , (sdlutils().height() / 8.0f) * 7 },
