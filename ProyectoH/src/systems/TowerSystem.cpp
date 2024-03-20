@@ -50,7 +50,8 @@ void TowerSystem::onAttackTower(Entity* e, int dmg) {
 		ShieldComponent* s = mngr_->getComponent<ShieldComponent>(e);
 		
 		if (s->getShield() <= 0 && h->getHealth() - dmg <= 0) {
-			mngr_->deleteHandler(_hdlr_LOW_TOWERS, e); eliminateDestroyedTowers(e);		
+			h->subtractHealth(dmg);
+			mngr_->deleteHandler(_hdlr_LOW_TOWERS, e); eliminateDestroyedTowers(e);	
 		}
 		else {
 			if(s->getShield() > 0 && s->getShield() - dmg <= 0 ){ mngr_->setAlive(s->getImg(), false); }
