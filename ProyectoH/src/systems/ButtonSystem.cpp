@@ -156,35 +156,39 @@ void ButtonSystem::manageButtons() {
 		mngr_->send(m);
 	}
 	void ButtonSystem::upgradeNexusMain() {
-
+		upgradeTower(_twr_NEXUS);
 	}
 	void ButtonSystem::upgradeCrystalMain() {
-
+		upgradeTower(_twr_CRISTAL);
 	}
 	void ButtonSystem::upgradeSlimeMain() {
-
+		upgradeTower(_twr_SLIME);
 	}
 	void ButtonSystem::upgradeBulletMain() {
-
+		upgradeTower(_twr_BULLET);
 	}
 	void ButtonSystem::upgradeSniperMain() {
-
+		upgradeTower(_twr_DIEGO);
 	}
 	void ButtonSystem::upgradeFenixMain() {
-
+		upgradeTower(_twr_FENIX);
 	}
 	void ButtonSystem::upgradeClayMain() {
-
+		upgradeTower(_twr_CLAY);
 	}
 	void ButtonSystem::upgradeEnhancerMain() {
+		upgradeTower(_twr_POWER);
+	}
 
+	void ButtonSystem::upgradeTower(twrId t) {
+		Message m;
+		m.id = _m_UPGRADE_TOWER;
+		m.drag_data.towerId = t;
+		mngr_->send(m);
 	}
 
 	void ButtonSystem::dragTower(twrId tower) {
-		Message m;
-		m.id = _m_DRAG;
-		m.drag_data.towerId = tower;
-		mngr_->send(m);
+		
 	}
 #pragma endregion
 

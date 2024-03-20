@@ -114,19 +114,16 @@ constexpr sysId_type maxSystemId = _LAST_SYS_ID;
 
 using msgId_type = uint8_t;
 enum msgId : msgId_type {
-	_m_ROUND_START, //
-	_m_ROUND_OVER,
 	_m_SHOOT,
 	_m_TOWERS_TO_ATTACK,
 	_m_ENTITY_TO_ATTACK,
 	_m_ATTACK_NEXUS,
 	_m_TOWER_TO_ATTACK,
 	_m_SHIELD_NEXUS,
-	_m_GAMEOVER,
-	_m_GAMESTART,
 	_m_PAUSE,
 	_m_RESUME,
 	_m_START_GAME,
+	_m_OVER_GAME,
 	_m_LEVEL_SELECTOR,
 	_m_ENEMY_BOOK,
 	_m_UPGRADE_NEXUS,
@@ -148,6 +145,7 @@ enum twrId : twrId_type {
 	_twr_FENIX,
 	_twr_CLAY,
 	_twr_POWER,
+	_twr_NEXUS
 };
 
 inline Uint16 sdlnet_hton(Uint16 v) {
@@ -244,20 +242,10 @@ msgId_type id;
 		int lvl;
 	}upgrade_tower;
 
-	// _m_UPGRADE_NEXUS
-	struct {
-		int lvl;
-	}upgrade_nexus;
-
 	// _m_PAUSE
 	struct {
 		bool onPause;
 	}start_pause;
-
-	// _m_LEVELS_INFO
-	struct {
-		std::vector<int> lvls;
-	};
 
 
 	struct {

@@ -77,20 +77,50 @@ private:
 	/// </summary>
 	void dragTower(twrId tower);
 
+	/// <summary>
+	/// Método encargado de enviar el mensaje de mejorar una torre
+	/// con x Id pasado por parámetro
+	/// </summary>
+	void upgradeTower(twrId t);
+
+	/// <summary>
+	/// Llamada al método de mejora del Nexo
+	/// </summary>
 	void upgradeNexusMain();
 
+	/// <summary>
+	/// Llamada al método de mejora de la Torre de Cristal
+	/// </summary>
 	void upgradeCrystalMain();
 
+	/// <summary>
+	/// Llamada al método de mejora de la Torre de Slime
+	/// </summary>
 	void upgradeSlimeMain();
 
+	/// <summary>
+	/// Llamada al método de mejora de la Torre Bullet
+	/// </summary>
 	void upgradeBulletMain();
 
+	/// <summary>
+	/// Llamada al método de mejora de la Torre Sniper
+	/// </summary>
 	void upgradeSniperMain();
 
+	/// <summary>
+	/// Llamada al método de mejora de la Torre Fenix
+	/// </summary>
 	void upgradeFenixMain();
 
+	/// <summary>
+	/// Llamada al método de mejora de la Torre de Arcilla
+	/// </summary>
 	void upgradeClayMain();
 
+	/// <summary>
+	/// Llamada al método de mejora de la Torre de Mejora
+	/// </summary>
 	void upgradeEnhancerMain();
 
 
