@@ -35,6 +35,13 @@ enum cmpId : cmpId_type {
 	_PHOENIXTOWER,
 	_DIRTTOWER,
 	_DRAG_AND_DROP,
+	_SLIMETOWER,
+	_SLIMEBULLET,
+	_TOWERSTATES,
+	_MAESTROALMAS,
+	_GOLEM,
+	_FIRE,
+	_MENSAJEROMUERTE,
 
 	// do not remove this
 	_LAST_CMP_ID
@@ -71,6 +78,7 @@ enum grpId : grpId_type {
 	_grp_HUD_BACKGROUND,
 	_grp_HUD_FOREGROUND,
 	_grp_HUD_DRAG_AND_DROP,
+	_grp_AREAOFATTACK,
 	
 	// do not remove this
 	_LAST_GRP_ID
@@ -106,11 +114,24 @@ enum sysId : sysId_type {
 	_sys_ENEMYBOOK,
 	_sys_PAUSE,
 	_sys_BUTTON,
+	_sys_COLLISION,
 
 	// do not remove this
 	_LAST_SYS_ID
 };
+
 constexpr sysId_type maxSystemId = _LAST_SYS_ID;
+
+using rectId_type = uint8_t;
+enum rectId : rectId_type {
+	_FENIX,
+	_SLIME,
+	_ENEMY,
+
+	_LAST_RECT_ID
+};
+
+constexpr rectId_type lastRectId = _LAST_RECT_ID;
 
 using msgId_type = uint8_t;
 enum msgId : msgId_type {
@@ -119,6 +140,7 @@ enum msgId : msgId_type {
 	_m_ENTITY_TO_ATTACK,
 	_m_ATTACK_NEXUS,
 	_m_TOWER_TO_ATTACK,
+	_m_TOWER_TO_BLIND,
 	_m_SHIELD_NEXUS,
 	_m_PAUSE,
 	_m_RESUME,
@@ -133,7 +155,11 @@ enum msgId : msgId_type {
 	_m_DRAG,
 	_m_LEVELS_INFO,
 	_m_ADD_TOWER,
-	_m_OFFSET_CONTEXT
+	_m_OFFSET_CONTEXT,
+	_m_ADD_RECT,
+	_m_DECREASE_SPEED,
+	_m_RESET_SPEED,
+	_m_REMOVE_RECT,
 };
 
 using twrId_type = uint8_t;
@@ -146,6 +172,25 @@ enum twrId : twrId_type {
 	_twr_CLAY,
 	_twr_POWER,
 	_twr_NEXUS
+};
+using enmId_type = uint8_t;
+enum enmId : enmId_type {
+	_enm_MALMAS,
+	_enm_AELECTRICO,
+	_enm_MALDITO,
+	_enm_GOLEM,
+	_enm_DALADO,
+	_enm_GOBLIN,
+	_enm_ELFO,
+	_enm_MMUERTE,
+	_enm_ANGEL,
+	_enm_DINFERNAL,
+	_enm_DREAL,
+	_enm_CMALDITO,
+	_enm_PRINCIPITO,
+	_enm_MONJE,
+	_enm_MUERTE,
+
 };
 
 inline Uint16 sdlnet_hton(Uint16 v) {
@@ -214,6 +259,11 @@ msgId_type id;
     struct {
 		std::vector<Entity*> towers;
 	} towers_to_attack;
+	// _m_TOWER_TO_BLIND
+	struct {
+		Entity* e;
+		float damage;
+	} tower_to_blind;
 	// _m_ENTITY_TO_ATTACK
 	struct {
 		Entity* src;
@@ -235,6 +285,15 @@ msgId_type id;
 	struct {
 		int damage;
 	}nexus_attack_data;
+	//_m_DECREASE_SPEED
+	struct {
+		float slowPercentage;
+		Entity* e;
+	}decrease_speed;
+	//_m_RESET_SPEED
+	struct {
+		float speed;
+	}reset_speed;
 
 	// _m_UPGRADE_TOWER
 	struct {
@@ -247,6 +306,13 @@ msgId_type id;
 		bool onPause;
 	}start_pause;
 
+		int lvl;
+	}upgrade_nexus;
+	//_m_ADD_RECT
+	struct {
+		Entity* rect;
+		rectId id;
+	}rect_data;
 
 	struct {
 		SDL_Rect* offset;

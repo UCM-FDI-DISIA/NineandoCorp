@@ -17,8 +17,8 @@ class NetMap
 {
 private:
 
-	vector<vector<Cell*>> net;
-	SDL_Rect* offset =new SDL_Rect();
+	vector<vector<Cell*>> net;        //Malla
+	SDL_Rect* offset =new SDL_Rect(); // Este offset es el mismo que el del render system
 
 public:
 	NetMap(int size);
@@ -31,10 +31,25 @@ public:
 	/// <returns>Devuelve el puntero de la casilla</returns>
 	Cell* getCell(int fila, int columna) const { return net[fila][columna]; };
 
+	/// <summary>
+	/// Establece la celda
+	/// </summary>
+	/// <param name="fila">La fila de la malla</param>
+	/// <param name="columna">La columna de la malla</param>
+	/// <param name="c">La celda nueva</param>
 	void setCell(int fila, int columna, Cell* c) { net[fila][columna] = c; };
 
+	/// <summary>
+	/// Establece la referencia al offset
+	/// </summary>
+	/// <param name="rect"></param>
 	void setOffset(SDL_Rect* rect) { offset = rect; };
 
-	Cell* searchCell(float x, float y) const;
+	/// <summary>
+	/// Busca la celda correspondiente segun una posicion dada en pantalla
+	/// </summary>
+	/// <param name="targetPosition">Posicion objetivo</param>
+	/// <returns>Puntero de la celda mas proxima</returns>
+	Cell* searchCell(Vector2D &targetPosition) const;
 };
 

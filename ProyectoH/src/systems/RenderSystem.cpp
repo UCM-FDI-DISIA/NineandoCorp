@@ -19,6 +19,7 @@ RenderSystem::RenderSystem() : winner_(0)
 	cursorTexture2 = &sdlutils().images().at("cursorpress");
 	*offset = build_sdlrect(0, 0, 0, 0);
 
+	//Towers
 	textures[square] = &sdlutils().images().at("square");
 	textures[tileSet] = &sdlutils().images().at("map");
 	textures[play] = &sdlutils().images().at("play");
@@ -55,8 +56,13 @@ RenderSystem::RenderSystem() : winner_(0)
 	textures[clay_tower_image] = &sdlutils().images().at("dirt_tower_image");
 	textures[power_tower_image] = &sdlutils().images().at("power_tower_image");
 	textures[nexus_level_3_image] = &sdlutils().images().at("nexus_level_3_image");
-
 	textures[nexus_level_text] = &sdlutils().msgs().at("nexus_level_text");
+
+	//Miscelanious
+	textures[square] = &sdlutils().images().at("square");
+	textures[tileSet] = &sdlutils().images().at("map");
+
+
 }
 
 
@@ -138,6 +144,22 @@ void RenderSystem::update() {
 		textures[textureId]->render(srcRect, trRect);
 	}
 
+	//AREA OF ATTACK (SLIME AND FENIX)
+	const auto& slimes = mngr_->getEntities(_grp_AREAOFATTACK);
+	for (auto& slime : slimes)
+	{
+		Transform* tr = mngr_->getComponent<Transform>(slime);
+		gameTextures textureId = mngr_->getComponent<RenderComponent>(slime)->getTexture();
+		FramedImage* img = mngr_->getComponent<FramedImage>(slime);
+		SDL_Rect srcRect = img->getSrcRect();
+		img->updateCurrentFrame();
+		SDL_Rect trRect = tr->getRect();
+		trRect.x += offset->x;
+		trRect.y += offset->y;
+		SDL_RenderFillRect(sdlutils().renderer(), &trRect);
+		textures[textureId]->render(srcRect, trRect, tr->getRotation());
+	}
+
 	//Este grupo tiene que estar ordenado de arriba a abajo de la pantalla segun su transform (posicion y)
 	// NO CAMBIAR LECHES
 	//TOWERS AND ENEMIES
@@ -202,7 +224,7 @@ void RenderSystem::update() {
 		pointerdown = false;
 	}
 
-	SDL_Rect cursorRect = { x, y, 41, 64 };
+	SDL_Rect cursorRect = { x-10, y-4, 41, 64 };
 
 	if (pointerdown)
 	{

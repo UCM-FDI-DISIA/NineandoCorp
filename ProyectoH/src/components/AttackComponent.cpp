@@ -4,7 +4,7 @@
 #include "../components/Transform.h"
 #include "../components/HealthComponent.h"
 
-AttackComponent::AttackComponent(float range, float reloadTime, int damage, bool shootBullets) : range_(range), reloadTime_(reloadTime), damage_(damage), baseDamage_(damage), elapsedTime_(reloadTime) {
+AttackComponent::AttackComponent(float range, float reloadTime, int damage, bool shootBullets) : range_(range), reloadTime_(reloadTime), damage_(damage), baseDamage_(damage), elapsedTime_(reloadTime), nexo_(false) {
 	target_ = nullptr; timeToShoot_ = reloadTime; loaded_ = false;
 }
 
@@ -28,7 +28,7 @@ void AttackComponent::targetEnemy(const std::list<Entity*>& targetGroup) {//Busc
 		{
 			if (mngr_->hasComponent<Transform>(enemy)) {
 				float distance = getDistance(mngr_->getComponent<Transform>(enemy)->getPosition());
-				if (distance < range_ && distance < closestEnemy) {
+				if (distance < range_ && distance < closestEnemy) {//Si esta en rango y es el enemigo mas cercano
 					target_ = enemy;
 					closestEnemy = distance;
 				}
@@ -37,9 +37,6 @@ void AttackComponent::targetEnemy(const std::list<Entity*>& targetGroup) {//Busc
 	}	
 	else if(target_ != nullptr && mngr_->isAlive(target_)){
 		target_ = nullptr;
-		//if (getDistance(mngr_->getComponent<Transform>(target_)->getPosition()) > range_) {//el target ha salido de rango luego lo pierde
-		//	target_ = nullptr;
-		//}
 	}
 }
 

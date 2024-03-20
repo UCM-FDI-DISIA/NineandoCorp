@@ -38,18 +38,21 @@ public:
 	void setTimeToShoot(float t);
 	void setElapsedTime(float elapsed);
 	void setTarget(Entity* e) { target_ = e; };
+	bool getNexo() { return nexo_; }
+	void setNexo(bool n) { nexo_=n; }
 
 protected:
 	
-	float reloadTime_;
-	int baseDamage_;
-	int damage_;
+	float reloadTime_;//Tiempo de recarga
+	int baseDamage_;//Dano inicial
+	int damage_;//Dano actual; puede ser modificado por potenciadores o inhibidores
 	Entity* target_;//target principal
 
 	float getDistance(Vector2D targetPos);
-	float range_;
-	float timeToShoot_;
+	float range_;//Rango de deteccion
+	float timeToShoot_;//Tiempo por dispaor
 	float elapsedTime_;
+	bool nexo_;
 
 	bool loaded_;
 };
