@@ -5,6 +5,7 @@
 #include "..//components/MaestroAlmasComponent.h"
 #include "..//components/GolemComponent.h"
 #include "../ecs/Manager.h"
+#include "..//components/AcechanteComponent.h"
 
 EnemySystem::EnemySystem() {
 
@@ -76,6 +77,8 @@ void EnemySystem::update() {
 		AttackComponent* ac = mngr_->getComponent<AttackComponent>(e);
 		MaestroAlmasComponent* ma = mngr_->getComponent<MaestroAlmasComponent>(e);
 		GolemComponent* gc= mngr_->getComponent<GolemComponent>(e);
+		AcechanteComponent* acc = mngr_->getComponent<AcechanteComponent>(e);
+
 		bool para = false;
 
 		if (gc != nullptr) {
@@ -83,6 +86,14 @@ void EnemySystem::update() {
 			if (gc->getElapsed() >= gc->getReload()) {
 				gc->Regenera();
 				gc->setTime(0.0f);
+			}
+		}
+
+		if (acc != nullptr) {
+			acc->setTime(game().getDeltaTime() + acc->getElapsed());
+			if (acc->getElapsed() >= acc->getReload()) {
+				acc->inRange(enemies);
+				acc->setTime(0.0f);
 			}
 		}
 
