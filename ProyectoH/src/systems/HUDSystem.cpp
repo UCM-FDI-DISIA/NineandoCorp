@@ -114,6 +114,12 @@ void HUDSystem::initSystem() {
 		ButtonTypes::none));
 	mngr_->addComponent<DragAndDrop>(towers_imgs[_twr_POWER], _twr_POWER);
 	initial_pos[_twr_POWER] = { xAux * 7, heightH };
+
+	// boton de pausa
+	bS->addButton({ sdlutils().width() - 50.0f, 50.0f },
+		{ 20.0f, 20.0f },
+		gameTextures::pause_button, gameTextures::pause_button_hover,
+		ButtonTypes::pause_main);
 }
 
 void HUDSystem::receive(const Message& m) {

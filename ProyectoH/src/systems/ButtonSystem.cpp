@@ -77,6 +77,10 @@ void ButtonSystem::manageButtons() {
 		case start_game:
 			startGame();
 			break;
+		case pause_main:
+			Pause();
+			pauseAllButtons();
+			break;
 
 		/*--- MEJORAS DEL MENU ---*/
 		case upgrade_nexus:
@@ -146,6 +150,7 @@ void ButtonSystem::manageButtons() {
 	void ButtonSystem::Pause() {
 		Message m;
 		m.id = _m_PAUSE;
+		m.start_pause.onPause = true;
 		mngr_->send(m, true);
 	}
 	void ButtonSystem::EnemyBook() {

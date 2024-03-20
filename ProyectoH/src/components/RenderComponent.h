@@ -9,7 +9,7 @@ enum gameTextures {
 	lakeTexture5, lakeTexture6, lakeTexture7, lakeTexture8, lakeTexture9, lakeTexture10,
 	lakeTexture11,
 	//UI
-	play, play_hover, box, box_hover, large_box, none_box, none_box_hover,
+	play, play_hover, box, box_hover, large_box, pause_button, pause_button_hover, none_box, none_box_hover,
 	close, close_hover, enemies_button, enemies_button_hover, 
 	menu_background, upgrade, upgrade_hover, logo,  
 	crystal_tower_image, bullet_tower_image, slime_tower_image,
