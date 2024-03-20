@@ -187,7 +187,7 @@ void TowerSystem::update() {
 							if (s->getShield() <= 0) {
 								s->setImg(addShield(mngr_->getComponent<Transform>(tower)->getPosition()));//añade el escudo visible y lo asigna al shieldComponent
 							}
-							s->setMaxShield(50.0f);
+							s->setMaxShield(ct->getShieldVal());
 							s->setShield(s->getMaxShield());//Regenera escudos
 						}				
 					}				
