@@ -6,16 +6,10 @@ MainControlSystem::MainControlSystem() :active_(false)
 }
 
 void MainControlSystem::initSystem() {
-
-	// Tamaño al array de torres
-	turrentLevels_.resize(7);
-
 	// Inicialización del nivel de las torres y nexo
-	for (int i = 0; i < turrentLevels_.size(); i++) {
+	for (int i = 0; i < _twr_SIZE; i++) {
 		turrentLevels_[i] = 0;
 	}
-
-	int nexusLevel_ = 0;
 }
 
 void MainControlSystem::receive(const Message& m) {
@@ -48,9 +42,6 @@ void MainControlSystem::receive(const Message& m) {
 		}
 		else mngr_->getComponent<HealthComponent>(nexo)->subtractHealth(m.nexus_attack_data.damage);
 		break;
-	case _m_UPGRADE_NEXUS:
-		upgradeNexus();
-		break;
 	case _m_UPGRADE_TOWER:
 		upgradeTower(m.upgrade_tower.towerId);
 		break;
@@ -60,13 +51,14 @@ void MainControlSystem::receive(const Message& m) {
 	}
 }
 
-void MainControlSystem::upgradeNexus() {
-	nexusLevel_++;
-}
-
-void MainControlSystem::upgradeTower(twrId_type id) {
-	turrentLevels_[id]++;
-	std::cout << turrentLevels_[id];	// QUITAR
+void MainControlSystem::upgradeTower(twrId id) {
+	if (turrentLevels_[id] < 4) {
+		turrentLevels_[id]++;
+		std::cout << turrentLevels_[id] << endl;	// QUITAR
+	}
+	else {
+		std::cout << "NO SE PUEDE MEJORAR, lvl: " << turrentLevels_[id] << endl;	// QUITAR
+	}
 }
 
 void MainControlSystem::update() {

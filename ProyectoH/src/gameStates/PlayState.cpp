@@ -10,9 +10,9 @@ PlayState::PlayState() : GameState(_gmStt_PLAY) {
 	mngr_->addSystem<HUDSystem>();
 	TowerSystem* ts = mngr_->addSystem<TowerSystem>(net);
 	mngr_->addSystem<EnemySystem>();
+	mngr_->addSystem<CollisionSystem>();
 }
 
 void PlayState::update() {
 	GameState::update();
-
 }

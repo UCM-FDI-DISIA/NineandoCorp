@@ -26,6 +26,7 @@ public:
 	SDL_Rect getSrcRect();
 
 	void setCurrentFrame(int newFrame) { currentFrame = newFrame; }
+	int getCurrentFrame() { return currentFrame; }
 };
 
 #endif

@@ -11,14 +11,6 @@ enum ButtonTypes {
 	selector_main, enemies_main,
 	//Level Selector
 	start_game, back_selector,
-	//Tower_menu
-	crystal_menu,
-	slime_menu,
-	bullet_menu,
-	sniper_menu,
-	fenix_menu,
-	clay_menu,
-	enhancer_menu,
 
 	//Upgrades main menu
 	upgrade_nexus, 

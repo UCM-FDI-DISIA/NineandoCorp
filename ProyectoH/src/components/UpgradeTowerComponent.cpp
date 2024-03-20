@@ -1,6 +1,12 @@
 #include "UpgradeTowerComponent.h"
 #include "../ecs/Manager.h"
 #include "../components/BulletTower.h"
+#include "..//components/EnhancerTower.h"
+#include "..//components/CrystalTower.h"
+#include "..//components/RenderComponent.h"
+#include "..//components/DiegoSniperTower.h"
+#include "..//components/PhoenixTower.h"
+#include "..//components/DirtTower.h"
 
 using namespace std;
 
@@ -16,22 +22,21 @@ void UpgradeTowerComponent::LevelUp() {
 			mngr_->getComponent<BulletTower>(ent_)->levelUp(currentLevel_);
 			break;
 		case _twr_CRISTAL:
-
+			//mngr_->getComponent<BulletTower>(ent_)->levelUp(currentLevel_);
 			break;
 		case _twr_SLIME:
-
+			//mngr_->getComponent<>(ent_)->levelUp(currentLevel_);
 			break;
 		case _twr_DIEGO:
-
+			mngr_->getComponent<DiegoSniperTower>(ent_)->levelUp(currentLevel_);
 			break;
 		case _twr_FENIX:
-
 			break;
-		case _twr_CLAY:
-
+		case _twr_DIRT:
+			mngr_->getComponent<DirtTower>(ent_)->levelUp(currentLevel_);
 			break;
 		case _twr_POWER:
-
+			mngr_->getComponent<EnhancerTower>(ent_)->levelUp(currentLevel_);
 			break;
 		default:
 

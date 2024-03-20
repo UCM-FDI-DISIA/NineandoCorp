@@ -2,9 +2,11 @@
 void
 MovementComponent::Move() {
 	if (!stop_) {
-		transform_->translate();
+		transform_->translate(speedDecrease_);
 	}
-	
+	else {
+		std::cout << transform_->getPosition()->getX()<<" " << transform_->getPosition()->getY();
+	}
 }
 
 void
@@ -25,4 +27,10 @@ MovementComponent::rotate(float rotation) {
 void
 MovementComponent::setStop(bool stop) {
 	stop_ = stop;
+}
+
+void
+MovementComponent::activateSlow(float val, bool active) {
+	slowed_ = active;
+	speedDecrease_ = val;
 }
