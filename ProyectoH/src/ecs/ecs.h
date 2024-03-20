@@ -51,6 +51,7 @@ enum hdlrId : hdlrId_type {
 	//botones de las escenas
 	_hdlr_BUTTON,
 	_hdlr_BUTTON_MAIN,
+	_hdlr_BUTTON_PAUSE,
 	_hdlr_BUTTON_LVLSEL,
 	_hdlr_BUTTON_ENEMYBOOK,
 	_hdlr_BUTTON_PLAY,
