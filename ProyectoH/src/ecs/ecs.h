@@ -35,6 +35,7 @@ enum cmpId : cmpId_type {
 	_SHIELD,
 	_TOWERSTATES,
 	_MAESTROALMAS,
+	_P_TIME,
 	_GOLEM,
 	_FIRE,
 
@@ -51,6 +52,7 @@ enum hdlrId : hdlrId_type {
 	_hdlr_LOW_TOWERS,
 	_hdlr_HIGH_TOWERS,
 	_hdlr_ENEMIES,
+	_hdlr_PARTICLES,
 	
 	// do not remove this
 	_LAST_HDLR_ID };
@@ -100,6 +102,7 @@ enum sysId : sysId_type {
 	_sys_ENEMIES,
 	_sys_LEVELSELECTOR,
 	_sys_COLLISION,
+	_sys_PARTICLES,
 
 	// do not remove this
 	_LAST_SYS_ID
