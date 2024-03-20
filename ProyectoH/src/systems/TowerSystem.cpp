@@ -21,7 +21,9 @@ void TowerSystem::initSystem() {
 	addTower(twrId::_twr_DIRT, { (float)sdlutils().width() / 3.0f, 600.f }, LOW);
 	addTower(twrId::_twr_SLIME, { (float)sdlutils().width() / 2.3f, 630.f }, LOW);
 	addTower(twrId::_twr_CRISTAL, { (float)sdlutils().width() / 1.8f, 660.f }, LOW);
-	addTower(twrId::_twr_FENIX, { (float)sdlutils().width() / 1.8f, 600.f }, LOW);
+	addTower(twrId::_twr_POWER, { (float)sdlutils().width() / 1.8f, 600.f }, LOW);
+	addTower(twrId::_twr_DIEGO, { (float)sdlutils().width() / 2.0f, 630.f }, LOW);
+	addTower(twrId::_twr_BULLET, { (float)sdlutils().width() / 1.7f, 630.f }, LOW);
 	//addTower(twrId::_twr_BULLET, { (float)sdlutils().width() / 1.7f, 550.f }, LOW);
 	//addTower(twrId::_twr_POWER, { (float)sdlutils().width() / 2.2f, 540.f }, LOW);
 }
@@ -359,7 +361,7 @@ void TowerSystem::addTower(twrId type, Vector2D pos, Height height) {
 		mngr_->addComponent<FramedImage>(t, intAt("FenixColumns"), intAt("FenixRows"), intAt("FenixWidth"), intAt("FenixHeight"), 0, 0);
 		break;
 	case _twr_BULLET://Pasar rango, recarga, da?o y si dispara
-		mngr_->addComponent<BulletTower>(t, floatAt("BalasRango"), floatAt("BalasRecarga"), floatAt("BalasDano"));
+		mngr_->addComponent<BulletTower>(t, floatAt("BalasRango"), floatAt("BalasRecarga"), intAt("BalasDano"));
 		mngr_->addComponent<RenderComponent>(t, bulletTowerTexture);
 		mngr_->addComponent<FramedImage>(t, intAt("BalasColumns"), intAt("BalasRows"), intAt("BalasWidth"), intAt("BalasHeight"), 0, 0);
 		break;
