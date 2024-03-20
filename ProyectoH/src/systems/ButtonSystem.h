@@ -56,6 +56,11 @@ private:
 	/// <summary>
 	/// Mensaje de carga enemyBook para ver los enemigos encontrados
 	/// </summary>
+	void Pause();
+
+	/// <summary>
+	/// Mensaje de carga enemyBook para ver los enemigos encontrados
+	/// </summary>
 	void EnemyBook();
 
 	/// <summary>

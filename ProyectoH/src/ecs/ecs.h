@@ -103,6 +103,7 @@ enum sysId : sysId_type {
 	_sys_ENEMIES,
 	_sys_LEVELSELECTOR,
 	_sys_ENEMYBOOK,
+	_sys_PAUSE,
 	_sys_BUTTON,
 
 	// do not remove this
@@ -246,6 +247,11 @@ msgId_type id;
 	struct {
 		int lvl;
 	}upgrade_nexus;
+
+	// _m_PAUSE
+	struct {
+		bool onPause;
+	}start_pause;
 
 	// _m_LEVELS_INFO
 	struct {

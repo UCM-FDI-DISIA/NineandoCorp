@@ -37,6 +37,9 @@ void MainControlSystem::receive(const Message& m) {
 	case _m_ROUND_START:
 		onRoundStart();
 		break;
+	case _m_PAUSE:
+		game().pushState<PauseState>(mngr_);
+		break;
 	case _m_ROUND_OVER:
 		onRoundOver();
 		break;

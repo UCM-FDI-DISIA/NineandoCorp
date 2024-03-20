@@ -135,6 +135,11 @@ void ButtonSystem::manageButtons() {
 		m.id = _m_LEVEL_SELECTOR;
 		mngr_->send(m, true);
 	}
+	void ButtonSystem::Pause() {
+		Message m;
+		m.id = _m_PAUSE;
+		mngr_->send(m, true);
+	}
 	void ButtonSystem::EnemyBook() {
 		Message m;
 		m.id = _m_ENEMY_BOOK;
