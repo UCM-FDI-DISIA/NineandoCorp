@@ -23,7 +23,7 @@ void TowerSystem::initSystem() {
 	addTower(twrId::_twr_CRISTAL, { (float)sdlutils().width() / 1.8f, 660.f }, LOW);
 	addTower(twrId::_twr_POWER, { (float)sdlutils().width() / 1.8f, 600.f }, LOW);
 	addTower(twrId::_twr_DIEGO, { (float)sdlutils().width() / 2.0f, 630.f }, LOW);
-	addTower(twrId::_twr_BULLET, { (float)sdlutils().width() / 1.7f, 630.f }, LOW);
+	addTower(twrId::_twr_BULLET, { (float)sdlutils().width() / 1.9f, 630.f }, LOW);
 	//addTower(twrId::_twr_BULLET, { (float)sdlutils().width() / 1.7f, 550.f }, LOW);
 	//addTower(twrId::_twr_POWER, { (float)sdlutils().width() / 2.2f, 540.f }, LOW);
 }
@@ -128,7 +128,7 @@ void TowerSystem::update() {
 						else if (dir.getX() >= 0 && dir.getY() < 0) { valFrame = 12; offset.setY(0); offset.setX(DIEGO_OFFSET * 2.5); }
 						else if (dir.getX() < 0 && dir.getY() >= 0) { offset.setX(0); }
 						else if (dir.getX() < 0 && dir.getY() < 0) { valFrame = 8; offset.setX(0); offset.setY(0); }
-						//mngr_->getComponent<FramedImage>(t)->setCurrentFrame(valFrame + mngr_->getComponent<UpgradeTowerComponent>(t)->getLevel());
+						mngr_->getComponent<FramedImage>(t)->setCurrentFrame(valFrame + mngr_->getComponent<UpgradeTowerComponent>(t)->getLevel());
 						Vector2D spawn = { TR->getPosition()->getX() + offset.getX(),	TR->getPosition()->getY() + offset.getY() };//Punto de spawn de la bala con el offset
 						shootBullet(bt->getTarget(), t, bt->getDamage(), floatAt("BalasVelocidad"), spawn, bulletTexture, { 35, 35 }, _twr_BULLET);//Dispara la bala
 					}
@@ -143,7 +143,7 @@ void TowerSystem::update() {
 							else if (dir.getX() < 0 && dir.getY() < 0) { valFrame = 8; offset.setX(0); offset.setY(0); }
 							shootBullet(bt->getSecondTarget(), t, bt->getDamage(), floatAt("BalasVelocidad"), TR->getPosition(), bulletTexture, { 35, 35 }, _twr_BULLET);
 
-							mngr_->getComponent<FramedImage>(t)->setCurrentFrame(valFrame + mngr_->getComponent<UpgradeTowerComponent>(t)->getLevel());
+							//mngr_->getComponent<FramedImage>(t)->setCurrentFrame(valFrame + mngr_->getComponent<UpgradeTowerComponent>(t)->getLevel());
 							Vector2D spawn = { TR->getPosition()->getX() + offset.getX(),	TR->getPosition()->getY() + offset.getY() };//Punto de spawn de la bala con el offset
 		
 						}
@@ -157,16 +157,20 @@ void TowerSystem::update() {
 			CrystalTower* ct = mngr_->getComponent<CrystalTower>(t);
 			if (ct != nullptr) {
 				ct->setElapsedTime(ct->getElapsedTime()+game().getDeltaTime());
-				if (ct->getElapsedTime() > ct->getTimeToShield()) {					
+				if (ct->getElapsedTime() > ct->getTimeToShield()) {			
+					Vector2D myPos = TR->getPosition();
 					for (auto& tower : towers)
 					{
-						ShieldComponent* s = mngr_->getComponent<ShieldComponent>(tower);
-						if (s->getShield() <= 0) {
-						s->setImg(addShield(mngr_->getComponent<Transform>(tower)->getPosition()));//añade el escudo visible y lo asigna al shieldComponent
-						}
-						s->setMaxShield(50.0f);
-						s->setShield(s->getMaxShield());//Regenera escudos
-
+						Vector2D towerPos = mngr_->getComponent<Transform>(tower)->getPosition();
+						float distance = sqrt(pow(towerPos.getX() - myPos.getX(), 2) + pow(towerPos.getY() - myPos.getY(), 2));//distancia a la torre
+						if (distance < ct->getRange()) {//En rango
+							ShieldComponent* s = mngr_->getComponent<ShieldComponent>(tower);
+							if (s->getShield() <= 0) {
+								s->setImg(addShield(mngr_->getComponent<Transform>(tower)->getPosition()));//añade el escudo visible y lo asigna al shieldComponent
+							}
+							s->setMaxShield(50.0f);
+							s->setShield(s->getMaxShield());//Regenera escudos
+						}				
 					}				
 					ct->setElapsedTime(0);
 				}
@@ -349,7 +353,6 @@ void TowerSystem::addTower(twrId type, Vector2D pos, Height height) {
 	float health = 100.0f;
 	if (height == LOW) {
 		mngr_->addComponent<HealthComponent>(t, health);
-		//lowTowers.push_back(t);
 		mngr_->setHandler(_hdlr_LOW_TOWERS, t);
 	}
 	else mngr_->setHandler(_hdlr_HIGH_TOWERS, t);
@@ -387,7 +390,7 @@ void TowerSystem::addTower(twrId type, Vector2D pos, Height height) {
 
 		break;
 	case _twr_CRISTAL://Escudo, Tiempo de recarga y dano por explosion
-		mngr_->addComponent<CrystalTower>(t, intAt("CristalEscudo"), floatAt("CristalRecarga"), intAt("CristalExplosion"));
+		mngr_->addComponent<CrystalTower>(t, intAt("CristalEscudo"), floatAt("CristalRecarga"), intAt("CristalExplosion"), floatAt("CristalRango"));
 		mngr_->addComponent<RenderComponent>(t, cristalTowerTexture);
 		mngr_->addComponent<FramedImage>(t, intAt("CristalColumns"), intAt("CristalRows"), intAt("CristalWidth"), intAt("CristalHeight"), 0, 0);
 		break;
