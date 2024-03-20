@@ -36,6 +36,7 @@ enum cmpId : cmpId_type {
 	_MAESTROALMAS,
 	_GOLEM,
 	_FIRE,
+	_MENSAJEROMUERTE,
 
 	// do not remove this
 	_LAST_CMP_ID

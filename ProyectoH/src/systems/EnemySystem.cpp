@@ -3,6 +3,7 @@
 #include "..//components/RouteComponent.h"
 #include "..//components/HealthComponent.h"
 #include "..//components/MaestroAlmasComponent.h"
+#include "..//components/GolemComponent.h"
 #include "../ecs/Manager.h"
 
 EnemySystem::EnemySystem() {
@@ -72,7 +73,17 @@ void EnemySystem::update() {
 		MovementComponent* mc = mngr_->getComponent<MovementComponent>(e);
 		AttackComponent* ac = mngr_->getComponent<AttackComponent>(e);
 		MaestroAlmasComponent* ma = mngr_->getComponent<MaestroAlmasComponent>(e);
+		GolemComponent* gc= mngr_->getComponent<GolemComponent>(e);
 		bool para = false;
+
+		if (gc != nullptr) {
+			gc->setTime(game().getDeltaTime()+gc->getElapsed());
+			if (gc->getElapsed() >= gc->getReload()) {
+				gc->Regenera();
+				gc->setTime(0.0f);
+			}
+		}
+
 		if (rc != nullptr) {
 			rc->checkdestiny();
 			if (mc != nullptr && !mc->getStop()) {
@@ -80,6 +91,7 @@ void EnemySystem::update() {
 			}
 
 		}
+
 		if (ac != nullptr) {
 			ac->setElapsedTime(ac->getElapsedTime() + game().getDeltaTime());
 			if (ac->getElapsedTime() > ac->getReloadTime()) {
@@ -192,7 +204,8 @@ void EnemySystem::addEnemy(enmId type, Vector2D pos) {
 		mngr_->addComponent<RenderComponent>(t, square);
 		mngr_->addComponent<HealthComponent>(t, 50000);
 		mngr_->addComponent<RouteComponent>(t, route);
-		mngr_->addComponent<AttackComponent>(t, 100, 0.25, 20, false);
+		mngr_->addComponent<GolemComponent>(t);
+		mngr_->addComponent<AttackComponent>(t, 100, 2, 20, false);
 		mngr_->addComponent<FramedImage>(t, 1, 1, 122, 117, 0, 0, 1);
 		break;
 	case _enm_DINFERNAL:

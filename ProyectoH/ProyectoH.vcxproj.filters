@@ -261,6 +261,9 @@
     <ClInclude Include="src\components\GolemComponent.h">
       <Filter>Header Files\components</Filter>
     </ClInclude>
+    <ClInclude Include="C:\hlocal\NineandoCorp\NineandoCorp\ProyectoH\src\components\MensajeroMuerteComponent.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\json\JSONValue.cpp">
@@ -421,6 +424,9 @@
     </ClCompile>
     <ClCompile Include="src\components\GolemComponent.cpp">
       <Filter>Source Files\components</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\hlocal\NineandoCorp\NineandoCorp\ProyectoH\src\components\MensajeroMuerteComponent.cpp">
+      <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
