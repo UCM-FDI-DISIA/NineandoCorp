@@ -49,10 +49,19 @@ void generateEnemies::addGroupEnemies(){
 	auto spawneo = &sdlutils().spawns().at(id);
 	spawnGroup = spawneo;
 }
+void generateEnemies::RoutesCorrection(Transform* tr, std::vector<Vector2D>& route) {
+	Vector2D v = { tr->getWidth() / 1.5f, tr->getHeight() / 1.5f };
+	for (auto& e : route) {
+		e = e - v;
+	}
+}
 void generateEnemies::addEnemy(enmId type, std::vector<Vector2D> route) {
 	Entity* t = mngr_->addEntity(_grp_TOWERS_AND_ENEMIES);
 
 	Transform* tr = mngr_->addComponent<Transform>(t);//transform
+	//Vector2D v = { tr->getWidth() / 1.5f, tr->getHeight() / 1.5f};
+	//tr->setScale(v);
+	RoutesCorrection(tr, route);
 	tr->setPosition(route[0]);
 
 	MovementComponent* mc = mngr_->addComponent<MovementComponent>(t);

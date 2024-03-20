@@ -5,6 +5,8 @@
 #include "..//components/AttackComponent.h"
 #include "..//sdlutils/VirtualTimer.h"
 #include "../game/Game.h"
+#include "../systems/mapSystem.h"
+#include "..//components/generateEnemies.h"
 class EnemySystem: public System
 {
 
@@ -17,10 +19,11 @@ public:
 	void initSystem() override;
 	void receive(const Message& m) override;
 	void onRoundOver();
-	void onRoundStart(unsigned int n_grp);
+	void onRoundStart(unsigned int n_grp, unsigned int level);
 	void onWaveStart(unsigned int level, unsigned int wave);
 	void collideswithEnemy();
-
+	std::vector<Vector2D> RouteTranslate(std::vector<Vector2D> route);
+	void prueba();
 protected:
 
 	std::vector<Transform*> enemiesTransforms;

@@ -29,7 +29,9 @@ public:
 	void setLevel(unsigned int newLevel) { level = newLevel; }
 	void setWave(unsigned int newWave) { wave = newWave; }
 	void setGrp(unsigned int newGrp) { grp = newGrp; }
+	void setRoute(std::vector<Vector2D> newRoute) { route = newRoute; }
 	void addGroupEnemies();
+	void RoutesCorrection(Transform* tr, std::vector<Vector2D>& route);
 	SDLUtils::spawnGroupData* getSpawnGroup() const { return spawnGroup; }
 	double getElapsedTime() const { return elapsedTime; }
 	void setElapsedTime(double time) { elapsedTime = time; }

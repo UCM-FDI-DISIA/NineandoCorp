@@ -9,6 +9,10 @@ mapSystem::~mapSystem() {
 
 void mapSystem::initSystem(){
 	loadMap(filename);
+	Message m;
+	m.id = _m_START_GAME;
+	m.start_game_data.netmap = net;
+	mngr_->send(m, true);
 }
 
 void mapSystem::receive(const Message& m) {

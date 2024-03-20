@@ -213,7 +213,8 @@ msgId_type id;
 	// _m_START_GAME
 	struct
 	{
-		//nivel 
+		//nivel
+		NetMap* netmap;
 	}start_game_data;
 
     // _m_TOWERS_TO_ATTACK
@@ -278,12 +279,6 @@ msgId_type id;
 		unsigned int wave;
 		unsigned int n_grp;
 	} create_spawns_data;
-
-	// _m_NETMAPSET
-	struct
-	{
-		NetMap* netmap;
-	}netmap_set;
 };
 
 #endif // !ECS_H_
