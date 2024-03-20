@@ -8,20 +8,23 @@ RouteComponent::update() {
 void
 RouteComponent::initComponent() {
 	transform_ = mngr_->getComponent<Transform>(ent_);
-	changevelocity(route_[0]);
+	route_translate.resize(route_.size());
+	for (int i = 0; i < route_.size(); i++) {
+		route_translate[i] = netmap->getCell(route_[i].getX(), route_[i].getY())->position;
+	}
+	changevelocity(route_translate[0]);
 }
 
 void
 RouteComponent::checkdestiny() {
-	if ((*(transform_->getPosition())-route_[destiny_])<=epsilon) {
-		if (destiny_ >= route_.size()-1) {
+	if ((*(transform_->getPosition())- route_translate[destiny_])<=epsilon) {
+		if (destiny_ >= route_translate.size()-1) {
 			transform_->setVelocity({ 0,0 });
 			mngr_->getComponent<MovementComponent>(ent_)->setStop(true);
 		}
 		else {
 			destiny_++;
-			changevelocity(route_[destiny_]);
-			//std::cout << "e";
+			changevelocity(route_translate[destiny_]);
 		}
 
 	}

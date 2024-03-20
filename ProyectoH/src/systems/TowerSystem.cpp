@@ -18,9 +18,9 @@ void TowerSystem::initSystem() {
 	//addTower(twrId::_twr_BULLET, { (float)sdlutils().width() / 1.9f, 550.f }, LOW);
 	//addTower(twrId::_twr_DIEGO, { (float)sdlutils().width() / 1.9f, 600.f }, LOW);
 	//addTower(twrId::_twr_SLIME, { (float)sdlutils().width() / 3.0f, 600.f }, LOW);
-	addTower(twrId::_twr_SLIME, { (float)sdlutils().width() / 2.3f, 630.f }, LOW);
+	//addTower(twrId::_twr_SLIME, { (float)sdlutils().width() / 2.3f, 630.f }, LOW);
 	//addTower(twrId::_twr_BULLET, { (float)sdlutils().width() / 1.8f, 600.f }, LOW);
-	addTower(twrId::_twr_FENIX, { (float)sdlutils().width() / 1.8f, 600.f }, LOW);
+	//addTower(twrId::_twr_FENIX, { (float)sdlutils().width() / 1.8f, 600.f }, LOW);
 	//addTower(twrId::_twr_BULLET, { (float)sdlutils().width() / 1.7f, 550.f }, LOW);
 	//addTower(twrId::_twr_POWER, { (float)sdlutils().width() / 2.2f, 540.f }, LOW);
 }

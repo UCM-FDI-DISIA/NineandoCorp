@@ -5,6 +5,7 @@
 #include "../checkML.h"
 #include "../utils/Vector2D.h"
 #include "../sdlutils/SDLNetUtils.h"
+#include "../utils/NetMap.h"
 #include <vector>
 
 class Entity;
@@ -139,6 +140,7 @@ enum msgId : msgId_type {
 	_m_ADD_RECT,
 	_m_DECREASE_SPEED,
 	_m_RESET_SPEED,
+	_m_NETMAP_SET,
 };
 
 using twrId_type = uint8_t;
@@ -269,12 +271,19 @@ msgId_type id;
 		SDL_Rect* offset;
 	}offset_context;
 
+
 	// _m_ROUND_START
 	struct {
 		unsigned int level;
 		unsigned int wave;
 		unsigned int n_grp;
 	} create_spawns_data;
+
+	// _m_NETMAPSET
+	struct
+	{
+		NetMap* netmap;
+	}netmap_set;
 };
 
 #endif // !ECS_H_

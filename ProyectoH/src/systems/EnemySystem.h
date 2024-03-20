@@ -25,6 +25,7 @@ protected:
 
 	std::vector<Transform*> enemiesTransforms;
 	std::vector<Entity*> spawnsVector;
+	NetMap* netmap;
 	bool active_;
 };
 

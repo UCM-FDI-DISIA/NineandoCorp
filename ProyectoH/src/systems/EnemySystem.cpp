@@ -16,7 +16,25 @@ EnemySystem::~EnemySystem() {
 void EnemySystem::initSystem() {
 	active_ = true;
 
-	addEnemy(_enm_ANGEL, { 0,0 });
+	Entity* enemie = mngr_->addEntity(_grp_TOWERS_AND_ENEMIES);
+	Transform* tr = mngr_->addComponent<Transform>(enemie);
+	tr->setPosition({(float)sdlutils().width()/2.f - 100.f, 300.f});
+	tr->setVelocity({ 0, 100 });
+	mngr_->addComponent<MovementComponent>(enemie);
+	std::vector<Vector2D> route;
+	route.push_back({ 30, 27 });
+	route.push_back({ 27, 24 });
+	route.push_back({ 8, 24 });
+	route.push_back({ 8, 15 });
+	route.push_back({ 13, 15});
+	mngr_->getComponent<generateEnemies>(spawnsVector[0])->addEnemy(_enm_ANGEL, route);
+
+	mngr_->addComponent<RouteComponent>(enemie, route, netmap);
+	mngr_->addComponent<AttackComponent>(enemie, 100, 0.25, 20, false);
+	mngr_->addComponent<RenderComponent>(enemie, square);
+	mngr_->addComponent<HealthComponent>(enemie, 50000);
+	mngr_->addComponent<FramedImage>(enemie, 1, 1, 122, 117, 0, 0, 1);
+	mngr_->setHandler(_hdlr_ENEMIES, enemie);
 }
 void  EnemySystem::receive(const Message& m) {
 	switch (m.id) {
@@ -49,6 +67,9 @@ void  EnemySystem::receive(const Message& m) {
 				mc->activateSlow(m.decrease_speed.slowPercentage, true);
 			}
 		}
+		break;
+	case _m_NETMAP_SET:
+		netmap = m.netmap_set.netmap;
 		break;
 	}
 }
