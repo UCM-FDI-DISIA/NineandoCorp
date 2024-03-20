@@ -15,8 +15,6 @@ struct cmpIsometricY {
 // Constructorss
 RenderSystem::RenderSystem() : winner_(0)
 {
-	cursorTexture = &sdlutils().images().at("cursor");
-	cursorTexture2 = &sdlutils().images().at("cursorpress");
 	*offset = build_sdlrect(0, 0, 0, 0);
 
 	//Towers
@@ -35,6 +33,7 @@ RenderSystem::RenderSystem() : winner_(0)
 	textures[sniperBulletTexture] = &sdlutils().images().at("sniper_bullet");
 	textures[slimeBulletTexture] = &sdlutils().images().at("slime_bullet");
 	textures[nexusTexture] = &sdlutils().images().at("nexus_tower");
+
 	textures[box] = &sdlutils().images().at("box"); 
 	textures[box_hover] = &sdlutils().images().at("box_hover");
 	textures[none_box] = &sdlutils().images().at("none_box");
@@ -48,6 +47,7 @@ RenderSystem::RenderSystem() : winner_(0)
 	textures[upgrade] = &sdlutils().images().at("upgrade");
 	textures[upgrade_hover] = &sdlutils().images().at("upgrade_hover");
 	textures[logo] = &sdlutils().images().at("logo");
+
 	textures[crystal_tower_image] = &sdlutils().images().at("cristal_tower_image");
 	textures[bullet_tower_image] = &sdlutils().images().at("bullet_tower_image");
 	textures[slime_tower_image] = &sdlutils().images().at("slime_tower_image");
@@ -57,6 +57,35 @@ RenderSystem::RenderSystem() : winner_(0)
 	textures[power_tower_image] = &sdlutils().images().at("power_tower_image");
 	textures[nexus_level_3_image] = &sdlutils().images().at("nexus_level_3_image");
 	textures[nexus_level_text] = &sdlutils().msgs().at("nexus_level_text");
+
+
+	textures[fireTexture] = &sdlutils().images().at("fireball");
+	textures[slimeArea] = &sdlutils().images().at("slime_area");
+	
+
+	//HUD
+	cursorTexture = &sdlutils().images().at("cursor");
+	cursorTexture2 = &sdlutils().images().at("cursorpress");
+	textures[box] = &sdlutils().images().at("box");
+	textures[box_hover] = &sdlutils().images().at("box_hover");
+	textures[large_box] = &sdlutils().images().at("large_box");
+	textures[close] = &sdlutils().images().at("close");
+	textures[close_hover] = &sdlutils().images().at("close_hover");
+	textures[enemies_button] = &sdlutils().images().at("enemies");
+	textures[enemies_button_hover] = &sdlutils().images().at("enemies_hover");
+	textures[menu_background] = &sdlutils().images().at("menu_background");
+	textures[upgrade] = &sdlutils().images().at("upgrade");
+	textures[upgrade_hover] = &sdlutils().images().at("upgrade_hover");
+	textures[logo] = &sdlutils().images().at("logo");
+	textures[play] = &sdlutils().images().at("play");
+	textures[play_hover] = &sdlutils().images().at("play_hover");
+	textures[nexus_level_3_image] = &sdlutils().images().at("nexus_level_3_image");
+	textures[nexus_level_text] = &sdlutils().msgs().at("nexus_level_text");
+
+	//Miscelanious
+	textures[square] = &sdlutils().images().at("square");
+	textures[tileSet] = &sdlutils().images().at("map");
+
 
 
 }

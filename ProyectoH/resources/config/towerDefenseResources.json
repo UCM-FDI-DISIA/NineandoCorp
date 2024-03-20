@@ -380,7 +380,7 @@
       "id": "power_tower_image",
       "file": "resources/images/towers/1_booster_tower.png"
     },
-    {
+    { 
       "id": "nexus_level_3_image",
       "file": "resources/images/nexus/nexus_level_3_image.png"
     },
