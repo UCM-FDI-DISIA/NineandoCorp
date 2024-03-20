@@ -70,12 +70,15 @@ void CollisionSystem::update() {
 		
 		for (const auto& fr : fenixRects_) {
 			if (mngr_->isAlive(fr)) {
+				
 				Transform* fenixTR = mngr_->getComponent<Transform>(fr);
 				SDL_Rect fenixRect;
 				if(fenixTR!=nullptr) fenixRect = fenixTR->getRect();
 				SDL_bool col = SDL_HasIntersection(&fenixRect, &enemyRect);
 				FireComponent* fc = mngr_->getComponent<FireComponent>(fr);
+
 				if (fc != nullptr) {
+					if (!mngr_->isAlive(fc->getMyTower()))removeRect(fr, _FENIX);
 					float dps = fc->getDamage();
 					fc->setElapsedTime(fc->getElapsedTime() + game().getDeltaTime());
 					if (fc->getElapsedTime() > 1.0f) {
@@ -86,7 +89,6 @@ void CollisionSystem::update() {
 							m.entity_to_attack.src = fr;
 							m.entity_to_attack.damage = dps;
 							mngr_->send(m);
-							std::cout << "daño\n";
 						}
 						fc->setElapsedTime(0);
 					}

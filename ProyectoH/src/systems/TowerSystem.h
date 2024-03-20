@@ -44,6 +44,7 @@ protected:
 	Entity* addShield(Vector2D pos);
 	Entity* shootFire(Vector2D spawn, float rot, float dmg);
 	void clearShieldsArea(Entity* e);
+	Entity* shootFire(Vector2D spawn, float rot, float dmg, Entity* src);
 	void eliminateDestroyedTowers(Entity* t);
 	std::vector<Entity*> towers;
 	bool active_;
