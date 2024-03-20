@@ -50,209 +50,82 @@
     <ClCompile Include="src\utils\NetMap.cpp" />
     <ClCompile Include="src\utils\Vector2D.cpp" />
     <ClCompile Include="EnemyBookState.cpp" />
+    <ClCompile Include="src\components\BlindComponent.cpp" />
+    <ClCompile Include="src\components\GolemComponent.cpp" />
+    <ClCompile Include="src\components\MaestroAlmasComponent.cpp" />
+    <ClCompile Include="src\components\SlimeBullet.cpp" />
+    <ClCompile Include="src\components\SlimeTowerComponent.cpp" />
+    <ClCompile Include="src\components\TowerStates.cpp" />
+    <ClCompile Include="src\systems\CollisionSystem.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="src\json\JSONValue.h">
-      <Filter>Header Files\json</Filter>
-    </ClInclude>
-    <ClInclude Include="src\json\json_demo.h">
-      <Filter>Header Files\json</Filter>
-    </ClInclude>
-    <ClInclude Include="src\json\JSON.h">
-      <Filter>Header Files\json</Filter>
-    </ClInclude>
-    <ClInclude Include="src\utils\Collisions.h">
-      <Filter>Header Files\utils</Filter>
-    </ClInclude>
-    <ClInclude Include="src\utils\mpl.h">
-      <Filter>Header Files\utils</Filter>
-    </ClInclude>
-    <ClInclude Include="src\utils\Singleton.h">
-      <Filter>Header Files\utils</Filter>
-    </ClInclude>
-    <ClInclude Include="src\utils\Vector2D.h">
-      <Filter>Header Files\utils</Filter>
-    </ClInclude>
-    <ClInclude Include="src\sdlutils\Font.h">
-      <Filter>Header Files\sdlutil</Filter>
-    </ClInclude>
-    <ClInclude Include="src\sdlutils\InputHandler.h">
-      <Filter>Header Files\sdlutil</Filter>
-    </ClInclude>
-    <ClInclude Include="src\sdlutils\macros.h">
-      <Filter>Header Files\sdlutil</Filter>
-    </ClInclude>
-    <ClInclude Include="src\sdlutils\Music.h">
-      <Filter>Header Files\sdlutil</Filter>
-    </ClInclude>
-    <ClInclude Include="src\sdlutils\RandomNumberGenerator.h">
-      <Filter>Header Files\sdlutil</Filter>
-    </ClInclude>
-    <ClInclude Include="src\sdlutils\SDLUtils.h">
-      <Filter>Header Files\sdlutil</Filter>
-    </ClInclude>
-    <ClInclude Include="src\sdlutils\sdlutils_demo.h">
-      <Filter>Header Files\sdlutil</Filter>
-    </ClInclude>
-    <ClInclude Include="src\sdlutils\SoundEffect.h">
-      <Filter>Header Files\sdlutil</Filter>
-    </ClInclude>
-    <ClInclude Include="src\sdlutils\Texture.h">
-      <Filter>Header Files\sdlutil</Filter>
-    </ClInclude>
-    <ClInclude Include="src\sdlutils\VirtualTimer.h">
-      <Filter>Header Files\sdlutil</Filter>
-    </ClInclude>
-    <ClInclude Include="src\sdlutils\SDLNetUtils.h">
-      <Filter>Header Files\sdlutil</Filter>
-    </ClInclude>
-    <ClInclude Include="src\ecs\Component.h">
-      <Filter>Header Files\ecs</Filter>
-    </ClInclude>
-    <ClInclude Include="src\ecs\ecs.h">
-      <Filter>Header Files\ecs</Filter>
-    </ClInclude>
-    <ClInclude Include="src\ecs\Entity.h">
-      <Filter>Header Files\ecs</Filter>
-    </ClInclude>
-    <ClInclude Include="src\ecs\System.h">
-      <Filter>Header Files\ecs</Filter>
-    </ClInclude>
-    <ClInclude Include="src\game\Game.h">
-      <Filter>Header Files\Game</Filter>
-    </ClInclude>
-    <ClInclude Include="src\game\GameState.h">
-      <Filter>Header Files\Game</Filter>
-    </ClInclude>
-    <ClInclude Include="src\game\GameStateMachine.h">
-      <Filter>Header Files\Game</Filter>
-    </ClInclude>
-    <ClInclude Include="src\ecs\Manager.h">
-      <Filter>Header Files\ecs</Filter>
-    </ClInclude>
-    <ClInclude Include="src\components\FramedImage.h">
-      <Filter>Header Files\components</Filter>
-    </ClInclude>
-    <ClInclude Include="src\components\HealthComponent.h">
-      <Filter>Header Files\components</Filter>
-    </ClInclude>
-    <ClInclude Include="src\components\MovementComponent.h">
-      <Filter>Header Files\components</Filter>
-    </ClInclude>
-    <ClInclude Include="src\components\Transform.h">
-      <Filter>Header Files\components</Filter>
-    </ClInclude>
-    <ClInclude Include="src\components\RouteComponent.h">
-      <Filter>Header Files\components</Filter>
-    </ClInclude>
-    <ClInclude Include="src\systems\mapSystem.h">
-      <Filter>Header Files\systems</Filter>
-    </ClInclude>
-    <ClInclude Include="src\systems\RenderSystem.h">
-      <Filter>Header Files\systems</Filter>
-    </ClInclude>
-    <ClInclude Include="src\components\RenderComponent.h">
-      <Filter>Header Files\components</Filter>
-    </ClInclude>
-    <ClInclude Include="src\components\AttackComponent.h">
-      <Filter>Header Files\components</Filter>
-    </ClInclude>
-    <ClInclude Include="src\components\BulletComponent.h">
-      <Filter>Header Files\components</Filter>
-    </ClInclude>
-    <ClInclude Include="src\components\BulletTower.h">
-      <Filter>Header Files\components</Filter>
-    </ClInclude>
-    <ClInclude Include="src\components\DragAndDrop.h">
-      <Filter>Header Files\components</Filter>
-    </ClInclude>
-    <ClInclude Include="src\systems\TowerSystem.h">
-      <Filter>Header Files\systems</Filter>
-    </ClInclude>
-    <ClInclude Include="src\components\DirtTower.h">
-      <Filter>Header Files\components</Filter>
-    </ClInclude>
-    <ClInclude Include="src\components\UpgradeTowerComponent.h">
-      <Filter>Header Files\components</Filter>
-    </ClInclude>
-    <ClInclude Include="src\systems\HUDSystem.h">
-      <Filter>Header Files\systems</Filter>
-    </ClInclude>
-    <ClInclude Include="src\systems\MainControlSystem.h">
-      <Filter>Header Files\systems</Filter>
-    </ClInclude>
-    <ClInclude Include="src\systems\MainMenuSystem.h">
-      <Filter>Header Files\systems</Filter>
-    </ClInclude>
-    <ClInclude Include="src\components\EnhancerTower.h">
-      <Filter>Header Files\components</Filter>
-    </ClInclude>
-    <ClInclude Include="src\components\ButtonComponent.h">
-      <Filter>Header Files\components</Filter>
-    </ClInclude>
-    <ClInclude Include="src\components\NexusComponent.h">
-      <Filter>Header Files\components</Filter>
-    </ClInclude>
-    <ClInclude Include="src\components\CrystalTower.h">
-      <Filter>Header Files\components</Filter>
-    </ClInclude>
-    <ClInclude Include="src\components\DiegoSniperTower.h">
-      <Filter>Header Files\components</Filter>
-    </ClInclude>
-    <ClInclude Include="src\gameStates\PauseState.h">
-      <Filter>Header Files\gameStates</Filter>
-    </ClInclude>
-    <ClInclude Include="src\gameStates\PlayState.h">
-      <Filter>Header Files\gameStates</Filter>
-    </ClInclude>
-    <ClInclude Include="src\gameStates\MainMenuState.h">
-      <Filter>Header Files\gameStates</Filter>
-    </ClInclude>
-    <ClInclude Include="src\gameStates\LevelSelectorState.h">
-      <Filter>Header Files\gameStates</Filter>
-    </ClInclude>
-    <ClInclude Include="src\gameStates\GameOverState.h">
-      <Filter>Header Files\gameStates</Filter>
-    </ClInclude>
-    <ClInclude Include="src\systems\LevelSelectorSystem.h">
-      <Filter>Header Files\systems</Filter>
-    </ClInclude>
-    <ClInclude Include="src\systems\EnemySystem.h">
-      <Filter>Header Files\systems</Filter>
-    </ClInclude>
-    <ClInclude Include="src\components\PhoenixTower.h">
-      <Filter>Header Files\components</Filter>
-    </ClInclude>
-    <ClInclude Include="src\utils\NetMap.h">
-      <Filter>Header Files\utils</Filter>
-    </ClInclude>
-    <ClInclude Include="src\components\FireComponent.h">
-      <Filter>Header Files\components</Filter>
-    </ClInclude>
-    <ClInclude Include="src\components\SlimeTowerComponent.h">
-      <Filter>Header Files\components</Filter>
-    </ClInclude>
-    <ClInclude Include="src\systems\CollisionSystem.h">
-      <Filter>Header Files\systems</Filter>
-    </ClInclude>
-    <ClInclude Include="src\components\SlimeBullet.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="src\components\BlindComponent.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="src\components\TowerStates.h">
-      <Filter>Header Files\components</Filter>
-    </ClInclude>
-    <ClInclude Include="src\components\MaestroAlmasComponent.h">
-      <Filter>Header Files\components</Filter>
-    </ClInclude>
-    <ClInclude Include="src\components\GolemComponent.h">
-      <Filter>Header Files\components</Filter>
-    </ClInclude>
-    <ClInclude Include="C:\hlocal\NineandoCorp\NineandoCorp\ProyectoH\src\components\MensajeroMuerteComponent.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
+    <ClInclude Include="src\components\AttackComponent.h" />
+    <ClInclude Include="src\components\BlindComponent.h" />
+    <ClInclude Include="src\components\BulletComponent.h" />
+    <ClInclude Include="src\components\BulletTower.h" />
+    <ClInclude Include="src\components\ButtonComponent.h" />
+    <ClInclude Include="src\components\CrystalTower.h" />
+    <ClInclude Include="src\components\DiegoSniperTower.h" />
+    <ClInclude Include="src\components\DirtTower.h" />
+    <ClInclude Include="src\components\DragAndDrop.h" />
+    <ClInclude Include="src\components\EnhancerTower.h" />
+    <ClInclude Include="src\components\FireComponent.h" />
+    <ClInclude Include="src\components\FramedImage.h" />
+    <ClInclude Include="src\components\GolemComponent.h" />
+    <ClInclude Include="src\components\HealthComponent.h" />
+    <ClInclude Include="src\components\MaestroAlmasComponent.h" />
+    <ClInclude Include="src\components\MovementComponent.h" />
+    <ClInclude Include="src\components\NexusComponent.h" />
+    <ClInclude Include="src\components\PhoenixTower.h" />
+    <ClInclude Include="src\components\RenderComponent.h" />
+    <ClInclude Include="src\components\RouteComponent.h" />
+    <ClInclude Include="src\components\SlimeBullet.h" />
+    <ClInclude Include="src\components\SlimeTowerComponent.h" />
+    <ClInclude Include="src\components\TowerStates.h" />
+    <ClInclude Include="src\components\Transform.h" />
+    <ClInclude Include="src\components\UpgradeTowerComponent.h" />
+    <ClInclude Include="src\ecs\Component.h" />
+    <ClInclude Include="src\ecs\ecs.h" />
+    <ClInclude Include="src\ecs\Entity.h" />
+    <ClInclude Include="src\ecs\Manager.h" />
+    <ClInclude Include="src\ecs\System.h" />
+    <ClInclude Include="src\gameStates\EnemyBookState.h" />
+    <ClInclude Include="src\gameStates\GameOverState.h" />
+    <ClInclude Include="src\gameStates\LevelSelectorState.h" />
+    <ClInclude Include="src\gameStates\MainMenuState.h" />
+    <ClInclude Include="src\gameStates\PauseState.h" />
+    <ClInclude Include="src\gameStates\PlayState.h" />
+    <ClInclude Include="src\game\Game.h" />
+    <ClInclude Include="src\game\GameState.h" />
+    <ClInclude Include="src\game\GameStateMachine.h" />
+    <ClInclude Include="src\json\JSON.h" />
+    <ClInclude Include="src\json\JSONValue.h" />
+    <ClInclude Include="src\json\json_demo.h" />
+    <ClInclude Include="src\sdlutils\Font.h" />
+    <ClInclude Include="src\sdlutils\InputHandler.h" />
+    <ClInclude Include="src\sdlutils\macros.h" />
+    <ClInclude Include="src\sdlutils\Music.h" />
+    <ClInclude Include="src\sdlutils\RandomNumberGenerator.h" />
+    <ClInclude Include="src\sdlutils\SDLNetUtils.h" />
+    <ClInclude Include="src\sdlutils\SDLUtils.h" />
+    <ClInclude Include="src\sdlutils\sdlutils_demo.h" />
+    <ClInclude Include="src\sdlutils\SoundEffect.h" />
+    <ClInclude Include="src\sdlutils\Texture.h" />
+    <ClInclude Include="src\sdlutils\VirtualTimer.h" />
+    <ClInclude Include="src\systems\CollisionSystem.h" />
+    <ClInclude Include="src\systems\EnemySystem.h" />
+    <ClInclude Include="src\systems\HUDSystem.h" />
+    <ClInclude Include="src\systems\LevelSelectorSystem.h" />
+    <ClInclude Include="src\systems\MainControlSystem.h" />
+    <ClInclude Include="src\systems\MainMenuSystem.h" />
+    <ClInclude Include="src\systems\mapSystem.h" />
+    <ClInclude Include="src\systems\RenderSystem.h" />
+    <ClInclude Include="src\systems\TowerSystem.h" />
+    <ClInclude Include="src\utils\Collisions.h" />
+    <ClInclude Include="src\utils\mpl.h" />
+    <ClInclude Include="src\utils\NetMap.h" />
+    <ClInclude Include="src\utils\Singleton.h" />
+    <ClInclude Include="src\utils\Vector2D.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\json\JSONValue.cpp">
@@ -392,30 +265,6 @@
     </ClCompile>
     <ClCompile Include="src\components\FireComponent.cpp">
       <Filter>Source Files\components</Filter>
-    </ClCompile>
-    <ClCompile Include="src\components\SlimeTowerComponent.cpp">
-      <Filter>Source Files\components</Filter>
-    </ClCompile>
-    <ClCompile Include="src\systems\CollisionSystem.cpp">
-      <Filter>Source Files\systems</Filter>
-    </ClCompile>
-    <ClCompile Include="src\components\SlimeBullet.cpp">
-      <Filter>Source Files\components</Filter>
-    </ClCompile>
-    <ClCompile Include="src\components\BlindComponent.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\components\TowerStates.cpp">
-      <Filter>Source Files\components</Filter>
-    </ClCompile>
-    <ClCompile Include="src\components\MaestroAlmasComponent.cpp">
-      <Filter>Source Files\components</Filter>
-    </ClCompile>
-    <ClCompile Include="src\components\GolemComponent.cpp">
-      <Filter>Source Files\components</Filter>
-    </ClCompile>
-    <ClCompile Include="C:\hlocal\NineandoCorp\NineandoCorp\ProyectoH\src\components\MensajeroMuerteComponent.cpp">
-      <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

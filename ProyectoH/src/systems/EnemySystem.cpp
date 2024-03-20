@@ -21,12 +21,6 @@ void EnemySystem::initSystem() {
 }
 void  EnemySystem::receive(const Message& m) {
 	switch (m.id) {
-	case _m_ROUND_START:
-		onRoundStart();
-		break;
-	case _m_ROUND_OVER:
-		onRoundOver();
-		break;
 	case _m_RESET_SPEED:
 		for (const auto& enemy : mngr_->getHandler(_hdlr_ENEMIES))
 		{

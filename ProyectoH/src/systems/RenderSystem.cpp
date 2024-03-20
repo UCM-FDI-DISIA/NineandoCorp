@@ -57,6 +57,9 @@ RenderSystem::RenderSystem() : winner_(0)
 	textures[power_tower_image] = &sdlutils().images().at("power_tower_image");
 	textures[nexus_level_3_image] = &sdlutils().images().at("nexus_level_3_image");
 	textures[nexus_level_text] = &sdlutils().msgs().at("nexus_level_text");
+	textures[slimeArea] = &sdlutils().images().at("slime_area");
+	textures[fireTexture] = &sdlutils().images().at("fireball");
+
 
 	//Miscelanious
 	textures[square] = &sdlutils().images().at("square");

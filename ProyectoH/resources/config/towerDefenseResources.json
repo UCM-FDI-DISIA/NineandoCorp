@@ -387,6 +387,14 @@
     {
       "id": "fireball",
       "file": "resources/images/Towers/fireball.png"
+    },
+    {
+      "id": "none_box",
+      "file": "resources/images/UI/none_box.png"
+    },
+    {
+      "id": "none_box_hover",
+      "file": "resources/images/UI/none_box_hover.png"
     }
 
     ],

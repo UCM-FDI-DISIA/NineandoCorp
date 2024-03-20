@@ -41,8 +41,6 @@ public:
 	/// <param name="pos">posicion</param>
 	/// <param name="height">si pertenece a pradera o monta�a</param>
 	void addTower(twrId type, Vector2D pos, Height height);
-
-	inline NetMap* getNet() { return net; };
 	
 	int intAt(basic_string<char> s) { return sdlutils().intConst().at(s); }
 	float floatAt(basic_string<char> s) { return sdlutils().floatConst().at(s); }

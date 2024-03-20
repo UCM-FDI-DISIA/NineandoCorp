@@ -142,11 +142,11 @@ void HUDSystem::update() {
 					}
 					//click izquierdo para colocar la torre
 					else if (ih().getMouseButtonState(InputHandler::MOUSEBUTTON::LEFT) == 1) {
-						auto tS = mngr_->getSystem<TowerSystem>();
-						auto net = tS->getNet();
+						auto mS = mngr_->getSystem<mapSystem>();
+						auto net = mS->getMalla();
 						auto tr = mngr_->getComponent<Transform>(en);
 						Vector2D mPos = { (float)ih().getMousePos().first, (float)ih().getMousePos().second };
-						Vector2D pos = (net->searchCell(mPos.getX(), mPos.getY())->position - Vector2D(tr->getScale()->getX() / 2, tr->getScale()->getX() / 2));
+						Vector2D pos = net->searchCell(mPos)->position;
 						dC->drop(pos, Height::LOW);
 						
 						//resetea el icono de la torre

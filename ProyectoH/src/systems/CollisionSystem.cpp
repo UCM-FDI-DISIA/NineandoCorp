@@ -18,12 +18,6 @@ void CollisionSystem::initSystem() {
 
 void CollisionSystem::receive(const Message& m) {
 	switch (m.id) {
-	case _m_ROUND_START:
-		onRoundStart();
-		break;
-	case _m_ROUND_OVER:
-		onRoundOver();
-		break;
 	case _m_ADD_RECT:
 		addRect(m.rect_data.rect, m.rect_data.id);
 		break;
