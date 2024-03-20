@@ -10,6 +10,7 @@ void AcechanteComponent::inRange(const std::list<Entity*>& enemyGroup)
 			mngr_->getComponent<MovementComponent>(enemy)->activateAcceleration(velAcceleration_);
 		}
 	}
+	std::cout << "velocidad";
 	
 }
 
