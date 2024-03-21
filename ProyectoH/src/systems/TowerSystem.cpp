@@ -18,9 +18,9 @@ void TowerSystem::initSystem() {
 	//addTower(twrId::_twr_BULLET, { (float)sdlutils().width() / 1.9f, 550.f }, LOW);
 	//addTower(twrId::_twr_DIEGO, { (float)sdlutils().width() / 1.9f, 600.f }, LOW);
 	//addTower(twrId::_twr_SLIME, { (float)sdlutils().width() / 3.0f, 600.f }, LOW);
-	addTower(twrId::_twr_SLIME, { (float)sdlutils().width() / 2.3f, 630.f }, LOW);
+	//addTower(twrId::_twr_SLIME, { (float)sdlutils().width() / 2.3f, 630.f }, LOW);
 	//addTower(twrId::_twr_BULLET, { (float)sdlutils().width() / 1.8f, 600.f }, LOW);
-	addTower(twrId::_twr_FENIX, { (float)sdlutils().width() / 1.8f, 600.f }, LOW);
+	//addTower(twrId::_twr_FENIX, { (float)sdlutils().width() / 1.8f, 600.f }, LOW);
 	//addTower(twrId::_twr_BULLET, { (float)sdlutils().width() / 1.7f, 550.f }, LOW);
 	//addTower(twrId::_twr_POWER, { (float)sdlutils().width() / 2.2f, 540.f }, LOW);
 }
@@ -31,7 +31,7 @@ void TowerSystem::receive(const Message& m) {
 		onAttackTower(m.tower_to_attack.e, m.tower_to_attack.damage);
 		break;
 	case _m_ADD_TOWER:
-		addTower(m.add_tower_data.towerId, m.add_tower_data.pos, LOW);
+		addTower(m.add_tower_data.towerId, m.add_tower_data.pos, LOW, m.add_tower_data.scale);
 	}
 }
 
@@ -309,11 +309,11 @@ Entity* TowerSystem::shootFire(Vector2D spawnPos, float rot, float dmg) {
 /// <param name="type">Tipo de la torre que definira sus mecanicas y su aspecto</param>
 /// <param name="pos">Posicion en la que se coloca la torre</param>
 /// <param name="height">Elevacion de la torre; puede ser alta o baja</param>
-void TowerSystem::addTower(twrId type, Vector2D pos, Height height) {
+void TowerSystem::addTower(twrId type,const Vector2D& pos, Height height,const Vector2D& scale) {
 	Entity* t = mngr_->addEntity(_grp_TOWERS_AND_ENEMIES);//Se a?ade al mngr
 	Transform* tr = mngr_->addComponent<Transform>(t);//transform
 	tr->setPosition(pos);
-	tr->setScale({ 100.0f, 150.0f });
+	tr->setScale(scale + Vector2D(20.0f, 0));
 	mngr_->addComponent<UpgradeTowerComponent>(t, type, 4);
 	float health = 100.0f;
 	if (height == LOW) {

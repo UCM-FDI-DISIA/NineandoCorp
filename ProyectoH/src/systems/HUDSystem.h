@@ -14,9 +14,12 @@ public:
 	virtual ~HUDSystem();
 	void receive(const Message& m) override;
 	void initSystem() override;
-	void update() override;
-private: 
 
+	void update() override;
+
+	void resetTowerIcon(twrId tId);
+private: 
+	
 	
 	/// <summary>
 	/// Arrastra el icono de la torre correspondiente dependiendo de la posicion del cursor
@@ -32,6 +35,7 @@ private:
 	// Para la interaccion con el HUD, no tocar de momento
 	std::vector<Entity*> towers_imgs;
 	std::vector<Vector2D> initial_pos;
-	std::vector<std::pair<Entity*, Entity*>> tower_selector_; 
+	std::vector<Vector2D> intial_scale;
+	//std::vector<std::pair<Entity*, Entity*>> tower_selector_; 
 };
 

@@ -34,7 +34,7 @@ private:
 	tmx::Vector2u m_MapTileSize;
 	tmx::FloatRect m_globalBounds;
 	NetMap* net;
-
+	Vector2D tileSize_;
 	std::string filename;
 	
 public:
@@ -48,6 +48,7 @@ public:
 
 	void loadMap(std::string filename);
 	void loadTile(const tmx::Map& map, const tmx::TileLayer& layer);
+	Vector2D getTileSize() const { return tileSize_; }
 
 	NetMap* getMalla() { return net; };
 };

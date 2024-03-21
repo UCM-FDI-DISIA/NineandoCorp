@@ -30,6 +30,10 @@ public:
 			delete c;
 		}
 	}
+
+	inline void changegId(grpId_type gId) {
+		gId_ = gId;
+	}
 	
 };
 

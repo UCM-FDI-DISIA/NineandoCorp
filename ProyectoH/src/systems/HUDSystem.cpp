@@ -13,6 +13,7 @@ HUDSystem::~HUDSystem(){
 void HUDSystem::initSystem() {
 	towers_imgs.resize(7);
 	initial_pos.resize(7);
+	intial_scale.resize(7);
 
 	ButtonSystem* bS = mngr_->getSystem<ButtonSystem>();
 
@@ -41,7 +42,7 @@ void HUDSystem::initSystem() {
 		_grp_HUD_FOREGROUND);
 	mngr_->addComponent<DragAndDrop>(towers_imgs[_twr_BULLET], _twr_BULLET);
 	initial_pos[_twr_BULLET] = { xAux, heightH };
-
+	intial_scale[_twr_BULLET] = { bSize };
 
 	// cristal tower
 	bS->addButton({ xAux * 2, heightH },
@@ -114,6 +115,10 @@ void HUDSystem::initSystem() {
 		ButtonTypes::none));
 	mngr_->addComponent<DragAndDrop>(towers_imgs[_twr_POWER], _twr_POWER);
 	initial_pos[_twr_POWER] = { xAux * 7, heightH };
+
+	for (auto en : towers_imgs) {
+		en->changegId(_grp_HUD_DRAG_AND_DROP);
+	}
 }
 
 void HUDSystem::receive(const Message& m) {
@@ -142,13 +147,11 @@ void HUDSystem::update() {
 					}
 					//click izquierdo para colocar la torre
 					else if (ih().getMouseButtonState(InputHandler::MOUSEBUTTON::LEFT) == 1) {
-						auto tS = mngr_->getSystem<mapSystem>();
-						auto net = tS->getMalla();
 						auto tr = mngr_->getComponent<Transform>(en);
 						Vector2D mPos = { (float)ih().getMousePos().first, (float)ih().getMousePos().second };
-						Vector2D pos = net->searchCell(mPos)->position;
-						dC->drop(pos, Height::LOW);
+						dC->drop(mPos, Height::LOW, tr->getScale());
 						
+
 						//resetea el icono de la torre
 						Vector2D aux = tr->getScale();
 						tr->setPosition(initial_pos[i] - aux / 2);
@@ -163,8 +166,9 @@ void HUDSystem::update() {
 
 }
 
+
 void HUDSystem::dragTowerIcon(Entity* en){
-	//debugear tipo de torre
+
 	mngr_->getComponent<DragAndDrop>(en)->enableDrag(true);
 }
 

@@ -174,6 +174,7 @@ void ButtonSystem::manageButtons() {
 		Message m;
 		m.id = _m_DRAG;
 		m.drag_data.towerId = tower;
+		mngr_->send(m);
 	}
 #pragma endregion
 

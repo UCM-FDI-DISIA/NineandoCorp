@@ -27,7 +27,13 @@ void mapSystem::update(){}
 void mapSystem::loadMap(std::string filename) {
 
     tmx::Map map;
+	
     map.load(filename);
+
+	//Inicializacion de tamaño de tile
+	auto const size = map.getTileSize();
+	tileSize_ = { (float)size.x, (float)size.y };
+
 
 	const auto& layers = map.getLayers();
 	for (std::size_t i = 0; i < layers.size(); ++i) {
