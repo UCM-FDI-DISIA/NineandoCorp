@@ -23,11 +23,13 @@ public:
 	bool isShooting() const { return shooting_; }
 	Entity* getFire() const { return fire_; }
 	Entity* getTarget() const { return target_; }
+	float getRotation()const { return rotation_; }
 
 	void setElapsedTime(float elapsed) { elapsedTime_ = elapsed; }
 	void setIsShooting(bool shooting) { shooting_ = shooting; }
 	void setFire(Entity* fire) { fire_ = fire; }
 	void setTarget(Entity* e) { target_ = e; };
+	void setRotation(float rot) { rotation_ = rot; }
 	void removeFire();
 
 protected:
@@ -38,6 +40,7 @@ protected:
 	float damage_;
 	float range_;
 	bool shooting_;
+	float rotation_;
 	Entity* fire_;
 	Entity* target_;
 

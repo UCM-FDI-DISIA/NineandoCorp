@@ -81,7 +81,6 @@ void TowerSystem::onAttackTower(Entity* e, int dmg) {
 //Realiza las funcionalidades de las torres, accediendo a los atributos de los componentes y realizando la mecanica de cada torre
 void TowerSystem::update() {
 	const auto& bullets = mngr_->getEntities(_grp_BULLETS);
-	const float DIEGO_OFFSET = floatAt("DiegoSniperOffset");
 
 	float health = 0;
 	Entity* targetMostHP = nullptr;
@@ -127,7 +126,7 @@ void TowerSystem::update() {
 			//Cada cierto tiempo targetea a un enemigo y le dispara, cambiando su imagen en funci�n de la direcci�n del disparo
 			BulletTower* bt = mngr_->getComponent<BulletTower>(t);					
 			if (bt != nullptr) {
-				Vector2D offset{ DIEGO_OFFSET, DIEGO_OFFSET };//Offset para el punto de spawn de la bala
+				Vector2D offset{ floatAt("DiegoSniperOffset"),  floatAt("DiegoSniperOffset") };//Offset para el punto de spawn de la bala
 				int valFrame = 0;//Valor del frame que se ha de escoger del spritesheet para renderizar la torre en la direccion correcta
 				bt->setElapsedTime(bt->getElapsedTime()+game().getDeltaTime());
 				if (bt->getElapsedTime() > 0.5) {
@@ -138,8 +137,8 @@ void TowerSystem::update() {
 						//Se coge el vector de la torre al objetivo, y en funcion de su direccion en los dos ejes se escoje el frame para la torre y 
 						//el punto desde el que sale la bala, que debe ser el canon de la torre. Para eso se usa el offset
 						Vector2D dir = *(mngr_->getComponent<Transform>(bt->getTarget())->getPosition()) - *(TR->getPosition());
-						if (dir.getX() >= 0 && dir.getY() >= 0) { valFrame = 4; offset.setX(DIEGO_OFFSET * 2.5); }
-						else if (dir.getX() >= 0 && dir.getY() < 0) { valFrame = 12; offset.setY(0); offset.setX(DIEGO_OFFSET * 2.5); }
+						if (dir.getX() >= 0 && dir.getY() >= 0) { valFrame = 4; offset.setX(floatAt("DiegoSniperOffset") * 2.5); }
+						else if (dir.getX() >= 0 && dir.getY() < 0) { valFrame = 12; offset.setY(0); offset.setX(floatAt("DiegoSniperOffset") * 2.5); }
 						else if (dir.getX() < 0 && dir.getY() >= 0) { offset.setX(0); }
 						else if (dir.getX() < 0 && dir.getY() < 0) { valFrame = 8; offset.setX(0); offset.setY(0); }
 						mngr_->getComponent<FramedImage>(t)->setCurrentFrame(valFrame + mngr_->getComponent<UpgradeTowerComponent>(t)->getLevel());
@@ -151,8 +150,8 @@ void TowerSystem::update() {
 						if (bt->getSecondTarget() != nullptr) {;
 
 							Vector2D dir = *(mngr_->getComponent<Transform>(bt->getSecondTarget())->getPosition()) - *(TR->getPosition());
-							if (dir.getX() >= 0 && dir.getY() >= 0) { valFrame = 4; offset.setX(DIEGO_OFFSET * 2.5); }
-							else if (dir.getX() >= 0 && dir.getY() < 0) { valFrame = 12; offset.setY(0); offset.setX(DIEGO_OFFSET * 2.5); }
+							if (dir.getX() >= 0 && dir.getY() >= 0) { valFrame = 4; offset.setX(floatAt("DiegoSniperOffset") * 2.5); }
+							else if (dir.getX() >= 0 && dir.getY() < 0) { valFrame = 12; offset.setY(0); offset.setX(floatAt("DiegoSniperOffset") * 2.5); }
 							else if (dir.getX() < 0 && dir.getY() >= 0) { offset.setX(0); }
 							else if (dir.getX() < 0 && dir.getY() < 0) { valFrame = 8; offset.setX(0); offset.setY(0); }
 							shootBullet(bt->getSecondTarget(), t, bt->getDamage(), floatAt("BalasVelocidad"), TR->getPosition(), bulletTexture, { 35, 35 }, _twr_BULLET);
@@ -197,11 +196,11 @@ void TowerSystem::update() {
 				if (st->getElapsedTime() > st->getTimeToShoot()) {
 					st->targetEnemy(mngr_->getHandler(_hdlr_ENEMIES));
 					if (st->getTarget() != nullptr) {
-						Vector2D offset{ DIEGO_OFFSET, DIEGO_OFFSET };
+						Vector2D offset{ floatAt("DiegoSniperOffset"),  floatAt("DiegoSniperOffset") };
 						int valFrame = 0;
 						Vector2D dir = *(mngr_->getComponent<Transform>(st->getTarget())->getPosition()) - *(TR->getPosition());
-						if (dir.getX() >= 0 && dir.getY() >= 0) { valFrame = 4; offset.setX(DIEGO_OFFSET * 3.5); }
-						else if (dir.getX() >= 0 && dir.getY() < 0) { valFrame = 12; offset.setY(0); offset.setX(DIEGO_OFFSET * 3.5); }
+						if (dir.getX() >= 0 && dir.getY() >= 0) { valFrame = 4; offset.setX(floatAt("DiegoSniperOffset") * 3.5); }
+						else if (dir.getX() >= 0 && dir.getY() < 0) { valFrame = 12; offset.setY(0); offset.setX(floatAt("DiegoSniperOffset") * 3.5); }
 						else if (dir.getX() < 0 && dir.getY() >= 0) { offset.setX(0); }
 						else if (dir.getX() < 0 && dir.getY() < 0) { valFrame = 8; offset.setX(0); offset.setY(0); }
 						mngr_->getComponent<FramedImage>(t)->setCurrentFrame(valFrame + mngr_->getComponent<UpgradeTowerComponent>(t)->getLevel());
@@ -221,11 +220,11 @@ void TowerSystem::update() {
 				ds->setElapsedTime(ds->getElapsedTime()+game().getDeltaTime());//Lo pasa a segundos
 				if (ds->getElapsedTime() > ds->getTimeToShoot()) {//si esta cargada busca enemigo con mas vida								
 					if (targetMostHP != nullptr) {//Dispara con el critico
-						Vector2D offset { DIEGO_OFFSET, DIEGO_OFFSET };
+						Vector2D offset { floatAt("DiegoSniperOffset"),  floatAt("DiegoSniperOffset") };
 						int valFrame = 0;
 						Vector2D dir = *(mngr_->getComponent<Transform>(targetMostHP)->getPosition()) - *(TR->getPosition());
-						if (dir.getX() >= 0 && dir.getY() >= 0) { valFrame = 4; offset.setX(DIEGO_OFFSET * 3.5); }
-						else if (dir.getX() >= 0 && dir.getY() < 0) { valFrame = 12; offset.setY(0); offset.setX(DIEGO_OFFSET * 3.5);}
+						if (dir.getX() >= 0 && dir.getY() >= 0) { valFrame = 4; offset.setX(floatAt("DiegoSniperOffset") * 3.5); }
+						else if (dir.getX() >= 0 && dir.getY() < 0) { valFrame = 12; offset.setY(0); offset.setX(floatAt("DiegoSniperOffset") * 3.5);}
 						else if (dir.getX() < 0 && dir.getY() >= 0){ offset.setX(0); }
 						else if (dir.getX() < 0 && dir.getY() < 0) { valFrame = 8; offset.setX(0); offset.setY(0);}
 						mngr_->getComponent<FramedImage>(t)->setCurrentFrame(valFrame + mngr_->getComponent<UpgradeTowerComponent>(t)->getLevel());
@@ -245,22 +244,33 @@ void TowerSystem::update() {
 				Vector2D spawn(TR->getPosition()->getX() - floatAt("FenixOffsetX"), TR->getPosition()->getY() - floatAt("FenixOffsetY"));
 				pt->setElapsedTime(pt->getElapsedTime() + game().getDeltaTime());
 				pt->targetEnemy(mngr_->getHandler(_hdlr_ENEMIES));
-				if (pt->getFire() != nullptr) {
-					float angle;
-					if (pt->getTarget() != nullptr) {
-						Vector2D targetPos = *(mngr_->getComponent<Transform>(pt->getTarget())->getPosition());
-						targetPos = { 0,1 };
-						Vector2D dir = targetPos - spawn;
-						dir = dir.normalize();
-						Vector2D norm = { 0, 1 };
-						float dot = norm.getX() * dir.getX() + norm.getY() * dir.getY();
-						float det = norm.getX() * dir.getY() + norm.getY() * dir.getX();
-						angle = atan2(det, dot) * 180 / 3.14;
-					}
+				Vector2D offset(0,0);
+				if (pt->getTarget() != nullptr) {
+					Vector2D targetPos = *(mngr_->getComponent<Transform>(pt->getTarget())->getPosition());
+					Vector2D dir = targetPos - spawn;
+					dir = dir.normalize();
+					
+					if (dir.getY() < -0.5 && dir.getX() >= -1 && dir.getX() <= 1) { pt->setRotation(90.0f); }//Rotar el fuego en funcion de la posicion relativa del target
+					else if (dir.getX() > 0.5 && dir.getY() <= 1 && dir.getY() >= -1) { pt->setRotation(180.0f); }
+					else if (dir.getX() < -0.5 && dir.getY() >= -1 && dir.getY() <= 1) { pt->setRotation(0.0f); }
+					else if (dir.getY() > 0.5 && dir.getX() >= -1 && dir.getX() <= 1) { pt->setRotation(270.0f); }
+					if (pt->getFire() != nullptr) {
+						Transform* fTR = mngr_->getComponent<Transform>(pt->getFire());
+						fTR->setRotation(pt->getRotation());
+					}					
 				}
-				
-				if (pt->getElapsedTime() > pt->getCoolingTime() && !pt->isShooting()) {			
-					pt->setFire(shootFire(spawn, 90.0f, pt->getDamage(), t));
+				if (pt->getRotation() == 90.0f)offset = Vector2D(0.0f, 0.0f);//Ajuste del rect en funcion del angulo
+				else if (pt->getRotation() == 180.0f) offset = Vector2D(65.0f, 60.0f);
+				else if (pt->getRotation() == 0.0f)offset = Vector2D(-80.0f, 50.0f);
+				else if (pt->getRotation() == 270.0f) offset = Vector2D(-15.0f, 90.0f);
+				if (pt->getFire() != nullptr) {
+					Transform* fTR = mngr_->getComponent<Transform>(pt->getFire());
+					fTR->setPosition(Vector2D(spawn.getX() + offset.getX(), spawn.getY() + offset.getY()));
+				}
+				std::cout << pt->getRotation() << "\n";
+				if (pt->getElapsedTime() > pt->getCoolingTime() && !pt->isShooting()) {		
+
+					pt->setFire(shootFire(Vector2D(spawn.getX() + offset.getX(), spawn.getY()+offset.getY()), pt->getRotation(), pt->getDamage(), t));
 					pt->setIsShooting(true);
 					pt->setElapsedTime(0);
 				}
@@ -378,7 +388,7 @@ void TowerSystem::addTower(twrId type,const Vector2D& pos, Height height,const V
 	tr->setPosition(pos);
 	tr->setScale(scale + Vector2D(20.0f, 0));
 	mngr_->addComponent<UpgradeTowerComponent>(t, type, 4);
-	float health = 100.0f;
+	float health = 100000.0f;
 	if (height == LOW) {
 		mngr_->addComponent<HealthComponent>(t, health);
 		mngr_->setHandler(_hdlr_LOW_TOWERS, t);
@@ -412,7 +422,7 @@ void TowerSystem::addTower(twrId type,const Vector2D& pos, Height height,const V
 		mngr_->addComponent<FramedImage>(t, intAt("DiegoSniperColumns"), intAt("DiegoSniperRows"), intAt("DiegoSniperWidth"), intAt("DiegoSniperHeight"), 0, 0);
 		break;
 	case _twr_SLIME:
-		mngr_->addComponent<SlimeTowerComponent>(t, intAt("SlimeRango"), /*floatAt("SlimeTiempoSlime")*/2.0, /*floatAt("SlimeRalentizacion")*/0.3f, intAt("SlimeDPS"), intAt("SlimeRecarga") ,intAt("SlimeDano"));
+		mngr_->addComponent<SlimeTowerComponent>(t, intAt("SlimeRango"), floatAt("SlimeTiempoSlime"), floatAt("SlimeRalentizacion"), intAt("SlimeDPS"), intAt("SlimeRecarga") ,intAt("SlimeDano"));
 		mngr_->addComponent<RenderComponent>(t, slimeTowerTexture);
 		mngr_->addComponent<FramedImage>(t, intAt("SlimeColumns"), intAt("SlimeRows"), intAt("SlimeWidth"), intAt("SlimeHeight"), 0, 0);
 

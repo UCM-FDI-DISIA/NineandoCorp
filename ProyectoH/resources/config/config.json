@@ -52,7 +52,7 @@
     },
     {
       "id": "FenixRango",
-      "value": 100
+      "value": 1000
     },
     {
       "id": "FenixDano",
@@ -101,7 +101,7 @@
     },
     {
       "id": "SlimeTiempoSlime",
-      "value": 0.5
+      "value": 2
     },
     {
       "id": "SlimeVelocidad",

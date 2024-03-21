@@ -1,7 +1,7 @@
 #include "PhoenixTower.h"
 #include "../ecs/Manager.h"
 
-PhoenixTower::PhoenixTower(float damage, float coolingTime, float shootingTime, float range) :damage_(damage), coolingTime_(coolingTime), shootingTime_(shootingTime), range_(range), elapsedTime_(0), shooting_(false), fire_(nullptr), target_(nullptr) {}
+PhoenixTower::PhoenixTower(float damage, float coolingTime, float shootingTime, float range) :damage_(damage), coolingTime_(coolingTime), shootingTime_(shootingTime), range_(range), elapsedTime_(0), shooting_(false), fire_(nullptr), target_(nullptr), rotation_(0) {}
 
 PhoenixTower::~PhoenixTower() {
 	//mngr_->setAlive(fire_, false);
@@ -57,4 +57,5 @@ void PhoenixTower::removeFire() {
 	m.rect_data.id = _FENIX;
 	m.rect_data.rect = fire_;
 	mngr_->send(m);
+	setFire(nullptr);
 }
