@@ -267,7 +267,7 @@ void TowerSystem::update() {
 					Transform* fTR = mngr_->getComponent<Transform>(pt->getFire());
 					fTR->setPosition(Vector2D(spawn.getX() + offset.getX(), spawn.getY() + offset.getY()));
 				}
-				std::cout << pt->getRotation() << "\n";
+				//std::cout << pt->getRotation() << "\n";
 				if (pt->getElapsedTime() > pt->getCoolingTime() && !pt->isShooting()) {		
 
 					pt->setFire(shootFire(Vector2D(spawn.getX() + offset.getX(), spawn.getY()+offset.getY()), pt->getRotation(), pt->getDamage(), t));
