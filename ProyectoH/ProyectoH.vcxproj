@@ -38,9 +38,11 @@
     <ClInclude Include="src\components\MaestroAlmasComponent.h" />
     <ClInclude Include="src\components\MovementComponent.h" />
     <ClInclude Include="src\components\NexusComponent.h" />
+    <ClInclude Include="src\components\ParticleLifeTime.h" />
     <ClInclude Include="src\components\PhoenixTower.h" />
     <ClInclude Include="src\components\RenderComponent.h" />
     <ClInclude Include="src\components\RouteComponent.h" />
+    <ClInclude Include="src\components\ShieldComponent.h" />
     <ClInclude Include="src\components\SlimeBullet.h" />
     <ClInclude Include="src\components\SlimeTowerComponent.h" />
     <ClInclude Include="src\components\TowerStates.h" />
@@ -81,6 +83,7 @@
     <ClInclude Include="src\systems\MainControlSystem.h" />
     <ClInclude Include="src\systems\MainMenuSystem.h" />
     <ClInclude Include="src\systems\mapSystem.h" />
+    <ClInclude Include="src\systems\ParticleSystem.h" />
     <ClInclude Include="src\systems\RenderSystem.h" />
     <ClInclude Include="src\systems\TowerSystem.h" />
     <ClInclude Include="src\utils\Collisions.h" />
@@ -111,6 +114,7 @@
     <ClCompile Include="src\components\NexusComponent.cpp" />
     <ClCompile Include="src\components\PhoenixTower.cpp" />
     <ClCompile Include="src\components\RouteComponent.cpp" />
+    <ClCompile Include="src\components\ShieldComponent.cpp" />
     <ClCompile Include="src\components\SlimeBullet.cpp" />
     <ClCompile Include="src\components\SlimeTowerComponent.cpp" />
     <ClCompile Include="src\components\TowerStates.cpp" />
@@ -142,6 +146,7 @@
     <ClCompile Include="src\systems\MainControlSystem.cpp" />
     <ClCompile Include="src\systems\MainMenuSystem.cpp" />
     <ClCompile Include="src\systems\mapSystem.cpp" />
+    <ClCompile Include="src\systems\ParticleSystem.cpp" />
     <ClCompile Include="src\systems\RenderSystem.cpp" />
     <ClCompile Include="src\systems\TowerSystem.cpp" />
     <ClCompile Include="src\utils\Collisions.cpp" />

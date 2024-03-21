@@ -37,9 +37,11 @@ enum cmpId : cmpId_type {
 	_DRAG_AND_DROP,
 	_SLIMETOWER,
 	_SLIMEBULLET,
+	_SHIELD,
 	_TOWERSTATES,
 	_ENEMYSTATES,
 	_MAESTROALMAS,
+	_P_TIME,
 	_GOLEM,
 	_ACECHANTE,
 	_FIRE,
@@ -64,6 +66,7 @@ enum hdlrId : hdlrId_type {
 	_hdlr_BUTTON_LVLSEL,
 	_hdlr_BUTTON_ENEMYBOOK,
 	_hdlr_BUTTON_PLAY,
+	_hdlr_PARTICLES,
 	
 	// do not remove this
 	_LAST_HDLR_ID };
@@ -117,6 +120,7 @@ enum sysId : sysId_type {
 	_sys_PAUSE,
 	_sys_BUTTON,
 	_sys_COLLISION,
+	_sys_PARTICLES,
 
 	// do not remove this
 	_LAST_SYS_ID

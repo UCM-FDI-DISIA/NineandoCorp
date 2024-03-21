@@ -19,7 +19,10 @@ EnemySystem::~EnemySystem() {
 void EnemySystem::initSystem() {
 	active_ = true;
 
+	addEnemy(_enm_AELECTRICO, { 300,300 });
+
 	addEnemy(_enm_ANGEL, { 700,500 });
+
 }
 void  EnemySystem::receive(const Message& m) {
 	switch (m.id) {
