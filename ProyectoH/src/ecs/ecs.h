@@ -214,6 +214,8 @@ msgId_type id;
 	struct
 	{
 		//nivel
+		unsigned int level;
+		unsigned int n_grp;
 		NetMap* netmap;
 	}start_game_data;
 
@@ -273,12 +275,7 @@ msgId_type id;
 	}offset_context;
 
 
-	// _m_ROUND_START
-	struct {
-		unsigned int level;
-		unsigned int wave;
-		unsigned int n_grp;
-	} create_spawns_data;
+	
 };
 
 #endif // !ECS_H_

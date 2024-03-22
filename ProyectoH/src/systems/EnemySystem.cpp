@@ -22,16 +22,21 @@ void EnemySystem::initSystem() {
 void  EnemySystem::receive(const Message& m) {
 	switch (m.id) {
 	case _m_ROUND_START:
-		onRoundStart(m.create_spawns_data.n_grp, m.create_spawns_data.level);
+		netmap = m.start_game_data.netmap;
+		level = m.start_game_data.level;
+		onRoundStart(m.start_game_data.n_grp, level);
+		onWaveStart(level);
 
 		break;
 	case _m_START_GAME:
-		/*onWaveStart(m.create_spawns_data.level, m.create_spawns_data.wave);*/
-		netmap = m.start_game_data.netmap;
-		prueba();
+		onWaveStart(level);
+		
+		
+		
 		break;
 	case _m_ROUND_OVER:
 		onRoundOver();
+		wave++;
 		break;
 	case _m_RESET_SPEED:
 		for (const auto& enemy : mngr_->getHandler(_hdlr_ENEMIES))
@@ -67,7 +72,7 @@ void EnemySystem::prueba() {
 	auto e = mngr_->addEntity(_grp_SPAWN);
 	auto tr = mngr_->addComponent<generateEnemies>(e);
 	spawnsVector.push_back(e);
-	mngr_->getComponent<generateEnemies>(spawnsVector[0])->addEnemy(_enm_ANGEL, route);
+	mngr_->getComponent<generateEnemies>(spawnsVector[0])->addEnemy(_enm_AELECTRICO, route);
 }
 void EnemySystem::onRoundStart(unsigned int n_grp, unsigned int level) {
 	for (auto i = 0; i < n_grp; i++)
@@ -76,11 +81,12 @@ void EnemySystem::onRoundStart(unsigned int n_grp, unsigned int level) {
 		auto tr = mngr_->addComponent<generateEnemies>(e);
 		std::string routeName = "ruta" + std::to_string(i + 1) + "Nivel" + std::to_string(level);
 		auto route_e = &sdlutils().rutes().at(routeName);
-		tr->setRoute(route_e->points);
+		auto route = RouteTranslate(route_e->points);
+		tr->setRoute(route);
 		spawnsVector.push_back(e);
 	}
 }
-void EnemySystem::onWaveStart(unsigned int level, unsigned int wave) {
+void EnemySystem::onWaveStart(unsigned int level) {
 	for (auto i = 0; i < spawnsVector.size(); i++)
 	{
 		mngr_->getComponent<generateEnemies>(spawnsVector[i])->setLevel(level);
@@ -101,7 +107,7 @@ std::vector<Vector2D> EnemySystem::RouteTranslate(std::vector<Vector2D> route) {
 	return route_aux;
 }
 void EnemySystem::update() {
-	/*for (auto& s : spawnsVector) {
+	for (auto& s : spawnsVector) {
 		auto spawn = mngr_->getComponent<generateEnemies>(s);
 		if (!spawn->getSpawnGroup()->typeEnemy.empty() && spawn->getElapsedTime() >= spawn->getSpawnGroup()->timeSpawn) {
 			spawn->generateEnemy();
@@ -111,7 +117,7 @@ void EnemySystem::update() {
 		else {
 			spawn->setElapsedTime(spawn->getElapsedTime() + game().getDeltaTime());
 		}
-	}*/
+	}
 	
 	const auto& enemies = mngr_->getHandler(_hdlr_ENEMIES);
 	const auto& towers = mngr_->getHandler(_hdlr_LOW_TOWERS);

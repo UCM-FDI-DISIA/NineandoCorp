@@ -40,6 +40,7 @@ private:
 	tmx::Vector2u m_MapTileSize;
 	tmx::FloatRect m_globalBounds;
 	NetMap* net;
+	unsigned int level = 1;
 
 	std::string filename;
 	

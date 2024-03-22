@@ -8,10 +8,11 @@ mapSystem::~mapSystem() {
 }
 
 void mapSystem::initSystem(){
-	loadMap(filename);
 	Message m;
-	m.id = _m_START_GAME;
+	m.id = _m_ROUND_START;
 	m.start_game_data.netmap = net;
+	m.start_game_data.level = level;
+	m.start_game_data.n_grp = 1;
 	mngr_->send(m, true);
 }
 
@@ -26,6 +27,9 @@ void mapSystem::receive(const Message& m) {
 	case _m_GAMEOVER:
 		//onGameOver(m.winner_data.n);
 		break;
+	case _m_ROUND_OVER:
+			level++;
+			break;
 	case _m_PAUSE:
 		onPause();
 		break;
@@ -136,7 +140,7 @@ void mapSystem::loadTile(const tmx::Map& map, const tmx::TileLayer& layer){
 // winner_ y state_.
 void mapSystem::onRoundStart() {
 
-	loadMap(filename);
+	loadMap(filename + std::to_string(level) + ".tmx");
 }
 void mapSystem::onGameStart() {
 }

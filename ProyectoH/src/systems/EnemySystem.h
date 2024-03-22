@@ -9,7 +9,9 @@
 #include "..//components/generateEnemies.h"
 class EnemySystem: public System
 {
-
+private:
+	unsigned int wave = 1;
+	unsigned int level = 1;
 public:
 
 	static constexpr sysId_type id = _sys_ENEMIES;
@@ -18,17 +20,22 @@ public:
 	void update() override;
 	void initSystem() override;
 	void receive(const Message& m) override;
+
 	void onRoundOver();
 	void onRoundStart(unsigned int n_grp, unsigned int level);
-	void onWaveStart(unsigned int level, unsigned int wave);
+	void onWaveStart(unsigned int level);
 	void collideswithEnemy();
+
 	std::vector<Vector2D> RouteTranslate(std::vector<Vector2D> route);
 	void prueba();
+	unsigned int getWave() { return wave; }
+	void setWave() { wave++; }
 protected:
 
 	std::vector<Transform*> enemiesTransforms;
 	std::vector<Entity*> spawnsVector;
 	NetMap* netmap;
 	bool active_;
+
 };
 

@@ -31,7 +31,7 @@ public:
 	void setGrp(unsigned int newGrp) { grp = newGrp; }
 	void setRoute(std::vector<Vector2D> newRoute) { route = newRoute; }
 	void addGroupEnemies();
-	void RoutesCorrection(Transform* tr, std::vector<Vector2D>& route);
+	void RoutesCorrection(Transform* tr, std::vector<Vector2D>& route, float divHeight, float divWidth);
 	SDLUtils::spawnGroupData* getSpawnGroup() const { return spawnGroup; }
 	double getElapsedTime() const { return elapsedTime; }
 	void setElapsedTime(double time) { elapsedTime = time; }

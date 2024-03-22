@@ -69,7 +69,7 @@ RenderSystem::RenderSystem() : winner_(0)
 
 	//Enemies
 	textures[goblin] = &sdlutils().images().at("goblin");
-	textures[maltido] = &sdlutils().images().at("maldito");
+	textures[maldito] = &sdlutils().images().at("maldito");
 	textures[elfo] = &sdlutils().images().at("elfo");
 	textures[golem] = &sdlutils().images().at("golem");
 	textures[angel] = &sdlutils().images().at("angel");
@@ -183,6 +183,7 @@ void RenderSystem::update() {
 		gameTextures textureId = mngr_->getComponent<RenderComponent>(t)->getTexture();
 		SDL_Rect srcRect;
 		FramedImage* fi = mngr_->getComponent<FramedImage>(t);
+		fi->updateCurrentFrame();
 		if (fi != nullptr)srcRect = fi->getSrcRect();
 		SDL_Rect trRect = tr->getRect();
 		trRect.x += offset->x;

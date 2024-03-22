@@ -18,7 +18,7 @@ enum gameTextures {
 	slimeTowerTexture, boosterTowerTexture, sniperTowerTexture, clayTowerTexture, nexusTexture, fireTexture,
 	
 	//enemies
-	goblin, maltido, elfo, golem, angel, maestro, acechante, defensor, demonioAlado,
+	goblin, maldito, elfo, golem, angel, maestro, acechante, defensor, demonioAlado,
 	demonioInfernal, mensajero, CMaldito, principito, monje, muerte,
 
 	//texts
