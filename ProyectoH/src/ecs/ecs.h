@@ -5,7 +5,6 @@
 #include "../checkML.h"
 #include "../utils/Vector2D.h"
 #include "../sdlutils/SDLNetUtils.h"
-#include "../components/RenderComponent.h"
 #include <vector>
 
 
@@ -199,6 +198,39 @@ enum enmId : enmId_type {
 	_enm_MONJE,
 	_enm_MUERTE,
 
+};
+
+// Correspondant texture to each type of entity
+enum gameTextures {
+	//map
+	tileSet, hillTexture, roadTexture, mountainTexture, lakeTexture1, lakeTexture2, lakeTexture3, lakeTexture4,
+	lakeTexture5, lakeTexture6, lakeTexture7, lakeTexture8, lakeTexture9, lakeTexture10,
+	lakeTexture11,
+	//UI
+	play, play_hover, box, box_hover, large_box, none_box, none_box_hover,
+	close, close_hover, enemies_button, enemies_button_hover,
+	menu_background, upgrade, upgrade_hover, logo,
+	crystal_tower_image, bullet_tower_image, slime_tower_image,
+	sniper_tower_image, phoenix_tower_image, clay_tower_image,
+	power_tower_image, nexus_level_3_image,
+	// towers
+	square, bulletTowerTexture, cristalTowerTexture, phoenixTowerTexture,
+	slimeTowerTexture, boosterTowerTexture, sniperTowerTexture, clayTowerTexture, nexusTexture, fireTexture,
+
+	//enemies
+
+
+	//texts
+	nexus_level_text,
+
+	//others
+	bulletTexture, sniperBulletTexture, slimeBulletTexture, slimeArea, shield,
+
+	//explosions
+	shieldExp,
+
+
+	gmTxtrSize
 };
 
 inline Uint16 sdlnet_hton(Uint16 v) {

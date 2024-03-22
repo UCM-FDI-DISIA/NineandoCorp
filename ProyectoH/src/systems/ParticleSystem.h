@@ -9,6 +9,8 @@
 
 class ParticleSystem : public System
 {
+public:
+
 	static constexpr sysId_type id = _sys_PARTICLES;
 	ParticleSystem();
 	~ParticleSystem();

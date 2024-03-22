@@ -89,9 +89,10 @@ void TowerSystem::onAttackTower(Entity* e, int dmg) {
 		}
 		else {
 			if(s->getShield() > 0 && s->getShield() - dmg <= 0 ){ 
-				mngr_->setAlive(s->getImg(), false);
+				
 				Transform* t = mngr_->getComponent<Transform>(s->getImg());				
-				if(t != nullptr){ createShieldExplosion(t->getPosition()); }			
+				if(t != nullptr){ createShieldExplosion(t->getPosition()); }	
+				mngr_->setAlive(s->getImg(), false);
 			}
 			s->subtractShield(dmg);
 			if (s->getShield() <= 0) {
