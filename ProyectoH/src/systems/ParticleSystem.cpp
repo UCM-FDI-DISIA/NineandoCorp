@@ -32,7 +32,8 @@ void ParticleSystem::update() {
 	{
 		auto p = mngr_->getComponent<ParticleLifeTime>(par);
 		auto f = mngr_->getComponent<FramedImage>(par);
-		if (p->getIters() < f->getIters()) {
+		f->updateCurrentFrame();
+		if (p->getIters() <= f->getIters()) {
 			mngr_->setAlive(par, false);
 			mngr_->deleteHandler(_hdlr_PARTICLES, par);
 		}

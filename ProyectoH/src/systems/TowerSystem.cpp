@@ -57,14 +57,14 @@ void TowerSystem::createShieldExplosion(Vector2D pos) {
 	Message m;
 	m.id = _m_ANIM_CREATE;
 	m.anim_create.idGrp = _grp_TOWERS_AND_ENEMIES;
-	m.anim_create.animSpeed = 2;
+	m.anim_create.animSpeed = 20;
 	m.anim_create.iterationsToDelete = 1;
 	m.anim_create.pos = pos;
 	m.anim_create.frameInit = 0;
 	m.anim_create.frameEnd = 70;
 	m.anim_create.cols = 10;
 	m.anim_create.rows = 8;
-	m.anim_create.scale = { 100, 100 };
+	m.anim_create.scale = { 200, 200 };
 	m.anim_create.width = 100;
 	m.anim_create.height = 100;
 	m.anim_create.tex = gameTextures::shieldExp;
@@ -91,7 +91,7 @@ void TowerSystem::onAttackTower(Entity* e, int dmg) {
 			if(s->getShield() > 0 && s->getShield() - dmg <= 0 ){ 
 				
 				Transform* t = mngr_->getComponent<Transform>(s->getImg());				
-				if(t != nullptr){ createShieldExplosion(t->getPosition()); }	
+				if(t != nullptr){ createShieldExplosion(*(t->getPosition()) + Vector2D(20, 0)); }
 				mngr_->setAlive(s->getImg(), false);
 			}
 			s->subtractShield(dmg);
