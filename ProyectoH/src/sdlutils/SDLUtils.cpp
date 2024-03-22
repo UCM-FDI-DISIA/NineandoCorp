@@ -23,7 +23,8 @@ SDLUtils::SDLUtils(std::string windowTitle, int width, int height) :
 	floatConstAccessWrapper_(floatConst_, "Float Constant Table"),
 	intConstAccessWrapper_(intConst_, "Int Constant Table"),
 	rutesAccessWrapper_(rutes_, "Rutes Table"),
-	spawnAccessWrapper_(spawn_, "Enemies Spawn Table")
+	spawnAccessWrapper_(spawn_, "Enemies Spawn Table"),
+	intConstNumSpawsAccessWrapper_(intConstNumSpaws_, "Numero Spawns Table")
 {
 
 	initWindow();
@@ -341,6 +342,8 @@ void SDLUtils::loadConstants(std::string filename) {
 					std::string nivel = vObj["id"]->AsString();
 					std::cout << "Loading int with id: " << nivel
 										<< std::endl;
+					int numSpawn = vObj["numSpawns"]->AsNumber();
+					intConstNumSpaws_.emplace(nivel, numSpawn);
 					for (auto& o : vObj[nivel]->AsArray()) {
 						if (o->IsObject()) {
 							JSONObject vObj = o->AsObject();

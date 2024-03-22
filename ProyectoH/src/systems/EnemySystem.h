@@ -12,6 +12,7 @@ class EnemySystem: public System
 private:
 	unsigned int wave = 1;
 	unsigned int level = 1;
+	int numSpawns;
 public:
 
 	static constexpr sysId_type id = _sys_ENEMIES;
@@ -22,7 +23,7 @@ public:
 	void receive(const Message& m) override;
 
 	void onRoundOver();
-	void onRoundStart(unsigned int n_grp, unsigned int level);
+	void onRoundStart(int n_grp, unsigned int level);
 	void onWaveStart(unsigned int level);
 	void collideswithEnemy();
 

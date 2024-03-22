@@ -24,7 +24,8 @@ void  EnemySystem::receive(const Message& m) {
 	case _m_ROUND_START:
 		netmap = m.start_game_data.netmap;
 		level = m.start_game_data.level;
-		onRoundStart(m.start_game_data.n_grp, level);
+		numSpawns = sdlutils().numSpawns().at("nivel" + to_string(level));
+		onRoundStart(numSpawns, level);
 		onWaveStart(level);
 
 		break;
@@ -74,7 +75,7 @@ void EnemySystem::prueba() {
 	spawnsVector.push_back(e);
 	mngr_->getComponent<generateEnemies>(spawnsVector[0])->addEnemy(_enm_AELECTRICO, route);
 }
-void EnemySystem::onRoundStart(unsigned int n_grp, unsigned int level) {
+void EnemySystem::onRoundStart( int n_grp, unsigned int level) {
 	for (auto i = 0; i < n_grp; i++)
 	{
 		auto e = mngr_->addEntity(_grp_SPAWN);

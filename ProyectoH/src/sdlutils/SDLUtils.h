@@ -163,6 +163,9 @@ public:
 	inline auto& rutes() {
 		return rutesAccessWrapper_;
 	}
+	inline auto& numSpawns() {
+		return intConstNumSpawsAccessWrapper_;
+	}
 	// float constant map
 	inline auto& floatConst() {
 		return floatConstAccessWrapper_;
@@ -218,6 +221,7 @@ private:
 	sdl_resource_table<Music> musics_; // musics map (string -> music)
 	sdl_resource_table<int> floatConst_;
 	sdl_resource_table<int> intConst_;
+	sdl_resource_table<int> intConstNumSpaws_;
 	sdl_resource_table<RuteData> rutes_;
 	sdl_resource_table<spawnGroupData> spawn_;
 
@@ -228,6 +232,7 @@ private:
 	map_access_wrapper<Music> musicsAccessWrapper_; 
 	map_access_wrapper<int> floatConstAccessWrapper_;
 	map_access_wrapper<int> intConstAccessWrapper_;
+	map_access_wrapper<int> intConstNumSpawsAccessWrapper_;
 	map_access_wrapper<RuteData> rutesAccessWrapper_;
 	map_access_wrapper<spawnGroupData> spawnAccessWrapper_;
 

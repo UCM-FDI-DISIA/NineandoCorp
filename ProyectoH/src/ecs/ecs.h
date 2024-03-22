@@ -215,7 +215,6 @@ msgId_type id;
 	{
 		//nivel
 		unsigned int level;
-		unsigned int n_grp;
 		NetMap* netmap;
 	}start_game_data;
 

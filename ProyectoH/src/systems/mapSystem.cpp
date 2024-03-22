@@ -12,7 +12,6 @@ void mapSystem::initSystem(){
 	m.id = _m_ROUND_START;
 	m.start_game_data.netmap = net;
 	m.start_game_data.level = level;
-	m.start_game_data.n_grp = 1;
 	mngr_->send(m, true);
 }
 
