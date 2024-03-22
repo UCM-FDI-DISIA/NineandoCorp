@@ -91,7 +91,7 @@ void TowerSystem::onAttackTower(Entity* e, int dmg) {
 			if(s->getShield() > 0 && s->getShield() - dmg <= 0 ){ 
 				
 				Transform* t = mngr_->getComponent<Transform>(s->getImg());				
-				if(t != nullptr){ createShieldExplosion(*(t->getPosition()) + Vector2D(20, 0)); }
+				if(t != nullptr){ createShieldExplosion(*(t->getPosition()) + Vector2D(60, -20)); }
 				mngr_->setAlive(s->getImg(), false);
 			}
 			s->subtractShield(dmg);
@@ -202,7 +202,7 @@ void TowerSystem::update() {
 						if (distance < ct->getRange()) {//En rango
 							ShieldComponent* s = mngr_->getComponent<ShieldComponent>(tower);
 							if (s->getShield() <= 0 && s->getImg() == nullptr) {
-								s->setImg(addShield(mngr_->getComponent<Transform>(tower)->getPosition()));//añade el escudo visible y lo asigna al shieldComponent
+								s->setImg(addShield(*(mngr_->getComponent<Transform>(tower)->getPosition()) + Vector2D(20, 0)));//añade el escudo visible y lo asigna al shieldComponent
 							}
 							s->setMaxShield(ct->getShieldVal());
 							s->setShield(s->getMaxShield());//Regenera escudos
@@ -290,7 +290,7 @@ void TowerSystem::update() {
 					Transform* fTR = mngr_->getComponent<Transform>(pt->getFire());
 					fTR->setPosition(Vector2D(spawn.getX() + offset.getX(), spawn.getY() + offset.getY()));
 				}
-				std::cout << pt->getRotation() << "\n";
+				//std::cout << pt->getRotation() << "\n";
 				if (pt->getElapsedTime() > pt->getCoolingTime() && !pt->isShooting()) {		
 
 					pt->setFire(shootFire(Vector2D(spawn.getX() + offset.getX(), spawn.getY()+offset.getY()), pt->getRotation(), pt->getDamage(), t));
@@ -411,7 +411,7 @@ void TowerSystem::addTower(twrId type,const Vector2D& pos, Height height,const V
 	tr->setPosition(pos);
 	tr->setScale(scale + Vector2D(20.0f, 0));
 	mngr_->addComponent<UpgradeTowerComponent>(t, type, 4);
-	float health = 100000.0f;
+	float health = 100.0f;
 	if (height == LOW) {
 		mngr_->addComponent<HealthComponent>(t, health);
 		mngr_->setHandler(_hdlr_LOW_TOWERS, t);
