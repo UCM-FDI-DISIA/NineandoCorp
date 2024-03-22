@@ -11,6 +11,7 @@ PlayState::PlayState() : GameState(_gmStt_PLAY) {
 	TowerSystem* ts = mngr_->addSystem<TowerSystem>();
 	mngr_->addSystem<EnemySystem>();
 	mngr_->addSystem<CollisionSystem>();
+	mngr_->addSystem<ParticleSystem>();
 }
 
 void PlayState::update() {

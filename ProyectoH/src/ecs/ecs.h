@@ -5,6 +5,7 @@
 #include "../checkML.h"
 #include "../utils/Vector2D.h"
 #include "../sdlutils/SDLNetUtils.h"
+#include "../components/RenderComponent.h"
 #include <vector>
 
 
@@ -165,6 +166,7 @@ enum msgId : msgId_type {
 	_m_DECREASE_SPEED,
 	_m_RESET_SPEED,
 	_m_REMOVE_RECT,
+	_m_ANIM_CREATE,
 };
 
 using twrId_type = uint8_t;
@@ -245,6 +247,22 @@ msgId_type id;
 		Vector2D scale;
 
 	} add_tower_data;
+
+	//_m_ANIM_CREATE
+	struct {
+		grpId idGrp;
+		gameTextures tex;
+		Vector2D scale;
+		Vector2D pos;
+		int frameInit;
+		int frameEnd;
+		int animSpeed;
+		int rows;
+		int cols;
+		int width;
+		int height;
+		int iterationsToDelete;
+	}anim_create;
 
 	// _m_DRAG
 	struct {

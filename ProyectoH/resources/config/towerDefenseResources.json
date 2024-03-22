@@ -399,6 +399,10 @@
     {
       "id": "shield",
       "file": "resources/images/Towers/shield.png"
+    },
+    {
+      "id": "shieldExp",
+      "file": "resources/images/Towers/shieldExplosion.png"
     }
 
     ],

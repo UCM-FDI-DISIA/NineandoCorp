@@ -28,6 +28,9 @@ enum gameTextures {
 	//others
 	bulletTexture,sniperBulletTexture,slimeBulletTexture,slimeArea,shield,
 
+	//explosions
+	shieldExp,
+
 
 	gmTxtrSize
 };

@@ -17,6 +17,10 @@ void ParticleSystem::initSystem() {
 }
 void  ParticleSystem::receive(const Message& m) {
 	switch (m.id) {
+	case _m_ANIM_CREATE:
+		addParticle(m.anim_create.idGrp, m.anim_create.tex, m.anim_create.pos, m.anim_create.scale, m.anim_create.frameInit, m.anim_create.frameEnd,
+		m.anim_create.animSpeed, m.anim_create.rows, m.anim_create.cols, m.anim_create.width, m.anim_create.height, m.anim_create.iterationsToDelete);
+		break;
 	default:
 			break;
 	}

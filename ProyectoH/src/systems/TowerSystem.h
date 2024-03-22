@@ -50,6 +50,7 @@ protected:
 	Entity* shootBullet(Entity* target, Entity* src, float damage, float speed, Vector2D spawnPos, gameTextures texture,Vector2D bulletScale, twrId id);
 	Entity* addShield(Vector2D pos);
 	Entity* shootFire(Vector2D spawn, float rot, float dmg);
+	void createShieldExplosion(Vector2D pos);
 	void clearShieldsArea(Entity* e);
 	Entity* shootFire(Vector2D spawn, float rot, float dmg, Entity* src);
 	void eliminateDestroyedTowers(Entity* t);

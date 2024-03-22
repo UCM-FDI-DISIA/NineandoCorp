@@ -83,6 +83,9 @@ RenderSystem::RenderSystem() : winner_(0)
 	textures[nexus_level_3_image] = &sdlutils().images().at("nexus_level_3_image");
 	textures[nexus_level_text] = &sdlutils().msgs().at("nexus_level_text");
 
+	//Explosions
+	textures[shieldExp] = &sdlutils().images().at("shieldExp");
+
 	//Miscelanious
 	textures[square] = &sdlutils().images().at("square");
 	textures[tileSet] = &sdlutils().images().at("map");

@@ -53,6 +53,24 @@ void TowerSystem::clearShieldsArea(Entity* e) {
 	}
 }
 
+void TowerSystem::createShieldExplosion(Vector2D pos) {
+	Message m;
+	m.id = _m_ANIM_CREATE;
+	m.anim_create.idGrp = _grp_TOWERS_AND_ENEMIES;
+	m.anim_create.animSpeed = 2;
+	m.anim_create.iterationsToDelete = 1;
+	m.anim_create.pos = pos;
+	m.anim_create.frameInit = 0;
+	m.anim_create.frameEnd = 70;
+	m.anim_create.cols = 10;
+	m.anim_create.rows = 8;
+	m.anim_create.scale = { 100, 100 };
+	m.anim_create.width = 100;
+	m.anim_create.height = 100;
+	m.anim_create.tex = gameTextures::shieldExp;
+	mngr_->send(m);
+}
+
 /// <summary>
 /// Ataca a torre
 /// </summary>
@@ -70,7 +88,11 @@ void TowerSystem::onAttackTower(Entity* e, int dmg) {
 			mngr_->deleteHandler(_hdlr_LOW_TOWERS, e); eliminateDestroyedTowers(e);	
 		}
 		else {
-			if(s->getShield() > 0 && s->getShield() - dmg <= 0 ){ mngr_->setAlive(s->getImg(), false); }
+			if(s->getShield() > 0 && s->getShield() - dmg <= 0 ){ 
+				mngr_->setAlive(s->getImg(), false);
+				Transform* t = mngr_->getComponent<Transform>(s->getImg());				
+				if(t != nullptr){ createShieldExplosion(t->getPosition()); }			
+			}
 			s->subtractShield(dmg);
 			if (s->getShield() <= 0) {
 				h->subtractHealth(dmg);
@@ -178,7 +200,7 @@ void TowerSystem::update() {
 						float distance = sqrt(pow(towerPos.getX() - myPos.getX(), 2) + pow(towerPos.getY() - myPos.getY(), 2));//distancia a la torre
 						if (distance < ct->getRange()) {//En rango
 							ShieldComponent* s = mngr_->getComponent<ShieldComponent>(tower);
-							if (s->getShield() <= 0) {
+							if (s->getShield() <= 0 && s->getImg() == nullptr) {
 								s->setImg(addShield(mngr_->getComponent<Transform>(tower)->getPosition()));//añade el escudo visible y lo asigna al shieldComponent
 							}
 							s->setMaxShield(ct->getShieldVal());
