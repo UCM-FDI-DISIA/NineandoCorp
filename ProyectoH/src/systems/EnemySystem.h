@@ -10,7 +10,7 @@
 class EnemySystem: public System
 {
 private:
-	unsigned int wave = 1;
+	unsigned int wave = 20;
 	unsigned int level = 1;
 	int numSpawns;
 public:
