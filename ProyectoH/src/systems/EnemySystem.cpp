@@ -123,7 +123,7 @@ void EnemySystem::update() {
 						ac->setLoaded(false);
 					}
 					else {
-						std::cout << "atacando";
+						//std::cout << "atacando";
 						ac->doDamageTo(ac->getTarget(), ac->getDamage());
 						ac->setElapsedTime(0.0f);
 						ac->setLoaded(false);
