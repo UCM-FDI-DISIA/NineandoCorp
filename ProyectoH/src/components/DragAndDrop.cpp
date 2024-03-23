@@ -21,7 +21,7 @@ void DragAndDrop::initComponent(){
 
 void DragAndDrop::drop(const Vector2D& pos, Height h, const Vector2D& scale){
 
-	tr_->setScale({ 120.0f , 120.0f });
+	tr_->setScale({ 110.0f , 120.0f });
 	Message m;
 	m.id = _m_ADD_TOWER;
 	m.add_tower_data.towerId = tId_; 

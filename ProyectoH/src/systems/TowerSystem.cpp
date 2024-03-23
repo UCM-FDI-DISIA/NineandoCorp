@@ -388,8 +388,8 @@ Entity* TowerSystem::shootFire(Vector2D spawnPos, float rot, float dmg, Entity* 
 Entity* TowerSystem::addShield(Vector2D pos) {
 	auto ent = mngr_->addEntity(_grp_TOWERS_AND_ENEMIES);
 	auto t = mngr_->addComponent<Transform>(ent);
-	t->setScale({300, 155});
-	t->setPosition(pos + Vector2D(-100, 10));
+	t->setScale({320, 165});
+	t->setPosition(pos + Vector2D(-120, -10));
 	mngr_->addComponent<RenderComponent>(ent, shield);
 	mngr_->addComponent<FramedImage>(ent, 7, 1, 626, 352, 0, 5, 6);
 	return ent;
@@ -454,6 +454,7 @@ void TowerSystem::addTower(twrId type,const Vector2D& pos, Height height,const V
 		mngr_->addComponent<CrystalTower>(t, intAt("CristalEscudo"), floatAt("CristalRecarga"), intAt("CristalExplosion"), floatAt("CristalRango"));
 		mngr_->addComponent<RenderComponent>(t, cristalTowerTexture);
 		mngr_->addComponent<FramedImage>(t, intAt("CristalColumns"), intAt("CristalRows"), intAt("CristalWidth"), intAt("CristalHeight"), 0, 0);
+		tr->setPosition(pos + Vector2D(0, 25));
 		break;
 	default:
 		break;
