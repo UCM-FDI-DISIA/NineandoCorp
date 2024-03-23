@@ -59,8 +59,8 @@ void generateEnemies::addEnemy(enmId type, std::vector<Vector2D> route) {
 	Entity* t = mngr_->addEntity(_grp_TOWERS_AND_ENEMIES);
 
 	Transform* tr = mngr_->addComponent<Transform>(t);//transform
-	//Vector2D v = { tr->getWidth() / 1.5f, tr->getHeight() / 1.5f};
-	//tr->setScale(v);
+
+	//tr->setScale({ tr->getWidth() / 1.5f, tr->getHeight() / 1.5f});
 	
 
 	MovementComponent* mc = mngr_->addComponent<MovementComponent>(t);
