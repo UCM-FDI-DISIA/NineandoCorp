@@ -403,6 +403,10 @@
     {
       "id": "shieldExp",
       "file": "resources/images/Towers/shieldExplosion.png"
+    },
+    {
+      "id": "bulletExp",
+      "file": "resources/images/Towers/explosionBullet.png"
     }
 
     ],

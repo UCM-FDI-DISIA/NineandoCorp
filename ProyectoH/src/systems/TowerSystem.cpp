@@ -71,6 +71,24 @@ void TowerSystem::createShieldExplosion(Vector2D pos) {
 	mngr_->send(m);
 }
 
+void TowerSystem::createBulletExplosion(Vector2D pos) {
+	Message m;
+	m.id = _m_ANIM_CREATE;
+	m.anim_create.idGrp = _grp_TOWERS_AND_ENEMIES;
+	m.anim_create.animSpeed = 8;
+	m.anim_create.iterationsToDelete = 1;
+	m.anim_create.pos = pos;
+	m.anim_create.frameInit = 0;
+	m.anim_create.frameEnd = 7;
+	m.anim_create.cols = 4;
+	m.anim_create.rows = 2;
+	m.anim_create.scale = { 80, 80 };
+	m.anim_create.width = 167;
+	m.anim_create.height = 180;
+	m.anim_create.tex = gameTextures::bulletExplosion;
+	mngr_->send(m);
+}
+
 /// <summary>
 /// Ataca a torre
 /// </summary>
@@ -167,6 +185,7 @@ void TowerSystem::update() {
 						mngr_->getComponent<FramedImage>(t)->setCurrentFrame(valFrame + mngr_->getComponent<UpgradeTowerComponent>(t)->getLevel());
 						Vector2D spawn = { TR->getPosition()->getX() + offset.getX(),	TR->getPosition()->getY() + offset.getY() };//Punto de spawn de la bala con el offset
 						shootBullet(bt->getTarget(), t, bt->getDamage(), floatAt("BalasVelocidad"), spawn, bulletTexture, { 35, 35 }, _twr_BULLET);//Dispara la bala
+						createBulletExplosion(spawn + Vector2D(-10, -20));
 					}
 					if (bt->isMaxLevel()) {//Mejora maxima de la torre de balas: targetear a un segundo enemigo. Funciona igual que el primer targeteo
 						bt->targetSecondEnemy(mngr_->getHandler(_hdlr_ENEMIES));
@@ -178,9 +197,9 @@ void TowerSystem::update() {
 							else if (dir.getX() < 0 && dir.getY() >= 0) { offset.setX(0); }
 							else if (dir.getX() < 0 && dir.getY() < 0) { valFrame = 8; offset.setX(0); offset.setY(0); }
 							shootBullet(bt->getSecondTarget(), t, bt->getDamage(), floatAt("BalasVelocidad"), TR->getPosition(), bulletTexture, { 35, 35 }, _twr_BULLET);
-
+							createBulletExplosion(TR->getPosition());
 							//mngr_->getComponent<FramedImage>(t)->setCurrentFrame(valFrame + mngr_->getComponent<UpgradeTowerComponent>(t)->getLevel());
-							Vector2D spawn = { TR->getPosition()->getX() + offset.getX(),	TR->getPosition()->getY() + offset.getY() };//Punto de spawn de la bala con el offset
+							
 		
 						}
 					}
@@ -255,7 +274,7 @@ void TowerSystem::update() {
 						Vector2D spawn = { TR->getPosition()->getX() + offset.getX(),	TR->getPosition()->getY() + offset.getY()};
 						
 						shootBullet(targetMostHP, t, ds->getDamage() * ds->getCritDamage(), floatAt("DiegoSniperVelocidad"), spawn, sniperBulletTexture, {25, 20}, _twr_DIEGO);
-						
+						createBulletExplosion(spawn + Vector2D(-10, -20));
 					}
 					ds->setElapsedTime(0);
 				}

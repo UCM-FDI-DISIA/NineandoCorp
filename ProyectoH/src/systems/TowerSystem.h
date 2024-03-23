@@ -51,6 +51,7 @@ protected:
 	Entity* addShield(Vector2D pos);
 	Entity* shootFire(Vector2D spawn, float rot, float dmg);
 	void createShieldExplosion(Vector2D pos);
+	void createBulletExplosion(Vector2D pos);
 	void clearShieldsArea(Entity* e);
 	Entity* shootFire(Vector2D spawn, float rot, float dmg, Entity* src);
 	void eliminateDestroyedTowers(Entity* t);

@@ -85,6 +85,7 @@ RenderSystem::RenderSystem() : winner_(0)
 
 	//Explosions
 	textures[shieldExp] = &sdlutils().images().at("shieldExp");
+	textures[bulletExplosion] = &sdlutils().images().at("bulletExp");
 
 	//Miscelanious
 	textures[square] = &sdlutils().images().at("square");
