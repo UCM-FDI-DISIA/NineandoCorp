@@ -188,7 +188,8 @@ void RenderSystem::update() {
 		SDL_Rect trRect = tr->getRect();
 		trRect.x += offset->x;
 		trRect.y += offset->y;
-		if (fi != nullptr)textures[textureId]->render(srcRect, trRect, tr->getRotation());
+		SDL_RendererFlip flip = mngr_->getComponent<RenderComponent>(t)->getFlip();
+		if (fi != nullptr)textures[textureId]->render(srcRect, trRect, tr->getRotation(), nullptr,flip);
 		else textures[textureId]->render(trRect, tr->getRotation());
 	}
 

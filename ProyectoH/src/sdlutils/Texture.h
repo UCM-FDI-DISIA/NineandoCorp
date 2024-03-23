@@ -101,4 +101,5 @@ private:
 	SDL_Renderer *renderer_;
 	int width_;
 	int height_;
+	SDL_RendererFlip flip_;
 };

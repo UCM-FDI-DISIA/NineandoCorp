@@ -8,6 +8,7 @@ RouteComponent::update() {
 void
 RouteComponent::initComponent() {
 	transform_ = mngr_->getComponent<Transform>(ent_);
+	renderComponent_ = mngr_->getComponent<RenderComponent>(ent_);
 	changevelocity(route_[0]);
 }
 
@@ -32,4 +33,10 @@ RouteComponent::changevelocity(Vector2D destino) {
 	v=v.normalize();
 	//transform_->setVelocity(v.normalize() * transform_->getVelocity()->magnitude());
 	transform_->setVelocity(v);
+	if (v.getX() > 0) {
+		renderComponent_->setFlip(SDL_FLIP_NONE);
+	}
+	else if (v.getX() < 0) {
+		renderComponent_->setFlip(SDL_FLIP_HORIZONTAL);
+	}
 }
