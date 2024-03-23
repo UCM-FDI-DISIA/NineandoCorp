@@ -121,6 +121,7 @@ enum sysId : sysId_type {
 	_sys_BUTTON,
 	_sys_COLLISION,
 	_sys_PARTICLES,
+	_sys_METEOROLOGY,
 
 	// do not remove this
 	_LAST_SYS_ID

@@ -178,6 +178,9 @@
     <ClCompile Include="src\components\ShieldComponent.cpp">
       <Filter>Sources Files\Components</Filter>
     </ClCompile>
+    <ClCompile Include="src\systems\MeteorologySystem.cpp">
+      <Filter>Sources Files\Systems</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\components\AcechanteComponent.h">
@@ -395,6 +398,9 @@
     </ClInclude>
     <ClInclude Include="src\components\ShieldComponent.h">
       <Filter>Headers Files\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="src\systems\MeteorologySystem.h">
+      <Filter>Headers Files\Systems</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
