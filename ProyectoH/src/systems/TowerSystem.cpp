@@ -391,7 +391,7 @@ Entity* TowerSystem::addShield(Vector2D pos) {
 	t->setScale({300, 155});
 	t->setPosition(pos + Vector2D(-100, 10));
 	mngr_->addComponent<RenderComponent>(ent, shield);
-	mngr_->addComponent<FramedImage>(ent, 1, 1, 626, 352, 0, 0, 0);
+	mngr_->addComponent<FramedImage>(ent, 7, 1, 626, 352, 0, 5, 6);
 	return ent;
 }
 
@@ -409,7 +409,7 @@ void TowerSystem::addTower(twrId type,const Vector2D& pos, Height height,const V
 	Transform* tr = mngr_->addComponent<Transform>(t);//transform
 	mngr_->addComponent<ShieldComponent>(t, 0);
 	tr->setPosition(pos);
-	tr->setScale(scale + Vector2D(20.0f, 0));
+	tr->setScale(scale);
 	mngr_->addComponent<UpgradeTowerComponent>(t, type, 4);
 	float health = 100.0f;
 	if (height == LOW) {

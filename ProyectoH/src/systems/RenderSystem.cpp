@@ -185,7 +185,7 @@ void RenderSystem::update() {
 		gameTextures textureId = mngr_->getComponent<RenderComponent>(t)->getTexture();
 		SDL_Rect srcRect;
 		FramedImage* fi = mngr_->getComponent<FramedImage>(t);
-		if (fi != nullptr)srcRect = fi->getSrcRect();
+		if (fi != nullptr) { srcRect = fi->getSrcRect(); fi->updateCurrentFrame(); }
 		SDL_Rect trRect = tr->getRect();
 		trRect.x += offset->x;
 		trRect.y += offset->y;
