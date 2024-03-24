@@ -46,6 +46,7 @@ enum cmpId : cmpId_type {
 	_ACECHANTE,
 	_FIRE,
 	_MENSAJEROMUERTE,
+	_ANGEL,
 
 	// do not remove this
 	_LAST_CMP_ID
@@ -318,7 +319,7 @@ msgId_type id;
 	} towers_to_attack;
 	// _m_TOWER_TO_BLIND
 	struct {
-		Entity* e;
+		Entity* e;		
 		float damage;
 	} tower_to_blind;
 	// _m_ENTITY_TO_ATTACK
@@ -326,6 +327,7 @@ msgId_type id;
 		Entity* src;
 		Entity* e;
 		float damage;
+		hdlrId targetId;
 	} entity_to_attack;
 	// _m_TOWER_TO_ATTACK
 	struct {

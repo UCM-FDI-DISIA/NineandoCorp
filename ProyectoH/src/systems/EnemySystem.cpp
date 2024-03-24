@@ -7,6 +7,7 @@
 #include "../ecs/Manager.h"
 #include "..//components/AcechanteComponent.h"
 #include "../components/MaestroAlmasComponent.h"
+#include "../components/AngelComponent.h"
 
 EnemySystem::EnemySystem() {
 
@@ -20,6 +21,7 @@ void EnemySystem::initSystem() {
 	active_ = true;
 
 	addEnemy(_enm_AELECTRICO, { 300,300 });
+	addEnemy(_enm_AELECTRICO, { 500,300 });
 
 	addEnemy(_enm_ANGEL, { 700,500 });
 
@@ -34,7 +36,7 @@ void  EnemySystem::receive(const Message& m) {
 		}
 		break;
 	case _m_ENTITY_TO_ATTACK:
-		if (m.entity_to_attack.e != nullptr && mngr_->isAlive(m.entity_to_attack.e)) {
+		if (m.entity_to_attack.e != nullptr && mngr_->isAlive(m.entity_to_attack.e) && m.entity_to_attack.targetId == _hdlr_ENEMIES) {
 			HealthComponent* h = mngr_->getComponent<HealthComponent>(m.entity_to_attack.e);
 			if (h->subtractHealth(m.entity_to_attack.damage)) {
 				mngr_->deleteHandler(_hdlr_ENEMIES, m.entity_to_attack.e);
@@ -80,13 +82,14 @@ void EnemySystem::update() {
 		MovementComponent* mc = mngr_->getComponent<MovementComponent>(e);
 		AttackComponent* ac = mngr_->getComponent<AttackComponent>(e);
 		MaestroAlmasComponent* ma = mngr_->getComponent<MaestroAlmasComponent>(e);
-		GolemComponent* gc= mngr_->getComponent<GolemComponent>(e);
+		GolemComponent* gc = mngr_->getComponent<GolemComponent>(e);
 		AcechanteComponent* acc = mngr_->getComponent<AcechanteComponent>(e);
+		AngelComponent* anc = mngr_->getComponent<AngelComponent>(e);
 
 		bool para = false;
 
 		if (gc != nullptr) {
-			gc->setTime(game().getDeltaTime()+gc->getElapsed());
+			gc->setTime(game().getDeltaTime() + gc->getElapsed());
 			if (gc->getElapsed() >= gc->getReload()) {
 				gc->Regenera();
 				gc->setTime(0.0f);
@@ -114,7 +117,7 @@ void EnemySystem::update() {
 			if (ac->getElapsedTime() > ac->getReloadTime()) {
 				ac->setLoaded(true);
 				ac->targetEnemy(towers);
-				
+
 				if (ac->getTarget() != nullptr) {
 					mc->setStop(true);
 					if (ma != nullptr) {
@@ -124,20 +127,33 @@ void EnemySystem::update() {
 					}
 					else {
 						//std::cout << "atacando";
-						ac->doDamageTo(ac->getTarget(), ac->getDamage());
+						ac->doDamageTo(ac->getTarget(), ac->getDamage(), _hdlr_LOW_TOWERS);
 						ac->setElapsedTime(0.0f);
 						ac->setLoaded(false);
 					}
 				}
-				else{
+				else {
 					mc->setStop(false);
-					
+
+				}
+			}
+		}
+		if (anc != nullptr) {
+			anc->setElapsed(anc->getElapsed() + game().getDeltaTime());
+			if (anc->getElapsed() > 1.0f) {
+				for (const auto& enemy : enemies) {
+					if (anc->getDistance(mngr_->getComponent<Transform>(enemy)->getPosition()) < anc->getRange()) {
+						mngr_->getComponent<HealthComponent>(enemy)->addHealth(mngr_->getComponent<HealthComponent>(enemy)->getBaseHealth()/100.0f);
+						anc->setElapsed(0);
 					}
 				}
 			}
 		}
-	
 	}
+
+}
+	
+	
 void EnemySystem::addEnemy(enmId type, Vector2D pos) {
 	Entity* t = mngr_->addEntity(_grp_TOWERS_AND_ENEMIES);
 
@@ -221,7 +237,7 @@ void EnemySystem::addEnemy(enmId type, Vector2D pos) {
 		mngr_->addComponent<RenderComponent>(t, square);
 		mngr_->addComponent<HealthComponent>(t, 50000);
 		mngr_->addComponent<RouteComponent>(t, route);
-		mngr_->addComponent<GolemComponent>(t);
+		mngr_->addComponent<AngelComponent>(t, 1000);
 		mngr_->addComponent<AttackComponent>(t, 100, 2, 20, false);
 		mngr_->addComponent<FramedImage>(t, 1, 1, 122, 117, 0, 0, 1);
 		break;

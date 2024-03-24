@@ -28,8 +28,8 @@ void TowerSystem::initSystem() {
 
 void TowerSystem::receive(const Message& m) {
 	switch (m.id) {
-	case _m_TOWER_TO_ATTACK://Mandado por el enemySystem al atacar una torre
-		onAttackTower(m.tower_to_attack.e, m.tower_to_attack.damage);
+	case _m_ENTITY_TO_ATTACK://Mandado por el enemySystem al atacar una torre
+		if(m.entity_to_attack.targetId == _hdlr_LOW_TOWERS)onAttackTower(m.entity_to_attack.e, m.entity_to_attack.damage);
 		break;
 	case _m_ADD_TOWER:
 		addTower(m.add_tower_data.towerId, m.add_tower_data.pos, LOW, m.add_tower_data.scale);

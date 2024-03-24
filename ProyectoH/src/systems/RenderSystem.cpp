@@ -174,21 +174,7 @@ void RenderSystem::update() {
 		textures[textureId]->render(srcRect, trRect);
 	}
 
-	//AREA OF ATTACK (SLIME AND FENIX)
-	const auto& areas = mngr_->getEntities(_grp_AREAOFATTACK);
-	for (auto& area : areas)
-	{
-		Transform* tr = mngr_->getComponent<Transform>(area);
-		gameTextures textureId = mngr_->getComponent<RenderComponent>(area)->getTexture();
-		FramedImage* img = mngr_->getComponent<FramedImage>(area);
-		SDL_Rect srcRect = img->getSrcRect();
-		img->updateCurrentFrame();
-		SDL_Rect trRect = tr->getRect();
-		trRect.x += offset->x;
-		trRect.y += offset->y;
-		//SDL_RenderFillRect(sdlutils().renderer(), &trRect); //Debug para ver la hitbox
-		textures[textureId]->render(srcRect, trRect, tr->getRotation());
-	}
+	
 
 	//Este grupo tiene que estar ordenado de arriba a abajo de la pantalla segun su transform (posicion y)
 	// NO CAMBIAR LECHES
@@ -208,6 +194,21 @@ void RenderSystem::update() {
 		else textures[textureId]->render(trRect, tr->getRotation());
 	}
 
+	//AREA OF ATTACK (SLIME AND FENIX)
+	const auto& areas = mngr_->getEntities(_grp_AREAOFATTACK);
+	for (auto& area : areas)
+	{
+		Transform* tr = mngr_->getComponent<Transform>(area);
+		gameTextures textureId = mngr_->getComponent<RenderComponent>(area)->getTexture();
+		FramedImage* img = mngr_->getComponent<FramedImage>(area);
+		SDL_Rect srcRect = img->getSrcRect();
+		img->updateCurrentFrame();
+		SDL_Rect trRect = tr->getRect();
+		trRect.x += offset->x;
+		trRect.y += offset->y;
+		//SDL_RenderFillRect(sdlutils().renderer(), &trRect); //Debug para ver la hitbox
+		textures[textureId]->render(srcRect, trRect, tr->getRotation());
+	}
 	
 
 	// BULLETS
