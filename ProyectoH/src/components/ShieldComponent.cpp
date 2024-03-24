@@ -1,13 +1,12 @@
 #include "ShieldComponent.h"
 
-ShieldComponent::ShieldComponent(float l) : maxHealth_(l), baseHealth_(l){ };
+ShieldComponent::ShieldComponent(float l) : maxHealth_(l), baseHealth_(l), imgShield_(nullptr) { };
 
 
 void
 ShieldComponent::initComponent() {
 	// Añadir mas cosas de init 
 	currentHealth_ = maxHealth_;
-	imgShield_ = nullptr;
 }
 
 void
@@ -15,17 +14,9 @@ ShieldComponent::addShield(float health) {
 	currentHealth_ += health;
 }
 
-//Devuelve si muere o no;
-bool
+void
 ShieldComponent::subtractShield(float health) {
 	currentHealth_ -= health;
-	//std::cout << currentHealth_ << std::endl;
-	if (currentHealth_ <= 0) {
-		//std::cout << "muerto" << std::endl;
-		
-		return true;
-	}
-	return false;
 }
 
 void

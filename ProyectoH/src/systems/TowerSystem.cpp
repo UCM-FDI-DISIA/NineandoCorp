@@ -33,6 +33,9 @@ void TowerSystem::receive(const Message& m) {
 		break;
 	case _m_ADD_TOWER:
 		addTower(m.add_tower_data.towerId, m.add_tower_data.pos, LOW, m.add_tower_data.scale);
+		break;
+	default:
+		break;
 	}
 }
 
@@ -46,7 +49,7 @@ void TowerSystem::clearShieldsArea(Entity* e) {
 			float distance = sqrt(pow(towerPos.getX() - myPos.getX(), 2) + pow(towerPos.getY() - myPos.getY(), 2));//distancia a la torre
 			if (distance < eh->getRange()) {//En rango
 				ShieldComponent* s = mngr_->getComponent<ShieldComponent>(tower);
-				s->setShield(0);
+				s->setShield(0.0);
 				if(s->getImg() != NULL)mngr_->setAlive(s->getImg(), false);
 			}
 		}
@@ -102,7 +105,7 @@ void TowerSystem::onAttackTower(Entity* e, int dmg) {
 		
 		if (s->getShield() <= 0 && h->getHealth() - dmg <= 0) {		
 			eliminateDestroyedTowers(e);
-			std::cout << "Torre eliminada-TorresTotales: " << towers.size() << std::endl;
+			//std::cout << "Torre eliminada-TorresTotales: " << towers.size() << std::endl;
 			mngr_->deleteHandler(_hdlr_LOW_TOWERS, e);
 			clearShieldsArea(e);
 			h->subtractHealth(dmg);		 
@@ -112,12 +115,9 @@ void TowerSystem::onAttackTower(Entity* e, int dmg) {
 				
 				Transform* t = mngr_->getComponent<Transform>(e);				
 				if(t != nullptr){ createShieldExplosion(*(t->getPosition()) + Vector2D(-40, -25)); }
-				mngr_->setAlive(s->getImg(), false);
+				if(s->getImg() != NULL)mngr_->setAlive(s->getImg(), false);
 			}
-			s->subtractShield(dmg);
-			if (s->getShield() <= 0) {
-				h->subtractHealth(dmg);
-			}
+			s->subtractShield((float)dmg);
 		}	
 	}
 }
@@ -221,11 +221,11 @@ void TowerSystem::update() {
 						float distance = sqrt(pow(towerPos.getX() - myPos.getX(), 2) + pow(towerPos.getY() - myPos.getY(), 2));//distancia a la torre
 						if (distance < ct->getRange()) {//En rango
 							ShieldComponent* s = mngr_->getComponent<ShieldComponent>(tower);
-							if (s->getShield() <= 0 && s->getImg() == nullptr) {
+							if (s->getShield() <= 0) {
 								s->setImg(addShield(*(mngr_->getComponent<Transform>(tower)->getPosition()) + Vector2D(20, 0)));//añade el escudo visible y lo asigna al shieldComponent
 							}
-							s->setMaxShield(ct->getShieldVal());
-							s->setShield(s->getMaxShield());//Regenera escudos
+							s->setMaxShield((float)ct->getShieldVal());
+							s->setShield((float)s->getMaxShield());//Regenera escudos
 						}
 					}
 					ct->setElapsedTime(0);
@@ -483,6 +483,6 @@ void TowerSystem::addTower(twrId type,const Vector2D& pos, Height height,const V
 		break;
 	}
 	towers.emplace_back(t);
-	std::cout << "Torre añadida: " << type << " TorresTotales: " << towers.size() << std::endl;
+	//std::cout << "Torre añadida: " << type << " TorresTotales: " << towers.size() << std::endl;
 }
 
