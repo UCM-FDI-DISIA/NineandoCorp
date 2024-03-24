@@ -115,10 +115,6 @@ void HUDSystem::initSystem() {
 		ButtonTypes::none));
 	mngr_->addComponent<DragAndDrop>(towers_imgs[_twr_POWER], _twr_POWER);
 	initial_pos[_twr_POWER] = { xAux * 7, heightH };
-
-	for (auto en : towers_imgs) {
-		en->changegId(_grp_HUD_DRAG_AND_DROP);
-	}
 }
 
 void HUDSystem::receive(const Message& m) {
@@ -141,6 +137,7 @@ void HUDSystem::update() {
 					// click derecho para reset 
 					if (ih().getMouseButtonState(InputHandler::MOUSEBUTTON::RIGHT) == 1) {
 						auto tr = mngr_->getComponent<Transform>(en);
+						mngr_->changeEntityId(_grp_HUD_FOREGROUND, en);
 						Vector2D aux = tr->getScale();
 						tr->setPosition(initial_pos[i] - aux / 2);
 						dC->enableDrag(false);
@@ -153,6 +150,7 @@ void HUDSystem::update() {
 						
 
 						//resetea el icono de la torre
+						mngr_->changeEntityId(_grp_HUD_FOREGROUND, en);
 						Vector2D aux = tr->getScale();
 						tr->setPosition(initial_pos[i] - aux / 2);
 						dC->enableDrag(false);
@@ -168,7 +166,7 @@ void HUDSystem::update() {
 
 
 void HUDSystem::dragTowerIcon(Entity* en){
-
+	mngr_->changeEntityId(_grp_HUD_DRAG_AND_DROP, en);
 	mngr_->getComponent<DragAndDrop>(en)->enableDrag(true);
 }
 

@@ -33,12 +33,8 @@ void DragAndDrop::drop(const Vector2D& pos, Height h, const Vector2D& scale){
 
 
 void DragAndDrop::drag() {
-	auto mS = mngr_->getSystem<mapSystem>();
-	auto net = mS->getMalla();
 	tr_->setScale({ 120.0f , 126.0f});
 	Vector2D mPos = { (float)ih().getMousePos().first, (float)ih().getMousePos().second };
-	Vector2D scale = tr_->getScale();
-	Vector2D tilePos = net->searchCell(mPos)->position;
 	tr_->setPosition(getPosFromTile(mPos));
 
 }

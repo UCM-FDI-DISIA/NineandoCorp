@@ -242,7 +242,10 @@ void RenderSystem::update() {
 	for (auto& e : dnd) {
 		Transform* tr = mngr_->getComponent<Transform>(e);
 		gameTextures textureId = mngr_->getComponent<RenderComponent>(e)->getTexture();
-		textures[textureId]->render(tr->getRect(), tr->getRotation());
+		SDL_Rect trRect = tr->getRect();
+		trRect.x += offset->x;
+		trRect.y += offset->y;
+		textures[textureId]->render(trRect, tr->getRotation());
 	}
 
 	//Renderizar cursor

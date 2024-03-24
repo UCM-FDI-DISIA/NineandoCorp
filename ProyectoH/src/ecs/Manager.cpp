@@ -25,6 +25,14 @@ Entity* Manager::addEntity(grpId_type gId) {
 	return e;
 }
 
+void Manager::changeEntityId(grpId_type gId, Entity* e) {
+	auto& grpEnts = entsByGroup_[e->gId_];
+	auto it = std::find(grpEnts.begin(), grpEnts.end(), e);
+	grpEnts.erase(it);
+	e->gId_ = gId;
+	entsByGroup_[gId].push_back(e);
+}
+
 void Manager::refresh() {
 	for (grpId_type gId = 0; gId < maxGroupId; gId++) {
 		auto& grpEnts = entsByGroup_[gId];
