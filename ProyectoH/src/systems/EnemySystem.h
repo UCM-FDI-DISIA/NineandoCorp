@@ -24,11 +24,11 @@ public:
 
 	void onRoundOver();
 	void onRoundStart(int n_grp, unsigned int level);
-	void onWaveStart(unsigned int level);
+	void onWaveStart();
 	void collideswithEnemy();
 
 	std::vector<Vector2D> RouteTranslate(std::vector<Vector2D> route);
-	void prueba();
+	
 	unsigned int getWave() { return wave; }
 	void setWave() { wave++; }
 protected:

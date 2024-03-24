@@ -30,7 +30,7 @@ void  EnemySystem::receive(const Message& m) {
 
 		break;
 	case _m_START_GAME:
-		onWaveStart(level);
+		onWaveStart();
 		
 		
 		
@@ -65,16 +65,12 @@ void  EnemySystem::receive(const Message& m) {
 		break;
 	}
 }
-void EnemySystem::prueba() {
 
-	std::string routeName = "ruta1Nivel2";
-	auto route_e = &sdlutils().rutes().at(routeName);
-	auto route = RouteTranslate(route_e->points);
-	auto e = mngr_->addEntity(_grp_SPAWN);
-	auto tr = mngr_->addComponent<generateEnemies>(e);
-	spawnsVector.push_back(e);
-	mngr_->getComponent<generateEnemies>(spawnsVector[0])->addEnemy(_enm_AELECTRICO, route);
-}
+/// <summary>
+/// Al comienzo del nivel creamos los spawns determinados por nivel
+/// </summary>
+/// <param name="n_grp">numero de spawn por nivel</param>
+/// <param name="level">nivel actual</param>
 void EnemySystem::onRoundStart( int n_grp, unsigned int level) {
 	for (auto i = 0; i < n_grp; i++)
 	{
@@ -87,7 +83,10 @@ void EnemySystem::onRoundStart( int n_grp, unsigned int level) {
 		spawnsVector.push_back(e);
 	}
 }
-void EnemySystem::onWaveStart(unsigned int level) {
+/// <summary>
+/// Al comienzo de cada oleada asigno a cada spawn el grupo de enemigos que tien que generar
+/// </summary>
+void EnemySystem::onWaveStart() {
 	for (auto i = 0; i < spawnsVector.size(); i++)
 	{
 		mngr_->getComponent<generateEnemies>(spawnsVector[i])->setLevel(level);
@@ -100,6 +99,11 @@ void EnemySystem::onWaveStart(unsigned int level) {
 void EnemySystem::onRoundOver() {
 	spawnsVector.clear();
 }
+/// <summary>
+/// Transforma la ruta del json en las posiciones correspondientes
+/// </summary>
+/// <param name="route"></param>
+/// <returns></returns>
 std::vector<Vector2D> EnemySystem::RouteTranslate(std::vector<Vector2D> route) {
 	std::vector<Vector2D> route_aux = route;
 	for (int i = 0; i < route.size(); i++) {
@@ -108,6 +112,7 @@ std::vector<Vector2D> EnemySystem::RouteTranslate(std::vector<Vector2D> route) {
 	return route_aux;
 }
 void EnemySystem::update() {
+	//Genero los enemigos segun el tiempo especificado en el json
 	for (auto& s : spawnsVector) {
 		auto spawn = mngr_->getComponent<generateEnemies>(s);
 		if (!spawn->getSpawnGroup()->typeEnemy.empty() && spawn->getElapsedTime() >= spawn->getSpawnGroup()->timeSpawn) {

@@ -3,6 +3,9 @@
 void generateEnemies::initComponent() {
 
 }
+/// <summary>
+/// generación de enemigos donde asigno cada etiqueta a su id
+/// </summary>
 void generateEnemies::generateEnemy() {
 	if (nextEnemy >= spawnGroup->typeEnemy.size()) {
 		return;
@@ -44,17 +47,32 @@ void generateEnemies::generateEnemy() {
 	
 
 }
+/// <summary>
+/// creación de la etiqueta del grupo
+/// </summary>
 void generateEnemies::addGroupEnemies(){
 	std::string id = "nivel" + std::to_string(level) + "oleada" + std::to_string(wave) + "grupo" + std::to_string(grp);
 	auto spawneo = &sdlutils().spawns().at(id);
 	spawnGroup = spawneo;
 }
+/// <summary>
+/// Hacemos una corrección de la ruta para colocar el sprite en el medio del camino
+/// </summary>
+/// <param name="tr">transform del enemigo</param>
+/// <param name="route"></param>
+/// <param name="divHeight"></param>
+/// <param name="divWidth"></param>
 void generateEnemies::RoutesCorrection(Transform* tr, std::vector<Vector2D>& route, float divHeight, float divWidth) {
 	Vector2D v = { tr->getWidth() / divWidth, tr->getHeight() / divHeight };
 	for (auto& e : route) {
 		e = e - v;
 	}
 }
+/// <summary>
+/// añadimos el enemigo con sus componentes correspondientes
+/// </summary>
+/// <param name="type">tipo de enemigo</param>
+/// <param name="route">ruta a seguir</param>
 void generateEnemies::addEnemy(enmId type, std::vector<Vector2D> route) {
 	Entity* t = mngr_->addEntity(_grp_TOWERS_AND_ENEMIES);
 
