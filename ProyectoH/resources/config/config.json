@@ -271,11 +271,11 @@
     },
     {
       "id": "BalasWidth",
-      "value": 650
+      "value": 560
     },
     {
       "id": "BalasHeight",
-      "value": 1000
+      "value": 910
     },
 
 
@@ -318,11 +318,11 @@
     },
     {
       "id": "SlimeWidth",
-      "value": 750
+      "value": 680
     },
     {
       "id": "SlimeHeight",
-      "value": 1050
+      "value": 940
     },
 
     {
@@ -361,11 +361,11 @@
     },
     {
       "id": "DiegoSniperWidth",
-      "value": 690
+      "value": 640
     },
     {
       "id": "DiegoSniperHeight",
-      "value": 1150
+      "value": 1070
     },
 
     {
@@ -398,11 +398,11 @@
     },
     {
       "id": "PotenciadoraWidth",
-      "value": 640
+      "value": 580
     },
     {
       "id": "PotenciadoraHeight",
-      "value": 1000
+      "value": 940
     },
 
     {
@@ -444,11 +444,11 @@
     },
     {
       "id": "CristalWidth",
-      "value": 875
+      "value": 680
     },
     {
       "id": "CristalHeight",
-      "value": 1500
+      "value": 1000
     },
 
     {
@@ -478,19 +478,19 @@
     },
     {
       "id": "ArcillaWidth",
-      "value": 720
+      "value": 640
     },
     {
-      "id": "ArcillaHeight",
-      "value": 1200
+        "id": "ArcillaHeight",
+        "value": 1140
     },
     {
       "id": "FireWidth",
-      "value": 800
+      "value": 540
     },
     {
       "id": "FireHeight",
-      "value": 376
+      "value": 850
     },
       {
         "id": "FireFrames",
