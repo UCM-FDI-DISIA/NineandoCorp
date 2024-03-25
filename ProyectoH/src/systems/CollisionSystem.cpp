@@ -37,6 +37,7 @@ void CollisionSystem::addRect(Entity* rect, rectId id) {
 		case _ENEMY:
 			enemyRects_.push_back(rect);
 			break;
+		case _METEORITE:
 	}
 }
 
@@ -121,6 +122,7 @@ void CollisionSystem::update() {
 					m.reset_speed.speed = 0.0f;
 					mngr_->send(m);
 					mngr_->setAlive(sr, false); 
+					removeRect(sr, _SLIME);
 				}
 			}				
 		}

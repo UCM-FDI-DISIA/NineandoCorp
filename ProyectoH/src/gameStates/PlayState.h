@@ -9,6 +9,7 @@
 #include "../systems/ParticleSystem.h"
 #include "../components/MovementComponent.h"
 #include "../components/RouteComponent.h"
+#include "../systems/MeteorologySystem.h"
 #include "../systems/ButtonSystem.h"
 
 class PlayState : public GameState

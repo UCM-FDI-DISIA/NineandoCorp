@@ -134,6 +134,7 @@ enum rectId : rectId_type {
 	_FENIX,
 	_SLIME,
 	_ENEMY,
+	_METEORITE,
 
 	_LAST_RECT_ID
 };
