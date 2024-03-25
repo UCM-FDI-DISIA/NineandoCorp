@@ -101,7 +101,6 @@ void CollisionSystem::update() {
 					sb->setElapsedTime(0);
 					SDL_Rect slime = mngr_->getComponent<Transform>(sr)->getRect();
 					if (SDL_HasIntersection(&slime, &enemyRect)) {
-						std::cout << "frena";
 						Message m;
 						m.id = _m_ENTITY_TO_ATTACK;
 						m.entity_to_attack.e = er;
@@ -117,7 +116,6 @@ void CollisionSystem::update() {
 				}
 				sb->setElapsedDuration(sb->getElapsedDuration() + game().getDeltaTime());
 				if (sb->getElapsedDuration() > sb->getDuration()) { 
-					std::cout << "reset";
 					Message m;
 					m.id = _m_RESET_SPEED;
 					m.reset_speed.speed = 0.0f;

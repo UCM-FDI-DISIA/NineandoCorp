@@ -21,7 +21,7 @@ public:
 	Entity* getImg() { return imgShield_; }
 	void setImg(Entity* ent) { imgShield_ = ent; };
 	void setMaxShield(float health);
-	bool subtractShield(float health);
+	void subtractShield(float health);
 	void initComponent();
 	void resetShield();
 	void setShield(float health);
