@@ -39,6 +39,7 @@ void  MeteorologySystem::receive(const Message& m) {
 		case MeteorologySystem::TSUNAMI:
 			break;
 		case MeteorologySystem::STORM:
+			//addRectTo(m.return_entity.ent, rectId::_THUNDER);
 			break;
 		case MeteorologySystem::METEORITES:
 			break;
@@ -53,6 +54,14 @@ void  MeteorologySystem::receive(const Message& m) {
 	default:
 		break;
 	}
+}
+
+void MeteorologySystem::addRectTo(Entity* e, rectId id) {
+	Message m;
+	m.id = _m_ADD_RECT;
+	m.rect_data.id = id;
+	m.rect_data.rect = e;
+	mngr_->send(m);
 }
 
 void MeteorologySystem::generateEarthquake(float area) {

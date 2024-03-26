@@ -38,6 +38,10 @@ void CollisionSystem::addRect(Entity* rect, rectId id) {
 			enemyRects_.push_back(rect);
 			break;
 		case _METEORITE:
+			meteoriteRects_.push_back(rect);
+			break;
+		case _THUNDER:
+			thunderRects_.push_back(rect);
 			break;
 		default:
 			break;
@@ -48,6 +52,7 @@ void CollisionSystem::removeRect(Entity* rect, rectId id) {
 	switch (id) {
 	case _FENIX:
 		fenixRects_.erase(find(fenixRects_.begin(), fenixRects_.end(), rect));
+		mngr_->setAlive(rect, false);
 		break;
 	case _SLIME:
 		slimeRects_.erase(find(slimeRects_.begin(), slimeRects_.end(), rect));
@@ -55,8 +60,14 @@ void CollisionSystem::removeRect(Entity* rect, rectId id) {
 	case _ENEMY:
 		enemyRects_.erase(find(enemyRects_.begin(), enemyRects_.end(), rect));
 		break;
+	case _THUNDER:
+		thunderRects_.erase(find(thunderRects_.begin(), thunderRects_.end(), rect));
+		break;
+	case _METEORITE:
+		meteoriteRects_.erase(find(meteoriteRects_.begin(), meteoriteRects_.end(), rect));
+		break;
 	}
-	mngr_->setAlive(rect, false);
+	
 }
 
 void CollisionSystem::update() {

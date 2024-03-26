@@ -27,6 +27,8 @@ private:
 	void generateTsunami();
 	void generateEarthquake(float area);
 
+	void addRectTo(Entity* t, rectId id);
+
 	float timeToNextEvent_;
 	float elapsedTime_;
 	float elapsedSpawn_;

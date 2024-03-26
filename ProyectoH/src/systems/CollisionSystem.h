@@ -21,5 +21,8 @@ public:
 protected:
 	std::vector<Entity*> fenixRects_;//Puedo acceder a su Rect obteniendo el transform
 	std::vector<Entity*> slimeRects_;
+	std::vector<Entity*> meteoriteRects_;
+	std::vector<Entity*> thunderRects_;
 	std::vector<Entity*> enemyRects_;
+
 };
