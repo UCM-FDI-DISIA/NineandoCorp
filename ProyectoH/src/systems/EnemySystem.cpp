@@ -23,7 +23,7 @@ void EnemySystem::initSystem() {
 	addEnemy(_enm_AELECTRICO, { 300,300 });
 	addEnemy(_enm_AELECTRICO, { 500,300 });
 
-	addEnemy(_enm_ANGEL, { 700,500 });
+	addEnemy(_enm_ANGEL, { 700,300 });
 
 }
 void  EnemySystem::receive(const Message& m) {
@@ -73,6 +73,7 @@ void EnemySystem::onRoundStart() {
 void EnemySystem::onRoundOver() {
 	enemiesTransforms.clear();
 }
+
 void EnemySystem::update() {
 	const auto& enemies = mngr_->getHandler(_hdlr_ENEMIES);
 	const auto& towers = mngr_->getHandler(_hdlr_LOW_TOWERS);
@@ -88,6 +89,7 @@ void EnemySystem::update() {
 
 		bool para = false;
 
+		// golem
 		if (gc != nullptr) {
 			gc->setTime(game().getDeltaTime() + gc->getElapsed());
 			if (gc->getElapsed() >= gc->getReload()) {
@@ -96,14 +98,20 @@ void EnemySystem::update() {
 			}
 		}
 
+		// acechante
 		if (acc != nullptr) {
 			acc->setTime(game().getDeltaTime() + acc->getElapsed());
 			if (acc->getElapsed() >= acc->getReload()) {
 				acc->inRange(enemies);
+				mc->setStop(true);
 				acc->setTime(0.0f);
+			}
+			else {
+				mc->setStop(false);
 			}
 		}
 
+		// route
 		if (rc != nullptr) {
 			rc->checkdestiny();
 			if (mc != nullptr && !mc->getStop()) {
@@ -112,6 +120,7 @@ void EnemySystem::update() {
 
 		}
 
+		// attack
 		if (ac != nullptr) {
 			ac->setElapsedTime(ac->getElapsedTime() + game().getDeltaTime());
 			if (ac->getElapsedTime() > ac->getReloadTime()) {
@@ -138,6 +147,8 @@ void EnemySystem::update() {
 				}
 			}
 		}
+
+		// angel
 		if (anc != nullptr) {
 			anc->setElapsed(anc->getElapsed() + game().getDeltaTime());
 			if (anc->getElapsed() > 1.0f) {
@@ -182,6 +193,7 @@ void EnemySystem::addEnemy(enmId type, Vector2D pos) {
 		mngr_->addComponent<HealthComponent>(t, 50000);
 		mngr_->addComponent<RouteComponent>(t, route);
 		mngr_->addComponent<AttackComponent>(t, 160, 0.25, 20, false);
+		mngr_->addComponent<AcechanteComponent>(t, 1, 100, 2);
 		mngr_->addComponent<FramedImage>(t, 1, 1, 122, 117, 0, 0, 1);
 		break;
 	case _enm_MALDITO:

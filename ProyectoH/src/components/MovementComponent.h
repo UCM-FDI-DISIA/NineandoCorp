@@ -15,7 +15,7 @@ public:
 	void Move();
 	void setStop(bool stop);
 	void activateSlow(float val, bool active);
-	void activateAcceleration(float v);
+	void activateAcceleration(float val, bool active);
 	bool getSlow() const{ return slowed_; }
 	bool getStop() const{ return stop_; };
 private:
