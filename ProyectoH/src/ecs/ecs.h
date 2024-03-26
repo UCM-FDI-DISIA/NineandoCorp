@@ -168,6 +168,7 @@ enum msgId : msgId_type {
 	_m_RESET_SPEED,
 	_m_REMOVE_RECT,
 	_m_ANIM_CREATE,
+	_m_RETURN_ENTITY,
 };
 
 using twrId_type = uint8_t;
@@ -313,6 +314,10 @@ msgId_type id;
 	{
 		//nose
 	}start_enemy_book;
+	//_m_RETURN_ENTITY
+	struct {
+		Entity* ent;
+	}return_entity;
 
     // _m_TOWERS_TO_ATTACK
     struct {

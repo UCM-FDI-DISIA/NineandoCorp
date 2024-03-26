@@ -20,15 +20,23 @@ public:
 private:
 
 	void generateMeteorites(int num);
+	void generateMeteorite();
 	void generateTornado();
 	void generateStorm(int thunderNum);
+	void generateThunder();
 	void generateTsunami();
 	void generateEarthquake(float area);
 
 	float timeToNextEvent_;
 	float elapsedTime_;
+	float elapsedSpawn_;
 	float minTimeInterval_;
 	float maxTimeInterval_;
+	float meteoriteInterval_;
+	float thundersInterval_;
+	int quantity_;
+	int objectsSpawned_;
+	bool eventActive_;
 
 	MeteorologyEvent nextEvent_;
 };

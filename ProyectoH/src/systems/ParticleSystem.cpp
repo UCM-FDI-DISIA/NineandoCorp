@@ -49,5 +49,9 @@ Entity* ParticleSystem::addParticle(grpId id, gameTextures tex, Vector2D pos, Ve
 	auto t = mngr_->addComponent<Transform>(p);
 	t->setPosition(pos);
 	t->setScale(scale);
+	Message m;
+	m.id = _m_RETURN_ENTITY;
+	m.return_entity.ent = p;
+	mngr_->send(m);
 	return p;
 }

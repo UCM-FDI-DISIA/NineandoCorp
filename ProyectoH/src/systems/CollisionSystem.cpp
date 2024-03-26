@@ -38,6 +38,9 @@ void CollisionSystem::addRect(Entity* rect, rectId id) {
 			enemyRects_.push_back(rect);
 			break;
 		case _METEORITE:
+			break;
+		default:
+			break;
 	}
 }
 
