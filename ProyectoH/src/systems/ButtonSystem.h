@@ -123,8 +123,8 @@ private:
 	/// </summary>
 	void upgradeEnhancerMain();
 
-
-
+	int money_ = 0;
+	int costs[_twr_SIZE];
 };
 
 

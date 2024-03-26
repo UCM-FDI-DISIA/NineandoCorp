@@ -10,7 +10,7 @@ public:
 
 	static const cmpId id = cmpId::_DRAG_AND_DROP;
 
-	DragAndDrop(twrId i);
+	DragAndDrop(twrId i, int cost);
 	virtual ~DragAndDrop();
 
 	void initComponent() override;
@@ -43,5 +43,6 @@ private:
 	bool dragging_;
 	Transform* tr_;
 	twrId tId_;
+	int cost;
 };
 

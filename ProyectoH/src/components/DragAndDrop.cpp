@@ -4,11 +4,11 @@
 #include <cassert>
 #include "../sdlutils/InputHandler.h"
 
-DragAndDrop::DragAndDrop(twrId id) :
+DragAndDrop::DragAndDrop(twrId id, int cost) :
 	tId_(id), //
 	dragging_(false), //
-	tr_(nullptr) {
-
+	tr_(nullptr),
+	cost(cost){
 }
 DragAndDrop::~DragAndDrop() {
 
@@ -28,7 +28,12 @@ void DragAndDrop::drop(const Vector2D& pos, Height h, const Vector2D& scale){
 	m.add_tower_data.pos = getPosFromTile(pos); 
 	m.add_tower_data.height = h; 
 	m.add_tower_data.scale = tr_->getScale();
-	mngr_->send(m); 
+	mngr_->send(m);
+	
+	Message m2;
+	m2.id = _m_ADD_MONEY;
+	m2.money_data.money = -cost;
+	mngr_->send(m2);
 }
 
 

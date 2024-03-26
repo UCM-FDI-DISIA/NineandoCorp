@@ -40,7 +40,7 @@ void HUDSystem::initSystem() {
 		{ 55.0f, 80.0f }, 0.0f,
 		gameTextures::bullet_tower_image,
 		_grp_HUD_FOREGROUND);
-	mngr_->addComponent<DragAndDrop>(towers_imgs[_twr_BULLET], _twr_BULLET);
+	mngr_->addComponent<DragAndDrop>(towers_imgs[_twr_BULLET], _twr_BULLET, sdlutils().intConst().at("BalasPrecio"));
 	initial_pos[_twr_BULLET] = { xAux, heightH };
 	intial_scale[_twr_BULLET] = { bSize };
 
@@ -53,7 +53,7 @@ void HUDSystem::initSystem() {
 		{ 55.0f, 80.0f },
 		gameTextures::crystal_tower_image, gameTextures::crystal_tower_image,
 		ButtonTypes::none);
-	mngr_->addComponent<DragAndDrop>(towers_imgs[_twr_CRISTAL], _twr_CRISTAL);
+	mngr_->addComponent<DragAndDrop>(towers_imgs[_twr_CRISTAL], _twr_CRISTAL, sdlutils().intConst().at("CristalPrecio"));
 	initial_pos[_twr_CRISTAL] = { xAux * 2, heightH };
 
 	//phoenix_tower
@@ -65,7 +65,7 @@ void HUDSystem::initSystem() {
 		{ 60.0f, 80.0f },
 		gameTextures::phoenix_tower_image, gameTextures::phoenix_tower_image,
 		ButtonTypes::none);
-	mngr_->addComponent<DragAndDrop>(towers_imgs[_twr_FENIX], _twr_FENIX);
+	mngr_->addComponent<DragAndDrop>(towers_imgs[_twr_FENIX], _twr_FENIX, sdlutils().intConst().at("FenixPrecio"));
 	initial_pos[_twr_FENIX] = { xAux * 3, heightH };
 
 	//dirt_tower
@@ -77,7 +77,7 @@ void HUDSystem::initSystem() {
 		{ 60.0f, 80.0f },
 		gameTextures::clay_tower_image, gameTextures::clay_tower_image,
 		ButtonTypes::none);
-	mngr_->addComponent<DragAndDrop>(towers_imgs[_twr_CLAY], _twr_CLAY);
+	mngr_->addComponent<DragAndDrop>(towers_imgs[_twr_CLAY], _twr_CLAY, sdlutils().intConst().at("ArcillaPrecio"));
 	initial_pos[_twr_CLAY] = { xAux * 4, heightH };
 
 	//sniper_tower
@@ -89,7 +89,7 @@ void HUDSystem::initSystem() {
 		{ 45.0f, 80.0f },
 		gameTextures::sniper_tower_image, gameTextures::sniper_tower_image,
 		ButtonTypes::none);
-	mngr_->addComponent<DragAndDrop>(towers_imgs[_twr_DIEGO], _twr_DIEGO);
+	mngr_->addComponent<DragAndDrop>(towers_imgs[_twr_DIEGO], _twr_DIEGO, sdlutils().intConst().at("DiegoSniperPrecio"));
 	initial_pos[_twr_DIEGO] = { xAux * 5, heightH };
 
 	//slime_tower
@@ -101,7 +101,7 @@ void HUDSystem::initSystem() {
 		{ 60.0f, 80.0f },
 		gameTextures::slime_tower_image, gameTextures::slime_tower_image,
 		ButtonTypes::none);
-	mngr_->addComponent<DragAndDrop>(towers_imgs[_twr_SLIME], _twr_SLIME);
+	mngr_->addComponent<DragAndDrop>(towers_imgs[_twr_SLIME], _twr_SLIME, sdlutils().intConst().at("SlimePrecio"));
 	initial_pos[_twr_SLIME] = { xAux * 6, heightH };
 
 	//boost_tower
@@ -113,7 +113,7 @@ void HUDSystem::initSystem() {
 		{ 55.0f, 80.0f },
 		gameTextures::power_tower_image, gameTextures::power_tower_image,
 		ButtonTypes::none));
-	mngr_->addComponent<DragAndDrop>(towers_imgs[_twr_POWER], _twr_POWER);
+	mngr_->addComponent<DragAndDrop>(towers_imgs[_twr_POWER], _twr_POWER, sdlutils().intConst().at("PotenciadoraPrecio"));
 	initial_pos[_twr_POWER] = { xAux * 7, heightH };
 }
 
@@ -147,7 +147,6 @@ void HUDSystem::update() {
 						auto tr = mngr_->getComponent<Transform>(en);
 						Vector2D mPos = { (float)ih().getMousePos().first, (float)ih().getMousePos().second };
 						dC->drop(mPos, Height::LOW, tr->getScale());
-						
 
 						//resetea el icono de la torre
 						mngr_->changeEntityId(_grp_HUD_FOREGROUND, en);

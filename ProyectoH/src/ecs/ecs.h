@@ -165,7 +165,8 @@ enum msgId : msgId_type {
 	_m_DECREASE_SPEED,
 	_m_RESET_SPEED,
 	_m_REMOVE_RECT,
-	_m_ANIM_CREATE,
+	_m_ANIM_CREATE, 
+	_m_ADD_MONEY
 };
 
 using twrId_type = uint8_t;
@@ -305,6 +306,7 @@ msgId_type id;
 	struct
 	{
 		//nivel 
+		int money;
 	}start_game_data;
 	//_m_ENEMY_BOOK
 	struct
@@ -361,9 +363,11 @@ msgId_type id;
 	struct {
 		bool onPause;
 	}start_pause;
+
 	struct{
 		int lvl;
 	}upgrade_nexus;
+
 	//_m_ADD_RECT
 	struct {
 		Entity* rect;
@@ -373,6 +377,10 @@ msgId_type id;
 	struct {
 		SDL_Rect* offset;
 	}offset_context;
+
+	struct {
+		int money;
+	}money_data;
 };
 
 #endif // !ECS_H_

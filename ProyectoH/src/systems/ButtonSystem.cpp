@@ -4,6 +4,15 @@
 
 ButtonSystem::ButtonSystem(hdlrId_type but_id) : 
 	hdlr_but_id(but_id){
+
+	//rellenar la lista de costes
+	costs[_twr_BULLET] = sdlutils().intConst().at("BalasPrecio");
+	costs[_twr_FENIX] = sdlutils().intConst().at("FenixPrecio");
+	costs[_twr_DIEGO] = sdlutils().intConst().at("DiegoSniperPrecio");
+	costs[_twr_CLAY] = sdlutils().intConst().at("ArcillaPrecio");
+	costs[_twr_CRISTAL] = sdlutils().intConst().at("CristalPrecio"); 
+	costs[_twr_POWER] = sdlutils().intConst().at("PotenciadoraPrecio");
+	costs[_twr_SLIME] = sdlutils().intConst().at("SlimePrecio");
 }
 
 ButtonSystem::~ButtonSystem(){
@@ -16,6 +25,14 @@ void ButtonSystem::update () {
 void ButtonSystem::initSystem() {
 }
 void ButtonSystem::receive(const Message& m){
+	switch (m.id) {
+	case _m_ADD_MONEY:
+		money_ += m.money_data.money;
+		break;
+	case _m_START_GAME:
+		money_ = m.start_game_data.money;
+		break;
+	}
 }
 
 
@@ -171,10 +188,12 @@ void ButtonSystem::manageButtons() {
 	}
 
 	void ButtonSystem::dragTower(twrId tower) {
-		Message m;
-		m.id = _m_DRAG;
-		m.drag_data.towerId = tower;
-		mngr_->send(m);
+		if (money_ >= costs[tower]) {
+			Message m;
+			m.id = _m_DRAG;
+			m.drag_data.towerId = tower;
+			mngr_->send(m);
+		}
 	}
 #pragma endregion
 
