@@ -4,12 +4,13 @@
 #include "../components/FramedImage.h"
 #include "../components/Transform.h"
 #include "../sdlutils/SDLUtils.h"
+#include "../components/RenderComponent.h"
 #include "../game/Game.h"
 
-MeteorologySystem::MeteorologySystem(): minTimeInterval_(30.0),
-maxTimeInterval_(90.0), 
+MeteorologySystem::MeteorologySystem(): minTimeInterval_(0.0),
+maxTimeInterval_(1.0), 
 elapsedTime_(0) ,
-thundersInterval_(2.0),
+thundersInterval_(0.5),
 meteoriteInterval_(1.5),
 elapsedSpawn_(0),
 quantity_(0),
@@ -18,6 +19,7 @@ objectsSpawned_(0)
 {
 	auto& rand = sdlutils().rand();
 	timeToNextEvent_ = rand.nextInt(minTimeInterval_, maxTimeInterval_);
+	nextEvent_ = (MeteorologyEvent)rand.nextInt(1, 2);
 }
 
 MeteorologySystem::~MeteorologySystem() {
@@ -85,13 +87,21 @@ void MeteorologySystem::generateThunder() {
 	auto x = rand.nextInt(50, 750);
 	auto y = rand.nextInt(50, 750);
 
-	//Message m;
-	//m.id = _m_ANIM_CREATE;
-	//m.anim_create.animSpeed = 5;
-	//m.anim_create.idGrp = _grp_TOWERS_AND_ENEMIES;
-	//m.anim_create.iterationsToDelete = 1;
-	//m.anim_create.scale = { 200, 200 };
-	//mngr_->send(m);
+	Message m;
+	m.id = _m_ANIM_CREATE;
+	m.anim_create.animSpeed = 4;
+	m.anim_create.idGrp = _grp_TOWERS_AND_ENEMIES;
+	m.anim_create.iterationsToDelete = 1;
+	m.anim_create.scale = { 200, 300 };
+	m.anim_create.cols = 1;
+	m.anim_create.rows = 6;
+	m.anim_create.tex = gameTextures::thunder;
+	m.anim_create.frameInit = 0;
+	m.anim_create.frameEnd = 5;
+	m.anim_create.height = 512;
+	m.anim_create.width = 256;
+	m.anim_create.pos = Vector2D(x, y);
+	mngr_->send(m);
 
 }
 
@@ -117,7 +127,7 @@ void MeteorologySystem::update() {
 		case MeteorologySystem::TSUNAMI:
 			break;
 		case MeteorologySystem::STORM:
-			generateStorm(15);
+			generateStorm(50);
 			break;
 		case MeteorologySystem::METEORITES:
 			generateMeteorites(10);
@@ -149,7 +159,7 @@ void MeteorologySystem::update() {
 				generateThunder();
 				elapsedSpawn_ = 0;
 			}
-			else { eventOver = true; }
+			else if(objectsSpawned_ >= quantity_) { eventOver = true; }
 			break;
 		case MeteorologySystem::METEORITES:
 			if (elapsedSpawn_ > meteoriteInterval_ && objectsSpawned_ < quantity_) {
@@ -157,7 +167,7 @@ void MeteorologySystem::update() {
 				generateMeteorite();
 				elapsedSpawn_ = 0;
 			}
-			else { eventOver = true; }
+			else if(objectsSpawned_ >= quantity_) { eventOver = true; }
 			break;
 		case MeteorologySystem::TORNADO:
 			generateTornado();

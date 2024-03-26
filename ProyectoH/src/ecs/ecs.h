@@ -227,7 +227,7 @@ enum gameTextures {
 	nexus_level_text,
 
 	//others
-	bulletTexture, sniperBulletTexture, slimeBulletTexture, slimeArea, shield,
+	bulletTexture, sniperBulletTexture, slimeBulletTexture, slimeArea, shield,thunder,
 
 	//explosions
 	shieldExp,bulletExplosion,
