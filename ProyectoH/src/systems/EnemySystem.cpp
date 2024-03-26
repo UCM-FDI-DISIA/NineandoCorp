@@ -101,14 +101,14 @@ void EnemySystem::update() {
 		// acechante
 		if (acc != nullptr) {
 			acc->setTime(game().getDeltaTime() + acc->getElapsed());
+			if (acc->getElapsed() >= acc->getReload() - 0.5) {
+				mc->setStop(true);
+			}
 			if (acc->getElapsed() >= acc->getReload()) {
 				acc->inRange(enemies);
-				mc->setStop(true);
 				acc->setTime(0.0f);
 			}
-			else {
-				mc->setStop(false);
-			}
+			
 		}
 
 		// route
