@@ -145,6 +145,8 @@ constexpr rectId_type lastRectId = _LAST_RECT_ID;
 
 using msgId_type = uint8_t;
 enum msgId : msgId_type {
+	_m_ROUND_START, //
+	_m_ROUND_OVER,
 	_m_SHOOT,
 	_m_TOWERS_TO_ATTACK,
 	_m_ENTITY_TO_ATTACK,
@@ -208,9 +210,7 @@ enum enmId : enmId_type {
 // Correspondant texture to each type of entity
 enum gameTextures {
 	//map
-	tileSet, hillTexture, roadTexture, mountainTexture, lakeTexture1, lakeTexture2, lakeTexture3, lakeTexture4,
-	lakeTexture5, lakeTexture6, lakeTexture7, lakeTexture8, lakeTexture9, lakeTexture10,
-	lakeTexture11,
+	tileSet,
 	//UI
 	play, play_hover, box, box_hover, large_box, none_box, none_box_hover,
 	close, close_hover, enemies_button, enemies_button_hover,
@@ -223,7 +223,8 @@ enum gameTextures {
 	slimeTowerTexture, boosterTowerTexture, sniperTowerTexture, clayTowerTexture, nexusTexture, fireTexture,
 
 	//enemies
-
+	goblin, maldito, elfo, golem, angel, maestro, acechante, defensor, demonioAlado,
+	demonioInfernal, mensajero, CMaldito, principito, monje, muerte,
 
 	//texts
 	nexus_level_text,
@@ -232,7 +233,7 @@ enum gameTextures {
 	bulletTexture, sniperBulletTexture, slimeBulletTexture, slimeArea, shield,
 
 	//explosions
-	shieldExp,bulletExplosion,
+	shieldExp, bulletExplosion,
 
 
 	gmTxtrSize

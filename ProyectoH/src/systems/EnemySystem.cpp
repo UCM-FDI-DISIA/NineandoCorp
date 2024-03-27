@@ -26,14 +26,11 @@ void  EnemySystem::receive(const Message& m) {
 		level = m.start_game_data.level;
 		numSpawns = sdlutils().numSpawns().at("nivel" + to_string(level));
 		onRoundStart(numSpawns, level);
-		onWaveStart(level);
+		onWaveStart();
 
 		break;
 	case _m_START_GAME:
 		onWaveStart();
-		
-		
-		
 		break;
 	case _m_ROUND_OVER:
 		onRoundOver();

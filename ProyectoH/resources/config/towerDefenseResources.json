@@ -424,7 +424,28 @@
         {
             "id": "fireball",
             "file": "resources/images/Towers/fireball.png"
+        },
+        {
+          "id": "none_box",
+          "file": "resources/images/UI/none_box.png"
+        },
+        {
+          "id": "none_box_hover",
+          "file": "resources/images/UI/none_box_hover.png"
+        },
+        {
+          "id": "shield",
+          "file": "resources/images/Towers/shield.png"
+        },
+        {
+          "id": "shieldExp",
+          "file": "resources/images/Towers/shieldExplosion.png"
+        },
+        {
+          "id": "bulletExp",
+          "file": "resources/images/Towers/explosionBullet.png"
         }
+    
 
     ],
 

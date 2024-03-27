@@ -20,12 +20,6 @@ void mapSystem::receive(const Message& m) {
 	case _m_ROUND_START:
 		onRoundStart();
 		break;
-	case _m_GAMESTART:
-		onGameStart();
-		break;
-	case _m_GAMEOVER:
-		//onGameOver(m.winner_data.n);
-		break;
 	case _m_ROUND_OVER:
 			level++;
 			break;
