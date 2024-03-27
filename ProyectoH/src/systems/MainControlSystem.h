@@ -3,6 +3,7 @@
 #include "..//sdlutils/VirtualTimer.h"
 #include "../game/Game.h"
 #include "../components/NexusComponent.h"
+#include <vector>
 
 class MainControlSystem : public System
 {
@@ -28,9 +29,14 @@ protected:
 	VirtualTimer timer_;
 	Entity* nexo;
 
+	// Niveles de nexo y torres
+	int turrentLevels_ [_twr_SIZE];
+
 	void onRoundOver();
 	void onRoundStart();
 	void subtractCoins(int num);
+
+	void upgradeTower(twrId id);
 	
 	inline void resetButtons() {
 		for (auto b : mngr_->getHandler(_hdlr_BUTTON)) {

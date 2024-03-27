@@ -34,3 +34,7 @@ MovementComponent::activateSlow(float val, bool active) {
 	slowed_ = active;
 	speedDecrease_ = val;
 }
+
+void MovementComponent::activateAcceleration(float v)
+{
+}

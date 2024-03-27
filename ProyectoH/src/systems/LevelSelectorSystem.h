@@ -15,13 +15,5 @@ public:
 	void initSystem() override;
 	void receive(const Message& m) override;
 	void update() override; 
-	void backToMainMenu(); 
-	void startGame();
-	void callFunction(ButtonTypes type, ButtonComponent* bC);
-private:
-	Entity* addButton(Vector2D pos, Vector2D scale, gameTextures tex, gameTextures hov, ButtonTypes type);
-	void addImage(Vector2D pos, Vector2D(scale), double rot, gameTextures t);
-	Entity* backButtonEntity;
-	Entity* playButtonEntity;
 };
 

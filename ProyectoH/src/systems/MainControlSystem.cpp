@@ -1,12 +1,15 @@
 #include "MainControlSystem.h"
 
 MainControlSystem::MainControlSystem() :active_(false)
-	{
+{
 	
 }
 
 void MainControlSystem::initSystem() {
-	
+	// Inicialización del nivel de las torres y nexo
+	for (int i = 0; i < _twr_SIZE; i++) {
+		turrentLevels_[i] = 0;
+	}
 }
 
 void MainControlSystem::receive(const Message& m) {
@@ -18,15 +21,15 @@ void MainControlSystem::receive(const Message& m) {
 	case _m_LEVEL_SELECTOR:
 		game().pushState<LevelSelectorState>(mngr_);
 		break;
+	case _m_ENEMY_BOOK:
+		game().pushState<EnemyBookState>(mngr_);
+		break;
 	case _m_BACK_TO_MAINMENU:
 		game().popState();
 		resetButtons();
 		break;
-	case _m_ROUND_START:
-		onRoundStart();
-		break;
-	case _m_ROUND_OVER:
-		onRoundOver();
+	case _m_PAUSE:
+		game().pushState<PauseState>(mngr_);
 		break;
 	case _m_SHIELD_NEXUS:
 		mngr_->getComponent<NexusComponent>(nexo)->activateShield();
@@ -38,6 +41,23 @@ void MainControlSystem::receive(const Message& m) {
 
 		}
 		else mngr_->getComponent<HealthComponent>(nexo)->subtractHealth(m.nexus_attack_data.damage);
+		break;
+	case _m_UPGRADE_TOWER:
+		upgradeTower(m.upgrade_tower.towerId);
+		break;
+	case _m_LEVELS_INFO:
+		// Creo que esto no hace falta usarlo al final
+		break;
+	}
+}
+
+void MainControlSystem::upgradeTower(twrId id) {
+	if (turrentLevels_[id] < 4) {
+		turrentLevels_[id]++;
+		std::cout << turrentLevels_[id] << endl;	// QUITAR
+	}
+	else {
+		std::cout << "NO SE PUEDE MEJORAR, lvl: " << turrentLevels_[id] << endl;	// QUITAR
 	}
 }
 

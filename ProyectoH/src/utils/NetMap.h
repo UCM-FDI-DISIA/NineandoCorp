@@ -50,6 +50,6 @@ public:
 	/// </summary>
 	/// <param name="targetPosition">Posicion objetivo</param>
 	/// <returns>Puntero de la celda mas proxima</returns>
-	Cell* searchCell(Vector2D &targetPosition) const;
+	Cell* searchCell(const Vector2D &targetPosition) const;
 };
 

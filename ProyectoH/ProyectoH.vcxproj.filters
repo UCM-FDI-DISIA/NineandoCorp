@@ -1,253 +1,400 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <Filter Include="Source Files">
-      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
-      <Extensions>cpp;c;cc;cxx;c++;cppm;ixx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
-    </Filter>
-    <Filter Include="Header Files">
-      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
-      <Extensions>h;hh;hpp;hxx;h++;hm;inl;inc;ipp;xsd</Extensions>
-    </Filter>
-    <Filter Include="Resource Files">
-      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
-      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
-    </Filter>
-    <Filter Include="Header Files\sdlutil">
-      <UniqueIdentifier>{47fd6bfa-63aa-4e51-afd3-0d25875b4a60}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\utils">
-      <UniqueIdentifier>{d0ff45e1-5c74-41b2-8cf9-3f60cfd74bd9}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\json">
-      <UniqueIdentifier>{d61cfe4b-a5d5-4142-8708-b944657dbff6}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\sdlutil">
-      <UniqueIdentifier>{a96449cb-cd75-4a7c-8af7-391473ca0a22}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\utils">
-      <UniqueIdentifier>{48533d80-f3c4-48d4-93aa-a1219481dbe8}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\json">
-      <UniqueIdentifier>{f050c7fb-d995-4366-9eaf-e78d399a13f9}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\ecs">
-      <UniqueIdentifier>{2d420a98-37ba-4c26-9178-e4e5fbeb940c}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\ecs">
-      <UniqueIdentifier>{c59e50c0-5bf1-46f7-a58c-c432ad0a0480}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\Game">
-      <UniqueIdentifier>{9b79e039-bead-4806-a36b-f4703abe3f5e}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\Game">
-      <UniqueIdentifier>{a6c4cc6a-f794-48dc-b37c-bdd35a6dafbb}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\components">
-      <UniqueIdentifier>{7c33ef41-5e60-4451-97b9-57f10d965c3f}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\components">
-      <UniqueIdentifier>{fb0a4257-9dbb-44b0-ba4e-d9b982219911}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\systems">
-      <UniqueIdentifier>{9a3ddc5d-452e-4957-ad90-79c0b965c443}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\gameStates">
-      <UniqueIdentifier>{f0346f67-8f3a-42dd-bbef-3f4a03f22810}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\systems">
-      <UniqueIdentifier>{d8ac687c-98d3-49ae-897a-53149a9e8090}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\gameStates">
-      <UniqueIdentifier>{a2c9c20a-81e0-47e1-9779-c0b50fd92145}</UniqueIdentifier>
-    </Filter>
+    <ClCompile Include="src\utils\NetMap.cpp">
+      <Filter>Sources Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\main.cpp">
+      <Filter>Sources Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\components\AcechanteComponent.cpp">
+      <Filter>Sources Files\Components</Filter>
+    </ClCompile>
+    <ClCompile Include="src\components\AttackComponent.cpp">
+      <Filter>Sources Files\Components</Filter>
+    </ClCompile>
+    <ClCompile Include="src\components\BlindComponent.cpp">
+      <Filter>Sources Files\Components</Filter>
+    </ClCompile>
+    <ClCompile Include="src\components\BulletComponent.cpp">
+      <Filter>Sources Files\Components</Filter>
+    </ClCompile>
+    <ClCompile Include="src\components\BulletTower.cpp">
+      <Filter>Sources Files\Components</Filter>
+    </ClCompile>
+    <ClCompile Include="src\components\ButtonComponent.cpp">
+      <Filter>Sources Files\Components</Filter>
+    </ClCompile>
+    <ClCompile Include="src\systems\ButtonSystem.cpp">
+      <Filter>Sources Files\Systems</Filter>
+    </ClCompile>
+    <ClCompile Include="src\utils\Collisions.cpp">
+      <Filter>Sources Files\utils</Filter>
+    </ClCompile>
+    <ClCompile Include="src\systems\CollisionSystem.cpp">
+      <Filter>Sources Files\Systems</Filter>
+    </ClCompile>
+    <ClCompile Include="src\components\CrystalTower.cpp">
+      <Filter>Sources Files\Components</Filter>
+    </ClCompile>
+    <ClCompile Include="src\components\DiegoSniperTower.cpp">
+      <Filter>Sources Files\Components</Filter>
+    </ClCompile>
+    <ClCompile Include="src\components\DirtTower.cpp">
+      <Filter>Sources Files\Components</Filter>
+    </ClCompile>
+    <ClCompile Include="src\components\DragAndDrop.cpp">
+      <Filter>Sources Files\Components</Filter>
+    </ClCompile>
+    <ClCompile Include="EnemyBookState.cpp">
+      <Filter>Sources Files\States</Filter>
+    </ClCompile>
+    <ClCompile Include="src\systems\EnemyBookSystem.cpp">
+      <Filter>Sources Files\Systems</Filter>
+    </ClCompile>
+    <ClCompile Include="src\systems\EnemySystem.cpp">
+      <Filter>Sources Files\Systems</Filter>
+    </ClCompile>
+    <ClCompile Include="src\components\EnhancerTower.cpp">
+      <Filter>Sources Files\Components</Filter>
+    </ClCompile>
+    <ClCompile Include="src\components\FireComponent.cpp">
+      <Filter>Sources Files\Components</Filter>
+    </ClCompile>
+    <ClCompile Include="src\components\FramedImage.cpp">
+      <Filter>Sources Files\utils</Filter>
+    </ClCompile>
+    <ClCompile Include="src\game\Game.cpp">
+      <Filter>Sources Files\Game</Filter>
+    </ClCompile>
+    <ClCompile Include="src\gameStates\GameOverState.cpp">
+      <Filter>Sources Files\States</Filter>
+    </ClCompile>
+    <ClCompile Include="src\game\GameState.cpp">
+      <Filter>Sources Files\Game</Filter>
+    </ClCompile>
+    <ClCompile Include="src\game\GameStateMachine.cpp">
+      <Filter>Sources Files\States</Filter>
+    </ClCompile>
+    <ClCompile Include="src\components\GolemComponent.cpp">
+      <Filter>Sources Files\Components</Filter>
+    </ClCompile>
+    <ClCompile Include="src\components\HealthComponent.cpp">
+      <Filter>Sources Files\Components</Filter>
+    </ClCompile>
+    <ClCompile Include="src\systems\HUDSystem.cpp">
+      <Filter>Sources Files\Systems</Filter>
+    </ClCompile>
+    <ClCompile Include="src\json\JSON.cpp">
+      <Filter>Sources Files\json</Filter>
+    </ClCompile>
+    <ClCompile Include="src\json\json_demo.cpp">
+      <Filter>Sources Files\json</Filter>
+    </ClCompile>
+    <ClCompile Include="src\json\JSONValue.cpp">
+      <Filter>Sources Files\json</Filter>
+    </ClCompile>
+    <ClCompile Include="src\gameStates\LevelSelectorState.cpp">
+      <Filter>Sources Files\States</Filter>
+    </ClCompile>
+    <ClCompile Include="src\systems\LevelSelectorSystem.cpp">
+      <Filter>Sources Files\Systems</Filter>
+    </ClCompile>
+    <ClCompile Include="src\components\MaestroAlmasComponent.cpp">
+      <Filter>Sources Files\Components</Filter>
+    </ClCompile>
+    <ClCompile Include="src\systems\MainControlSystem.cpp">
+      <Filter>Sources Files\Systems</Filter>
+    </ClCompile>
+    <ClCompile Include="src\gameStates\MainMenuState.cpp">
+      <Filter>Sources Files\States</Filter>
+    </ClCompile>
+    <ClCompile Include="src\systems\MainMenuSystem.cpp">
+      <Filter>Sources Files\Systems</Filter>
+    </ClCompile>
+    <ClCompile Include="src\ecs\Manager.cpp">
+      <Filter>Sources Files\ecs</Filter>
+    </ClCompile>
+    <ClCompile Include="src\systems\mapSystem.cpp">
+      <Filter>Sources Files\Systems</Filter>
+    </ClCompile>
+    <ClCompile Include="src\components\MovementComponent.cpp">
+      <Filter>Sources Files\Components</Filter>
+    </ClCompile>
+    <ClCompile Include="src\components\NexusComponent.cpp">
+      <Filter>Sources Files\Components</Filter>
+    </ClCompile>
+    <ClCompile Include="src\components\PhoenixTower.cpp">
+      <Filter>Sources Files\Components</Filter>
+    </ClCompile>
+    <ClCompile Include="src\components\RouteComponent.cpp">
+      <Filter>Sources Files\Components</Filter>
+    </ClCompile>
+    <ClCompile Include="src\components\SlimeTowerComponent.cpp">
+      <Filter>Sources Files\Components</Filter>
+    </ClCompile>
+    <ClCompile Include="src\components\SlimeBullet.cpp">
+      <Filter>Sources Files\Components</Filter>
+    </ClCompile>
+    <ClCompile Include="src\components\Transform.cpp">
+      <Filter>Sources Files\Components</Filter>
+    </ClCompile>
+    <ClCompile Include="src\components\UpgradeTowerComponent.cpp">
+      <Filter>Sources Files\Components</Filter>
+    </ClCompile>
+    <ClCompile Include="src\gameStates\PauseState.cpp">
+      <Filter>Sources Files\States</Filter>
+    </ClCompile>
+    <ClCompile Include="src\gameStates\PlayState.cpp">
+      <Filter>Sources Files\States</Filter>
+    </ClCompile>
+    <ClCompile Include="src\systems\RenderSystem.cpp">
+      <Filter>Sources Files\Systems</Filter>
+    </ClCompile>
+    <ClCompile Include="src\sdlutils\SDLUtils.cpp">
+      <Filter>Sources Files\sdlutils</Filter>
+    </ClCompile>
+    <ClCompile Include="src\sdlutils\sdlutils_demo.cpp">
+      <Filter>Sources Files\sdlutils</Filter>
+    </ClCompile>
+    <ClCompile Include="src\sdlutils\SoundEffect.cpp">
+      <Filter>Sources Files\sdlutils</Filter>
+    </ClCompile>
+    <ClCompile Include="src\sdlutils\Texture.cpp">
+      <Filter>Sources Files\sdlutils</Filter>
+    </ClCompile>
+    <ClCompile Include="src\components\TowerStates.cpp">
+      <Filter>Sources Files\States</Filter>
+    </ClCompile>
+    <ClCompile Include="src\systems\TowerSystem.cpp">
+      <Filter>Sources Files\Systems</Filter>
+    </ClCompile>
+    <ClCompile Include="src\utils\Vector2D.cpp">
+      <Filter>Sources Files\utils</Filter>
+    </ClCompile>
+    <ClCompile Include="src\systems\ParticleSystem.cpp">
+      <Filter>Sources Files\Systems</Filter>
+    </ClCompile>
+    <ClCompile Include="src\components\ShieldComponent.cpp">
+      <Filter>Sources Files\Components</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="src\json\JSONValue.h">
-      <Filter>Header Files\json</Filter>
-    </ClInclude>
-    <ClInclude Include="src\json\json_demo.h">
-      <Filter>Header Files\json</Filter>
-    </ClInclude>
-    <ClInclude Include="src\json\JSON.h">
-      <Filter>Header Files\json</Filter>
-    </ClInclude>
-    <ClInclude Include="src\utils\Collisions.h">
-      <Filter>Header Files\utils</Filter>
-    </ClInclude>
-    <ClInclude Include="src\utils\mpl.h">
-      <Filter>Header Files\utils</Filter>
-    </ClInclude>
-    <ClInclude Include="src\utils\Singleton.h">
-      <Filter>Header Files\utils</Filter>
-    </ClInclude>
-    <ClInclude Include="src\utils\Vector2D.h">
-      <Filter>Header Files\utils</Filter>
-    </ClInclude>
-    <ClInclude Include="src\sdlutils\Font.h">
-      <Filter>Header Files\sdlutil</Filter>
-    </ClInclude>
-    <ClInclude Include="src\sdlutils\InputHandler.h">
-      <Filter>Header Files\sdlutil</Filter>
-    </ClInclude>
-    <ClInclude Include="src\sdlutils\macros.h">
-      <Filter>Header Files\sdlutil</Filter>
-    </ClInclude>
-    <ClInclude Include="src\sdlutils\Music.h">
-      <Filter>Header Files\sdlutil</Filter>
-    </ClInclude>
-    <ClInclude Include="src\sdlutils\RandomNumberGenerator.h">
-      <Filter>Header Files\sdlutil</Filter>
-    </ClInclude>
-    <ClInclude Include="src\sdlutils\SDLUtils.h">
-      <Filter>Header Files\sdlutil</Filter>
-    </ClInclude>
-    <ClInclude Include="src\sdlutils\sdlutils_demo.h">
-      <Filter>Header Files\sdlutil</Filter>
-    </ClInclude>
-    <ClInclude Include="src\sdlutils\SoundEffect.h">
-      <Filter>Header Files\sdlutil</Filter>
-    </ClInclude>
-    <ClInclude Include="src\sdlutils\Texture.h">
-      <Filter>Header Files\sdlutil</Filter>
-    </ClInclude>
-    <ClInclude Include="src\sdlutils\VirtualTimer.h">
-      <Filter>Header Files\sdlutil</Filter>
-    </ClInclude>
-    <ClInclude Include="src\sdlutils\SDLNetUtils.h">
-      <Filter>Header Files\sdlutil</Filter>
-    </ClInclude>
-    <ClInclude Include="src\ecs\Component.h">
-      <Filter>Header Files\ecs</Filter>
-    </ClInclude>
-    <ClInclude Include="src\ecs\ecs.h">
-      <Filter>Header Files\ecs</Filter>
-    </ClInclude>
-    <ClInclude Include="src\ecs\Entity.h">
-      <Filter>Header Files\ecs</Filter>
-    </ClInclude>
-    <ClInclude Include="src\ecs\System.h">
-      <Filter>Header Files\ecs</Filter>
-    </ClInclude>
-    <ClInclude Include="src\game\Game.h">
-      <Filter>Header Files\Game</Filter>
-    </ClInclude>
-    <ClInclude Include="src\game\GameState.h">
-      <Filter>Header Files\Game</Filter>
-    </ClInclude>
-    <ClInclude Include="src\game\GameStateMachine.h">
-      <Filter>Header Files\Game</Filter>
-    </ClInclude>
-    <ClInclude Include="src\ecs\Manager.h">
-      <Filter>Header Files\ecs</Filter>
-    </ClInclude>
-    <ClInclude Include="src\components\FramedImage.h">
-      <Filter>Header Files\components</Filter>
-    </ClInclude>
-    <ClInclude Include="src\components\HealthComponent.h">
-      <Filter>Header Files\components</Filter>
-    </ClInclude>
-    <ClInclude Include="src\components\MovementComponent.h">
-      <Filter>Header Files\components</Filter>
-    </ClInclude>
-    <ClInclude Include="src\components\Transform.h">
-      <Filter>Header Files\components</Filter>
-    </ClInclude>
-    <ClInclude Include="src\components\RouteComponent.h">
-      <Filter>Header Files\components</Filter>
-    </ClInclude>
-    <ClInclude Include="src\systems\mapSystem.h">
-      <Filter>Header Files\systems</Filter>
-    </ClInclude>
-    <ClInclude Include="src\systems\RenderSystem.h">
-      <Filter>Header Files\systems</Filter>
-    </ClInclude>
-    <ClInclude Include="src\components\RenderComponent.h">
-      <Filter>Header Files\components</Filter>
+    <ClInclude Include="src\components\AcechanteComponent.h">
+      <Filter>Headers Files\Components</Filter>
     </ClInclude>
     <ClInclude Include="src\components\AttackComponent.h">
-      <Filter>Header Files\components</Filter>
+      <Filter>Headers Files\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="src\components\BlindComponent.h">
+      <Filter>Headers Files\Components</Filter>
     </ClInclude>
     <ClInclude Include="src\components\BulletComponent.h">
-      <Filter>Header Files\components</Filter>
+      <Filter>Headers Files\Components</Filter>
     </ClInclude>
     <ClInclude Include="src\components\BulletTower.h">
-      <Filter>Header Files\components</Filter>
-    </ClInclude>
-    <ClInclude Include="src\components\DragAndDrop.h">
-      <Filter>Header Files\components</Filter>
-    </ClInclude>
-    <ClInclude Include="src\systems\TowerSystem.h">
-      <Filter>Header Files\systems</Filter>
-    </ClInclude>
-    <ClInclude Include="src\components\DirtTower.h">
-      <Filter>Header Files\components</Filter>
-    </ClInclude>
-    <ClInclude Include="src\components\UpgradeTowerComponent.h">
-      <Filter>Header Files\components</Filter>
-    </ClInclude>
-    <ClInclude Include="src\systems\HUDSystem.h">
-      <Filter>Header Files\systems</Filter>
-    </ClInclude>
-    <ClInclude Include="src\systems\MainControlSystem.h">
-      <Filter>Header Files\systems</Filter>
-    </ClInclude>
-    <ClInclude Include="src\systems\MainMenuSystem.h">
-      <Filter>Header Files\systems</Filter>
-    </ClInclude>
-    <ClInclude Include="src\components\EnhancerTower.h">
-      <Filter>Header Files\components</Filter>
+      <Filter>Headers Files\Components</Filter>
     </ClInclude>
     <ClInclude Include="src\components\ButtonComponent.h">
-      <Filter>Header Files\components</Filter>
-    </ClInclude>
-    <ClInclude Include="src\components\NexusComponent.h">
-      <Filter>Header Files\components</Filter>
+      <Filter>Headers Files\Components</Filter>
     </ClInclude>
     <ClInclude Include="src\components\CrystalTower.h">
-      <Filter>Header Files\components</Filter>
+      <Filter>Headers Files\Components</Filter>
     </ClInclude>
     <ClInclude Include="src\components\DiegoSniperTower.h">
-      <Filter>Header Files\components</Filter>
+      <Filter>Headers Files\Components</Filter>
     </ClInclude>
-    <ClInclude Include="src\gameStates\PauseState.h">
-      <Filter>Header Files\gameStates</Filter>
+    <ClInclude Include="src\components\DirtTower.h">
+      <Filter>Headers Files\Components</Filter>
     </ClInclude>
-    <ClInclude Include="src\gameStates\PlayState.h">
-      <Filter>Header Files\gameStates</Filter>
-    </ClInclude>
-    <ClInclude Include="src\gameStates\MainMenuState.h">
-      <Filter>Header Files\gameStates</Filter>
-    </ClInclude>
-    <ClInclude Include="src\gameStates\LevelSelectorState.h">
-      <Filter>Header Files\gameStates</Filter>
-    </ClInclude>
-    <ClInclude Include="src\gameStates\GameOverState.h">
-      <Filter>Header Files\gameStates</Filter>
-    </ClInclude>
-    <ClInclude Include="src\systems\LevelSelectorSystem.h">
-      <Filter>Header Files\systems</Filter>
-    </ClInclude>
-    <ClInclude Include="src\systems\EnemySystem.h">
-      <Filter>Header Files\systems</Filter>
-    </ClInclude>
-    <ClInclude Include="src\components\PhoenixTower.h">
-      <Filter>Header Files\components</Filter>
-    </ClInclude>
-    <ClInclude Include="src\utils\NetMap.h">
-      <Filter>Header Files\utils</Filter>
+    <ClInclude Include="src\components\DragAndDrop.h">
+      <Filter>Headers Files\Components</Filter>
     </ClInclude>
     <ClInclude Include="src\components\FireComponent.h">
-      <Filter>Header Files\components</Filter>
+      <Filter>Headers Files\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="src\components\FramedImage.h">
+      <Filter>Headers Files\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="src\components\GolemComponent.h">
+      <Filter>Headers Files\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="src\components\HealthComponent.h">
+      <Filter>Headers Files\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="src\components\MaestroAlmasComponent.h">
+      <Filter>Headers Files\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="src\components\MovementComponent.h">
+      <Filter>Headers Files\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="src\components\NexusComponent.h">
+      <Filter>Headers Files\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="src\components\PhoenixTower.h">
+      <Filter>Headers Files\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="src\components\RenderComponent.h">
+      <Filter>Headers Files\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="src\components\RouteComponent.h">
+      <Filter>Headers Files\Components</Filter>
     </ClInclude>
     <ClInclude Include="src\components\SlimeTowerComponent.h">
-      <Filter>Header Files\components</Filter>
-    </ClInclude>
-    <ClInclude Include="src\systems\CollisionSystem.h">
-      <Filter>Header Files\systems</Filter>
+      <Filter>Headers Files\Components</Filter>
     </ClInclude>
     <ClInclude Include="src\components\SlimeBullet.h">
-      <Filter>Header Files</Filter>
+      <Filter>Headers Files\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="src\components\Transform.h">
+      <Filter>Headers Files\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="src\components\UpgradeTowerComponent.h">
+      <Filter>Headers Files\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="src\ecs\ecs.h">
+      <Filter>Headers Files\ecs</Filter>
+    </ClInclude>
+    <ClInclude Include="src\ecs\Entity.h">
+      <Filter>Headers Files\ecs</Filter>
+    </ClInclude>
+    <ClInclude Include="src\ecs\Component.h">
+      <Filter>Headers Files\ecs</Filter>
+    </ClInclude>
+    <ClInclude Include="src\ecs\Manager.h">
+      <Filter>Headers Files\ecs</Filter>
+    </ClInclude>
+    <ClInclude Include="src\ecs\System.h">
+      <Filter>Headers Files\ecs</Filter>
+    </ClInclude>
+    <ClInclude Include="src\game\Game.h">
+      <Filter>Headers Files\Game</Filter>
+    </ClInclude>
+    <ClInclude Include="src\utils\NetMap.h">
+      <Filter>Headers Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\systems\CollisionSystem.h">
+      <Filter>Headers Files\Systems</Filter>
+    </ClInclude>
+    <ClInclude Include="src\systems\EnemySystem.h">
+      <Filter>Headers Files\Systems</Filter>
+    </ClInclude>
+    <ClInclude Include="src\systems\HUDSystem.h">
+      <Filter>Headers Files\Systems</Filter>
+    </ClInclude>
+    <ClInclude Include="src\systems\MainControlSystem.h">
+      <Filter>Headers Files\Systems</Filter>
+    </ClInclude>
+    <ClInclude Include="src\systems\LevelSelectorSystem.h">
+      <Filter>Headers Files\Systems</Filter>
+    </ClInclude>
+    <ClInclude Include="src\components\EnhancerTower.h">
+      <Filter>Headers Files\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="src\utils\Collisions.h">
+      <Filter>Headers Files\utils</Filter>
+    </ClInclude>
+    <ClInclude Include="src\gameStates\EnemyBookState.h">
+      <Filter>Headers Files\States</Filter>
+    </ClInclude>
+    <ClInclude Include="src\components\EnemyStates.h">
+      <Filter>Headers Files\States</Filter>
+    </ClInclude>
+    <ClInclude Include="src\gameStates\GameOverState.h">
+      <Filter>Headers Files\States</Filter>
+    </ClInclude>
+    <ClInclude Include="src\game\GameState.h">
+      <Filter>Headers Files\Game</Filter>
+    </ClInclude>
+    <ClInclude Include="src\game\GameStateMachine.h">
+      <Filter>Headers Files\Game</Filter>
+    </ClInclude>
+    <ClInclude Include="src\sdlutils\Font.h">
+      <Filter>Headers Files\sdlutils</Filter>
+    </ClInclude>
+    <ClInclude Include="src\sdlutils\InputHandler.h">
+      <Filter>Headers Files\sdlutils</Filter>
+    </ClInclude>
+    <ClInclude Include="src\json\JSON.h">
+      <Filter>Headers Files\json</Filter>
+    </ClInclude>
+    <ClInclude Include="src\json\json_demo.h">
+      <Filter>Headers Files\json</Filter>
+    </ClInclude>
+    <ClInclude Include="src\json\JSONValue.h">
+      <Filter>Headers Files\json</Filter>
+    </ClInclude>
+    <ClInclude Include="src\gameStates\LevelSelectorState.h">
+      <Filter>Headers Files\States</Filter>
+    </ClInclude>
+    <ClInclude Include="src\sdlutils\macros.h">
+      <Filter>Headers Files\sdlutils</Filter>
+    </ClInclude>
+    <ClInclude Include="src\gameStates\MainMenuState.h">
+      <Filter>Headers Files\States</Filter>
+    </ClInclude>
+    <ClInclude Include="src\systems\MainMenuSystem.h">
+      <Filter>Headers Files\Systems</Filter>
+    </ClInclude>
+    <ClInclude Include="src\systems\mapSystem.h">
+      <Filter>Headers Files\Systems</Filter>
+    </ClInclude>
+    <ClInclude Include="src\utils\mpl.h">
+      <Filter>Headers Files\utils</Filter>
+    </ClInclude>
+    <ClInclude Include="src\sdlutils\Music.h">
+      <Filter>Headers Files\sdlutils</Filter>
+    </ClInclude>
+    <ClInclude Include="src\gameStates\PauseState.h">
+      <Filter>Headers Files\States</Filter>
+    </ClInclude>
+    <ClInclude Include="src\gameStates\PlayState.h">
+      <Filter>Headers Files\States</Filter>
+    </ClInclude>
+    <ClInclude Include="src\sdlutils\RandomNumberGenerator.h">
+      <Filter>Headers Files\sdlutils</Filter>
+    </ClInclude>
+    <ClInclude Include="src\systems\RenderSystem.h">
+      <Filter>Headers Files\Systems</Filter>
+    </ClInclude>
+    <ClInclude Include="src\sdlutils\SDLNetUtils.h">
+      <Filter>Headers Files\sdlutils</Filter>
+    </ClInclude>
+    <ClInclude Include="src\sdlutils\SDLUtils.h">
+      <Filter>Headers Files\sdlutils</Filter>
+    </ClInclude>
+    <ClInclude Include="src\sdlutils\sdlutils_demo.h">
+      <Filter>Headers Files\sdlutils</Filter>
+    </ClInclude>
+    <ClInclude Include="src\utils\Singleton.h">
+      <Filter>Headers Files\utils</Filter>
+    </ClInclude>
+    <ClInclude Include="src\sdlutils\SoundEffect.h">
+      <Filter>Headers Files\sdlutils</Filter>
+    </ClInclude>
+    <ClInclude Include="src\sdlutils\VirtualTimer.h">
+      <Filter>Headers Files\sdlutils</Filter>
+    </ClInclude>
+    <ClInclude Include="src\utils\Vector2D.h">
+      <Filter>Headers Files\utils</Filter>
+    </ClInclude>
+    <ClInclude Include="src\systems\TowerSystem.h">
+      <Filter>Headers Files\Systems</Filter>
+    </ClInclude>
+    <ClInclude Include="src\components\TowerStates.h">
+      <Filter>Headers Files\States</Filter>
+    </ClInclude>
+    <ClInclude Include="src\sdlutils\Texture.h">
+      <Filter>Headers Files\sdlutils</Filter>
+    </ClInclude>
+    <ClInclude Include="src\systems\ParticleSystem.h">
+      <Filter>Headers Files\Systems</Filter>
+    </ClInclude>
+    <ClInclude Include="src\components\ParticleLifeTime.h">
+      <Filter>Headers Files\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="src\components\ShieldComponent.h">
+      <Filter>Headers Files\Components</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -389,6 +536,62 @@
     <ClCompile Include="src\components\FireComponent.cpp">
       <Filter>Source Files\components</Filter>
     </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="Headers Files">
+      <UniqueIdentifier>{54b2c1c6-7548-4394-ac1a-079deaf61d3e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Headers Files\Components">
+      <UniqueIdentifier>{334f28c5-9d06-42aa-b12c-413f93473855}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Sources Files">
+      <UniqueIdentifier>{969cecce-c158-43d2-bebf-e6a5adf06ad5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Headers Files\ecs">
+      <UniqueIdentifier>{9c0643cb-afdd-4d40-bb2e-4775d20ed0fc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Headers Files\Game">
+      <UniqueIdentifier>{5a762584-7b53-49ca-a8b9-36ab25d3bb5d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Headers Files\States">
+      <UniqueIdentifier>{c7159c5d-3d30-47b4-8135-c5aa6f4f2674}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Headers Files\json">
+      <UniqueIdentifier>{b23c48cd-e163-400f-9428-ee0436bd250a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Headers Files\sdlutils">
+      <UniqueIdentifier>{e4913dc0-8672-4193-83d6-47dfd407a416}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Headers Files\utils">
+      <UniqueIdentifier>{afbb3917-f007-4baa-b0c1-bb5ad38c633e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Headers Files\Systems">
+      <UniqueIdentifier>{7eb5c4e0-965b-49cf-9dc6-8cf2050d0f9c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Sources Files\Components">
+      <UniqueIdentifier>{1a11ec60-cb28-43d4-8f80-b9aecf4445d3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Sources Files\ecs">
+      <UniqueIdentifier>{2b906d7e-2567-4327-925d-c27e060b3d8f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Sources Files\Game">
+      <UniqueIdentifier>{03c8d44c-03c8-44bf-a1a2-83b43ce5570d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Sources Files\json">
+      <UniqueIdentifier>{09df8a90-c0da-471e-8754-cbdb0a915808}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Sources Files\sdlutils">
+      <UniqueIdentifier>{f374f12f-a2ec-431b-9ea9-4af5557fc22b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Sources Files\utils">
+      <UniqueIdentifier>{85d81c27-45f6-4950-abb3-b9c950e15ec1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Sources Files\Systems">
+      <UniqueIdentifier>{9b84fff3-1b27-4a36-8df4-2e57fc90315e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Sources Files\States">
+      <UniqueIdentifier>{e7b4dd79-6785-413a-8694-f559427947f5}</UniqueIdentifier>
+    </Filter>
     <ClCompile Include="src\components\SlimeTowerComponent.cpp">
       <Filter>Source Files\components</Filter>
     </ClCompile>
@@ -396,6 +599,18 @@
       <Filter>Source Files\systems</Filter>
     </ClCompile>
     <ClCompile Include="src\components\SlimeBullet.cpp">
+      <Filter>Source Files\components</Filter>
+    </ClCompile>
+    <ClCompile Include="src\components\BlindComponent.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\components\TowerStates.cpp">
+      <Filter>Source Files\components</Filter>
+    </ClCompile>
+    <ClCompile Include="src\components\MaestroAlmasComponent.cpp">
+      <Filter>Source Files\components</Filter>
+    </ClCompile>
+    <ClCompile Include="src\components\GolemComponent.cpp">
       <Filter>Source Files\components</Filter>
     </ClCompile>
   </ItemGroup>

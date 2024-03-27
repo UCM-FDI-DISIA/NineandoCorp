@@ -15,17 +15,18 @@ public:
 	void initSystem() override;
 	void receive(const Message& m) override;
 	void update() override ;
-private: 
-	void addButton(const Vector2D& pos, const Vector2D& scale, gameTextures tex, gameTextures hov, ButtonTypes type);
-	//void addImage(const Vector2D &pos, Vector2D(scale), double rot, gameTextures t, grpId_type grpId);
 
-	void addImage(const Vector2D& pos, const Vector2D & scale, const double rot, gameTextures t, grpId_type grpId);
+private: 
+
+	/// <summary>
+	/// Crea un texto a partir de una textura como entidad y lo añade al manager
+	/// </summary>
+	/// <param name="pos">posicion del texto</param>
+	/// <param name="scale">escala del texto</param>
+	/// <param name="rot">rotacion del texto</param>
+	/// <param name="grpId">id del grupo con el que se añade la entidad al manager</param>
 	void addText(const Vector2D& pos, const Vector2D& scale, const double rot, grpId_type grpId);
-	void callFunction(ButtonTypes type, ButtonComponent* en);
-	void funcionPrueba(Transform* tr);
-	void loadLevelSelector();
-	void startLevel();
-	void pause();
-	void upgradeNexus();
+
+
 };
 

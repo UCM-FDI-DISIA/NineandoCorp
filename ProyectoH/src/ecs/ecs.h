@@ -8,10 +8,14 @@
 #include "../utils/NetMap.h"
 #include <vector>
 
+
 class Entity;
 class Manager;
 
+
 using uint8_t = unsigned char;
+
+enum Height { HIGH = 0, LOW };
 
 using cmpId_type = int;
 enum cmpId : cmpId_type {
@@ -31,9 +35,19 @@ enum cmpId : cmpId_type {
 	_NEXUS,
 	_PHOENIXTOWER,
 	_DIRTTOWER,
+	_DRAG_AND_DROP,
 	_SLIMETOWER,
 	_SLIMEBULLET,
 	_GENERATENEMIES,
+	_SHIELD,
+	_TOWERSTATES,
+	_ENEMYSTATES,
+	_MAESTROALMAS,
+	_P_TIME,
+	_GOLEM,
+	_ACECHANTE,
+	_FIRE,
+	_MENSAJEROMUERTE,
 
 	// do not remove this
 	_LAST_CMP_ID
@@ -43,12 +57,20 @@ constexpr cmpId_type maxComponentId = _LAST_CMP_ID;
 using hdlrId_type = int;
 enum hdlrId : hdlrId_type { 
 	_hdlr_DRAG_AND_DROP,
-	_hdlr_BUTTON,
 	_hdlr_SUBMENU,
 	_hdlr_LOW_TOWERS,
 	_hdlr_HIGH_TOWERS,
 	_hdlr_ENEMIES,
 	_hdlr_SPAWNS,
+	//botones de las escenas
+	_hdlr_BUTTON,
+	_hdlr_BUTTON_MAIN,
+	_hdlr_BUTTON_PAUSE,
+	_hdlr_BUTTON_LVLSEL,
+	_hdlr_BUTTON_ENEMYBOOK,
+	_hdlr_BUTTON_PLAY,
+	_hdlr_PARTICLES,
+	
 	// do not remove this
 	_LAST_HDLR_ID };
 constexpr hdlrId_type maxHdlrId = _LAST_HDLR_ID;
@@ -78,7 +100,8 @@ enum gmSttId : gmSttId_type {
 	_gmStt_PAUSE,
 	_gmStt_GAMEOVER,
 	_gmStt_MAINMENU,
-	_gmStt_LEVELSELECTOR, 
+	_gmStt_LEVELSELECTOR,
+	_gmStt_ENEMYBOOK,
 
 	// do not remove this
 	_LAST_GMSTT_ID
@@ -97,7 +120,11 @@ enum sysId : sysId_type {
 	_sys_MAINCONTROL,
 	_sys_ENEMIES,
 	_sys_LEVELSELECTOR,
+	_sys_ENEMYBOOK,
+	_sys_PAUSE,
+	_sys_BUTTON,
 	_sys_COLLISION,
+	_sys_PARTICLES,
 
 	// do not remove this
 	_LAST_SYS_ID
@@ -118,29 +145,32 @@ constexpr rectId_type lastRectId = _LAST_RECT_ID;
 
 using msgId_type = uint8_t;
 enum msgId : msgId_type {
-	_m_ROUND_START, //
-	_m_ROUND_OVER,
 	_m_SHOOT,
 	_m_TOWERS_TO_ATTACK,
 	_m_ENTITY_TO_ATTACK,
 	_m_ATTACK_NEXUS,
 	_m_TOWER_TO_ATTACK,
+	_m_TOWER_TO_BLIND,
 	_m_SHIELD_NEXUS,
-	_m_GAMEOVER,
-	_m_GAMESTART,
 	_m_PAUSE,
 	_m_RESUME,
 	_m_START_GAME,
+	_m_OVER_GAME,
 	_m_LEVEL_SELECTOR,
-	_m_UPGRADE_NEXUS,
+	_m_ENEMY_BOOK,
 	_m_UPGRADE_TOWER,
-	_m_BACK_TO_MAINMENU, 
+	_m_BACK_TO_MAINMENU,
 	_m_TEXT_MESSAGE,
+	_m_DRAG,
+	_m_LEVELS_INFO,
+	_m_ADD_TOWER,
 	_m_OFFSET_CONTEXT,
 	_m_ADD_RECT,
 	_m_DECREASE_SPEED,
 	_m_RESET_SPEED,
 	_m_NETMAP_SET,
+	_m_REMOVE_RECT,
+	_m_ANIM_CREATE,
 };
 
 using twrId_type = uint8_t;
@@ -150,8 +180,10 @@ enum twrId : twrId_type {
 	_twr_SLIME,
 	_twr_DIEGO,
 	_twr_FENIX,
-	_twr_DIRT,
+	_twr_CLAY,
 	_twr_POWER,
+	_twr_NEXUS,
+	_twr_SIZE
 };
 using enmId_type = uint8_t;
 enum enmId : enmId_type {
@@ -171,6 +203,39 @@ enum enmId : enmId_type {
 	_enm_MONJE,
 	_enm_MUERTE,
 
+};
+
+// Correspondant texture to each type of entity
+enum gameTextures {
+	//map
+	tileSet, hillTexture, roadTexture, mountainTexture, lakeTexture1, lakeTexture2, lakeTexture3, lakeTexture4,
+	lakeTexture5, lakeTexture6, lakeTexture7, lakeTexture8, lakeTexture9, lakeTexture10,
+	lakeTexture11,
+	//UI
+	play, play_hover, box, box_hover, large_box, none_box, none_box_hover,
+	close, close_hover, enemies_button, enemies_button_hover,
+	menu_background, upgrade, upgrade_hover, logo,
+	crystal_tower_image, bullet_tower_image, slime_tower_image,
+	sniper_tower_image, phoenix_tower_image, clay_tower_image,
+	power_tower_image, nexus_level_3_image,
+	// towers
+	square, bulletTowerTexture, cristalTowerTexture, phoenixTowerTexture,
+	slimeTowerTexture, boosterTowerTexture, sniperTowerTexture, clayTowerTexture, nexusTexture, fireTexture,
+
+	//enemies
+
+
+	//texts
+	nexus_level_text,
+
+	//others
+	bulletTexture, sniperBulletTexture, slimeBulletTexture, slimeArea, shield,
+
+	//explosions
+	shieldExp,bulletExplosion,
+
+
+	gmTxtrSize
 };
 
 inline Uint16 sdlnet_hton(Uint16 v) {
@@ -210,6 +275,37 @@ inline Uint8* _deserialize_(float& v, Uint8* buf) {
 }
 struct Message {
 msgId_type id;
+	//_m_ADD_TOWER
+	struct
+	{
+		twrId towerId;
+		Vector2D pos;
+		Height height;
+		Vector2D scale;
+
+	} add_tower_data;
+
+	//_m_ANIM_CREATE
+	struct {
+		grpId idGrp;
+		gameTextures tex;
+		Vector2D scale;
+		Vector2D pos;
+		int frameInit;
+		int frameEnd;
+		int animSpeed;
+		int rows;
+		int cols;
+		int width;
+		int height;
+		int iterationsToDelete;
+	}anim_create;
+
+	// _m_DRAG
+	struct {
+		twrId towerId;
+	}drag_data;
+
 	// _m_START_GAME
 	struct
 	{
@@ -217,11 +313,21 @@ msgId_type id;
 		unsigned int level;
 		NetMap* netmap;
 	}start_game_data;
+	//_m_ENEMY_BOOK
+	struct
+	{
+		//nose
+	}start_enemy_book;
 
     // _m_TOWERS_TO_ATTACK
     struct {
 		std::vector<Entity*> towers;
 	} towers_to_attack;
+	// _m_TOWER_TO_BLIND
+	struct {
+		Entity* e;
+		float damage;
+	} tower_to_blind;
 	// _m_ENTITY_TO_ATTACK
 	struct {
 		Entity* src;
@@ -255,15 +361,17 @@ msgId_type id;
 
 	// _m_UPGRADE_TOWER
 	struct {
-		twrId_type towerId;
-		int lvl;
+		twrId towerId;
 	}upgrade_tower;
 
-	// _m_UPGRADE_NEXUS
+	// _m_PAUSE
 	struct {
+		bool onPause;
+	}start_pause;
+	struct{
 		int lvl;
 	}upgrade_nexus;
-
+	//_m_ADD_RECT
 	struct {
 		Entity* rect;
 		rectId id;

@@ -48,6 +48,6 @@ void Transform::setSpeed(float s) { speed_=s; };
 void Transform::addRotation(float rot) { rotation += rot; };
 
 // Updates position based on velocity and deltaTime
-void Transform::translate(float decreaseVal) {
-	*position = *position + (*velocity*speed_ * game().getDeltaTime() * (1.0f - decreaseVal));
+void Transform::translate(float decreaseVal, float increaseVal) {
+	*position = *position + (*velocity*speed_ * game().getDeltaTime() * (1.0f - decreaseVal) * (1.0f + increaseVal));
 };

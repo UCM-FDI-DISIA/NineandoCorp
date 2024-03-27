@@ -62,7 +62,7 @@
   "Potenciadora": [
     {
       "vida": 75,
-      "rango": 200,
+      "rango": 400,
       "precio": 400,
       "recarga": 0,
       "dano": 0,
