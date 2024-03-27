@@ -102,6 +102,10 @@ RenderSystem::RenderSystem() : winner_(0)
 	textures[principito] = &sdlutils().images().at("principito");
 	textures[monje] = &sdlutils().images().at("monje");
 	textures[muerte] = &sdlutils().images().at("muerte");
+
+	//fenomenos
+	textures[thunder] = &sdlutils().images().at("thunder");
+	textures[meteorites] = &sdlutils().images().at("meteorites");
 }
 
 

@@ -444,9 +444,16 @@
         {
           "id": "bulletExp",
           "file": "resources/images/Towers/explosionBullet.png"
-        }
+        },
     
-
+        {
+            "id": "thunder",
+            "file": "resources/images/Meteorology/rayoAnim.png"
+          },
+          {
+            "id": "meteorites",
+            "file": "resources/images/Meteorology/Fire+Sparks-SpriteSheet.png"
+          }
     ],
 
   "fonts":[
