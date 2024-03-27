@@ -499,11 +499,11 @@
     },
     {
       "id": "FenixOffsetY",
-      "value": 100
+      "value": 60
     },
     {
       "id": "FenixOffsetX",
-      "value": 20
+      "value": -20
     },
     {
       "id": "BalasRecarga",
@@ -528,11 +528,11 @@
     },
     {
       "id": "SlimeTiempoSlime",
-      "value": 0.5
+      "value": 2
     },
     {
       "id": "SlimeVelocidad",
-      "value": 100
+      "value": 400
     },
 
     {
@@ -561,7 +561,7 @@
     },
     {
       "id": "DiegoSniperVelocidad",
-      "value": 600
+      "value": 200
     },
     {
       "id": "DiegoSniperOffset",
@@ -601,6 +601,10 @@
       "id": "CristalRecarga",
       "value": 20
     },
+    {
+        "id": "CristalRango",
+        "value": 100.0
+      },
     {
       "id": "ArcillaVida1",
       "value": 750
@@ -838,7 +842,7 @@
     },
     {
       "id": "CristalRango",
-      "value": 0
+      "value": 200
     },
     {
       "id": "CristalPrecio",
@@ -912,9 +916,13 @@
       "value": 1200
     },
     {
-      "id": "FireLength",
+      "id": "FireWidth",
       "value": 800
     },
+    {
+        "id": "FireHeight",
+        "value": 320
+      },
     {
       "id": "FireFrames",
       "value": 10
