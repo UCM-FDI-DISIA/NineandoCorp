@@ -14,8 +14,7 @@ void MainControlSystem::initSystem() {
 
 void MainControlSystem::receive(const Message& m) {
 	switch (m.id) {
-	case _m_START_GAME:
-
+	case _m_LEVEL_SELECTED:
 		game().changeState<PlayState>();
 		break;
 	case _m_LEVEL_SELECTOR:

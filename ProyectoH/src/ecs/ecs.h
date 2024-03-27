@@ -46,6 +46,7 @@ enum cmpId : cmpId_type {
 	_ACECHANTE,
 	_FIRE,
 	_MENSAJEROMUERTE,
+	_TEXT,
 
 	// do not remove this
 	_LAST_CMP_ID
@@ -82,6 +83,7 @@ enum grpId : grpId_type {
 	_grp_BULLETS,
 	_grp_HUD_BACKGROUND,
 	_grp_HUD_FOREGROUND,
+	_grp_TEXTS,
 	_grp_HUD_DRAG_AND_DROP,
 	_grp_AREAOFATTACK,
 	
@@ -166,7 +168,8 @@ enum msgId : msgId_type {
 	_m_RESET_SPEED,
 	_m_REMOVE_RECT,
 	_m_ANIM_CREATE, 
-	_m_ADD_MONEY
+	_m_ADD_MONEY,
+	_m_LEVEL_SELECTED
 };
 
 using twrId_type = uint8_t;

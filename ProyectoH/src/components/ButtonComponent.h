@@ -10,7 +10,7 @@ enum ButtonTypes {
 	//MainMenu
 	selector_main, enemies_main,
 	//Level Selector
-	start_game, back_selector,
+	level_selected, back_selector,
 
 	//Upgrades main menu
 	upgrade_nexus, 

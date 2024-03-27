@@ -1,6 +1,7 @@
 #include "ButtonSystem.h"
 #include "../sdlutils/InputHandler.h"
 #include "../ecs/Manager.h"
+#include "../components/TextComponent.h"
 
 ButtonSystem::ButtonSystem(hdlrId_type but_id) : 
 	hdlr_but_id(but_id){
@@ -28,9 +29,11 @@ void ButtonSystem::receive(const Message& m){
 	switch (m.id) {
 	case _m_ADD_MONEY:
 		money_ += m.money_data.money;
+		updateText();
 		break;
 	case _m_START_GAME:
 		money_ = m.start_game_data.money;
+		OnStartGame();
 		break;
 	}
 }
@@ -91,7 +94,7 @@ void ButtonSystem::manageButtons() {
 		case back_selector:
 			backToMainMenu();
 			break;
-		case start_game:
+		case level_selected:
 			startGame();
 			break;
 		/*--- MEJORAS DEL MENU ---*/
@@ -176,7 +179,7 @@ void ButtonSystem::manageButtons() {
 	}
 	void ButtonSystem::startGame() {
 		Message m;
-		m.id = _m_START_GAME;
+		m.id = _m_LEVEL_SELECTED;
 		mngr_->send(m);
 	}
 
@@ -225,4 +228,16 @@ Entity* ButtonSystem::addImage(const Vector2D& pos, const Vector2D& scale, const
 	tr->setRotation(rot);
 	mngr_->addComponent<RenderComponent>(img, t);
 	return img;
+}
+
+void ButtonSystem::OnStartGame() {
+	moneyText_ = mngr_->addEntity(_grp_TEXTS);
+	Transform* tr = mngr_->addComponent<Transform>(moneyText_);
+	tr->setPosition({ 0,0 });
+	tr->setScale({ 150, 50 });
+	mngr_->addComponent<TextComponent>(moneyText_, "Monedas: " + std::to_string(money_));
+}
+
+void ButtonSystem::updateText() {
+	mngr_->getComponent<TextComponent>(moneyText_)->changeText("Monedas: " + std::to_string(money_));
 }

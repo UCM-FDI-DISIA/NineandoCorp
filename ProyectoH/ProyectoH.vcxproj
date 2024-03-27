@@ -45,6 +45,7 @@
     <ClInclude Include="src\components\ShieldComponent.h" />
     <ClInclude Include="src\components\SlimeBullet.h" />
     <ClInclude Include="src\components\SlimeTowerComponent.h" />
+    <ClInclude Include="src\components\TextComponent.h" />
     <ClInclude Include="src\components\TowerStates.h" />
     <ClInclude Include="src\components\Transform.h" />
     <ClInclude Include="src\components\UpgradeTowerComponent.h" />
@@ -117,6 +118,7 @@
     <ClCompile Include="src\components\ShieldComponent.cpp" />
     <ClCompile Include="src\components\SlimeBullet.cpp" />
     <ClCompile Include="src\components\SlimeTowerComponent.cpp" />
+    <ClCompile Include="src\components\TextComponent.cpp" />
     <ClCompile Include="src\components\TowerStates.cpp" />
     <ClCompile Include="src\components\Transform.cpp" />
     <ClCompile Include="src\components\UpgradeTowerComponent.cpp" />
