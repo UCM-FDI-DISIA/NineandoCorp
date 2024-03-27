@@ -5,6 +5,7 @@
 #include "../checkML.h"
 #include "../utils/Vector2D.h"
 #include "../sdlutils/SDLNetUtils.h"
+#include "../utils/NetMap.h"
 #include <vector>
 
 
@@ -37,6 +38,7 @@ enum cmpId : cmpId_type {
 	_DRAG_AND_DROP,
 	_SLIMETOWER,
 	_SLIMEBULLET,
+	_GENERATENEMIES,
 	_SHIELD,
 	_TOWERSTATES,
 	_ENEMYSTATES,
@@ -59,6 +61,7 @@ enum hdlrId : hdlrId_type {
 	_hdlr_LOW_TOWERS,
 	_hdlr_HIGH_TOWERS,
 	_hdlr_ENEMIES,
+	_hdlr_SPAWNS,
 	//botones de las escenas
 	_hdlr_BUTTON,
 	_hdlr_BUTTON_MAIN,
@@ -84,6 +87,7 @@ enum grpId : grpId_type {
 	_grp_HUD_FOREGROUND,
 	_grp_HUD_DRAG_AND_DROP,
 	_grp_AREAOFATTACK,
+	_grp_SPAWN,
 	
 	// do not remove this
 	_LAST_GRP_ID
@@ -164,6 +168,7 @@ enum msgId : msgId_type {
 	_m_ADD_RECT,
 	_m_DECREASE_SPEED,
 	_m_RESET_SPEED,
+	_m_NETMAP_SET,
 	_m_REMOVE_RECT,
 	_m_ANIM_CREATE,
 };
@@ -304,7 +309,9 @@ msgId_type id;
 	// _m_START_GAME
 	struct
 	{
-		//nivel 
+		//nivel
+		unsigned int level;
+		NetMap* netmap;
 	}start_game_data;
 	//_m_ENEMY_BOOK
 	struct
@@ -373,6 +380,9 @@ msgId_type id;
 	struct {
 		SDL_Rect* offset;
 	}offset_context;
+
+
+	
 };
 
 #endif // !ECS_H_

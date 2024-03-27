@@ -15,6 +15,7 @@ struct cmpIsometricY {
 // Constructorss
 RenderSystem::RenderSystem() : winner_(0)
 {
+	//Camera offset
 	*offset = build_sdlrect(0, 0, 0, 0);
 
 	//Towers
@@ -33,41 +34,20 @@ RenderSystem::RenderSystem() : winner_(0)
 	textures[sniperBulletTexture] = &sdlutils().images().at("sniper_bullet");
 	textures[slimeBulletTexture] = &sdlutils().images().at("slime_bullet");
 	textures[nexusTexture] = &sdlutils().images().at("nexus_tower");
-
-	textures[box] = &sdlutils().images().at("box"); 
-	textures[box_hover] = &sdlutils().images().at("box_hover");
-	textures[none_box] = &sdlutils().images().at("none_box");
-	textures[none_box_hover] = &sdlutils().images().at("none_box_hover");
-	textures[large_box] = &sdlutils().images().at("large_box");
-	textures[close] = &sdlutils().images().at("close");
-	textures[close_hover] = &sdlutils().images().at("close_hover");
-	textures[enemies_button] = &sdlutils().images().at("enemies");
-	textures[enemies_button_hover] = &sdlutils().images().at("enemies_hover");
-	textures[menu_background] = &sdlutils().images().at("menu_background");
-	textures[upgrade] = &sdlutils().images().at("upgrade");
-	textures[upgrade_hover] = &sdlutils().images().at("upgrade_hover");
-	textures[logo] = &sdlutils().images().at("logo");
-
-	textures[crystal_tower_image] = &sdlutils().images().at("cristal_tower_image");
+	textures[cristal_tower_image] = &sdlutils().images().at("cristal_tower_image");
 	textures[bullet_tower_image] = &sdlutils().images().at("bullet_tower_image");
 	textures[slime_tower_image] = &sdlutils().images().at("slime_tower_image");
 	textures[sniper_tower_image] = &sdlutils().images().at("sniper_tower_image");
 	textures[phoenix_tower_image] = &sdlutils().images().at("phoenix_tower_image");
-	textures[clay_tower_image] = &sdlutils().images().at("dirt_tower_image");
+	textures[dirt_tower_image] = &sdlutils().images().at("dirt_tower_image");
 	textures[power_tower_image] = &sdlutils().images().at("power_tower_image");
-	textures[nexus_level_3_image] = &sdlutils().images().at("nexus_level_3_image");
-	textures[nexus_level_text] = &sdlutils().msgs().at("nexus_level_text");
-
-
 	textures[fireTexture] = &sdlutils().images().at("fireball");
 	textures[slimeArea] = &sdlutils().images().at("slime_area");
-	textures[shield] = &sdlutils().images().at("shield");
-
 
 	//HUD
 	cursorTexture = &sdlutils().images().at("cursor");
 	cursorTexture2 = &sdlutils().images().at("cursorpress");
-	textures[box] = &sdlutils().images().at("box");
+	textures[box] = &sdlutils().images().at("box"); 
 	textures[box_hover] = &sdlutils().images().at("box_hover");
 	textures[large_box] = &sdlutils().images().at("large_box");
 	textures[close] = &sdlutils().images().at("close");
@@ -83,16 +63,26 @@ RenderSystem::RenderSystem() : winner_(0)
 	textures[nexus_level_3_image] = &sdlutils().images().at("nexus_level_3_image");
 	textures[nexus_level_text] = &sdlutils().msgs().at("nexus_level_text");
 
-	//Explosions
-	textures[shieldExp] = &sdlutils().images().at("shieldExp");
-	textures[bulletExplosion] = &sdlutils().images().at("bulletExp");
-
 	//Miscelanious
 	textures[square] = &sdlutils().images().at("square");
 	textures[tileSet] = &sdlutils().images().at("map");
 
-
-
+	//Enemies
+	textures[goblin] = &sdlutils().images().at("goblin");
+	textures[maldito] = &sdlutils().images().at("maldito");
+	textures[elfo] = &sdlutils().images().at("elfo");
+	textures[golem] = &sdlutils().images().at("golem");
+	textures[angel] = &sdlutils().images().at("angel");
+	textures[maestro] = &sdlutils().images().at("maestro");
+	textures[acechante] = &sdlutils().images().at("acechante");
+	textures[defensor] = &sdlutils().images().at("defensor");
+	textures[demonioAlado] = &sdlutils().images().at("demonioAlado");
+	textures[demonioInfernal] = &sdlutils().images().at("demonioInfernal");
+	textures[mensajero] = &sdlutils().images().at("mensajero");
+	textures[CMaldito] = &sdlutils().images().at("maldito");
+	textures[principito] = &sdlutils().images().at("principito");
+	textures[monje] = &sdlutils().images().at("monje");
+	textures[muerte] = &sdlutils().images().at("muerte");
 }
 
 
@@ -102,12 +92,6 @@ RenderSystem::~RenderSystem() {
 // Reaccionar a los mensajes recibidos (llamando a métodos correspondientes).
 void RenderSystem::receive(const Message& m) {
 	switch (m.id) {
-	case _m_PAUSE:
-		onPause();
-		break;
-	case _m_RESUME:
-		onResume();
-		break;
 	}
 }
 // Inicializar el sistema, etc.
@@ -175,18 +159,17 @@ void RenderSystem::update() {
 	}
 
 	//AREA OF ATTACK (SLIME AND FENIX)
-	const auto& areas = mngr_->getEntities(_grp_AREAOFATTACK);
-	for (auto& area : areas)
+	const auto& slimes = mngr_->getEntities(_grp_AREAOFATTACK);
+	for (auto& slime : slimes)
 	{
-		Transform* tr = mngr_->getComponent<Transform>(area);
-		gameTextures textureId = mngr_->getComponent<RenderComponent>(area)->getTexture();
-		FramedImage* img = mngr_->getComponent<FramedImage>(area);
+		Transform* tr = mngr_->getComponent<Transform>(slime);
+		gameTextures textureId = mngr_->getComponent<RenderComponent>(slime)->getTexture();
+		FramedImage* img = mngr_->getComponent<FramedImage>(slime);
 		SDL_Rect srcRect = img->getSrcRect();
 		img->updateCurrentFrame();
 		SDL_Rect trRect = tr->getRect();
 		trRect.x += offset->x;
 		trRect.y += offset->y;
-		//SDL_RenderFillRect(sdlutils().renderer(), &trRect); //Debug para ver la hitbox
 		textures[textureId]->render(srcRect, trRect, tr->getRotation());
 	}
 
@@ -200,15 +183,15 @@ void RenderSystem::update() {
 		gameTextures textureId = mngr_->getComponent<RenderComponent>(t)->getTexture();
 		SDL_Rect srcRect;
 		FramedImage* fi = mngr_->getComponent<FramedImage>(t);
-		if (fi != nullptr) { srcRect = fi->getSrcRect(); fi->updateCurrentFrame(); }
+		fi->updateCurrentFrame();
+		if (fi != nullptr)srcRect = fi->getSrcRect();
 		SDL_Rect trRect = tr->getRect();
 		trRect.x += offset->x;
 		trRect.y += offset->y;
-		if (fi != nullptr)textures[textureId]->render(srcRect, trRect, tr->getRotation());
+		SDL_RendererFlip flip = mngr_->getComponent<RenderComponent>(t)->getFlip();
+		if (fi != nullptr)textures[textureId]->render(srcRect, trRect, tr->getRotation(), nullptr,flip);
 		else textures[textureId]->render(trRect, tr->getRotation());
 	}
-
-	
 
 	// BULLETS
 	const auto& buls = mngr_->getEntities(_grp_BULLETS);
@@ -242,10 +225,7 @@ void RenderSystem::update() {
 	for (auto& e : dnd) {
 		Transform* tr = mngr_->getComponent<Transform>(e);
 		gameTextures textureId = mngr_->getComponent<RenderComponent>(e)->getTexture();
-		SDL_Rect trRect = tr->getRect();
-		trRect.x += offset->x;
-		trRect.y += offset->y;
-		textures[textureId]->render(trRect, tr->getRotation());
+		textures[textureId]->render(tr->getRect(), tr->getRotation());
 	}
 
 	//Renderizar cursor
@@ -271,13 +251,5 @@ void RenderSystem::update() {
 
 	sdlutils().presentRenderer();
 }
-
-
-// Para gestionar los mensajes correspondientes y actualizar los atributos
-// winner_ y state_.
-// Displays pause message
-void RenderSystem::onPause() {
-}
-// Hides pause message
-void RenderSystem::onResume() {
+void RenderSystem::onGameOver(Uint8 winner) {
 }
