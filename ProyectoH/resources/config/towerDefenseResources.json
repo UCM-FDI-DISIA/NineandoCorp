@@ -457,6 +457,10 @@
           {
             "id": "earthquake",
             "file": "resources/images/Meteorology/Earthquake.png"
+          },
+          {
+            "id": "tornado",
+            "file": "resources/images/Meteorology/Retro Impact Effect Pack 3 F.png"
           }
     ],
 

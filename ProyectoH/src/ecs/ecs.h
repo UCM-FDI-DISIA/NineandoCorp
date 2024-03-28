@@ -235,7 +235,7 @@ enum gameTextures {
 	nexus_level_text,
 
 	//others
-	bulletTexture, sniperBulletTexture, slimeBulletTexture, slimeArea, shield,thunder, meteorites, earthquake,
+	bulletTexture, sniperBulletTexture, slimeBulletTexture, slimeArea, shield,thunder, meteorites, earthquake,tornado,
 
 	//explosions
 	shieldExp, bulletExplosion,
@@ -297,6 +297,7 @@ msgId_type id;
 		gameTextures tex;
 		Vector2D scale;
 		Vector2D pos;
+		vector<Vector2D> route;
 		int frameInit;
 		int frameEnd;
 		int animSpeed;

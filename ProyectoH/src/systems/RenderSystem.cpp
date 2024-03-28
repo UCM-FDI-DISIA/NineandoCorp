@@ -107,6 +107,7 @@ RenderSystem::RenderSystem() : winner_(0)
 	textures[thunder] = &sdlutils().images().at("thunder");
 	textures[meteorites] = &sdlutils().images().at("meteorites");
 	textures[earthquake] = &sdlutils().images().at("earthquake");
+	textures[tornado] = &sdlutils().images().at("tornado");
 
 }
 
@@ -217,7 +218,23 @@ void RenderSystem::update() {
 		if (fi != nullptr)textures[textureId]->render(srcRect, trRect, tr->getRotation(), nullptr,flip);
 		else textures[textureId]->render(trRect, tr->getRotation());
 	}
-
+	for (auto& par : mngr_->getHandler(_hdlr_PARTICLES))
+	{
+		Transform* tr = mngr_->getComponent<Transform>(par);
+		auto p = mngr_->getComponent<ParticleLifeTime>(par);
+		auto f = mngr_->getComponent<FramedImage>(par);
+		
+		SDL_Rect srcRect;
+		if (f != nullptr)srcRect = f->getSrcRect();
+		SDL_Rect trRect = tr->getRect();
+		trRect.x += offset->x;
+		trRect.y += offset->y;
+		if (p->getIters() <= f->getIters()) {
+			mngr_->setAlive(par, false);
+			mngr_->deleteHandler(_hdlr_PARTICLES, par);
+		}
+		f->updateCurrentFrame();
+	}
 	// BULLETS
 	const auto& buls = mngr_->getEntities(_grp_BULLETS);
 	for (auto& b : buls) {

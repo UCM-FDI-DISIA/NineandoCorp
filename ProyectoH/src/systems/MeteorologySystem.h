@@ -24,13 +24,13 @@ private:
 
 	void generateMeteorites(int num);
 	void generateMeteorite();
-	void generateTornado();
+	void generateAnimTornado();
 	void generateStorm(int thunderNum);
 	void generateThunder();
 	void generateTsunami();
-	void generateEarthquake();
+	void generateNetMap();
 	void generateAnimEarthquake();
-
+	std::vector<Vector2D> RouteTranslate(std::vector<Vector2D> route);
 	void addRectTo(Entity* t, rectId id);
 
 	float timeToNextEvent_;
@@ -49,6 +49,7 @@ private:
 	int pos = 0;
 	tmx::Vector2u tileSize_;
 	NetMap* net;
+
 
 	MeteorologyEvent nextEvent_;
 };

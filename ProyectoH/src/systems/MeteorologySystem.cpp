@@ -67,7 +67,7 @@ void MeteorologySystem::addRectTo(Entity* e, rectId id) {
 	mngr_->send(m);
 }
 
-void MeteorologySystem::generateEarthquake() {
+void MeteorologySystem::generateNetMap() {
 	auto mS = mngr_->getSystem<mapSystem>();
 	net = mS->getMalla();
 	tileSize_ = mS->getTileSize();
@@ -160,10 +160,34 @@ void MeteorologySystem::generateThunder() {
 
 }
 
-void MeteorologySystem::generateTornado() {
-
+void MeteorologySystem::generateAnimTornado() {
+	auto ruta = &sdlutils().rutes().at("ruta1Nivel1");
+	auto rutaPantalla = RouteTranslate(ruta->points);
+	Message m;
+	m.id = _m_ANIM_CREATE;
+	m.anim_create.animSpeed = 4;
+	m.anim_create.idGrp = _grp_TOWERS_AND_ENEMIES;
+	m.anim_create.iterationsToDelete = 60;
+	m.anim_create.scale = { 200, 300 };
+	m.anim_create.cols = 24;
+	m.anim_create.rows = 6;
+	m.anim_create.tex = gameTextures::tornado;
+	m.anim_create.frameInit = 60;
+	m.anim_create.frameEnd = 64;
+	m.anim_create.height = 32;
+	m.anim_create.width = 32;
+	m.anim_create.route = rutaPantalla;
+	m.anim_create.pos = rutaPantalla[0];
+	mngr_->send(m);
+	objectsSpawned_++;
 }
-
+std::vector<Vector2D> MeteorologySystem::RouteTranslate(std::vector<Vector2D> route) {
+	std::vector<Vector2D> route_aux = route;
+	for (int i = 0; i < route.size(); i++) {
+		route_aux[i] = net->getCell(route[i].getX(), route[i].getY())->position;
+	}
+	return route_aux;
+}
 void MeteorologySystem::generateTsunami() {
 
 }
@@ -188,9 +212,10 @@ void MeteorologySystem::update() {
 			generateMeteorites(50);
 			break;
 		case MeteorologySystem::TORNADO:
+			generateNetMap();
 			break;
 		case MeteorologySystem::EARTHQUAKE:	
-			generateEarthquake();
+			generateNetMap();
 			break;
 		default:
 			break;
@@ -226,18 +251,25 @@ void MeteorologySystem::update() {
 			else if(objectsSpawned_ >= quantity_) { eventOver = true; }
 			break;
 		case MeteorologySystem::TORNADO:
-			generateTornado();
-			eventOver = true;
+			if (quantity_ == 0) {
+				generateNetMap();
+				quantity_ = 1;
+			}
+			else if(objectsSpawned_ < quantity_) {
+				generateAnimTornado();
+				eventOver = true;
+			}
 			break;
 		case MeteorologySystem::EARTHQUAKE:
 			
 			if(quantity_ == 0) {
-				generateEarthquake();
+				generateNetMap();
+				
 			}
 			else if (objectsSpawned_ < quantity_) {
 				generateAnimEarthquake();
 			}
-			/*else if(objectsSpawned_ >= quantity_) { eventOver = true; }*/
+			else if(objectsSpawned_ >= quantity_) { eventOver = true; }
 			
 			
 			break;
