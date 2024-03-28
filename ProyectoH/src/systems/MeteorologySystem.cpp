@@ -7,6 +7,7 @@
 #include "../components/RenderComponent.h"
 #include "../game/Game.h"
 
+
 MeteorologySystem::MeteorologySystem(): minTimeInterval_(0.0),
 maxTimeInterval_(1.0), 
 elapsedTime_(0) ,
@@ -19,7 +20,7 @@ objectsSpawned_(0)
 {
 	auto& rand = sdlutils().rand();
 	timeToNextEvent_ = rand.nextInt(minTimeInterval_, maxTimeInterval_);
-	nextEvent_ = (MeteorologyEvent)rand.nextInt(2, 3);
+	nextEvent_ = (MeteorologyEvent)rand.nextInt(0, 5);
 }
 
 MeteorologySystem::~MeteorologySystem() {
@@ -47,6 +48,7 @@ void  MeteorologySystem::receive(const Message& m) {
 		case MeteorologySystem::TORNADO:
 			break;
 		case MeteorologySystem::EARTHQUAKE:
+			/*addRectTo(m.return_entity.ent, rectId::_EARTHQUAKE);*/
 			break;
 		default:
 			break;
@@ -65,10 +67,40 @@ void MeteorologySystem::addRectTo(Entity* e, rectId id) {
 	mngr_->send(m);
 }
 
-void MeteorologySystem::generateEarthquake(float area) {
-
+void MeteorologySystem::generateEarthquake() {
+	auto mS = mngr_->getSystem<mapSystem>();
+	net = mS->getMalla();
+	tileSize_ = mS->getTileSize();
+	quantity_ = tileSize_.x * tileSize_.y;
+	
 }
+void MeteorologySystem::generateAnimEarthquake() {
+	for (int i = 0; i < tileSize_.x / 2- 1; i++) {
+		for (int j = 0; j < tileSize_.y -1; j++) {
+			auto position = net->getCell(i, j)->position;
+			auto x = position.getX();
+			auto y = position.getY();
 
+			Message m;
+			m.id = _m_ANIM_CREATE;
+			m.anim_create.animSpeed = 1.5;
+			m.anim_create.idGrp = _grp_TOWERS_AND_ENEMIES;
+			m.anim_create.iterationsToDelete = 12;
+			m.anim_create.scale = { 50, 50 };
+			m.anim_create.cols = 1;
+			m.anim_create.rows = 3;
+			m.anim_create.tex = gameTextures::earthquake;
+			m.anim_create.frameInit = 0;
+			m.anim_create.frameEnd = 3;
+			m.anim_create.height = 32;
+			m.anim_create.width = 32;
+			m.anim_create.pos = Vector2D(x, y);
+			mngr_->send(m);
+			objectsSpawned_++;
+		}
+	}
+	
+}
 void MeteorologySystem::generateMeteorites(int num) {
 
 	quantity_ = num;
@@ -157,7 +189,8 @@ void MeteorologySystem::update() {
 			break;
 		case MeteorologySystem::TORNADO:
 			break;
-		case MeteorologySystem::EARTHQUAKE:		
+		case MeteorologySystem::EARTHQUAKE:	
+			generateEarthquake();
 			break;
 		default:
 			break;
@@ -197,8 +230,16 @@ void MeteorologySystem::update() {
 			eventOver = true;
 			break;
 		case MeteorologySystem::EARTHQUAKE:
-			generateEarthquake(400.0);
-			eventOver = true;
+			
+			if(quantity_ == 0) {
+				generateEarthquake();
+			}
+			else if (objectsSpawned_ < quantity_) {
+				generateAnimEarthquake();
+			}
+			/*else if(objectsSpawned_ >= quantity_) { eventOver = true; }*/
+			
+			
 			break;
 		default:
 			break;

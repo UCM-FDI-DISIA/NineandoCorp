@@ -45,9 +45,9 @@ void mapSystem::loadMap(std::string filename) {
 	const auto& layers = map.getLayers();
 	for (std::size_t i = 0; i < layers.size(); ++i) {
 		if (map.getOrientation() == tmx::Orientation::Isometric && layers[i]->getType() == tmx::Layer::Type::Tile) {
-			const auto tileSize = map.getTileSize();
-			m_chunkSize.x = std::floor(m_chunkSize.x / tileSize.x) * tileSize.x;
-			m_chunkSize.y = std::floor(m_chunkSize.y / tileSize.y) * tileSize.y;
+			tileSize_ = map.getTileSize();
+			m_chunkSize.x = std::floor(m_chunkSize.x / tileSize_.x) * tileSize_.x;
+			m_chunkSize.y = std::floor(m_chunkSize.y / tileSize_.y) * tileSize_.y;
 			m_MapTileSize.x = map.getTileSize().x;
 			m_MapTileSize.y = map.getTileSize().y;
 			const auto& layer = layers[i]->getLayerAs<tmx::TileLayer>();

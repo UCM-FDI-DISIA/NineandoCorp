@@ -47,6 +47,24 @@ Entity* ParticleSystem::addParticle(grpId id, gameTextures tex, Vector2D pos, Ve
 	mngr_->addComponent<FramedImage>(p, rows, col, width, height, frameFirst, speed, lastFrame);
 	mngr_->addComponent<ParticleLifeTime>(p, iter);
 	auto t = mngr_->addComponent<Transform>(p);
+	Vector2D correct;
+	switch (tex)
+	{
+	
+	case thunder:
+		correct = { t->getWidth() / 1.5f, t->getHeight() / 1.5f };
+		break;
+	case meteorites:
+		correct = { t->getWidth() / 1.5f, t->getHeight() / 1.5f };
+		break;
+	case earthquake:
+		correct = { t->getWidth() / 3.6f, t->getHeight() / 2.0f };
+		break;
+	default:
+		break;
+	}
+	
+	pos = pos - correct;
 	t->setPosition(pos);
 	t->setScale(scale);
 	Message m;

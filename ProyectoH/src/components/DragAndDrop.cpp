@@ -44,7 +44,7 @@ Vector2D DragAndDrop::getPosFromTile(const Vector2D&  pos) {
 	auto net = mS->getMalla();
 	Vector2D scale = tr_->getScale();
 	Vector2D tilePos = net->searchCell(pos)->position;
-	return tilePos - Vector2D((3 * mS->getTileSize().getX() / 4) + 10, scale.getY() - (3 * mS->getTileSize().getY() / 8) - (mS->getTileSize().getY() / 2) + 2);
+	return tilePos - Vector2D((3 * mS->getTileSize().x / 4) + 10, scale.getY() - (3 * mS->getTileSize().y / 8) - (mS->getTileSize().y / 2) + 2);
 }
 
 

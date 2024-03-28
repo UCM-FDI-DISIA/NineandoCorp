@@ -4,7 +4,10 @@
 #include "../sdlutils/SDLUtils.h"
 #include "../utils/Vector2D.h"
 #include "../ecs/ecs.h"
-
+#include <tmxlite/Map.hpp>
+#include <tmxlite/TileLayer.hpp>
+#include <tmxlite/Types.hpp>
+#include <tmxlite/Tileset.hpp>
 
 class MeteorologySystem : public System
 {
@@ -25,7 +28,8 @@ private:
 	void generateStorm(int thunderNum);
 	void generateThunder();
 	void generateTsunami();
-	void generateEarthquake(float area);
+	void generateEarthquake();
+	void generateAnimEarthquake();
 
 	void addRectTo(Entity* t, rectId id);
 
@@ -39,6 +43,12 @@ private:
 	int quantity_;
 	int objectsSpawned_;
 	bool eventActive_;
+
+	std::vector<std::vector<Vector2D>> routesToEarthquake;
+	int spawn = 0;
+	int pos = 0;
+	tmx::Vector2u tileSize_;
+	NetMap* net;
 
 	MeteorologyEvent nextEvent_;
 };

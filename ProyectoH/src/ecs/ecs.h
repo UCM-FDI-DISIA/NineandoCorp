@@ -140,6 +140,7 @@ enum rectId : rectId_type {
 	_ENEMY,
 	_METEORITE,
 	_THUNDER,
+	_EARTHQUAKE,
 
 	_LAST_RECT_ID
 };
@@ -234,7 +235,7 @@ enum gameTextures {
 	nexus_level_text,
 
 	//others
-	bulletTexture, sniperBulletTexture, slimeBulletTexture, slimeArea, shield,thunder, meteorites,
+	bulletTexture, sniperBulletTexture, slimeBulletTexture, slimeArea, shield,thunder, meteorites, earthquake,
 
 	//explosions
 	shieldExp, bulletExplosion,

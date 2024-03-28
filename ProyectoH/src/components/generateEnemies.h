@@ -30,6 +30,7 @@ public:
 	void setWave(unsigned int newWave) { wave = newWave; }
 	void setGrp(unsigned int newGrp) { grp = newGrp; }
 	void setRoute(std::vector<Vector2D> newRoute) { route = newRoute; }
+	vector<Vector2D> getRoute() const { return route; };
 	void addGroupEnemies();
 	void RoutesCorrection(Transform* tr, std::vector<Vector2D>& route, float divHeight, float divWidth);
 	SDLUtils::spawnGroupData* getSpawnGroup() const { return spawnGroup; }

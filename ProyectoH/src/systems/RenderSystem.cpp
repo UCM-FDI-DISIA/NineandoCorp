@@ -106,6 +106,8 @@ RenderSystem::RenderSystem() : winner_(0)
 	//fenomenos
 	textures[thunder] = &sdlutils().images().at("thunder");
 	textures[meteorites] = &sdlutils().images().at("meteorites");
+	textures[earthquake] = &sdlutils().images().at("earthquake");
+
 }
 
 
