@@ -282,7 +282,6 @@ msgId_type id;
 		twrId towerId;
 		Vector2D pos;
 		Height height;
-		Vector2D scale;
 
 	} add_tower_data;
 

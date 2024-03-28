@@ -19,7 +19,7 @@ public:
 
 	void resetTowerIcon(twrId tId);
 private: 
-	
+	int intAt(basic_string<char> s) { return sdlutils().intConst().at(s); }
 	
 	/// <summary>
 	/// Arrastra el icono de la torre correspondiente dependiendo de la posicion del cursor

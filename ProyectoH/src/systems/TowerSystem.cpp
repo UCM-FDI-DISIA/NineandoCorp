@@ -32,7 +32,7 @@ void TowerSystem::receive(const Message& m) {
 		onAttackTower(m.tower_to_attack.e, m.tower_to_attack.damage);
 		break;
 	case _m_ADD_TOWER:
-		addTower(m.add_tower_data.towerId, m.add_tower_data.pos, LOW, m.add_tower_data.scale);
+		addTower(m.add_tower_data.towerId, m.add_tower_data.pos, LOW);
 		break;
 	default:
 		break;
@@ -427,12 +427,12 @@ Entity* TowerSystem::addShield(Vector2D pos) {
 /// <param name="type">Tipo de la torre que definira sus mecanicas y su aspecto</param>
 /// <param name="pos">Posicion en la que se coloca la torre</param>
 /// <param name="height">Elevacion de la torre; puede ser alta o baja</param>
-void TowerSystem::addTower(twrId type,const Vector2D& pos, Height height,const Vector2D& scale) {
+void TowerSystem::addTower(twrId type,const Vector2D& pos, Height height) {
 	Entity* t = mngr_->addEntity(_grp_TOWERS_AND_ENEMIES);//Se a?ade al mngr
 	Transform* tr = mngr_->addComponent<Transform>(t);//transform
 	mngr_->addComponent<ShieldComponent>(t, 0);
 	tr->setPosition(pos);
-	tr->setScale(scale);
+	
 	mngr_->addComponent<UpgradeTowerComponent>(t, type, 4);
 	float health = 100.0f;
 	if (height == LOW) {
@@ -443,9 +443,11 @@ void TowerSystem::addTower(twrId type,const Vector2D& pos, Height height,const V
 	switch (type)
 	{
 	case _twr_FENIX://Dano, Enfriamiento, TiempoDisparo, Rango
-		mngr_->addComponent<PhoenixTower>(t, floatAt("FenixDano"), floatAt("FenixEnfriamiento"), floatAt("FenixTiempoDisparo"), floatAt("FenixRango"));
+		tr->setScale({ floatAt("FenixScaleX"), floatAt("FenixScaleY")});
+ 		mngr_->addComponent<PhoenixTower>(t, floatAt("FenixDano"), floatAt("FenixEnfriamiento"), floatAt("FenixTiempoDisparo"), floatAt("FenixRango"));
 		mngr_->addComponent<RenderComponent>(t, phoenixTowerTexture);
 		mngr_->addComponent<FramedImage>(t, intAt("FenixColumns"), intAt("FenixRows"), intAt("FenixWidth"), intAt("FenixHeight"), 0, 0);
+		
 		break;
 	case _twr_BULLET://Pasar rango, recarga, da?o y si dispara
 		mngr_->addComponent<BulletTower>(t, floatAt("BalasRango"), floatAt("BalasRecarga"), intAt("BalasDano"));

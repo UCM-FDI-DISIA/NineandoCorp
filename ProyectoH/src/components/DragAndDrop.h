@@ -20,7 +20,7 @@ public:
 	/// </summary>
 	/// <param name="pos"> posicion</param>
 	/// <param name="h"> pradera o montaña</param>
-	void drop(const Vector2D& pos, Height h, const Vector2D& scale);
+	void drop(const Vector2D& pos, Height h);
 
 	/// <summary>
 	/// habilita si el objeto esta siendo arrastrado o no
@@ -37,8 +37,16 @@ public:
 	/// Sigue al cursor y se situa en la casilla mas cercana
 	/// </summary>
 	void drag();
-
+	
+	/// <param name="pos">posicion del mouse</param>
+	/// <returns>posicion relativa de la casilla correspondiente</returns>
 	Vector2D getPosFromTile(const Vector2D& pos);
+
+	
+	/// <param name="initPos">posicion relativa de la casilla</param>
+	/// <returns>posicion ajustada a la escala 
+	/// para que la imagen ocupe en su totalidad la casilla</returns>
+	Vector2D adjustPosToTile(const Vector2D& initPos);
 private:
 	bool dragging_;
 	Transform* tr_;

@@ -1,6 +1,7 @@
 #include "ButtonSystem.h"
 #include "../sdlutils/InputHandler.h"
 #include "../ecs/Manager.h"
+#include "../components/FramedImage.h"
 
 ButtonSystem::ButtonSystem(hdlrId_type but_id) : 
 	hdlr_but_id(but_id){

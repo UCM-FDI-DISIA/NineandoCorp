@@ -19,15 +19,13 @@ void DragAndDrop::initComponent(){
 	assert(tr_ != nullptr);
 }
 
-void DragAndDrop::drop(const Vector2D& pos, Height h, const Vector2D& scale){
+void DragAndDrop::drop(const Vector2D& pos, Height h){
 
-	tr_->setScale({ 110.0f , 120.0f });
 	Message m;
 	m.id = _m_ADD_TOWER;
 	m.add_tower_data.towerId = tId_; 
-	m.add_tower_data.pos = getPosFromTile(pos); 
+	m.add_tower_data.pos = pos; 
 	m.add_tower_data.height = h; 
-	m.add_tower_data.scale = tr_->getScale();
 	mngr_->send(m); 
 }
 
@@ -35,7 +33,7 @@ void DragAndDrop::drop(const Vector2D& pos, Height h, const Vector2D& scale){
 void DragAndDrop::drag() {
 	tr_->setScale({ 120.0f , 126.0f});
 	Vector2D mPos = { (float)ih().getMousePos().first, (float)ih().getMousePos().second };
-	tr_->setPosition(getPosFromTile(mPos));
+	tr_->setPosition(adjustPosToTile(getPosFromTile(mPos)));
 
 }
 
@@ -44,7 +42,13 @@ Vector2D DragAndDrop::getPosFromTile(const Vector2D&  pos) {
 	auto net = mS->getMalla();
 	Vector2D scale = tr_->getScale();
 	Vector2D tilePos = net->searchCell(pos)->position;
-	return tilePos - Vector2D((3 * mS->getTileSize().getX() / 4) + 10, scale.getY() - (3 * mS->getTileSize().getY() / 8) - (mS->getTileSize().getY() / 2) + 2);
+	return tilePos;
+}
+
+Vector2D DragAndDrop::adjustPosToTile(const Vector2D& initPos) {
+	auto mS = mngr_->getSystem<mapSystem>();
+	Vector2D scale = tr_->getScale();
+	return initPos - Vector2D((3 * mS->getTileSize().getX() / 4) + 10, scale.getY() - (3 * mS->getTileSize().getY() / 8) - (mS->getTileSize().getY() / 2) + 2);
 }
 
 

@@ -234,9 +234,16 @@ void RenderSystem::update() {
 	//HUD FOREGROUND
 	const auto& hudF = mngr_->getEntities(_grp_HUD_FOREGROUND);
 	for (auto& h : hudF) {
+		auto fI = mngr_->getComponent<FramedImage>(h);
 		Transform* tr = mngr_->getComponent<Transform>(h);
 		gameTextures textureId = mngr_->getComponent<RenderComponent>(h)->getTexture();
-		textures[textureId]->render(tr->getRect(), tr->getRotation());
+		if (fI != nullptr) {
+			SDL_Rect srcRect = fI->getSrcRect();
+			textures[textureId]->render(srcRect, tr->getRect(), tr->getRotation());
+		}
+		else {
+			textures[textureId]->render(tr->getRect(), tr->getRotation());
+		}
 	}
 
 	//DRAG AND DROP
@@ -247,7 +254,15 @@ void RenderSystem::update() {
 		SDL_Rect trRect = tr->getRect();
 		trRect.x += offset->x;
 		trRect.y += offset->y;
-		textures[textureId]->render(trRect, tr->getRotation());
+
+		auto fI = mngr_->getComponent<FramedImage>(e);
+		if (fI != nullptr) { 
+			SDL_Rect srcRect = fI->getSrcRect();
+			textures[textureId]->render(srcRect, trRect,  tr->getRotation());
+		}
+		else {
+			textures[textureId]->render(tr->getRect(), tr->getRotation());
+		}
 	}
 
 	//Renderizar cursor

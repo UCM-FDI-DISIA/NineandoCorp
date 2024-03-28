@@ -11,8 +11,8 @@ HUDSystem::~HUDSystem(){
 }
 
 void HUDSystem::initSystem() {
-	towers_imgs.resize(7);
-	initial_pos.resize(7);
+	towers_imgs.resize(twrId::_twr_SIZE - 1);
+	initial_pos.resize(twrId::_twr_SIZE - 1);
 	intial_scale.resize(7);
 
 	ButtonSystem* bS = mngr_->getSystem<ButtonSystem>();
@@ -36,24 +36,36 @@ void HUDSystem::initSystem() {
 		gameTextures::none_box, gameTextures::none_box_hover,
 		ButtonTypes::bullet_drag);
 
-	towers_imgs[_twr_BULLET] = bS->addImage({ xAux, heightH },
-		{ 55.0f, 80.0f }, 0.0f,
-		gameTextures::bullet_tower_image,
+	towers_imgs[_twr_BULLET] = bS->addImage(
+		{ xAux, heightH },
+		{ 55.0f, 80.0f }, 
+		0.0f,
+		gameTextures::bulletTowerTexture,
 		_grp_HUD_FOREGROUND);
 	mngr_->addComponent<DragAndDrop>(towers_imgs[_twr_BULLET], _twr_BULLET);
+	mngr_->addComponent<FramedImage>(towers_imgs[_twr_BULLET],
+		intAt("BalasColumns"), intAt("BalasRows"),
+		intAt("BalasWidth"), intAt("BalasHeight"),
+		0, 0);
 	initial_pos[_twr_BULLET] = { xAux, heightH };
-	intial_scale[_twr_BULLET] = { bSize };
 
 	// cristal tower
 	bS->addButton({ xAux * 2, heightH },
 		bSize,
 		gameTextures::none_box, gameTextures::none_box_hover,
 		ButtonTypes::crystal_drag);
-	towers_imgs[_twr_CRISTAL] = bS->addButton({ xAux * 2, heightH },
+	towers_imgs[_twr_CRISTAL] = bS->addImage(
+		{ xAux * 2, heightH },
 		{ 55.0f, 80.0f },
-		gameTextures::crystal_tower_image, gameTextures::crystal_tower_image,
-		ButtonTypes::none);
+		0.0,
+		cristalTowerTexture,
+		_grp_HUD_FOREGROUND);
+
 	mngr_->addComponent<DragAndDrop>(towers_imgs[_twr_CRISTAL], _twr_CRISTAL);
+	auto fIC = mngr_->addComponent<FramedImage>(towers_imgs[_twr_CRISTAL],
+		intAt("CristalColumns"), intAt("CristalRows"),
+		intAt("CristalWidth"), intAt("CristalHeight"),
+		0, 0);
 	initial_pos[_twr_CRISTAL] = { xAux * 2, heightH };
 
 	//phoenix_tower
@@ -61,13 +73,25 @@ void HUDSystem::initSystem() {
 		bSize,
 		gameTextures::none_box, gameTextures::none_box_hover,
 		ButtonTypes::fenix_drag);
-	towers_imgs[_twr_FENIX] = bS->addButton({ xAux * 3, heightH },
-		{ 60.0f, 80.0f },
-		gameTextures::phoenix_tower_image, gameTextures::phoenix_tower_image,
-		ButtonTypes::none);
-	mngr_->addComponent<DragAndDrop>(towers_imgs[_twr_FENIX], _twr_FENIX);
-	initial_pos[_twr_FENIX] = { xAux * 3, heightH };
 
+	towers_imgs[_twr_FENIX] = bS->addImage(
+		{xAux * 3, heightH},
+		{60.0f, 80.0f},
+		0.0,
+		phoenixTowerTexture,
+		_grp_HUD_FOREGROUND);
+
+	mngr_->addComponent<DragAndDrop>(towers_imgs[_twr_FENIX], _twr_FENIX);
+	auto fIF = mngr_->addComponent<FramedImage>(towers_imgs[_twr_FENIX],
+		intAt("FenixColumns"), intAt("FenixRows"), 
+		intAt("FenixWidth"), intAt("FenixHeight"), 
+		0, 0);
+	fIF->setCurrentFrame(0);
+
+
+
+	initial_pos[_twr_FENIX] = { xAux * 3, heightH };  
+	 
 	//dirt_tower
 	bS->addButton({ xAux * 4, heightH },
 		bSize,
@@ -145,15 +169,15 @@ void HUDSystem::update() {
 					//click izquierdo para colocar la torre
 					else if (ih().getMouseButtonState(InputHandler::MOUSEBUTTON::LEFT) == 1) {
 						auto tr = mngr_->getComponent<Transform>(en);
-						Vector2D mPos = { (float)ih().getMousePos().first, (float)ih().getMousePos().second };
-						dC->drop(mPos, Height::LOW, tr->getScale());
+						
+						dC->drop(tr->getPosition(), Height::LOW);
 						
 
 						//resetea el icono de la torre
 						mngr_->changeEntityId(_grp_HUD_FOREGROUND, en);
+						dC->enableDrag(false);
 						Vector2D aux = tr->getScale();
 						tr->setPosition(initial_pos[i] - aux / 2);
-						dC->enableDrag(false);
 
 					}
 				}

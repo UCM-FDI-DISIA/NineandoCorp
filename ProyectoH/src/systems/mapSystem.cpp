@@ -1,7 +1,7 @@
 ﻿#include "mapSystem.h"
 
 mapSystem::mapSystem(std::string filename): filename(filename), winner_(0){
-	net = new NetMap(31);
+	net = new NetMap(32);
 }
 
 mapSystem::~mapSystem() {
@@ -90,7 +90,7 @@ void mapSystem::loadTile(const tmx::Map& map, const tmx::TileLayer& layer){
 				c->position = { tilePosition.getX() + 48, tilePosition.getY() + 24 };
 				c->isFree = true;
 				c->id = TILE_LOW;
-				net->setCell(fil - 1, col - 1, c);
+				net->setCell(fil - 1, col - 1 , c);
 			}
 			else if (tile.ID > 80 && tile.ID < 100) {
 				entityTile = mngr_->addEntity(_grp_TILES_L2);
