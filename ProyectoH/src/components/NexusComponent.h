@@ -7,13 +7,12 @@ public:
 	static const cmpId id = cmpId::_NEXUS;
 
 	NexusComponent();
-	void activateShield();
-	void inactivateShield();
-	int getShieldHitpoints() const;
-	void setShieldHitpoints(int hitpoints);
-	bool isShieldActive() const;
-private:
-	bool shieldActive_;
-	int shieldCurrentHitpoints_;
+
+	~NexusComponent();
+	void levelUp(int level);
+	bool isMaxLevel() const { return isMaxLevel_; };
+
+protected:
+	bool isMaxLevel_ = false;
 };
 
