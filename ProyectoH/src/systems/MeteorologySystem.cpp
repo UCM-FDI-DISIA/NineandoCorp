@@ -20,7 +20,7 @@ objectsSpawned_(0)
 {
 	auto& rand = sdlutils().rand();
 	timeToNextEvent_ = rand.nextInt(minTimeInterval_, maxTimeInterval_);
-	nextEvent_ = (MeteorologyEvent)rand.nextInt(0, 5);
+	nextEvent_ = (MeteorologyEvent)rand.nextInt(3, 4);
 }
 
 MeteorologySystem::~MeteorologySystem() {
@@ -161,13 +161,13 @@ void MeteorologySystem::generateThunder() {
 }
 
 void MeteorologySystem::generateAnimTornado() {
-	auto ruta = &sdlutils().rutes().at("ruta1Nivel1");
+	auto ruta = &sdlutils().rutes().at("tornado");
 	auto rutaPantalla = RouteTranslate(ruta->points);
 	Message m;
 	m.id = _m_ANIM_CREATE;
 	m.anim_create.animSpeed = 4;
 	m.anim_create.idGrp = _grp_TOWERS_AND_ENEMIES;
-	m.anim_create.iterationsToDelete = 60;
+	m.anim_create.iterationsToDelete = 47;
 	m.anim_create.scale = { 200, 300 };
 	m.anim_create.cols = 24;
 	m.anim_create.rows = 6;
@@ -257,7 +257,7 @@ void MeteorologySystem::update() {
 			}
 			else if(objectsSpawned_ < quantity_) {
 				generateAnimTornado();
-				eventOver = true;
+				/*eventOver = true;*/
 			}
 			break;
 		case MeteorologySystem::EARTHQUAKE:

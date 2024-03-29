@@ -64,6 +64,12 @@ Entity* ParticleSystem::addParticle(grpId id, gameTextures tex, Vector2D pos,vec
 	case earthquake:
 		correct = { t->getWidth() / 3.6f, t->getHeight() / 2.0f };
 		break;
+	case tornado:
+		correct = { t->getWidth(), t->getHeight()  };
+		for (auto& e : route) {
+			e = e - correct;
+		}
+		break;
 	default:
 		break;
 	}
@@ -73,7 +79,7 @@ Entity* ParticleSystem::addParticle(grpId id, gameTextures tex, Vector2D pos,vec
 	}
 	else {
 		MovementComponent* mc = mngr_->addComponent<MovementComponent>(p);
-		t->setSpeed(100.f);
+		t->setSpeed(150.f);
 		t->setPosition(pos);
 		mngr_->addComponent<RouteComponent>(p, route);
 		
