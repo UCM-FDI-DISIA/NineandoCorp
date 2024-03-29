@@ -159,11 +159,32 @@ void EnemySystem::update() {
 		// angel
 		if (anc != nullptr) {
 			anc->setElapsed(anc->getElapsed() + game().getDeltaTime());
-			if (anc->getElapsed() > 1.0f) {
+			if (anc->getElapsed() > 1.0f) {				
 				for (const auto& enemy : enemies) {
-					if (anc->getDistance(mngr_->getComponent<Transform>(enemy)->getPosition()) < anc->getRange()) {
+					IconComponent* icOther = mngr_->getComponent<IconComponent>(enemy);
+					if (anc->getDistance(mngr_->getComponent<Transform>(enemy)->getPosition()) < anc->getRange()&&enemy!=e) {
+						if (icOther == nullptr)	icOther = mngr_->addComponent<IconComponent>(enemy, _ANGEL);//Agregarselo si no lo tiene
+						if (icOther->getIconType() == _ANGEL) {
+							if (!icOther->hasIcon()) {//Crearlo si no lo tiene
+								Entity* icon = mngr_->addEntity(_grp_ICONS);
+								mngr_->addComponent<RenderComponent>(icon, slimeBulletTexture);
+								Transform* tr = mngr_->addComponent<Transform>(icon);
+								Transform* targetTR = mngr_->getComponent<Transform>(enemy);
+								tr->setPosition(*(targetTR->getPosition()));
+								tr->setScale(*(targetTR->getScale()) / 6);
+
+								icOther->setHasIcon(true);
+								icOther->setIcon(icon);
+							}
+						}
 						mngr_->getComponent<HealthComponent>(enemy)->addHealth(mngr_->getComponent<HealthComponent>(enemy)->getBaseHealth()/100.0f);
 						anc->setElapsed(0);
+					}
+					else {
+						if (icOther != nullptr && icOther->hasIcon() && icOther->getIconType() == _ANGEL) {//Eliminarlo si no se encuentra en la distancia
+							icOther->setHasIcon(false);
+							mngr_->setAlive(icOther->getIcon(), false);
+						}
 					}
 				}
 			}
@@ -258,7 +279,7 @@ void EnemySystem::addEnemy(enmId type, Vector2D pos) {
 		mngr_->addComponent<RenderComponent>(t, square);
 		mngr_->addComponent<HealthComponent>(t, 50000);
 		mngr_->addComponent<RouteComponent>(t, route);
-		mngr_->addComponent<AngelComponent>(t, 1000);
+		mngr_->addComponent<AngelComponent>(t, 100);
 		mngr_->addComponent<AttackComponent>(t, 100, 2, 20, false);
 		mngr_->addComponent<FramedImage>(t, 1, 1, 122, 117, 0, 0, 1);
 		break;

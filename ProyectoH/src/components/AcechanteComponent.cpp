@@ -7,32 +7,12 @@
 
 void AcechanteComponent::inRange(const std::list<Entity*>& enemyGroup)
 {
-	for (const auto& enemy : enemyGroup) {
-		IconComponent* ic = mngr_->getComponent<IconComponent>(enemy);
+	for (const auto& enemy : enemyGroup) {	
 		if (getDistance(mngr_->getComponent<Transform>(enemy)->getPosition()) < range_ && getDistance(mngr_->getComponent<Transform>(enemy)->getPosition()) != 0) {
-			mngr_->getComponent<MovementComponent>(enemy)->activateAcceleration(velAcceleration_, true);			
-			if (ic == nullptr)	ic = mngr_->addComponent<IconComponent>(enemy, _ACECHANTE);//Agregarselo si no lo tiene
-			if (ic->getIconType() == _ACECHANTE) {
-				if (!ic->hasIcon()) {//Crearlo si no lo tiene
-					Entity* icon = mngr_->addEntity(_grp_ICONS);
-					mngr_->addComponent<RenderComponent>(icon, slimeBulletTexture);
-					Transform* tr = mngr_->addComponent<Transform>(icon);
-					Transform* targetTR = mngr_->getComponent<Transform>(enemy);
-					tr->setPosition(*(targetTR->getPosition()));
-					tr->setScale(*(targetTR->getScale()) / 6);
-
-					ic->setHasIcon(true);
-					ic->setIcon(icon);
-				}
-			}			
+			mngr_->getComponent<MovementComponent>(enemy)->activateAcceleration(velAcceleration_, true);							
 			std::cout << getDistance(mngr_->getComponent<Transform>(enemy)->getPosition()) << std::endl;
 		}
-		else {
-			if (ic != nullptr && ic->hasIcon() && ic->getIconType() == _ACECHANTE) {//Eliminarlo si no se encuentra en la distancia
-				ic->setHasIcon(false);
-				mngr_->setAlive(ic->getIcon(), false);
-			}
-		}
+		
 	}
 }
 
