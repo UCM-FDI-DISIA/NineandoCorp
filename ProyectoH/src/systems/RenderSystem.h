@@ -5,6 +5,7 @@
 #include "../components/FramedImage.h"
 #include "../components/FramedImage.h"
 #include "../components/RenderComponent.h"
+#include "../components/IconComponent.h"
 #include "../utils/NetMap.h"
 
 

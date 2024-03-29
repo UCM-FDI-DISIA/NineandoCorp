@@ -8,6 +8,7 @@
 #include "..//components/AcechanteComponent.h"
 #include "../components/MaestroAlmasComponent.h"
 #include "../components/AngelComponent.h"
+#include "../components/IconComponent.h"
 
 EnemySystem::EnemySystem() {
 
@@ -77,6 +78,7 @@ void EnemySystem::onRoundOver() {
 void EnemySystem::update() {
 	const auto& enemies = mngr_->getHandler(_hdlr_ENEMIES);
 	const auto& towers = mngr_->getHandler(_hdlr_LOW_TOWERS);
+
 	for (auto& e : enemies) {
 		//std::cout << enemies.size();
 		RouteComponent* rc = mngr_->getComponent<RouteComponent>(e);
@@ -85,9 +87,16 @@ void EnemySystem::update() {
 		MaestroAlmasComponent* ma = mngr_->getComponent<MaestroAlmasComponent>(e);
 		GolemComponent* gc = mngr_->getComponent<GolemComponent>(e);
 		AcechanteComponent* acc = mngr_->getComponent<AcechanteComponent>(e);
+		IconComponent* ic = mngr_->getComponent<IconComponent>(e);
 		AngelComponent* anc = mngr_->getComponent<AngelComponent>(e);
+		Transform* tr = mngr_->getComponent<Transform>(e);
 
 		bool para = false;
+
+		if (ic != nullptr && ic->hasIcon()) {
+			Transform* iconTr = mngr_->getComponent<Transform>(ic->getIcon());
+			iconTr->setPosition(*(tr->getPosition()));
+		}
 
 		// golem
 		if (gc != nullptr) {
@@ -105,10 +114,9 @@ void EnemySystem::update() {
 				mc->setStop(true);
 			}
 			if (acc->getElapsed() >= acc->getReload()) {
-				acc->inRange(enemies);
+				acc->inRange(enemies);				
 				acc->setTime(0.0f);
-			}
-			
+			}				
 		}
 
 		// route
@@ -160,8 +168,9 @@ void EnemySystem::update() {
 				}
 			}
 		}
-	}
 
+		
+	}	
 }
 	
 	
@@ -193,7 +202,7 @@ void EnemySystem::addEnemy(enmId type, Vector2D pos) {
 		mngr_->addComponent<HealthComponent>(t, 50000);
 		mngr_->addComponent<RouteComponent>(t, route);
 		mngr_->addComponent<AttackComponent>(t, 160, 0.25, 20, false);
-		mngr_->addComponent<AcechanteComponent>(t, 1, 100, 2);
+		mngr_->addComponent<AcechanteComponent>(t, 1.5, 100, 2);
 		mngr_->addComponent<FramedImage>(t, 1, 1, 122, 117, 0, 0, 1);
 		break;
 	case _enm_MALDITO:

@@ -36,6 +36,7 @@
     <ClInclude Include="src\components\FramedImage.h" />
     <ClInclude Include="src\components\GolemComponent.h" />
     <ClInclude Include="src\components\HealthComponent.h" />
+    <ClInclude Include="src\components\iconComponent.h" />
     <ClInclude Include="src\components\MaestroAlmasComponent.h" />
     <ClInclude Include="src\components\MovementComponent.h" />
     <ClInclude Include="src\components\NexusComponent.h" />
@@ -111,6 +112,7 @@
     <ClCompile Include="src\components\FramedImage.cpp" />
     <ClCompile Include="src\components\GolemComponent.cpp" />
     <ClCompile Include="src\components\HealthComponent.cpp" />
+    <ClCompile Include="src\components\iconComponent.cpp" />
     <ClCompile Include="src\components\MaestroAlmasComponent.cpp" />
     <ClCompile Include="src\components\MovementComponent.cpp" />
     <ClCompile Include="src\components\NexusComponent.cpp" />

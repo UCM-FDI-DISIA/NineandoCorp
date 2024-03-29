@@ -222,6 +222,17 @@ void RenderSystem::update() {
 		textures[textureId]->render(trRect, tr->getRotation());
 	}
 
+	//ICONS
+	const auto& icons = mngr_->getEntities(_grp_ICONS);
+	for (auto& i : icons) {
+		Transform* tr = mngr_->getComponent<Transform>(i);
+		gameTextures textureId = mngr_->getComponent<RenderComponent>(i)->getTexture();
+		SDL_Rect trRect = tr->getRect();
+		trRect.x += offset->x;
+		trRect.y += offset->y;
+		textures[textureId]->render(trRect, tr->getRotation());
+	}
+
 	//HUD BACKGROUND
 	const auto& hudB = mngr_->getEntities(_grp_HUD_BACKGROUND);
 	for (auto& h : hudB) {

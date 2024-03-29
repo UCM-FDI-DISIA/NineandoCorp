@@ -47,6 +47,7 @@ enum cmpId : cmpId_type {
 	_FIRE,
 	_MENSAJEROMUERTE,
 	_ANGEL,
+	_ICON,
 
 	// do not remove this
 	_LAST_CMP_ID
@@ -68,6 +69,7 @@ enum hdlrId : hdlrId_type {
 	_hdlr_BUTTON_ENEMYBOOK,
 	_hdlr_BUTTON_PLAY,
 	_hdlr_PARTICLES,
+	_hdlr_ICONS,
 	
 	// do not remove this
 	_LAST_HDLR_ID };
@@ -85,6 +87,7 @@ enum grpId : grpId_type {
 	_grp_HUD_FOREGROUND,
 	_grp_HUD_DRAG_AND_DROP,
 	_grp_AREAOFATTACK,
+	_grp_ICONS,
 	
 	// do not remove this
 	_LAST_GRP_ID
