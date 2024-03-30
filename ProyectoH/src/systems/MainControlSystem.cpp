@@ -6,7 +6,7 @@ MainControlSystem::MainControlSystem() :active_(false)
 }
 
 void MainControlSystem::initSystem() {
-	// Inicialización del nivel de las torres y nexo
+	// Inicializaciï¿½n del nivel de las torres y nexo
 	for (int i = 0; i < _twr_SIZE; i++) {
 		turrentLevels_[i] = 0;
 	}
@@ -15,6 +15,8 @@ void MainControlSystem::initSystem() {
 void MainControlSystem::receive(const Message& m) {
 	switch (m.id) {
 	case _m_START_GAME:
+		break;
+	case _m_LEVEL_SELECTED:
 		game().changeState<PlayState>();
 		onRoundStart();
 		break;
@@ -72,7 +74,7 @@ void MainControlSystem::update() {
 
 void MainControlSystem::onRoundStart() {
 
-	// Initialización del Nexo
+	// Initializaciï¿½n del Nexo
 	string nexusTextureName = "nexusLvl" + turrentLevels_[_twr_NEXUS];
 	initializeNexus(nexusLvl1, 1000.0f, { 30.0f, 30.0f });		// Editar para usar NexusTextureName
 	cout << "ronda1 empieza";

@@ -459,27 +459,27 @@
     
     {
         "id": "FenixScaleX",
-        "value": 120
+        "value": 124
     },
     {
         "id": "FenixScaleY",
-        "value": 126
+        "value": 145
     },
     {
         "id": "BulletScaleX",
-        "value": 120
+        "value": 125
     },
     {
         "id": "BulletScaleY",
-        "value": 126
+        "value": 150
     },
     {
         "id": "SniperScaleX",
-        "value": 120
+        "value": 125
     },
     {
         "id": "SniperScaleY",
-        "value": 126
+        "value": 150
     },
     {
         "id": "SlimeScaleX",
@@ -491,11 +491,11 @@
     },
     {
         "id": "CristalScaleX",
-        "value": 120
+        "value": 135
     },
     {
         "id": "CristalScaleY",
-        "value": 126
+        "value": 140
     },
     {
         "id": "ClayScaleX",

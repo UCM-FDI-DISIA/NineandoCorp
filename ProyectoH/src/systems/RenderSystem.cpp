@@ -253,6 +253,13 @@ void RenderSystem::update() {
 		}
 	}
 
+	//Texts HUD
+	const auto& texts = mngr_->getEntities(_grp_TEXTS);
+	for (auto& t : texts) {
+		Transform* tr = mngr_->getComponent<Transform>(t);
+		mngr_->getComponent<TextComponent>(t)->getTexture()->render(tr->getRect(), tr->getRotation());
+	}
+
 	//DRAG AND DROP
 	const auto& dnd = mngr_->getEntities(_grp_HUD_DRAG_AND_DROP);
 	for (auto& e : dnd) {

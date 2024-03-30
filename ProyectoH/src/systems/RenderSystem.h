@@ -4,6 +4,7 @@
 #include "../components/MovementComponent.h"
 #include "../components/FramedImage.h"
 #include "../components/FramedImage.h"
+#include "../components/TextComponent.h"
 #include "../components/RenderComponent.h"
 #include "../utils/NetMap.h"
 

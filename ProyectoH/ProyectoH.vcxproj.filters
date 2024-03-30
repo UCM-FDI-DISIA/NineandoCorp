@@ -1,9 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <ClCompile Include="src\utils\NetMap.cpp">
-      <Filter>Sources Files</Filter>
-    </ClCompile>
     <ClCompile Include="src\main.cpp">
       <Filter>Sources Files</Filter>
     </ClCompile>
@@ -178,6 +175,12 @@
     <ClCompile Include="src\components\ShieldComponent.cpp">
       <Filter>Sources Files\Components</Filter>
     </ClCompile>
+    <ClCompile Include="src\components\TextComponent.cpp">
+      <Filter>Sources Files\Components</Filter>
+    </ClCompile>
+    <ClCompile Include="src\utils\NetMap.cpp">
+      <Filter>Sources Files\utils</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\components\AcechanteComponent.h">
@@ -269,9 +272,6 @@
     </ClInclude>
     <ClInclude Include="src\game\Game.h">
       <Filter>Headers Files\Game</Filter>
-    </ClInclude>
-    <ClInclude Include="src\utils\NetMap.h">
-      <Filter>Headers Files</Filter>
     </ClInclude>
     <ClInclude Include="src\systems\CollisionSystem.h">
       <Filter>Headers Files\Systems</Filter>
@@ -395,6 +395,12 @@
     </ClInclude>
     <ClInclude Include="src\components\ShieldComponent.h">
       <Filter>Headers Files\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="src\components\TextComponent.h">
+      <Filter>Headers Files\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="src\utils\NetMap.h">
+      <Filter>Headers Files\utils</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

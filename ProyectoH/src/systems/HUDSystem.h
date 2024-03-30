@@ -17,7 +17,6 @@ public:
 
 	void update() override;
 
-	void resetTowerIcon(twrId tId);
 private: 
 	int intAt(basic_string<char> s) { return sdlutils().intConst().at(s); }
 	
@@ -26,6 +25,8 @@ private:
 	/// </summary>
 	/// <param name=""></param>
 	void dragTowerIcon(Entity* e); 
+
+	void enableAllButtons(bool t);
 
 	// Espacio designado para los botones de compra de las torres
 	float buttonsSpace_length_; 
