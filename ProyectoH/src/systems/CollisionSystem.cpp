@@ -43,6 +43,9 @@ void CollisionSystem::addRect(Entity* rect, rectId id) {
 		case _THUNDER:
 			thunderRects_.push_back(rect);
 			break;
+		case _EARTHQUAKE:
+			earthquakeRects_.push_back(rect);
+			break;
 		default:
 			break;
 	}
@@ -65,6 +68,9 @@ void CollisionSystem::removeRect(Entity* rect, rectId id) {
 		break;
 	case _METEORITE:
 		meteoriteRects_.erase(find(meteoriteRects_.begin(), meteoriteRects_.end(), rect));
+		break;
+	case _EARTHQUAKE:
+		earthquakeRects_.erase(find(earthquakeRects_.begin(), earthquakeRects_.end(), rect));
 		break;
 	}
 	
@@ -166,8 +172,6 @@ void CollisionSystem::update() {
 
 				}
 			}
-
-			removeRect(th, _THUNDER);
 		}
 	}
 	
@@ -191,8 +195,24 @@ void CollisionSystem::update() {
 
 				}
 			}
-
-			removeRect(mt, _METEORITE);
+		}
+	}
+	for (const auto& ea : earthquakeRects_) {
+		if (mngr_->isAlive(ea)) {
+			Transform* earthquakeTR = mngr_->getComponent<Transform>(ea);
+			SDL_Rect earthquakeRect;
+			if (earthquakeTR != nullptr)earthquakeRect = earthquakeTR->getRect();
+			for (const auto& er : enemies) {
+				SDL_Rect enemyRect = mngr_->getComponent<Transform>(er)->getRect();
+				SDL_bool col = SDL_HasIntersection(&earthquakeRect, &enemyRect);
+				if (col) {
+					Message m;
+					m.id = _m_DECREASE_SPEED;
+					m.decrease_speed.e = er;
+					m.decrease_speed.slowPercentage = 0.7f;
+					mngr_->send(m);
+				}
+			}
 		}
 	}
 	

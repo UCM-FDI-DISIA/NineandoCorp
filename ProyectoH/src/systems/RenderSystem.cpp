@@ -127,7 +127,25 @@ void RenderSystem::initSystem() {
 	m.offset_context.offset = offset;
 	mngr_->send(m, true);
 }
-
+rectId RenderSystem::getRectId(Entity* e) {
+	auto tex = mngr_->getComponent<RenderComponent>(e)->getTexture();
+	switch (tex)
+	{
+	case thunder:
+		return _THUNDER;
+		break;
+	case meteorites:
+		return _METEORITE;
+		break;
+	case earthquake:
+		return _EARTHQUAKE;
+		break;
+	case tornado:
+		break;
+	default:
+		break;
+	}
+}
 //Renderiza cada entity por grupos
 void RenderSystem::update() {
 	sdlutils().clearRenderer();
@@ -218,6 +236,7 @@ void RenderSystem::update() {
 		if (fi != nullptr)textures[textureId]->render(srcRect, trRect, tr->getRotation(), nullptr,flip);
 		else textures[textureId]->render(trRect, tr->getRotation());
 	}
+	//animation naturals effects
 	for (auto& par : mngr_->getHandler(_hdlr_PARTICLES))
 	{
 		Transform* tr = mngr_->getComponent<Transform>(par);
@@ -232,6 +251,13 @@ void RenderSystem::update() {
 		if (p->getIters() <= f->getIters()) {
 			mngr_->setAlive(par, false);
 			mngr_->deleteHandler(_hdlr_PARTICLES, par);
+			
+				Message m;
+				m.id = _m_REMOVE_RECT;
+				m.rect_data.id = getRectId(par);
+				m.rect_data.rect = par;
+				mngr_->send(m);
+			
 		}
 		f->updateCurrentFrame();
 	}

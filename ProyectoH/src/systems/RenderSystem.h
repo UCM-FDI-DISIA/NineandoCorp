@@ -27,6 +27,8 @@ private:
 	void onResume();
 	void onGameOver(Uint8 winner);
 
+	rectId getRectId(Entity* e);
+
 	uint8_t winner_; // 0 - None, 1 - Enemigos, 2- Jugador
 
 	//Rect con el offset de la camara
