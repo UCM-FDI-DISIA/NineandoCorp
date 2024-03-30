@@ -20,7 +20,7 @@ objectsSpawned_(0)
 {
 	auto& rand = sdlutils().rand();
 	timeToNextEvent_ = rand.nextInt(minTimeInterval_, maxTimeInterval_);
-	nextEvent_ = (MeteorologyEvent)rand.nextInt(1, 2);
+	nextEvent_ = (MeteorologyEvent)rand.nextInt(1, 3);
 }
 
 MeteorologySystem::~MeteorologySystem() {
@@ -43,7 +43,7 @@ void  MeteorologySystem::receive(const Message& m) {
 			addRectTo(m.return_entity.ent, rectId::_THUNDER);
 			break;
 		case MeteorologySystem::METEORITES:
-			//addRectTo(m.return_entity.ent, rectId::_METEORITE);
+			addRectTo(m.return_entity.ent, rectId::_METEORITE);
 			break;
 		case MeteorologySystem::TORNADO:
 			break;
@@ -126,7 +126,7 @@ void MeteorologySystem::generateMeteorite() {
 	m.anim_create.frameEnd = 18;
 	m.anim_create.height = 96;
 	m.anim_create.width = 96;
-	m.anim_create.pos = Vector2D(x, y);
+	m.anim_create.pos = Vector2D(x,y);
 	mngr_->send(m);
 }
 

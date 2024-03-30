@@ -59,7 +59,7 @@ Entity* ParticleSystem::addParticle(grpId id, gameTextures tex, Vector2D pos,vec
 		correct = { t->getWidth() / 1.2f, t->getHeight() / 0.4f };
 		break;
 	case meteorites:
-		correct = { t->getWidth() / 1.5f, t->getHeight() / 1.5f };
+		correct = { t->getWidth() / 1.05f, t->getHeight() / 0.55f };
 		break;
 	case earthquake:
 		correct = { t->getWidth() / 3.6f, t->getHeight() / 2.0f };
