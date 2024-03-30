@@ -51,7 +51,7 @@
   ],
   "Arcilla": [
     {
-      "vida": 500,
+       "vida": 500,
       "rango": 0,
       "precio": 200,
       "recarga": 0,
@@ -61,7 +61,7 @@
   ],
   "Potenciadora": [
     {
-      "vida": 75,
+       "vida": 75,
       "rango": 400,
       "precio": 400,
       "recarga": 0,

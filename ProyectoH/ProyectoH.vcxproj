@@ -33,6 +33,7 @@
     <ClInclude Include="src\components\EnhancerTower.h" />
     <ClInclude Include="src\components\FireComponent.h" />
     <ClInclude Include="src\components\FramedImage.h" />
+    <ClInclude Include="src\components\generateEnemies.h" />
     <ClInclude Include="src\components\GolemComponent.h" />
     <ClInclude Include="src\components\HealthComponent.h" />
     <ClInclude Include="src\components\MaestroAlmasComponent.h" />
@@ -108,6 +109,7 @@
     <ClCompile Include="src\components\EnhancerTower.cpp" />
     <ClCompile Include="src\components\FireComponent.cpp" />
     <ClCompile Include="src\components\FramedImage.cpp" />
+    <ClCompile Include="src\components\generateEnemies.cpp" />
     <ClCompile Include="src\components\GolemComponent.cpp" />
     <ClCompile Include="src\components\HealthComponent.cpp" />
     <ClCompile Include="src\components\MaestroAlmasComponent.cpp" />

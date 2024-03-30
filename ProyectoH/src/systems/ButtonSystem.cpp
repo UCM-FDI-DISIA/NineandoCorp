@@ -2,6 +2,7 @@
 #include "../sdlutils/InputHandler.h"
 #include "../ecs/Manager.h"
 #include "../components/TextComponent.h"
+#include "../components/FramedImage.h"
 
 ButtonSystem::ButtonSystem(hdlrId_type but_id) : 
 	hdlr_but_id(but_id){
@@ -34,6 +35,9 @@ void ButtonSystem::receive(const Message& m){
 	case _m_START_GAME:
 		money_ = m.start_game_data.money;
 		OnStartGame();
+	case _m_ABLEBUTTONS:
+		enableAllButton(m.able_buttons_data.isAble, m.able_buttons_data.buttonId);
+	default:
 		break;
 	}
 }
@@ -124,7 +128,7 @@ void ButtonSystem::manageButtons() {
 			break;
 
 
-		/*--- SELECCIÓN DE TORRES PARA DRAG ---*/
+		/*--- SELECCIÃ“N DE TORRES PARA DRAG ---*/
 		case crystal_drag:
 			dragTower(_twr_CRISTAL);
 			break;
@@ -157,6 +161,16 @@ void ButtonSystem::manageButtons() {
 			if(bC != nullptr) bC->setActive(false);
 		}
 	}
+
+	void ButtonSystem::enableAllButton(bool b, hdlrId_type bType)
+	{
+		for (auto but : mngr_->getHandler(bType)) {
+			auto bC = mngr_->getComponent<ButtonComponent>(but);
+			if (bC != nullptr) bC->setActive(b);
+		}
+	}
+
+	
 	void ButtonSystem::loadLevelSelector() {
 		Message m;
 		m.id = _m_LEVEL_SELECTOR;

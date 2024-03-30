@@ -40,7 +40,7 @@ public:
 	/// <param name="type">id de la torre</param>
 	/// <param name="pos">posicion</param>
 	/// <param name="height">si pertenece a pradera o monta�a</param>
-	void addTower(twrId type, const Vector2D& pos, Height height, const Vector2D& scale);
+	void addTower(twrId type, const Vector2D& pos, Height height);
 	
 	int intAt(basic_string<char> s) { return sdlutils().intConst().at(s); }
 	float floatAt(basic_string<char> s) { return sdlutils().floatConst().at(s); }

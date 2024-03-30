@@ -5,6 +5,7 @@
 #include "../checkML.h"
 #include "../utils/Vector2D.h"
 #include "../sdlutils/SDLNetUtils.h"
+#include "../utils/NetMap.h"
 #include <vector>
 
 
@@ -37,6 +38,7 @@ enum cmpId : cmpId_type {
 	_DRAG_AND_DROP,
 	_SLIMETOWER,
 	_SLIMEBULLET,
+	_GENERATENEMIES,
 	_SHIELD,
 	_TOWERSTATES,
 	_ENEMYSTATES,
@@ -60,6 +62,7 @@ enum hdlrId : hdlrId_type {
 	_hdlr_LOW_TOWERS,
 	_hdlr_HIGH_TOWERS,
 	_hdlr_ENEMIES,
+	_hdlr_SPAWNS,
 	//botones de las escenas
 	_hdlr_BUTTON,
 	_hdlr_BUTTON_MAIN,
@@ -86,6 +89,7 @@ enum grpId : grpId_type {
 	_grp_TEXTS,
 	_grp_HUD_DRAG_AND_DROP,
 	_grp_AREAOFATTACK,
+	_grp_SPAWN,
 	
 	// do not remove this
 	_LAST_GRP_ID
@@ -143,6 +147,8 @@ constexpr rectId_type lastRectId = _LAST_RECT_ID;
 
 using msgId_type = uint8_t;
 enum msgId : msgId_type {
+	_m_ROUND_START, //
+	_m_ROUND_OVER,
 	_m_SHOOT,
 	_m_TOWERS_TO_ATTACK,
 	_m_ENTITY_TO_ATTACK,
@@ -166,10 +172,12 @@ enum msgId : msgId_type {
 	_m_ADD_RECT,
 	_m_DECREASE_SPEED,
 	_m_RESET_SPEED,
+	_m_NETMAP_SET,
 	_m_REMOVE_RECT,
-	_m_ANIM_CREATE, 
 	_m_ADD_MONEY,
 	_m_LEVEL_SELECTED
+	_m_ANIM_CREATE,
+	_m_ABLEBUTTONS
 };
 
 using twrId_type = uint8_t;
@@ -207,9 +215,7 @@ enum enmId : enmId_type {
 // Correspondant texture to each type of entity
 enum gameTextures {
 	//map
-	tileSet, hillTexture, roadTexture, mountainTexture, lakeTexture1, lakeTexture2, lakeTexture3, lakeTexture4,
-	lakeTexture5, lakeTexture6, lakeTexture7, lakeTexture8, lakeTexture9, lakeTexture10,
-	lakeTexture11,
+	tileSet,
 	//UI
 	play, play_hover, box, box_hover, large_box, none_box, none_box_hover,
 	close, close_hover, enemies_button, enemies_button_hover,
@@ -222,7 +228,8 @@ enum gameTextures {
 	slimeTowerTexture, boosterTowerTexture, sniperTowerTexture, clayTowerTexture, nexusTexture, fireTexture,
 
 	//enemies
-
+	goblin, maldito, elfo, golem, angel, maestro, acechante, defensor, demonioAlado,
+	demonioInfernal, mensajero, CMaldito, principito, monje, muerte,
 
 	//texts
 	nexus_level_text,
@@ -231,7 +238,7 @@ enum gameTextures {
 	bulletTexture, sniperBulletTexture, slimeBulletTexture, slimeArea, shield,
 
 	//explosions
-	shieldExp,bulletExplosion,
+	shieldExp, bulletExplosion,
 
 
 	gmTxtrSize
@@ -274,13 +281,18 @@ inline Uint8* _deserialize_(float& v, Uint8* buf) {
 }
 struct Message {
 msgId_type id;
+	// _m_ABLEBUTTONS
+	struct {
+		hdlrId_type buttonId;
+		bool isAble;
+	}able_buttons_data;
+
 	//_m_ADD_TOWER
 	struct
 	{
 		twrId towerId;
 		Vector2D pos;
 		Height height;
-		Vector2D scale;
 
 	} add_tower_data;
 
@@ -300,6 +312,8 @@ msgId_type id;
 		int iterationsToDelete;
 	}anim_create;
 
+
+
 	// _m_DRAG
 	struct {
 		twrId towerId;
@@ -310,6 +324,9 @@ msgId_type id;
 	{
 		//nivel 
 		int money;
+		//nivel
+		unsigned int level;
+		NetMap* netmap;
 	}start_game_data;
 	//_m_ENEMY_BOOK
 	struct
@@ -380,10 +397,12 @@ msgId_type id;
 	struct {
 		SDL_Rect* offset;
 	}offset_context;
-
+  
 	struct {
 		int money;
 	}money_data;
+
+	
 };
 
 #endif // !ECS_H_

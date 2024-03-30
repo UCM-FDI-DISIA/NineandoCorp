@@ -22,7 +22,9 @@ SDLUtils::SDLUtils(std::string windowTitle, int width, int height) :
 	musicsAccessWrapper_(musics_, "Musics Table"), ///
 	floatConstAccessWrapper_(floatConst_, "Float Constant Table"),
 	intConstAccessWrapper_(intConst_, "Int Constant Table"),
-	rutesAccessWrapper_(rutes_, "Rutes Table")
+	rutesAccessWrapper_(rutes_, "Rutes Table"),
+	spawnAccessWrapper_(spawn_, "Enemies Spawn Table"),
+	intConstNumSpawsAccessWrapper_(intConstNumSpaws_, "Numero Spawns Table")
 {
 
 	initWindow();
@@ -328,6 +330,55 @@ void SDLUtils::loadConstants(std::string filename) {
 		}
 		else {
 			throw "'intConst' is not an array in '" + filename + "'";
+		}
+	}
+	jValue = root["spawneoEnemies"];
+	if (jValue != nullptr) {
+		if (jValue->IsArray()) {
+			msgs_.reserve(jValue->AsArray().size());
+			for (auto& n : jValue->AsArray()) {
+				if (n->IsObject()) {
+					JSONObject vObj = n->AsObject();
+					std::string nivel = vObj["id"]->AsString();
+					std::cout << "Loading int with id: " << nivel
+										<< std::endl;
+					int numSpawn = vObj["numSpawns"]->AsNumber();
+					intConstNumSpaws_.emplace(nivel, numSpawn);
+					for (auto& o : vObj[nivel]->AsArray()) {
+						if (o->IsObject()) {
+							JSONObject vObj = o->AsObject();
+							std::string oleada = vObj["id"]->AsString();
+							std::cout << "Loading int with id: " << oleada
+								<< std::endl;
+							for (auto& g : vObj[oleada]->AsArray()) {
+								if (g->IsObject()) {
+									JSONObject vObj = g->AsObject();
+									std::string grupo = vObj["id"]->AsString();
+									std::cout << "Loading int with id: " << grupo
+										<< std::endl;
+									JSONObject grEnemy = vObj[grupo]->AsObject();
+									spawnGroupData group;
+									if (!grEnemy["typeEnemy"]->AsArray().empty()) {
+										for (auto& arrayType : grEnemy["typeEnemy"]->AsArray()) {
+
+											group.typeEnemy.push_back(arrayType->AsString());
+										}
+									}
+									if (!grEnemy["numEnemies"]->AsArray().empty()) {
+										for (auto& arrayNum : grEnemy["numEnemies"]->AsArray()) {
+											group.numEnemies.push_back(arrayNum->AsNumber());
+										}
+									}
+
+									group.timeSpawn = static_cast<int>(grEnemy["timeSpawn"]->AsNumber());
+									
+									spawn_.emplace(nivel + oleada + grupo, group);
+								}
+							}
+						}
+					}
+				}
+			}
 		}
 	}
 	// TODO improve syntax error checks below, now we do not check

@@ -1,23 +1,36 @@
 ﻿#include "mapSystem.h"
 
 mapSystem::mapSystem(std::string filename): filename(filename), winner_(0){
-	net = new NetMap(31);
+	net = new NetMap(32);
 }
 
 mapSystem::~mapSystem() {
 }
 
 void mapSystem::initSystem(){
-	loadMap(filename);
+	Message m;
+	m.id = _m_ROUND_START;
+	m.start_game_data.netmap = net;
+	m.start_game_data.level = level;
+	mngr_->send(m, true);
 }
 
 void mapSystem::receive(const Message& m) {
 	switch (m.id) {
-	case _m_START_GAME:
-		onGameStart();
+	case _m_ROUND_START:
+		onRoundStart();
+		break;
+	case _m_ROUND_OVER:
+			level++;
+			break;
+	case _m_PAUSE:
+		onPause();
 		break;
 	case _m_OFFSET_CONTEXT:
 		net->setOffset(m.offset_context.offset);
+		break;
+	case _m_RESUME:
+		onResume();
 		break;
 	}
 }
@@ -27,13 +40,10 @@ void mapSystem::update(){}
 void mapSystem::loadMap(std::string filename) {
 
     tmx::Map map;
-	
     map.load(filename);
 
-	//Inicializacion de tamaño de tile
-	auto const size = map.getTileSize();
-	tileSize_ = { (float)size.x, (float)size.y };
-
+	const auto tileSize = map.getTileSize();
+	tileSize_ = {(float)tileSize.x, (float)tileSize.y};
 
 	const auto& layers = map.getLayers();
 	for (std::size_t i = 0; i < layers.size(); ++i) {
@@ -83,7 +93,7 @@ void mapSystem::loadTile(const tmx::Map& map, const tmx::TileLayer& layer){
 				c->position = { tilePosition.getX() + 48, tilePosition.getY() + 24 };
 				c->isFree = true;
 				c->id = TILE_LOW;
-				net->setCell(fil - 1, col - 1, c);
+				net->setCell(fil - 1, col - 1 , c);
 			}
 			else if (tile.ID > 80 && tile.ID < 100) {
 				entityTile = mngr_->addEntity(_grp_TILES_L2);
@@ -122,7 +132,20 @@ void mapSystem::loadTile(const tmx::Map& map, const tmx::TileLayer& layer){
 		}
 	}
 }
-// Para gestionar los mensa
+// Para gestionar los mensajes correspondientes y actualizar los atributos
+// winner_ y state_.
+void mapSystem::onRoundStart() {
+
+	loadMap(filename + std::to_string(level) + ".tmx");
+}
 void mapSystem::onGameStart() {
-	loadMap(filename);
+}
+void mapSystem::onGameOver(Uint8 winner) {
+}
+
+// Displays pause message
+void mapSystem::onPause() {
+}
+// Hides pause message
+void mapSystem::onResume() {
 }

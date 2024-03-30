@@ -32,7 +32,7 @@ void TowerSystem::receive(const Message& m) {
 		onAttackTower(m.tower_to_attack.e, m.tower_to_attack.damage);
 		break;
 	case _m_ADD_TOWER:
-		addTower(m.add_tower_data.towerId, m.add_tower_data.pos, LOW, m.add_tower_data.scale);
+		addTower(m.add_tower_data.towerId, m.add_tower_data.pos, LOW);
 		break;
 	default:
 		break;
@@ -427,12 +427,12 @@ Entity* TowerSystem::addShield(Vector2D pos) {
 /// <param name="type">Tipo de la torre que definira sus mecanicas y su aspecto</param>
 /// <param name="pos">Posicion en la que se coloca la torre</param>
 /// <param name="height">Elevacion de la torre; puede ser alta o baja</param>
-void TowerSystem::addTower(twrId type,const Vector2D& pos, Height height,const Vector2D& scale) {
+void TowerSystem::addTower(twrId type,const Vector2D& pos, Height height) {
 	Entity* t = mngr_->addEntity(_grp_TOWERS_AND_ENEMIES);//Se a?ade al mngr
 	Transform* tr = mngr_->addComponent<Transform>(t);//transform
 	mngr_->addComponent<ShieldComponent>(t, 0);
 	tr->setPosition(pos);
-	tr->setScale(scale);
+	
 	mngr_->addComponent<UpgradeTowerComponent>(t, type, 4);
 	float health = 100.0f;
 	if (height == LOW) {
@@ -443,41 +443,49 @@ void TowerSystem::addTower(twrId type,const Vector2D& pos, Height height,const V
 	switch (type)
 	{
 	case _twr_FENIX://Dano, Enfriamiento, TiempoDisparo, Rango
-		mngr_->addComponent<PhoenixTower>(t, floatAt("FenixDano"), floatAt("FenixEnfriamiento"), floatAt("FenixTiempoDisparo"), floatAt("FenixRango"));
+		tr->setScale({ floatAt("FenixScaleX"), floatAt("FenixScaleY")});
+ 		mngr_->addComponent<PhoenixTower>(t, floatAt("FenixDano"), floatAt("FenixEnfriamiento"), floatAt("FenixTiempoDisparo"), floatAt("FenixRango"));
 		mngr_->addComponent<RenderComponent>(t, phoenixTowerTexture);
-		mngr_->addComponent<FramedImage>(t, intAt("FenixColumns"), intAt("FenixRows"), intAt("FenixWidth"), intAt("FenixHeight"), 0, 0);
+		mngr_->addComponent<FramedImage>(t, intAt("FenixColumns"), intAt("FenixRows"), intAt("FenixWidth"), intAt("FenixHeight"), 3, 0);
+
 		break;
 	case _twr_BULLET://Pasar rango, recarga, da?o y si dispara
+		tr->setScale({ floatAt("BulletScaleX"), floatAt("BulletScaleY") });
 		mngr_->addComponent<BulletTower>(t, floatAt("BalasRango"), floatAt("BalasRecarga"), intAt("BalasDano"));
 		mngr_->addComponent<RenderComponent>(t, bulletTowerTexture);
 		mngr_->addComponent<FramedImage>(t, intAt("BalasColumns"), intAt("BalasRows"), intAt("BalasWidth"), intAt("BalasHeight"), 0, 0);
 		break;
 	case _twr_CLAY:
+		tr->setScale({ floatAt("ClayScaleX"), floatAt("ClayScaleY") });
 		mngr_->addComponent<DirtTower>(t);
 		mngr_->addComponent<RenderComponent>(t, clayTowerTexture);
 		mngr_->addComponent<FramedImage>(t, intAt("ArcillaColumns"), intAt("ArcillaRows"), intAt("ArcillaWidth"), intAt("ArcillaHeight"), 0, 0);
 		break;
 	case _twr_POWER://Pasar rango, porcentaje incremento de ataque y vida extra
+		tr->setScale({ floatAt("PotenciadorScaleX"), floatAt("PotenciadorScaleY") });
 		mngr_->addComponent<EnhancerTower>(t, floatAt("PotenciadoraRango"), floatAt("PotenciadoraAumentoDano"), floatAt("PotenciadoraAumentoVida"));
 		mngr_->addComponent<RenderComponent>(t, boosterTowerTexture);
 		mngr_->addComponent<FramedImage>(t, intAt("PotenciadoraColumns"), intAt("PotenciadoraRows"), intAt("PotenciadoraWidth"), intAt("PotenciadoraHeight"), 0, 0);
 		break;
 	case _twr_DIEGO://Rango, Probabilidad de critico, Dano por critico, Tiempo de recarga y Dano
+		tr->setScale({ floatAt("SniperScaleX"), floatAt("SniperScaleY") });
 		mngr_->addComponent<DiegoSniperTower>(t, floatAt("DiegoSniperRango"), floatAt("DiegoSniperCritProb1"), floatAt("DiegoSniperCritDano1"), floatAt("DiegoSniperRecarga"), intAt("DiegoSniperDano"));
 		mngr_->addComponent<RenderComponent>(t, sniperTowerTexture);
 		mngr_->addComponent<FramedImage>(t, intAt("DiegoSniperColumns"), intAt("DiegoSniperRows"), intAt("DiegoSniperWidth"), intAt("DiegoSniperHeight"), 0, 0);
 		break;
 	case _twr_SLIME:
+		tr->setScale({ floatAt("SlimeScaleX"), floatAt("SlimeScaleY") });
 		mngr_->addComponent<SlimeTowerComponent>(t, intAt("SlimeRango"), floatAt("SlimeTiempoSlime"), floatAt("SlimeRalentizacion"), intAt("SlimeDPS"), intAt("SlimeRecarga") ,intAt("SlimeDano"));
 		mngr_->addComponent<RenderComponent>(t, slimeTowerTexture);
 		mngr_->addComponent<FramedImage>(t, intAt("SlimeColumns"), intAt("SlimeRows"), intAt("SlimeWidth"), intAt("SlimeHeight"), 0, 0);
 
 		break;
 	case _twr_CRISTAL://Escudo, Tiempo de recarga y dano por explosion
+		tr->setScale({ floatAt("CristalScaleX"), floatAt("CristalScaleY") });
 		mngr_->addComponent<CrystalTower>(t, intAt("CristalEscudo"), floatAt("CristalRecarga"), intAt("CristalExplosion"), floatAt("CristalRango"));
 		mngr_->addComponent<RenderComponent>(t, cristalTowerTexture);
 		mngr_->addComponent<FramedImage>(t, intAt("CristalColumns"), intAt("CristalRows"), intAt("CristalWidth"), intAt("CristalHeight"), 0, 0);
-		tr->setPosition(pos + Vector2D(0, 25));
+		
 		break;
 	default:
 		break;
