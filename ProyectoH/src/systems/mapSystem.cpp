@@ -42,6 +42,9 @@ void mapSystem::loadMap(std::string filename) {
     tmx::Map map;
     map.load(filename);
 
+	const auto tileSize = map.getTileSize();
+	tileSize_ = {(float)tileSize.x, (float)tileSize.y};
+
 	const auto& layers = map.getLayers();
 	for (std::size_t i = 0; i < layers.size(); ++i) {
 		if (map.getOrientation() == tmx::Orientation::Isometric && layers[i]->getType() == tmx::Layer::Type::Tile) {

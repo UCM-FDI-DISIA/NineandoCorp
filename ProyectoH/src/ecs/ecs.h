@@ -173,6 +173,7 @@ enum msgId : msgId_type {
 	_m_NETMAP_SET,
 	_m_REMOVE_RECT,
 	_m_ANIM_CREATE,
+	_m_ABLEBUTTONS
 };
 
 using twrId_type = uint8_t;
@@ -276,6 +277,12 @@ inline Uint8* _deserialize_(float& v, Uint8* buf) {
 }
 struct Message {
 msgId_type id;
+	// _m_ABLEBUTTONS
+	struct {
+		hdlrId_type buttonId;
+		bool isAble;
+	}able_buttons_data;
+
 	//_m_ADD_TOWER
 	struct
 	{
@@ -300,6 +307,8 @@ msgId_type id;
 		int height;
 		int iterationsToDelete;
 	}anim_create;
+
+
 
 	// _m_DRAG
 	struct {

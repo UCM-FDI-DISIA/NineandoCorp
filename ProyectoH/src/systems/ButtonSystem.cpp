@@ -17,6 +17,12 @@ void ButtonSystem::update () {
 void ButtonSystem::initSystem() {
 }
 void ButtonSystem::receive(const Message& m){
+	switch (m.id) {
+	case _m_ABLEBUTTONS:
+		enableAllButton(m.able_buttons_data.isAble, m.able_buttons_data.buttonId);
+	default:
+		break;
+	}
 }
 
 
@@ -138,6 +144,16 @@ void ButtonSystem::manageButtons() {
 			if(bC != nullptr) bC->setActive(false);
 		}
 	}
+
+	void ButtonSystem::enableAllButton(bool b, hdlrId_type bType)
+	{
+		for (auto but : mngr_->getHandler(bType)) {
+			auto bC = mngr_->getComponent<ButtonComponent>(but);
+			if (bC != nullptr) bC->setActive(b);
+		}
+	}
+
+	
 	void ButtonSystem::loadLevelSelector() {
 		Message m;
 		m.id = _m_LEVEL_SELECTOR;

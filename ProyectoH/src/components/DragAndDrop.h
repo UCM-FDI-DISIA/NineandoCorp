@@ -47,7 +47,14 @@ public:
 	/// <returns>posicion ajustada a la escala 
 	/// para que la imagen ocupe en su totalidad la casilla</returns>
 	Vector2D adjustPosToTile(const Vector2D& initPos);
+	
+
+	/// <param name="tId"></param>
+	/// <returns>la escala correspondiente al tipo de torre</returns>
+	Vector2D setScaleToIcon(twrId tId);
+
 private:
+
 	bool dragging_;
 	Transform* tr_;
 	twrId tId_;
