@@ -74,6 +74,11 @@ void CollisionSystem::update() {
 	const float timeInterval = 0.25f;
 	const auto& slimes = mngr_->getEntities(_grp_AREAOFATTACK);
 	const auto& enemies = mngr_->getHandler(_hdlr_ENEMIES);
+	const auto& highTowers = mngr_->getHandler(_hdlr_HIGH_TOWERS);
+	const auto& lowTowers = mngr_->getHandler(_hdlr_LOW_TOWERS);
+
+	
+
 	for (const auto& er : enemies) {
 		SDL_Rect enemyRect = mngr_->getComponent<Transform>(er)->getRect();
 		
@@ -140,6 +145,56 @@ void CollisionSystem::update() {
 				}
 			}				
 		}
-	}	
+	}
+	if (!thunderRects_.empty()) {
+		const auto& th = thunderRects_[0];
+		if (mngr_->isAlive(th)) {
+			Transform* thunderTR = mngr_->getComponent<Transform>(th);
+			SDL_Rect thunderRect;
+			if (thunderTR != nullptr) thunderRect = thunderTR->getRect();
+			for (const auto& er : enemies) {
+				SDL_Rect enemyRect = mngr_->getComponent<Transform>(er)->getRect();
+				SDL_bool col = SDL_HasIntersection(&thunderRect, &enemyRect);
+				if (col) {
+					std::cout << "danoRayo ";
+					Message m;
+					m.id = _m_ENTITY_TO_ATTACK;
+					m.entity_to_attack.e = er;
+					m.entity_to_attack.src = th;
+					m.entity_to_attack.damage = 50;
+					mngr_->send(m);
+
+				}
+			}
+
+			removeRect(th, _THUNDER);
+		}
+	}
+	
+	if (!meteoriteRects_.empty()) {
+		const auto& mt = meteoriteRects_[0];
+		if (mngr_->isAlive(mt)) {
+			Transform* thunderTR = mngr_->getComponent<Transform>(mt);
+			SDL_Rect thunderRect;
+			if (thunderTR != nullptr) thunderRect = thunderTR->getRect();
+			for (const auto& er : enemies) {
+				SDL_Rect enemyRect = mngr_->getComponent<Transform>(er)->getRect();
+				SDL_bool col = SDL_HasIntersection(&thunderRect, &enemyRect);
+				if (col) {
+					std::cout << "danoRayo ";
+					Message m;
+					m.id = _m_ENTITY_TO_ATTACK;
+					m.entity_to_attack.e = er;
+					m.entity_to_attack.src = mt;
+					m.entity_to_attack.damage = 50;
+					mngr_->send(m);
+
+				}
+			}
+
+			removeRect(mt, _METEORITE);
+		}
+	}
+	
 }
 

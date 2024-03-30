@@ -7,6 +7,8 @@
 #include <SDL.h>
 
 class CollisionSystem : public System {
+private:
+	
 public:
 	static constexpr sysId_type id = _sys_COLLISION;
 	CollisionSystem();

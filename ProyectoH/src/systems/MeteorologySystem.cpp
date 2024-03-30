@@ -20,7 +20,7 @@ objectsSpawned_(0)
 {
 	auto& rand = sdlutils().rand();
 	timeToNextEvent_ = rand.nextInt(minTimeInterval_, maxTimeInterval_);
-	nextEvent_ = (MeteorologyEvent)rand.nextInt(3, 4);
+	nextEvent_ = (MeteorologyEvent)rand.nextInt(1, 2);
 }
 
 MeteorologySystem::~MeteorologySystem() {
@@ -40,7 +40,7 @@ void  MeteorologySystem::receive(const Message& m) {
 		case MeteorologySystem::TSUNAMI:
 			break;
 		case MeteorologySystem::STORM:
-			//addRectTo(m.return_entity.ent, rectId::_THUNDER);
+			addRectTo(m.return_entity.ent, rectId::_THUNDER);
 			break;
 		case MeteorologySystem::METEORITES:
 			//addRectTo(m.return_entity.ent, rectId::_METEORITE);
