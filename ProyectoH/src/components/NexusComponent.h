@@ -10,7 +10,7 @@ public:
 
 	~NexusComponent();
 	void levelUp(int level);
-	bool isMaxLevel() const { return isMaxLevel_; };
+	bool isMaxLevel() const { return isMaxLevel_; }
 
 protected:
 	bool isMaxLevel_ = false;

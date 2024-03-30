@@ -30,11 +30,13 @@ protected:
 	Entity* nexo;
 
 	// Niveles de nexo y torres
-	int turrentLevels_ [_twr_SIZE];
+	int turrentLevels_ [_twr_SIZE];	// Nexo última torre
 
 	void onRoundOver();
 	void onRoundStart();
 	void subtractCoins(int num);
+
+	void initializeNexus(gameTextures texture, int life, Vector2D pos);
 
 	void upgradeTower(twrId id);
 	

@@ -153,7 +153,6 @@ enum msgId : msgId_type {
 	_m_ATTACK_NEXUS,
 	_m_TOWER_TO_ATTACK,
 	_m_TOWER_TO_BLIND,
-	_m_SHIELD_NEXUS,
 	_m_PAUSE,
 	_m_RESUME,
 	_m_START_GAME,
@@ -221,6 +220,8 @@ enum gameTextures {
 	// towers
 	square, bulletTowerTexture, cristalTowerTexture, phoenixTowerTexture,
 	slimeTowerTexture, boosterTowerTexture, sniperTowerTexture, clayTowerTexture, nexusTexture, fireTexture,
+	// nexus
+	nexusLvl1, nexusLvl2, nexusLvl3, nexusLvl4,
 
 	//enemies
 	goblin, maldito, elfo, golem, angel, maestro, acechante, defensor, demonioAlado,
