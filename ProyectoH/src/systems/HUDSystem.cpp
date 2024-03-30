@@ -42,7 +42,7 @@ void HUDSystem::initSystem() {
 		0.0f,
 		gameTextures::bulletTowerTexture,
 		_grp_HUD_FOREGROUND);
-	mngr_->addComponent<DragAndDrop>(towers_imgs[_twr_BULLET], _twr_BULLET);
+	mngr_->addComponent<DragAndDrop>(towers_imgs[_twr_BULLET], _twr_BULLET, sdlutils().intConst().at("BalasPrecio"));
 	mngr_->addComponent<FramedImage>(towers_imgs[_twr_BULLET],
 		intAt("BalasColumns"), intAt("BalasRows"),
 		intAt("BalasWidth"), intAt("BalasHeight"),
@@ -61,7 +61,7 @@ void HUDSystem::initSystem() {
 		cristalTowerTexture,
 		_grp_HUD_FOREGROUND);
 
-	mngr_->addComponent<DragAndDrop>(towers_imgs[_twr_CRISTAL], _twr_CRISTAL);
+	mngr_->addComponent<DragAndDrop>(towers_imgs[_twr_CRISTAL], _twr_CRISTAL, sdlutils().intConst().at("CristalPrecio"));
 	mngr_->addComponent<FramedImage>(towers_imgs[_twr_CRISTAL],
 		intAt("CristalColumns"), intAt("CristalRows"),
 		intAt("CristalWidth"), intAt("CristalHeight"),
@@ -81,7 +81,7 @@ void HUDSystem::initSystem() {
 		phoenixTowerTexture,
 		_grp_HUD_FOREGROUND);
 
-	mngr_->addComponent<DragAndDrop>(towers_imgs[_twr_FENIX], _twr_FENIX);
+	mngr_->addComponent<DragAndDrop>(towers_imgs[_twr_FENIX], _twr_FENIX, sdlutils().intConst().at("FenixPrecio"));
 	mngr_->addComponent<FramedImage>(towers_imgs[_twr_FENIX],
 		intAt("FenixColumns"), intAt("FenixRows"), 
 		intAt("FenixWidth"), intAt("FenixHeight"), 
@@ -101,7 +101,7 @@ void HUDSystem::initSystem() {
 		clayTowerTexture,
 		_grp_HUD_FOREGROUND);
 
-	mngr_->addComponent<DragAndDrop>(towers_imgs[_twr_CLAY], _twr_CLAY);
+	mngr_->addComponent<DragAndDrop>(towers_imgs[_twr_CLAY], _twr_CLAY, sdlutils().intConst().at("ArcillaPrecio"));
 	mngr_->addComponent<FramedImage>(towers_imgs[_twr_CLAY],
 		intAt("ArcillaColumns"), intAt("ArcillaRows"),
 		intAt("ArcillaWidth"), intAt("ArcillaHeight"),
@@ -122,7 +122,7 @@ void HUDSystem::initSystem() {
 		sniperTowerTexture,
 		_grp_HUD_FOREGROUND);
 
-	mngr_->addComponent<DragAndDrop>(towers_imgs[_twr_DIEGO], _twr_DIEGO); 
+	mngr_->addComponent<DragAndDrop>(towers_imgs[_twr_DIEGO], _twr_DIEGO, sdlutils().intConst().at("DiegoSniperPrecio"));
 	mngr_->addComponent<FramedImage>(towers_imgs[_twr_DIEGO],
 		intAt("DiegoSniperColumns"), intAt("DiegoSniperRows"),
 		intAt("DiegoSniperWidth"), intAt("DiegoSniperHeight"),
@@ -143,7 +143,7 @@ void HUDSystem::initSystem() {
 		slimeTowerTexture,
 		_grp_HUD_FOREGROUND);
 
-	mngr_->addComponent<DragAndDrop>(towers_imgs[_twr_SLIME], _twr_SLIME);
+	mngr_->addComponent<DragAndDrop>(towers_imgs[_twr_SLIME], _twr_SLIME, sdlutils().intConst().at("SlimePrecio"));
 	mngr_->addComponent<FramedImage>(towers_imgs[_twr_SLIME],
 		intAt("SlimeColumns"), intAt("SlimeRows"),
 		intAt("SlimeWidth"), intAt("SlimeHeight"),
@@ -163,8 +163,8 @@ void HUDSystem::initSystem() {
 		0.0,
 		boosterTowerTexture,
 		_grp_HUD_FOREGROUND);
-
-	mngr_->addComponent<DragAndDrop>(towers_imgs[_twr_POWER], _twr_POWER);
+  
+	mngr_->addComponent<DragAndDrop>(towers_imgs[_twr_POWER], _twr_POWER, sdlutils().intConst().at("PotenciadoraPrecio"));
 	mngr_->addComponent<FramedImage>(towers_imgs[_twr_POWER],
 		intAt("PotenciadoraColumns"), intAt("PotenciadoraRows"),
 		intAt("PotenciadoraWidth"), intAt("PotenciadoraHeight"),

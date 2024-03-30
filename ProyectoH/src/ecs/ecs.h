@@ -48,6 +48,7 @@ enum cmpId : cmpId_type {
 	_ACECHANTE,
 	_FIRE,
 	_MENSAJEROMUERTE,
+	_TEXT,
 
 	// do not remove this
 	_LAST_CMP_ID
@@ -85,6 +86,7 @@ enum grpId : grpId_type {
 	_grp_BULLETS,
 	_grp_HUD_BACKGROUND,
 	_grp_HUD_FOREGROUND,
+	_grp_TEXTS,
 	_grp_HUD_DRAG_AND_DROP,
 	_grp_AREAOFATTACK,
 	_grp_SPAWN,
@@ -172,6 +174,8 @@ enum msgId : msgId_type {
 	_m_RESET_SPEED,
 	_m_NETMAP_SET,
 	_m_REMOVE_RECT,
+	_m_ADD_MONEY,
+	_m_LEVEL_SELECTED
 	_m_ANIM_CREATE,
 	_m_ABLEBUTTONS
 };
@@ -318,6 +322,8 @@ msgId_type id;
 	// _m_START_GAME
 	struct
 	{
+		//nivel 
+		int money;
 		//nivel
 		unsigned int level;
 		NetMap* netmap;
@@ -377,9 +383,11 @@ msgId_type id;
 	struct {
 		bool onPause;
 	}start_pause;
+
 	struct{
 		int lvl;
 	}upgrade_nexus;
+
 	//_m_ADD_RECT
 	struct {
 		Entity* rect;
@@ -389,7 +397,10 @@ msgId_type id;
 	struct {
 		SDL_Rect* offset;
 	}offset_context;
-
+  
+	struct {
+		int money;
+	}money_data;
 
 	
 };
