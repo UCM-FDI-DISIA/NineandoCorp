@@ -175,7 +175,7 @@ enum msgId : msgId_type {
 	_m_NETMAP_SET,
 	_m_REMOVE_RECT,
 	_m_ADD_MONEY,
-	_m_LEVEL_SELECTED
+	_m_LEVEL_SELECTED,
 	_m_ANIM_CREATE,
 	_m_ABLEBUTTONS
 };
