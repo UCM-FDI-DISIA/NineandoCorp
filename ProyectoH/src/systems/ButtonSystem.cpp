@@ -35,8 +35,10 @@ void ButtonSystem::receive(const Message& m){
 	case _m_START_GAME:
 		money_ = m.start_game_data.money;
 		OnStartGame();
+		break;
 	case _m_ABLEBUTTONS:
 		enableAllButton(m.able_buttons_data.isAble, m.able_buttons_data.buttonId);
+		break;
 	default:
 		break;
 	}
