@@ -38,6 +38,7 @@ void ButtonSystem::receive(const Message& m){
 		break;
 	case _m_ABLEBUTTONS:
 		enableAllButton(m.able_buttons_data.isAble, m.able_buttons_data.buttonId);
+		break;
 	default:
 		break;
 	}
