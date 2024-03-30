@@ -33,7 +33,7 @@ protected:
 	int turrentLevels_ [_twr_SIZE];	// Nexo última torre
 
 	void onRoundOver();
-	void onRoundStart();
+	void OnStartGame();
 	void subtractCoins(int num);
 
 	void initializeNexus(gameTextures texture, int life, Vector2D pos);

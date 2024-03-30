@@ -15,10 +15,10 @@ void MainControlSystem::initSystem() {
 void MainControlSystem::receive(const Message& m) {
 	switch (m.id) {
 	case _m_START_GAME:
+		OnStartGame();
 		break;
 	case _m_LEVEL_SELECTED:
 		game().changeState<PlayState>();
-		onRoundStart();
 		break;
 	case _m_LEVEL_SELECTOR:
 		game().pushState<LevelSelectorState>(mngr_);
@@ -72,7 +72,7 @@ void MainControlSystem::update() {
 	}
 }
 
-void MainControlSystem::onRoundStart() {
+void MainControlSystem::OnStartGame() {
 
 	// Initializaci�n del Nexo
 	string nexusTextureName = "nexusLvl" + turrentLevels_[_twr_NEXUS];
