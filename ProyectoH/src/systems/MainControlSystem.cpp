@@ -15,7 +15,6 @@ void MainControlSystem::initSystem() {
 void MainControlSystem::receive(const Message& m) {
 	switch (m.id) {
 	case _m_START_GAME:
-
 		game().changeState<PlayState>();
 		onRoundStart();
 		break;
@@ -61,7 +60,13 @@ void MainControlSystem::update() {
 		elapsedTime_ = 0;
 	}
 	if (active_) {
-		// Condición si vida Nexo acabar partida
+		// Si la vida del Nexo llega a cero se acaba la partida
+		if (mngr_->getComponent<HealthComponent>(nexo)->getHealth() <= 0) {
+			Message m;
+			m.id = _m_OVER_GAME;
+			mngr_->send(m);
+			// Pushear Estado Nuevo?
+		}
 	}
 }
 
@@ -88,4 +93,6 @@ void MainControlSystem::initializeNexus(gameTextures texture, int life, Vector2D
 	mngr_->addComponent<RenderComponent>(nexo, texture);
 	mngr_->addComponent<HealthComponent>(nexo, life);
 	mngr_->addComponent<Transform>(nexo)->setPosition(pos);
+
+	cout << "Nexo: " << texture << life << pos;
 }

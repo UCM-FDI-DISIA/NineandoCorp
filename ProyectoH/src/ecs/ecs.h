@@ -314,6 +314,13 @@ msgId_type id;
 		unsigned int level;
 		NetMap* netmap;
 	}start_game_data;
+
+	// _m_OVER_GAME
+	struct
+	{
+		// No había mensaje de game over, lo dejo, igual tenemos q quitarlo
+	}over_game;
+
 	//_m_ENEMY_BOOK
 	struct
 	{
