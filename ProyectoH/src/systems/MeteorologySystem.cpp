@@ -20,7 +20,7 @@ objectsSpawned_(0)
 {
 	auto& rand = sdlutils().rand();
 	timeToNextEvent_ = rand.nextInt(minTimeInterval_, maxTimeInterval_);
-	nextEvent_ = (MeteorologyEvent)rand.nextInt(2, 3);
+	nextEvent_ = (MeteorologyEvent)rand.nextInt(1, 2);
 }
 
 MeteorologySystem::~MeteorologySystem() {

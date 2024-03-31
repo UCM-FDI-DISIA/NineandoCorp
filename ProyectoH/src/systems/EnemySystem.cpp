@@ -8,6 +8,7 @@
 #include "../components/MaestroAlmasComponent.h"
 #include "../components/AngelComponent.h"
 #include "../components/IconComponent.h"
+#include "../components/GolemComponent.h"
 
 EnemySystem::EnemySystem() {
 
@@ -52,12 +53,12 @@ void  EnemySystem::receive(const Message& m) {
 		break;
 	case _m_ENTITY_TO_ATTACK:
 		if (m.entity_to_attack.e != nullptr && mngr_->isAlive(m.entity_to_attack.e)) {
-			 HealthComponent* h = mngr_->getComponent<HealthComponent>(m.entity_to_attack.e);
-			 if (h->subtractHealth(m.entity_to_attack.damage)) { 
-				 mngr_->deleteHandler(_hdlr_ENEMIES, m.entity_to_attack.e); 
-				 if(mngr_->hasComponent<AttackComponent>(m.entity_to_attack.src))mngr_->getComponent<AttackComponent>(m.entity_to_attack.src)->setTarget(nullptr);
-			 };
-		}		
+			HealthComponent* h = mngr_->getComponent<HealthComponent>(m.entity_to_attack.e);
+			if (h->subtractHealth(m.entity_to_attack.damage)) {
+				mngr_->deleteHandler(_hdlr_ENEMIES, m.entity_to_attack.e);
+				if (mngr_->hasComponent<AttackComponent>(m.entity_to_attack.src))mngr_->getComponent<AttackComponent>(m.entity_to_attack.src)->setTarget(nullptr);
+			};
+		}
 		if (m.entity_to_attack.e != nullptr && mngr_->isAlive(m.entity_to_attack.e) && m.entity_to_attack.targetId == _hdlr_ENEMIES) {
 			HealthComponent* h = mngr_->getComponent<HealthComponent>(m.entity_to_attack.e);
 			if (h->subtractHealth(m.entity_to_attack.damage)) {
@@ -66,11 +67,6 @@ void  EnemySystem::receive(const Message& m) {
 			};
 		}
 		break;
-
-	case _m_START_GAME:
-		onRoundStart();
-		break;
-
 	case _m_OVER_GAME:
 		onRoundOver();
 		break;
@@ -162,7 +158,6 @@ void EnemySystem::update() {
 		AngelComponent* anc = mngr_->getComponent<AngelComponent>(e);
 		Transform* tr = mngr_->getComponent<Transform>(e);
 
-		bool para = false;
 
 		if (ic != nullptr && ic->hasIcon()) {
 			Transform* iconTr = mngr_->getComponent<Transform>(ic->getIcon());
@@ -264,146 +259,3 @@ void EnemySystem::update() {
 }
 	
 	
-void EnemySystem::addEnemy(enmId type, Vector2D pos) {
-	Entity* t = mngr_->addEntity(_grp_TOWERS_AND_ENEMIES);
-
-	Transform* tr = mngr_->addComponent<Transform>(t);//transform
-	tr->setPosition(pos);
-
-	MovementComponent* mc = mngr_->addComponent<MovementComponent>(t);
-
-	std::vector<Vector2D> route;
-	route.push_back({ (float)sdlutils().width() / 2.f, 300.f });
-	route.push_back({ (float)sdlutils().width() / 2.f, 600.f });
-	route.push_back({ 300, 600.f });
-
-	switch (type) {
-	case _enm_MALMAS:
-		tr->setSpeed(30.0f);
-		mngr_->addComponent<RenderComponent>(t, square);
-		mngr_->addComponent<HealthComponent>(t, 50000);
-		mngr_->addComponent<RouteComponent>(t, route);
-		mngr_->addComponent<AttackComponent>(t, 100, 0.25, 20, false);
-		mngr_->addComponent<FramedImage>(t, 1, 1, 122, 117, 0, 0, 1);
-		break;
-	case _enm_AELECTRICO:
-		tr->setSpeed(70.0f);
-		mngr_->addComponent<RenderComponent>(t, square);
-		mngr_->addComponent<HealthComponent>(t, 50000);
-		mngr_->addComponent<RouteComponent>(t, route);
-		mngr_->addComponent<AttackComponent>(t, 160, 0.25, 20, false);
-		mngr_->addComponent<AcechanteComponent>(t, 1.5, 100, 2);
-		mngr_->addComponent<FramedImage>(t, 1, 1, 122, 117, 0, 0, 1);
-		break;
-	case _enm_MALDITO:
-		tr->setSpeed(30.0f);
-		mngr_->addComponent<RenderComponent>(t, square);
-		mngr_->addComponent<HealthComponent>(t, 50000);
-		mngr_->addComponent<RouteComponent>(t, route);
-		mngr_->addComponent<AttackComponent>(t, 100, 0.25, 20, false);
-		mngr_->addComponent<FramedImage>(t, 1, 1, 122, 117, 0, 0, 1);
-		break;
-	case _enm_GOLEM:
-		tr->setSpeed(20.0f);
-		mngr_->addComponent<RenderComponent>(t, square);
-		mngr_->addComponent<HealthComponent>(t, 50000);
-		mngr_->addComponent<RouteComponent>(t, route);
-		mngr_->addComponent<AttackComponent>(t, 100, 0.25, 20, false);
-		mngr_->addComponent<FramedImage>(t, 1, 1, 122, 117, 0, 0, 1);
-		break;
-	case _enm_DALADO:
-		tr->setSpeed(30.0f);
-		mngr_->addComponent<RenderComponent>(t, square);
-		mngr_->addComponent<HealthComponent>(t, 50000);
-		mngr_->addComponent<RouteComponent>(t, route);
-		mngr_->addComponent<AttackComponent>(t, 100, 0.25, 20, false);
-		mngr_->addComponent<FramedImage>(t, 1, 1, 122, 117, 0, 0, 1);
-		break;
-	case _enm_GOBLIN:
-		tr->setSpeed(30.0f);
-		mngr_->addComponent<RenderComponent>(t, square);
-		mngr_->addComponent<HealthComponent>(t, 50000);
-		mngr_->addComponent<RouteComponent>(t, route);
-		mngr_->addComponent<AttackComponent>(t, 100, 0.25, 20, false);
-		mngr_->addComponent<FramedImage>(t, 1, 1, 122, 117, 0, 0, 1);
-		break;
-	case _enm_ELFO:
-		tr->setSpeed(30.0f);
-		mngr_->addComponent<RenderComponent>(t, square);
-		mngr_->addComponent<HealthComponent>(t, 50000);
-		mngr_->addComponent<RouteComponent>(t, route);
-		mngr_->addComponent<AttackComponent>(t, 100, 0.25, 20, false);
-		mngr_->addComponent<FramedImage>(t, 1, 1, 122, 117, 0, 0, 1);
-		break;
-	case _enm_MMUERTE:
-		tr->setSpeed(30.0f);
-		mngr_->addComponent<RenderComponent>(t, square);
-		mngr_->addComponent<HealthComponent>(t, 50000);
-		mngr_->addComponent<RouteComponent>(t, route);
-		mngr_->addComponent<AttackComponent>(t, 100, 0.25, 20, false);
-		mngr_->addComponent<FramedImage>(t, 1, 1, 122, 117, 0, 0, 1);
-		break;
-	case _enm_ANGEL:
-		tr->setSpeed(30.0f);
-		mngr_->addComponent<RenderComponent>(t, square);
-		mngr_->addComponent<HealthComponent>(t, 50000);
-		mngr_->addComponent<RouteComponent>(t, route);
-		mngr_->addComponent<AngelComponent>(t, 100);
-		mngr_->addComponent<AttackComponent>(t, 100, 2, 20, false);
-		mngr_->addComponent<FramedImage>(t, 1, 1, 122, 117, 0, 0, 1);
-		break;
-	case _enm_DINFERNAL:
-		tr->setSpeed(30.0f);
-		mngr_->addComponent<RenderComponent>(t, square);
-		mngr_->addComponent<HealthComponent>(t, 50000);
-		mngr_->addComponent<RouteComponent>(t, route);
-		mngr_->addComponent<AttackComponent>(t, 100, 0.25, 20, false);
-		mngr_->addComponent<FramedImage>(t, 1, 1, 122, 117, 0, 0, 1);
-		break;
-	case _enm_DREAL:
-		tr->setSpeed(30.0f);
-		mngr_->addComponent<RenderComponent>(t, square);
-		mngr_->addComponent<HealthComponent>(t, 50000);
-		mngr_->addComponent<RouteComponent>(t, route);
-		mngr_->addComponent<AttackComponent>(t, 100, 0.25, 20, false);
-		mngr_->addComponent<FramedImage>(t, 1, 1, 122, 117, 0, 0, 1);
-		break;
-	case _enm_CMALDITO:
-		tr->setSpeed(10.0f);
-		mngr_->addComponent<RenderComponent>(t, square);
-		mngr_->addComponent<HealthComponent>(t, 50000);
-		mngr_->addComponent<RouteComponent>(t, route);
-		mngr_->addComponent<AttackComponent>(t, 100, 0.25, 20, false);
-		mngr_->addComponent<FramedImage>(t, 1, 1, 122, 117, 0, 0, 1);
-		break;
-	case _enm_PRINCIPITO:
-		tr->setSpeed(10.0f);
-		mngr_->addComponent<RenderComponent>(t, square);
-		mngr_->addComponent<HealthComponent>(t, 50000);
-		mngr_->addComponent<RouteComponent>(t, route);
-		mngr_->addComponent<AttackComponent>(t, 100, 0.25, 20, false);
-		mngr_->addComponent<FramedImage>(t, 1, 1, 122, 117, 0, 0, 1);
-		break;
-	case _enm_MONJE:
-		tr->setSpeed(10.0f);
-		mngr_->addComponent<RenderComponent>(t, square);
-		mngr_->addComponent<HealthComponent>(t, 50000);
-		mngr_->addComponent<RouteComponent>(t, route);
-		mngr_->addComponent<AttackComponent>(t, 100, 0.25, 20, false);
-		mngr_->addComponent<FramedImage>(t, 1, 1, 122, 117, 0, 0, 1);
-		break;
-	case _enm_MUERTE:
-		tr->setSpeed(10.0f);
-		mngr_->addComponent<RenderComponent>(t, square);
-		mngr_->addComponent<HealthComponent>(t, 50000);
-		mngr_->addComponent<RouteComponent>(t, route);
-		mngr_->addComponent<AttackComponent>(t, 100, 0.25, 20, false);
-		mngr_->addComponent<FramedImage>(t, 1, 1, 122, 117, 0, 0, 1);
-		break;
-			
-
-	}
-	mngr_->setHandler(_hdlr_ENEMIES, t);
-
-			
-}
