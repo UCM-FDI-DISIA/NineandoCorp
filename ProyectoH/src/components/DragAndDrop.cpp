@@ -7,7 +7,8 @@
 DragAndDrop::DragAndDrop(twrId id, int cost) :
 	tId_(id), //
 	dragging_(false), //
-	tr_(nullptr),
+	tr_(nullptr), //
+	canDrop_(true), //
 	cost(cost){
 }
 DragAndDrop::~DragAndDrop() {
@@ -20,36 +21,30 @@ void DragAndDrop::initComponent(){
 }
 
 void DragAndDrop::drop(const Vector2D& pos, Height h){
-
-	Message m;
-	m.id = _m_ADD_TOWER;
-	m.add_tower_data.towerId = tId_; 
-	m.add_tower_data.pos = pos; 
-	m.add_tower_data.height = h; 
-	mngr_->send(m);
+	if (canDrop_) {
+		Message m;
+		m.id = _m_ADD_TOWER;
+		m.add_tower_data.towerId = tId_; 
+		m.add_tower_data.pos = pos; 
+		m.add_tower_data.height = h; 
+		mngr_->send(m);
 	
-	Message m2;
-	m2.id = _m_ADD_MONEY;
-	m2.money_data.money = -cost;
-	mngr_->send(m2);
+		Message m2;
+		m2.id = _m_ADD_MONEY;
+		m2.money_data.money = -cost;
+		mngr_->send(m2);
 
-	dragging_ = false;
+		dragging_ = false;
+	}
 }
 
 
-void DragAndDrop::drag() {
+void DragAndDrop::drag(const Vector2D& tilePos) {
 	tr_->setScale(setScaleToIcon(tId_));
-	Vector2D mPos = { (float)ih().getMousePos().first, (float)ih().getMousePos().second };
-	tr_->setPosition(adjustPosToTile(getPosFromTile(mPos)));
-
+	tr_->setPosition(adjustPosToTile(tilePos));
 }
 
-Vector2D DragAndDrop::getPosFromTile(const Vector2D&  pos) {
-	auto mS = mngr_->getSystem<mapSystem>();
-	auto net = mS->getMalla();
-	Vector2D tilePos = net->searchCell(pos)->position;
-	return tilePos;
-}
+
 
 Vector2D DragAndDrop::adjustPosToTile(const Vector2D& initPos) {
 	auto mS = mngr_->getSystem<mapSystem>();

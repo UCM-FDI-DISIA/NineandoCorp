@@ -10,6 +10,8 @@
 #include "../components/IconComponent.h"
 #include "../utils/NetMap.h"
 #include "../include/SDL.h"
+#include "../sdlutils/SDLUtils.h"
+#include "mapSystem.h"
 
 
 class RenderSystem : public System {
@@ -41,8 +43,7 @@ public:
 	/// </summary>
 	
 	void drawDiamond(SDL_Renderer* renderer, const SDL_Point& top, 
-					int width, int height, const SDL_Color& borderColor,	
-					const SDL_Color& fillColor);
+					int width, int height, const SDL_Color& fillColor);
 private:
 	void onPause();
 	void onResume();
@@ -50,14 +51,6 @@ private:
 
 
 	rectId getRectId(Entity* e);
-	
-	/// <param name="renderer"></param>
-	/// <param name="top"></param>
-	/// <param name="width"></param>
-	/// <param name="height"></param>
-	/// <param name="borderColor"></param>
-	/// <param name="fillColor"></param>
-	void resetTexture(gameTextures texId);
 
 
 	uint8_t winner_; // 0 - None, 1 - Enemigos, 2- Jugador

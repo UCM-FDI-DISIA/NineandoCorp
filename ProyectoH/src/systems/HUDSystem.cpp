@@ -188,7 +188,10 @@ void HUDSystem::update() {
 	for (auto en : towers_imgs) {
 		auto dC = mngr_->getComponent<DragAndDrop>(en);
 		if (dC != nullptr && dC->isDragged()) {
-				dC->drag();
+			Vector2D mPos = { (float)ih().getMousePos().first, (float)ih().getMousePos().second };
+			Cell* cell = getCellFromTile(mPos);
+				dC->drag(cell->position);
+				dC->enableDrop(cell->isFree);
 				if (ih().mouseButtonEvent()) {
 					// click derecho para reset 
 					if (ih().getMouseButtonState(InputHandler::MOUSEBUTTON::RIGHT) == 1) {
@@ -202,8 +205,8 @@ void HUDSystem::update() {
 					//click izquierdo para colocar la torre
 					else if (ih().getMouseButtonState(InputHandler::MOUSEBUTTON::LEFT) == 1) {
 						auto tr = mngr_->getComponent<Transform>(en);
-						
 						dC->drop(tr->getPosition(), Height::LOW);
+						cell->isFree = false;
 
 						//resetea el icono de la torre
 						dC->enableDrag(false);
@@ -221,6 +224,11 @@ void HUDSystem::update() {
 
 }
 
+Cell* HUDSystem::getCellFromTile(const Vector2D& pos) {
+	auto mS = mngr_->getSystem<mapSystem>();
+	auto net = mS->getMalla();
+	return net->searchCell(pos);
+}
 
 void HUDSystem::dragTowerIcon(Entity* en){
 	mngr_->changeEntityId(_grp_HUD_DRAG_AND_DROP, en);
