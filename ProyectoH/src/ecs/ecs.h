@@ -90,6 +90,7 @@ enum grpId : grpId_type {
 	_grp_HUD_DRAG_AND_DROP,
 	_grp_AREAOFATTACK,
 	_grp_SPAWN,
+	_grp_NATURALS_EFFECTS,
 	
 	// do not remove this
 	_LAST_GRP_ID

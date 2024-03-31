@@ -216,7 +216,22 @@ void RenderSystem::update() {
 		trRect.y += offset->y;
 		textures[textureId]->render(srcRect, trRect, tr->getRotation());
 	}
-
+	auto& naturalEffects = mngr_->getEntities(_grp_NATURALS_EFFECTS);
+	sort(naturalEffects.begin(), naturalEffects.end(), cmpIsometricY(mngr_));
+	for (auto& t : naturalEffects) {
+		Transform* tr = mngr_->getComponent<Transform>(t);
+		gameTextures textureId = mngr_->getComponent<RenderComponent>(t)->getTexture();
+		SDL_Rect srcRect;
+		FramedImage* fi = mngr_->getComponent<FramedImage>(t);
+		fi->updateCurrentFrame();
+		if (fi != nullptr)srcRect = fi->getSrcRect();
+		SDL_Rect trRect = tr->getRect();
+		trRect.x += offset->x;
+		trRect.y += offset->y;
+		SDL_RendererFlip flip = mngr_->getComponent<RenderComponent>(t)->getFlip();
+		if (fi != nullptr)textures[textureId]->render(srcRect, trRect, tr->getRotation(), nullptr, flip);
+		else textures[textureId]->render(trRect, tr->getRotation());
+	}
 	//Este grupo tiene que estar ordenado de arriba a abajo de la pantalla segun su transform (posicion y)
 	// NO CAMBIAR LECHES
 	//TOWERS AND ENEMIES
@@ -236,6 +251,7 @@ void RenderSystem::update() {
 		if (fi != nullptr)textures[textureId]->render(srcRect, trRect, tr->getRotation(), nullptr,flip);
 		else textures[textureId]->render(trRect, tr->getRotation());
 	}
+	
 	//animation naturals effects
 	for (auto& par : mngr_->getHandler(_hdlr_PARTICLES))
 	{
