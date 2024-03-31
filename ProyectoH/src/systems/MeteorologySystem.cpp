@@ -89,9 +89,9 @@ void MeteorologySystem::generateAnimEarthquake() {
 
 		Message m;
 		m.id = _m_ANIM_CREATE;
-		m.anim_create.animSpeed = 5;
+		m.anim_create.animSpeed = 3;
 		m.anim_create.idGrp = _grp_NATURALS_EFFECTS;
-		m.anim_create.iterationsToDelete = 3;
+		m.anim_create.iterationsToDelete = 4;
 		m.anim_create.scale = { 50, 50 };
 		m.anim_create.cols = 1;
 		m.anim_create.rows = 3;
@@ -102,7 +102,6 @@ void MeteorologySystem::generateAnimEarthquake() {
 		m.anim_create.width = 32;
 		m.anim_create.pos = Vector2D(x, y);
 		mngr_->send(m);
-		objectsSpawned_++;
 	}
 	
 
@@ -127,8 +126,13 @@ void MeteorologySystem::generateMeteorite() {
 
 	auto& rand = sdlutils().rand();
 
-	auto x = rand.nextInt(-200, 1000);
-	auto y = rand.nextInt(200, 1500);
+	auto i = rand.nextInt(0, tileSize_.getX() / 2 - 1);
+	auto j = rand.nextInt(0, tileSize_.getY() - 1);
+
+	auto position = net->getCell(i, j)->position;
+	auto x = position.getX();
+	auto y = position.getY();
+
 	Message m;
 	m.id = _m_ANIM_CREATE;
 	m.anim_create.animSpeed = 9;
@@ -155,8 +159,12 @@ void MeteorologySystem::generateThunder() {
 
 	auto& rand = sdlutils().rand();
 
-	auto x = rand.nextInt(-200, 1000);
-	auto y = rand.nextInt(200, 1500);
+	auto i = rand.nextInt(0, tileSize_.getX() / 2 - 1);
+	auto j = rand.nextInt(0, tileSize_.getY() - 1);
+
+	auto position = net->getCell(i, j)->position;
+	auto x = position.getX();
+	auto y = position.getY();
 
 	Message m;
 	m.id = _m_ANIM_CREATE;
@@ -183,7 +191,7 @@ void MeteorologySystem::generateAnimTornado() {
 	m.id = _m_ANIM_CREATE;
 	m.anim_create.animSpeed = 4;
 	m.anim_create.idGrp = _grp_NATURALS_EFFECTS;
-	m.anim_create.iterationsToDelete = 40;
+	m.anim_create.iterationsToDelete = 47;
 	m.anim_create.scale = { 200, 300 };
 	m.anim_create.cols = 24;
 	m.anim_create.rows = 6;
@@ -232,7 +240,7 @@ void MeteorologySystem::update() {
 			break;
 		case MeteorologySystem::EARTHQUAKE:	
 			generateNetMap();
-			quantity_ = 100;
+			quantity_ = 50;
 			break;
 		default:
 			break;
@@ -281,7 +289,7 @@ void MeteorologySystem::update() {
 				objectsSpawned_++;
 				elapsedSpawn_ = 0;
 			}
-			if (objectsSpawned_ > quantity_) { eventOver = true; }
+			if (objectsSpawned_ >= quantity_) { eventOver = true; }
 			break;
 		default:
 			break;
@@ -292,7 +300,7 @@ void MeteorologySystem::update() {
 			auto& rand = sdlutils().rand();
 			elapsedTime_ = 0.0;
 			timeToNextEvent_ = rand.nextInt(minTimeInterval_, maxTimeInterval_);
-			nextEvent_ = (MeteorologyEvent)rand.nextInt(1, 2);
+			nextEvent_ = (MeteorologyEvent)rand.nextInt(0, 5);
 			objectsSpawned_ = 0;
 			elapsedSpawn_ = 0;
 			quantity_ = 0;

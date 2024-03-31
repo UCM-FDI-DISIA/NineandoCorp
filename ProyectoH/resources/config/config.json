@@ -589,7 +589,7 @@
     },
     {
       "id": "BalasVelocidad",
-      "value": 500
+      "value": 800
     },
 
     {
@@ -606,7 +606,7 @@
     },
     {
       "id": "SlimeVelocidad",
-      "value": 400
+      "value": 600
     },
 
     {
@@ -635,7 +635,7 @@
     },
     {
       "id": "DiegoSniperVelocidad",
-      "value": 200
+      "value": 1000
     },
     {
       "id": "DiegoSniperOffset",
