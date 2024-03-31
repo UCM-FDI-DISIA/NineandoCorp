@@ -16,6 +16,7 @@ void BulletComponent::doDamageTo(Entity* e, float damage){
 	m.entity_to_attack.src = srcEntity;
 	m.entity_to_attack.e = e;
 	m.entity_to_attack.damage = damage;
+	m.entity_to_attack.targetId = _hdlr_ENEMIES;
 	mngr_->send(m);//Este mensaje lo recibe el enemy system
 	onTravelEnds();
 }

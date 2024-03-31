@@ -17,7 +17,7 @@ public:
 	virtual void initComponent();
 	
 ;
-	void doDamageTo(Entity* e, float damage);
+	void doDamageTo(Entity* e, float damage, hdlrId targetId);
 	void targetEnemy(const std::list<Entity*>& targetGroup);
 
 	//Getters

@@ -1,6 +1,7 @@
 #pragma once
 #include "..//ecs/Component.h"
 #include "..//ecs/Manager.h"
+
 class EnemyStates : public Component
 {
 public:

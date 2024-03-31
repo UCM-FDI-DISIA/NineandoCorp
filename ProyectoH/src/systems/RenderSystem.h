@@ -6,6 +6,7 @@
 #include "../components/FramedImage.h"
 #include "../components/TextComponent.h"
 #include "../components/RenderComponent.h"
+#include "../components/IconComponent.h"
 #include "../utils/NetMap.h"
 #include "../include/SDL.h"
 

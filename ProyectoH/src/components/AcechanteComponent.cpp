@@ -2,16 +2,18 @@
 #include "algorithm"
 #include "../components/Transform.h"
 #include "../components/MovementComponent.h"
+#include "../components/IconComponent.h"
+#include "../components/RenderComponent.h"
 
 void AcechanteComponent::inRange(const std::list<Entity*>& enemyGroup)
 {
-	for (const auto& enemy : enemyGroup) {
-		if (getDistance(mngr_->getComponent<Transform>(enemy)->getPosition()) < range_) {
-			mngr_->getComponent<MovementComponent>(enemy)->activateAcceleration(velAcceleration_);
+	for (const auto& enemy : enemyGroup) {	
+		if (getDistance(mngr_->getComponent<Transform>(enemy)->getPosition()) < range_ && getDistance(mngr_->getComponent<Transform>(enemy)->getPosition()) != 0) {
+			mngr_->getComponent<MovementComponent>(enemy)->activateAcceleration(velAcceleration_, true);							
+			std::cout << getDistance(mngr_->getComponent<Transform>(enemy)->getPosition()) << std::endl;
 		}
+		
 	}
-	std::cout << "velocidad";
-	
 }
 
 float AcechanteComponent::getDistance(Vector2D otherPos)

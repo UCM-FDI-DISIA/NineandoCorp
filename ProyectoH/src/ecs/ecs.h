@@ -49,6 +49,9 @@ enum cmpId : cmpId_type {
 	_FIRE,
 	_MENSAJEROMUERTE,
 	_TEXT,
+	_ANGEL,
+	_ICON,
+
 
 	// do not remove this
 	_LAST_CMP_ID
@@ -71,6 +74,7 @@ enum hdlrId : hdlrId_type {
 	_hdlr_BUTTON_ENEMYBOOK,
 	_hdlr_BUTTON_PLAY,
 	_hdlr_PARTICLES,
+	_hdlr_ICONS,
 	
 	// do not remove this
 	_LAST_HDLR_ID };
@@ -90,6 +94,7 @@ enum grpId : grpId_type {
 	_grp_HUD_DRAG_AND_DROP,
 	_grp_AREAOFATTACK,
 	_grp_SPAWN,
+	_grp_ICONS,
 	
 	// do not remove this
 	_LAST_GRP_ID
@@ -235,7 +240,7 @@ enum gameTextures {
 	nexus_level_text,
 
 	//others
-	bulletTexture, sniperBulletTexture, slimeBulletTexture, slimeArea, shield,
+	bulletTexture, sniperBulletTexture, slimeBulletTexture, slimeArea, shield, hpIcon, blindedIcon, lightningIcon, powerIcon,
 
 	//explosions
 	shieldExp, bulletExplosion,
@@ -340,7 +345,7 @@ msgId_type id;
 	} towers_to_attack;
 	// _m_TOWER_TO_BLIND
 	struct {
-		Entity* e;
+		Entity* e;		
 		float damage;
 	} tower_to_blind;
 	// _m_ENTITY_TO_ATTACK
@@ -348,6 +353,7 @@ msgId_type id;
 		Entity* src;
 		Entity* e;
 		float damage;
+		hdlrId targetId;
 	} entity_to_attack;
 	// _m_TOWER_TO_ATTACK
 	struct {
