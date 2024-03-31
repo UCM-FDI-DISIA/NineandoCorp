@@ -20,7 +20,7 @@ objectsSpawned_(0)
 {
 	auto& rand = sdlutils().rand();
 	timeToNextEvent_ = rand.nextInt(minTimeInterval_, maxTimeInterval_);
-	nextEvent_ = (MeteorologyEvent)rand.nextInt(1, 2);
+	nextEvent_ = (MeteorologyEvent)rand.nextInt(3, 4);
 }
 
 MeteorologySystem::~MeteorologySystem() {
@@ -46,6 +46,7 @@ void  MeteorologySystem::receive(const Message& m) {
 			addRectTo(m.return_entity.ent, rectId::_METEORITE);
 			break;
 		case MeteorologySystem::TORNADO:
+
 			break;
 		case MeteorologySystem::EARTHQUAKE:
 			addRectTo(m.return_entity.ent, rectId::_EARTHQUAKE);
@@ -251,22 +252,15 @@ void MeteorologySystem::update() {
 			else if(objectsSpawned_ >= quantity_) { eventOver = true; }
 			break;
 		case MeteorologySystem::TORNADO:
-			if (quantity_ == 0) {
-				generateNetMap();
-				quantity_ = 1;
-			}
-			else if(objectsSpawned_ < quantity_) {
+			quantity_ = 1;
+			if(objectsSpawned_ < quantity_) {
 				generateAnimTornado();
 				/*eventOver = true;*/
 			}
 			break;
 		case MeteorologySystem::EARTHQUAKE:
 			
-			if(quantity_ == 0) {
-				generateNetMap();
-				
-			}
-			else if (objectsSpawned_ < quantity_) {
+			if (objectsSpawned_ < quantity_) {
 				generateAnimEarthquake();
 			}
 			/*lse if(objectsSpawned_ >= quantity_) { eventOver = true; }*/
