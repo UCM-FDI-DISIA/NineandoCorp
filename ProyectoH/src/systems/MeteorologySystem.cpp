@@ -71,12 +71,12 @@ void MeteorologySystem::generateNetMap() {
 	auto mS = mngr_->getSystem<mapSystem>();
 	net = mS->getMalla();
 	tileSize_ = mS->getTileSize();
-	quantity_ = tileSize_.x * tileSize_.y;
+	quantity_ = tileSize_.getX() * tileSize_.getY();
 	
 }
 void MeteorologySystem::generateAnimEarthquake() {
-	for (int i = 0; i < tileSize_.x / 2- 1; i++) {
-		for (int j = 0; j < tileSize_.y -1; j++) {
+	for (int i = 0; i < tileSize_.getX() / 2- 1; i++) {
+		for (int j = 0; j < tileSize_.getY() - 1; j++) {
 			auto position = net->getCell(i, j)->position;
 			auto x = position.getX();
 			auto y = position.getY();

@@ -47,7 +47,7 @@ private:
 	std::vector<std::vector<Vector2D>> routesToEarthquake;
 	int spawn = 0;
 	int pos = 0;
-	tmx::Vector2u tileSize_;
+	Vector2D tileSize_;
 	NetMap* net;
 
 

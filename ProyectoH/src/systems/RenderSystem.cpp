@@ -386,7 +386,7 @@ void RenderSystem::drawDiamond(SDL_Renderer* renderer, const SDL_Point& center, 
 	SDL_GetRendererOutputSize(renderer, &rW, &rH);
 	SDL_Color green{ 0, 255, 0, 150 };
 
-	SDL_RenderFillPolygon(renderer, rW, rH, diamondVertices, 4, green);
+	/*SDL_RenderFillPolygon(renderer, rW, rH, diamondVertices, 4, green);*/
 
 	
 }
