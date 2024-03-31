@@ -380,7 +380,7 @@
       "id": "power_tower_image",
       "file": "resources/images/towers/1_booster_tower.png"
     },
-    { 
+    {
       "id": "nexus_level_3_image",
       "file": "resources/images/nexus/nexus_level_3_image.png"
     },
@@ -407,9 +407,25 @@
     {
       "id": "bulletExp",
       "file": "resources/images/Towers/explosionBullet.png"
+    },
+    {
+      "id": "hp_icon",
+      "file": "resources/images/UI/hp_icon.png"
+    },
+    {
+      "id": "rayo_icon",
+      "file": "resources/images/UI/rayo_icon.png"
+    },
+    {
+      "id": "blinded_icon",
+      "file": "resources/images/UI/blinded_icon.png"
+    },
+    {
+      "id": "powerup_icon",
+      "file": "resources/images/UI/powerup_icon.png"
     }
 
-    ],
+  ],
 
   "fonts":[
     {
