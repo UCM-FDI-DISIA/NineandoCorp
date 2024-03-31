@@ -12,6 +12,7 @@ PlayState::PlayState() : GameState(_gmStt_PLAY) {
 	mngr_->addSystem<EnemySystem>();
 	mngr_->addSystem<CollisionSystem>();
 	mngr_->addSystem<ParticleSystem>();
+	mngr_->addSystem<MeteorologySystem>();
 
 	Message m;
 	m.id = _m_START_GAME;
