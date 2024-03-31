@@ -7,6 +7,7 @@
 #include "../components/TextComponent.h"
 #include "../components/RenderComponent.h"
 #include "../components/ParticleLifeTime.h"
+#include "../components/IconComponent.h"
 #include "../utils/NetMap.h"
 #include "../include/SDL.h"
 

@@ -78,6 +78,10 @@ RenderSystem::RenderSystem() : winner_(0)
 	textures[play_hover] = &sdlutils().images().at("play_hover");
 	textures[nexus_level_3_image] = &sdlutils().images().at("nexus_level_3_image");
 	textures[nexus_level_text] = &sdlutils().msgs().at("nexus_level_text");
+	textures[hpIcon] = &sdlutils().images().at("hp_icon");
+	textures[powerIcon] = &sdlutils().images().at("powerup_icon");
+	textures[lightningIcon] = &sdlutils().images().at("lightning_icon");
+	textures[blindedIcon] = &sdlutils().images().at("blinded_icon");
 
 	//Explosions
 	textures[shieldExp] = &sdlutils().images().at("shieldExp");
@@ -216,22 +220,10 @@ void RenderSystem::update() {
 		trRect.y += offset->y;
 		textures[textureId]->render(srcRect, trRect, tr->getRotation());
 	}
-	auto& naturalEffects = mngr_->getEntities(_grp_NATURALS_EFFECTS);
-	sort(naturalEffects.begin(), naturalEffects.end(), cmpIsometricY(mngr_));
-	for (auto& t : naturalEffects) {
-		Transform* tr = mngr_->getComponent<Transform>(t);
-		gameTextures textureId = mngr_->getComponent<RenderComponent>(t)->getTexture();
-		SDL_Rect srcRect;
-		FramedImage* fi = mngr_->getComponent<FramedImage>(t);
-		fi->updateCurrentFrame();
-		if (fi != nullptr)srcRect = fi->getSrcRect();
-		SDL_Rect trRect = tr->getRect();
-		trRect.x += offset->x;
-		trRect.y += offset->y;
-		SDL_RendererFlip flip = mngr_->getComponent<RenderComponent>(t)->getFlip();
-		if (fi != nullptr)textures[textureId]->render(srcRect, trRect, tr->getRotation(), nullptr, flip);
-		else textures[textureId]->render(trRect, tr->getRotation());
-	}
+
+
+	
+
 	//Este grupo tiene que estar ordenado de arriba a abajo de la pantalla segun su transform (posicion y)
 	// NO CAMBIAR LECHES
 	//TOWERS AND ENEMIES
@@ -251,6 +243,23 @@ void RenderSystem::update() {
 		if (fi != nullptr)textures[textureId]->render(srcRect, trRect, tr->getRotation(), nullptr,flip);
 		else textures[textureId]->render(trRect, tr->getRotation());
 	}
+
+	//auto& naturalEffects = mngr_->getEntities(_grp_NATURALS_EFFECTS);
+	//sort(naturalEffects.begin(), naturalEffects.end(), cmpIsometricY(mngr_));
+	//for (auto& t : naturalEffects) {
+	//	Transform* tr = mngr_->getComponent<Transform>(t);
+	//	gameTextures textureId = mngr_->getComponent<RenderComponent>(t)->getTexture();
+	//	SDL_Rect srcRect;
+	//	FramedImage* fi = mngr_->getComponent<FramedImage>(t);
+	//	fi->updateCurrentFrame();
+	//	if (fi != nullptr)srcRect = fi->getSrcRect();
+	//	SDL_Rect trRect = tr->getRect();
+	//	trRect.x += offset->x;
+	//	trRect.y += offset->y;
+	//	SDL_RendererFlip flip = mngr_->getComponent<RenderComponent>(t)->getFlip();
+	//	if (fi != nullptr)textures[textureId]->render(srcRect, trRect, tr->getRotation(), nullptr, flip);
+	//	else textures[textureId]->render(trRect, tr->getRotation());
+	//}
 	
 	//animation naturals effects
 	for (auto& par : mngr_->getHandler(_hdlr_PARTICLES))
@@ -277,11 +286,40 @@ void RenderSystem::update() {
 		}
 		f->updateCurrentFrame();
 	}
+
+	//AREA OF ATTACK (SLIME AND FENIX)
+	const auto& areas = mngr_->getEntities(_grp_AREAOFATTACK);
+	for (auto& area : areas)
+	{
+		Transform* tr = mngr_->getComponent<Transform>(area);
+		gameTextures textureId = mngr_->getComponent<RenderComponent>(area)->getTexture();
+		FramedImage* img = mngr_->getComponent<FramedImage>(area);
+		SDL_Rect srcRect = img->getSrcRect();
+		img->updateCurrentFrame();
+		SDL_Rect trRect = tr->getRect();
+		trRect.x += offset->x;
+		trRect.y += offset->y;
+		//SDL_RenderFillRect(sdlutils().renderer(), &trRect); //Debug para ver la hitbox
+		textures[textureId]->render(srcRect, trRect, tr->getRotation());
+	}
+	
+
 	// BULLETS
 	const auto& buls = mngr_->getEntities(_grp_BULLETS);
 	for (auto& b : buls) {
 		Transform* tr = mngr_->getComponent<Transform>(b);
 		gameTextures textureId = mngr_->getComponent<RenderComponent>(b)->getTexture();
+		SDL_Rect trRect = tr->getRect();
+		trRect.x += offset->x;
+		trRect.y += offset->y;
+		textures[textureId]->render(trRect, tr->getRotation());
+	}
+
+	//ICONS
+	const auto& icons = mngr_->getEntities(_grp_ICONS);
+	for (auto& i : icons) {
+		Transform* tr = mngr_->getComponent<Transform>(i);
+		gameTextures textureId = mngr_->getComponent<RenderComponent>(i)->getTexture();
 		SDL_Rect trRect = tr->getRect();
 		trRect.x += offset->x;
 		trRect.y += offset->y;
