@@ -76,7 +76,7 @@ void MainControlSystem::OnStartGame() {
 
 	// Initializaci�n del Nexo
 	string nexusTextureName = "nexusLvl" + turrentLevels_[_twr_NEXUS];
-	initializeNexus(nexusLvl1, 1000.0f, { 30.0f, 30.0f });		// Editar para usar NexusTextureName
+	initializeNexus(nexusLvl1, 1000.0f, { 600.0f, 1000.0f });		// Editar para usar NexusTextureName
 	cout << "ronda1 empieza";
 }
 
@@ -94,7 +94,7 @@ void MainControlSystem::initializeNexus(gameTextures texture, int life, Vector2D
 	mngr_->addComponent<NexusComponent>(nexo);
 	mngr_->addComponent<RenderComponent>(nexo, texture);
 	mngr_->addComponent<HealthComponent>(nexo, life);
+	mngr_->addComponent<FramedImage>(nexo, 1, 1, 1011, 673, 1, 1, 1);
 	mngr_->addComponent<Transform>(nexo)->setPosition(pos);
-
 	cout << "Nexo: " << texture << life << pos;
 }

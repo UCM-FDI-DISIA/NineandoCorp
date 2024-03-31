@@ -283,19 +283,19 @@
         },
         {
             "id": "nexusLvl1",
-            "file": "resources/images/nexus/nexus_level_1.png"
+            "file": "resources/images/Nexus/nexus_level_1.png"
         },
         {
             "id": "nexusLvl2",
-            "file": "resources/images/nexus/nexus_level_2.png"
+            "file": "resources/images/Nexus/nexus_level_2.png"
         },
         {
             "id": "nexusLvl3",
-            "file": "resources/images/nexus/nexus_level_3.png"
+            "file": "resources/images/Nexus/nexus_level_3.png"
         },
         {
             "id": "nexusLvl4",
-            "file": "resources/images/nexus/nexus_level_4.png"
+            "file": "resources/images/Nexus/nexus_level_4.png"
         },
         {
             "id": "play",
