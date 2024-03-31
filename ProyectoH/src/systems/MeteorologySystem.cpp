@@ -20,7 +20,7 @@ objectsSpawned_(0)
 {
 	auto& rand = sdlutils().rand();
 	timeToNextEvent_ = rand.nextInt(minTimeInterval_, maxTimeInterval_);
-	nextEvent_ = (MeteorologyEvent)rand.nextInt(1, 2);
+	nextEvent_ = (MeteorologyEvent)rand.nextInt(2, 3);
 }
 
 MeteorologySystem::~MeteorologySystem() {
@@ -111,8 +111,8 @@ void MeteorologySystem::generateMeteorite() {
 
 	auto& rand = sdlutils().rand();
 
-	auto x = rand.nextInt(50, 750);
-	auto y = rand.nextInt(50, 750);
+	auto x = rand.nextInt(-200, 1000);
+	auto y = rand.nextInt(200, 1500);
 	Message m;
 	m.id = _m_ANIM_CREATE;
 	m.anim_create.animSpeed = 9;

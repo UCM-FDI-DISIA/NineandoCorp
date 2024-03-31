@@ -116,16 +116,17 @@ void CollisionSystem::update() {
 						
 		}	
 
-		for (const auto& mt : meteoriteRects_) {//meteoritos-torres
+		for (const auto& mt : meteoriteRects_) {//meteoritos-enemigos
 			if (mngr_->isAlive(er)) {
 				Transform* meteoriteTR = mngr_->getComponent<Transform>(mt);
 				SDL_Rect meteoriteRect;
 				if (meteoriteTR != nullptr) meteoriteRect = meteoriteTR->getRect();
 				if (SDL_HasIntersection(&meteoriteRect, &enemyRect)) {
 					Message m;
-					m.id = _m_TOWER_TO_ATTACK;
-					m.tower_to_attack.e = er;
-					m.tower_to_attack.damage = 5;
+					m.id = _m_ENTITY_TO_ATTACK;
+					m.entity_to_attack.e = er;
+					m.entity_to_attack.src = mt;
+					m.entity_to_attack.damage = 5;
 					mngr_->send(m);
 				}
 			}
@@ -141,7 +142,7 @@ void CollisionSystem::update() {
 					Message m;
 					m.id = _m_ENTITY_TO_ATTACK;
 					m.entity_to_attack.e = er;
-					m.entity_to_attack.src = er;
+					m.entity_to_attack.src = th;
 					m.entity_to_attack.damage = 5;
 					mngr_->send(m);
 				}
@@ -230,11 +231,16 @@ void CollisionSystem::update() {
 				SDL_Rect meteoriteRect;
 				if (meteoriteTR != nullptr) meteoriteRect = meteoriteTR->getRect();
 				if (SDL_HasIntersection(&meteoriteRect, &towerRect)) {
+					if (mngr_->hasComponent<FireComponent>(t)) {//Potencia si es torre fenix
+						auto f = mngr_->getComponent<FireComponent>(t);
+						f->setDamage(f->getBaseDamage() + 20.0);
+					}
 					Message m;
 					m.id = _m_TOWER_TO_ATTACK;
 					m.tower_to_attack.e = t;
 					m.tower_to_attack.damage = 5;
 					mngr_->send(m);
+					
 				}
 			}
 		}

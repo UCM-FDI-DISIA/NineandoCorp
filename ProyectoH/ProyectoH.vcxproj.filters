@@ -181,6 +181,10 @@
     <ClCompile Include="src\utils\NetMap.cpp">
       <Filter>Sources Files\utils</Filter>
     </ClCompile>
+    <ClCompile Include="src\components\generateEnemies.cpp" />
+    <ClCompile Include="src\systems\MeteorologySystem.cpp">
+      <Filter>Sources Files\Systems</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\components\AcechanteComponent.h">
@@ -401,6 +405,10 @@
     </ClInclude>
     <ClInclude Include="src\utils\NetMap.h">
       <Filter>Headers Files\utils</Filter>
+    </ClInclude>
+    <ClInclude Include="src\components\generateEnemies.h" />
+    <ClInclude Include="src\systems\MeteorologySystem.h">
+      <Filter>Headers Files\Systems</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
