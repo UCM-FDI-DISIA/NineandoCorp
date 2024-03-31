@@ -32,6 +32,8 @@ void DragAndDrop::drop(const Vector2D& pos, Height h){
 	m2.id = _m_ADD_MONEY;
 	m2.money_data.money = -cost;
 	mngr_->send(m2);
+
+	dragging_ = false;
 }
 
 

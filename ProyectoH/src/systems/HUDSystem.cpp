@@ -206,8 +206,8 @@ void HUDSystem::update() {
 						dC->drop(tr->getPosition(), Height::LOW);
 
 						//resetea el icono de la torre
-						mngr_->changeEntityId(_grp_HUD_FOREGROUND, en);
 						dC->enableDrag(false);
+						mngr_->changeEntityId(_grp_HUD_FOREGROUND, en);
 						Vector2D aux = tr->getScale();
 						tr->setPosition(initial_pos[i] - aux / 2);
 

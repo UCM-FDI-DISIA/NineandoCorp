@@ -237,6 +237,10 @@ void RenderSystem::update() {
 		auto fI = mngr_->getComponent<FramedImage>(h);
 		Transform* tr = mngr_->getComponent<Transform>(h);
 		gameTextures textureId = mngr_->getComponent<RenderComponent>(h)->getTexture();
+		//Resetea textura en caso de no estar interactuando con el drag and drop
+		auto dnd = mngr_->getComponent<DragAndDrop>(h);
+		if (dnd != nullptr) resetTexture(textureId);
+
 		if (fI != nullptr) {
 			SDL_Rect srcRect = fI->getSrcRect();
 			textures[textureId]->render(srcRect, tr->getRect(), tr->getRotation());
@@ -261,9 +265,23 @@ void RenderSystem::update() {
 		SDL_Rect trRect = tr->getRect();
 		trRect.x += offset->x;
 		trRect.y += offset->y;
-
+		Vector2D pos = tr->getPosition();
+		Vector2D scale = tr->getScale();
 		auto fI = mngr_->getComponent<FramedImage>(e);
+		auto dnd = mngr_->getComponent<DragAndDrop>(e);
 		if (fI != nullptr) { 
+			//Pone de color verde en caso de poderse poner
+			if (dnd != nullptr) {
+
+				if (dnd->isDragged()) {//cabiar color
+					SDL_Renderer* renderer = textures[textureId]->getRenderer();
+					SDL_Point top = { pos.getX() + 30, pos.getY()};
+					SDL_Color green{ 0, 255,0 ,150 };
+
+					drawDiamond(renderer, top, 100, 40, green, green);
+				}
+
+			}
 			SDL_Rect srcRect = fI->getSrcRect();
 			textures[textureId]->render(srcRect, trRect,  tr->getRotation());
 		}
@@ -297,3 +315,71 @@ void RenderSystem::update() {
 }
 void RenderSystem::onGameOver(Uint8 winner) {
 }
+
+void RenderSystem::drawDiamond(SDL_Renderer* renderer, const SDL_Point& center, int width, int height, const SDL_Color& borderColor, const SDL_Color& fillColor)
+{
+	SDL_Point top = { center.x, center.y - height / 2 };
+	SDL_Point right = { center.x + width / 2, center.y };
+	SDL_Point bottom = { center.x, center.y + height / 2 };
+	SDL_Point left = { center.x - width / 2, center.y };
+
+	// Dibujar el rombo con líneas
+	SDL_SetRenderDrawColor(renderer, borderColor.r, borderColor.g, borderColor.b, borderColor.a);
+	SDL_RenderDrawLine(renderer, top.x, top.y, right.x, right.y);
+	SDL_RenderDrawLine(renderer, right.x, right.y, bottom.x, bottom.y);
+	SDL_RenderDrawLine(renderer, bottom.x, bottom.y, left.x, left.y);
+	SDL_RenderDrawLine(renderer, left.x, left.y, top.x, top.y);
+
+	// Rellenar el rombo
+	SDL_SetRenderDrawColor(renderer, fillColor.r, fillColor.g, fillColor.b, fillColor.a);
+	SDL_Point diamondVertices[] = { top, right, bottom, left };
+	int rW, rH;
+	SDL_GetRendererOutputSize(renderer, &rW, &rH);
+	SDL_Color green{ 0, 255, 0, 150 };
+
+	SDL_RenderFillPolygon(renderer, rW, rH, diamondVertices, 4, green);
+
+	
+}
+
+void RenderSystem::resetTexture(gameTextures texId)
+{
+	SDL_SetTextureColorMod(textures[texId]->getSDL_Texture(), 255, 255, 255);
+	SDL_SetTextureAlphaMod(textures[texId]->getSDL_Texture(), 255);
+}
+
+void RenderSystem::renderFillPolygon(SDL_Renderer* renderer, int width, int height, const SDL_Point vertices[], int numVertices, const SDL_Color& color) {
+	// Crear un array de límites verticales
+	std::vector<int> minY(width + 1, INT_MAX);
+	std::vector<int> maxY(width + 1, INT_MIN);
+
+	// Encontrar los límites verticales para cada columna
+	for (int i = 0; i < numVertices; ++i) {
+		int j = (i + 1) % numVertices;
+		int dx = abs(vertices[j].x - vertices[i].x);
+		int dy = abs(vertices[j].y - vertices[i].y);
+		int steps = std::max(dx, dy);
+
+		float xIncrement = static_cast<float>(vertices[j].x - vertices[i].x) / steps;
+		float yIncrement = static_cast<float>(vertices[j].y - vertices[i].y) / steps;
+
+		float x = vertices[i].x;
+		float y = vertices[i].y;
+
+		for (int k = 0; k <= steps; ++k) {
+			int ix = static_cast<int>(x + 0.5);
+			minY[ix] = std::min(minY[ix], static_cast<int>(y));
+			maxY[ix] = std::max(maxY[ix], static_cast<int>(y));
+			x += xIncrement;
+			y += yIncrement;
+		}
+
+		for (int x = 0; x < width; ++x) {
+			if (minY[x] <= maxY[x]) {
+				SDL_SetRenderDrawColor(renderer, color.r, color.g, color.b, color.a);
+				SDL_RenderDrawLine(renderer, x, minY[x], x, maxY[x]);
+			}
+		}
+	}
+}
+

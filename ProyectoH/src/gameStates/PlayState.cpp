@@ -15,7 +15,7 @@ PlayState::PlayState() : GameState(_gmStt_PLAY) {
 
 	Message m;
 	m.id = _m_START_GAME;
-	m.start_game_data.money = 150;
+	m.start_game_data.money = 15000;
 	mngr_->send(m, true);
 }
 
