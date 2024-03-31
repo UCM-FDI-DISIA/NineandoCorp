@@ -82,6 +82,10 @@ RenderSystem::RenderSystem() : winner_(0)
 	textures[play_hover] = &sdlutils().images().at("play_hover");
 	textures[nexus_level_3_image] = &sdlutils().images().at("nexus_level_3_image");
 	textures[nexus_level_text] = &sdlutils().msgs().at("nexus_level_text");
+	textures[hpIcon] = &sdlutils().images().at("hp_icon");
+	textures[powerIcon] = &sdlutils().images().at("powerup_icon");
+	textures[lightningIcon] = &sdlutils().images().at("lightning_icon");
+	textures[blindedIcon] = &sdlutils().images().at("blinded_icon");
 
 	//Explosions
 	textures[shieldExp] = &sdlutils().images().at("shieldExp");

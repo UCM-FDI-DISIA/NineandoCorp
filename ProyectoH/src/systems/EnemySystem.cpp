@@ -167,11 +167,11 @@ void EnemySystem::update() {
 						if (icOther->getIconType() == _ANGEL) {
 							if (!icOther->hasIcon()) {//Crearlo si no lo tiene
 								Entity* icon = mngr_->addEntity(_grp_ICONS);
-								mngr_->addComponent<RenderComponent>(icon, slimeBulletTexture);
+								mngr_->addComponent<RenderComponent>(icon, hpIcon);
 								Transform* tr = mngr_->addComponent<Transform>(icon);
 								Transform* targetTR = mngr_->getComponent<Transform>(enemy);
 								tr->setPosition(*(targetTR->getPosition()));
-								tr->setScale(*(targetTR->getScale()) / 6);
+								tr->setScale(*(targetTR->getScale()) / 4);
 
 								icOther->setHasIcon(true);
 								icOther->setIcon(icon);

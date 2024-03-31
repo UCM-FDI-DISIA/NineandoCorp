@@ -11,7 +11,7 @@ private:
 public:
 	static const cmpId id = cmpId::_ICON;
 
-	IconComponent(cmpId iconType) : hasIcon_(false), iconType_(iconType) {};
+	IconComponent(cmpId iconType) : hasIcon_(false), iconType_(iconType), icon_(nullptr) {};
 
 	Entity* getIcon() { return icon_; }
 	cmpId getIconType() { return iconType_; }
