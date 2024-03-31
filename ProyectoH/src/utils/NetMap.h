@@ -22,6 +22,16 @@ private:
 
 public:
 	NetMap(int size);
+	~NetMap() {
+		for (vector<Cell*> v : net) {
+			for (Cell* c : v) {
+				delete c;
+				c = nullptr;
+			}
+		}
+		delete offset;
+		offset = nullptr;
+	};
 
 	/// <summary>
 	/// Referencia de la casilla siendo la casilla superior la esquina superior izquierda del cuadrado

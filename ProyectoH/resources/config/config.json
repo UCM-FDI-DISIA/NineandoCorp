@@ -471,6 +471,65 @@
   ],
   "floatConst": [
 
+    
+    {
+        "id": "FenixScaleX",
+        "value": 124
+    },
+    {
+        "id": "FenixScaleY",
+        "value": 145
+    },
+    {
+        "id": "BulletScaleX",
+        "value": 125
+    },
+    {
+        "id": "BulletScaleY",
+        "value": 150
+    },
+    {
+        "id": "SniperScaleX",
+        "value": 125
+    },
+    {
+        "id": "SniperScaleY",
+        "value": 150
+    },
+    {
+        "id": "SlimeScaleX",
+        "value": 120
+    },
+    {
+        "id": "SlimeScaleY",
+        "value": 126
+    },
+    {
+        "id": "CristalScaleX",
+        "value": 135
+    },
+    {
+        "id": "CristalScaleY",
+        "value": 140
+    },
+    {
+        "id": "ClayScaleX",
+        "value": 120
+    },
+    {
+        "id": "ClayScaleY",
+        "value": 126
+    },
+    {
+        "id": "PotenciadorScaleX",
+        "value": 120
+    },
+    {
+        "id": "PotenciadorScaleY",
+        "value": 126
+    },
+
+
 
     {
       "id": "FenixEnfriamiento",
@@ -667,11 +726,11 @@
 
     {
       "id": "FenixWidth",
-      "value": 650
+      "value": 285
     },
     {
       "id": "FenixHeight",
-      "value": 900
+      "value": 410
     },
 
     {
@@ -717,11 +776,11 @@
     },
     {
       "id": "BalasWidth",
-      "value": 650
+      "value": 285
     },
     {
       "id": "BalasHeight",
-      "value": 1000
+      "value": 410
     },
 
 
@@ -764,11 +823,11 @@
     },
     {
       "id": "SlimeWidth",
-      "value": 750
+      "value": 285
     },
     {
       "id": "SlimeHeight",
-      "value": 1050
+      "value": 410
     },
 
     {
@@ -807,11 +866,11 @@
     },
     {
       "id": "DiegoSniperWidth",
-      "value": 690
+      "value": 285
     },
     {
       "id": "DiegoSniperHeight",
-      "value": 1150
+      "value": 410
     },
 
     {
@@ -844,11 +903,11 @@
     },
     {
       "id": "PotenciadoraWidth",
-      "value": 640
+      "value": 285
     },
     {
       "id": "PotenciadoraHeight",
-      "value": 1000
+      "value": 410
     },
 
     {
@@ -890,11 +949,11 @@
     },
     {
       "id": "CristalWidth",
-      "value": 875
+      "value": 285
     },
     {
       "id": "CristalHeight",
-      "value": 1500
+      "value": 410
     },
 
     {
@@ -924,11 +983,11 @@
     },
     {
       "id": "ArcillaWidth",
-      "value": 720
+      "value": 285
     },
     {
       "id": "ArcillaHeight",
-      "value": 1200
+      "value": 410
     },
     {
       "id": "FireWidth",
