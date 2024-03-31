@@ -8,8 +8,8 @@
 #include "../game/Game.h"
 
 
-MeteorologySystem::MeteorologySystem(): minTimeInterval_(0.0),
-maxTimeInterval_(1.0), 
+MeteorologySystem::MeteorologySystem(): minTimeInterval_(2.0),
+maxTimeInterval_(5.0), 
 elapsedTime_(0) ,
 thundersInterval_(0.5),
 meteoriteInterval_(1.5),
@@ -20,7 +20,7 @@ objectsSpawned_(0)
 {
 	auto& rand = sdlutils().rand();
 	timeToNextEvent_ = rand.nextInt(minTimeInterval_, maxTimeInterval_);
-	nextEvent_ = (MeteorologyEvent)rand.nextInt(4, 5);
+	nextEvent_ = (MeteorologyEvent)rand.nextInt(1, 2);
 }
 
 MeteorologySystem::~MeteorologySystem() {
@@ -139,8 +139,8 @@ void MeteorologySystem::generateThunder() {
 
 	auto& rand = sdlutils().rand();
 
-	auto x = rand.nextInt(50, 750);
-	auto y = rand.nextInt(50, 750);
+	auto x = rand.nextInt(-200, 1000);
+	auto y = rand.nextInt(200, 1500);
 
 	Message m;
 	m.id = _m_ANIM_CREATE;
@@ -282,7 +282,7 @@ void MeteorologySystem::update() {
 			auto& rand = sdlutils().rand();
 			elapsedTime_ = 0.0;
 			timeToNextEvent_ = rand.nextInt(minTimeInterval_, maxTimeInterval_);
-			nextEvent_ = (MeteorologyEvent)rand.nextInt(0, 5);
+			nextEvent_ = (MeteorologyEvent)rand.nextInt(1, 2);
 			objectsSpawned_ = 0;
 			elapsedSpawn_ = 0;
 			quantity_ = 0;

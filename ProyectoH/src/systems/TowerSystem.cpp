@@ -2,6 +2,7 @@
 #include "..//ecs/ecs.h"
 #include "..//components/SlimeBullet.h"
 #include "..//components/ShieldComponent.h"
+#include "..//components/TowerStates.h"
 
 
 TowerSystem::TowerSystem() : active_(true) {
@@ -432,7 +433,7 @@ void TowerSystem::addTower(twrId type,const Vector2D& pos, Height height) {
 	Transform* tr = mngr_->addComponent<Transform>(t);//transform
 	mngr_->addComponent<ShieldComponent>(t, 0);
 	tr->setPosition(pos);
-	
+	mngr_->addComponent<TowerStates>(t);
 	mngr_->addComponent<UpgradeTowerComponent>(t, type, 4);
 	float health = 100.0f;
 	if (height == LOW) {

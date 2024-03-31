@@ -1,5 +1,6 @@
 #include "CollisionSystem.h"
 #include "..//components/SlimeBullet.h"
+#include "..//components/TowerStates.h"
 #include "../game/Game.h"
 
 CollisionSystem::CollisionSystem():fenixRects_(), slimeRects_(), enemyRects_() {
@@ -80,9 +81,8 @@ void CollisionSystem::update() {
 	const float timeInterval = 0.25f;
 	const auto& slimes = mngr_->getEntities(_grp_AREAOFATTACK);
 	const auto& enemies = mngr_->getHandler(_hdlr_ENEMIES);
-	const auto& entities = mngr_->getEntities(_grp_TOWERS_AND_ENEMIES);
-
-	
+	const auto& lowTowers = mngr_->getHandler(_hdlr_LOW_TOWERS);
+	const auto& highTowers = mngr_->getHandler(_hdlr_HIGH_TOWERS);
 
 	for (const auto& er : enemies) {
 		SDL_Rect enemyRect = mngr_->getComponent<Transform>(er)->getRect();
@@ -115,6 +115,56 @@ void CollisionSystem::update() {
 			}
 						
 		}	
+
+		for (const auto& mt : meteoriteRects_) {//meteoritos-torres
+			if (mngr_->isAlive(er)) {
+				Transform* meteoriteTR = mngr_->getComponent<Transform>(mt);
+				SDL_Rect meteoriteRect;
+				if (meteoriteTR != nullptr) meteoriteRect = meteoriteTR->getRect();
+				if (SDL_HasIntersection(&meteoriteRect, &enemyRect)) {
+					Message m;
+					m.id = _m_TOWER_TO_ATTACK;
+					m.tower_to_attack.e = er;
+					m.tower_to_attack.damage = 5;
+					mngr_->send(m);
+				}
+			}
+		}
+		std::cout << thunderRects_.size();
+		for (auto& th : thunderRects_) {//rayos-enemigos
+			if (mngr_->isAlive(er)) {
+				Transform* thunderTR = mngr_->getComponent<Transform>(th);
+				SDL_Rect thunderRect;
+				bool active = mngr_->hasComponent<Transform>(th);
+				if (active) thunderRect = thunderTR->getRect();
+				if (active && SDL_HasIntersection(&thunderRect, &enemyRect)) {
+					Message m;
+					m.id = _m_ENTITY_TO_ATTACK;
+					m.entity_to_attack.e = er;
+					m.entity_to_attack.src = er;
+					m.entity_to_attack.damage = 5;
+					mngr_->send(m);
+				}
+			}		
+		}
+		//thunderRects_.clear();
+		
+
+		for (const auto& eq : earthquakeRects_) {//terremoto-enemigos
+			if (mngr_->isAlive(er)) {
+				Transform* earthquakeTR = mngr_->getComponent<Transform>(eq);
+				SDL_Rect earthquakeRect;
+				if (earthquakeTR != nullptr) earthquakeRect = earthquakeTR->getRect();
+				if (SDL_HasIntersection(&earthquakeRect, &enemyRect)) {
+					Message m;
+					m.id = _m_DECREASE_SPEED;
+					m.decrease_speed.e = er;
+					m.decrease_speed.slowPercentage = 0.7f;
+					mngr_->send(m);
+				}
+			}
+			
+		}
 
 		for (const auto& sr : slimes) {
 			
@@ -151,105 +201,60 @@ void CollisionSystem::update() {
 			}				
 		}
 	}
-	if (!thunderRects_.empty()) {
-		const auto& th = thunderRects_[0];
-		if (mngr_->isAlive(th)) {
-			Transform* thunderTR = mngr_->getComponent<Transform>(th);
-			SDL_Rect thunderRect;
-			if (thunderTR != nullptr) thunderRect = thunderTR->getRect();
-			for (const auto& er : entities) {
-				SDL_Rect entityRect = mngr_->getComponent<Transform>(er)->getRect();
-				SDL_bool col = SDL_HasIntersection(&thunderRect, &entityRect);
-				if (col) {
-					std::cout << "danoRayo ";
-					auto cmpTower = mngr_->getComponent<UpgradeTowerComponent>(er);
-					auto cmpEnemy = mngr_->getComponent<MovementComponent>(er);
 
-					if (cmpTower != nullptr) {
-						Message m;
-						m.id = _m_TOWER_TO_ATTACK;
-						m.tower_to_attack.e = er;
-						m.tower_to_attack.damage = 5;
-						mngr_->send(m);
-					}
-					else if (cmpEnemy != nullptr) {
-						Message m;
-						m.id = _m_ENTITY_TO_ATTACK;
-						m.entity_to_attack.e = er;
-						m.entity_to_attack.src = th;
-						m.entity_to_attack.damage = 5;
-						mngr_->send(m);
+	for (const auto& t : lowTowers)
+	{
+		SDL_Rect towerRect = mngr_->getComponent<Transform>(t)->getRect();
+
+		for (const auto& th : thunderRects_) {//rayos-torres
+			if (mngr_->isAlive(t)) {
+				Transform* thunderTR = mngr_->getComponent<Transform>(th);
+				SDL_Rect thunderRect;
+				if (thunderTR != nullptr) thunderRect = thunderTR->getRect();
+				auto towerState = mngr_->getComponent<TowerStates>(t);
+				if (SDL_HasIntersection(&thunderRect, &towerRect)) {
+					Message m;
+					m.id = _m_TOWER_TO_ATTACK;
+					m.tower_to_attack.e = t;
+					m.tower_to_attack.damage = 5;
+					mngr_->send(m);
+					if (towerState != nullptr) {
+						towerState->setCegado(true, 5.0f);//Ciega
 					}
 				}
 			}
 		}
-	}
-	
-	if (!meteoriteRects_.empty()) {
-		const auto& mt = meteoriteRects_[0];
-		if (mngr_->isAlive(mt)) {
-			Transform* thunderTR = mngr_->getComponent<Transform>(mt);
-			SDL_Rect thunderRect;
-			if (thunderTR != nullptr) thunderRect = thunderTR->getRect();
-			for (const auto& er : entities) {
-				SDL_Rect entityRect = mngr_->getComponent<Transform>(er)->getRect();
-				SDL_bool col = SDL_HasIntersection(&thunderRect, &entityRect);
-				if (col) {
-					std::cout << "danoRayo ";
-					auto cmpTower = mngr_->getComponent<UpgradeTowerComponent>(er);
-					auto cmpEnemy = mngr_->getComponent<MovementComponent>(er);
-
-					if (cmpTower != nullptr) {
-						Message m;
-						m.id = _m_TOWER_TO_ATTACK;
-						m.tower_to_attack.e = er;
-						m.tower_to_attack.damage = 5;
-						mngr_->send(m);
-					}
-					else if (cmpEnemy != nullptr) {
-						Message m;
-						m.id = _m_ENTITY_TO_ATTACK;
-						m.entity_to_attack.e = er;
-						m.entity_to_attack.src = mt;
-						m.entity_to_attack.damage = 5;
-						mngr_->send(m);
-					}
+		for (const auto& mt : meteoriteRects_) {//meteoritos-torres
+			if (mngr_->isAlive(t)) {
+				Transform* meteoriteTR = mngr_->getComponent<Transform>(mt);
+				SDL_Rect meteoriteRect;
+				if (meteoriteTR != nullptr) meteoriteRect = meteoriteTR->getRect();
+				if (SDL_HasIntersection(&meteoriteRect, &towerRect)) {
+					Message m;
+					m.id = _m_TOWER_TO_ATTACK;
+					m.tower_to_attack.e = t;
+					m.tower_to_attack.damage = 5;
+					mngr_->send(m);
 				}
 			}
 		}
-	}
-	for (const auto& ea : earthquakeRects_) {
-		if (mngr_->isAlive(ea)) {
-			Transform* earthquakeTR = mngr_->getComponent<Transform>(ea);
-			SDL_Rect earthquakeRect;
-			if (earthquakeTR != nullptr)earthquakeRect = earthquakeTR->getRect();
-			for (const auto& er : entities) {
-				SDL_Rect entityRect = mngr_->getComponent<Transform>(er)->getRect();
-				SDL_bool col = SDL_HasIntersection(&earthquakeRect, &entityRect);
-				if (col) {
-					std::cout << "danoRayo ";
-					auto cmpDirt = mngr_->getComponent<DirtTower>(er);
-					auto cmpEnemy = mngr_->getComponent<MovementComponent>(er);
-
-					if (cmpDirt != nullptr) {
-						Message m;
-						m.id = _m_TOWER_TO_ATTACK;
-						m.tower_to_attack.e = er;
-						m.tower_to_attack.damage = 5;
-						mngr_->send(m);
-					}
-					else if (cmpEnemy != nullptr) {
-						Message m;
-						m.id = _m_DECREASE_SPEED;
-						m.decrease_speed.e = er;
-						m.decrease_speed.slowPercentage = 0.7f;
-						mngr_->send(m);
-						mngr_->send(m);
-					}
+		for (const auto& eq : earthquakeRects_) {//terremoto-torres
+			if (mngr_->isAlive(t)) {
+				Transform* earthquakeTR = mngr_->getComponent<Transform>(eq);
+				SDL_Rect earthquakeRect;
+				if (earthquakeTR != nullptr) earthquakeRect = earthquakeTR->getRect();
+				if (SDL_HasIntersection(&earthquakeRect, &towerRect)) {
+					Message m;
+					m.id = _m_TOWER_TO_ATTACK;
+					m.tower_to_attack.e = t;
+					m.tower_to_attack.damage = 5;
+					mngr_->send(m);
 				}
 			}
 		}
+
 	}
-	
+
+	//if(thunderRects_.size() > 0)thunderRects_.clear();
 }
 
