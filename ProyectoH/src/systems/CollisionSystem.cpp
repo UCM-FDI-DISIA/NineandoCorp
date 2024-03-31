@@ -130,8 +130,8 @@ void CollisionSystem::update() {
 				}
 			}
 		}
-		std::cout << thunderRects_.size();
-		for (auto& th : thunderRects_) {//rayos-enemigos
+
+		for (const auto& th : thunderRects_) {//rayos-enemigos
 			if (mngr_->isAlive(er)) {
 				Transform* thunderTR = mngr_->getComponent<Transform>(th);
 				SDL_Rect thunderRect;
@@ -145,7 +145,7 @@ void CollisionSystem::update() {
 					m.entity_to_attack.damage = 5;
 					mngr_->send(m);
 				}
-			}		
+			}	
 		}
 		//thunderRects_.clear();
 		
@@ -196,7 +196,7 @@ void CollisionSystem::update() {
 					m.reset_speed.speed = 0.0f;
 					mngr_->send(m);
 					mngr_->setAlive(sr, false); 
-					removeRect(sr, _SLIME);
+					//removeRect(sr, _SLIME);
 				}
 			}				
 		}

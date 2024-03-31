@@ -52,20 +52,25 @@ Entity* ParticleSystem::addParticle(grpId id, gameTextures tex, Vector2D pos,vec
 	mngr_->addComponent<ParticleLifeTime>(p, iter);
 	auto t = mngr_->addComponent<Transform>(p);
 	Vector2D correct;
+	bool meteorologic = false;
 	switch (tex)
 	{
 	
 	case thunder:
 		correct = { t->getWidth() / 1.2f, t->getHeight() / 0.4f };
+		meteorologic = true;
 		break;
 	case meteorites:
 		correct = { t->getWidth() / 1.05f, t->getHeight() / 0.55f };
+		meteorologic = true;
 		break;
 	case earthquake:
 		correct = { t->getWidth() / 3.6f, t->getHeight() / 2.0f };
+		meteorologic = true;
 		break;
 	case tornado:
 		correct = { t->getWidth(), t->getHeight()  };
+		meteorologic = true;
 		for (auto& e : route) {
 			e = e - correct;
 		}
@@ -85,10 +90,13 @@ Entity* ParticleSystem::addParticle(grpId id, gameTextures tex, Vector2D pos,vec
 		
 	}
 	
-	t->setScale(scale);
-	Message m;
-	m.id = _m_RETURN_ENTITY;
-	m.return_entity.ent = p;
-	mngr_->send(m);
+	if (meteorologic) {
+		t->setScale(scale);
+		Message m;
+		m.id = _m_RETURN_ENTITY;
+		m.return_entity.ent = p;
+		mngr_->send(m);
+	}
+	
 	return p;
 }
