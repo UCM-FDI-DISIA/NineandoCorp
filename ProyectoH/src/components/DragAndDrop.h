@@ -36,11 +36,7 @@ public:
 	/// <summary>
 	/// Sigue al cursor y se situa en la casilla mas cercana
 	/// </summary>
-	void drag();
-	
-	/// <param name="pos">posicion del mouse</param>
-	/// <returns>posicion relativa de la casilla correspondiente</returns>
-	Vector2D getPosFromTile(const Vector2D& pos);
+	void drag(const Vector2D& tilePos);
 
 	
 	/// <param name="initPos">posicion relativa de la casilla</param>
@@ -53,9 +49,17 @@ public:
 	/// <returns>la escala correspondiente al tipo de torre</returns>
 	Vector2D setScaleToIcon(twrId tId);
 
+	inline twrId getTowerId() const {
+		return tId_;
+	}
+
+	inline bool canDrop() const { return canDrop_; }
+
+	inline void enableDrop(bool b) { canDrop_ = b; }
 private:
 
 	bool dragging_;
+	bool canDrop_;
 	Transform* tr_;
 	twrId tId_;
 	int cost;

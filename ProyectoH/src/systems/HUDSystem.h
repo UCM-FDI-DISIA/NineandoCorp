@@ -20,6 +20,8 @@ public:
 private: 
 	int intAt(basic_string<char> s) { return sdlutils().intConst().at(s); }
 	
+	Cell* getCellFromTile(const Vector2D& pos);
+
 	/// <summary>
 	/// Arrastra el icono de la torre correspondiente dependiendo de la posicion del cursor
 	/// </summary>
