@@ -229,8 +229,8 @@ void EnemySystem::update() {
 				for (const auto& enemy : enemies) {
 					IconComponent* icOther = mngr_->getComponent<IconComponent>(enemy);
 					if (anc->getDistance(mngr_->getComponent<Transform>(enemy)->getPosition()) < anc->getRange()&&enemy!=e) {
-						if (icOther == nullptr)	icOther = mngr_->addComponent<IconComponent>(enemy, _ANGEL);//Agregarselo si no lo tiene
-						if (icOther->getIconType() == _ANGEL) {
+						if (icOther == nullptr)	icOther = mngr_->addComponent<IconComponent>(enemy, _HEALED);//Agregarselo si no lo tiene
+						if (icOther->getIconType() == _HEALED) {
 							if (!icOther->hasIcon()) {//Crearlo si no lo tiene
 								Entity* icon = mngr_->addEntity(_grp_ICONS);
 								mngr_->addComponent<RenderComponent>(icon, hpIcon);

@@ -148,7 +148,26 @@ void TowerSystem::update() {
 			
 			if (tw->getCegado()) {//si esta cegada
 				tw->setElapsed(tw->getElapsed() + game().getDeltaTime());
+				IconComponent* ic = mngr_->getComponent<IconComponent>(t);
+				if (ic == nullptr)	ic = mngr_->addComponent<IconComponent>(t, _PARALIZED);//Agregarselo si no lo tiene
+				if (ic->getIconType() == _PARALIZED) {
+					if (!ic->hasIcon()) {//Crearlo si no lo tiene
+						Entity* icon = mngr_->addEntity(_grp_ICONS);
+						mngr_->addComponent<RenderComponent>(icon, lightningIcon);
+						Transform* tr = mngr_->addComponent<Transform>(icon);
+						Transform* targetTR = mngr_->getComponent<Transform>(t);
+						tr->setPosition(*(targetTR->getPosition()));
+						tr->setScale(*(targetTR->getScale()) / 4);
+
+						ic->setHasIcon(true);
+						ic->setIcon(icon);
+					}
+				}
 				if (tw->getElapsed() > tw->getCegado()) {
+					if (ic != nullptr && ic->hasIcon() && ic->getIconType() == _PARALIZED) {//Eliminarlo si no se encuentra en la distancia
+						ic->setHasIcon(false);
+						mngr_->setAlive(ic->getIcon(), false);
+					}
 					tw->setCegado(false, 0.0);
 					tw->setElapsed(0.0);
 				}

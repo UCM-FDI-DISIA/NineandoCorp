@@ -15,6 +15,7 @@
 #include "../components/FramedImage.h"
 #include "../components/UpgradeTowerComponent.h"
 #include "../components/FireComponent.h"
+#include "../components/IconComponent.h"
 #include "../game/Game.h"
 #include <list>
 #include <algorithm>

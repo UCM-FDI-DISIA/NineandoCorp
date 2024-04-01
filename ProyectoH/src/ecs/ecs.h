@@ -258,6 +258,10 @@ enum gameTextures {
 	gmTxtrSize
 };
 
+enum iconId {
+	_BLINDED, _PARALIZED, _HEALED, _POWERUP
+};
+
 inline Uint16 sdlnet_hton(Uint16 v) {
 	Uint16 nv;
 	SDLNet_Write16(v, &nv);
