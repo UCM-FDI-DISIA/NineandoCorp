@@ -369,18 +369,19 @@ void RenderSystem::update() {
 		auto fI = mngr_->getComponent<FramedImage>(e);
 		auto dnd = mngr_->getComponent<DragAndDrop>(e);
 		if (fI != nullptr) { 
-			//Pone de color verde en caso de poderse poner
 			if (dnd != nullptr) {
-
-				if (dnd->isDragged()) {//cabiar color
+				//Dibuja un rectangulo debajo de la torre
+				if (dnd->isDragged()) {
 					SDL_Renderer* renderer = textures[textureId]->getRenderer();
 					SDL_Point center = { pos.getX() + (scale.getX() / 2) - 8, pos.getY() + (3 * scale.getY() / 4)};
 					
+					//Seleccion de color si se puede poner la torre o no
 					SDL_Color color;
 					if (dnd->canDrop())
-						color = { 0, 255,0 , 100 };
-					else color = { 255, 0, 0, 100 };
+						color = { 0, 255,0 , 100 }; //verde 
+					else color = { 255, 0, 0, 100 }; //rojo 
 
+					// Ajuste de posicion y escala del rectangulo
 					auto mapSys = mngr_->getSystem<mapSystem>();
 					int w = 98;
 					auto h = tanf(M_PI / 6) * (w / 2) + 20;

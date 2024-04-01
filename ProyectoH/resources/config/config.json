@@ -529,6 +529,63 @@
         "value": 126
     },
 
+    {
+        "id": "IconFenixScaleX",
+        "value": 60
+    },
+    {
+        "id": "IconFenixScaleY",
+        "value": 80
+    },
+    {
+        "id": "IconBulletScaleX",
+        "value": 55
+    },
+    {
+        "id": "IconBulletScaleY",
+        "value": 80
+    },
+    {
+        "id": "IconSniperScaleX",
+        "value": 45
+    },
+    {
+        "id": "IconSniperScaleY",
+        "value": 80
+    },
+    {
+        "id": "IconSlimeScaleX",
+        "value": 60
+    },
+    {
+        "id": "IconSlimeScaleY",
+        "value": 80
+    },
+    {
+        "id": "IconCristalScaleX",
+        "value": 55
+    },
+    {
+        "id": "IconCristalScaleY",
+        "value": 80
+    },
+    {
+        "id": "IconClayScaleX",
+        "value": 60
+    },
+    {
+        "id": "IconClayScaleY",
+        "value": 80
+    },
+    {
+        "id": "IconPotenciadorScaleX",
+        "value": 55
+    },
+    {
+        "id": "IconPotenciadorScaleY",
+        "value": 80
+    },
+
 
 
     {

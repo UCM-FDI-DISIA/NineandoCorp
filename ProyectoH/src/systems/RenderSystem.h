@@ -33,7 +33,6 @@ public:
 	/// </summary>
 	/// <param name="width">renderer width</param>
 	/// <param name="height">renderer height</param>
-	
 	void renderFillPolygon(SDL_Renderer* renderer, int width, int height, const SDL_Point vertices[],
 		int numVertices, const SDL_Color& color);
 	
@@ -41,7 +40,6 @@ public:
 	/// <summary>
 	/// Define un rombo en base a su centro, ancho y alto y lo renderiza
 	/// </summary>
-	
 	void drawDiamond(SDL_Renderer* renderer, const SDL_Point& top, 
 					int width, int height, const SDL_Color& fillColor);
 private:
