@@ -96,6 +96,8 @@ private:
 	/// </summary>
 	void OnStartGame();
 
+	void showTempText(string txt, const SDL_Color& color, const Vector2D& pos, const Vector2D& scale, int time);
+
 	int money_ = 0;
 	int costs[_twr_SIZE];
 	Entity* moneyText_;

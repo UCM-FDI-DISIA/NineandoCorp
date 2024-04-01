@@ -51,6 +51,7 @@ enum cmpId : cmpId_type {
 	_TEXT,
 	_ANGEL,
 	_ICON,
+	_LIMITEDTIME,
 
 
 	// do not remove this
@@ -188,7 +189,8 @@ enum msgId : msgId_type {
 	_m_LEVEL_SELECTED,
 	_m_ANIM_CREATE,
 	_m_RETURN_ENTITY,
-	_m_ABLEBUTTONS
+	_m_ABLEBUTTONS,
+	_m_ADD_TEXT
 };
 
 using twrId_type = uint8_t;
@@ -293,6 +295,15 @@ inline Uint8* _deserialize_(float& v, Uint8* buf) {
 }
 struct Message {
 msgId_type id;
+
+	//_m_ADD_TEXT
+	struct {
+		string txt;
+		SDL_Color color;
+		Vector2D pos;
+		Vector2D scale;
+		int time;
+	}add_text_data;
 	// _m_ABLEBUTTONS
 	struct {
 		hdlrId_type buttonId;

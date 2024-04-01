@@ -185,6 +185,9 @@
     <ClCompile Include="src\systems\MeteorologySystem.cpp">
       <Filter>Sources Files\Systems</Filter>
     </ClCompile>
+    <ClCompile Include="src\components\AngelComponent.cpp" />
+    <ClCompile Include="src\components\iconComponent.cpp" />
+    <ClCompile Include="src\components\LimitedTime.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\components\AcechanteComponent.h">
@@ -410,6 +413,9 @@
     <ClInclude Include="src\systems\MeteorologySystem.h">
       <Filter>Headers Files\Systems</Filter>
     </ClInclude>
+    <ClInclude Include="src\components\AngelComponent.h" />
+    <ClInclude Include="src\components\iconComponent.h" />
+    <ClInclude Include="src\components\LimitedTime.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\json\JSONValue.cpp">

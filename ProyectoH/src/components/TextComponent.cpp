@@ -14,5 +14,5 @@ void TextComponent::update() {
 	textTexture_ = new Texture(sdlutils().renderer(),
 		text_,
 		sdlutils().fonts().at(font_),
-		build_sdlcolor(color_));
+		color_);
 }

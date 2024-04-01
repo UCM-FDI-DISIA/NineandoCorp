@@ -221,8 +221,22 @@ void HUDSystem::update() {
 					//click izquierdo para colocar la torre
 					else if (ih().getMouseButtonState(InputHandler::MOUSEBUTTON::LEFT) == 1) {
 						auto tr = mngr_->getComponent<Transform>(en);
-						dC->drop(tr->getPosition(), Height::LOW);
-						cell->isFree = false;
+						if (cell->isFree) {
+							dC->drop(tr->getPosition(), Height::LOW);
+							cell->isFree = false;
+						}
+						else {
+							//mensaje de no colocar
+							Message m;
+							m.id = _m_ADD_TEXT;
+							m.add_text_data.txt = "NO SE PUEDE COLOCAR EN ESTA POSICION";
+							m.add_text_data.color = { 255, 0 ,0, 255 }; 
+							Vector2D txtScale = Vector2D(800.0f, 75.0f); 
+							m.add_text_data.pos = Vector2D(sdlutils().width() / 2, sdlutils().height() / 2) - (txtScale / 2);
+							m.add_text_data.scale = txtScale; 
+							m.add_text_data.time = 1000;
+							mngr_->send(m);
+						}
 
 						//resetea el icono de la torre
 						dC->enableDrag(false);

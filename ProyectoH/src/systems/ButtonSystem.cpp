@@ -3,6 +3,7 @@
 #include "../ecs/Manager.h"
 #include "../components/TextComponent.h"
 #include "../components/FramedImage.h"
+#include "../components/LimitedTime.h"
 
 ButtonSystem::ButtonSystem(hdlrId_type but_id) : 
 	hdlr_but_id(but_id){
@@ -38,6 +39,14 @@ void ButtonSystem::receive(const Message& m){
 		break;
 	case _m_ABLEBUTTONS:
 		enableAllButton(m.able_buttons_data.isAble, m.able_buttons_data.buttonId);
+		break;
+	case _m_ADD_TEXT:
+		showTempText(m.add_text_data.txt,  
+				 m.add_text_data.color, 
+				 m.add_text_data.pos,	 
+			     m.add_text_data.scale,
+				 m.add_text_data.time
+					);
 		break;
 	default:
 		break;
@@ -78,6 +87,15 @@ void ButtonSystem::manageButtons() {
 					if (type != ButtonTypes::none) callFunction(type, en);
 				}
 			}
+		}
+	}
+
+	//update de texto con limitTime
+	auto txts = mngr_->getEntities(_grp_TEXTS);
+	for (auto txt : txts) {
+		auto limT = mngr_->getComponent<LimitedTime>(txt);
+		if (limT != nullptr) {
+			limT->update();
 		}
 	}
 }
@@ -252,6 +270,16 @@ void ButtonSystem::OnStartGame() {
 	tr->setPosition({ 0,0 });
 	tr->setScale({ 150, 50 });
 	mngr_->addComponent<TextComponent>(moneyText_, "Monedas: " + std::to_string(money_));
+}
+
+void ButtonSystem::showTempText(string txt, const SDL_Color& color, const Vector2D& pos, const Vector2D& scale, int time)
+{
+	auto text = mngr_->addEntity(_grp_TEXTS);
+	Transform* tr = mngr_->addComponent<Transform>(text);
+	tr->setPosition(pos);
+	tr->setScale(scale);
+	mngr_->addComponent<TextComponent>(text, txt, color);
+	mngr_->addComponent<LimitedTime>(text, time);
 }
 
 void ButtonSystem::updateText() {
