@@ -47,6 +47,9 @@ void CollisionSystem::addRect(Entity* rect, rectId id) {
 		case _EARTHQUAKE:
 			earthquakeRects_.push_back(rect);
 			break;
+		case _TORNADO:
+			tornadoRects_.push_back(rect);
+			break;
 		default:
 			break;
 	}
@@ -72,6 +75,9 @@ void CollisionSystem::removeRect(Entity* rect, rectId id) {
 		break;
 	case _EARTHQUAKE:
 		earthquakeRects_.erase(find(earthquakeRects_.begin(), earthquakeRects_.end(), rect));
+		break;
+	case _TORNADO:
+		tornadoRects_.erase(find(tornadoRects_.begin(), tornadoRects_.end(), rect));
 		break;
 	}
 	
@@ -127,6 +133,20 @@ void CollisionSystem::update() {
 					m.entity_to_attack.e = er;
 					m.entity_to_attack.src = mt;
 					m.entity_to_attack.damage = 5;
+					mngr_->send(m);
+				}
+			}
+		}
+
+		for (const auto& t : tornadoRects_) {//meteoritos-enemigos
+			if (mngr_->isAlive(er)) {
+				Transform* tornadoTR = mngr_->getComponent<Transform>(t);
+				SDL_Rect tornadoRect;
+				if (tornadoTR != nullptr) tornadoRect = tornadoTR->getRect();
+				if (SDL_HasIntersection(&tornadoRect, &enemyRect)) {
+					Message m;
+					m.id = _m_CHANGE_ROUTE;
+					m.change_route.enemy = er;
 					mngr_->send(m);
 				}
 			}

@@ -149,6 +149,7 @@ enum rectId : rectId_type {
 	_METEORITE,
 	_THUNDER,
 	_EARTHQUAKE,
+	_TORNADO,
 
 	_LAST_RECT_ID
 };
@@ -188,7 +189,8 @@ enum msgId : msgId_type {
 	_m_LEVEL_SELECTED,
 	_m_ANIM_CREATE,
 	_m_RETURN_ENTITY,
-	_m_ABLEBUTTONS
+	_m_ABLEBUTTONS,
+	_m_CHANGE_ROUTE,
 };
 
 using twrId_type = uint8_t;
@@ -350,6 +352,10 @@ msgId_type id;
 	struct {
 		Entity* ent;
 	}return_entity;
+
+	struct {
+		Entity* enemy;
+	}change_route;
 
     // _m_TOWERS_TO_ATTACK
     struct {
