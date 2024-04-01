@@ -24,6 +24,7 @@ void CollisionSystem::receive(const Message& m) {
 		break;
 	case _m_REMOVE_RECT:
 		removeRect(m.rect_data.rect, m.rect_data.id);
+		break;
 	}
 }
 
@@ -136,9 +137,10 @@ void CollisionSystem::update() {
 					mngr_->send(m);
 				}
 			}
+			//removeRect(mt, _METEORITE);
 		}
 
-		for (const auto& t : tornadoRects_) {//meteoritos-enemigos
+		for (const auto& t : tornadoRects_) {//tornado-enemigos
 			if (mngr_->isAlive(er)) {
 				Transform* tornadoTR = mngr_->getComponent<Transform>(t);
 				SDL_Rect tornadoRect;

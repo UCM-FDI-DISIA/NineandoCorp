@@ -50,7 +50,6 @@ private:
 	void onGameOver(Uint8 winner);
 
 
-	rectId getRectId(Entity* e);
 
 
 	uint8_t winner_; // 0 - None, 1 - Enemigos, 2- Jugador

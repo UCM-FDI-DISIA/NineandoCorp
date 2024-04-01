@@ -32,14 +32,35 @@ void  ParticleSystem::receive(const Message& m) {
 void ParticleSystem::update() {
 	for (auto& par : mngr_->getHandler(_hdlr_PARTICLES))
 	{
+		auto p = mngr_->getComponent<ParticleLifeTime>(par);
+		auto f = mngr_->getComponent<FramedImage>(par);
 		MovementComponent* mc = mngr_->getComponent<MovementComponent>(par);
 		RouteComponent* rc = mngr_->getComponent<RouteComponent>(par);
+
+		f->updateCurrentFrame();
+
+		
+
 		if (rc != nullptr) {
 			rc->checkdestiny();
 			if (mc != nullptr && !mc->getStop()) {
 				mc->Move();
 			}
+			else {
+				Message m;
+				m.id = _m_REMOVE_RECT;
+				m.rect_data.rect = par;
+				m.id = _TORNADO;
+				mngr_->send(m);
 
+				mngr_->setAlive(par, false);
+				mngr_->deleteHandler(_hdlr_PARTICLES, par);
+			}
+
+		}
+		else if (p->getIters() <= f->getIters()) {
+			mngr_->setAlive(par, false);
+			mngr_->deleteHandler(_hdlr_PARTICLES, par);
 		}
 	}
 }
@@ -84,7 +105,7 @@ Entity* ParticleSystem::addParticle(grpId id, gameTextures tex, Vector2D pos,vec
 	}
 	else {
 		MovementComponent* mc = mngr_->addComponent<MovementComponent>(p);
-		t->setSpeed(150.f);
+		t->setSpeed(300.0f);
 		t->setPosition(pos);
 		mngr_->addComponent<RouteComponent>(p, route);
 		
