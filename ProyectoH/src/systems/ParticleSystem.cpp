@@ -50,7 +50,7 @@ void ParticleSystem::update() {
 				Message m;
 				m.id = _m_REMOVE_RECT;
 				m.rect_data.rect = par;
-				m.id = _TORNADO;
+				m.rect_data.id = _TORNADO;
 				mngr_->send(m);
 
 				mngr_->setAlive(par, false);
