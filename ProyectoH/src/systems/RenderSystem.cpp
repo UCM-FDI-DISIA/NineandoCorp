@@ -373,7 +373,7 @@ void RenderSystem::update() {
 				//Dibuja un rectangulo debajo de la torre
 				if (dnd->isDragged()) {
 					SDL_Renderer* renderer = textures[textureId]->getRenderer();
-					SDL_Point center = { pos.getX() + (scale.getX() / 2) - 8, pos.getY() + (3 * scale.getY() / 4)};
+					SDL_Point center = { (pos.getX() + (scale.getX() / 2) - 8) + offset->x, (pos.getY() + (3 * scale.getY() / 4)) + offset->y };
 					
 					//Seleccion de color si se puede poner la torre o no
 					SDL_Color color;
