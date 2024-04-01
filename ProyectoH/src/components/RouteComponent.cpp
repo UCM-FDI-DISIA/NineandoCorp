@@ -15,6 +15,8 @@ RouteComponent::initComponent() {
 void
 RouteComponent::changeRoute(std::vector<Vector2D> route) {
 	route_ = route;
+	destiny_ = 0;
+	changevelocity(route[0]);
 }
 
 void

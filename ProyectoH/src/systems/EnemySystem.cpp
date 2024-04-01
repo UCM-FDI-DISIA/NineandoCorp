@@ -82,13 +82,12 @@ void  EnemySystem::receive(const Message& m) {
 	case _m_CHANGE_ROUTE:
 		if (m.change_route.enemy != nullptr && mngr_->isAlive(m.change_route.enemy)) {
 			auto& rand = sdlutils().rand();
-			auto r = rand.nextInt(0, level);//elige ruta random dependiendo del nivel
-			if (level == 7) { r = rand.nextInt(1, level - 1); }//En el 7 hay una ruta menos
+			auto r = rand.nextInt(0, spawnsVector.size());//elige ruta random dependiendo del nivel
 			RouteComponent* rc = mngr_->getComponent<RouteComponent>(m.change_route.enemy);
 			Transform* t = mngr_->getComponent<Transform>(m.change_route.enemy);
 			auto gen = mngr_->getComponent<generateEnemies>(spawnsVector[r]);
 			auto route = gen->getRoute();
-		    gen->RoutesCorrection(t, route, 1.0f, 3.0f);
+		    gen->RoutesCorrection(t, route, 1.5f, 1.5f);
 			rc->changeRoute(route);
 		}
 		break;

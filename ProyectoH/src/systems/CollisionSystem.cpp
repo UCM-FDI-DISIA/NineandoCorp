@@ -137,8 +137,8 @@ void CollisionSystem::update() {
 					mngr_->send(m);
 				}
 			}
-			//removeRect(mt, _METEORITE);
 		}
+	
 
 		for (const auto& t : tornadoRects_) {//tornado-enemigos
 			if (mngr_->isAlive(er)) {
@@ -170,7 +170,7 @@ void CollisionSystem::update() {
 				}
 			}	
 		}
-		//thunderRects_.clear();
+	
 		
 
 		for (const auto& eq : earthquakeRects_) {//terremoto-enemigos
@@ -188,6 +188,7 @@ void CollisionSystem::update() {
 			}
 			
 		}
+		
 
 		for (const auto& sr : slimes) {
 			
@@ -219,7 +220,6 @@ void CollisionSystem::update() {
 					m.reset_speed.speed = 0.0f;
 					mngr_->send(m);
 					mngr_->setAlive(sr, false); 
-					//removeRect(sr, _SLIME);
 				}
 			}				
 		}
@@ -282,7 +282,9 @@ void CollisionSystem::update() {
 		}
 
 	}
-
+	earthquakeRects_.clear();
+	thunderRects_.clear();
+	meteoriteRects_.clear();
 	//if(thunderRects_.size() > 0)thunderRects_.clear();
 }
 

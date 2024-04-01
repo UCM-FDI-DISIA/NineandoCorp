@@ -3,7 +3,6 @@
 #include "../ecs/Manager.h"
 #include "../components/FramedImage.h"
 #include "../components/Transform.h"
-#include "../sdlutils/SDLUtils.h"
 #include "../components/RenderComponent.h"
 #include "../game/Game.h"
 
@@ -20,7 +19,7 @@ objectsSpawned_(0)
 {
 	auto& rand = sdlutils().rand();
 	timeToNextEvent_ = rand.nextInt(minTimeInterval_, maxTimeInterval_);
-	nextEvent_ = (MeteorologyEvent)rand.nextInt(3, 4);
+	nextEvent_ = (MeteorologyEvent)rand.nextInt(0, 5);
 }
 
 MeteorologySystem::~MeteorologySystem() {
