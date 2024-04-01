@@ -1,7 +1,7 @@
 #include "ParticleSystem.h"
 #include "../ecs/Manager.h"
 #include "../components/FramedImage.h"
-#include "../components/Transform.h"
+
 #include "../components/ParticleLifeTime.h"
 #include "../components/RouteComponent.h"
 #include "../components/MovementComponent.h"
@@ -65,6 +65,7 @@ void ParticleSystem::update() {
 	}
 }
 
+
 Entity* ParticleSystem::addParticle(grpId id, gameTextures tex, Vector2D pos,vector<Vector2D> route, Vector2D scale, int frameFirst, int lastFrame, int speed, int rows, int col, int width, int height, int iter) {
 	auto p = mngr_->addEntity(id);
 	mngr_->setHandler(_hdlr_PARTICLES, p);
@@ -105,7 +106,7 @@ Entity* ParticleSystem::addParticle(grpId id, gameTextures tex, Vector2D pos,vec
 	}
 	else {
 		MovementComponent* mc = mngr_->addComponent<MovementComponent>(p);
-		t->setSpeed(300.0f);
+		t->setSpeed(150.0f);
 		t->setPosition(pos);
 		mngr_->addComponent<RouteComponent>(p, route);
 		

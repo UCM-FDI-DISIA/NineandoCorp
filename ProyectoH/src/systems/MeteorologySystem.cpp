@@ -102,18 +102,6 @@ void MeteorologySystem::generateAnimEarthquake() {
 		m.anim_create.pos = Vector2D(x, y);
 		mngr_->send(m);
 	}
-	
-
-	/*for (int i = 0; i < tileSize_.getX() / 2- 1; i++) {
-		for (int j = 0; j < tileSize_.getY() - 1; j++) {
-			auto position = net->getCell(i, j)->position;
-			auto x = position.getX();
-			auto y = position.getY();
-
-			
-		}
-	}*/
-	
 }
 void MeteorologySystem::generateMeteorites(int num) {
 
