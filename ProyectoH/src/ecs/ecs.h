@@ -247,7 +247,9 @@ enum gameTextures {
 	//enemies
 	goblin, maldito, elfo, golem, angel, maestro, acechante, defensor, demonioAlado,
 	demonioInfernal, mensajero, CMaldito, principito, monje, muerte,
-
+	//enemies icons
+	goblin_icon, maldito_icon, elfo_icon, golem_icon, angel_icon, maestro_icon, acechante_icon, defensor_icon,
+	demonioAlado_icon, demonioInfernal_icon, mensajero_icon, CMaldito_icon, principito_icon, monje_icon, muerte_icon,
 	//texts
 	nexus_level_text,
 

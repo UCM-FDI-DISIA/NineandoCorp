@@ -118,6 +118,22 @@ RenderSystem::RenderSystem() : winner_(0)
 	textures[principito] = &sdlutils().images().at("principito");
 	textures[monje] = &sdlutils().images().at("monje");
 	textures[muerte] = &sdlutils().images().at("muerte");
+	//Enemies Icons
+	textures[goblin_icon] = &sdlutils().images().at("goblin_icon");
+	textures[maldito_icon] = &sdlutils().images().at("maldito_icon");
+	textures[elfo_icon] = &sdlutils().images().at("elfo_icon");
+	textures[golem_icon] = &sdlutils().images().at("golem_icon");
+	textures[angel_icon] = &sdlutils().images().at("angel_icon");
+	textures[maestro_icon] = &sdlutils().images().at("malmas_icon");
+	textures[acechante_icon] = &sdlutils().images().at("acechante_icon");
+	textures[defensor_icon] = &sdlutils().images().at("defensor_icon");
+	textures[demonioAlado_icon] = &sdlutils().images().at("demonioalado_icon");
+	textures[demonioInfernal_icon] = &sdlutils().images().at("demonioinfernal_icon");
+	textures[mensajero_icon] = &sdlutils().images().at("mensajero_icon");
+	textures[CMaldito_icon] = &sdlutils().images().at("maldito_icon");
+	textures[principito_icon] = &sdlutils().images().at("principito_icon");
+	textures[monje_icon] = &sdlutils().images().at("monje_icon");
+	textures[muerte_icon] = &sdlutils().images().at("muerte_icon");
 
 	//fenomenos
 	textures[thunder] = &sdlutils().images().at("thunder");

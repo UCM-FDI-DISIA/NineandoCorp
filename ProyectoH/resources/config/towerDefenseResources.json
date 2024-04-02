@@ -492,6 +492,67 @@
         {
           "id": "powerup_icon",
           "file": "resources/images/UI/powerup_icon.png"
+        },
+        
+        {
+            "id": "goblin_icon",
+            "file": "resources/images/Enemies/goblin.png"
+        },
+        {
+            "id": "acechante_icon",
+            "file": "resources/images/Enemies/acechante_electrico.png"
+        },
+        {
+            "id": "angel_icon",
+            "file": "resources/images/Enemies/angel.png"
+        },
+        {
+            "id": "principito_icon",
+            "file": "resources/images/Enemies/boss2.png"
+        },
+        {
+            "id": "monje_icon",
+            "file": "resources/images/Enemies/boss3.png"
+        },
+        {
+            "id": "muerte_icon",
+            "file": "resources/images/Enemies/boss4.png"
+        },
+        {
+            "id": "maldito_icon",
+            "file": "resources/images/Enemies/caballero_maldito.png"
+        },
+        {
+            "id": "Cmaldito_icon",
+            "file": "resources/images/Enemies/caballero_maldito.png"
+        },
+        {
+            "id": "defensor_icon",
+            "file": "resources/images/Enemies/defensor_real.png"
+        },
+        {
+            "id": "demonioalado_icon",
+            "file": "resources/images/Enemies/demonio_alado.png"
+        },
+        {
+            "id": "demonioinfernal_icon",
+            "file": "resources/images/Enemies/demonio_infernal.png"
+        },
+        {
+            "id": "elfo_icon",
+            "file": "resources/images/Enemies/elfoo.png"
+        },
+        {
+            "id": "golem_icon",
+            "file": "resources/images/Enemies/golem.png"
+        },
+        {
+            "id": "malmas_icon",
+            "file": "resources/images/Enemies/maestro_de_almas.png"
+        },
+        {
+            "id": "mensajero_icon",
+            "file": "resources/images/Enemies/mensajero.png"
         }
       ],
 
