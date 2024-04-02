@@ -117,7 +117,7 @@ void HUDSystem::initSystem() {
 
 	// boton de pausa
 	bS->addButton({ sdlutils().width() - 50.0f, 50.0f },
-		{ 20.0f, 20.0f },
+		{ 50.0f, 50.0f },
 		gameTextures::pause_button, gameTextures::pause_button_hover,
 		ButtonTypes::pause_main);
 }

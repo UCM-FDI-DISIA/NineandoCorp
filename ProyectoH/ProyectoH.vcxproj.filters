@@ -57,6 +57,7 @@
     <ClCompile Include="src\components\SlimeTowerComponent.cpp" />
     <ClCompile Include="src\components\TowerStates.cpp" />
     <ClCompile Include="src\systems\CollisionSystem.cpp" />
+    <ClCompile Include="src\systems\PauseSystem.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\components\AttackComponent.h" />
@@ -126,6 +127,7 @@
     <ClInclude Include="src\utils\NetMap.h" />
     <ClInclude Include="src\utils\Singleton.h" />
     <ClInclude Include="src\utils\Vector2D.h" />
+    <ClInclude Include="src\systems\PauseSystem.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\json\JSONValue.cpp">
