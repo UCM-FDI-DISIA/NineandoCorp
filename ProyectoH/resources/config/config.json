@@ -529,6 +529,63 @@
         "value": 126
     },
 
+    {
+        "id": "IconFenixScaleX",
+        "value": 60
+    },
+    {
+        "id": "IconFenixScaleY",
+        "value": 80
+    },
+    {
+        "id": "IconBulletScaleX",
+        "value": 55
+    },
+    {
+        "id": "IconBulletScaleY",
+        "value": 80
+    },
+    {
+        "id": "IconSniperScaleX",
+        "value": 45
+    },
+    {
+        "id": "IconSniperScaleY",
+        "value": 80
+    },
+    {
+        "id": "IconSlimeScaleX",
+        "value": 60
+    },
+    {
+        "id": "IconSlimeScaleY",
+        "value": 80
+    },
+    {
+        "id": "IconCristalScaleX",
+        "value": 55
+    },
+    {
+        "id": "IconCristalScaleY",
+        "value": 80
+    },
+    {
+        "id": "IconClayScaleX",
+        "value": 60
+    },
+    {
+        "id": "IconClayScaleY",
+        "value": 80
+    },
+    {
+        "id": "IconPotenciadorScaleX",
+        "value": 55
+    },
+    {
+        "id": "IconPotenciadorScaleY",
+        "value": 80
+    },
+
 
 
     {
@@ -557,7 +614,7 @@
     },
     {
       "id": "FenixDano",
-      "value": 2.5
+      "value": 10
     },
     {
       "id": "FenixTiempoDisparo",
@@ -589,7 +646,7 @@
     },
     {
       "id": "BalasVelocidad",
-      "value": 800
+      "value": 3000
     },
 
     {
@@ -635,7 +692,8 @@
     },
     {
       "id": "DiegoSniperVelocidad",
-      "value": 1000
+      "value": 3000
+
     },
     {
       "id": "DiegoSniperOffset",
@@ -701,12 +759,12 @@
 
     {
       "id": "FenixVida",
-      "value": 50
+      "value": 100
     },
 
     {
       "id": "FenixPrecio",
-      "value": 500
+      "value": 75
     },
 
     {
@@ -735,27 +793,27 @@
 
     {
       "id": "BalasVida",
-      "value": 25
+      "value": 50
     },
     {
       "id": "BalasPrecio",
-      "value": 100
+      "value": 50
     },
     {
       "id": "BalasDano",
-      "value": 5
-    },
-    {
-      "id": "BalasDano1",
-      "value": 10
-    },
-    {
-      "id": "BalasDano2",
       "value": 20
     },
     {
+      "id": "BalasDano1",
+      "value": 30
+    },
+    {
+      "id": "BalasDano2",
+      "value": 60
+    },
+    {
       "id": "BalasDano3",
-      "value": 35
+      "value": 105
     },
     {
       "id": "BalasDobleObj",
@@ -794,7 +852,7 @@
     },
     {
       "id": "SlimePrecio",
-      "value": 400
+      "value": 75
     },
     {
       "id": "SlimeRecarga",
@@ -837,11 +895,11 @@
 
     {
       "id": "DiegoSniperPrecio",
-      "value": 500
+      "value": 150
     },
     {
       "id": "DiegoSniperDano",
-      "value": 50
+      "value": 60
     },
     {
       "id": "DiegoSniperDano1",
@@ -879,7 +937,7 @@
     },
     {
       "id": "PotenciadoraPrecio",
-      "value": 400
+      "value": 300
     },
     {
       "id": "PotenciadoraElevacion",
@@ -920,7 +978,7 @@
     },
     {
       "id": "CristalPrecio",
-      "value": 200
+      "value": 350
     },
     {
       "id": "CristalEscudo",

@@ -1,6 +1,6 @@
 <h1 align="center"><b>H DEFENSE</b></h1>
 
-![logo](ProyectoH/resources/images/Miscelanious/LogodeHDefense.png)
+![logo](ProyectoH/resources/images/UI/LogodeHDefense.png)
 <h2 align="center"><b> NineandoCorp</b></h2>
 <div align="center">
     <p align="center">

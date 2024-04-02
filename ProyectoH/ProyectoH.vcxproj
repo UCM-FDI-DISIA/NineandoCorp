@@ -31,6 +31,7 @@
     <ClInclude Include="src\components\DirtTower.h" />
     <ClInclude Include="src\components\DragAndDrop.h" />
     <ClInclude Include="src\components\EnemyStates.h" />
+    <ClInclude Include="src\components\EnemyTypeComponent.h" />
     <ClInclude Include="src\components\EnhancerTower.h" />
     <ClInclude Include="src\components\FireComponent.h" />
     <ClInclude Include="src\components\FramedImage.h" />
@@ -38,6 +39,8 @@
     <ClInclude Include="src\components\GolemComponent.h" />
     <ClInclude Include="src\components\HealthComponent.h" />
     <ClInclude Include="src\components\iconComponent.h" />
+    <ClInclude Include="src\components\InteractiveTower.h" />
+    <ClInclude Include="src\components\LimitedTime.h" />
     <ClInclude Include="src\components\MaestroAlmasComponent.h" />
     <ClInclude Include="src\components\MovementComponent.h" />
     <ClInclude Include="src\components\NexusComponent.h" />
@@ -110,6 +113,7 @@
     <ClCompile Include="src\components\DiegoSniperTower.cpp" />
     <ClCompile Include="src\components\DirtTower.cpp" />
     <ClCompile Include="src\components\DragAndDrop.cpp" />
+    <ClCompile Include="src\components\EnemyTypeComponent.cpp" />
     <ClCompile Include="src\components\EnhancerTower.cpp" />
     <ClCompile Include="src\components\FireComponent.cpp" />
     <ClCompile Include="src\components\FramedImage.cpp" />
@@ -117,6 +121,8 @@
     <ClCompile Include="src\components\GolemComponent.cpp" />
     <ClCompile Include="src\components\HealthComponent.cpp" />
     <ClCompile Include="src\components\iconComponent.cpp" />
+    <ClCompile Include="src\components\InteractiveTower.cpp" />
+    <ClCompile Include="src\components\LimitedTime.cpp" />
     <ClCompile Include="src\components\MaestroAlmasComponent.cpp" />
     <ClCompile Include="src\components\MovementComponent.cpp" />
     <ClCompile Include="src\components\NexusComponent.cpp" />

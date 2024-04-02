@@ -19,9 +19,9 @@ public:
 
 private: 
 	int intAt(basic_string<char> s) { return sdlutils().intConst().at(s); }
-	
+	float floatAt(basic_string<char> s) { return sdlutils().floatConst().at(s); }
 	Cell* getCellFromTile(const Vector2D& pos);
-
+	Vector2D resetScale(twrId tId);
 	/// <summary>
 	/// Arrastra el icono de la torre correspondiente dependiendo de la posicion del cursor
 	/// </summary>

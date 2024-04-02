@@ -51,6 +51,9 @@ enum cmpId : cmpId_type {
 	_TEXT,
 	_ANGEL,
 	_ICON,
+	_LIMITEDTIME,
+	_INTERACTIVE_TOWER,
+	_ENEMYTYPE,
 
 
 	// do not remove this
@@ -166,7 +169,6 @@ enum msgId : msgId_type {
 	_m_ATTACK_NEXUS,
 	_m_TOWER_TO_ATTACK,
 	_m_TOWER_TO_BLIND,
-	_m_SHIELD_NEXUS,
 	_m_PAUSE,
 	_m_RESUME,
 	_m_START_GAME,
@@ -191,6 +193,8 @@ enum msgId : msgId_type {
 	_m_RETURN_ENTITY,
 	_m_ABLEBUTTONS,
 	_m_CHANGE_ROUTE,
+	_m_ADD_TEXT,
+	_m_ENEMYSEE
 };
 
 using twrId_type = uint8_t;
@@ -239,6 +243,8 @@ enum gameTextures {
 	// towers
 	square, bulletTowerTexture, cristalTowerTexture, phoenixTowerTexture,
 	slimeTowerTexture, boosterTowerTexture, sniperTowerTexture, clayTowerTexture, nexusTexture, fireTexture,
+	// nexus
+	nexusLvl1, nexusLvl2, nexusLvl3, nexusLvl4,
 
 	//enemies
 	goblin, maldito, elfo, golem, angel, maestro, acechante, defensor, demonioAlado,
@@ -256,6 +262,10 @@ enum gameTextures {
 
 
 	gmTxtrSize
+};
+
+enum iconId {
+	_BLINDED, _PARALIZED, _HEALED, _POWERUP
 };
 
 inline Uint16 sdlnet_hton(Uint16 v) {
@@ -295,6 +305,15 @@ inline Uint8* _deserialize_(float& v, Uint8* buf) {
 }
 struct Message {
 msgId_type id;
+
+	//_m_ADD_TEXT
+	struct {
+		string txt;
+		SDL_Color color;
+		Vector2D pos;
+		Vector2D scale;
+		int time;
+	}add_text_data;
 	// _m_ABLEBUTTONS
 	struct {
 		hdlrId_type buttonId;
@@ -343,10 +362,17 @@ msgId_type id;
 		unsigned int level;
 		NetMap* netmap;
 	}start_game_data;
+
+	// _m_OVER_GAME
+	struct
+	{
+		// No hab�a mensaje de game over, lo dejo, igual tenemos q quitarlo
+	}over_game;
+
 	//_m_ENEMY_BOOK
 	struct
 	{
-		//nose
+		int n;
 	}start_enemy_book;
 	//_m_RETURN_ENTITY
 	struct {

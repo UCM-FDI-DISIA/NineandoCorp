@@ -11,6 +11,9 @@
 #include "../components/GolemComponent.h"
 #include "../sdlutils/SDLUtils.h"
 
+#include "../systems/EnemyBookSystem.h"
+
+
 EnemySystem::EnemySystem() {
 
 }
@@ -57,6 +60,8 @@ void  EnemySystem::receive(const Message& m) {
 			HealthComponent* h = mngr_->getComponent<HealthComponent>(m.entity_to_attack.e);
 			if (h->subtractHealth(m.entity_to_attack.damage)) {
 				mngr_->deleteHandler(_hdlr_ENEMIES, m.entity_to_attack.e);
+				auto enemytype = mngr_->getComponent<EnemyTypeComponent>(m.entity_to_attack.e);
+				AddMoney(enemytype->GetEnemyType());
 				if (mngr_->hasComponent<AttackComponent>(m.entity_to_attack.src))mngr_->getComponent<AttackComponent>(m.entity_to_attack.src)->setTarget(nullptr);
 			};
 		}
@@ -140,7 +145,252 @@ std::vector<Vector2D> EnemySystem::RouteTranslate(std::vector<Vector2D> route) {
 	return route_aux;
 }
 
-void EnemySystem::update() {
+void EnemySystem::AddMoney(enmId type) {
+	int money = 0;
+	switch (type)
+	{
+	case _enm_MALMAS:
+		money = 30;
+		break;
+	case _enm_AELECTRICO:
+		money = 30;
+		break;
+	case _enm_MALDITO:
+		money = 15;
+		break;
+	case _enm_GOLEM:
+		money = 100;
+		break;
+	case _enm_DALADO:
+		money = 5;
+		break;
+	case _enm_GOBLIN:
+		money = 5;
+		break;
+	case _enm_ELFO:
+		money = 15;
+		break;
+	case _enm_MMUERTE:
+		money = 50;
+		break;
+	case _enm_ANGEL:
+		money = 25;
+		break;
+	case _enm_DINFERNAL:
+		money = 75;
+		break;
+	case _enm_DREAL:
+		money = 30;
+		break;
+	case _enm_CMALDITO:
+		money = 0;
+		break;
+	case _enm_PRINCIPITO:
+		money = 0;
+		break;
+	case _enm_MONJE:
+		money = 0;
+		break;
+	case _enm_MUERTE:
+		money = 0;
+		break;
+	default:
+		break;
+	}
+	Message m;
+	m.id = _m_ADD_MONEY;
+	m.money_data.money = money;
+	mngr_->send(m);
+}
+
+void EnemySystem::addEnemy(enmId type, Vector2D pos) {
+	Entity* t = mngr_->addEntity(_grp_TOWERS_AND_ENEMIES);
+
+	Transform* tr = mngr_->addComponent<Transform>(t);//transform
+	tr->setPosition(pos);
+
+	MovementComponent* mc = mngr_->addComponent<MovementComponent>(t);
+
+	std::vector<Vector2D> route;
+	route.push_back({ (float)sdlutils().width() / 2.f, 300.f });
+	route.push_back({ (float)sdlutils().width() / 2.f, 600.f });
+	route.push_back({ 300, 600.f });
+	Message M;
+	M.id = _m_ENEMYSEE;
+
+	switch (type) {
+	case _enm_MALMAS:
+		tr->setSpeed(30.0f);
+		mngr_->addComponent<RenderComponent>(t, square);
+		mngr_->addComponent<HealthComponent>(t, 50000);
+		mngr_->addComponent<RouteComponent>(t, route);
+		mngr_->addComponent<AttackComponent>(t, 100, 0.25, 20, false);
+		mngr_->addComponent<FramedImage>(t, 1, 1, 122, 117, 0, 0, 1);
+		M.start_enemy_book.n = 1;
+		mngr_->send(M);
+		break;
+	case _enm_AELECTRICO:
+		tr->setSpeed(70.0f);
+		mngr_->addComponent<RenderComponent>(t, square);
+		mngr_->addComponent<HealthComponent>(t, 50000);
+		mngr_->addComponent<RouteComponent>(t, route);
+		mngr_->addComponent<AttackComponent>(t, 100, 0.25, 20, false);
+		mngr_->addComponent<FramedImage>(t, 1, 1, 122, 117, 0, 0, 1);
+		M.start_enemy_book.n = 2;
+		mngr_->send(M);
+		break;
+	case _enm_MALDITO:
+		tr->setSpeed(30.0f);
+		mngr_->addComponent<RenderComponent>(t, square);
+		mngr_->addComponent<HealthComponent>(t, 50000);
+		mngr_->addComponent<RouteComponent>(t, route);
+		mngr_->addComponent<AttackComponent>(t, 100, 0.25, 20, false);
+		mngr_->addComponent<FramedImage>(t, 1, 1, 122, 117, 0, 0, 1);
+
+		M.start_enemy_book.n = 3;
+		mngr_->send(M);
+		break;
+	case _enm_GOLEM:
+		tr->setSpeed(20.0f);
+		mngr_->addComponent<RenderComponent>(t, square);
+		mngr_->addComponent<HealthComponent>(t, 50000);
+		mngr_->addComponent<RouteComponent>(t, route);
+		mngr_->addComponent<AttackComponent>(t, 100, 0.25, 20, false);
+		mngr_->addComponent<FramedImage>(t, 1, 1, 122, 117, 0, 0, 1);
+
+		M.start_enemy_book.n = 4;
+		mngr_->send(M);
+		break;
+	case _enm_DALADO:
+		tr->setSpeed(30.0f);
+		mngr_->addComponent<RenderComponent>(t, square);
+		mngr_->addComponent<HealthComponent>(t, 50000);
+		mngr_->addComponent<RouteComponent>(t, route);
+		mngr_->addComponent<AttackComponent>(t, 100, 0.25, 20, false);
+		mngr_->addComponent<FramedImage>(t, 1, 1, 122, 117, 0, 0, 1);
+
+		M.start_enemy_book.n = 5;
+		mngr_->send(M);
+		break;
+	case _enm_GOBLIN:
+		tr->setSpeed(30.0f);
+		mngr_->addComponent<RenderComponent>(t, square);
+		mngr_->addComponent<HealthComponent>(t, 50000);
+		mngr_->addComponent<RouteComponent>(t, route);
+		mngr_->addComponent<AttackComponent>(t, 100, 0.25, 20, false);
+		mngr_->addComponent<FramedImage>(t, 1, 1, 122, 117, 0, 0, 1);
+
+		M.start_enemy_book.n = 6;
+		mngr_->send(M);
+		break;
+	case _enm_ELFO:
+		tr->setSpeed(30.0f);
+		mngr_->addComponent<RenderComponent>(t, square);
+		mngr_->addComponent<HealthComponent>(t, 50000);
+		mngr_->addComponent<RouteComponent>(t, route);
+		mngr_->addComponent<AttackComponent>(t, 100, 0.25, 20, false);
+		mngr_->addComponent<FramedImage>(t, 1, 1, 122, 117, 0, 0, 1);
+
+		M.start_enemy_book.n = 7;
+		mngr_->send(M);
+		break;
+	case _enm_MMUERTE:
+		tr->setSpeed(30.0f);
+		mngr_->addComponent<RenderComponent>(t, square);
+		mngr_->addComponent<HealthComponent>(t, 50000);
+		mngr_->addComponent<RouteComponent>(t, route);
+		mngr_->addComponent<AttackComponent>(t, 100, 0.25, 20, false);
+		mngr_->addComponent<FramedImage>(t, 1, 1, 122, 117, 0, 0, 1);
+
+		M.start_enemy_book.n = 8;
+		mngr_->send(M);
+		break;
+	case _enm_ANGEL:
+		tr->setSpeed(30.0f);
+		mngr_->addComponent<RenderComponent>(t, square);
+		mngr_->addComponent<HealthComponent>(t, 50000);
+		mngr_->addComponent<RouteComponent>(t, route);
+		mngr_->addComponent<GolemComponent>(t);
+		mngr_->addComponent<AttackComponent>(t, 100, 2, 20, false);
+		mngr_->addComponent<FramedImage>(t, 1, 1, 122, 117, 0, 0, 1);
+
+		M.start_enemy_book.n = 9;
+		mngr_->send(M);
+		break;
+	case _enm_DINFERNAL:
+		tr->setSpeed(30.0f);
+		mngr_->addComponent<RenderComponent>(t, square);
+		mngr_->addComponent<HealthComponent>(t, 50000);
+		mngr_->addComponent<RouteComponent>(t, route);
+		mngr_->addComponent<AttackComponent>(t, 100, 0.25, 20, false);
+		mngr_->addComponent<FramedImage>(t, 1, 1, 122, 117, 0, 0, 1);
+
+		M.start_enemy_book.n = 10;
+		mngr_->send(M);
+		break;
+	case _enm_DREAL:
+		tr->setSpeed(30.0f);
+		mngr_->addComponent<RenderComponent>(t, square);
+		mngr_->addComponent<HealthComponent>(t, 50000);
+		mngr_->addComponent<RouteComponent>(t, route);
+		mngr_->addComponent<AttackComponent>(t, 100, 0.25, 20, false);
+		mngr_->addComponent<FramedImage>(t, 1, 1, 122, 117, 0, 0, 1);
+
+		M.start_enemy_book.n = 11;
+		mngr_->send(M);
+		break;
+	case _enm_CMALDITO:
+		tr->setSpeed(10.0f);
+		mngr_->addComponent<RenderComponent>(t, square);
+		mngr_->addComponent<HealthComponent>(t, 50000);
+		mngr_->addComponent<RouteComponent>(t, route);
+		mngr_->addComponent<AttackComponent>(t, 100, 0.25, 20, false);
+		mngr_->addComponent<FramedImage>(t, 1, 1, 122, 117, 0, 0, 1);
+
+		M.start_enemy_book.n = 12;
+		mngr_->send(M);
+		break;
+	case _enm_PRINCIPITO:
+		tr->setSpeed(10.0f);
+		mngr_->addComponent<RenderComponent>(t, square);
+		mngr_->addComponent<HealthComponent>(t, 50000);
+		mngr_->addComponent<RouteComponent>(t, route);
+		mngr_->addComponent<AttackComponent>(t, 100, 0.25, 20, false);
+		mngr_->addComponent<FramedImage>(t, 1, 1, 122, 117, 0, 0, 1);
+
+		M.start_enemy_book.n = 13;
+		mngr_->send(M);
+		break;
+	case _enm_MONJE:
+		tr->setSpeed(10.0f);
+		mngr_->addComponent<RenderComponent>(t, square);
+		mngr_->addComponent<HealthComponent>(t, 50000);
+		mngr_->addComponent<RouteComponent>(t, route);
+		mngr_->addComponent<AttackComponent>(t, 100, 0.25, 20, false);
+		mngr_->addComponent<FramedImage>(t, 1, 1, 122, 117, 0, 0, 1);
+
+		M.start_enemy_book.n = 14;
+		mngr_->send(M);
+		break;
+	case _enm_MUERTE:
+		tr->setSpeed(10.0f);
+		mngr_->addComponent<RenderComponent>(t, square);
+		mngr_->addComponent<HealthComponent>(t, 50000);
+		mngr_->addComponent<RouteComponent>(t, route);
+		mngr_->addComponent<AttackComponent>(t, 100, 0.25, 20, false);
+		mngr_->addComponent<FramedImage>(t, 1, 1, 122, 117, 0, 0, 1);
+
+		M.start_enemy_book.n = 15;
+		mngr_->send(M);
+		break;
+
+
+	}
+	mngr_->setHandler(_hdlr_ENEMIES, t);
+}
+
+void EnemySystem::update()
+{
 	//Genero los enemigos segun el tiempo especificado en el json
 	for (auto& s : spawnsVector) {
 		auto spawn = mngr_->getComponent<generateEnemies>(s);
@@ -153,7 +403,7 @@ void EnemySystem::update() {
 			spawn->setElapsedTime(spawn->getElapsedTime() + game().getDeltaTime());
 		}
 	}
-	
+
 	const auto& enemies = mngr_->getHandler(_hdlr_ENEMIES);
 	const auto& towers = mngr_->getHandler(_hdlr_LOW_TOWERS);
 
@@ -193,9 +443,9 @@ void EnemySystem::update() {
 				mc->setStop(true);
 			}
 			if (acc->getElapsed() >= acc->getReload()) {
-				acc->inRange(enemies);				
+				acc->inRange(enemies);
 				acc->setTime(0.0f);
-			}				
+			}
 		}
 
 		// route
@@ -214,7 +464,7 @@ void EnemySystem::update() {
 				ac->setLoaded(true);
 				ac->targetEnemy(towers);
 
-				if (ac->getTarget() != nullptr) {
+				if (ac->getTarget() != nullptr && (ac->getAttackTowers() || mngr_->getComponent<NexusComponent>(ac->getTarget()))) {
 					mc->setStop(true);
 					if (ma != nullptr) {
 						ma->CiegaTorre(ac->getTarget());
@@ -238,12 +488,12 @@ void EnemySystem::update() {
 		// angel
 		if (anc != nullptr) {
 			anc->setElapsed(anc->getElapsed() + game().getDeltaTime());
-			if (anc->getElapsed() > 1.0f) {				
+			if (anc->getElapsed() > 1.0f) {
 				for (const auto& enemy : enemies) {
 					IconComponent* icOther = mngr_->getComponent<IconComponent>(enemy);
-					if (anc->getDistance(mngr_->getComponent<Transform>(enemy)->getPosition()) < anc->getRange()&&enemy!=e) {
-						if (icOther == nullptr)	icOther = mngr_->addComponent<IconComponent>(enemy, _ANGEL);//Agregarselo si no lo tiene
-						if (icOther->getIconType() == _ANGEL) {
+					if (anc->getDistance(mngr_->getComponent<Transform>(enemy)->getPosition()) < anc->getRange() && enemy != e) {
+						if (icOther == nullptr)	icOther = mngr_->addComponent<IconComponent>(enemy, _HEALED);//Agregarselo si no lo tiene
+						if (icOther->getIconType() == _HEALED) {
 							if (!icOther->hasIcon()) {//Crearlo si no lo tiene
 								Entity* icon = mngr_->addEntity(_grp_ICONS);
 								mngr_->addComponent<RenderComponent>(icon, hpIcon);
@@ -256,7 +506,7 @@ void EnemySystem::update() {
 								icOther->setIcon(icon);
 							}
 						}
-						mngr_->getComponent<HealthComponent>(enemy)->addHealth(mngr_->getComponent<HealthComponent>(enemy)->getBaseHealth()/100.0f);
+						mngr_->getComponent<HealthComponent>(enemy)->addHealth(mngr_->getComponent<HealthComponent>(enemy)->getBaseHealth() / 100.0f);
 						anc->setElapsed(0);
 					}
 					else {
@@ -268,7 +518,9 @@ void EnemySystem::update() {
 				}
 			}
 		}
-	}				
+
+	}
 }
+			
 	
 	

@@ -7,8 +7,8 @@
 #include "../game/Game.h"
 
 
-MeteorologySystem::MeteorologySystem(): minTimeInterval_(2.0),
-maxTimeInterval_(5.0), 
+MeteorologySystem::MeteorologySystem(): minTimeInterval_(15.0),
+maxTimeInterval_(30.0), 
 elapsedTime_(0) ,
 thundersInterval_(0.5),
 meteoriteInterval_(1.5),
