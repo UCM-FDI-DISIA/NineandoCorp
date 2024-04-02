@@ -217,9 +217,11 @@ void MeteorologySystem::update() {
 		case MeteorologySystem::TSUNAMI:
 			break;
 		case MeteorologySystem::STORM:
+			generateNetMap();
 			generateStorm(50);
 			break;
 		case MeteorologySystem::METEORITES:
+			generateNetMap();
 			generateMeteorites(50);
 			break;
 		case MeteorologySystem::TORNADO:
