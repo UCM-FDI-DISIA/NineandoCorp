@@ -185,6 +185,13 @@ void HUDSystem::initSystem() {
 
 		initial_pos[_twr_POWER] = { xAux * 7 + 3 , heightH - 4 };
 #pragma endregion
+
+#pragma region
+		bS->addButton({ (float)sdlutils().width() - 50.0f , 50.0f },
+			{50.0f, 50.0f},
+			gameTextures::pause_button, gameTextures::pause_button_hover,
+			ButtonTypes::pause_main);
+#pragma endregion
 }
 
 void HUDSystem::receive(const Message& m) {
