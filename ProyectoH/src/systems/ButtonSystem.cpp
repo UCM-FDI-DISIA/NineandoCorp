@@ -1,9 +1,21 @@
 #include "ButtonSystem.h"
 #include "../sdlutils/InputHandler.h"
 #include "../ecs/Manager.h"
+#include "../components/TextComponent.h"
+#include "../components/FramedImage.h"
+#include "../components/LimitedTime.h"
 
 ButtonSystem::ButtonSystem(hdlrId_type but_id) : 
 	hdlr_but_id(but_id){
+
+	//rellenar la lista de costes
+	costs[_twr_BULLET] = sdlutils().intConst().at("BalasPrecio");
+	costs[_twr_FENIX] = sdlutils().intConst().at("FenixPrecio");
+	costs[_twr_DIEGO] = sdlutils().intConst().at("DiegoSniperPrecio");
+	costs[_twr_CLAY] = sdlutils().intConst().at("ArcillaPrecio");
+	costs[_twr_CRISTAL] = sdlutils().intConst().at("CristalPrecio"); 
+	costs[_twr_POWER] = sdlutils().intConst().at("PotenciadoraPrecio");
+	costs[_twr_SLIME] = sdlutils().intConst().at("SlimePrecio");
 }
 
 ButtonSystem::~ButtonSystem(){
@@ -16,6 +28,29 @@ void ButtonSystem::update () {
 void ButtonSystem::initSystem() {
 }
 void ButtonSystem::receive(const Message& m){
+	switch (m.id) {
+	case _m_ADD_MONEY:
+		money_ += m.money_data.money;
+		updateText();
+		break;
+	case _m_START_GAME:
+		money_ = m.start_game_data.money;
+		OnStartGame();
+		break;
+	case _m_ABLEBUTTONS:
+		enableAllButton(m.able_buttons_data.isAble, m.able_buttons_data.buttonId);
+		break;
+	case _m_ADD_TEXT:
+		showTempText(m.add_text_data.txt,  
+				 m.add_text_data.color, 
+				 m.add_text_data.pos,	 
+			     m.add_text_data.scale,
+				 m.add_text_data.time
+					);
+		break;
+	default:
+		break;
+	}
 }
 
 
@@ -54,6 +89,15 @@ void ButtonSystem::manageButtons() {
 			}
 		}
 	}
+
+	//update de texto con limitTime
+	auto txts = mngr_->getEntities(_grp_TEXTS);
+	for (auto txt : txts) {
+		auto limT = mngr_->getComponent<LimitedTime>(txt);
+		if (limT != nullptr) {
+			limT->update();
+		}
+	}
 }
 
 #pragma region FUNCIONES DE BOTONES
@@ -74,7 +118,7 @@ void ButtonSystem::manageButtons() {
 		case back_selector:
 			backToMainMenu();
 			break;
-		case start_game:
+		case level_selected:
 			startGame();
 			break;
 		case pause_main:
@@ -109,7 +153,7 @@ void ButtonSystem::manageButtons() {
 			break;
 
 
-		/*--- SELECCIÓN DE TORRES PARA DRAG ---*/
+		/*--- SELECCIÃ“N DE TORRES PARA DRAG ---*/
 		case crystal_drag:
 			dragTower(_twr_CRISTAL);
 			break;
@@ -142,6 +186,16 @@ void ButtonSystem::manageButtons() {
 			if(bC != nullptr) bC->setActive(false);
 		}
 	}
+
+	void ButtonSystem::enableAllButton(bool b, hdlrId_type bType)
+	{
+		for (auto but : mngr_->getHandler(bType)) {
+			auto bC = mngr_->getComponent<ButtonComponent>(but);
+			if (bC != nullptr) bC->setActive(b);
+		}
+	}
+
+	
 	void ButtonSystem::loadLevelSelector() {
 		Message m;
 		m.id = _m_LEVEL_SELECTOR;
@@ -165,7 +219,7 @@ void ButtonSystem::manageButtons() {
 	}
 	void ButtonSystem::startGame() {
 		Message m;
-		m.id = _m_START_GAME;
+		m.id = _m_LEVEL_SELECTED;
 		mngr_->send(m);
 	}
 
@@ -177,7 +231,12 @@ void ButtonSystem::manageButtons() {
 	}
 
 	void ButtonSystem::dragTower(twrId tower) {
-		
+		if (money_ >= costs[tower]) {
+			Message m;
+			m.id = _m_DRAG;
+			m.drag_data.towerId = tower;
+			mngr_->send(m);
+		}
 	}
 #pragma endregion
 
@@ -209,4 +268,26 @@ Entity* ButtonSystem::addImage(const Vector2D& pos, const Vector2D& scale, const
 	tr->setRotation(rot);
 	mngr_->addComponent<RenderComponent>(img, t);
 	return img;
+}
+
+void ButtonSystem::OnStartGame() {
+	moneyText_ = mngr_->addEntity(_grp_TEXTS);
+	Transform* tr = mngr_->addComponent<Transform>(moneyText_);
+	tr->setPosition({ 0,0 });
+	tr->setScale({ 150, 50 });
+	mngr_->addComponent<TextComponent>(moneyText_, "Monedas: " + std::to_string(money_));
+}
+
+void ButtonSystem::showTempText(string txt, const SDL_Color& color, const Vector2D& pos, const Vector2D& scale, int time)
+{
+	auto text = mngr_->addEntity(_grp_TEXTS);
+	Transform* tr = mngr_->addComponent<Transform>(text);
+	tr->setPosition(pos);
+	tr->setScale(scale);
+	mngr_->addComponent<TextComponent>(text, txt, color);
+	mngr_->addComponent<LimitedTime>(text, time);
+}
+
+void ButtonSystem::updateText() {
+	mngr_->getComponent<TextComponent>(moneyText_)->changeText("Monedas: " + std::to_string(money_));
 }

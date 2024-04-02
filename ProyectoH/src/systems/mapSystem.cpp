@@ -1,33 +1,49 @@
 ﻿#include "mapSystem.h"
 
-mapSystem::mapSystem(std::string filename): filename(filename), winner_(0){
-	net = new NetMap(31);
+mapSystem::mapSystem(std::string filename) : filename(filename), winner_(0) {
+	net = new NetMap(32);
 }
 
 mapSystem::~mapSystem() {
 }
 
-void mapSystem::initSystem(){
-	loadMap(filename);
+void mapSystem::initSystem() {
+	Message m;
+	m.id = _m_ROUND_START;
+	m.start_game_data.netmap = net;
+	m.start_game_data.level = level;
+	mngr_->send(m, true);
 }
 
 void mapSystem::receive(const Message& m) {
 	switch (m.id) {
-	case _m_START_GAME:
-		onGameStart();
+	case _m_ROUND_START:
+		onRoundStart();
+		break;
+	case _m_ROUND_OVER:
+		level++;
+		break;
+	case _m_PAUSE:
+		onPause();
 		break;
 	case _m_OFFSET_CONTEXT:
 		net->setOffset(m.offset_context.offset);
 		break;
+	case _m_RESUME:
+		onResume();
+		break;
 	}
 }
 
-void mapSystem::update(){}
+void mapSystem::update() {}
 
 void mapSystem::loadMap(std::string filename) {
 
-    tmx::Map map;
-    map.load(filename);
+	tmx::Map map;
+	map.load(filename);
+
+	const auto tileSize = map.getTileSize();
+	tileSize_ = { (float)tileSize.x, (float)tileSize.y };
 
 	const auto& layers = map.getLayers();
 	for (std::size_t i = 0; i < layers.size(); ++i) {
@@ -47,17 +63,17 @@ void mapSystem::loadMap(std::string filename) {
 		}
 	}
 
-	
+
 }
 
 /// <summary> hola </summary>
 /// <param name='map'>mapa con los tiles</param>
 /// <param name='layer'>las capas</param>
 /// <returns> Lo que devuelve</returns>
-void mapSystem::loadTile(const tmx::Map& map, const tmx::TileLayer& layer){
+void mapSystem::loadTile(const tmx::Map& map, const tmx::TileLayer& layer) {
 	const auto& tileSets = map.getTilesets();
 	const auto& layerIDs = layer.getTiles();
-	int i = (WIN_WIDTH + 200)/ 2;
+	int i = (WIN_WIDTH + 200) / 2;
 	int j = 0;
 	float sep = 1.34;
 	int n = 0;
@@ -90,12 +106,12 @@ void mapSystem::loadTile(const tmx::Map& map, const tmx::TileLayer& layer){
 			else {
 				entityTile = mngr_->addEntity(_grp_TILES_L3);
 				Cell* c = new Cell();
-				c->position = { tilePosition.getX() + 48, tilePosition.getY() + 24};
+				c->position = { tilePosition.getX() + 48, tilePosition.getY() + 24 };
 				c->isFree = true;
 				c->id = TILE_HIGH;
 				net->setCell(fil, col, c);
 			}
-			mngr_->addComponent<FramedImage>(entityTile, 10, 16, m_chunkSize.x, m_chunkSize.y, tile.ID -1);
+			mngr_->addComponent<FramedImage>(entityTile, 10, 16, m_chunkSize.x, m_chunkSize.y, tile.ID - 1);
 			mngr_->addComponent<RenderComponent>(entityTile, gameTextures::tileSet);
 			if (entityTile) {
 				const auto transform = mngr_->addComponent<Transform>(entityTile);
@@ -116,7 +132,20 @@ void mapSystem::loadTile(const tmx::Map& map, const tmx::TileLayer& layer){
 		}
 	}
 }
-// Para gestionar los mensa
+// Para gestionar los mensajes correspondientes y actualizar los atributos
+// winner_ y state_.
+void mapSystem::onRoundStart() {
+
+	loadMap(filename + std::to_string(level) + ".tmx");
+}
 void mapSystem::onGameStart() {
-	loadMap(filename);
+}
+void mapSystem::onGameOver(Uint8 winner) {
+}
+
+// Displays pause message
+void mapSystem::onPause() {
+}
+// Hides pause message
+void mapSystem::onResume() {
 }

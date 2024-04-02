@@ -2,7 +2,7 @@
 void
 MovementComponent::Move() {
 	if (!stop_) {
-		transform_->translate(speedDecrease_);
+		transform_->translate(speedDecrease_, speedIncrease_);
 	}
 	else {
 		std::cout << transform_->getPosition()->getX()<<" " << transform_->getPosition()->getY();
@@ -33,4 +33,10 @@ void
 MovementComponent::activateSlow(float val, bool active) {
 	slowed_ = active;
 	speedDecrease_ = val;
+}
+
+void MovementComponent::activateAcceleration(float val, bool active)
+{
+	speedUp_ = active;
+	speedIncrease_ = val;
 }

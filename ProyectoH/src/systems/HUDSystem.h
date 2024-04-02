@@ -14,15 +14,21 @@ public:
 	virtual ~HUDSystem();
 	void receive(const Message& m) override;
 	void initSystem() override;
-	void update() override;
-private: 
 
-	
+	void update() override;
+
+private: 
+	int intAt(basic_string<char> s) { return sdlutils().intConst().at(s); }
+	float floatAt(basic_string<char> s) { return sdlutils().floatConst().at(s); }
+	Cell* getCellFromTile(const Vector2D& pos);
+	Vector2D resetScale(twrId tId);
 	/// <summary>
 	/// Arrastra el icono de la torre correspondiente dependiendo de la posicion del cursor
 	/// </summary>
 	/// <param name=""></param>
 	void dragTowerIcon(Entity* e); 
+
+	void enableAllButtons(bool t);
 
 	// Espacio designado para los botones de compra de las torres
 	float buttonsSpace_length_; 
@@ -32,6 +38,7 @@ private:
 	// Para la interaccion con el HUD, no tocar de momento
 	std::vector<Entity*> towers_imgs;
 	std::vector<Vector2D> initial_pos;
-	std::vector<std::pair<Entity*, Entity*>> tower_selector_; 
+	std::vector<Vector2D> intial_scale;
+	//std::vector<std::pair<Entity*, Entity*>> tower_selector_; 
 };
 

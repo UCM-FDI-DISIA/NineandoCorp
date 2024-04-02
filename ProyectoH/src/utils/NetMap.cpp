@@ -9,7 +9,7 @@ NetMap::NetMap(int size) {
 	}
 };
 
-Cell* NetMap::searchCell(Vector2D &targetPosition) const {
+Cell* NetMap::searchCell(const Vector2D &targetPosition) const {
 	int i = 0, j = 0;
 	Vector2D offsetPosition = Vector2D(offset->x, offset->y); 
 

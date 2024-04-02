@@ -1,7 +1,7 @@
 #include "CrystalTower.h"
 
-CrystalTower::CrystalTower(int shieldVal, float timeToShield, int explosionDmg): 
-	shieldVal_(shieldVal), timeToShield_(timeToShield),explosionDmg_(explosionDmg){}
+CrystalTower::CrystalTower(int shieldVal, float timeToShield, int explosionDmg, float range): 
+	shieldVal_(shieldVal), timeToShield_(timeToShield),explosionDmg_(explosionDmg), elapsedTime_(timeToShield), range_(range){}
 
 void CrystalTower::levelUp(int level) {
 	switch (level) {

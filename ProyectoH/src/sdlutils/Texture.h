@@ -89,7 +89,10 @@ public:
 		SDL_Rect src = { 0, 0, width_, height_ };
 		render(src, dest, rotation);
 	}
-
+	inline SDL_Texture* getSDL_Texture() { return texture_; }
+	inline SDL_Renderer* getRenderer() {
+		return renderer_;
+	}
 private:
 
 	// Construct from text

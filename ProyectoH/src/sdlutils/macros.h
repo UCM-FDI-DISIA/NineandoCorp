@@ -65,6 +65,10 @@ inline SDL_Color build_sdlcolor(std::string strnum) {
 	return build_sdlcolor(stoul(strnum.erase(0, 2), nullptr, 16));
 }
 
+inline SDL_Color build_sdlcolor(const SDL_Color& c) {
+	return c;
+}
+
 /*
  * COLOREXP(color)
  *

@@ -1,4 +1,5 @@
 {
+
     "images": [
         {
             "id": "map",
@@ -61,36 +62,44 @@
             "file": "resources/images/Map/133.png"
         },
         {
-            "id": "Acechante_Electrico_Attack",
+            "id": "acechante_Attack",
             "file": "resources/images/Enemies/Acechante Electrico/Attack.png"
         },
         {
-            "id": "Acechante_Electrico_Run",
+            "id": "acechante",
             "file": "resources/images/Enemies/Acechante Electrico/Run.png"
         },
         {
-            "id": "Angel",
+            "id": "angel",
             "file": "resources/images/Enemies/Angel/angel.png"
         },
         {
-            "id": "Defensor_Real_Attack",
+            "id": "defensor_Attack",
             "file": "resources/images/Enemies/defensor_real/Attack2.png"
         },
         {
-            "id": "Defensor_Real_Run",
+            "id": "defensor",
             "file": "resources/images/Enemies/defensor_real/Run.png"
         },
         {
-            "id": "Defensor_Real_Death",
+            "id": "defensor_Death",
             "file": "resources/images/Enemies/defensor_real/Death.png"
         },
         {
-            "id": "Demonio_Alado_Attack",
+            "id": "demonioAlado_Attack",
             "file": "resources/images/Enemies/Demonio Alado/Attack1.png"
         },
         {
-            "id": "Demonio_Alado_Run",
+            "id": "demonioAlado",
             "file": "resources/images/Enemies/Demonio Alado/Flight.png"
+        },
+        {
+            "id": "demonioAlado_Death",
+            "file": "resources/images/Enemies/Demonio Alado/Death.png"
+        },
+        {
+            "id": "demonioInfernal",
+            "file": "resources/images/Enemies/Demonio Infernal/DemonioInfernalSpritesheet.png"
         },
         {
             "id": "Esqueleto_Attack",
@@ -101,71 +110,99 @@
             "file": "resources/images/Enemies/Esqueleto/Walk.png"
         },
         {
-            "id": "Goblin_Run",
+            "id": "goblin",
             "file": "resources/images/Enemies/Goblin/Run.png"
         },
         {
-            "id": "Goblin_Attack",
+            "id": "goblin_Attack",
             "file": "resources/images/Enemies/Goblin/Attack1.png"
         },
         {
-            "id": "Golem",
+            "id": "golem",
             "file": "resources/images/Enemies/Golem/GolemSpritesheet.png"
         },
         {
-            "id": "Maestro_de_las_Almas_Attack",
+            "id": "maestro_Attack",
             "file": "resources/images/Enemies/Maestro de las Almas/Attack.png"
         },
         {
-            "id": "Maestro_de_las_Almas_Run",
+            "id": "maestro",
             "file": "resources/images/Enemies/Maestro de las Almas/Run.png"
         },
         {
-            "id": "Maldito_Attack",
+            "id": "maldito_Attack",
             "file": "resources/images/Enemies/Maldito/Attack.png"
         },
         {
-            "id": "Maldito_Run",
+            "id": "maldito",
             "file": "resources/images/Enemies/Maldito/Run.png"
         },
         {
-            "id": "Mensajero_de_la_muerte",
-            "file": "resources/images/Enemies/Mensajero de la Muerte/Maestro de las AlmasSpritesheet.png"
+            "id": "mensajero",
+            "file": "resources/images/Enemies/Mensajero de la Muerte/Mensajero de la muerte Spritesheet.png"
         },
         {
-            "id": "Monje_Death",
+            "id": "monje_Death",
             "file": "resources/images/Enemies/monje/Death.png"
         },
         {
-            "id": "Monje_Run",
+            "id": "monje",
             "file": "resources/images/Enemies/monje/Move.png"
         },
         {
-            "id": "Principito_Run",
+            "id": "principito_Run",
             "file": "resources/images/Enemies/principito/Run.png"
         },
         {
-            "id": "Principito_Attack",
+            "id": "principito_Attack",
             "file": "resources/images/Enemies/principito/Attack.png"
         },
         {
-            "id": "Principito_Death",
+            "id": "principito_Death",
             "file": "resources/images/Enemies/principito/Death.png"
         },
         {
-            "id": "Principito_Idle",
+            "id": "principito",
             "file": "resources/images/Enemies/principito/Idle.png"
         },
         {
-            "id": "Elfo_Run",
+            "id": "elfo",
             "file": "resources/images/Enemies/Elfo/Character/Run.png"
         },
         {
-            "id": "Elfo_Death",
+            "id": "muerte",
+            "file": "resources/images/Enemies/muerte/idle.png"
+        },
+        {
+            "id": "muerte_Attack",
+            "file": "resources/images/Enemies/muerte/attacking.png"
+        },
+        {
+            "id": "muerte_Death",
+            "file": "resources/images/Enemies/muerte/death.png"
+        },
+        {
+            "id": "muerte_Shoot",
+            "file": "resources/images/Enemies/muerte/summon.png"
+        },
+        {
+            "id": "summon",
+            "file": "resources/images/Enemies/muerte/summonIdle.png"
+        },
+        {
+            "id": "summon_Attack",
+            "file": "resources/images/Enemies/muerte/summonAppear.png"
+        },
+        {
+            "id": "summon_Death",
+            "file": "resources/images/Enemies/muerte/summonDeath.png"
+        },
+        {
+            "id": "elfo_Death",
             "file": "resources/images/Enemies/Elfo/Character/Death.png"
         },
         {
-            "id": "Elfo_Attack",
+            "id": "elfo_Attack",
             "file": "resources/images/Enemies/Elfo/Character/Attack.png"
         },
         {
@@ -243,6 +280,22 @@
         {
             "id": "nexus_tower",
             "file": "resources/images/Towers/nexus_tower.jpeg"
+        },
+        {
+            "id": "nexusLvl1",
+            "file": "resources/images/Nexus/nexus_level_1.png"
+        },
+        {
+            "id": "nexusLvl2",
+            "file": "resources/images/Nexus/nexus_level_2.png"
+        },
+        {
+            "id": "nexusLvl3",
+            "file": "resources/images/Nexus/nexus_level_3.png"
+        },
+        {
+            "id": "nexusLvl4",
+            "file": "resources/images/Nexus/nexus_level_4.png"
         },
         {
             "id": "play",
@@ -389,23 +442,119 @@
             "file": "resources/images/Towers/fireball.png"
         },
         {
-            "id": "none_box",
-            "file": "resources/images/UI/none_box.png"
+          "id": "none_box",
+          "file": "resources/images/UI/none_box.png"
         },
         {
-            "id": "none_box_hover",
-            "file": "resources/images/UI/none_box_hover.png"
+          "id": "none_box_hover",
+          "file": "resources/images/UI/none_box_hover.png"
         },
         {
-            "id": "pause_button",
-            "file": "resources/images/UI/pause_button.png"
+          "id": "shield",
+          "file": "resources/images/Towers/shield.png"
         },
         {
-            "id": "pause_button_hover",
-            "file": "resources/images/UI/pause_button_hover.png"
+          "id": "shieldExp",
+          "file": "resources/images/Towers/shieldExplosion.png"
+        },
+        {
+          "id": "bulletExp",
+          "file": "resources/images/Towers/explosionBullet.png"
+        },
+        {
+            "id": "thunder",
+            "file": "resources/images/Meteorology/rayoAnim.png"
+          },
+          {
+            "id": "meteorites",
+            "file": "resources/images/Meteorology/Fire+Sparks-SpriteSheet.png"
+          },
+          {
+            "id": "earthquake",
+            "file": "resources/images/Meteorology/Earthquake.png"
+          },
+          {
+            "id": "tornado",
+            "file": "resources/images/Meteorology/Retro Impact Effect Pack 3 F.png"
+          },
+        {
+          "id": "hp_icon",
+          "file": "resources/images/UI/hp_icon.png"
+        },
+        {
+          "id": "lightning_icon",
+          "file": "resources/images/UI/rayo_icon.png"
+        },
+        {
+          "id": "blinded_icon",
+          "file": "resources/images/UI/blinded_icon.png"
+        },
+        {
+          "id": "powerup_icon",
+          "file": "resources/images/UI/powerup_icon.png"
+        },
+        
+        {
+            "id": "goblin_icon",
+            "file": "resources/images/Enemies/goblin.png"
+        },
+        {
+            "id": "acechante_icon",
+            "file": "resources/images/Enemies/acechante_electrico.png"
+        },
+        {
+            "id": "angel_icon",
+            "file": "resources/images/Enemies/angel.png"
+        },
+        {
+            "id": "principito_icon",
+            "file": "resources/images/Enemies/boss2.png"
+        },
+        {
+            "id": "monje_icon",
+            "file": "resources/images/Enemies/boss3.png"
+        },
+        {
+            "id": "muerte_icon",
+            "file": "resources/images/Enemies/boss4.png"
+        },
+        {
+            "id": "maldito_icon",
+            "file": "resources/images/Enemies/caballero_maldito.png"
+        },
+        {
+            "id": "Cmaldito_icon",
+            "file": "resources/images/Enemies/caballero_maldito.png"
+        },
+        {
+            "id": "defensor_icon",
+            "file": "resources/images/Enemies/defensor_real1.png"
+        },
+        {
+            "id": "demonioalado_icon",
+            "file": "resources/images/Enemies/demonio_alado.png"
+        },
+        {
+            "id": "demonioinfernal_icon",
+            "file": "resources/images/Enemies/demonio_infernal.png"
+        },
+        {
+            "id": "elfo_icon",
+            "file": "resources/images/Enemies/elfoo.png"
+        },
+        {
+            "id": "golem_icon",
+            "file": "resources/images/Enemies/golem.png"
+        },
+        {
+            "id": "malmas_icon",
+            "file": "resources/images/Enemies/maestro_de_almas.png"
+        },
+        {
+            "id": "mensajero_icon",
+            "file": "resources/images/Enemies/mensajero.png"
         }
-
-    ],
+      ],
 
   "fonts":[
     {

@@ -48,6 +48,8 @@ private:
 	/// </summary>
 	void pauseAllButtons();
 
+	void enableAllButton(bool b, hdlrId_type bType);
+
 	/// <summary>
 	/// Mensaje de carga de estado de selector de niveles
 	/// </summary>
@@ -72,6 +74,7 @@ private:
 	/// Te carga PlayState
 	/// </summary>
 	void startGame();
+
 	/// <summary>
 	/// Envia mensaje para arrastrar 
 	/// </summary>
@@ -84,47 +87,20 @@ private:
 	void upgradeTower(twrId t);
 
 	/// <summary>
-	/// Llamada al método de mejora del Nexo
+	/// Actualiza la textura con el texto de las monedas a las monedas actuales
 	/// </summary>
-	void upgradeNexusMain();
+	void updateText();
 
 	/// <summary>
-	/// Llamada al método de mejora de la Torre de Cristal
+	/// Funcion que realiza el mensaje START_GAME
 	/// </summary>
-	void upgradeCrystalMain();
+	void OnStartGame();
 
-	/// <summary>
-	/// Llamada al método de mejora de la Torre de Slime
-	/// </summary>
-	void upgradeSlimeMain();
+	void showTempText(string txt, const SDL_Color& color, const Vector2D& pos, const Vector2D& scale, int time);
 
-	/// <summary>
-	/// Llamada al método de mejora de la Torre Bullet
-	/// </summary>
-	void upgradeBulletMain();
-
-	/// <summary>
-	/// Llamada al método de mejora de la Torre Sniper
-	/// </summary>
-	void upgradeSniperMain();
-
-	/// <summary>
-	/// Llamada al método de mejora de la Torre Fenix
-	/// </summary>
-	void upgradeFenixMain();
-
-	/// <summary>
-	/// Llamada al método de mejora de la Torre de Arcilla
-	/// </summary>
-	void upgradeClayMain();
-
-	/// <summary>
-	/// Llamada al método de mejora de la Torre de Mejora
-	/// </summary>
-	void upgradeEnhancerMain();
-
-
-
+	int money_ = 0;
+	int costs[_twr_SIZE];
+	Entity* moneyText_;
 };
 
 

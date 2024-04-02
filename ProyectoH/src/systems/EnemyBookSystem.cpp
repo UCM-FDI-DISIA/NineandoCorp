@@ -24,29 +24,29 @@ void EnemyBookSystem::initSystem() {
     
 	//vector textura enemigo
 	vector<gameTextures> Texturas{
-		gameTextures::MALMAS,
-		gameTextures::AELECTRICO,
-		gameTextures::MALDITO,
-		gameTextures::GOLEM,
-		gameTextures::DALADO,
-		gameTextures::GOBLIN,
-		gameTextures::ELFO,
-		gameTextures::MMUERTE,
-		gameTextures::ANGEL,
-		gameTextures::DINFERNAL,
-		gameTextures::DREAL,
-		gameTextures::CMALDITO,
-		gameTextures::PRINCIPITO,
-		gameTextures::MONJE,
-		gameTextures::MUERTE
+		gameTextures::maestro_icon,
+		gameTextures::acechante_icon,
+		gameTextures::maldito_icon,
+		gameTextures::golem_icon,
+		gameTextures::demonioAlado_icon,
+		gameTextures::goblin_icon,
+		gameTextures::elfo_icon,
+		gameTextures::mensajero_icon,
+		gameTextures::angel_icon,
+		gameTextures::demonioInfernal_icon,
+		gameTextures::defensor_icon,
+		gameTextures::CMaldito_icon,
+		gameTextures::principito_icon,
+		gameTextures::monje_icon,
+		gameTextures::muerte_icon
 	};
 
 	// Calcular la posición inicial del contenido
 	float contentPosX = 350.f; // Posición inicial x del contenido
 	float contentPosY = 300.f; // Posición y del contenido
 	float contentPosYaux = 300.f; // Posición y del contenido aux
-	float contentWidth = 50.f; // Ancho del contenido
-	float contentHeight = 50.f; // Alto del contenido
+	float contentWidth = 100.f; // Ancho del contenido
+	float contentHeight = 100.f; // Alto del contenido
 
 	// Añadir imágenes de enemigos
 	int enemies = 15;
@@ -57,8 +57,10 @@ void EnemyBookSystem::initSystem() {
 		// Calcular la posición de la imagen del enemigo
 		Vector2D pAux = { contentPosX + t * spacingX, contentPosY };
 		Vector2D sAux = { contentWidth, contentHeight };
+		Vector2D sAuxbox = { contentWidth + 15, contentHeight + 15 };
 		if (Vistos[i] == true)
 		{
+			bS->addImage(pAux, sAuxbox, 0.0, gameTextures::large_box, _grp_HUD_FOREGROUND);
 			text = Texturas[i];
 		}
 		else {
