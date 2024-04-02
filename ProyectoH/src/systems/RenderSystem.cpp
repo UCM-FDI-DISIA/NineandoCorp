@@ -1,4 +1,4 @@
-﻿#include "RenderSystem.h"
+#include "RenderSystem.h"
 #include "../ecs/Manager.h"
 #include "../game/Game.h"
 
@@ -39,6 +39,8 @@ RenderSystem::RenderSystem() : winner_(0)
 	textures[none_box] = &sdlutils().images().at("none_box");
 	textures[none_box_hover] = &sdlutils().images().at("none_box_hover");
 	textures[large_box] = &sdlutils().images().at("large_box");
+	textures[pause_button] = &sdlutils().images().at("pause_button");
+	textures[pause_button_hover] = &sdlutils().images().at("pause_button_hover");
 	textures[close] = &sdlutils().images().at("close");
 	textures[close_hover] = &sdlutils().images().at("close_hover");
 	textures[enemies_button] = &sdlutils().images().at("enemies");
@@ -89,6 +91,9 @@ RenderSystem::RenderSystem() : winner_(0)
 	textures[powerIcon] = &sdlutils().images().at("powerup_icon");
 	textures[lightningIcon] = &sdlutils().images().at("lightning_icon");
 	textures[blindedIcon] = &sdlutils().images().at("blinded_icon");
+	textures[slimeArea] = &sdlutils().images().at("slime_area");
+	textures[fireTexture] = &sdlutils().images().at("fireball");
+
 
 	//Explosions
 	textures[shieldExp] = &sdlutils().images().at("shieldExp");

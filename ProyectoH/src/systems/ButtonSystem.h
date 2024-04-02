@@ -56,7 +56,7 @@ private:
 	void loadLevelSelector();
 
 	/// <summary>
-	/// Mensaje de carga enemyBook para ver los enemigos encontrados
+	/// Mensaje para la pausa
 	/// </summary>
 	void Pause();
 

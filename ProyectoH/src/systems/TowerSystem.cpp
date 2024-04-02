@@ -1,4 +1,4 @@
-﻿#include "TowerSystem.h"
+#include "TowerSystem.h"
 #include "..//ecs/ecs.h"
 #include "..//components/SlimeBullet.h"
 #include "..//components/ShieldComponent.h"
@@ -529,4 +529,3 @@ void TowerSystem::addTower(twrId type,const Vector2D& pos, Height height) {
 	towers.emplace_back(t);
 	//std::cout << "Torre añadida: " << type << " TorresTotales: " << towers.size() << std::endl;
 }
-

@@ -191,7 +191,8 @@ enum msgId : msgId_type {
 	_m_ANIM_CREATE,
 	_m_RETURN_ENTITY,
 	_m_ABLEBUTTONS,
-	_m_ADD_TEXT
+	_m_ADD_TEXT,
+	_m_ENEMYSEE
 };
 
 using twrId_type = uint8_t;
@@ -363,13 +364,13 @@ msgId_type id;
 	// _m_OVER_GAME
 	struct
 	{
-		// No había mensaje de game over, lo dejo, igual tenemos q quitarlo
+		// No habï¿½a mensaje de game over, lo dejo, igual tenemos q quitarlo
 	}over_game;
 
 	//_m_ENEMY_BOOK
 	struct
 	{
-		//nose
+		int n;
 	}start_enemy_book;
 	//_m_RETURN_ENTITY
 	struct {

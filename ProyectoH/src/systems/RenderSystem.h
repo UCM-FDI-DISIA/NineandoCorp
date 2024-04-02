@@ -51,6 +51,8 @@ private:
 	rectId getRectId(Entity* e);
 
 
+	void onPause();
+	void onResume();
 	uint8_t winner_; // 0 - None, 1 - Enemigos, 2- Jugador
 
 	//Rect con el offset de la camara
