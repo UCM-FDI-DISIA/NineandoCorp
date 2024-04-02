@@ -11,7 +11,7 @@ public:
 	~UpgradeTowerComponent() {};
 
 	void LevelUp();
-	int getLevel() const { return currentLevel_; }
+	int getLevel() { return currentLevel_; }
 	int getMaxLevel() { return maxLevel_; }
 
 protected:

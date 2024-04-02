@@ -4,7 +4,7 @@
 #include "../components/Transform.h"
 #include "../components/HealthComponent.h"
 
-AttackComponent::AttackComponent(float range, float reloadTime, int damage, bool towers) : range_(range), reloadTime_(reloadTime), damage_(damage), baseDamage_(damage),towers_(towers), elapsedTime_(reloadTime), nexo_(true) {
+AttackComponent::AttackComponent(float range, float reloadTime, int damage, bool shootBullets) : range_(range), reloadTime_(reloadTime), damage_(damage), baseDamage_(damage), elapsedTime_(reloadTime), nexo_(false) {
 	target_ = nullptr; timeToShoot_ = reloadTime; loaded_ = false;
 }
 
@@ -13,13 +13,11 @@ void AttackComponent::initComponent() {
 }
 
 
-void AttackComponent::doDamageTo(Entity* e, float damage, hdlrId targetId) {//Causa un daño a una entidad
+void AttackComponent::doDamageTo(Entity* e, float damage) {//Causa un daño a una entidad
 	Message m;
-	m.id = _m_ENTITY_TO_ATTACK;
-	m.entity_to_attack.e = e;
-	m.entity_to_attack.damage = damage;
-	m.entity_to_attack.targetId = targetId;
-	m.entity_to_attack.src = ent_;
+	m.id = _m_TOWER_TO_ATTACK;
+	m.tower_to_attack.e = e;
+	m.tower_to_attack.damage = damage;
 	mngr_->send(m);
 }
 

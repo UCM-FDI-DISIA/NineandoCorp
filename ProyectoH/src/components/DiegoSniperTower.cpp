@@ -1,7 +1,7 @@
 #include "DiegoSniperTower.h"
 
 DiegoSniperTower::DiegoSniperTower(float range, float critProbability, float critDamagePercentage, float reloadTime, int damage) 
-	: AttackComponent::AttackComponent(range, reloadTime, damage, false), critDamageIncrease_(critDamagePercentage), critProbability_(critProbability){}
+	: AttackComponent::AttackComponent(range, reloadTime, damage, true), critDamageIncrease_(critDamagePercentage), critProbability_(critProbability){}
 
 float DiegoSniperTower::getCritDamage() const { return critDamageIncrease_; }
 

@@ -1,7 +1,7 @@
 #include "DirtTower.h"
 
 DirtTower::DirtTower()
-	: AttackComponent::AttackComponent(0, 0, 0, false) {}
+	: AttackComponent::AttackComponent(0, 0, 0, true) {}
 
 void DirtTower::levelUp(int level) {
 	HealthComponent* h = mngr_->getComponent<HealthComponent>(ent_);

@@ -6,10 +6,8 @@
 void FramedImage::updateCurrentFrame() {
 	if (currentTime - startTime >= (1.0 / frameRate)) {
 		++currentFrame;
-		if (currentFrame > lastFrame) {
+		if (currentFrame > lastFrame)
 			currentFrame = startFrame;
-			iterations++;
-		}			
 		startTime = currentTime;
 	}
 	currentTime += game().getDeltaTime();

@@ -19,7 +19,6 @@ public:
 	Manager();
 	virtual ~Manager();
 	Entity* addEntity(grpId_type gId = _grp_GENERAL);
-	void changeEntityId(grpId_type gId, Entity* e);
 	void refresh();
 	void update();
 	inline void setHandler(hdlrId_type hId, Entity* e) {

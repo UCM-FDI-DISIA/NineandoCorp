@@ -1,7 +1,7 @@
 #include "SlimeTowerComponent.h"
 
 SlimeTowerComponent::SlimeTowerComponent(float range, float slimeDuration, float speedDecreasePer, float slimeDPS, float reloadTime, float damage)
-	: AttackComponent::AttackComponent(range, reloadTime, damage, false), slimeDuration_(slimeDuration), speedDecreasePer_(speedDecreasePer), slimeDPS_(slimeDPS) {}
+	: AttackComponent::AttackComponent(range, reloadTime, damage, true), slimeDuration_(slimeDuration), speedDecreasePer_(speedDecreasePer), slimeDPS_(slimeDPS) {}
 
 
 float SlimeTowerComponent::getSpeedDecrease() const { return speedDecreasePer_; }

@@ -12,27 +12,21 @@ public:
 	~PhoenixTower();
 
 	void levelUp(int level);
-	void targetEnemy(const std::list<Entity*>& targetGroup);
 
-	bool isMaxLevel() const { return isMaxLevel_; }
-	float getDamage() const { return damage_; }
-	float getCoolingTime()const { return coolingTime_; }
-	float getShootingTime() const { return shootingTime_; }
-	float getElapsedTime() const { return elapsedTime_; }
-	float getRange() const { return range_; }
-	bool isShooting() const { return shooting_; }
-	Entity* getFire() const { return fire_; }
-	Entity* getTarget() const { return target_; }
-	float getRotation()const { return rotation_; }
+	bool isMaxLevel() { return isMaxLevel_; }
+	float getDamage() { return damage_; }
+	float getCoolingTime() { return coolingTime_; }
+	float getShootingTime() { return shootingTime_; }
+	float getElapsedTime() { return elapsedTime_; }
+	float getRange() { return range_; }
+	bool isShooting() { return shooting_; }
+	Entity* getFire() { return fire_; }
 
 	void setElapsedTime(float elapsed) { elapsedTime_ = elapsed; }
 	void setIsShooting(bool shooting) { shooting_ = shooting; }
 	void setFire(Entity* fire) { fire_ = fire; }
-	void setTarget(Entity* e) { target_ = e; };
-	void setRotation(float rot) { rotation_ = rot; }
 	void removeFire();
-
-protected:
+private:
 	bool isMaxLevel_ = false;
 	float coolingTime_;
 	float shootingTime_;
@@ -40,9 +34,5 @@ protected:
 	float damage_;
 	float range_;
 	bool shooting_;
-	float rotation_;
 	Entity* fire_;
-	Entity* target_;
-
-	float getDistance(Vector2D targetPos);
 };

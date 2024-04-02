@@ -31,7 +31,7 @@ void LevelSelectorSystem::initSystem()
 	//play button
 	pAux = { sdlutils().width() / 2.0f, sdlutils().height() / 2.0f };
 	sAux = { 350, 110 };
-	bS->addButton(pAux, sAux, gameTextures::play, gameTextures::play_hover, ButtonTypes::level_selected);
+	bS->addButton(pAux, sAux, gameTextures::play, gameTextures::play_hover, ButtonTypes::start_game);
 	
 }
 

@@ -3,7 +3,7 @@
 
 
 BulletTower::BulletTower(float range, float reloadTime, int damage) 
-	: AttackComponent::AttackComponent(range, reloadTime, damage, false), isMaxLevel_(false), secondTarget_(nullptr) {}
+	: AttackComponent::AttackComponent(range, reloadTime, damage, true), isMaxLevel_(false), secondTarget_(nullptr) {}
 
 
 void BulletTower::levelUp(int level) {

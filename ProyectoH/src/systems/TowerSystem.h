@@ -15,7 +15,6 @@
 #include "../components/FramedImage.h"
 #include "../components/UpgradeTowerComponent.h"
 #include "../components/FireComponent.h"
-#include "../components/IconComponent.h"
 #include "../game/Game.h"
 #include <list>
 #include <algorithm>
@@ -41,7 +40,7 @@ public:
 	/// <param name="type">id de la torre</param>
 	/// <param name="pos">posicion</param>
 	/// <param name="height">si pertenece a pradera o monta�a</param>
-	void addTower(twrId type, const Vector2D& pos, Height height);
+	void addTower(twrId type, Vector2D pos, Height height);
 	
 	int intAt(basic_string<char> s) { return sdlutils().intConst().at(s); }
 	float floatAt(basic_string<char> s) { return sdlutils().floatConst().at(s); }
@@ -49,15 +48,11 @@ public:
 
 protected:
 	Entity* shootBullet(Entity* target, Entity* src, float damage, float speed, Vector2D spawnPos, gameTextures texture,Vector2D bulletScale, twrId id);
-	Entity* addShield(Vector2D pos);
 	Entity* shootFire(Vector2D spawn, float rot, float dmg);
-	void createShieldExplosion(Vector2D pos);
-	void createBulletExplosion(Vector2D pos);
-	void clearShieldsArea(Entity* e);
-	Entity* shootFire(Vector2D spawn, float rot, float dmg, Entity* src);
 	void eliminateDestroyedTowers(Entity* t);
 	std::vector<Entity*> towers;
 	bool active_;
+
 	Entity* square;
 };
 
