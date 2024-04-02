@@ -237,12 +237,12 @@ void HUDSystem::update() {
 							mngr_->send(m);
 						}
 
-						auto mS = mngr_->getSystem<mapSystem>();
-						auto net = mS->getMalla();
-						//auto tr = mngr_->getComponent<Transform>(en);
-						Vector2D mPos = { (float)ih().getMousePos().first, (float)ih().getMousePos().second };
-						Vector2D pos = net->searchCell(mPos)->position;
-						dC->drop(pos, Height::LOW);
+						//auto mS = mngr_->getSystem<mapSystem>();
+						//auto net = mS->getMalla();
+						////auto tr = mngr_->getComponent<Transform>(en);
+						//Vector2D mPos = { (float)ih().getMousePos().first, (float)ih().getMousePos().second };
+						//Vector2D pos = net->searchCell(mPos)->position;
+						//dC->drop(pos, Height::LOW);
 						
 						//resetea el icono de la torre
 						dC->enableDrag(false);
