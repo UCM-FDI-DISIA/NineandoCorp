@@ -60,12 +60,12 @@ void EnemyBookSystem::initSystem() {
 		Vector2D sAuxbox = { contentWidth + 15, contentHeight + 15 };
 		if (Vistos[i] == true)
 		{
+			bS->addImage(pAux, sAuxbox, 0.0, gameTextures::large_box, _grp_HUD_FOREGROUND);
 			text = Texturas[i];
 		}
 		else {
 			text = gameTextures::large_box;
 		}
-		bS->addImage(pAux, sAuxbox, 0.0, gameTextures::large_box, _grp_HUD_FOREGROUND);
 		bS->addImage(pAux, sAux, 0.0,text, _grp_HUD_FOREGROUND);
 		t++;
 		if (t%5 ==0 && t!= 0)
