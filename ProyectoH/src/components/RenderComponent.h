@@ -20,7 +20,8 @@ enum gameTextures {
 	slimeTowerTexture, boosterTowerTexture, sniperTowerTexture, clayTowerTexture, nexusTexture, fireTexture,
 	
 	//enemies
-
+	MALMAS,AELECTRICO,MALDITO,GOLEM,DALADO,GOBLIN,ELFO,MMUERTE,ANGEL,
+	DINFERNAL,DREAL,CMALDITO,PRINCIPITO,MONJE,MUERTE,
 
 	//texts
 	nexus_level_text,

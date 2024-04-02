@@ -5,6 +5,7 @@
 #include "..//components/MaestroAlmasComponent.h"
 #include "..//components/GolemComponent.h"
 #include "../ecs/Manager.h"
+#include "../systems/EnemyBookSystem.h"
 
 EnemySystem::EnemySystem() {
 
@@ -135,6 +136,8 @@ void EnemySystem::addEnemy(enmId type, Vector2D pos) {
 	route.push_back({ (float)sdlutils().width() / 2.f, 300.f });
 	route.push_back({ (float)sdlutils().width() / 2.f, 600.f });
 	route.push_back({ 300, 600.f });
+	Message M;
+	M.id = _m_ENEMYSEE;
 
 	switch (type) {
 	case _enm_MALMAS:
@@ -144,6 +147,8 @@ void EnemySystem::addEnemy(enmId type, Vector2D pos) {
 		mngr_->addComponent<RouteComponent>(t, route);
 		mngr_->addComponent<AttackComponent>(t, 100, 0.25, 20, false);
 		mngr_->addComponent<FramedImage>(t, 1, 1, 122, 117, 0, 0, 1);
+		M.start_enemy_book.n = 1;
+		mngr_->send(M);
 		break;
 	case _enm_AELECTRICO:
 		tr->setSpeed(70.0f);
@@ -152,6 +157,8 @@ void EnemySystem::addEnemy(enmId type, Vector2D pos) {
 		mngr_->addComponent<RouteComponent>(t, route);
 		mngr_->addComponent<AttackComponent>(t, 100, 0.25, 20, false);
 		mngr_->addComponent<FramedImage>(t, 1, 1, 122, 117, 0, 0, 1);
+		M.start_enemy_book.n = 2;
+		mngr_->send(M);
 		break;
 	case _enm_MALDITO:
 		tr->setSpeed(30.0f);
@@ -160,6 +167,9 @@ void EnemySystem::addEnemy(enmId type, Vector2D pos) {
 		mngr_->addComponent<RouteComponent>(t, route);
 		mngr_->addComponent<AttackComponent>(t, 100, 0.25, 20, false);
 		mngr_->addComponent<FramedImage>(t, 1, 1, 122, 117, 0, 0, 1);
+
+		M.start_enemy_book.n = 3;
+		mngr_->send(M);
 		break;
 	case _enm_GOLEM:
 		tr->setSpeed(20.0f);
@@ -168,6 +178,9 @@ void EnemySystem::addEnemy(enmId type, Vector2D pos) {
 		mngr_->addComponent<RouteComponent>(t, route);
 		mngr_->addComponent<AttackComponent>(t, 100, 0.25, 20, false);
 		mngr_->addComponent<FramedImage>(t, 1, 1, 122, 117, 0, 0, 1);
+
+		M.start_enemy_book.n = 4;
+		mngr_->send(M);
 		break;
 	case _enm_DALADO:
 		tr->setSpeed(30.0f);
@@ -176,6 +189,9 @@ void EnemySystem::addEnemy(enmId type, Vector2D pos) {
 		mngr_->addComponent<RouteComponent>(t, route);
 		mngr_->addComponent<AttackComponent>(t, 100, 0.25, 20, false);
 		mngr_->addComponent<FramedImage>(t, 1, 1, 122, 117, 0, 0, 1);
+		
+		M.start_enemy_book.n = 5;
+		mngr_->send(M);
 		break;
 	case _enm_GOBLIN:
 		tr->setSpeed(30.0f);
@@ -184,6 +200,9 @@ void EnemySystem::addEnemy(enmId type, Vector2D pos) {
 		mngr_->addComponent<RouteComponent>(t, route);
 		mngr_->addComponent<AttackComponent>(t, 100, 0.25, 20, false);
 		mngr_->addComponent<FramedImage>(t, 1, 1, 122, 117, 0, 0, 1);
+		
+		M.start_enemy_book.n = 6;
+		mngr_->send(M);
 		break;
 	case _enm_ELFO:
 		tr->setSpeed(30.0f);
@@ -192,6 +211,9 @@ void EnemySystem::addEnemy(enmId type, Vector2D pos) {
 		mngr_->addComponent<RouteComponent>(t, route);
 		mngr_->addComponent<AttackComponent>(t, 100, 0.25, 20, false);
 		mngr_->addComponent<FramedImage>(t, 1, 1, 122, 117, 0, 0, 1);
+		
+		M.start_enemy_book.n = 7;
+		mngr_->send(M);
 		break;
 	case _enm_MMUERTE:
 		tr->setSpeed(30.0f);
@@ -200,6 +222,9 @@ void EnemySystem::addEnemy(enmId type, Vector2D pos) {
 		mngr_->addComponent<RouteComponent>(t, route);
 		mngr_->addComponent<AttackComponent>(t, 100, 0.25, 20, false);
 		mngr_->addComponent<FramedImage>(t, 1, 1, 122, 117, 0, 0, 1);
+		
+		M.start_enemy_book.n = 8;
+		mngr_->send(M);
 		break;
 	case _enm_ANGEL:
 		tr->setSpeed(30.0f);
@@ -209,6 +234,9 @@ void EnemySystem::addEnemy(enmId type, Vector2D pos) {
 		mngr_->addComponent<GolemComponent>(t);
 		mngr_->addComponent<AttackComponent>(t, 100, 2, 20, false);
 		mngr_->addComponent<FramedImage>(t, 1, 1, 122, 117, 0, 0, 1);
+		
+		M.start_enemy_book.n = 9;
+		mngr_->send(M);
 		break;
 	case _enm_DINFERNAL:
 		tr->setSpeed(30.0f);
@@ -217,6 +245,9 @@ void EnemySystem::addEnemy(enmId type, Vector2D pos) {
 		mngr_->addComponent<RouteComponent>(t, route);
 		mngr_->addComponent<AttackComponent>(t, 100, 0.25, 20, false);
 		mngr_->addComponent<FramedImage>(t, 1, 1, 122, 117, 0, 0, 1);
+		
+		M.start_enemy_book.n = 10;
+		mngr_->send(M);
 		break;
 	case _enm_DREAL:
 		tr->setSpeed(30.0f);
@@ -225,6 +256,9 @@ void EnemySystem::addEnemy(enmId type, Vector2D pos) {
 		mngr_->addComponent<RouteComponent>(t, route);
 		mngr_->addComponent<AttackComponent>(t, 100, 0.25, 20, false);
 		mngr_->addComponent<FramedImage>(t, 1, 1, 122, 117, 0, 0, 1);
+		
+		M.start_enemy_book.n = 11;
+		mngr_->send(M);
 		break;
 	case _enm_CMALDITO:
 		tr->setSpeed(10.0f);
@@ -233,6 +267,9 @@ void EnemySystem::addEnemy(enmId type, Vector2D pos) {
 		mngr_->addComponent<RouteComponent>(t, route);
 		mngr_->addComponent<AttackComponent>(t, 100, 0.25, 20, false);
 		mngr_->addComponent<FramedImage>(t, 1, 1, 122, 117, 0, 0, 1);
+		
+		M.start_enemy_book.n = 12;
+		mngr_->send(M);
 		break;
 	case _enm_PRINCIPITO:
 		tr->setSpeed(10.0f);
@@ -241,6 +278,9 @@ void EnemySystem::addEnemy(enmId type, Vector2D pos) {
 		mngr_->addComponent<RouteComponent>(t, route);
 		mngr_->addComponent<AttackComponent>(t, 100, 0.25, 20, false);
 		mngr_->addComponent<FramedImage>(t, 1, 1, 122, 117, 0, 0, 1);
+		
+		M.start_enemy_book.n = 13;
+		mngr_->send(M);
 		break;
 	case _enm_MONJE:
 		tr->setSpeed(10.0f);
@@ -249,6 +289,9 @@ void EnemySystem::addEnemy(enmId type, Vector2D pos) {
 		mngr_->addComponent<RouteComponent>(t, route);
 		mngr_->addComponent<AttackComponent>(t, 100, 0.25, 20, false);
 		mngr_->addComponent<FramedImage>(t, 1, 1, 122, 117, 0, 0, 1);
+		
+		M.start_enemy_book.n = 14;
+		mngr_->send(M);
 		break;
 	case _enm_MUERTE:
 		tr->setSpeed(10.0f);
@@ -257,6 +300,9 @@ void EnemySystem::addEnemy(enmId type, Vector2D pos) {
 		mngr_->addComponent<RouteComponent>(t, route);
 		mngr_->addComponent<AttackComponent>(t, 100, 0.25, 20, false);
 		mngr_->addComponent<FramedImage>(t, 1, 1, 122, 117, 0, 0, 1);
+
+		M.start_enemy_book.n = 15;
+		mngr_->send(M);
 		break;
 			
 

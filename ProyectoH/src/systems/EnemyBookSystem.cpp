@@ -1,13 +1,8 @@
 #include "EnemyBookSystem.h"
 #include "../ecs/Manager.h"
 #include "../game/Game.h"
-// Definir el tamaño de la barra de desplazamiento
-const float SCROLLBAR_WIDTH = 600.f;
-const float SCROLLBAR_HEIGHT = 20.f;
 
-EnemyBookSystem::EnemyBookSystem()
-{
-}
+
 EnemyBookSystem::~EnemyBookSystem()
 {
 	for (auto en : mngr_->getHandler(_hdlr_BUTTON_ENEMYBOOK)) {
@@ -26,13 +21,25 @@ void EnemyBookSystem::initSystem() {
 	pAux = pAux + Vector2D(430.0f, -230.0f);
 	sAux = { 70.0f, 70.0f };
 	bS->addButton(pAux, sAux, gameTextures::close, gameTextures::close_hover, ButtonTypes::back_selector);
-    //vector enemigos para ver si han sido avistados
-	vector<bool> Vistos(15);
-	for (int i = 0; i < Vistos.size(); ++i) {
-		//si se han matado a un enemigo, se comprueba si ese enemigo esta a false y si es asi se cambia a true
-	}
+    
 	//vector textura enemigo
-	vector<gameTextures> Texturas(15);
+	vector<gameTextures> Texturas{
+		gameTextures::MALMAS,
+		gameTextures::AELECTRICO,
+		gameTextures::MALDITO,
+		gameTextures::GOLEM,
+		gameTextures::DALADO,
+		gameTextures::GOBLIN,
+		gameTextures::ELFO,
+		gameTextures::MMUERTE,
+		gameTextures::ANGEL,
+		gameTextures::DINFERNAL,
+		gameTextures::DREAL,
+		gameTextures::CMALDITO,
+		gameTextures::PRINCIPITO,
+		gameTextures::MONJE,
+		gameTextures::MUERTE
+	};
 
 	// Calcular la posición inicial del contenido
 	float contentPosX = 350.f; // Posición inicial x del contenido
@@ -68,7 +75,13 @@ void EnemyBookSystem::initSystem() {
 }
 void EnemyBookSystem::receive(const Message& m)
 {
+	EnemigoVisto(m.start_enemy_book.n, Vistos);
 }
 
 void EnemyBookSystem::update() {
+}
+void EnemyBookSystem::EnemigoVisto(int i, std::vector<bool>Vistos) {
+	if (i >= 0 && i < Vistos.size()) {
+		Vistos[i] = true;
+	}
 }
