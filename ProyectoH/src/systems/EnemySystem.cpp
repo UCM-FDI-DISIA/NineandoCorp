@@ -56,6 +56,8 @@ void  EnemySystem::receive(const Message& m) {
 			HealthComponent* h = mngr_->getComponent<HealthComponent>(m.entity_to_attack.e);
 			if (h->subtractHealth(m.entity_to_attack.damage)) {
 				mngr_->deleteHandler(_hdlr_ENEMIES, m.entity_to_attack.e);
+				auto enemytype = mngr_->getComponent<EnemyTypeComponent>(m.entity_to_attack.e);
+				AddMoney(enemytype->GetEnemyType());
 				if (mngr_->hasComponent<AttackComponent>(m.entity_to_attack.src))mngr_->getComponent<AttackComponent>(m.entity_to_attack.src)->setTarget(nullptr);
 			};
 		}
@@ -125,6 +127,64 @@ std::vector<Vector2D> EnemySystem::RouteTranslate(std::vector<Vector2D> route) {
 		route_aux[i] = netmap->getCell(route[i].getX(), route[i].getY())->position;
 	}
 	return route_aux;
+}
+
+void EnemySystem::AddMoney(enmId type) {
+	int money = 0;
+	switch (type)
+	{
+	case _enm_MALMAS:
+		money = 30;
+		break;
+	case _enm_AELECTRICO:
+		money = 30;
+		break;
+	case _enm_MALDITO:
+		money = 15;
+		break;
+	case _enm_GOLEM:
+		money = 100;
+		break;
+	case _enm_DALADO:
+		money = 5;
+		break;
+	case _enm_GOBLIN:
+		money = 5;
+		break;
+	case _enm_ELFO:
+		money = 15;
+		break;
+	case _enm_MMUERTE:
+		money = 50;
+		break;
+	case _enm_ANGEL:
+		money = 25;
+		break;
+	case _enm_DINFERNAL:
+		money = 75;
+		break;
+	case _enm_DREAL:
+		money = 30;
+		break;
+	case _enm_CMALDITO:
+		money = 0;
+		break;
+	case _enm_PRINCIPITO:
+		money = 0;
+		break;
+	case _enm_MONJE:
+		money = 0;
+		break;
+	case _enm_MUERTE:
+		money = 0;
+		break;
+	default:
+		break;
+	}
+	Message m;
+	m.id = _m_ADD_MONEY;
+	m.money_data.money = money;
+	mngr_->send(m);
 }
 
 void EnemySystem::update() {

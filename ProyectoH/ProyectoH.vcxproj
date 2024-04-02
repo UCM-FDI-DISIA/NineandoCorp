@@ -31,6 +31,7 @@
     <ClInclude Include="src\components\DirtTower.h" />
     <ClInclude Include="src\components\DragAndDrop.h" />
     <ClInclude Include="src\components\EnemyStates.h" />
+    <ClInclude Include="src\components\EnemyTypeComponent.h" />
     <ClInclude Include="src\components\EnhancerTower.h" />
     <ClInclude Include="src\components\FireComponent.h" />
     <ClInclude Include="src\components\FramedImage.h" />
@@ -112,6 +113,7 @@
     <ClCompile Include="src\components\DiegoSniperTower.cpp" />
     <ClCompile Include="src\components\DirtTower.cpp" />
     <ClCompile Include="src\components\DragAndDrop.cpp" />
+    <ClCompile Include="src\components\EnemyTypeComponent.cpp" />
     <ClCompile Include="src\components\EnhancerTower.cpp" />
     <ClCompile Include="src\components\FireComponent.cpp" />
     <ClCompile Include="src\components\FramedImage.cpp" />

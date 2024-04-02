@@ -26,6 +26,7 @@ public:
 	void onRoundStart(int n_grp, unsigned int level);
 	void onWaveStart();
 	void collideswithEnemy();
+	void AddMoney(enmId type);
 
 	std::vector<Vector2D> RouteTranslate(std::vector<Vector2D> route);
 	

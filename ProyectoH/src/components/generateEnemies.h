@@ -11,6 +11,7 @@
 #include "..//components/AcechanteComponent.h"
 #include "..//components/GolemComponent.h"
 #include "..//components/AngelComponent.h"
+#include "..//components/EnemyTypeComponent.h"
 #include "../game/Game.h"
 
 class generateEnemies : public Component {

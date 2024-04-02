@@ -53,6 +53,7 @@ enum cmpId : cmpId_type {
 	_ICON,
 	_LIMITEDTIME,
 	_INTERACTIVE_TOWER,
+	_ENEMYTYPE,
 
 
 	// do not remove this
