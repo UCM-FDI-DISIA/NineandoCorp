@@ -168,19 +168,48 @@ void RenderSystem::update() {
 
 	//Este control tiene que estar en el main control sistem
 	////Control de camara
-	if (ih().isKeyDown(SDLK_UP) && offset->y < limtop) {
-		offset->y += 50;
+	if (ih().isKeyDown(SDLK_UP)) {
+		k_up = true;
 	}
-	else if (ih().isKeyDown(SDLK_LEFT) && offset->x < limleft) {
-		offset->x += 50;
+	else if(ih().isKeyUp(SDLK_UP)){
+		k_up = false;
 	}
-	else if (ih().isKeyDown(SDLK_RIGHT) && offset->x > limright) {
-		offset->x -= 50;
+	if (ih().isKeyDown(SDLK_LEFT)) {
+		k_left = true;
 	}
-	else if (ih().isKeyDown(SDLK_DOWN) && offset->y > limbot) {
-		offset->y -= 50;
+	else if (ih().isKeyUp(SDLK_LEFT)){
+		k_left = false;
 	}
-	//tmp->update();
+	if (ih().isKeyDown(SDLK_RIGHT)) {
+		k_right = true;
+	}
+	else if (ih().isKeyUp(SDLK_RIGHT) ){
+		k_right = false;
+	}
+	if (ih().isKeyDown(SDLK_DOWN)) {
+		k_down = true;
+	}
+	else if (ih().isKeyUp(SDLK_DOWN) ){
+		k_down = false;
+	}
+
+	if (k_up && offset->y < limtop) {
+		cameraY_ += VelCam * game().getDeltaTime();
+		offset->y = cameraY_;
+	}
+	if (k_left && offset->x < limleft) {
+		cameraX_ += VelCam * game().getDeltaTime();
+		offset->x = cameraX_;
+	}
+	if (k_right && offset->x > limright) {
+		cameraX_ -= VelCam * game().getDeltaTime();
+		offset->x = cameraX_;
+	}
+	if (k_down && offset->y > limbot) {
+		cameraY_ -= VelCam * game().getDeltaTime();
+		offset->y = cameraY_;
+	}
+
 
 	//LAYER 1 TILEMAP
 	const auto& tilesl1 = mngr_->getEntities(_grp_TILES_L1);
