@@ -201,7 +201,7 @@ void EnemySystem::update() {
 				ac->setLoaded(true);
 				ac->targetEnemy(towers);
 
-				if (ac->getTarget() != nullptr) {
+				if (ac->getTarget() != nullptr && (ac->getAttackTowers() || mngr_->getComponent<NexusComponent>(ac->getTarget()))) {
 					mc->setStop(true);
 					if (ma != nullptr) {
 						ma->CiegaTorre(ac->getTarget());

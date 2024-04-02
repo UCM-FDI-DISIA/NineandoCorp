@@ -92,7 +92,7 @@ void generateEnemies::addEnemy(enmId type, std::vector<Vector2D> route) {
 		RoutesCorrection(tr, route, 1.5f, 1.5f);
 		tr->setPosition(route[0]);
 		mngr_->addComponent<RouteComponent>(t, route);
-		mngr_->addComponent<AttackComponent>(t, 100, 1.0, 0, true);
+		mngr_->addComponent<AttackComponent>(t, 100, 1.0, 20, true);
 		mngr_->addComponent<FramedImage>(t, 1, 1, 250, 250, 0, 8, 7);
 		break;
 	case _enm_AELECTRICO:
@@ -102,137 +102,137 @@ void generateEnemies::addEnemy(enmId type, std::vector<Vector2D> route) {
 		RoutesCorrection(tr, route, 1.5f, 1.5f);
 		tr->setPosition(route[0]);
 		mngr_->addComponent<RouteComponent>(t, route);
-		mngr_->addComponent<AttackComponent>(t, 0, 1, 20, false);
+		mngr_->addComponent<AttackComponent>(t, 10, 1, 35, false);
 		mngr_->addComponent<FramedImage>(t, 8, 1, 162, 162, 0, 8, 7);
 		break;
 	case _enm_MALDITO:
 		tr->setSpeed(30.0f);
 		mngr_->addComponent<RenderComponent>(t, maldito);
-		mngr_->addComponent<HealthComponent>(t, 50000);
+		mngr_->addComponent<HealthComponent>(t, 60);
 		RoutesCorrection(tr, route, 1.0f, 3.0f);
 		tr->setPosition(route[0]);
 		mngr_->addComponent<RouteComponent>(t, route);
-		mngr_->addComponent<AttackComponent>(t, 100, 0.25, 20, false);
+		mngr_->addComponent<AttackComponent>(t, 10, 1, 20, false);
 		mngr_->addComponent<FramedImage>(t, 8, 1, 64, 64, 0, 8, 7);
 		break;
 	case _enm_GOLEM:
 		tr->setSpeed(20.0f);
 		mngr_->addComponent<RenderComponent>(t, golem);
-		mngr_->addComponent<HealthComponent>(t, 50000);
+		mngr_->addComponent<HealthComponent>(t, 1000);
 		RoutesCorrection(tr, route, 1.5f, 1.5f);
 		tr->setPosition(route[0]);
 		mngr_->addComponent<RouteComponent>(t, route);
-		mngr_->addComponent<AttackComponent>(t, 100, 0.25, 20, false);
+		mngr_->addComponent<AttackComponent>(t, 10, 3, 100, false);
 		mngr_->addComponent<FramedImage>(t, 10, 10, 100, 100, 40, 10, 46);
 		break;
 	case _enm_DALADO:
-		tr->setSpeed(30.0f);
+		tr->setSpeed(40.0f);
 		mngr_->addComponent<RenderComponent>(t, demonioAlado);
-		mngr_->addComponent<HealthComponent>(t, 50000);
+		mngr_->addComponent<HealthComponent>(t, 25);
 		RoutesCorrection(tr, route, 1.5f, 1.5f);
 		tr->setPosition(route[0]);
 		mngr_->addComponent<RouteComponent>(t, route);
-		mngr_->addComponent<AttackComponent>(t, 100, 0.25, 20, false);
+		mngr_->addComponent<AttackComponent>(t, 100, 1, 5, true);
 		mngr_->addComponent<FramedImage>(t, 8, 1, 150, 150, 0, 8, 7);
 		break;
 	case _enm_GOBLIN:
-		tr->setSpeed(30.0f);
+		tr->setSpeed(60.0f);
 		mngr_->addComponent<RenderComponent>(t, goblin);
-		mngr_->addComponent<HealthComponent>(t, 50000);
+		mngr_->addComponent<HealthComponent>(t, 20);
 		RoutesCorrection(tr, route, 1.5f, 1.5f);
 		tr->setPosition(route[0]);
 		mngr_->addComponent<RouteComponent>(t, route);
-		mngr_->addComponent<AttackComponent>(t, 100, 0.25, 20, false);
+		mngr_->addComponent<AttackComponent>(t, 10, 1, 15, false);
 		mngr_->addComponent<FramedImage>(t, 8, 1, 150, 150, 0, 8, 7);
 		break;
 	case _enm_ELFO:
-		tr->setSpeed(30.0f);
+		tr->setSpeed(20.0f);
 		mngr_->addComponent<RenderComponent>(t, elfo);
-		mngr_->addComponent<HealthComponent>(t, 50000);
+		mngr_->addComponent<HealthComponent>(t, 60);
 		RoutesCorrection(tr, route, 1.5f, 1.5f);
 		tr->setPosition(route[0]);
 		mngr_->addComponent<RouteComponent>(t, route);
-		mngr_->addComponent<AttackComponent>(t, 100, 0.25, 20, false);
+		mngr_->addComponent<AttackComponent>(t, 100, 1, 10, true);
 		mngr_->addComponent<FramedImage>(t, 8, 1, 100, 100, 0, 8, 7);
 		break;
 	case _enm_MMUERTE:
 		tr->setSpeed(30.0f);
 		mngr_->addComponent<RenderComponent>(t, mensajero);
-		mngr_->addComponent<HealthComponent>(t, 50000);
+		mngr_->addComponent<HealthComponent>(t, 300);
 		RoutesCorrection(tr, route, 1.5f, 1.5f);
 		tr->setPosition(route[0]);
 		mngr_->addComponent<RouteComponent>(t, route);
-		mngr_->addComponent<AttackComponent>(t, 100, 0.25, 20, false);
+		mngr_->addComponent<AttackComponent>(t, 10, 1, 20, false);
 		mngr_->addComponent<FramedImage>(t, 8, 8, 140, 93, 8, 8, 15);
 		break;
 	case _enm_ANGEL:
 		tr->setSpeed(30.0f);
 		mngr_->addComponent<RenderComponent>(t, angel);
-		mngr_->addComponent<HealthComponent>(t, 50000);
+		mngr_->addComponent<HealthComponent>(t, 400);
 		RoutesCorrection(tr, route, 1.5f, 1.5f);
 		tr->setPosition(route[0]);
 		mngr_->addComponent<RouteComponent>(t, route);
-		mngr_->addComponent<AttackComponent>(t, 100, 0.25, 20, false);
+		mngr_->addComponent<AttackComponent>(t, 100, 2, 2, true);
 		mngr_->addComponent<FramedImage>(t, 8, 1, 122, 117, 0, 8, 7);
 		break;
 	case _enm_DINFERNAL:
 		tr->setSpeed(30.0f);
 		mngr_->addComponent<RenderComponent>(t, demonioInfernal);
-		mngr_->addComponent<HealthComponent>(t, 50000);
+		mngr_->addComponent<HealthComponent>(t, 750);
 		RoutesCorrection(tr, route, 1.5f, 1.5f);
 		tr->setPosition(route[0]);
 		mngr_->addComponent<RouteComponent>(t, route);
-		mngr_->addComponent<AttackComponent>(t, 100, 0.25, 20, false);
+		mngr_->addComponent<AttackComponent>(t, 100, 2, 20, true);
 		mngr_->addComponent<FramedImage>(t, 8, 4, 64, 64, 16, 4, 19);
 		break;
 	case _enm_DREAL:
 		tr->setSpeed(30.0f);
 		mngr_->addComponent<RenderComponent>(t, defensor);
-		mngr_->addComponent<HealthComponent>(t, 50000);
+		mngr_->addComponent<HealthComponent>(t, 200);
 		RoutesCorrection(tr, route, 1.5f, 1.5f);
 		tr->setPosition(route[0]);
 		mngr_->addComponent<RouteComponent>(t, route);
-		mngr_->addComponent<AttackComponent>(t, 100, 0.25, 20, false);
+		mngr_->addComponent<AttackComponent>(t, 100, 1, 10, true);
 		mngr_->addComponent<FramedImage>(t, 8, 1, 231, 190, 0, 8, 7);
 		break;
 	case _enm_CMALDITO:
 		tr->setSpeed(10.0f);
 		mngr_->addComponent<RenderComponent>(t, CMaldito);
-		mngr_->addComponent<HealthComponent>(t, 50000);
+		mngr_->addComponent<HealthComponent>(t, 1000);
 		RoutesCorrection(tr, route, 1.5f, 1.5f);
 		tr->setPosition(route[0]);
 		mngr_->addComponent<RouteComponent>(t, route);
-		mngr_->addComponent<AttackComponent>(t, 100, 0.25, 20, false);
+		mngr_->addComponent<AttackComponent>(t, 10, 3, 150, false);
 		mngr_->addComponent<FramedImage>(t, 8, 1, 64, 64, 0, 8, 7);
 		break;
 	case _enm_PRINCIPITO:
-		tr->setSpeed(10.0f);
+		tr->setSpeed(30.0f);
 		mngr_->addComponent<RenderComponent>(t, principito);
-		mngr_->addComponent<HealthComponent>(t, 50000);
+		mngr_->addComponent<HealthComponent>(t, 2500);
 		RoutesCorrection(tr, route, 1.5f, 1.5f);
 		tr->setPosition(route[0]);
 		mngr_->addComponent<RouteComponent>(t, route);
-		mngr_->addComponent<AttackComponent>(t, 100, 0.25, 20, false);
+		mngr_->addComponent<AttackComponent>(t, 100, 0.25, 10, true);
 		mngr_->addComponent<FramedImage>(t, 8, 1, 128, 128, 0, 8, 7);
 		break;
 	case _enm_MONJE:
-		tr->setSpeed(10.0f);
+		tr->setSpeed(30.0f);
 		mngr_->addComponent<RenderComponent>(t, monje);
-		mngr_->addComponent<HealthComponent>(t, 50000);
+		mngr_->addComponent<HealthComponent>(t, 5000);
 		RoutesCorrection(tr, route, 1.5f, 1.5f);
 		tr->setPosition(route[0]);
 		mngr_->addComponent<RouteComponent>(t, route);
-		mngr_->addComponent<AttackComponent>(t, 100, 0.25, 20, false);
+		mngr_->addComponent<AttackComponent>(t, 100, 1, 75, false);
 		mngr_->addComponent<FramedImage>(t, 8, 1, 150, 150, 0, 8, 7);
 		break;
 	case _enm_MUERTE:
 		tr->setSpeed(10.0f);
 		mngr_->addComponent<RenderComponent>(t, muerte);
-		mngr_->addComponent<HealthComponent>(t, 50000);
+		mngr_->addComponent<HealthComponent>(t, 10000);
 		RoutesCorrection(tr, route, 1.5f, 1.5f);
 		tr->setPosition(route[0]);
 		mngr_->addComponent<RouteComponent>(t, route);
-		mngr_->addComponent<AttackComponent>(t, 100, 0.25, 20, false);
+		mngr_->addComponent<AttackComponent>(t, 100, 1, 75, true);
 		mngr_->addComponent<FramedImage>(t, 1, 1, 100, 100, 0, 0, 1);
 		break;
 

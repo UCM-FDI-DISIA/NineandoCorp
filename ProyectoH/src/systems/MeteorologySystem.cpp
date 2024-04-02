@@ -18,9 +18,9 @@ quantity_(0),
 eventActive_(false),
 objectsSpawned_(0)
 {
-	auto& rand = sdlutils().rand();
+	/*auto& rand = sdlutils().rand();
 	timeToNextEvent_ = rand.nextInt(minTimeInterval_, maxTimeInterval_);
-	nextEvent_ = (MeteorologyEvent)rand.nextInt(1, 2);
+	nextEvent_ = (MeteorologyEvent)rand.nextInt(1, 2);*/
 }
 
 MeteorologySystem::~MeteorologySystem() {

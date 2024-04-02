@@ -13,7 +13,7 @@ class AttackComponent : public Component
 public:
 	static const cmpId id = cmpId::_ATTACK;
 
-	AttackComponent(float range, float reloadTime, int damage, bool shootBullets);
+	AttackComponent(float range, float reloadTime, int damage, bool towers);
 	virtual void initComponent();
 	
 ;
@@ -39,6 +39,7 @@ public:
 	void setElapsedTime(float elapsed);
 	void setTarget(Entity* e) { target_ = e; };
 	bool getNexo() { return nexo_; }
+	bool getAttackTowers() { return towers_; };
 	void setNexo(bool n) { nexo_=n; }
 
 protected:
@@ -53,6 +54,7 @@ protected:
 	float timeToShoot_;//Tiempo por dispaor
 	float elapsedTime_;
 	bool nexo_;
+	bool towers_;
 
 	bool loaded_;
 };
