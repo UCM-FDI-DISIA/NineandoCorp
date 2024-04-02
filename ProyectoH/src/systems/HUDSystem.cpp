@@ -30,147 +30,161 @@ void HUDSystem::initSystem() {
 		gameTextures::box,
 		_grp_HUD_BACKGROUND);
 	
-	// bullet tower
-	bS->addButton({ xAux, heightH },
-		bSize,
-		gameTextures::none_box, gameTextures::none_box_hover,
-		ButtonTypes::bullet_drag);
+	#pragma region BULLET TOWER
+		bS->addButton({ xAux, heightH },
+			bSize,
+			gameTextures::none_box, gameTextures::none_box_hover,
+			ButtonTypes::bullet_drag);
 
-	towers_imgs[_twr_BULLET] = bS->addImage(
-		{ xAux, heightH },
-		{ 55.0f, 80.0f }, 
-		0.0f,
-		gameTextures::bulletTowerTexture,
-		_grp_HUD_FOREGROUND);
-	mngr_->addComponent<DragAndDrop>(towers_imgs[_twr_BULLET], _twr_BULLET, sdlutils().intConst().at("BalasPrecio"));
-	mngr_->addComponent<FramedImage>(towers_imgs[_twr_BULLET],
-		intAt("BalasColumns"), intAt("BalasRows"),
-		intAt("BalasWidth"), intAt("BalasHeight"),
-		0, 0);
-	initial_pos[_twr_BULLET] = { xAux, heightH };
+		towers_imgs[_twr_BULLET] = bS->addImage(
+			{ xAux + 3, heightH },
+			{ floatAt("IconBulletScaleX"), floatAt("IconBulletScaleY")},
+			0.0f,
+			gameTextures::bulletTowerTexture,
+			_grp_HUD_FOREGROUND);
+		mngr_->addComponent<DragAndDrop>(towers_imgs[_twr_BULLET], _twr_BULLET, sdlutils().intConst().at("BalasPrecio"));
+		mngr_->addComponent<FramedImage>(towers_imgs[_twr_BULLET],
+			intAt("BalasColumns"), intAt("BalasRows"),
+			intAt("BalasWidth"), intAt("BalasHeight"),
+			0, 0);
+		initial_pos[_twr_BULLET] = { xAux + 3, heightH };
 
-	// cristal tower
-	bS->addButton({ xAux * 2, heightH },
-		bSize,
-		gameTextures::none_box, gameTextures::none_box_hover,
-		ButtonTypes::crystal_drag);
-	towers_imgs[_twr_CRISTAL] = bS->addImage(
-		{ xAux * 2, heightH },
-		{ 55.0f, 80.0f },
-		0.0,
-		cristalTowerTexture,
-		_grp_HUD_FOREGROUND);
+	#pragma endregion
 
-	mngr_->addComponent<DragAndDrop>(towers_imgs[_twr_CRISTAL], _twr_CRISTAL, sdlutils().intConst().at("CristalPrecio"));
-	mngr_->addComponent<FramedImage>(towers_imgs[_twr_CRISTAL],
-		intAt("CristalColumns"), intAt("CristalRows"),
-		intAt("CristalWidth"), intAt("CristalHeight"),
-		0, 0);
-	initial_pos[_twr_CRISTAL] = { xAux * 2, heightH };
+	#pragma region CRISTAL TOWER
+		bS->addButton({ xAux * 2, heightH},
+			bSize,
+			gameTextures::none_box, gameTextures::none_box_hover,
+			ButtonTypes::crystal_drag);
+		towers_imgs[_twr_CRISTAL] = bS->addImage(
+			{ xAux * 2 + 3, heightH - 10 },
+			{ floatAt("IconCristalScaleX"), floatAt("IconCristalScaleY") },
+			0.0,
+			cristalTowerTexture,
+			_grp_HUD_FOREGROUND);
 
-	//phoenix_tower
-	bS->addButton({ xAux * 3, heightH },
-		bSize,
-		gameTextures::none_box, gameTextures::none_box_hover,
-		ButtonTypes::fenix_drag);
+		mngr_->addComponent<DragAndDrop>(towers_imgs[_twr_CRISTAL], _twr_CRISTAL, sdlutils().intConst().at("CristalPrecio"));
+		mngr_->addComponent<FramedImage>(towers_imgs[_twr_CRISTAL],
+			intAt("CristalColumns"), intAt("CristalRows"),
+			intAt("CristalWidth"), intAt("CristalHeight"),
+			0, 0);
+		initial_pos[_twr_CRISTAL] = { xAux * 2 + 3, heightH - 10 };
 
-	towers_imgs[_twr_FENIX] = bS->addImage(
-		{xAux * 3, heightH},
-		{60.0f, 80.0f},
-		0.0,
-		phoenixTowerTexture,
-		_grp_HUD_FOREGROUND);
+	#pragma endregion
 
-	mngr_->addComponent<DragAndDrop>(towers_imgs[_twr_FENIX], _twr_FENIX, sdlutils().intConst().at("FenixPrecio"));
-	mngr_->addComponent<FramedImage>(towers_imgs[_twr_FENIX],
-		intAt("FenixColumns"), intAt("FenixRows"), 
-		intAt("FenixWidth"), intAt("FenixHeight"), 
-		0, 0);
+	#pragma region PHOENIX TOWER
 
-	initial_pos[_twr_FENIX] = { xAux * 3, heightH };  
-	 
-	//dirt_tower
-	bS->addButton({ xAux * 4, heightH },
-		bSize,
-		gameTextures::none_box, gameTextures::none_box_hover,
-		ButtonTypes::clay_drag);
-	towers_imgs[_twr_CLAY] = bS->addImage(
-		{ xAux * 4, heightH },
-		{ 60.0f, 80.0f },
-		0.0,
-		clayTowerTexture,
-		_grp_HUD_FOREGROUND);
+		bS->addButton({ xAux * 3, heightH },
+			bSize,
+			gameTextures::none_box, gameTextures::none_box_hover,
+			ButtonTypes::fenix_drag);
 
-	mngr_->addComponent<DragAndDrop>(towers_imgs[_twr_CLAY], _twr_CLAY, sdlutils().intConst().at("ArcillaPrecio"));
-	mngr_->addComponent<FramedImage>(towers_imgs[_twr_CLAY],
-		intAt("ArcillaColumns"), intAt("ArcillaRows"),
-		intAt("ArcillaWidth"), intAt("ArcillaHeight"),
-		0, 0);
+		towers_imgs[_twr_FENIX] = bS->addImage(
+			{ xAux * 3 + 3, heightH },
+			{ floatAt("IconFenixScaleX"), floatAt("IconFenixScaleY") },
+			0.0,
+			phoenixTowerTexture,
+			_grp_HUD_FOREGROUND);
 
-	initial_pos[_twr_CLAY] = { xAux * 4, heightH };
+		mngr_->addComponent<DragAndDrop>(towers_imgs[_twr_FENIX], _twr_FENIX, sdlutils().intConst().at("FenixPrecio"));
+		mngr_->addComponent<FramedImage>(towers_imgs[_twr_FENIX],
+			intAt("FenixColumns"), intAt("FenixRows"),
+			intAt("FenixWidth"), intAt("FenixHeight"),
+			0, 0);
 
-	//sniper_tower
-	bS->addButton({ xAux * 5, heightH },
-		bSize,
-		gameTextures::none_box, gameTextures::none_box_hover,
-		ButtonTypes::sniper_drag);
+		initial_pos[_twr_FENIX] = { xAux * 3 + 3, heightH };
+	#pragma endregion
 
-	towers_imgs[_twr_DIEGO] = bS->addImage(
-		{ xAux * 5, heightH },
-		{ 45.0f, 80.0f },
-		0.0,
-		sniperTowerTexture,
-		_grp_HUD_FOREGROUND);
+	#pragma region CLAY TOWER
 
-	mngr_->addComponent<DragAndDrop>(towers_imgs[_twr_DIEGO], _twr_DIEGO, sdlutils().intConst().at("DiegoSniperPrecio"));
-	mngr_->addComponent<FramedImage>(towers_imgs[_twr_DIEGO],
-		intAt("DiegoSniperColumns"), intAt("DiegoSniperRows"),
-		intAt("DiegoSniperWidth"), intAt("DiegoSniperHeight"),
-		0, 0);
+		bS->addButton({ xAux * 4, heightH },
+			bSize,
+			gameTextures::none_box, gameTextures::none_box_hover,
+			ButtonTypes::clay_drag);
+		towers_imgs[_twr_CLAY] = bS->addImage(
+			{ xAux * 4 + 3, heightH },
+			{ floatAt("IconClayScaleX"), floatAt("IconClayScaleY") },
+			0.0,
+			clayTowerTexture,
+			_grp_HUD_FOREGROUND);
 
-	initial_pos[_twr_DIEGO] = { xAux * 5, heightH };
+		mngr_->addComponent<DragAndDrop>(towers_imgs[_twr_CLAY], _twr_CLAY, sdlutils().intConst().at("ArcillaPrecio"));
+		mngr_->addComponent<FramedImage>(towers_imgs[_twr_CLAY],
+			intAt("ArcillaColumns"), intAt("ArcillaRows"),
+			intAt("ArcillaWidth"), intAt("ArcillaHeight"),
+			0, 0);
 
-	//slime_tower
-	bS->addButton({ xAux * 6, heightH },
-		bSize,
-		gameTextures::none_box, gameTextures::none_box_hover,
-		ButtonTypes::slime_drag);
+		initial_pos[_twr_CLAY] = { xAux * 4 + 3, heightH };
+	#pragma endregion
 
-	towers_imgs[_twr_SLIME] = bS->addImage(
-		{ xAux * 6, heightH },
-		{ 60.0f, 80.0f },
-		0.0,
-		slimeTowerTexture,
-		_grp_HUD_FOREGROUND);
+	#pragma region SNIPER TOWER
 
-	mngr_->addComponent<DragAndDrop>(towers_imgs[_twr_SLIME], _twr_SLIME, sdlutils().intConst().at("SlimePrecio"));
-	mngr_->addComponent<FramedImage>(towers_imgs[_twr_SLIME],
-		intAt("SlimeColumns"), intAt("SlimeRows"),
-		intAt("SlimeWidth"), intAt("SlimeHeight"),
-		0, 0);
+		bS->addButton({ xAux * 5, heightH },
+			bSize,
+			gameTextures::none_box, gameTextures::none_box_hover,
+			ButtonTypes::sniper_drag);
 
-	initial_pos[_twr_SLIME] = { xAux * 6, heightH };
+		towers_imgs[_twr_DIEGO] = bS->addImage(
+			{ xAux * 5 + 3, heightH },
+			{ floatAt("IconSniperScaleX"), floatAt("IconSniperScaleY") },
+			0.0,
+			sniperTowerTexture,
+			_grp_HUD_FOREGROUND);
 
-	//boost_tower
-	bS->addButton({ xAux * 7, heightH },
-		bSize,
-		gameTextures::none_box, gameTextures::none_box_hover,
-		ButtonTypes::enhancer_drag);
+		mngr_->addComponent<DragAndDrop>(towers_imgs[_twr_DIEGO], _twr_DIEGO, sdlutils().intConst().at("DiegoSniperPrecio"));
+		mngr_->addComponent<FramedImage>(towers_imgs[_twr_DIEGO],
+			intAt("DiegoSniperColumns"), intAt("DiegoSniperRows"),
+			intAt("DiegoSniperWidth"), intAt("DiegoSniperHeight"),
+			0, 0);
 
-	towers_imgs[_twr_POWER] = bS->addImage(
-		{ xAux * 7, heightH },
-		{ 55.0f, 80.0f },
-		0.0,
-		boosterTowerTexture,
-		_grp_HUD_FOREGROUND);
-  
-	mngr_->addComponent<DragAndDrop>(towers_imgs[_twr_POWER], _twr_POWER, sdlutils().intConst().at("PotenciadoraPrecio"));
-	mngr_->addComponent<FramedImage>(towers_imgs[_twr_POWER],
-		intAt("PotenciadoraColumns"), intAt("PotenciadoraRows"),
-		intAt("PotenciadoraWidth"), intAt("PotenciadoraHeight"),
-		0, 0);
+		initial_pos[_twr_DIEGO] = { xAux * 5 + 3, heightH };
+#pragma endregion
+	
+	#pragma region SLIME TOWER
 
-	initial_pos[_twr_POWER] = { xAux * 7, heightH };
+		bS->addButton({ xAux * 6, heightH },
+			bSize,
+			gameTextures::none_box, gameTextures::none_box_hover,
+			ButtonTypes::slime_drag);
+
+		towers_imgs[_twr_SLIME] = bS->addImage(
+			{ xAux * 6 + 3, heightH },
+			{ floatAt("IconSlimeScaleX"), floatAt("IconSlimeScaleY") },
+			0.0,
+			slimeTowerTexture,
+			_grp_HUD_FOREGROUND);
+
+		mngr_->addComponent<DragAndDrop>(towers_imgs[_twr_SLIME], _twr_SLIME, sdlutils().intConst().at("SlimePrecio"));
+		mngr_->addComponent<FramedImage>(towers_imgs[_twr_SLIME],
+			intAt("SlimeColumns"), intAt("SlimeRows"),
+			intAt("SlimeWidth"), intAt("SlimeHeight"),
+			0, 0);
+
+		initial_pos[_twr_SLIME] = { xAux * 6 + 3, heightH };
+#pragma endregion
+
+	#pragma region POWER TOWER
+
+		bS->addButton({ xAux * 7, heightH },
+			bSize,
+			gameTextures::none_box, gameTextures::none_box_hover,
+			ButtonTypes::enhancer_drag);
+
+		towers_imgs[_twr_POWER] = bS->addImage(
+			{ xAux * 7 + 3, heightH - 4},
+			{ floatAt("IconPotenciadorScaleX"), floatAt("IconPotenciadorScaleY") },
+			0.0,
+			boosterTowerTexture,
+			_grp_HUD_FOREGROUND);
+
+		mngr_->addComponent<DragAndDrop>(towers_imgs[_twr_POWER], _twr_POWER, sdlutils().intConst().at("PotenciadoraPrecio"));
+		mngr_->addComponent<FramedImage>(towers_imgs[_twr_POWER],
+			intAt("PotenciadoraColumns"), intAt("PotenciadoraRows"),
+			intAt("PotenciadoraWidth"), intAt("PotenciadoraHeight"),
+			0, 0);
+
+		initial_pos[_twr_POWER] = { xAux * 7 + 3 , heightH - 4 };
+#pragma endregion
 }
 
 void HUDSystem::receive(const Message& m) {
@@ -197,6 +211,7 @@ void HUDSystem::update() {
 					if (ih().getMouseButtonState(InputHandler::MOUSEBUTTON::RIGHT) == 1) {
 						auto tr = mngr_->getComponent<Transform>(en);
 						mngr_->changeEntityId(_grp_HUD_FOREGROUND, en);
+						tr->setScale(resetScale(dC->getTowerId()));
 						Vector2D aux = tr->getScale();
 						tr->setPosition(initial_pos[i] - aux / 2);
 						dC->enableDrag(false);
@@ -205,12 +220,27 @@ void HUDSystem::update() {
 					//click izquierdo para colocar la torre
 					else if (ih().getMouseButtonState(InputHandler::MOUSEBUTTON::LEFT) == 1) {
 						auto tr = mngr_->getComponent<Transform>(en);
-						dC->drop(tr->getPosition(), Height::LOW);
-						cell->isFree = false;
-
+						if (cell->isFree) {
+							dC->drop(tr->getPosition(), Height::LOW);
+							cell->isFree = false;
+						}
+						else {
+							//mensaje de no colocar
+							Message m;
+							m.id = _m_ADD_TEXT;
+							m.add_text_data.txt = "NO SE PUEDE COLOCAR EN ESTA POSICION";
+							m.add_text_data.color = { 255, 0 ,0, 255 }; 
+							Vector2D txtScale = Vector2D(800.0f, 75.0f); 
+							m.add_text_data.pos = Vector2D(sdlutils().width() / 2, sdlutils().height() / 2) - (txtScale / 2);
+							m.add_text_data.scale = txtScale; 
+							m.add_text_data.time = 1000;
+							mngr_->send(m);
+						}
+						
 						//resetea el icono de la torre
 						dC->enableDrag(false);
 						mngr_->changeEntityId(_grp_HUD_FOREGROUND, en);
+						tr->setScale(resetScale(dC->getTowerId()));
 						Vector2D aux = tr->getScale();
 						tr->setPosition(initial_pos[i] - aux / 2);
 
@@ -228,6 +258,38 @@ Cell* HUDSystem::getCellFromTile(const Vector2D& pos) {
 	auto mS = mngr_->getSystem<mapSystem>();
 	auto net = mS->getMalla();
 	return net->searchCell(pos);
+}
+
+Vector2D HUDSystem::resetScale(twrId tId)
+{
+	Vector2D scale;
+	switch (tId)
+	{
+	case _twr_BULLET:
+		scale.set(Vector2D(floatAt("IconBulletScaleX"), floatAt("IconBulletScaleY")));
+		break;
+	case _twr_CRISTAL:
+		scale.set(Vector2D(floatAt("IconCristalScaleX"), floatAt("IconCristalScaleY")));
+		break;
+	case _twr_SLIME:
+		scale.set(Vector2D(floatAt("IconSlimeScaleX"), floatAt("IconSlimeScaleY")));
+		break;
+	case _twr_DIEGO:
+		scale.set(Vector2D(floatAt("IconSniperScaleX"), floatAt("IconSniperScaleY")));
+		break;
+	case _twr_FENIX:
+		scale.set(Vector2D(floatAt("IconFenixScaleX"), floatAt("IconFenixScaleY")));
+		break;
+	case _twr_CLAY:
+		scale.set(Vector2D(floatAt("IconClayScaleX"), floatAt("IconClayScaleY")));
+		break;
+	case _twr_POWER:
+		scale.set(Vector2D(floatAt("IconPotenciadorScaleX"), floatAt("IconPotenciadorScaleY")));
+		break;
+	default:
+		break;
+	}
+	return scale;
 }
 
 void HUDSystem::dragTowerIcon(Entity* en){

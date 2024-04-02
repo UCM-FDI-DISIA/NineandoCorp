@@ -6,7 +6,7 @@ MainControlSystem::MainControlSystem() :active_(false)
 }
 
 void MainControlSystem::initSystem() {
-	// Inicialización del nivel de las torres y nexo
+	// Inicializaciï¿½n del nivel de las torres y nexo
 	for (int i = 0; i < _twr_SIZE; i++) {
 		turrentLevels_[i] = 0;
 	}
@@ -14,6 +14,9 @@ void MainControlSystem::initSystem() {
 
 void MainControlSystem::receive(const Message& m) {
 	switch (m.id) {
+	case _m_START_GAME:
+		OnStartGame();
+		break;
 	case _m_LEVEL_SELECTED:
 		game().changeState<PlayState>();
 		break;
@@ -30,16 +33,8 @@ void MainControlSystem::receive(const Message& m) {
 	case _m_PAUSE:
 		game().pushState<PauseState>(mngr_);
 		break;
-	case _m_SHIELD_NEXUS:
-		mngr_->getComponent<NexusComponent>(nexo)->activateShield();
-		mngr_->getComponent<NexusComponent>(nexo)->setShieldHitpoints(m.shield_data.shield);
-		break;
-	case _m_ATTACK_NEXUS:
-		if (mngr_->getComponent<NexusComponent>(nexo)->isShieldActive()) {
-			mngr_->getComponent<NexusComponent>(nexo)->setShieldHitpoints(mngr_->getComponent<NexusComponent>(nexo)->getShieldHitpoints() - m.nexus_attack_data.damage);
-
-		}
-		else mngr_->getComponent<HealthComponent>(nexo)->subtractHealth(m.nexus_attack_data.damage);
+	case _m_ATTACK_NEXUS:		
+		mngr_->getComponent<HealthComponent>(nexo)->subtractHealth(m.nexus_attack_data.damage);
 		break;
 	case _m_UPGRADE_TOWER:
 		upgradeTower(m.upgrade_tower.towerId);
@@ -67,19 +62,22 @@ void MainControlSystem::update() {
 		elapsedTime_ = 0;
 	}
 	if (active_) {
-		if(mngr_->getComponent<NexusComponent>(nexo)->getShieldHitpoints() <= 0)mngr_->getComponent<NexusComponent>(nexo)->inactivateShield();
-
-		//std::cout << mngr_->getComponent<NexusComponent>(nexo)->getShieldHitpoints() << "\n";
+		// Si la vida del Nexo llega a cero se acaba la partida
+		if (mngr_->getComponent<HealthComponent>(nexo)->getHealth() <= 0) {
+			Message m;
+			m.id = _m_OVER_GAME;
+			mngr_->send(m);
+			// Pushear Estado Nuevo?
+		}
 	}
 }
 
-void MainControlSystem::onRoundStart() {
-	active_ = true;
-	nexo = mngr_->addEntity(_grp_TOWERS_AND_ENEMIES);
-	mngr_->addComponent<NexusComponent>(nexo);
-	mngr_->addComponent<RenderComponent>(nexo, nexusTexture);
-	mngr_->addComponent<HealthComponent>(nexo, 1000.0f);
-	mngr_->addComponent<Transform>(nexo)->setPosition({ 800.0f, 800.0f });
+void MainControlSystem::OnStartGame() {
+
+	// Initializaciï¿½n del Nexo
+	string nexusTextureName = "nexusLvl" + turrentLevels_[_twr_NEXUS];
+	initializeNexus(nexusLvl1, 1000.0f, { 580.0f, 980.0f });		// Editar para usar NexusTextureName
+	cout << "ronda1 empieza";
 }
 
 void MainControlSystem::onRoundOver() {
@@ -88,4 +86,15 @@ void MainControlSystem::onRoundOver() {
 
 void MainControlSystem::subtractCoins(int num) {
 	numDoradasActuales -= num;
+}
+
+void MainControlSystem::initializeNexus(gameTextures texture, int life, Vector2D pos){
+	active_ = true;
+	nexo = mngr_->addEntity(_grp_TOWERS_AND_ENEMIES);
+	mngr_->addComponent<NexusComponent>(nexo);
+	mngr_->addComponent<RenderComponent>(nexo, texture);
+	mngr_->addComponent<HealthComponent>(nexo, life);
+	mngr_->addComponent<FramedImage>(nexo, 1, 1, 1011, 673, 1, 1, 1);
+	mngr_->addComponent<Transform>(nexo)->setPosition(pos);
+	cout << "Nexo: " << texture << life << pos;
 }

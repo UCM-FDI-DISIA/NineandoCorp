@@ -56,7 +56,7 @@ private:
 	void loadLevelSelector();
 
 	/// <summary>
-	/// Mensaje de carga enemyBook para ver los enemigos encontrados
+	/// Mensaje para la pausa
 	/// </summary>
 	void Pause();
 
@@ -95,6 +95,8 @@ private:
 	/// Funcion que realiza el mensaje START_GAME
 	/// </summary>
 	void OnStartGame();
+
+	void showTempText(string txt, const SDL_Color& color, const Vector2D& pos, const Vector2D& scale, int time);
 
 	int money_ = 0;
 	int costs[_twr_SIZE];

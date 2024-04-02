@@ -7,14 +7,14 @@ class IconComponent:public Component
 private:
 	bool hasIcon_;
 	Entity* icon_;
-	cmpId iconType_;
+	iconId iconType_;
 public:
 	static const cmpId id = cmpId::_ICON;
 
-	IconComponent(cmpId iconType) : hasIcon_(false), iconType_(iconType), icon_(nullptr) {};
+	IconComponent(iconId iconType) : hasIcon_(false), iconType_(iconType), icon_(nullptr) {};
 
 	Entity* getIcon() { return icon_; }
-	cmpId getIconType() { return iconType_; }
+	iconId getIconType() { return iconType_; }
 
 	bool hasIcon() { return hasIcon_; }
 	void setHasIcon(bool hasIcon) { hasIcon_ = hasIcon; }

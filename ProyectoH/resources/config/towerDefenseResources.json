@@ -282,6 +282,22 @@
             "file": "resources/images/Towers/nexus_tower.jpeg"
         },
         {
+            "id": "nexusLvl1",
+            "file": "resources/images/Nexus/nexus_level_1.png"
+        },
+        {
+            "id": "nexusLvl2",
+            "file": "resources/images/Nexus/nexus_level_2.png"
+        },
+        {
+            "id": "nexusLvl3",
+            "file": "resources/images/Nexus/nexus_level_3.png"
+        },
+        {
+            "id": "nexusLvl4",
+            "file": "resources/images/Nexus/nexus_level_4.png"
+        },
+        {
             "id": "play",
             "file": "resources/images/UI/play_button.png"
         },

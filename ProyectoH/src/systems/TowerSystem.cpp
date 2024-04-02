@@ -1,9 +1,9 @@
-﻿#include "TowerSystem.h"
+#include "TowerSystem.h"
 #include "..//ecs/ecs.h"
 #include "..//components/SlimeBullet.h"
 #include "..//components/ShieldComponent.h"
 #include "..//components/TowerStates.h"
-
+#include "../components/InteractiveTower.h"
 
 TowerSystem::TowerSystem() : active_(true) {
 }
@@ -14,17 +14,6 @@ TowerSystem::~TowerSystem() {
 
 void TowerSystem::initSystem() {
 	active_ = true;
-
-	//addTower(twrId::_twr_BULLET, { (float)sdlutils().width() / 1.9f, 500.f }, LOW);
-	//addTower(twrId::_twr_DIEGO, { (float)sdlutils().width() / 1.9f, 600.f }, LOW);
-	//addTower(twrId::_twr_SLIME, { (float)sdlutils().width() / 3.0f, 600.f }, LOW);
-	//addTower(twrId::_twr_SLIME, { (float)sdlutils().width() / 2.3f, 630.f }, LOW);
-	//addTower(twrId::_twr_BULLET, { (float)sdlutils().width() / 1.8f, 600.f }, LOW);
-	//addTower(twrId::_twr_FENIX, { (float)sdlutils().width() / 1.8f, 600.f }, LOW);
-	//addTower(twrId::_twr_DIRT, { (float)sdlutils().width() / 3.0f, 600.f }, LOW);
-	//addTower(twrId::_twr_CRISTAL, { (float)sdlutils().width() / 1.8f, 660.f }, LOW);
-	//addTower(twrId::_twr_POWER, { (float)sdlutils().width() / 1.8f, 600.f }, LOW);
-
 }
 
 void TowerSystem::receive(const Message& m) {
@@ -141,6 +130,13 @@ void TowerSystem::update() {
 			}
 		}
 	}
+
+	for (auto& t : towers) {
+		auto iTwr = mngr_->getComponent<InteractiveTower>(t);
+		if (iTwr != nullptr) {
+			iTwr->update();
+		}
+	}
 	
 	for (auto& t : towers) {
 			Transform* TR = mngr_->getComponent<Transform>(t);
@@ -148,7 +144,26 @@ void TowerSystem::update() {
 			
 			if (tw->getCegado()) {//si esta cegada
 				tw->setElapsed(tw->getElapsed() + game().getDeltaTime());
+				IconComponent* ic = mngr_->getComponent<IconComponent>(t);
+				if (ic == nullptr)	ic = mngr_->addComponent<IconComponent>(t, _BLINDED);//Agregarselo si no lo tiene
+				if (ic->getIconType() == _BLINDED) {
+					if (!ic->hasIcon()) {//Crearlo si no lo tiene
+						Entity* icon = mngr_->addEntity(_grp_ICONS);
+						mngr_->addComponent<RenderComponent>(icon, blindedIcon);
+						Transform* tr = mngr_->addComponent<Transform>(icon);
+						Transform* targetTR = mngr_->getComponent<Transform>(t);
+						tr->setPosition(*(targetTR->getPosition()));
+						tr->setScale(*(targetTR->getScale()) / 4);
+
+						ic->setHasIcon(true);
+						ic->setIcon(icon);
+					}
+				}
 				if (tw->getElapsed() > tw->getCegado()) {
+					if (ic != nullptr && ic->hasIcon() && ic->getIconType() == _BLINDED) {//Eliminarlo si no se encuentra en la distancia
+						ic->setHasIcon(false);
+						mngr_->setAlive(ic->getIcon(), false);
+					}
 					tw->setCegado(false, 0.0);
 					tw->setElapsed(0.0);
 				}
@@ -341,7 +356,8 @@ void TowerSystem::update() {
 		BulletComponent* bc = mngr_->getComponent<BulletComponent>(b);	
 		SlimeBullet* sb = mngr_->getComponent<SlimeBullet>(b);
 		FramedImage* fi = mngr_->getComponent<FramedImage>(bc->getTarget());
-		Vector2D targetPos = *(mngr_->getComponent<Transform>(bc->getTarget())->getPosition());
+		Transform* targetTR = mngr_->getComponent<Transform>(bc->getTarget());
+		Vector2D targetPos = *(targetTR->getPosition());
 		if (fi != nullptr) {
 			Vector2D offset = { (float)fi->getSrcRect().w / 4, (float)fi->getSrcRect().h / 4 };//Se dirige hacia el centro del rect
 			targetPos = targetPos + offset;
@@ -442,6 +458,7 @@ void TowerSystem::addTower(twrId type,const Vector2D& pos, Height height) {
 	tr->setPosition(pos);
 	mngr_->addComponent<TowerStates>(t);
 	mngr_->addComponent<UpgradeTowerComponent>(t, type, 4);
+	mngr_->addComponent<InteractiveTower>(t);
 	float health = 100.0f;
 	if (height == LOW) {
 		mngr_->addComponent<HealthComponent>(t, health);
@@ -501,4 +518,3 @@ void TowerSystem::addTower(twrId type,const Vector2D& pos, Height height) {
 	towers.emplace_back(t);
 	//std::cout << "Torre añadida: " << type << " TorresTotales: " << towers.size() << std::endl;
 }
-

@@ -6,7 +6,7 @@ class TextComponent : public Component
 public:
 	static const cmpId id = cmpId::_TEXT;
 
-	TextComponent(std::string text, std::string font = "ARIAL_ROUNDED", std::string color = "0xffffffff") : textTexture_(nullptr), text_(text), font_(font), color_(color) { update(); };
+	TextComponent(std::string text, const SDL_Color& color = {255, 255, 255, 255}, std::string font = "ARIAL_ROUNDED") : textTexture_(nullptr), text_(text), font_(font), color_(color) { update(); };
 
 	~TextComponent() { 
 		delete textTexture_;
@@ -53,13 +53,13 @@ public:
 	/// Establece el color del texto
 	/// </summary>
 	/// <param name="newColor">El color en hexaecimal</param>
-	void setColor(std::string newColor) { color_ = newColor; };
+	void setColor(SDL_Color newColor) { color_ = newColor; };
 
 	/// <summary>
 	/// Devuelve el color que se esta usando;
 	/// </summary>
 	/// <returns>El color que se esta usando</returns>
-	std::string getColor() { return color_; };
+	SDL_Color getColor() { return color_; };
 
 	/// <summary>
 	/// Actualiza la textura, es necesario para que se visualizen los cambios realizados respecto a la anterior textura.
@@ -70,6 +70,7 @@ private:
 	Texture* textTexture_;
 	std::string text_;
 	std::string font_;
-	std::string color_;
+	//std::string color_;
+	SDL_Color color_;
 };
 

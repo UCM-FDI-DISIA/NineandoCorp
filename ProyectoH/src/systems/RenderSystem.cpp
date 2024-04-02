@@ -1,4 +1,4 @@
-﻿#include "RenderSystem.h"
+#include "RenderSystem.h"
 #include "../ecs/Manager.h"
 #include "../game/Game.h"
 
@@ -33,12 +33,14 @@ RenderSystem::RenderSystem() : winner_(0)
 	textures[bulletTexture] = &sdlutils().images().at("canon_bullet");
 	textures[sniperBulletTexture] = &sdlutils().images().at("sniper_bullet");
 	textures[slimeBulletTexture] = &sdlutils().images().at("slime_bullet");
-	textures[nexusTexture] = &sdlutils().images().at("nexus_tower");
+	textures[nexusTexture] = &sdlutils().images().at("nexus_tower");	// Quitar creo
 	textures[box] = &sdlutils().images().at("box");
 	textures[box_hover] = &sdlutils().images().at("box_hover");
 	textures[none_box] = &sdlutils().images().at("none_box");
 	textures[none_box_hover] = &sdlutils().images().at("none_box_hover");
 	textures[large_box] = &sdlutils().images().at("large_box");
+	/*textures[pause_button] = &sdlutils().images().at("pause_button");
+	textures[pause_button_hover] = &sdlutils().images().at("pause_button_hover");*/
 	textures[close] = &sdlutils().images().at("close");
 	textures[close_hover] = &sdlutils().images().at("close_hover");
 	textures[enemies_button] = &sdlutils().images().at("enemies");
@@ -55,11 +57,18 @@ RenderSystem::RenderSystem() : winner_(0)
 	textures[phoenix_tower_image] = &sdlutils().images().at("phoenix_tower_image");
 	textures[clay_tower_image] = &sdlutils().images().at("dirt_tower_image");
 	textures[power_tower_image] = &sdlutils().images().at("power_tower_image");
-	textures[nexus_level_3_image] = &sdlutils().images().at("nexus_level_3_image");
+	textures[nexus_level_3_image] = &sdlutils().images().at("nexus_level_3_image");		// Quitar creo
 	textures[nexus_level_text] = &sdlutils().msgs().at("nexus_level_text");
 	textures[fireTexture] = &sdlutils().images().at("fireball");
 	textures[slimeArea] = &sdlutils().images().at("slime_area");
 	textures[shield] = &sdlutils().images().at("shield");
+
+	//Nexus
+	textures[nexusLvl1] = &sdlutils().images().at("nexusLvl1");
+	textures[nexusLvl2] = &sdlutils().images().at("nexusLvl2");
+	textures[nexusLvl3] = &sdlutils().images().at("nexusLvl3");
+	textures[nexusLvl4] = &sdlutils().images().at("nexusLvl4");
+
 	//HUD
 	cursorTexture = &sdlutils().images().at("cursor");
 	cursorTexture2 = &sdlutils().images().at("cursorpress");
@@ -82,6 +91,9 @@ RenderSystem::RenderSystem() : winner_(0)
 	textures[powerIcon] = &sdlutils().images().at("powerup_icon");
 	textures[lightningIcon] = &sdlutils().images().at("lightning_icon");
 	textures[blindedIcon] = &sdlutils().images().at("blinded_icon");
+	textures[slimeArea] = &sdlutils().images().at("slime_area");
+	textures[fireTexture] = &sdlutils().images().at("fireball");
+
 
 	//Explosions
 	textures[shieldExp] = &sdlutils().images().at("shieldExp");
@@ -138,19 +150,48 @@ void RenderSystem::update() {
 
 	//Este control tiene que estar en el main control sistem
 	////Control de camara
-	if (ih().isKeyDown(SDLK_UP) && offset->y < limtop) {
-		offset->y += 50;
+	if (ih().isKeyDown(SDLK_UP)) {
+		k_up = true;
 	}
-	else if (ih().isKeyDown(SDLK_LEFT) && offset->x < limleft) {
-		offset->x += 50;
+	else if(ih().isKeyUp(SDLK_UP)){
+		k_up = false;
 	}
-	else if (ih().isKeyDown(SDLK_RIGHT) && offset->x > limright) {
-		offset->x -= 50;
+	if (ih().isKeyDown(SDLK_LEFT)) {
+		k_left = true;
 	}
-	else if (ih().isKeyDown(SDLK_DOWN) && offset->y > limbot) {
-		offset->y -= 50;
+	else if (ih().isKeyUp(SDLK_LEFT)){
+		k_left = false;
 	}
-	//tmp->update();
+	if (ih().isKeyDown(SDLK_RIGHT)) {
+		k_right = true;
+	}
+	else if (ih().isKeyUp(SDLK_RIGHT) ){
+		k_right = false;
+	}
+	if (ih().isKeyDown(SDLK_DOWN)) {
+		k_down = true;
+	}
+	else if (ih().isKeyUp(SDLK_DOWN) ){
+		k_down = false;
+	}
+
+	if (k_up && offset->y < limtop) {
+		cameraY_ += VelCam * game().getDeltaTime();
+		offset->y = cameraY_;
+	}
+	if (k_left && offset->x < limleft) {
+		cameraX_ += VelCam * game().getDeltaTime();
+		offset->x = cameraX_;
+	}
+	if (k_right && offset->x > limright) {
+		cameraX_ -= VelCam * game().getDeltaTime();
+		offset->x = cameraX_;
+	}
+	if (k_down && offset->y > limbot) {
+		cameraY_ -= VelCam * game().getDeltaTime();
+		offset->y = cameraY_;
+	}
+
 
 	//LAYER 1 TILEMAP
 	const auto& tilesl1 = mngr_->getEntities(_grp_TILES_L1);
@@ -325,18 +366,19 @@ void RenderSystem::update() {
 		auto fI = mngr_->getComponent<FramedImage>(e);
 		auto dnd = mngr_->getComponent<DragAndDrop>(e);
 		if (fI != nullptr) { 
-			//Pone de color verde en caso de poderse poner
 			if (dnd != nullptr) {
-
-				if (dnd->isDragged()) {//cabiar color
+				//Dibuja un rectangulo debajo de la torre
+				if (dnd->isDragged()) {
 					SDL_Renderer* renderer = textures[textureId]->getRenderer();
-					SDL_Point center = { pos.getX() + (scale.getX() / 2) - 8, pos.getY() + (3 * scale.getY() / 4)};
+					SDL_Point center = { (pos.getX() + (scale.getX() / 2) - 8) + offset->x, (pos.getY() + (3 * scale.getY() / 4)) + offset->y };
 					
+					//Seleccion de color si se puede poner la torre o no
 					SDL_Color color;
 					if (dnd->canDrop())
-						color = { 0, 255,0 , 100 };
-					else color = { 255, 0, 0, 100 };
+						color = { 0, 255,0 , 100 }; //verde 
+					else color = { 255, 0, 0, 100 }; //rojo 
 
+					// Ajuste de posicion y escala del rectangulo
 					auto mapSys = mngr_->getSystem<mapSystem>();
 					int w = 98;
 					auto h = tanf(M_PI / 6) * (w / 2) + 20;
