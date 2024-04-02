@@ -199,10 +199,10 @@ void HUDSystem::initSystem() {
 	initial_pos[_twr_POWER] = { xAux * 7, heightH };
 
 	// boton de pausa
-	bS->addButton({ sdlutils().width() - 50.0f, 50.0f },
-		{ 20.0f, 20.0f },
-		gameTextures::pause_button, gameTextures::pause_button_hover,
-		ButtonTypes::pause_main);
+	//bS->addButton({ sdlutils().width() - 50.0f, 50.0f },
+		//{ 20.0f, 20.0f },
+		//gameTextures::pause_button, gameTextures::pause_button_hover,
+		//ButtonTypes::pause_main);
 }
 
 void HUDSystem::receive(const Message& m) {
@@ -257,7 +257,7 @@ void HUDSystem::update() {
 
 						auto mS = mngr_->getSystem<mapSystem>();
 						auto net = mS->getMalla();
-						auto tr = mngr_->getComponent<Transform>(en);
+						//auto tr = mngr_->getComponent<Transform>(en);
 						Vector2D mPos = { (float)ih().getMousePos().first, (float)ih().getMousePos().second };
 						Vector2D pos = net->searchCell(mPos)->position;
 						dC->drop(pos, Height::LOW);
