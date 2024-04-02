@@ -7,8 +7,8 @@
 #include "../game/Game.h"
 
 
-MeteorologySystem::MeteorologySystem(): minTimeInterval_(15.0),
-maxTimeInterval_(30.0), 
+MeteorologySystem::MeteorologySystem(): minTimeInterval_(1.0),
+maxTimeInterval_(2.0), 
 elapsedTime_(0) ,
 thundersInterval_(0.5),
 meteoriteInterval_(1.5),
@@ -19,7 +19,7 @@ objectsSpawned_(0)
 {
 	auto& rand = sdlutils().rand();
 	timeToNextEvent_ = rand.nextInt(minTimeInterval_, maxTimeInterval_);
-	nextEvent_ = (MeteorologyEvent)rand.nextInt(1, 2);
+	nextEvent_ = (MeteorologyEvent)rand.nextInt(4, 5);
 }
 
 MeteorologySystem::~MeteorologySystem() {
@@ -77,28 +77,32 @@ void MeteorologySystem::generateNetMap() {
 void MeteorologySystem::generateAnimEarthquake() {
 	auto& rand = sdlutils().rand();
 
-	for (size_t k = 0; k < 30; k++)
+	for (size_t k = 0; k < 20; k++)
 	{
-		auto i = rand.nextInt(0, (int)tileSize_.getX() / 2 - 1);
-		auto j = rand.nextInt(0, (int)tileSize_.getY() - 1);
+		auto i = rand.nextInt(1, (int)tileSize_.getX() / 2 - 2);
+		auto j = rand.nextInt(1, (int)tileSize_.getY() - 2);
 
 		auto position = net->getCell(i, j)->position;
 		auto x = position.getX();
 		auto y = position.getY();
 
+		auto anim = rand.nextInt(0, 3);
+		auto animInit = 6 * anim;
+		auto animEnd = 6 * anim + 5;
+
 		Message m;
 		m.id = _m_ANIM_CREATE;
-		m.anim_create.animSpeed = 3;
+		m.anim_create.animSpeed = 2;
 		m.anim_create.idGrp = _grp_NATURALS_EFFECTS;
 		m.anim_create.iterationsToDelete = 4;
-		m.anim_create.scale = { 50, 50 };
-		m.anim_create.cols = 1;
-		m.anim_create.rows = 3;
+		m.anim_create.scale = { 200, 100 };
+		m.anim_create.cols = 3;
+		m.anim_create.rows = 6;
 		m.anim_create.tex = gameTextures::earthquake;
-		m.anim_create.frameInit = 0;
-		m.anim_create.frameEnd = 3;
-		m.anim_create.height = 32;
-		m.anim_create.width = 32;
+		m.anim_create.frameInit = animInit;
+		m.anim_create.frameEnd = animEnd;
+		m.anim_create.height = 37;
+		m.anim_create.width = 75;
 		m.anim_create.pos = Vector2D(x, y);
 		mngr_->send(m);
 	}
