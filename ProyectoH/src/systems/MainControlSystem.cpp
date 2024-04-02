@@ -76,7 +76,7 @@ void MainControlSystem::OnStartGame() {
 
 	// Initializaci�n del Nexo
 	string nexusTextureName = "nexusLvl" + turrentLevels_[_twr_NEXUS];
-	initializeNexus(nexusLvl1, 1000.0f, { 600.0f, 1000.0f });		// Editar para usar NexusTextureName
+	initializeNexus(nexusLvl1, 1000.0f, { 580.0f, 980.0f });		// Editar para usar NexusTextureName
 	cout << "ronda1 empieza";
 }
 
