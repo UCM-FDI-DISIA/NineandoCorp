@@ -159,6 +159,7 @@ enum msgId : msgId_type {
 	_m_DECREASE_SPEED,
 	_m_RESET_SPEED,
 	_m_REMOVE_RECT,
+	_m_ENEMYSEE
 };
 
 using twrId_type = uint8_t;
@@ -252,7 +253,7 @@ msgId_type id;
 	//_m_ENEMY_BOOK
 	struct
 	{
-		//nose
+		int n;
 	}start_enemy_book;
 
     // _m_TOWERS_TO_ATTACK
