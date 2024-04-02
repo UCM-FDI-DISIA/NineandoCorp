@@ -26,7 +26,7 @@
       <Filter>Sources Files\Systems</Filter>
     </ClCompile>
     <ClCompile Include="src\utils\Collisions.cpp">
-      <Filter>Sources Files\utils</Filter>
+      <Filter>Sources Files\Systems\utils</Filter>
     </ClCompile>
     <ClCompile Include="src\systems\CollisionSystem.cpp">
       <Filter>Sources Files\Systems</Filter>
@@ -59,7 +59,7 @@
       <Filter>Sources Files\Components</Filter>
     </ClCompile>
     <ClCompile Include="src\components\FramedImage.cpp">
-      <Filter>Sources Files\utils</Filter>
+      <Filter>Sources Files\Systems\utils</Filter>
     </ClCompile>
     <ClCompile Include="src\game\Game.cpp">
       <Filter>Sources Files\Game</Filter>
@@ -167,7 +167,7 @@
       <Filter>Sources Files\Systems</Filter>
     </ClCompile>
     <ClCompile Include="src\utils\Vector2D.cpp">
-      <Filter>Sources Files\utils</Filter>
+      <Filter>Sources Files\Systems\utils</Filter>
     </ClCompile>
     <ClCompile Include="src\systems\ParticleSystem.cpp">
       <Filter>Sources Files\Systems</Filter>
@@ -179,7 +179,7 @@
       <Filter>Sources Files\Components</Filter>
     </ClCompile>
     <ClCompile Include="src\utils\NetMap.cpp">
-      <Filter>Sources Files\utils</Filter>
+      <Filter>Sources Files\Systems\utils</Filter>
     </ClCompile>
     <ClCompile Include="src\components\generateEnemies.cpp" />
     <ClCompile Include="src\systems\MeteorologySystem.cpp">
@@ -603,9 +603,6 @@
     <Filter Include="Sources Files\sdlutils">
       <UniqueIdentifier>{f374f12f-a2ec-431b-9ea9-4af5557fc22b}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Sources Files\utils">
-      <UniqueIdentifier>{85d81c27-45f6-4950-abb3-b9c950e15ec1}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Sources Files\Systems">
       <UniqueIdentifier>{9b84fff3-1b27-4a36-8df4-2e57fc90315e}</UniqueIdentifier>
     </Filter>
@@ -633,5 +630,8 @@
     <ClCompile Include="src\components\GolemComponent.cpp">
       <Filter>Source Files\components</Filter>
     </ClCompile>
+    <Filter Include="Sources Files\Systems\utils">
+      <UniqueIdentifier>{85d81c27-45f6-4950-abb3-b9c950e15ec1}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
 </Project>

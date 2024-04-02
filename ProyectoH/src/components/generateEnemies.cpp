@@ -89,6 +89,7 @@ void generateEnemies::addEnemy(enmId type, std::vector<Vector2D> route) {
 		tr->setSpeed(30.0f);
 		mngr_->addComponent<RenderComponent>(t, maestro);
 		mngr_->addComponent<HealthComponent>(t, 150);
+		mngr_->addComponent<MaestroAlmasComponent>(t, 2.0f);
 		RoutesCorrection(tr, route, 1.5f, 1.5f);
 		tr->setPosition(route[0]);
 		mngr_->addComponent<RouteComponent>(t, route);
@@ -99,6 +100,7 @@ void generateEnemies::addEnemy(enmId type, std::vector<Vector2D> route) {
 		tr->setSpeed(70.0f);
 		mngr_->addComponent<RenderComponent>(t, acechante);
 		mngr_->addComponent<HealthComponent>(t, 150);
+		mngr_->addComponent<AcechanteComponent>(t, 1.5f, 5.0f, 10.0f);
 		RoutesCorrection(tr, route, 1.5f, 1.5f);
 		tr->setPosition(route[0]);
 		mngr_->addComponent<RouteComponent>(t, route);
@@ -119,6 +121,7 @@ void generateEnemies::addEnemy(enmId type, std::vector<Vector2D> route) {
 		tr->setSpeed(20.0f);
 		mngr_->addComponent<RenderComponent>(t, golem);
 		mngr_->addComponent<HealthComponent>(t, 1000);
+		mngr_->addComponent<GolemComponent>(t);
 		RoutesCorrection(tr, route, 1.5f, 1.5f);
 		tr->setPosition(route[0]);
 		mngr_->addComponent<RouteComponent>(t, route);
@@ -169,6 +172,7 @@ void generateEnemies::addEnemy(enmId type, std::vector<Vector2D> route) {
 		tr->setSpeed(30.0f);
 		mngr_->addComponent<RenderComponent>(t, angel);
 		mngr_->addComponent<HealthComponent>(t, 400);
+		mngr_->addComponent<AngelComponent>(t, 100.0f);
 		RoutesCorrection(tr, route, 1.5f, 1.5f);
 		tr->setPosition(route[0]);
 		mngr_->addComponent<RouteComponent>(t, route);

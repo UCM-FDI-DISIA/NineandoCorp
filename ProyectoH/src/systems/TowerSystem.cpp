@@ -149,11 +149,11 @@ void TowerSystem::update() {
 			if (tw->getCegado()) {//si esta cegada
 				tw->setElapsed(tw->getElapsed() + game().getDeltaTime());
 				IconComponent* ic = mngr_->getComponent<IconComponent>(t);
-				if (ic == nullptr)	ic = mngr_->addComponent<IconComponent>(t, _PARALIZED);//Agregarselo si no lo tiene
-				if (ic->getIconType() == _PARALIZED) {
+				if (ic == nullptr)	ic = mngr_->addComponent<IconComponent>(t, _BLINDED);//Agregarselo si no lo tiene
+				if (ic->getIconType() == _BLINDED) {
 					if (!ic->hasIcon()) {//Crearlo si no lo tiene
 						Entity* icon = mngr_->addEntity(_grp_ICONS);
-						mngr_->addComponent<RenderComponent>(icon, lightningIcon);
+						mngr_->addComponent<RenderComponent>(icon, blindedIcon);
 						Transform* tr = mngr_->addComponent<Transform>(icon);
 						Transform* targetTR = mngr_->getComponent<Transform>(t);
 						tr->setPosition(*(targetTR->getPosition()));
@@ -164,7 +164,7 @@ void TowerSystem::update() {
 					}
 				}
 				if (tw->getElapsed() > tw->getCegado()) {
-					if (ic != nullptr && ic->hasIcon() && ic->getIconType() == _PARALIZED) {//Eliminarlo si no se encuentra en la distancia
+					if (ic != nullptr && ic->hasIcon() && ic->getIconType() == _BLINDED) {//Eliminarlo si no se encuentra en la distancia
 						ic->setHasIcon(false);
 						mngr_->setAlive(ic->getIcon(), false);
 					}
@@ -360,7 +360,8 @@ void TowerSystem::update() {
 		BulletComponent* bc = mngr_->getComponent<BulletComponent>(b);	
 		SlimeBullet* sb = mngr_->getComponent<SlimeBullet>(b);
 		FramedImage* fi = mngr_->getComponent<FramedImage>(bc->getTarget());
-		Vector2D targetPos = *(mngr_->getComponent<Transform>(bc->getTarget())->getPosition());
+		Transform* targetTR = mngr_->getComponent<Transform>(bc->getTarget());
+		Vector2D targetPos = *(targetTR->getPosition());
 		if (fi != nullptr) {
 			Vector2D offset = { (float)fi->getSrcRect().w / 4, (float)fi->getSrcRect().h / 4 };//Se dirige hacia el centro del rect
 			targetPos = targetPos + offset;
