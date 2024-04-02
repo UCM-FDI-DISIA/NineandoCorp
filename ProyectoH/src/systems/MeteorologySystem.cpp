@@ -79,8 +79,8 @@ void MeteorologySystem::generateAnimEarthquake() {
 
 	for (size_t k = 0; k < 30; k++)
 	{
-		auto i = rand.nextInt(0, (int)tileSize_.getX() / 2 - 1);
-		auto j = rand.nextInt(0, (int)tileSize_.getY() - 1);
+		auto i = rand.nextInt(0, tileSize_.getX() / 2 - 1);
+		auto j = rand.nextInt(0, tileSize_.getY() - 1);
 
 		auto position = net->getCell(i, j)->position;
 		auto x = position.getX();
@@ -113,8 +113,8 @@ void MeteorologySystem::generateMeteorite() {
 
 	auto& rand = sdlutils().rand();
 
-	auto i = rand.nextInt(0, (int)tileSize_.getX() / 2 - 1);
-	auto j = rand.nextInt(0, (int)tileSize_.getY() - 1);
+	auto i = rand.nextInt(0, tileSize_.getX() / 2 - 1);
+	auto j = rand.nextInt(0, tileSize_.getY() - 1);
 
 	auto position = net->getCell(i, j)->position;
 	auto x = position.getX();
@@ -146,8 +146,8 @@ void MeteorologySystem::generateThunder() {
 
 	auto& rand = sdlutils().rand();
 
-	auto i = rand.nextInt(0, (int)tileSize_.getX() / 2 - 1);
-	auto j = rand.nextInt(0, (int)tileSize_.getY() - 1);
+	auto i = rand.nextInt(0, tileSize_.getX() / 2 - 1);
+	auto j = rand.nextInt(0, tileSize_.getY() - 1);
 
 	auto position = net->getCell(i, j)->position;
 	auto x = position.getX();
