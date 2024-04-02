@@ -38,6 +38,7 @@
     <ClInclude Include="src\components\GolemComponent.h" />
     <ClInclude Include="src\components\HealthComponent.h" />
     <ClInclude Include="src\components\iconComponent.h" />
+    <ClInclude Include="src\components\InteractiveTower.h" />
     <ClInclude Include="src\components\LimitedTime.h" />
     <ClInclude Include="src\components\MaestroAlmasComponent.h" />
     <ClInclude Include="src\components\MovementComponent.h" />
@@ -118,6 +119,7 @@
     <ClCompile Include="src\components\GolemComponent.cpp" />
     <ClCompile Include="src\components\HealthComponent.cpp" />
     <ClCompile Include="src\components\iconComponent.cpp" />
+    <ClCompile Include="src\components\InteractiveTower.cpp" />
     <ClCompile Include="src\components\LimitedTime.cpp" />
     <ClCompile Include="src\components\MaestroAlmasComponent.cpp" />
     <ClCompile Include="src\components\MovementComponent.cpp" />

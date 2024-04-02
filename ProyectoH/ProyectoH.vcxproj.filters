@@ -188,6 +188,7 @@
     <ClCompile Include="src\components\AngelComponent.cpp" />
     <ClCompile Include="src\components\iconComponent.cpp" />
     <ClCompile Include="src\components\LimitedTime.cpp" />
+    <ClCompile Include="src\components\InteractiveTower.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\components\AcechanteComponent.h">
@@ -416,6 +417,7 @@
     <ClInclude Include="src\components\AngelComponent.h" />
     <ClInclude Include="src\components\iconComponent.h" />
     <ClInclude Include="src\components\LimitedTime.h" />
+    <ClInclude Include="src\components\InteractiveTower.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\json\JSONValue.cpp">

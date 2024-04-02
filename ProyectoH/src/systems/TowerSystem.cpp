@@ -3,7 +3,7 @@
 #include "..//components/SlimeBullet.h"
 #include "..//components/ShieldComponent.h"
 #include "..//components/TowerStates.h"
-
+#include "../components/InteractiveTower.h"
 
 TowerSystem::TowerSystem() : active_(true) {
 }
@@ -139,6 +139,13 @@ void TowerSystem::update() {
 					health = h->getHealth();
 				}
 			}
+		}
+	}
+
+	for (auto& t : towers) {
+		auto iTwr = mngr_->getComponent<InteractiveTower>(t);
+		if (iTwr != nullptr) {
+			iTwr->update();
 		}
 	}
 	
@@ -462,6 +469,7 @@ void TowerSystem::addTower(twrId type,const Vector2D& pos, Height height) {
 	tr->setPosition(pos);
 	mngr_->addComponent<TowerStates>(t);
 	mngr_->addComponent<UpgradeTowerComponent>(t, type, 4);
+	mngr_->addComponent<InteractiveTower>(t);
 	float health = 100.0f;
 	if (height == LOW) {
 		mngr_->addComponent<HealthComponent>(t, health);

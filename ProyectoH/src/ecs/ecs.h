@@ -52,6 +52,7 @@ enum cmpId : cmpId_type {
 	_ANGEL,
 	_ICON,
 	_LIMITEDTIME,
+	_INTERACTIVE_TOWER,
 
 
 	// do not remove this
