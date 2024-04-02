@@ -2,20 +2,23 @@
 #include "..//ecs/Manager.h"
 #include "..//components/HealthComponent.h"
 
-NexusComponent::NexusComponent():shieldCurrentHitpoints_(0) { shieldActive_ = false; }
+NexusComponent::NexusComponent(){ }
 
-void NexusComponent::activateShield() { 
-	shieldActive_ = true; 
-	//mngr_->getComponent<HealthComponent>(ent_)->addHealth(shieldCurrentHitpoints_);
+NexusComponent::~NexusComponent(){ }
+
+void NexusComponent::levelUp(int level) {
+	switch (level) {
+	case 1:
+		//damage_ = sdlutils().floatConst().at("FenixDPS1");
+		break;
+	case 2:
+		//coolingTime_ = sdlutils().floatConst().at("FenixEnfriamiento1");
+		break;
+	case 3:
+		//damage_ = sdlutils().floatConst().at("FenixDPS2");
+		break;
+	case 4:
+		//coolingTime_ = sdlutils().floatConst().at("FenixEnfriamientoCero");
+		break;
+	}
 }
-
-void NexusComponent::inactivateShield() { 
-	shieldActive_ = false;
-	//mngr_->getComponent<HealthComponent>(ent_)->subtractHealth(shieldCurrentHitpoints_);
-}
-
-bool NexusComponent::isShieldActive() const { return shieldActive_; }
-
-int NexusComponent::getShieldHitpoints() const { return shieldCurrentHitpoints_; }
-
-void NexusComponent::setShieldHitpoints(int hitpoints) { shieldCurrentHitpoints_ = hitpoints; }

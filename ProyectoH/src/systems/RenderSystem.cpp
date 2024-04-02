@@ -33,7 +33,7 @@ RenderSystem::RenderSystem() : winner_(0)
 	textures[bulletTexture] = &sdlutils().images().at("canon_bullet");
 	textures[sniperBulletTexture] = &sdlutils().images().at("sniper_bullet");
 	textures[slimeBulletTexture] = &sdlutils().images().at("slime_bullet");
-	textures[nexusTexture] = &sdlutils().images().at("nexus_tower");
+	textures[nexusTexture] = &sdlutils().images().at("nexus_tower");	// Quitar creo
 	textures[box] = &sdlutils().images().at("box");
 	textures[box_hover] = &sdlutils().images().at("box_hover");
 	textures[none_box] = &sdlutils().images().at("none_box");
@@ -55,11 +55,18 @@ RenderSystem::RenderSystem() : winner_(0)
 	textures[phoenix_tower_image] = &sdlutils().images().at("phoenix_tower_image");
 	textures[clay_tower_image] = &sdlutils().images().at("dirt_tower_image");
 	textures[power_tower_image] = &sdlutils().images().at("power_tower_image");
-	textures[nexus_level_3_image] = &sdlutils().images().at("nexus_level_3_image");
+	textures[nexus_level_3_image] = &sdlutils().images().at("nexus_level_3_image");		// Quitar creo
 	textures[nexus_level_text] = &sdlutils().msgs().at("nexus_level_text");
 	textures[fireTexture] = &sdlutils().images().at("fireball");
 	textures[slimeArea] = &sdlutils().images().at("slime_area");
 	textures[shield] = &sdlutils().images().at("shield");
+
+	//Nexus
+	textures[nexusLvl1] = &sdlutils().images().at("nexusLvl1");
+	textures[nexusLvl2] = &sdlutils().images().at("nexusLvl2");
+	textures[nexusLvl3] = &sdlutils().images().at("nexusLvl3");
+	textures[nexusLvl4] = &sdlutils().images().at("nexusLvl4");
+
 	//HUD
 	cursorTexture = &sdlutils().images().at("cursor");
 	cursorTexture2 = &sdlutils().images().at("cursorpress");
