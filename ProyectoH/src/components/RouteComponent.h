@@ -15,6 +15,7 @@ public:
 	void update();
 	void checkdestiny();
 	void changevelocity(Vector2D destino);
+	void changeRoute(std::vector<Vector2D> route);
 private:
 	int destiny_;
 	std::vector<Vector2D> route_;

@@ -9,7 +9,10 @@
 #include "../components/AngelComponent.h"
 #include "../components/IconComponent.h"
 #include "../components/GolemComponent.h"
+#include "../sdlutils/SDLUtils.h"
+
 #include "../systems/EnemyBookSystem.h"
+
 
 EnemySystem::EnemySystem() {
 
@@ -79,6 +82,18 @@ void  EnemySystem::receive(const Message& m) {
 			if (mc != nullptr) {
 				mc->activateSlow(m.decrease_speed.slowPercentage, true);
 			}
+		}
+		break;
+	case _m_CHANGE_ROUTE:
+		if (m.change_route.enemy != nullptr && mngr_->isAlive(m.change_route.enemy)) {
+			auto& rand = sdlutils().rand();
+			auto r = rand.nextInt(0, spawnsVector.size());//elige ruta random dependiendo del nivel
+			RouteComponent* rc = mngr_->getComponent<RouteComponent>(m.change_route.enemy);
+			Transform* t = mngr_->getComponent<Transform>(m.change_route.enemy);
+			auto gen = mngr_->getComponent<generateEnemies>(spawnsVector[r]);
+			auto route = gen->getRoute();
+		    gen->RoutesCorrection(t, route, 1.5f, 1.5f);
+			rc->changeRoute(route);
 		}
 		break;
 	}

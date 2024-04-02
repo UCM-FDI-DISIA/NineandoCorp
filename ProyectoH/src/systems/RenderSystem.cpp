@@ -159,44 +159,55 @@ void RenderSystem::initSystem() {
 	m.offset_context.offset = offset;
 	mngr_->send(m, true);
 }
-rectId RenderSystem::getRectId(Entity* e) {
-	auto tex = mngr_->getComponent<RenderComponent>(e)->getTexture();
-	switch (tex)
-	{
-	case thunder:
-		return _THUNDER;
-		break;
-	case meteorites:
-		return _METEORITE;
-		break;
-	case earthquake:
-		return _EARTHQUAKE;
-		break;
-	case tornado:
-		break;
-	default:
-		break;
-	}
-}
+
 //Renderiza cada entity por grupos
 void RenderSystem::update() {
 	sdlutils().clearRenderer();
 
 	//Este control tiene que estar en el main control sistem
 	////Control de camara
-	if (ih().isKeyDown(SDLK_UP) && offset->y < limtop) {
-		offset->y += 50;
+	if (ih().isKeyDown(SDLK_UP)) {
+		k_up = true;
 	}
-	else if (ih().isKeyDown(SDLK_LEFT) && offset->x < limleft) {
-		offset->x += 50;
+	else if(ih().isKeyUp(SDLK_UP)){
+		k_up = false;
 	}
-	else if (ih().isKeyDown(SDLK_RIGHT) && offset->x > limright) {
-		offset->x -= 50;
+	if (ih().isKeyDown(SDLK_LEFT)) {
+		k_left = true;
 	}
-	else if (ih().isKeyDown(SDLK_DOWN) && offset->y > limbot) {
-		offset->y -= 50;
+	else if (ih().isKeyUp(SDLK_LEFT)){
+		k_left = false;
 	}
-	//tmp->update();
+	if (ih().isKeyDown(SDLK_RIGHT)) {
+		k_right = true;
+	}
+	else if (ih().isKeyUp(SDLK_RIGHT) ){
+		k_right = false;
+	}
+	if (ih().isKeyDown(SDLK_DOWN)) {
+		k_down = true;
+	}
+	else if (ih().isKeyUp(SDLK_DOWN) ){
+		k_down = false;
+	}
+
+	if (k_up && offset->y < limtop) {
+		cameraY_ += VelCam * game().getDeltaTime();
+		offset->y = cameraY_;
+	}
+	if (k_left && offset->x < limleft) {
+		cameraX_ += VelCam * game().getDeltaTime();
+		offset->x = cameraX_;
+	}
+	if (k_right && offset->x > limright) {
+		cameraX_ -= VelCam * game().getDeltaTime();
+		offset->x = cameraX_;
+	}
+	if (k_down && offset->y > limbot) {
+		cameraY_ -= VelCam * game().getDeltaTime();
+		offset->y = cameraY_;
+	}
+
 
 	//LAYER 1 TILEMAP
 	const auto& tilesl1 = mngr_->getEntities(_grp_TILES_L1);
@@ -249,7 +260,22 @@ void RenderSystem::update() {
 		textures[textureId]->render(srcRect, trRect, tr->getRotation());
 	}
 
-
+	auto& naturalEffects = mngr_->getEntities(_grp_NATURALS_EFFECTS);
+	sort(naturalEffects.begin(), naturalEffects.end(), cmpIsometricY(mngr_));
+	for (auto& t : naturalEffects) {
+		Transform* tr = mngr_->getComponent<Transform>(t);
+		gameTextures textureId = mngr_->getComponent<RenderComponent>(t)->getTexture();
+		SDL_Rect srcRect;
+		FramedImage* fi = mngr_->getComponent<FramedImage>(t);
+		fi->updateCurrentFrame();
+		if (fi != nullptr)srcRect = fi->getSrcRect();
+		SDL_Rect trRect = tr->getRect();
+		trRect.x += offset->x;
+		trRect.y += offset->y;
+		SDL_RendererFlip flip = mngr_->getComponent<RenderComponent>(t)->getFlip();
+		if (fi != nullptr)textures[textureId]->render(srcRect, trRect, tr->getRotation(), nullptr, flip);
+		else textures[textureId]->render(trRect, tr->getRotation());
+	}
 	
 
 	//Este grupo tiene que estar ordenado de arriba a abajo de la pantalla segun su transform (posicion y)
@@ -272,48 +298,7 @@ void RenderSystem::update() {
 		else textures[textureId]->render(trRect, tr->getRotation());
 	}
 
-	auto& naturalEffects = mngr_->getEntities(_grp_NATURALS_EFFECTS);
-	sort(naturalEffects.begin(), naturalEffects.end(), cmpIsometricY(mngr_));
-	for (auto& t : naturalEffects) {
-		Transform* tr = mngr_->getComponent<Transform>(t);
-		gameTextures textureId = mngr_->getComponent<RenderComponent>(t)->getTexture();
-		SDL_Rect srcRect;
-		FramedImage* fi = mngr_->getComponent<FramedImage>(t);
-		fi->updateCurrentFrame();
-		if (fi != nullptr)srcRect = fi->getSrcRect();
-		SDL_Rect trRect = tr->getRect();
-		trRect.x += offset->x;
-		trRect.y += offset->y;
-		SDL_RendererFlip flip = mngr_->getComponent<RenderComponent>(t)->getFlip();
-		if (fi != nullptr)textures[textureId]->render(srcRect, trRect, tr->getRotation(), nullptr, flip);
-		else textures[textureId]->render(trRect, tr->getRotation());
-	}
-	
-	//animation naturals effects
-	for (auto& par : mngr_->getHandler(_hdlr_PARTICLES))
-	{
-		Transform* tr = mngr_->getComponent<Transform>(par);
-		auto p = mngr_->getComponent<ParticleLifeTime>(par);
-		auto f = mngr_->getComponent<FramedImage>(par);
-		
-		SDL_Rect srcRect;
-		if (f != nullptr)srcRect = f->getSrcRect();
-		SDL_Rect trRect = tr->getRect();
-		trRect.x += offset->x;
-		trRect.y += offset->y;
-		if (p->getIters() <= f->getIters()) {
-			mngr_->setAlive(par, false);
-			mngr_->deleteHandler(_hdlr_PARTICLES, par);
-			
-				Message m;
-				m.id = _m_REMOVE_RECT;
-				m.rect_data.id = getRectId(par);
-				m.rect_data.rect = par;
-				mngr_->send(m);
-			
-		}
-		f->updateCurrentFrame();
-	}
+
 
 	//AREA OF ATTACK (SLIME AND FENIX)
 	for (auto& area : mngr_->getEntities(_grp_AREAOFATTACK))

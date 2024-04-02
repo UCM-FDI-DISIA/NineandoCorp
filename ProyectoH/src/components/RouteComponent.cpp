@@ -13,6 +13,13 @@ RouteComponent::initComponent() {
 }
 
 void
+RouteComponent::changeRoute(std::vector<Vector2D> route) {
+	route_ = route;
+	destiny_ = 0;
+	changevelocity(route[0]);
+}
+
+void
 RouteComponent::checkdestiny() {
 	if ((*(transform_->getPosition())- route_[destiny_])<=epsilon) {
 		if (destiny_ >= route_.size()-1) {

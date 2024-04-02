@@ -48,7 +48,6 @@ private:
 	void onGameOver(Uint8 winner);
 
 
-	rectId getRectId(Entity* e);
 
 
 	//void onPause();
@@ -58,11 +57,22 @@ private:
 	//Rect con el offset de la camara
 	SDL_Rect* offset = new SDL_Rect();
 
+	//Auxiliares para la camara
+	double cameraX_ = 0;
+	double cameraY_ = 0;
+	double VelCam = 300;
+
 	//Limites de la camara
 	int limtop = 200;
 	int limbot = -1200;
 	int limleft = 1000;
 	int limright = -1000;
+
+	//Booleanos de los controles de la camara
+	bool k_up = false;
+	bool k_down = false;
+	bool k_left = false;
+	bool k_right = false;
 
 	// Textures
 	Texture* textures[gameTextures::gmTxtrSize];
