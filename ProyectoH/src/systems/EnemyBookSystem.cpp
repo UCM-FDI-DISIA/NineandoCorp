@@ -24,21 +24,21 @@ void EnemyBookSystem::initSystem() {
     
 	//vector textura enemigo
 	vector<gameTextures> Texturas{
-		/*gameTextures::MALMAS,
-		gameTextures::AELECTRICO,
-		gameTextures::MALDITO,
-		gameTextures::GOLEM,
-		gameTextures::DALADO,
-		gameTextures::GOBLIN,
-		gameTextures::ELFO,
-		gameTextures::MMUERTE,
-		gameTextures::ANGEL,
-		gameTextures::DINFERNAL,
-		gameTextures::DREAL,
-		gameTextures::CMALDITO,
-		gameTextures::PRINCIPITO,
-		gameTextures::MONJE,
-		gameTextures::MUERTE*/
+		gameTextures::maestro,
+		gameTextures::acechante,
+		gameTextures::CMaldito,
+		gameTextures::golem,
+		gameTextures::demonioAlado,
+		gameTextures::goblin,
+		gameTextures::elfo,
+		gameTextures::mensajero,
+		gameTextures::angel,
+		gameTextures::demonioInfernal,
+		gameTextures::defensor,
+		gameTextures::CMaldito,
+		gameTextures::principito,
+		gameTextures::monje,
+		gameTextures::muerte
 	};
 
 	// Calcular la posición inicial del contenido
