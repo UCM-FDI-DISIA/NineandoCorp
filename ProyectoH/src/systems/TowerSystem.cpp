@@ -14,17 +14,6 @@ TowerSystem::~TowerSystem() {
 
 void TowerSystem::initSystem() {
 	active_ = true;
-
-	//addTower(twrId::_twr_BULLET, { (float)sdlutils().width() / 1.9f, 500.f }, LOW);
-	//addTower(twrId::_twr_DIEGO, { (float)sdlutils().width() / 1.9f, 600.f }, LOW);
-	//addTower(twrId::_twr_SLIME, { (float)sdlutils().width() / 3.0f, 600.f }, LOW);
-	//addTower(twrId::_twr_SLIME, { (float)sdlutils().width() / 2.3f, 630.f }, LOW);
-	//addTower(twrId::_twr_BULLET, { (float)sdlutils().width() / 1.8f, 600.f }, LOW);
-	//addTower(twrId::_twr_FENIX, { (float)sdlutils().width() / 1.8f, 600.f }, LOW);
-	//addTower(twrId::_twr_DIRT, { (float)sdlutils().width() / 3.0f, 600.f }, LOW);
-	//addTower(twrId::_twr_CRISTAL, { (float)sdlutils().width() / 1.8f, 660.f }, LOW);
-	//addTower(twrId::_twr_POWER, { (float)sdlutils().width() / 1.8f, 600.f }, LOW);
-
 }
 
 void TowerSystem::receive(const Message& m) {
