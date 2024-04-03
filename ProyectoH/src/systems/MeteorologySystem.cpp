@@ -7,8 +7,8 @@
 #include "../game/Game.h"
 
 
-MeteorologySystem::MeteorologySystem(): minTimeInterval_(1.0),
-maxTimeInterval_(2.0), 
+MeteorologySystem::MeteorologySystem(): minTimeInterval_(50.0),
+maxTimeInterval_(100.0), 
 elapsedTime_(0) ,
 thundersInterval_(0.5),
 meteoriteInterval_(1.5),
@@ -79,8 +79,8 @@ void MeteorologySystem::generateAnimEarthquake() {
 
 	for (size_t k = 0; k < 20; k++)
 	{
-		auto i = rand.nextInt(1, (int)tileSize_.getX() / 2 - 2);
-		auto j = rand.nextInt(1, (int)tileSize_.getY() - 2);
+		auto i = rand.nextInt(1, (int)tileSize_.getX() / 2 - 3);
+		auto j = rand.nextInt(1, (int)tileSize_.getY() - 3);
 
 		auto position = net->getCell(i, j)->position;
 		auto x = position.getX();
