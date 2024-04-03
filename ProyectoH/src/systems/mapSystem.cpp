@@ -87,7 +87,7 @@ void mapSystem::loadTile(const tmx::Map& map, const tmx::TileLayer& layer) {
 				((layer.getOffset().y + (i + j) / 2)) / sep);
 
 			std::cout << tile.ID << std::endl;
-			if (tile.ID == 3 || tile.ID == 2 || tile.ID == 133) {
+			if (tile.ID == 3 || tile.ID == 2 || tile.ID == 133 || tile.ID == 9 ||tile.ID == 10 ||tile.ID == 8 ||tile.ID == 25) {
 
 				entityTile = mngr_->addEntity(_grp_TILES_L1);
 				Cell* c = new Cell();
