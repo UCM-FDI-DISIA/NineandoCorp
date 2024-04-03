@@ -27,7 +27,7 @@ void DragAndDrop::drop(const Vector2D& pos, Height h){
 		m.id = _m_ADD_TOWER;
 		m.add_tower_data.towerId = tId_; 
 		m.add_tower_data.pos = pos; 
-		m.add_tower_data.height = h; 
+		m.add_tower_data.height = height_;
 		mngr_->send(m);
 	
 		Message m2;

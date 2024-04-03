@@ -194,7 +194,9 @@ enum msgId : msgId_type {
 	_m_ABLEBUTTONS,
 	_m_CHANGE_ROUTE,
 	_m_ADD_TEXT,
-	_m_ENEMYSEE
+	_m_ENEMYSEE,
+	_m_SHOW_UPGRADE_TOWER_MENU,
+	_m_TOWER_CLICKED
 };
 
 using twrId_type = uint8_t;
@@ -306,7 +308,19 @@ inline Uint8* _deserialize_(float& v, Uint8* buf) {
 	return _deserialize_(reinterpret_cast<Uint32&>(v), buf);
 }
 struct Message {
-msgId_type id;
+	msgId_type id;
+	//_m_TOWER_CLICKED
+	struct {
+		Entity* tower;
+	}tower_clicked_data;
+
+	//_m_SHOW_UPGRADE_TOWER_MENU
+	struct {
+		int cLevel;
+		twrId tId;
+		Vector2D pos;
+
+	}show_upgrade_twr_menu_data;
 
 	//_m_ADD_TEXT
 	struct {

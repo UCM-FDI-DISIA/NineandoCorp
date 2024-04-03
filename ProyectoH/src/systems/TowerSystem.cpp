@@ -5,6 +5,7 @@
 #include "..//components/TowerStates.h"
 #include "../components/InteractiveTower.h"
 
+
 TowerSystem::TowerSystem() : active_(true) {
 }
 
@@ -22,7 +23,10 @@ void TowerSystem::receive(const Message& m) {
 		if(m.entity_to_attack.targetId == _hdlr_LOW_TOWERS)onAttackTower(m.entity_to_attack.e, m.entity_to_attack.damage);
 		break;
 	case _m_ADD_TOWER:
-		addTower(m.add_tower_data.towerId, m.add_tower_data.pos, LOW);
+		addTower(m.add_tower_data.towerId, m.add_tower_data.pos, m.add_tower_data.height);
+		break;
+	case _m_TOWER_CLICKED:
+		addTowerToInteract(m.tower_clicked_data.tower);
 		break;
 	default:
 		break;
@@ -130,6 +134,21 @@ void TowerSystem::update() {
 			}
 		}
 	}
+
+	if (towersToInteract.size() > 0) {
+		auto tower = getFrontTower();
+		Message m;
+		m.id = _m_SHOW_UPGRADE_TOWER_MENU;
+		auto upgrdCmp = mngr_->getComponent<UpgradeTowerComponent>(tower);
+		m.show_upgrade_twr_menu_data.cLevel = upgrdCmp->getLevel();
+		m.show_upgrade_twr_menu_data.tId = upgrdCmp->id_;
+		m.show_upgrade_twr_menu_data.pos = mngr_->getComponent<Transform>(tower)->getPosition();
+		mngr_->send(m);
+
+		towersToInteract.clear();
+	}
+
+
 	// Updates de torre interactiva / comprueba si se ha clicado la torre
 	for (auto& t : towers) {
 		auto iTwr = mngr_->getComponent<InteractiveTower>(t);
@@ -137,6 +156,7 @@ void TowerSystem::update() {
 			iTwr->update();
 		}
 	}
+	
 	
 	for (auto& t : towers) {
 			Transform* TR = mngr_->getComponent<Transform>(t);

@@ -46,6 +46,11 @@ public:
 	int intAt(basic_string<char> s) { return sdlutils().intConst().at(s); }
 	float floatAt(basic_string<char> s) { return sdlutils().floatConst().at(s); }
 
+	inline void addTowerToInteract(Entity* e) { towersToInteract.push_back(e); }
+
+	Entity* getFrontTower() {
+		return towersToInteract.back();
+	}
 
 protected:
 	Entity* shootBullet(Entity* target, Entity* src, float damage, float speed, Vector2D spawnPos, gameTextures texture,Vector2D bulletScale, twrId id);
@@ -59,5 +64,7 @@ protected:
 	std::vector<Entity*> towers;
 	bool active_;
 	Entity* square;
+
+	std::vector<Entity*> towersToInteract;
 };
 

@@ -13,7 +13,9 @@ void InteractiveTower::update() {
 	if (ih().getMouseButtonState(InputHandler::MOUSEBUTTON::LEFT) == 1 
 	 && isOnRect(mPos)) 
 	{
-		auto tId = mngr_->getComponent<UpgradeTowerComponent>(ent_)->id_;
-		std::cout << "INTERACTUO : ID - " << tId << std::endl;
+		Message m; 
+		m.id = _m_TOWER_CLICKED;
+		m.tower_clicked_data.tower = ent_;
+		mngr_->send(m);
 	}
 }
