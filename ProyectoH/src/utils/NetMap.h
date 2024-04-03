@@ -5,7 +5,7 @@
 
 using namespace std;
 
-enum tileId { TILE_LAKE, TILE_LOW, TILE_HIGH, TILE_NONE };
+enum tileId { TILE_LAKE, TILE_LOW, TILE_HIGH, TILE_PATH ,TILE_NONE };
 
 struct Cell {
 	Vector2D position;

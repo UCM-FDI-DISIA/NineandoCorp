@@ -15,7 +15,7 @@ class Manager;
 
 using uint8_t = unsigned char;
 
-enum Height { HIGH = 0, LOW };
+enum Height { HIGH = 0, LOW, PATH, BOTH};
 
 using cmpId_type = int;
 enum cmpId : cmpId_type {

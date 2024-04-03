@@ -130,7 +130,7 @@ void TowerSystem::update() {
 			}
 		}
 	}
-
+	// Updates de torre interactiva / comprueba si se ha clicado la torre
 	for (auto& t : towers) {
 		auto iTwr = mngr_->getComponent<InteractiveTower>(t);
 		if (iTwr != nullptr) {

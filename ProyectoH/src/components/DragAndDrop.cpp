@@ -4,11 +4,12 @@
 #include <cassert>
 #include "../sdlutils/InputHandler.h"
 
-DragAndDrop::DragAndDrop(twrId id, int cost) :
+DragAndDrop::DragAndDrop(twrId id, int cost, Height h) :
 	tId_(id), //
 	dragging_(false), //
 	tr_(nullptr), //
 	canDrop_(true), //
+	height_(h), //
 	cost(cost){
 }
 DragAndDrop::~DragAndDrop() {

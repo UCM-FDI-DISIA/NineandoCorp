@@ -92,7 +92,11 @@ void mapSystem::loadTile(const tmx::Map& map, const tmx::TileLayer& layer) {
 				Cell* c = new Cell();
 				c->position = { tilePosition.getX() + 48, tilePosition.getY() + 24 };
 				c->isFree = true;
-				c->id = TILE_LOW;
+				if(tile.ID == 2)
+					c->id = TILE_LOW;
+				else
+					c->id = TILE_PATH;
+
 				net->setCell(fil - 1, col - 1, c);
 			}
 			else if (tile.ID > 80 && tile.ID < 100) {
