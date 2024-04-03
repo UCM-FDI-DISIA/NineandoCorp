@@ -5,7 +5,7 @@ void ButtonComponent::initComponent() {
 	tr_ = mngr_->getComponent<Transform>(ent_);
 }
 
-ButtonTypes ButtonComponent::isPressed(Vector2D mousePos) {
+ButtonTypes ButtonComponent::isPressed(const Vector2D& mousePos) {
 	auto pos = tr_->getPosition();
 	auto height = tr_->getHeight();
 	auto width = tr_->getWidth();
@@ -20,7 +20,7 @@ ButtonTypes ButtonComponent::isPressed(Vector2D mousePos) {
 	else return ButtonTypes::none;
 }
 
-bool ButtonComponent::hover(Vector2D mousePos) {
+bool ButtonComponent::hover(const Vector2D& mousePos) {
 	auto pos = tr_->getPosition();
 	auto height = tr_->getHeight();
 	auto width = tr_->getWidth();

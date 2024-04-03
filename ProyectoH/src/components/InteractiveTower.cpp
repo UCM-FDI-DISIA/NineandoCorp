@@ -1,5 +1,6 @@
 #include "InteractiveTower.h"
 #include "../ecs/Manager.h"
+#include "../components/UpgradeTowerComponent.h"
 void InteractiveTower::initComponent()
 {
 	tr_ = mngr_->getComponent<Transform>(ent_);
@@ -12,6 +13,7 @@ void InteractiveTower::update() {
 	if (ih().getMouseButtonState(InputHandler::MOUSEBUTTON::LEFT) == 1 
 	 && isOnRect(mPos)) 
 	{
-		std::cout << " OKOKOK" << std::endl; 
+		auto tId = mngr_->getComponent<UpgradeTowerComponent>(ent_)->id_;
+		std::cout << "INTERACTUO : ID - " << tId << std::endl;
 	}
 }

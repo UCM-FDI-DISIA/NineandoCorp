@@ -46,14 +46,14 @@ public:
 	
 	/// <param name="mousePos">posicion del puntero</param>
 	/// <returns>id_ del boton en caso de que se haya pulsado encima del boton </returns>
-	ButtonTypes isPressed(Vector2D mousePos);
+	ButtonTypes isPressed(const Vector2D& mousePos);
 
 	/// <summary>
 	/// Comprueba si el puntero se situa encima del boton
 	/// </summary>
 	/// <param name="mousePos">Posicion del cursor</param>
 	/// <returns></returns>
-	bool hover(Vector2D mousePos);
+	bool hover(const Vector2D& mousePos);
 
 	/// <summary>
 	/// Establece la textura del hover
