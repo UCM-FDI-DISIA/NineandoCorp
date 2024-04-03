@@ -15,6 +15,7 @@ struct cmpIsometricY {
 // Constructorss
 RenderSystem::RenderSystem() : winner_(0)
 {
+	mActive = true;
 	//Camera offset
 	*offset = build_sdlrect(0, 0, 0, 0);
 
@@ -150,6 +151,11 @@ RenderSystem::~RenderSystem() {
 // Reaccionar a los mensajes recibidos (llamando a métodos correspondientes).
 void RenderSystem::receive(const Message& m) {
 	switch (m.id) {
+	case _m_PAUSE:
+		mActive = !m.start_pause.onPause;
+		break;
+	default:
+		break;
 	}
 }
 // Inicializar el sistema, etc.
@@ -162,50 +168,53 @@ void RenderSystem::initSystem() {
 
 //Renderiza cada entity por grupos
 void RenderSystem::update() {
-	sdlutils().clearRenderer();
+	if(mActive) {
 
-	//Este control tiene que estar en el main control sistem
-	////Control de camara
-	if (ih().isKeyDown(SDLK_UP)) {
-		k_up = true;
-	}
-	else if(ih().isKeyUp(SDLK_UP)){
-		k_up = false;
-	}
-	if (ih().isKeyDown(SDLK_LEFT)) {
-		k_left = true;
-	}
-	else if (ih().isKeyUp(SDLK_LEFT)){
-		k_left = false;
-	}
-	if (ih().isKeyDown(SDLK_RIGHT)) {
-		k_right = true;
-	}
-	else if (ih().isKeyUp(SDLK_RIGHT) ){
-		k_right = false;
-	}
-	if (ih().isKeyDown(SDLK_DOWN)) {
-		k_down = true;
-	}
-	else if (ih().isKeyUp(SDLK_DOWN) ){
-		k_down = false;
-	}
+		sdlutils().clearRenderer();
 
-	if (k_up && offset->y < limtop) {
-		cameraY_ += VelCam * game().getDeltaTime();
-		offset->y = cameraY_;
-	}
-	if (k_left && offset->x < limleft) {
-		cameraX_ += VelCam * game().getDeltaTime();
-		offset->x = cameraX_;
-	}
-	if (k_right && offset->x > limright) {
-		cameraX_ -= VelCam * game().getDeltaTime();
-		offset->x = cameraX_;
-	}
-	if (k_down && offset->y > limbot) {
-		cameraY_ -= VelCam * game().getDeltaTime();
-		offset->y = cameraY_;
+		//Este control tiene que estar en el main control sistem
+		////Control de camara
+		if (ih().isKeyDown(SDLK_UP)) {
+			k_up = true;
+		}
+		else if (ih().isKeyUp(SDLK_UP)) {
+			k_up = false;
+		}
+		if (ih().isKeyDown(SDLK_LEFT)) {
+			k_left = true;
+		}
+		else if (ih().isKeyUp(SDLK_LEFT)) {
+			k_left = false;
+		}
+		if (ih().isKeyDown(SDLK_RIGHT)) {
+			k_right = true;
+		}
+		else if (ih().isKeyUp(SDLK_RIGHT)) {
+			k_right = false;
+		}
+		if (ih().isKeyDown(SDLK_DOWN)) {
+			k_down = true;
+		}
+		else if (ih().isKeyUp(SDLK_DOWN)) {
+			k_down = false;
+		}
+
+		if (k_up && offset->y < limtop) {
+			cameraY_ += VelCam * game().getDeltaTime();
+			offset->y = cameraY_;
+		}
+		if (k_left && offset->x < limleft) {
+			cameraX_ += VelCam * game().getDeltaTime();
+			offset->x = cameraX_;
+		}
+		if (k_right && offset->x > limright) {
+			cameraX_ -= VelCam * game().getDeltaTime();
+			offset->x = cameraX_;
+		}
+		if (k_down && offset->y > limbot) {
+			cameraY_ -= VelCam * game().getDeltaTime();
+			offset->y = cameraY_;
+		}
 	}
 
 

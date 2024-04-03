@@ -62,7 +62,7 @@ protected:
 	Entity* shootFire(Vector2D spawn, float rot, float dmg, Entity* src);
 	void eliminateDestroyedTowers(Entity* t);
 	std::vector<Entity*> towers;
-	bool active_;
+	bool mActive;
 	Entity* square;
 
 	std::vector<Entity*> towersToInteract;

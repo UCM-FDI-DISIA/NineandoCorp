@@ -6,7 +6,7 @@
 #include "../components/InteractiveTower.h"
 
 
-TowerSystem::TowerSystem() : active_(true) {
+TowerSystem::TowerSystem() : mActive(true) {
 }
 
 TowerSystem::~TowerSystem() {
@@ -14,7 +14,7 @@ TowerSystem::~TowerSystem() {
 }
 
 void TowerSystem::initSystem() {
-	active_ = true;
+	mActive = true;
 }
 
 void TowerSystem::receive(const Message& m) {
@@ -27,6 +27,9 @@ void TowerSystem::receive(const Message& m) {
 		break;
 	case _m_TOWER_CLICKED:
 		addTowerToInteract(m.tower_clicked_data.tower);
+		break;
+	case _m_PAUSE:
+		mActive = !m.start_pause.onPause;
 		break;
 	default:
 		break;
@@ -117,51 +120,53 @@ void TowerSystem::onAttackTower(Entity* e, int dmg) {
 }
 //Realiza las funcionalidades de las torres, accediendo a los atributos de los componentes y realizando la mecanica de cada torre
 void TowerSystem::update() {
-	const auto& bullets = mngr_->getEntities(_grp_BULLETS);
+	if (mActive) {
 
-	float health = 0;
-	Entity* targetMostHP = nullptr;
-	for (const auto& enemy : mngr_->getHandler(_hdlr_ENEMIES))
-	{
+		const auto& bullets = mngr_->getEntities(_grp_BULLETS);
 
-		if (mngr_->isAlive(enemy)) {
-			HealthComponent* h = mngr_->getComponent<HealthComponent>(enemy);
-			if (h != nullptr) {//se guarda la referencia al enemigo con mas vida
-				if (h->getHealth() > health) {
-					targetMostHP = enemy;
-					health = h->getHealth();
+		float health = 0;
+		Entity* targetMostHP = nullptr;
+		for (const auto& enemy : mngr_->getHandler(_hdlr_ENEMIES))
+		{
+
+			if (mngr_->isAlive(enemy)) {
+				HealthComponent* h = mngr_->getComponent<HealthComponent>(enemy);
+				if (h != nullptr) {//se guarda la referencia al enemigo con mas vida
+					if (h->getHealth() > health) {
+						targetMostHP = enemy;
+						health = h->getHealth();
+					}
 				}
 			}
 		}
-	}
 
-	if (towersToInteract.size() > 0) {
-		auto tower = getFrontTower();
-		Message m;
-		m.id = _m_SHOW_UPGRADE_TOWER_MENU;
-		auto upgrdCmp = mngr_->getComponent<UpgradeTowerComponent>(tower);
-		m.show_upgrade_twr_menu_data.cLevel = upgrdCmp->getLevel();
-		m.show_upgrade_twr_menu_data.tId = upgrdCmp->id_;
-		m.show_upgrade_twr_menu_data.pos = mngr_->getComponent<Transform>(tower)->getPosition();
-		mngr_->send(m);
+		if (towersToInteract.size() > 0) {
+			auto tower = getFrontTower();
+			Message m;
+			m.id = _m_SHOW_UPGRADE_TOWER_MENU;
+			auto upgrdCmp = mngr_->getComponent<UpgradeTowerComponent>(tower);
+			m.show_upgrade_twr_menu_data.cLevel = upgrdCmp->getLevel();
+			m.show_upgrade_twr_menu_data.tId = upgrdCmp->id_;
+			m.show_upgrade_twr_menu_data.pos = mngr_->getComponent<Transform>(tower)->getPosition();
+			mngr_->send(m);
 
-		towersToInteract.clear();
-	}
-
-
-	// Updates de torre interactiva / comprueba si se ha clicado la torre
-	for (auto& t : towers) {
-		auto iTwr = mngr_->getComponent<InteractiveTower>(t);
-		if (iTwr != nullptr) {
-			iTwr->update();
+			towersToInteract.clear();
 		}
-	}
-	
-	
-	for (auto& t : towers) {
+
+
+		// Updates de torre interactiva / comprueba si se ha clicado la torre
+		for (auto& t : towers) {
+			auto iTwr = mngr_->getComponent<InteractiveTower>(t);
+			if (iTwr != nullptr) {
+				iTwr->update();
+			}
+		}
+
+
+		for (auto& t : towers) {
 			Transform* TR = mngr_->getComponent<Transform>(t);
 			TowerStates* tw = mngr_->getComponent<TowerStates>(t);
-			
+
 			if (tw->getCegado()) {//si esta cegada
 				tw->setElapsed(tw->getElapsed() + game().getDeltaTime());
 				IconComponent* ic = mngr_->getComponent<IconComponent>(t);
@@ -369,42 +374,43 @@ void TowerSystem::update() {
 					}
 				}
 			}
-		}			
-	//Mueve y dirige las balas, y destruye las balas si su objetivo muere o si choca con el objetivo, causandole dano
-	for (auto& b : bullets) {
-		Transform* t = mngr_->getComponent<Transform>(b);
-		BulletComponent* bc = mngr_->getComponent<BulletComponent>(b);	
-		SlimeBullet* sb = mngr_->getComponent<SlimeBullet>(b);
-		FramedImage* fi = mngr_->getComponent<FramedImage>(bc->getTarget());
-		Transform* targetTR = mngr_->getComponent<Transform>(bc->getTarget());
-		Vector2D targetPos = *(targetTR->getPosition());
-		if (fi != nullptr) {
-			Vector2D offset = { (float)fi->getSrcRect().w / 4, (float)fi->getSrcRect().h / 4 };//Se dirige hacia el centro del rect
-			targetPos = targetPos + offset;
 		}
-		Vector2D myPos = *(t->getPosition());
-		
-		if (!mngr_->isAlive(bc->getTarget())) {//Si ha muerto por el camino
-			bc->onTravelEnds();
-		}	
-		else if(((targetPos - myPos).magnitude() <= 5.0f)) { //Si choca con el enemigo
-			if (sb != nullptr) {
-				Entity* area = mngr_->addEntity(_grp_AREAOFATTACK);
-				Transform* tr = mngr_->addComponent<Transform>(area);					
-				Vector2D scale =  { 250, 200 } ;
-				tr->setScale(scale);
-				Vector2D pos = { t->getPosition()->getX() - scale.getX() / 2, t->getPosition()->getY() - scale.getY() / 4 };
-				tr->setPosition(pos);
-				mngr_->addComponent<RenderComponent>(area, slimeArea);
-				mngr_->addComponent<FramedImage>(area, 9, 1, 500, 400, 0, 4, 8);
-				mngr_->addComponent<SlimeBullet>(area, sb->getDuration(), sb->getSpeedDecrease(), sb->getDPS());
+		//Mueve y dirige las balas, y destruye las balas si su objetivo muere o si choca con el objetivo, causandole dano
+		for (auto& b : bullets) {
+			Transform* t = mngr_->getComponent<Transform>(b);
+			BulletComponent* bc = mngr_->getComponent<BulletComponent>(b);
+			SlimeBullet* sb = mngr_->getComponent<SlimeBullet>(b);
+			FramedImage* fi = mngr_->getComponent<FramedImage>(bc->getTarget());
+			Transform* targetTR = mngr_->getComponent<Transform>(bc->getTarget());
+			Vector2D targetPos = *(targetTR->getPosition());
+			if (fi != nullptr) {
+				Vector2D offset = { (float)fi->getSrcRect().w / 4, (float)fi->getSrcRect().h / 4 };//Se dirige hacia el centro del rect
+				targetPos = targetPos + offset;
 			}
-			bc->doDamageTo(bc->getTarget(), bc->getDamage());
-			bc->onTravelEnds();
-		}
-		else {
-			bc->setDir();
-			t->translate();
+			Vector2D myPos = *(t->getPosition());
+
+			if (!mngr_->isAlive(bc->getTarget())) {//Si ha muerto por el camino
+				bc->onTravelEnds();
+			}
+			else if (((targetPos - myPos).magnitude() <= 5.0f)) { //Si choca con el enemigo
+				if (sb != nullptr) {
+					Entity* area = mngr_->addEntity(_grp_AREAOFATTACK);
+					Transform* tr = mngr_->addComponent<Transform>(area);
+					Vector2D scale = { 250, 200 };
+					tr->setScale(scale);
+					Vector2D pos = { t->getPosition()->getX() - scale.getX() / 2, t->getPosition()->getY() - scale.getY() / 4 };
+					tr->setPosition(pos);
+					mngr_->addComponent<RenderComponent>(area, slimeArea);
+					mngr_->addComponent<FramedImage>(area, 9, 1, 500, 400, 0, 4, 8);
+					mngr_->addComponent<SlimeBullet>(area, sb->getDuration(), sb->getSpeedDecrease(), sb->getDPS());
+				}
+				bc->doDamageTo(bc->getTarget(), bc->getDamage());
+				bc->onTravelEnds();
+			}
+			else {
+				bc->setDir();
+				t->translate();
+			}
 		}
 	}
 }

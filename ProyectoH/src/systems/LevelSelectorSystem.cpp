@@ -4,6 +4,7 @@
 
 LevelSelectorSystem::LevelSelectorSystem()
 {
+	mActive = true;
 }
 LevelSelectorSystem::~LevelSelectorSystem()
 {

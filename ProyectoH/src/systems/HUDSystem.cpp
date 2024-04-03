@@ -6,6 +6,7 @@ HUDSystem::HUDSystem() :
 	buttonsSpace_length_() , // 
 	infoSpace_length_(),
 	towers_imgs(){
+	mActive = true;
 }
 HUDSystem::~HUDSystem(){
 }
@@ -199,17 +200,22 @@ void HUDSystem::receive(const Message& m) {
 	case _m_DRAG:
 		dragTowerIcon(towers_imgs[m.drag_data.towerId]);
 		break;
+	case _m_PAUSE:
+		mActive = !m.start_pause.onPause;
+		break;
 	default:
 		break;
 	}
 }	
 void HUDSystem::update() {
-	int i = 0;
-	for (auto en : towers_imgs) {
-		auto dC = mngr_->getComponent<DragAndDrop>(en);
-		if (dC != nullptr && dC->isDragged()) {
-			Vector2D mPos = { (float)ih().getMousePos().first, (float)ih().getMousePos().second };
-			Cell* cell = getCellFromTile(mPos);
+	if (mActive) {
+
+		int i = 0;
+		for (auto en : towers_imgs) {
+			auto dC = mngr_->getComponent<DragAndDrop>(en);
+			if (dC != nullptr && dC->isDragged()) {
+				Vector2D mPos = { (float)ih().getMousePos().first, (float)ih().getMousePos().second };
+				Cell* cell = getCellFromTile(mPos);
 				dC->drag(cell->position);
 
 				dC->enableDrop(cell);
@@ -236,14 +242,14 @@ void HUDSystem::update() {
 							Message m;
 							m.id = _m_ADD_TEXT;
 							m.add_text_data.txt = "NO SE PUEDE COLOCAR EN ESTA POSICION";
-							m.add_text_data.color = { 255, 0 ,0, 255 }; 
-							Vector2D txtScale = Vector2D(800.0f, 75.0f); 
+							m.add_text_data.color = { 255, 0 ,0, 255 };
+							Vector2D txtScale = Vector2D(800.0f, 75.0f);
 							m.add_text_data.pos = Vector2D(sdlutils().width() / 2, sdlutils().height() / 2) - (txtScale / 2);
-							m.add_text_data.scale = txtScale; 
+							m.add_text_data.scale = txtScale;
 							m.add_text_data.time = 1000;
 							mngr_->send(m);
 						}
-						
+
 						//resetea el icono de la torre
 						dC->enableDrag(false);
 						mngr_->changeEntityId(_grp_HUD_FOREGROUND, en);
@@ -254,8 +260,9 @@ void HUDSystem::update() {
 						enableAllButtons(true);
 					}
 				}
+			}
+			i++;
 		}
-		i++;
 	}
 	
 
