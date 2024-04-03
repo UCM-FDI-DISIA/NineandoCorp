@@ -22,9 +22,8 @@ void PauseSystem::initSystem() {
 	Vector2D scaleAux = { 1200.0f , 800.0f };
 
 	bS->addImage(posAux, scaleAux, 0.0, gameTextures::large_box, _grp_GENERAL);
-	
 
-	posAux += Vector2D(530.0f, -330.0f);
+	posAux = posAux + Vector2D(530.0f, -330.0f);
 	scaleAux = { 70.0f, 70.0f };
 	bS->addButton(posAux, scaleAux, gameTextures::close, gameTextures::close_hover, ButtonTypes::back_selector);
 }

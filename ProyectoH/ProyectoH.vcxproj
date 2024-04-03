@@ -163,6 +163,7 @@
     <ClCompile Include="src\systems\mapSystem.cpp" />
     <ClCompile Include="src\systems\MeteorologySystem.cpp" />
     <ClCompile Include="src\systems\ParticleSystem.cpp" />
+    <ClCompile Include="src\systems\PauseSystem.cpp" />
     <ClCompile Include="src\systems\RenderSystem.cpp" />
     <ClCompile Include="src\systems\TowerSystem.cpp" />
     <ClCompile Include="src\utils\Collisions.cpp" />
