@@ -55,6 +55,9 @@ void CollisionSystem::addRect(Entity* rect, rectId id) {
 		case _TORNADO:
 			tornadoRects_.push_back(rect);
 			break;
+		case _TSUNAMI:
+			tsunamiRects_.push_back(rect);
+			break;
 		default:
 			break;
 	}
@@ -84,6 +87,8 @@ void CollisionSystem::removeRect(Entity* rect, rectId id) {
 	case _TORNADO:
 		tornadoRects_.erase(find(tornadoRects_.begin(), tornadoRects_.end(), rect));
 		break;
+	case _TSUNAMI:
+		tsunamiRects_.erase(find(tsunamiRects_.begin(), tsunamiRects_.end(), rect));
 	}
 	
 }
@@ -194,6 +199,21 @@ void CollisionSystem::update() {
 				}
 
 			}
+			for (const auto& ts : tsunamiRects_) {//tsunami-enemigos
+				if (mngr_->isAlive(er)) {
+					Transform* tsunamiTR = mngr_->getComponent<Transform>(ts);
+					SDL_Rect tsunamiRect;
+					if (tsunamiTR != nullptr) tsunamiRect = tsunamiTR->getRect();
+					if (SDL_HasIntersection(&tsunamiRect, &enemyRect)) {
+						Message m;
+						m.id = _m_ENTITY_TO_ATTACK;
+						m.entity_to_attack.e = er;
+						m.entity_to_attack.src = ts;
+						m.entity_to_attack.damage = 10000;
+						mngr_->send(m);
+					}
+				}
+			}
 
 
 			for (const auto& sr : slimes) {
@@ -282,6 +302,20 @@ void CollisionSystem::update() {
 						m.id = _m_TOWER_TO_ATTACK;
 						m.tower_to_attack.e = t;
 						m.tower_to_attack.damage = 5;
+						mngr_->send(m);
+					}
+				}
+			}
+			for (const auto& ts : tsunamiRects_) {//tsunami-torres
+				if (mngr_->isAlive(t)) {
+					Transform* tsunamieTR = mngr_->getComponent<Transform>(ts);
+					SDL_Rect tsunamiRect;
+					if (tsunamieTR != nullptr) tsunamiRect = tsunamieTR->getRect();
+					if (SDL_HasIntersection(&tsunamiRect, &towerRect)) {
+						Message m;
+						m.id = _m_TOWER_TO_ATTACK;
+						m.tower_to_attack.e = t;
+						m.tower_to_attack.damage = 1000000;
 						mngr_->send(m);
 					}
 				}

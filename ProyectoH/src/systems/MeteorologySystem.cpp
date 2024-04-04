@@ -7,8 +7,8 @@
 #include "../game/Game.h"
 
 
-MeteorologySystem::MeteorologySystem(): minTimeInterval_(1.0),
-maxTimeInterval_(2.0), 
+MeteorologySystem::MeteorologySystem(): minTimeInterval_(10.0),
+maxTimeInterval_(12.0), 
 elapsedTime_(0) ,
 thundersInterval_(0.5),
 meteoriteInterval_(1.5),
@@ -38,7 +38,7 @@ void  MeteorologySystem::receive(const Message& m) {
 		switch (nextEvent_)
 		{
 		case MeteorologySystem::TSUNAMI:
-
+			addRectTo(m.return_entity.ent, rectId::_TSUNAMI);
 			break;
 		case MeteorologySystem::STORM:
 			addRectTo(m.return_entity.ent, rectId::_THUNDER);
