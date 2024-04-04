@@ -18,6 +18,8 @@ public:
 	void update() override;
 
 private: 
+	bool mActive;
+
 	int intAt(basic_string<char> s) { return sdlutils().intConst().at(s); }
 	float floatAt(basic_string<char> s) { return sdlutils().floatConst().at(s); }
 	Cell* getCellFromTile(const Vector2D& pos);

@@ -10,7 +10,7 @@ public:
 
 	static const cmpId id = cmpId::_DRAG_AND_DROP;
 
-	DragAndDrop(twrId i, int cost);
+	DragAndDrop(twrId i, int cost, Height h);
 	virtual ~DragAndDrop();
 
 	void initComponent() override;
@@ -55,12 +55,30 @@ public:
 
 	inline bool canDrop() const { return canDrop_; }
 
-	inline void enableDrop(bool b) { canDrop_ = b; }
+	inline void enableDrop(Cell* c) { 
+		if (c->isFree) {
+			if (c->id == TILE_LOW && height_ == LOW) {
+				canDrop_ = true;
+			}
+			else if (c->id == TILE_HIGH && height_ == HIGH) {
+				canDrop_ = true;
+			}
+			else if (c->id == TILE_PATH && height_ == PATH) {
+				canDrop_ = true;
+			}
+			else if ((c->id == TILE_HIGH || c->id == TILE_LOW) && height_ == BOTH) {
+				canDrop_ = true;
+			}
+			else canDrop_ = false;
+		}
+		else canDrop_ = false;
+	}
 private:
 
 	bool dragging_;
 	bool canDrop_;
 	Transform* tr_;
+	Height height_;
 	twrId tId_;
 	int cost;
 };

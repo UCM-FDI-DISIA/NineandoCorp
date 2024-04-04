@@ -6,6 +6,7 @@ HUDSystem::HUDSystem() :
 	buttonsSpace_length_() , // 
 	infoSpace_length_(),
 	towers_imgs(){
+	mActive = true;
 }
 HUDSystem::~HUDSystem(){
 }
@@ -42,7 +43,8 @@ void HUDSystem::initSystem() {
 			0.0f,
 			gameTextures::bulletTowerTexture,
 			_grp_HUD_FOREGROUND);
-		mngr_->addComponent<DragAndDrop>(towers_imgs[_twr_BULLET], _twr_BULLET, sdlutils().intConst().at("BalasPrecio"));
+		auto dndBullet = mngr_->addComponent<DragAndDrop>(towers_imgs[_twr_BULLET], _twr_BULLET, sdlutils().intConst().at("BalasPrecio"), Height::LOW);
+		
 		mngr_->addComponent<FramedImage>(towers_imgs[_twr_BULLET],
 			intAt("BalasColumns"), intAt("BalasRows"),
 			intAt("BalasWidth"), intAt("BalasHeight"),
@@ -63,7 +65,7 @@ void HUDSystem::initSystem() {
 			cristalTowerTexture,
 			_grp_HUD_FOREGROUND);
 
-		mngr_->addComponent<DragAndDrop>(towers_imgs[_twr_CRISTAL], _twr_CRISTAL, sdlutils().intConst().at("CristalPrecio"));
+		mngr_->addComponent<DragAndDrop>(towers_imgs[_twr_CRISTAL], _twr_CRISTAL, sdlutils().intConst().at("CristalPrecio"), Height::HIGH);
 		mngr_->addComponent<FramedImage>(towers_imgs[_twr_CRISTAL],
 			intAt("CristalColumns"), intAt("CristalRows"),
 			intAt("CristalWidth"), intAt("CristalHeight"),
@@ -86,7 +88,7 @@ void HUDSystem::initSystem() {
 			phoenixTowerTexture,
 			_grp_HUD_FOREGROUND);
 
-		mngr_->addComponent<DragAndDrop>(towers_imgs[_twr_FENIX], _twr_FENIX, sdlutils().intConst().at("FenixPrecio"));
+		mngr_->addComponent<DragAndDrop>(towers_imgs[_twr_FENIX], _twr_FENIX, sdlutils().intConst().at("FenixPrecio"), Height::BOTH);
 		mngr_->addComponent<FramedImage>(towers_imgs[_twr_FENIX],
 			intAt("FenixColumns"), intAt("FenixRows"),
 			intAt("FenixWidth"), intAt("FenixHeight"),
@@ -108,7 +110,7 @@ void HUDSystem::initSystem() {
 			clayTowerTexture,
 			_grp_HUD_FOREGROUND);
 
-		mngr_->addComponent<DragAndDrop>(towers_imgs[_twr_CLAY], _twr_CLAY, sdlutils().intConst().at("ArcillaPrecio"));
+		mngr_->addComponent<DragAndDrop>(towers_imgs[_twr_CLAY], _twr_CLAY, sdlutils().intConst().at("ArcillaPrecio"), Height::PATH);
 		mngr_->addComponent<FramedImage>(towers_imgs[_twr_CLAY],
 			intAt("ArcillaColumns"), intAt("ArcillaRows"),
 			intAt("ArcillaWidth"), intAt("ArcillaHeight"),
@@ -131,7 +133,7 @@ void HUDSystem::initSystem() {
 			sniperTowerTexture,
 			_grp_HUD_FOREGROUND);
 
-		mngr_->addComponent<DragAndDrop>(towers_imgs[_twr_DIEGO], _twr_DIEGO, sdlutils().intConst().at("DiegoSniperPrecio"));
+		mngr_->addComponent<DragAndDrop>(towers_imgs[_twr_DIEGO], _twr_DIEGO, sdlutils().intConst().at("DiegoSniperPrecio"), Height::HIGH);
 		mngr_->addComponent<FramedImage>(towers_imgs[_twr_DIEGO],
 			intAt("DiegoSniperColumns"), intAt("DiegoSniperRows"),
 			intAt("DiegoSniperWidth"), intAt("DiegoSniperHeight"),
@@ -154,7 +156,7 @@ void HUDSystem::initSystem() {
 			slimeTowerTexture,
 			_grp_HUD_FOREGROUND);
 
-		mngr_->addComponent<DragAndDrop>(towers_imgs[_twr_SLIME], _twr_SLIME, sdlutils().intConst().at("SlimePrecio"));
+		mngr_->addComponent<DragAndDrop>(towers_imgs[_twr_SLIME], _twr_SLIME, sdlutils().intConst().at("SlimePrecio"), Height::LOW);
 		mngr_->addComponent<FramedImage>(towers_imgs[_twr_SLIME],
 			intAt("SlimeColumns"), intAt("SlimeRows"),
 			intAt("SlimeWidth"), intAt("SlimeHeight"),
@@ -177,7 +179,7 @@ void HUDSystem::initSystem() {
 			boosterTowerTexture,
 			_grp_HUD_FOREGROUND);
 
-		mngr_->addComponent<DragAndDrop>(towers_imgs[_twr_POWER], _twr_POWER, sdlutils().intConst().at("PotenciadoraPrecio"));
+		mngr_->addComponent<DragAndDrop>(towers_imgs[_twr_POWER], _twr_POWER, sdlutils().intConst().at("PotenciadoraPrecio"), Height::BOTH);
 		mngr_->addComponent<FramedImage>(towers_imgs[_twr_POWER],
 			intAt("PotenciadoraColumns"), intAt("PotenciadoraRows"),
 			intAt("PotenciadoraWidth"), intAt("PotenciadoraHeight"),
@@ -185,6 +187,11 @@ void HUDSystem::initSystem() {
 
 		initial_pos[_twr_POWER] = { xAux * 7 + 3 , heightH - 4 };
 #pragma endregion
+
+	bS->addButton({ (float)sdlutils().width() - 50.0f , 50.0f },
+		{50.0f, 50.0f},
+		gameTextures::pause_button, gameTextures::pause_button_hover,
+		ButtonTypes::pause_main);
 }
 
 void HUDSystem::receive(const Message& m) {
@@ -193,19 +200,25 @@ void HUDSystem::receive(const Message& m) {
 	case _m_DRAG:
 		dragTowerIcon(towers_imgs[m.drag_data.towerId]);
 		break;
+	case _m_PAUSE:
+		mActive = !m.start_pause.onPause;
+		break;
 	default:
 		break;
 	}
 }	
 void HUDSystem::update() {
-	int i = 0;
-	for (auto en : towers_imgs) {
-		auto dC = mngr_->getComponent<DragAndDrop>(en);
-		if (dC != nullptr && dC->isDragged()) {
-			Vector2D mPos = { (float)ih().getMousePos().first, (float)ih().getMousePos().second };
-			Cell* cell = getCellFromTile(mPos);
+	if (mActive) {
+
+		int i = 0;
+		for (auto en : towers_imgs) {
+			auto dC = mngr_->getComponent<DragAndDrop>(en);
+			if (dC != nullptr && dC->isDragged()) {
+				Vector2D mPos = { (float)ih().getMousePos().first, (float)ih().getMousePos().second };
+				Cell* cell = getCellFromTile(mPos);
 				dC->drag(cell->position);
-				dC->enableDrop(cell->isFree);
+
+				dC->enableDrop(cell);
 				if (ih().mouseButtonEvent()) {
 					// click derecho para reset 
 					if (ih().getMouseButtonState(InputHandler::MOUSEBUTTON::RIGHT) == 1) {
@@ -229,14 +242,14 @@ void HUDSystem::update() {
 							Message m;
 							m.id = _m_ADD_TEXT;
 							m.add_text_data.txt = "NO SE PUEDE COLOCAR EN ESTA POSICION";
-							m.add_text_data.color = { 255, 0 ,0, 255 }; 
-							Vector2D txtScale = Vector2D(800.0f, 75.0f); 
+							m.add_text_data.color = { 255, 0 ,0, 255 };
+							Vector2D txtScale = Vector2D(800.0f, 75.0f);
 							m.add_text_data.pos = Vector2D(sdlutils().width() / 2, sdlutils().height() / 2) - (txtScale / 2);
-							m.add_text_data.scale = txtScale; 
+							m.add_text_data.scale = txtScale;
 							m.add_text_data.time = 1000;
 							mngr_->send(m);
 						}
-						
+
 						//resetea el icono de la torre
 						dC->enableDrag(false);
 						mngr_->changeEntityId(_grp_HUD_FOREGROUND, en);
@@ -247,8 +260,9 @@ void HUDSystem::update() {
 						enableAllButtons(true);
 					}
 				}
+			}
+			i++;
 		}
-		i++;
 	}
 	
 

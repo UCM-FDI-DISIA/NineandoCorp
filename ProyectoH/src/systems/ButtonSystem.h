@@ -98,6 +98,7 @@ private:
 
 	void showTempText(string txt, const SDL_Color& color, const Vector2D& pos, const Vector2D& scale, int time);
 
+	bool mActive;
 	int money_ = 0;
 	int costs[_twr_SIZE];
 	Entity* moneyText_;

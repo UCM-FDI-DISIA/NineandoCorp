@@ -11,6 +11,7 @@
 #include "../components/RouteComponent.h"
 #include "../systems/MeteorologySystem.h"
 #include "../systems/ButtonSystem.h"
+#include "../systems/PauseSystem.h"
 
 class PlayState : public GameState
 {

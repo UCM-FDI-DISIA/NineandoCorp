@@ -1,4 +1,5 @@
 #include "ButtonSystem.h"
+#include "../game/Game.h"
 #include "../sdlutils/InputHandler.h"
 #include "../ecs/Manager.h"
 #include "../components/TextComponent.h"
@@ -7,7 +8,7 @@
 
 ButtonSystem::ButtonSystem(hdlrId_type but_id) : 
 	hdlr_but_id(but_id){
-
+	mActive = true;
 	//rellenar la lista de costes
 	costs[_twr_BULLET] = sdlutils().intConst().at("BalasPrecio");
 	costs[_twr_FENIX] = sdlutils().intConst().at("FenixPrecio");
@@ -21,7 +22,10 @@ ButtonSystem::ButtonSystem(hdlrId_type but_id) :
 ButtonSystem::~ButtonSystem(){
 }
 void ButtonSystem::update () {
-	manageButtons();
+	if (mActive)
+	{
+		manageButtons();
+	}
 }
 
 
@@ -47,6 +51,9 @@ void ButtonSystem::receive(const Message& m){
 			     m.add_text_data.scale,
 				 m.add_text_data.time
 					);
+		break;
+	case _m_PAUSE:
+		mActive = !m.start_pause.onPause;
 		break;
 	default:
 		break;
@@ -107,6 +114,9 @@ void ButtonSystem::manageButtons() {
 		// Incluye la id del button para incluir 
 		switch (type)
 		{
+		case exit_button:
+			game().exitGame();
+			break;
 		case selector_main:
 			loadLevelSelector();
 			pauseAllButtons();

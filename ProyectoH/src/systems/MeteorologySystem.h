@@ -45,6 +45,7 @@ private:
 	int quantity_;
 	int objectsSpawned_;
 	bool eventActive_;
+	bool mActive; //mantiene activo el update
 
 	std::vector<std::vector<Vector2D>> routesToEarthquake;
 	int spawn = 0;

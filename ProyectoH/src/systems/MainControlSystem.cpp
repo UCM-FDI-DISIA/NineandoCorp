@@ -39,8 +39,8 @@ void MainControlSystem::receive(const Message& m) {
 	case _m_UPGRADE_TOWER:
 		upgradeTower(m.upgrade_tower.towerId);
 		break;
-	case _m_LEVELS_INFO:
-		// Creo que esto no hace falta usarlo al final
+	case _m_SHOW_UPGRADE_TOWER_MENU:
+		std::cout << "ID de torre: " << m.show_upgrade_twr_menu_data.tId << std::endl;
 		break;
 	}
 }
