@@ -7,8 +7,8 @@
 #include "../game/Game.h"
 
 
-MeteorologySystem::MeteorologySystem(): minTimeInterval_(50.0),
-maxTimeInterval_(100.0), 
+MeteorologySystem::MeteorologySystem(): minTimeInterval_(1.0),
+maxTimeInterval_(2.0), 
 elapsedTime_(0) ,
 thundersInterval_(0.5),
 meteoriteInterval_(1.5),
@@ -20,7 +20,7 @@ objectsSpawned_(0)
 	mActive = true;
 	auto& rand = sdlutils().rand();
 	timeToNextEvent_ = rand.nextInt(minTimeInterval_, maxTimeInterval_);
-	nextEvent_ = (MeteorologyEvent)rand.nextInt(4, 5);
+	nextEvent_ = (MeteorologyEvent)rand.nextInt(0, 1);
 }
 
 MeteorologySystem::~MeteorologySystem() {
@@ -38,6 +38,7 @@ void  MeteorologySystem::receive(const Message& m) {
 		switch (nextEvent_)
 		{
 		case MeteorologySystem::TSUNAMI:
+
 			break;
 		case MeteorologySystem::STORM:
 			addRectTo(m.return_entity.ent, rectId::_THUNDER);
@@ -208,7 +209,33 @@ std::vector<Vector2D> MeteorologySystem::RouteTranslate(std::vector<Vector2D> ro
 	return route_aux;
 }
 void MeteorologySystem::generateTsunami() {
+	for (size_t n = 0; n < tileSize_.getX() / 2 - 1; n++) {
+		auto i = n;
+		auto j = tileSize_.getY() - 2;
 
+		vector<Vector2D> ruta;
+		ruta.push_back(Vector2D(i, j));
+		ruta.push_back(Vector2D(i, 1));
+		auto rutaPantalla = RouteTranslate(ruta);
+		Message m;
+		m.id = _m_ANIM_CREATE;
+		m.anim_create.animSpeed = 9;
+		m.anim_create.idGrp = _grp_NATURALS_EFFECTS;
+		m.anim_create.iterationsToDelete = 1;
+		m.anim_create.scale = { 200, 200 };
+		m.anim_create.cols = 4;
+		m.anim_create.rows = 5;
+		m.anim_create.tex = gameTextures::tsunami;
+		m.anim_create.frameInit = 0;
+		m.anim_create.frameEnd = 18;
+		m.anim_create.height = 96;
+		m.anim_create.width = 96;
+		m.anim_create.route = rutaPantalla;
+		m.anim_create.pos = rutaPantalla[0];
+		mngr_->send(m);
+	}
+	objectsSpawned_++;
+	
 }
 
 void MeteorologySystem::update() {
@@ -223,6 +250,7 @@ void MeteorologySystem::update() {
 			switch (nextEvent_)
 			{
 			case MeteorologySystem::TSUNAMI:
+				generateNetMap();
 				break;
 			case MeteorologySystem::STORM:
 				generateNetMap();
@@ -253,8 +281,11 @@ void MeteorologySystem::update() {
 			switch (nextEvent_)
 			{
 			case MeteorologySystem::TSUNAMI:
-				generateTsunami();
-				eventOver = true;
+				quantity_ = 1;
+				if (objectsSpawned_ < quantity_) {
+					generateTsunami();
+				}
+				
 				break;
 			case MeteorologySystem::STORM:
 				if (elapsedSpawn_ > thundersInterval_ && objectsSpawned_ < quantity_) {

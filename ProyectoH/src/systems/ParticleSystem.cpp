@@ -36,6 +36,7 @@ void ParticleSystem::update() {
 	if (mActive) {
 		for (auto& par : mngr_->getHandler(_hdlr_PARTICLES))
 		{
+			auto r = mngr_->getComponent<RenderComponent>(par);
 			auto p = mngr_->getComponent<ParticleLifeTime>(par);
 			auto f = mngr_->getComponent<FramedImage>(par);
 			MovementComponent* mc = mngr_->getComponent<MovementComponent>(par);
@@ -51,14 +52,27 @@ void ParticleSystem::update() {
 					mc->Move();
 				}
 				else {
-					Message m;
-					m.id = _m_REMOVE_RECT;
-					m.rect_data.rect = par;
-					m.rect_data.id = _TORNADO;
-					mngr_->send(m);
+					if (r->getTexture() == tornado) {
+						Message m;
+						m.id = _m_REMOVE_RECT;
+						m.rect_data.rect = par;
+						m.rect_data.id = _TORNADO;
+						mngr_->send(m);
 
-					mngr_->setAlive(par, false);
-					mngr_->deleteHandler(_hdlr_PARTICLES, par);
+						mngr_->setAlive(par, false);
+						mngr_->deleteHandler(_hdlr_PARTICLES, par);
+					}
+					else {
+						Message m;
+						m.id = _m_REMOVE_RECT;
+						m.rect_data.rect = par;
+						m.rect_data.id = _TSUNAMI;
+						mngr_->send(m);
+
+						mngr_->setAlive(par, false);
+						mngr_->deleteHandler(_hdlr_PARTICLES, par);
+					}
+					
 				}
 
 			}
@@ -82,7 +96,13 @@ Entity* ParticleSystem::addParticle(grpId id, gameTextures tex, Vector2D pos,vec
 	bool meteorologic = false;
 	switch (tex)
 	{
-	
+	case tsunami:
+		correct = { t->getWidth() / 1.2f, t->getHeight() / 0.5f };
+		for (auto& e : route) {
+			e = e - correct;
+		}
+		meteorologic = true;
+		break;
 	case thunder:
 		correct = { t->getWidth() / 1.2f, t->getHeight() / 0.4f };
 		meteorologic = true;
