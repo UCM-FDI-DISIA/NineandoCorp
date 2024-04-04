@@ -455,7 +455,7 @@ Entity* TowerSystem::shootFire(Vector2D spawnPos, float rot, float dmg, Entity* 
 	mngr_->addComponent<FireComponent>(fire, dmg, rot, src);
 	Message m;
 	m.id = _m_ADD_RECT;
-	m.rect_data.rect = fire;
+	m.rect_data.entity = fire;
 	m.rect_data.id = _FENIX;
 	mngr_->send(m);
 

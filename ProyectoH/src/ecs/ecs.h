@@ -155,6 +155,8 @@ enum rectId : rectId_type {
 	_THUNDER,
 	_EARTHQUAKE,
 	_TORNADO,
+	_FIELD,
+	_BULLETS,
 
 	_LAST_RECT_ID
 };
@@ -458,7 +460,7 @@ struct Message {
 
 	//_m_ADD_RECT
 	struct {
-		Entity* rect;
+		Entity* entity;
 		rectId id;
 	}rect_data;
 

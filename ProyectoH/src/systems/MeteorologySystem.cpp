@@ -67,7 +67,7 @@ void MeteorologySystem::addRectTo(Entity* e, rectId id) {
 	Message m;
 	m.id = _m_ADD_RECT;
 	m.rect_data.id = id;
-	m.rect_data.rect = e;
+	m.rect_data.entity = e;
 	mngr_->send(m);
 }
 

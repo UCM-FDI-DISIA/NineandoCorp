@@ -55,7 +55,7 @@ void PhoenixTower::removeFire() {
 	Message m;
 	m.id = _m_REMOVE_RECT;
 	m.rect_data.id = _FENIX;
-	m.rect_data.rect = fire_;
+	m.rect_data.entity = fire_;
 	mngr_->send(m);
 	setFire(nullptr);
 }
