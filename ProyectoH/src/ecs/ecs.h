@@ -54,6 +54,8 @@ enum cmpId : cmpId_type {
 	_LIMITEDTIME,
 	_INTERACTIVE_TOWER,
 	_ENEMYTYPE,
+	_DEFENSORREAL,
+	_FORCEFIELD,
 
 
 	// do not remove this

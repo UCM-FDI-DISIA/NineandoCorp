@@ -7,6 +7,9 @@
 #include "../game/Game.h"
 #include "../systems/mapSystem.h"
 #include "..//components/generateEnemies.h"
+#include "..//components/DefensorRealComponent.h"
+
+
 class EnemySystem: public System
 {
 private:

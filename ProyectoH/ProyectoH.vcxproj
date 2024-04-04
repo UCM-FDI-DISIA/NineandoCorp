@@ -27,6 +27,7 @@
     <ClInclude Include="src\components\BulletTower.h" />
     <ClInclude Include="src\components\ButtonComponent.h" />
     <ClInclude Include="src\components\CrystalTower.h" />
+    <ClInclude Include="src\components\DefensorRealComponent.h" />
     <ClInclude Include="src\components\DiegoSniperTower.h" />
     <ClInclude Include="src\components\DirtTower.h" />
     <ClInclude Include="src\components\DragAndDrop.h" />
@@ -34,6 +35,7 @@
     <ClInclude Include="src\components\EnemyTypeComponent.h" />
     <ClInclude Include="src\components\EnhancerTower.h" />
     <ClInclude Include="src\components\FireComponent.h" />
+    <ClInclude Include="src\components\ForceFieldComponent.h" />
     <ClInclude Include="src\components\FramedImage.h" />
     <ClInclude Include="src\components\generateEnemies.h" />
     <ClInclude Include="src\components\GolemComponent.h" />
@@ -110,12 +112,14 @@
     <ClCompile Include="src\components\BulletTower.cpp" />
     <ClCompile Include="src\components\ButtonComponent.cpp" />
     <ClCompile Include="src\components\CrystalTower.cpp" />
+    <ClCompile Include="src\components\DefensorRealComponent.cpp" />
     <ClCompile Include="src\components\DiegoSniperTower.cpp" />
     <ClCompile Include="src\components\DirtTower.cpp" />
     <ClCompile Include="src\components\DragAndDrop.cpp" />
     <ClCompile Include="src\components\EnemyTypeComponent.cpp" />
     <ClCompile Include="src\components\EnhancerTower.cpp" />
     <ClCompile Include="src\components\FireComponent.cpp" />
+    <ClCompile Include="src\components\ForceFieldComponent.cpp" />
     <ClCompile Include="src\components\FramedImage.cpp" />
     <ClCompile Include="src\components\generateEnemies.cpp" />
     <ClCompile Include="src\components\GolemComponent.cpp" />

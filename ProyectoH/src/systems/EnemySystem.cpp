@@ -423,6 +423,7 @@ void EnemySystem::update()
 			AcechanteComponent* acc = mngr_->getComponent<AcechanteComponent>(e);
 			IconComponent* ic = mngr_->getComponent<IconComponent>(e);
 			AngelComponent* anc = mngr_->getComponent<AngelComponent>(e);
+			DefensorRealComponent* drc = mngr_->getComponent<DefensorRealComponent>(e);
 			Transform* tr = mngr_->getComponent<Transform>(e);
 
 
