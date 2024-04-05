@@ -19,6 +19,9 @@ void TowerSystem::initSystem() {
 
 void TowerSystem::receive(const Message& m) {
 	switch (m.id) {
+	case _m_START_GAME:
+		cameraOffset_ = m.start_game_data.cameraOffset;
+		break;
 	case _m_ENTITY_TO_ATTACK://Mandado por el enemySystem al atacar una torre
 		if(m.entity_to_attack.targetId == _hdlr_LOW_TOWERS)onAttackTower(m.entity_to_attack.e, m.entity_to_attack.damage);
 		break;
@@ -481,7 +484,7 @@ void TowerSystem::addTower(twrId type,const Vector2D& pos, Height height) {
 	tr->setPosition(pos);
 	mngr_->addComponent<TowerStates>(t);
 	mngr_->addComponent<UpgradeTowerComponent>(t, type, 4);
-	mngr_->addComponent<InteractiveTower>(t);
+	mngr_->addComponent<InteractiveTower>(t, cameraOffset_);
 	float health = 100.0f;
 	if (height == LOW) {
 		mngr_->addComponent<HealthComponent>(t, health);
