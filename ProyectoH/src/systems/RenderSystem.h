@@ -47,8 +47,7 @@ private:
 	void onResume();
 	void onGameOver(Uint8 winner);
 
-
-
+	bool mActive;
 
 	//void onPause();
 	//void onResume();

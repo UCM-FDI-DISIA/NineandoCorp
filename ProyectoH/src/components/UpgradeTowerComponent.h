@@ -13,9 +13,9 @@ public:
 	void LevelUp();
 	int getLevel() const { return currentLevel_; }
 	int getMaxLevel() { return maxLevel_; }
+	twrId id_;
 
 protected:
-	twrId id_;
 	int maxLevel_;
 	int currentLevel_;
 	//JSONValue* upgradeInfo_;

@@ -15,7 +15,7 @@ class Manager;
 
 using uint8_t = unsigned char;
 
-enum Height { HIGH = 0, LOW };
+enum Height { HIGH = 0, LOW, PATH, BOTH};
 
 using cmpId_type = int;
 enum cmpId : cmpId_type {
@@ -54,6 +54,8 @@ enum cmpId : cmpId_type {
 	_LIMITEDTIME,
 	_INTERACTIVE_TOWER,
 	_ENEMYTYPE,
+	_DEFENSORREAL,
+	_FORCEFIELD,
 
 
 	// do not remove this
@@ -153,6 +155,8 @@ enum rectId : rectId_type {
 	_THUNDER,
 	_EARTHQUAKE,
 	_TORNADO,
+	_FIELD,
+	_BULLETS,
 
 	_LAST_RECT_ID
 };
@@ -194,7 +198,9 @@ enum msgId : msgId_type {
 	_m_ABLEBUTTONS,
 	_m_CHANGE_ROUTE,
 	_m_ADD_TEXT,
-	_m_ENEMYSEE
+	_m_ENEMYSEE,
+	_m_SHOW_UPGRADE_TOWER_MENU,
+	_m_TOWER_CLICKED
 };
 
 using twrId_type = uint8_t;
@@ -234,7 +240,7 @@ enum gameTextures {
 	//map
 	tileSet,
 	//UI
-	play, play_hover, box, box_hover, large_box, none_box, none_box_hover,
+	play, play_hover, box, box_hover, large_box, none_box, none_box_hover, pause_button, pause_button_hover,
 	close, close_hover, enemies_button, enemies_button_hover,
 	menu_background, upgrade, upgrade_hover, logo,
 	crystal_tower_image, bullet_tower_image, slime_tower_image,
@@ -249,7 +255,9 @@ enum gameTextures {
 	//enemies
 	goblin, maldito, elfo, golem, angel, maestro, acechante, defensor, demonioAlado,
 	demonioInfernal, mensajero, CMaldito, principito, monje, muerte,
-
+	//enemies icons
+	goblin_icon, maldito_icon, elfo_icon, golem_icon, angel_icon, maestro_icon, acechante_icon, defensor_icon,
+	demonioAlado_icon, demonioInfernal_icon, mensajero_icon, CMaldito_icon, principito_icon, monje_icon, muerte_icon,
 	//texts
 	nexus_level_text,
 
@@ -304,7 +312,19 @@ inline Uint8* _deserialize_(float& v, Uint8* buf) {
 	return _deserialize_(reinterpret_cast<Uint32&>(v), buf);
 }
 struct Message {
-msgId_type id;
+	msgId_type id;
+	//_m_TOWER_CLICKED
+	struct {
+		Entity* tower;
+	}tower_clicked_data;
+
+	//_m_SHOW_UPGRADE_TOWER_MENU
+	struct {
+		int cLevel;
+		twrId tId;
+		Vector2D pos;
+
+	}show_upgrade_twr_menu_data;
 
 	//_m_ADD_TEXT
 	struct {
@@ -440,7 +460,7 @@ msgId_type id;
 
 	//_m_ADD_RECT
 	struct {
-		Entity* rect;
+		Entity* entity;
 		rectId id;
 	}rect_data;
 

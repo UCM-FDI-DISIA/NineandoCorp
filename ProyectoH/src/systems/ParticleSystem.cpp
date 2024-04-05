@@ -7,7 +7,7 @@
 #include "../components/MovementComponent.h"
 
 ParticleSystem::ParticleSystem() {
-
+	mActive = true;
 }
 ParticleSystem::~ParticleSystem() {
 
@@ -23,6 +23,9 @@ void  ParticleSystem::receive(const Message& m) {
 		addParticle(m.anim_create.idGrp, m.anim_create.tex, m.anim_create.pos,m.anim_create.route, m.anim_create.scale, m.anim_create.frameInit, m.anim_create.frameEnd,
 		m.anim_create.animSpeed, m.anim_create.rows, m.anim_create.cols, m.anim_create.width, m.anim_create.height, m.anim_create.iterationsToDelete);
 		break;
+	case _m_PAUSE:
+		mActive = !mActive;
+		break;
 	default:
 			break;
 	}
@@ -30,37 +33,39 @@ void  ParticleSystem::receive(const Message& m) {
 
 
 void ParticleSystem::update() {
-	for (auto& par : mngr_->getHandler(_hdlr_PARTICLES))
-	{
-		auto p = mngr_->getComponent<ParticleLifeTime>(par);
-		auto f = mngr_->getComponent<FramedImage>(par);
-		MovementComponent* mc = mngr_->getComponent<MovementComponent>(par);
-		RouteComponent* rc = mngr_->getComponent<RouteComponent>(par);
+	if (mActive) {
+		for (auto& par : mngr_->getHandler(_hdlr_PARTICLES))
+		{
+			auto p = mngr_->getComponent<ParticleLifeTime>(par);
+			auto f = mngr_->getComponent<FramedImage>(par);
+			MovementComponent* mc = mngr_->getComponent<MovementComponent>(par);
+			RouteComponent* rc = mngr_->getComponent<RouteComponent>(par);
 
-		f->updateCurrentFrame();
+			f->updateCurrentFrame();
 
-		
 
-		if (rc != nullptr) {
-			rc->checkdestiny();
-			if (mc != nullptr && !mc->getStop()) {
-				mc->Move();
+
+			if (rc != nullptr) {
+				rc->checkdestiny();
+				if (mc != nullptr && !mc->getStop()) {
+					mc->Move();
+				}
+				else {
+					Message m;
+					m.id = _m_REMOVE_RECT;
+					m.rect_data.entity = par;
+					m.rect_data.id = _TORNADO;
+					mngr_->send(m);
+
+					mngr_->setAlive(par, false);
+					mngr_->deleteHandler(_hdlr_PARTICLES, par);
+				}
+
 			}
-			else {
-				Message m;
-				m.id = _m_REMOVE_RECT;
-				m.rect_data.rect = par;
-				m.rect_data.id = _TORNADO;
-				mngr_->send(m);
-
+			else if (p->getIters() <= f->getIters()) {
 				mngr_->setAlive(par, false);
 				mngr_->deleteHandler(_hdlr_PARTICLES, par);
 			}
-
-		}
-		else if (p->getIters() <= f->getIters()) {
-			mngr_->setAlive(par, false);
-			mngr_->deleteHandler(_hdlr_PARTICLES, par);
 		}
 	}
 }

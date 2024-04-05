@@ -7,6 +7,9 @@
 #include "../game/Game.h"
 #include "../systems/mapSystem.h"
 #include "..//components/generateEnemies.h"
+#include "..//components/DefensorRealComponent.h"
+
+
 class EnemySystem: public System
 {
 private:
@@ -28,17 +31,19 @@ public:
 	void collideswithEnemy();
 	void AddMoney(enmId type);
 	void addEnemy(enmId type, Vector2D pos);
+	
 
 	std::vector<Vector2D> RouteTranslate(std::vector<Vector2D> route);
 	
 	unsigned int getWave() { return wave; }
 	void setWave() { wave++; }
 protected:
+	Entity* addField(Vector2D pos);
 
 	std::vector<Transform*> enemiesTransforms;
 	std::vector<Entity*> spawnsVector;
 	NetMap* netmap;
-	bool active_;
+	bool mActive;
 
 };
 

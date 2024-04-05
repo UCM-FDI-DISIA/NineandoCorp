@@ -17,6 +17,7 @@ public:
 	void update() override ;
 
 private: 
+	bool mActive;
 
 	/// <summary>
 	/// Crea un texto a partir de una textura como entidad y lo añade al manager

@@ -28,5 +28,7 @@ protected:
 	std::vector<Entity*> enemyRects_;
 	std::vector<Entity*> earthquakeRects_;
 	std::vector<Entity*> tornadoRects_;
+	std::vector<Entity*> fieldRects_;
 
+	bool mActive;
 };

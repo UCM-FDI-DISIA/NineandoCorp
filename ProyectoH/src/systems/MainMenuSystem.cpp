@@ -3,7 +3,7 @@
 #include "../game/Game.h"
 
 MainMenuSystem::MainMenuSystem() {
-
+	mActive = true;
 }
 
 MainMenuSystem::~MainMenuSystem() {

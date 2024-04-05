@@ -1,5 +1,6 @@
 #include "InteractiveTower.h"
 #include "../ecs/Manager.h"
+#include "../components/UpgradeTowerComponent.h"
 void InteractiveTower::initComponent()
 {
 	tr_ = mngr_->getComponent<Transform>(ent_);
@@ -12,6 +13,9 @@ void InteractiveTower::update() {
 	if (ih().getMouseButtonState(InputHandler::MOUSEBUTTON::LEFT) == 1 
 	 && isOnRect(mPos)) 
 	{
-		std::cout << " OKOKOK" << std::endl; 
+		Message m; 
+		m.id = _m_TOWER_CLICKED;
+		m.tower_clicked_data.tower = ent_;
+		mngr_->send(m);
 	}
 }

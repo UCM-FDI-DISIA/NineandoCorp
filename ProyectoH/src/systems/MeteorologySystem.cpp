@@ -7,8 +7,8 @@
 #include "../game/Game.h"
 
 
-MeteorologySystem::MeteorologySystem(): minTimeInterval_(50.0),
-maxTimeInterval_(100.0), 
+MeteorologySystem::MeteorologySystem(): minTimeInterval_(15.0),
+maxTimeInterval_(30.0), 
 elapsedTime_(0) ,
 thundersInterval_(0.5),
 meteoriteInterval_(1.5),
@@ -17,9 +17,10 @@ quantity_(0),
 eventActive_(false),
 objectsSpawned_(0)
 {
+	mActive = true;
 	auto& rand = sdlutils().rand();
 	timeToNextEvent_ = rand.nextInt(minTimeInterval_, maxTimeInterval_);
-	nextEvent_ = (MeteorologyEvent)rand.nextInt(4, 5);
+	nextEvent_ = (MeteorologyEvent)rand.nextInt(0, 5);
 }
 
 MeteorologySystem::~MeteorologySystem() {
@@ -50,6 +51,9 @@ void  MeteorologySystem::receive(const Message& m) {
 		case MeteorologySystem::EARTHQUAKE:
 			addRectTo(m.return_entity.ent, rectId::_EARTHQUAKE);
 			break;
+		case _m_PAUSE:
+			mActive = !mActive;
+			break;
 		default:
 			break;
 		}
@@ -63,7 +67,7 @@ void MeteorologySystem::addRectTo(Entity* e, rectId id) {
 	Message m;
 	m.id = _m_ADD_RECT;
 	m.rect_data.id = id;
-	m.rect_data.rect = e;
+	m.rect_data.entity = e;
 	mngr_->send(m);
 }
 
@@ -77,32 +81,28 @@ void MeteorologySystem::generateNetMap() {
 void MeteorologySystem::generateAnimEarthquake() {
 	auto& rand = sdlutils().rand();
 
-	for (size_t k = 0; k < 20; k++)
+	for (size_t k = 0; k < 30; k++)
 	{
-		auto i = rand.nextInt(1, (int)tileSize_.getX() / 2 - 3);
-		auto j = rand.nextInt(1, (int)tileSize_.getY() - 3);
+		auto i = rand.nextInt(0, tileSize_.getX() / 2 - 1);
+		auto j = rand.nextInt(0, tileSize_.getY() - 1);
 
 		auto position = net->getCell(i, j)->position;
 		auto x = position.getX();
 		auto y = position.getY();
 
-		auto anim = rand.nextInt(0, 3);
-		auto animInit = 6 * anim;
-		auto animEnd = 6 * anim + 5;
-
 		Message m;
 		m.id = _m_ANIM_CREATE;
-		m.anim_create.animSpeed = 2;
+		m.anim_create.animSpeed = 3;
 		m.anim_create.idGrp = _grp_NATURALS_EFFECTS;
 		m.anim_create.iterationsToDelete = 4;
-		m.anim_create.scale = { 200, 100 };
-		m.anim_create.cols = 3;
-		m.anim_create.rows = 6;
+		m.anim_create.scale = { 50, 50 };
+		m.anim_create.cols = 1;
+		m.anim_create.rows = 3;
 		m.anim_create.tex = gameTextures::earthquake;
-		m.anim_create.frameInit = animInit;
-		m.anim_create.frameEnd = animEnd;
-		m.anim_create.height = 37;
-		m.anim_create.width = 75;
+		m.anim_create.frameInit = 0;
+		m.anim_create.frameEnd = 3;
+		m.anim_create.height = 32;
+		m.anim_create.width = 32;
 		m.anim_create.pos = Vector2D(x, y);
 		mngr_->send(m);
 	}
@@ -117,8 +117,8 @@ void MeteorologySystem::generateMeteorite() {
 
 	auto& rand = sdlutils().rand();
 
-	auto i = rand.nextInt(0, (int)tileSize_.getX() / 2 - 1);
-	auto j = rand.nextInt(0, (int)tileSize_.getY() - 1);
+	auto i = rand.nextInt(0, tileSize_.getX() / 2 - 1);
+	auto j = rand.nextInt(0, tileSize_.getY() - 1);
 
 	auto position = net->getCell(i, j)->position;
 	auto x = position.getX();
@@ -150,8 +150,8 @@ void MeteorologySystem::generateThunder() {
 
 	auto& rand = sdlutils().rand();
 
-	auto i = rand.nextInt(0, (int)tileSize_.getX() / 2 - 1);
-	auto j = rand.nextInt(0, (int)tileSize_.getY() - 1);
+	auto i = rand.nextInt(0, tileSize_.getX() / 2 - 1);
+	auto j = rand.nextInt(0, tileSize_.getY() - 1);
 
 	auto position = net->getCell(i, j)->position;
 	auto x = position.getX();
@@ -208,95 +208,99 @@ void MeteorologySystem::generateTsunami() {
 }
 
 void MeteorologySystem::update() {
-	
 
-	if (!eventActive_) { elapsedTime_ += game().getDeltaTime(); }
+	if (mActive) {
 
-	if (elapsedTime_ > timeToNextEvent_ && !eventActive_) {//comienza el evento
 
-		eventActive_ = true;
 
-		switch (nextEvent_)
-		{
-		case MeteorologySystem::TSUNAMI:
-			break;
-		case MeteorologySystem::STORM:
-			generateNetMap();
-			generateStorm(50);
-			break;
-		case MeteorologySystem::METEORITES:
-			generateNetMap();
-			generateMeteorites(50);
-			break;
-		case MeteorologySystem::TORNADO:
-			generateNetMap();
-			break;
-		case MeteorologySystem::EARTHQUAKE:	
-			generateNetMap();
-			quantity_ = 50;
-			break;
-		default:
-			break;
-		}
-		elapsedTime_ = 0.0;
-	}
+		if (!eventActive_) { elapsedTime_ += game().getDeltaTime(); }
 
-	if (eventActive_) {//evento activo
-		bool eventOver = false;
+		if (elapsedTime_ > timeToNextEvent_ && !eventActive_) {//comienza el evento
 
-		elapsedSpawn_ += game().getDeltaTime();
+			eventActive_ = true;
 
-		switch (nextEvent_)
-		{
-		case MeteorologySystem::TSUNAMI:
-			generateTsunami();
-			eventOver = true;
-			break;
-		case MeteorologySystem::STORM:
-			if (elapsedSpawn_ > thundersInterval_ && objectsSpawned_ < quantity_) {
-				objectsSpawned_++;
-				generateThunder();
-				elapsedSpawn_ = 0;
+			switch (nextEvent_)
+			{
+			case MeteorologySystem::TSUNAMI:
+				break;
+			case MeteorologySystem::STORM:
+				generateNetMap();
+				generateStorm(50);
+				break;
+			case MeteorologySystem::METEORITES:
+				generateNetMap();
+				generateMeteorites(50);
+				break;
+			case MeteorologySystem::TORNADO:
+				generateNetMap();
+				break;
+			case MeteorologySystem::EARTHQUAKE:
+				generateNetMap();
+				quantity_ = 50;
+				break;
+			default:
+				break;
 			}
-			else if(objectsSpawned_ >= quantity_) { eventOver = true; }
-			break;
-		case MeteorologySystem::METEORITES:
-			if (elapsedSpawn_ > meteoriteInterval_ && objectsSpawned_ < quantity_) {
-				objectsSpawned_++;
-				generateMeteorite();
-				elapsedSpawn_ = 0;
-			}
-			else if(objectsSpawned_ >= quantity_) { eventOver = true; }
-			break;
-		case MeteorologySystem::TORNADO:
-			quantity_ = 1;
-			if(objectsSpawned_ < quantity_) {
-				generateAnimTornado();
-			}
-			if(elapsedSpawn_ > 25.0){ eventOver = true; }
-			break;
-		case MeteorologySystem::EARTHQUAKE:
-			
-			if (elapsedSpawn_ > 0.3 && objectsSpawned_ < quantity_) {
-				generateAnimEarthquake();
-				objectsSpawned_++;
-				elapsedSpawn_ = 0;
-			}
-			if (objectsSpawned_ >= quantity_) { eventOver = true; }
-			break;
-		default:
-			break;
-		}
-
-		if (eventOver) {//acaba el evento
-			eventActive_ = false;
-			auto& rand = sdlutils().rand();
 			elapsedTime_ = 0.0;
-			timeToNextEvent_ = rand.nextInt(minTimeInterval_, maxTimeInterval_);
-			nextEvent_ = (MeteorologyEvent)rand.nextInt(0, 5);
-			objectsSpawned_ = 0;
-			elapsedSpawn_ = 0;
-			quantity_ = 0;
+		}
+
+		if (eventActive_) {//evento activo
+			bool eventOver = false;
+
+			elapsedSpawn_ += game().getDeltaTime();
+
+			switch (nextEvent_)
+			{
+			case MeteorologySystem::TSUNAMI:
+				generateTsunami();
+				eventOver = true;
+				break;
+			case MeteorologySystem::STORM:
+				if (elapsedSpawn_ > thundersInterval_ && objectsSpawned_ < quantity_) {
+					objectsSpawned_++;
+					generateThunder();
+					elapsedSpawn_ = 0;
+				}
+				else if (objectsSpawned_ >= quantity_) { eventOver = true; }
+				break;
+			case MeteorologySystem::METEORITES:
+				if (elapsedSpawn_ > meteoriteInterval_ && objectsSpawned_ < quantity_) {
+					objectsSpawned_++;
+					generateMeteorite();
+					elapsedSpawn_ = 0;
+				}
+				else if (objectsSpawned_ >= quantity_) { eventOver = true; }
+				break;
+			case MeteorologySystem::TORNADO:
+				quantity_ = 1;
+				if (objectsSpawned_ < quantity_) {
+					generateAnimTornado();
+				}
+				if (elapsedSpawn_ > 25.0) { eventOver = true; }
+				break;
+			case MeteorologySystem::EARTHQUAKE:
+
+				if (elapsedSpawn_ > 0.3 && objectsSpawned_ < quantity_) {
+					generateAnimEarthquake();
+					objectsSpawned_++;
+					elapsedSpawn_ = 0;
+				}
+				if (objectsSpawned_ >= quantity_) { eventOver = true; }
+				break;
+			default:
+				break;
+			}
+
+			if (eventOver) {//acaba el evento
+				eventActive_ = false;
+				auto& rand = sdlutils().rand();
+				elapsedTime_ = 0.0;
+				timeToNextEvent_ = rand.nextInt(minTimeInterval_, maxTimeInterval_);
+				nextEvent_ = (MeteorologyEvent)rand.nextInt(0, 5);
+				objectsSpawned_ = 0;
+				elapsedSpawn_ = 0;
+				quantity_ = 0;
+			}
 		}
 	}
 }

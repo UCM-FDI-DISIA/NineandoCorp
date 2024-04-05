@@ -15,6 +15,7 @@ struct cmpIsometricY {
 // Constructorss
 RenderSystem::RenderSystem() : winner_(0)
 {
+	mActive = true;
 	//Camera offset
 	*offset = build_sdlrect(0, 0, 0, 0);
 
@@ -39,8 +40,8 @@ RenderSystem::RenderSystem() : winner_(0)
 	textures[none_box] = &sdlutils().images().at("none_box");
 	textures[none_box_hover] = &sdlutils().images().at("none_box_hover");
 	textures[large_box] = &sdlutils().images().at("large_box");
-	/*textures[pause_button] = &sdlutils().images().at("pause_button");
-	textures[pause_button_hover] = &sdlutils().images().at("pause_button_hover");*/
+	textures[pause_button] = &sdlutils().images().at("pause_button");
+	textures[pause_button_hover] = &sdlutils().images().at("pause_button_hover");
 	textures[close] = &sdlutils().images().at("close");
 	textures[close_hover] = &sdlutils().images().at("close_hover");
 	textures[enemies_button] = &sdlutils().images().at("enemies");
@@ -118,6 +119,22 @@ RenderSystem::RenderSystem() : winner_(0)
 	textures[principito] = &sdlutils().images().at("principito");
 	textures[monje] = &sdlutils().images().at("monje");
 	textures[muerte] = &sdlutils().images().at("muerte");
+	//Enemies Icons
+	textures[goblin_icon] = &sdlutils().images().at("goblin_icon");
+	textures[maldito_icon] = &sdlutils().images().at("maldito_icon");
+	textures[elfo_icon] = &sdlutils().images().at("elfo_icon");
+	textures[golem_icon] = &sdlutils().images().at("golem_icon");
+	textures[angel_icon] = &sdlutils().images().at("angel_icon");
+	textures[maestro_icon] = &sdlutils().images().at("malmas_icon");
+	textures[acechante_icon] = &sdlutils().images().at("acechante_icon");
+	textures[defensor_icon] = &sdlutils().images().at("defensor_icon");
+	textures[demonioAlado_icon] = &sdlutils().images().at("demonioalado_icon");
+	textures[demonioInfernal_icon] = &sdlutils().images().at("demonioinfernal_icon");
+	textures[mensajero_icon] = &sdlutils().images().at("mensajero_icon");
+	textures[CMaldito_icon] = &sdlutils().images().at("maldito_icon");
+	textures[principito_icon] = &sdlutils().images().at("principito_icon");
+	textures[monje_icon] = &sdlutils().images().at("monje_icon");
+	textures[muerte_icon] = &sdlutils().images().at("muerte_icon");
 
 	//fenomenos
 	textures[thunder] = &sdlutils().images().at("thunder");
@@ -134,6 +151,11 @@ RenderSystem::~RenderSystem() {
 // Reaccionar a los mensajes recibidos (llamando a métodos correspondientes).
 void RenderSystem::receive(const Message& m) {
 	switch (m.id) {
+	case _m_PAUSE:
+		mActive = !m.start_pause.onPause;
+		break;
+	default:
+		break;
 	}
 }
 // Inicializar el sistema, etc.
@@ -146,50 +168,54 @@ void RenderSystem::initSystem() {
 
 //Renderiza cada entity por grupos
 void RenderSystem::update() {
+
 	sdlutils().clearRenderer();
 
-	//Este control tiene que estar en el main control sistem
-	////Control de camara
-	if (ih().isKeyDown(SDLK_UP)) {
-		k_up = true;
-	}
-	else if(ih().isKeyUp(SDLK_UP)){
-		k_up = false;
-	}
-	if (ih().isKeyDown(SDLK_LEFT)) {
-		k_left = true;
-	}
-	else if (ih().isKeyUp(SDLK_LEFT)){
-		k_left = false;
-	}
-	if (ih().isKeyDown(SDLK_RIGHT)) {
-		k_right = true;
-	}
-	else if (ih().isKeyUp(SDLK_RIGHT) ){
-		k_right = false;
-	}
-	if (ih().isKeyDown(SDLK_DOWN)) {
-		k_down = true;
-	}
-	else if (ih().isKeyUp(SDLK_DOWN) ){
-		k_down = false;
-	}
+	if(mActive) {
 
-	if (k_up && offset->y < limtop) {
-		cameraY_ += VelCam * game().getDeltaTime();
-		offset->y = cameraY_;
-	}
-	if (k_left && offset->x < limleft) {
-		cameraX_ += VelCam * game().getDeltaTime();
-		offset->x = cameraX_;
-	}
-	if (k_right && offset->x > limright) {
-		cameraX_ -= VelCam * game().getDeltaTime();
-		offset->x = cameraX_;
-	}
-	if (k_down && offset->y > limbot) {
-		cameraY_ -= VelCam * game().getDeltaTime();
-		offset->y = cameraY_;
+		//Este control tiene que estar en el main control sistem
+		////Control de camara
+		if (ih().isKeyDown(SDLK_UP)) {
+			k_up = true;
+		}
+		else if (ih().isKeyUp(SDLK_UP)) {
+			k_up = false;
+		}
+		if (ih().isKeyDown(SDLK_LEFT)) {
+			k_left = true;
+		}
+		else if (ih().isKeyUp(SDLK_LEFT)) {
+			k_left = false;
+		}
+		if (ih().isKeyDown(SDLK_RIGHT)) {
+			k_right = true;
+		}
+		else if (ih().isKeyUp(SDLK_RIGHT)) {
+			k_right = false;
+		}
+		if (ih().isKeyDown(SDLK_DOWN)) {
+			k_down = true;
+		}
+		else if (ih().isKeyUp(SDLK_DOWN)) {
+			k_down = false;
+		}
+
+		if (k_up && offset->y < limtop) {
+			cameraY_ += VelCam * game().getDeltaTime();
+			offset->y = cameraY_;
+		}
+		if (k_left && offset->x < limleft) {
+			cameraX_ += VelCam * game().getDeltaTime();
+			offset->x = cameraX_;
+		}
+		if (k_right && offset->x > limright) {
+			cameraX_ -= VelCam * game().getDeltaTime();
+			offset->x = cameraX_;
+		}
+		if (k_down && offset->y > limbot) {
+			cameraY_ -= VelCam * game().getDeltaTime();
+			offset->y = cameraY_;
+		}
 	}
 
 
@@ -237,7 +263,9 @@ void RenderSystem::update() {
 		gameTextures textureId = mngr_->getComponent<RenderComponent>(area)->getTexture();
 		FramedImage* img = mngr_->getComponent<FramedImage>(area);
 		SDL_Rect srcRect = img->getSrcRect();
-		img->updateCurrentFrame();
+		if (mActive) {
+			img->updateCurrentFrame();
+		}
 		SDL_Rect trRect = tr->getRect();
 		trRect.x += offset->x;
 		trRect.y += offset->y;
@@ -251,7 +279,9 @@ void RenderSystem::update() {
 		gameTextures textureId = mngr_->getComponent<RenderComponent>(t)->getTexture();
 		SDL_Rect srcRect;
 		FramedImage* fi = mngr_->getComponent<FramedImage>(t);
-		fi->updateCurrentFrame();
+		if (mActive) {
+			fi->updateCurrentFrame();
+		}
 		if (fi != nullptr)srcRect = fi->getSrcRect();
 		SDL_Rect trRect = tr->getRect();
 		trRect.x += offset->x;
@@ -272,7 +302,9 @@ void RenderSystem::update() {
 		gameTextures textureId = mngr_->getComponent<RenderComponent>(t)->getTexture();
 		SDL_Rect srcRect;
 		FramedImage* fi = mngr_->getComponent<FramedImage>(t);
-		fi->updateCurrentFrame();
+		if (mActive) {
+			fi->updateCurrentFrame();
+		}
 		if (fi != nullptr)srcRect = fi->getSrcRect();
 		SDL_Rect trRect = tr->getRect();
 		trRect.x += offset->x;
@@ -291,7 +323,9 @@ void RenderSystem::update() {
 		gameTextures textureId = mngr_->getComponent<RenderComponent>(area)->getTexture();
 		FramedImage* img = mngr_->getComponent<FramedImage>(area);
 		SDL_Rect srcRect = img->getSrcRect();
-		img->updateCurrentFrame();
+		if (mActive) {
+			img->updateCurrentFrame();
+		}
 		SDL_Rect trRect = tr->getRect();
 		trRect.x += offset->x;
 		trRect.y += offset->y;

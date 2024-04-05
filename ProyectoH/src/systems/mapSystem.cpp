@@ -104,7 +104,10 @@ void mapSystem::loadTile(const tmx::Map& map, const tmx::TileLayer& layer) {
 				 Cell* c = new Cell();
 				 c->position = { tilePosition.getX() + 48, tilePosition.getY() + 24 };
 				 c->isFree = true;
-				 c->id = TILE_LOW;
+				 if ( tile.ID == 25 || tile.ID == 26 || tile.ID == 31 || tile.ID == 133 || tile.ID == 134)
+					 c->id = TILE_PATH;
+				 else
+					 c->id = TILE_LOW;
 				 net->setCell(fil - 1, col - 1, c);
 			}
 			else if (tile.ID > 80 && tile.ID < 100) {//lago
