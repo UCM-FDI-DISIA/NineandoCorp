@@ -168,9 +168,10 @@ void RenderSystem::initSystem() {
 
 //Renderiza cada entity por grupos
 void RenderSystem::update() {
-	if(mActive) {
 
-		sdlutils().clearRenderer();
+	sdlutils().clearRenderer();
+
+	if(mActive) {
 
 		//Este control tiene que estar en el main control sistem
 		////Control de camara
@@ -262,7 +263,9 @@ void RenderSystem::update() {
 		gameTextures textureId = mngr_->getComponent<RenderComponent>(area)->getTexture();
 		FramedImage* img = mngr_->getComponent<FramedImage>(area);
 		SDL_Rect srcRect = img->getSrcRect();
-		img->updateCurrentFrame();
+		if (mActive) {
+			img->updateCurrentFrame();
+		}
 		SDL_Rect trRect = tr->getRect();
 		trRect.x += offset->x;
 		trRect.y += offset->y;
@@ -276,7 +279,9 @@ void RenderSystem::update() {
 		gameTextures textureId = mngr_->getComponent<RenderComponent>(t)->getTexture();
 		SDL_Rect srcRect;
 		FramedImage* fi = mngr_->getComponent<FramedImage>(t);
-		fi->updateCurrentFrame();
+		if (mActive) {
+			fi->updateCurrentFrame();
+		}
 		if (fi != nullptr)srcRect = fi->getSrcRect();
 		SDL_Rect trRect = tr->getRect();
 		trRect.x += offset->x;
@@ -297,7 +302,9 @@ void RenderSystem::update() {
 		gameTextures textureId = mngr_->getComponent<RenderComponent>(t)->getTexture();
 		SDL_Rect srcRect;
 		FramedImage* fi = mngr_->getComponent<FramedImage>(t);
-		fi->updateCurrentFrame();
+		if (mActive) {
+			fi->updateCurrentFrame();
+		}
 		if (fi != nullptr)srcRect = fi->getSrcRect();
 		SDL_Rect trRect = tr->getRect();
 		trRect.x += offset->x;
@@ -316,7 +323,9 @@ void RenderSystem::update() {
 		gameTextures textureId = mngr_->getComponent<RenderComponent>(area)->getTexture();
 		FramedImage* img = mngr_->getComponent<FramedImage>(area);
 		SDL_Rect srcRect = img->getSrcRect();
-		img->updateCurrentFrame();
+		if (mActive) {
+			img->updateCurrentFrame();
+		}
 		SDL_Rect trRect = tr->getRect();
 		trRect.x += offset->x;
 		trRect.y += offset->y;

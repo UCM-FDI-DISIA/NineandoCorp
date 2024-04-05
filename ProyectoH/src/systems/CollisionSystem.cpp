@@ -26,7 +26,7 @@ void CollisionSystem::receive(const Message& m) {
 		removeRect(m.rect_data.entity, m.rect_data.id);
 		break;
 	case _m_PAUSE:
-		mActive = !m.start_pause.onPause;
+		mActive = !mActive;
 		break;
 	}
 

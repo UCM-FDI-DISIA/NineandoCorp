@@ -29,7 +29,7 @@ void TowerSystem::receive(const Message& m) {
 		addTowerToInteract(m.tower_clicked_data.tower);
 		break;
 	case _m_PAUSE:
-		mActive = !m.start_pause.onPause;
+		mActive = !mActive;
 		break;
 	default:
 		break;

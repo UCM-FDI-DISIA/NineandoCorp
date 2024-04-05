@@ -48,7 +48,7 @@ void  EnemySystem::receive(const Message& m) {
 		wave++;
 		break;
 	case _m_PAUSE:
-		mActive = !m.start_pause.onPause;
+		mActive = !mActive;
 		break;
 	case _m_RESET_SPEED:
 		for (const auto& enemy : mngr_->getHandler(_hdlr_ENEMIES))

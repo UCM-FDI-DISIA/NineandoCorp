@@ -24,7 +24,7 @@ void  ParticleSystem::receive(const Message& m) {
 		m.anim_create.animSpeed, m.anim_create.rows, m.anim_create.cols, m.anim_create.width, m.anim_create.height, m.anim_create.iterationsToDelete);
 		break;
 	case _m_PAUSE:
-		mActive = !m.start_pause.onPause;
+		mActive = !mActive;
 		break;
 	default:
 			break;

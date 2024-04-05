@@ -201,7 +201,7 @@ void HUDSystem::receive(const Message& m) {
 		dragTowerIcon(towers_imgs[m.drag_data.towerId]);
 		break;
 	case _m_PAUSE:
-		mActive = !m.start_pause.onPause;
+		mActive = !mActive;
 		break;
 	default:
 		break;
