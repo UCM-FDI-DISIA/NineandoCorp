@@ -107,7 +107,7 @@ void mapSystem::loadTile(const tmx::Map& map, const tmx::TileLayer& layer) {
 				c->id = TILE_LAKE;
 				net->setCell(fil - 1, col - 1, c);
 			}
-			else if (tile.ID > 110 && tile.ID < 129) {//elementos decoracion
+			else if (tile.ID > 102 && tile.ID < 129) {//elementos decoracion
 				entityTile = mngr_->addEntity(_grp_TOWERS_AND_ENEMIES);
 				Cell* c = new Cell();
 				c->position = { tilePosition.getX() + 48, tilePosition.getY() + 24 };

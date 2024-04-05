@@ -41,7 +41,7 @@ private:
 	tmx::FloatRect m_globalBounds;
 	NetMap* net;
 	Vector2D tileSize_;
-	unsigned int level = 1;
+	unsigned int level = 3;
 
 	std::string filename;
 
