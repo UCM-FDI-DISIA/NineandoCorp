@@ -381,6 +381,7 @@ struct Message {
 		//nivel
 		unsigned int level;
 		NetMap* netmap;
+		SDL_Rect* cameraOffset;
 	}start_game_data;
 
 	// _m_OVER_GAME

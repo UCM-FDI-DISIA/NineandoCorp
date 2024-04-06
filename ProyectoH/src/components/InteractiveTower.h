@@ -7,7 +7,7 @@ class InteractiveTower : public Component
 public: 
 	static const cmpId id = cmpId::_INTERACTIVE_TOWER;
 
-	InteractiveTower() : tr_(nullptr) {}
+	InteractiveTower(SDL_Rect* cameraOffset_) : tr_(nullptr), cameraOffset_(cameraOffset_){}
 	~InteractiveTower() {
 
 	}
@@ -16,12 +16,13 @@ public:
 
 	bool isOnRect(const Vector2D& mPos) {
 		SDL_Rect rect = tr_->getRect();
+		rect.x += cameraOffset_->x;
+		rect.y += cameraOffset_->y;
 		return (mPos.getX() >= rect.x && mPos.getX() <= rect.x + rect.w && mPos.getY() >= rect.y && mPos.getY() <= rect.y + rect.h);
 	}
 
 private:  
 	Transform* tr_;
-
-
+	SDL_Rect* cameraOffset_;
 };
 

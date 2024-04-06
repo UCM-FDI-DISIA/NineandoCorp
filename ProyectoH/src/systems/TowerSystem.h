@@ -85,5 +85,6 @@ protected:
 	Entity* square;
 
 	std::vector<Entity*> towersToInteract;
+	SDL_Rect* cameraOffset_;
 };
 
