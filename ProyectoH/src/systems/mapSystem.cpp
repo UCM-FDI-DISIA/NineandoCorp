@@ -98,7 +98,7 @@ void mapSystem::loadTile(const tmx::Map& map, const tmx::TileLayer& layer) {
 			}
 			 else if (tile.ID == 3 || tile.ID == 2 || tile.ID == 133 ||//pradera
 				 tile.ID == 9 || tile.ID == 10 || tile.ID == 8
-				 || tile.ID == 134 || (tile.ID > 20 && tile.ID < 32)) {
+				 || tile.ID == 134 || (tile.ID > 20 && tile.ID < 35)) {
 
 				 entityTile = mngr_->addEntity(_grp_TILES_L1);
 				 Cell* c = new Cell();
