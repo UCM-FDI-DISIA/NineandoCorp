@@ -197,6 +197,12 @@
       <Filter>Sources Files\Components</Filter>
     </ClCompile>
     <ClCompile Include="src\components\ForceFieldComponent.cpp" />
+    <ClCompile Include="src\gameStates\WaveState.cpp">
+      <Filter>Sources Files\States</Filter>
+    </ClCompile>
+    <ClCompile Include="src\systems\WaveSystem.cpp">
+      <Filter>Sources Files\Systems</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\components\AcechanteComponent.h">
@@ -431,6 +437,12 @@
       <Filter>Headers Files\Components</Filter>
     </ClInclude>
     <ClInclude Include="src\components\ForceFieldComponent.h" />
+    <ClInclude Include="src\gameStates\WaveState.h">
+      <Filter>Headers Files\States</Filter>
+    </ClInclude>
+    <ClInclude Include="src\systems\WaveSystem.h">
+      <Filter>Headers Files\Systems</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\json\JSONValue.cpp">

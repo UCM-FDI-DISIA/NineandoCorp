@@ -37,7 +37,7 @@ void ButtonSystem::receive(const Message& m){
 		money_ += m.money_data.money;
 		updateText();
 		break;
-	case _m_START_GAME:
+	case _m_WAVE_START:
 		money_ = m.start_game_data.money;
 		OnStartGame();
 		break;
@@ -129,6 +129,9 @@ void ButtonSystem::manageButtons() {
 			backToMainMenu();
 			break;
 		case level_selected:
+			waveStart();
+			break;
+		case play_wave:
 			startGame();
 			break;
 		case pause_main:
@@ -228,6 +231,11 @@ void ButtonSystem::manageButtons() {
 		mngr_->send(m);
 	}
 	void ButtonSystem::startGame() {
+		Message m;
+		m.id = _m_WAVE_PLAY;
+		mngr_->send(m);
+	}
+	void ButtonSystem::waveStart() {
 		Message m;
 		m.id = _m_LEVEL_SELECTED;
 		mngr_->send(m);

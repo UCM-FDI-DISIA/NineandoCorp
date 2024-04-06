@@ -14,11 +14,14 @@ void MainControlSystem::initSystem() {
 
 void MainControlSystem::receive(const Message& m) {
 	switch (m.id) {
-	case _m_START_GAME:
+	case _m_WAVE_START:
 		OnStartGame();
 		break;
 	case _m_LEVEL_SELECTED:
-		game().changeState<PlayState>();
+		game().changeState<WaveState>();
+		break;
+	case _m_WAVE_PLAY:
+		game().pushState<PlayState>(mngr_);
 		break;
 	case _m_LEVEL_SELECTOR:
 		game().pushState<LevelSelectorState>(mngr_);

@@ -19,7 +19,7 @@ void TowerSystem::initSystem() {
 
 void TowerSystem::receive(const Message& m) {
 	switch (m.id) {
-	case _m_START_GAME:
+	case _m_WAVE_START:
 		cameraOffset_ = m.start_game_data.cameraOffset;
 		break;
 	case _m_ENTITY_TO_ATTACK://Mandado por el enemySystem al atacar una torre

@@ -4,6 +4,7 @@
 #include "../systems/mapSystem.h"
 #include "../systems/EnemySystem.h"
 #include "../systems/TowerSystem.h"
+#include "../systems/WaveSystem.h"
 #include "../systems/HUDSystem.h"
 #include "../systems/CollisionSystem.h"
 #include "../systems/ParticleSystem.h"
@@ -13,12 +14,11 @@
 #include "../systems/ButtonSystem.h"
 #include "../systems/PauseSystem.h"
 
-class PlayState : public GameState
+class WaveState : public GameState
 {
 public:
-	PlayState(Manager* mngr);
-	virtual ~PlayState() { delete mngr_; };
+	WaveState();
+	virtual ~WaveState();
 
-	void update() override;
 };
 
