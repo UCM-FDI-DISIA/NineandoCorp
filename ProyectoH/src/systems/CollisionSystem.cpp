@@ -102,9 +102,6 @@ void CollisionSystem::update() {
 		const auto& lowTowers = mngr_->getHandler(_hdlr_LOW_TOWERS);
 		const auto& highTowers = mngr_->getHandler(_hdlr_HIGH_TOWERS);
 		
-		cout << "LT: " << lowTowers.size() << endl;
-		cout << "HT: " << highTowers.size() << endl;
-		cout << "EN: " << enemies.size() << endl;
 
 		for (const auto& er : enemies) {
 			SDL_Rect enemyRect = mngr_->getComponent<Transform>(er)->getRect();

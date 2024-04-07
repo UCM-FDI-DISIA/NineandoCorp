@@ -82,7 +82,7 @@ void MeteorologySystem::generateNetMap() {
 void MeteorologySystem::generateAnimEarthquake() {
 	auto& rand = sdlutils().rand();
 
-	for (size_t k = 0; k < 20; k++)
+	for (size_t k = 0; k < 15; k++)
 	{
 		auto i = rand.nextInt(1, (int)tileSize_.getX() / 2 - 3);
 		auto j = rand.nextInt(1, (int)tileSize_.getY() - 3);
@@ -97,7 +97,7 @@ void MeteorologySystem::generateAnimEarthquake() {
 
 		Message m;
 		m.id = _m_ANIM_CREATE;
-		m.anim_create.animSpeed = 2;
+		m.anim_create.animSpeed = 3;
 		m.anim_create.idGrp = _grp_NATURALS_EFFECTS;
 		m.anim_create.iterationsToDelete = 4;
 		m.anim_create.scale = { 200, 100 };
@@ -106,8 +106,8 @@ void MeteorologySystem::generateAnimEarthquake() {
 		m.anim_create.tex = gameTextures::earthquake;
 		m.anim_create.frameInit = animInit;
 		m.anim_create.frameEnd = animEnd;
-		m.anim_create.height = 37;
-		m.anim_create.width = 75;
+		m.anim_create.height = 74;
+		m.anim_create.width = 150;
 		m.anim_create.pos = Vector2D(x, y);
 		mngr_->send(m);
 	}
