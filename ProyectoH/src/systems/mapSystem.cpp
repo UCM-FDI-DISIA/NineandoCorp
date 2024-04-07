@@ -85,31 +85,39 @@ void mapSystem::loadTile(const tmx::Map& map, const tmx::TileLayer& layer) {
 			Entity* entityTile = nullptr;
 			Vector2D tilePosition(((layer.getOffset().x + i - j) / sep),
 				((layer.getOffset().y + (i + j) / 2)) / sep);
-
-			//std::cout << tile.ID << std::endl;
-			if (tile.ID == 3 || tile.ID == 2 || tile.ID == 133) {
-
-				entityTile = mngr_->addEntity(_grp_TILES_L1);
+			
+			 if (tile.ID > 102 && tile.ID < 129) {//elementos decoracion
+				entityTile = mngr_->addEntity(_grp_TOWERS_AND_ENEMIES);
 				Cell* c = new Cell();
 				c->position = { tilePosition.getX() + 48, tilePosition.getY() + 24 };
-				c->isFree = true;
-				if(tile.ID == 2)
-					c->id = TILE_LOW;
-				else
-					c->id = TILE_PATH;
-
-				net->setCell(fil - 1, col - 1, c);
+				c->isFree = false;
+				c->id = TILE_LAKE;
+				net->setCell(fil, col, c);
 			}
-			else if (tile.ID > 80 && tile.ID < 100) {
+			 else if (tile.ID == 3 || tile.ID == 2 || tile.ID == 133 ||//pradera
+				 tile.ID == 9 || tile.ID == 10 || tile.ID == 8
+				 || tile.ID == 134 || (tile.ID > 20 && tile.ID < 35)) {
+
+				 entityTile = mngr_->addEntity(_grp_TILES_L1);
+				 Cell* c = new Cell();
+				 c->position = { tilePosition.getX() + 48, tilePosition.getY() + 24 };
+				 c->isFree = true;
+				 if ( tile.ID == 25 || tile.ID == 26 || tile.ID == 31 || tile.ID == 133 || tile.ID == 134)
+					 c->id = TILE_PATH;
+				 else
+					 c->id = TILE_LOW;
+				 net->setCell(fil - 1, col - 1, c);
+			}
+			else if (tile.ID > 80 && tile.ID < 100) {//lago
 				entityTile = mngr_->addEntity(_grp_TILES_L2);
 				Cell* c = new Cell();
 				c->position = { tilePosition.getX() + 48, tilePosition.getY() + 24 };
 				c->isFree = false;
 				c->id = TILE_LAKE;
 				net->setCell(fil - 1, col - 1, c);
-			}
+			}			
 			else {
-				entityTile = mngr_->addEntity(_grp_TILES_L3);
+				entityTile = mngr_->addEntity(_grp_TILES_L3);//montaña
 				Cell* c = new Cell();
 				c->position = { tilePosition.getX() + 48, tilePosition.getY() + 24 };
 				c->isFree = true;

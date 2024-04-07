@@ -48,7 +48,7 @@ void  EnemySystem::receive(const Message& m) {
 		wave++;
 		break;
 	case _m_PAUSE:
-		mActive = !m.start_pause.onPause;
+		mActive = !mActive;
 		break;
 	case _m_RESET_SPEED:
 		for (const auto& enemy : mngr_->getHandler(_hdlr_ENEMIES))
@@ -424,6 +424,7 @@ void EnemySystem::update()
 			IconComponent* ic = mngr_->getComponent<IconComponent>(e);
 			AngelComponent* anc = mngr_->getComponent<AngelComponent>(e);
 			DefensorRealComponent* drc = mngr_->getComponent<DefensorRealComponent>(e);
+			EnemyTypeComponent* etc = mngr_->getComponent<EnemyTypeComponent>(e);
 			Transform* tr = mngr_->getComponent<Transform>(e);
 
 
@@ -524,9 +525,29 @@ void EnemySystem::update()
 				}
 			}
 
+			//defensor real
+			if (etc!= nullptr) {
+				if (!mngr_->isAlive(e) && etc->GetEnemyType()==_enm_DREAL) {
+					Entity* field = addField(*(tr->getPosition()) + Vector2D(20, 0));
+					Transform* fieldTR = mngr_->getComponent<Transform>(field);
+					SDL_Rect fieldRect = fieldTR->getRect();
+					Message m;
+					m.id = _m_ADD_RECT;
+					m.rect_data.id = _FIELD;
+					m.rect_data.entity = field;
+				}
+			}
+
 		}
 	}
 }
 			
-	
+Entity* EnemySystem::addField(Vector2D pos) {
+	Entity* field = mngr_->addEntity(_grp_AREAOFATTACK);
+	Transform* fieldTR = mngr_->addComponent<Transform>(field);
+	mngr_->addComponent<RenderComponent>(field, shield);
+	fieldTR->setScale({ 320, 165 });
+	fieldTR->setPosition(pos + Vector2D(-120, -10));
+	return field;
+}
 	

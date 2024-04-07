@@ -5,7 +5,7 @@ PlayState::PlayState() : GameState(_gmStt_PLAY) {
 
 	// Sistemas requeridos para que funcione el juego
 	mngr_->addSystem<MainControlSystem>();
-	mngr_->addSystem<RenderSystem>();
+	SDL_Rect* offset = mngr_->addSystem<RenderSystem>()->getOffset();
 	mngr_->addSystem<mapSystem>("../ProyectoH/resources/tileMap/nivel");
 	mngr_->addSystem<ButtonSystem>(_hdlr_BUTTON_PLAY);
 	mngr_->addSystem<HUDSystem>();
@@ -18,6 +18,7 @@ PlayState::PlayState() : GameState(_gmStt_PLAY) {
 	Message m;
 	m.id = _m_START_GAME;
 	m.start_game_data.money = 15000;
+	m.start_game_data.cameraOffset = offset;
 	mngr_->send(m, true);
 }
 

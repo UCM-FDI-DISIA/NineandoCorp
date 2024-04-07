@@ -24,7 +24,7 @@ void  ParticleSystem::receive(const Message& m) {
 		m.anim_create.animSpeed, m.anim_create.rows, m.anim_create.cols, m.anim_create.width, m.anim_create.height, m.anim_create.iterationsToDelete);
 		break;
 	case _m_PAUSE:
-		mActive = !m.start_pause.onPause;
+		mActive = !mActive;
 		break;
 	default:
 			break;
@@ -55,17 +55,16 @@ void ParticleSystem::update() {
 					if (r->getTexture() == tornado) {
 						Message m;
 						m.id = _m_REMOVE_RECT;
-						m.rect_data.rect = par;
+						m.rect_data.entity = par;
 						m.rect_data.id = _TORNADO;
 						mngr_->send(m);
-
 						mngr_->setAlive(par, false);
 						mngr_->deleteHandler(_hdlr_PARTICLES, par);
 					}
 					else {
 						Message m;
 						m.id = _m_REMOVE_RECT;
-						m.rect_data.rect = par;
+						m.rect_data.entity = par;
 						m.rect_data.id = _TSUNAMI;
 						mngr_->send(m);
 

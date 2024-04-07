@@ -20,13 +20,13 @@ void CollisionSystem::initSystem() {
 void CollisionSystem::receive(const Message& m) {
 	switch (m.id) {
 	case _m_ADD_RECT:
-		addRect(m.rect_data.rect, m.rect_data.id);
+		addRect(m.rect_data.entity, m.rect_data.id);
 		break;
 	case _m_REMOVE_RECT:
-		removeRect(m.rect_data.rect, m.rect_data.id);
+		removeRect(m.rect_data.entity, m.rect_data.id);
 		break;
 	case _m_PAUSE:
-		mActive = !m.start_pause.onPause;
+		mActive = !mActive;
 		break;
 	}
 
@@ -57,6 +57,9 @@ void CollisionSystem::addRect(Entity* rect, rectId id) {
 			break;
 		case _TSUNAMI:
 			tsunamiRects_.push_back(rect);
+			break;
+		case _FIELD:
+			fieldRects_.push_back(rect);
 			break;
 		default:
 			break;
@@ -89,6 +92,10 @@ void CollisionSystem::removeRect(Entity* rect, rectId id) {
 		break;
 	case _TSUNAMI:
 		tsunamiRects_.erase(find(tsunamiRects_.begin(), tsunamiRects_.end(), rect));
+		break;
+	case _FIELD:
+		fieldRects_.erase(find(fieldRects_.begin(), fieldRects_.end(), rect));
+		break;
 	}
 	
 }
@@ -101,7 +108,7 @@ void CollisionSystem::update() {
 		const auto& enemies = mngr_->getHandler(_hdlr_ENEMIES);
 		const auto& lowTowers = mngr_->getHandler(_hdlr_LOW_TOWERS);
 		const auto& highTowers = mngr_->getHandler(_hdlr_HIGH_TOWERS);
-		
+		const auto& bullets = mngr_->getEntities(_grp_BULLETS);
 
 		for (const auto& er : enemies) {
 			SDL_Rect enemyRect = mngr_->getComponent<Transform>(er)->getRect();
@@ -407,6 +414,23 @@ void CollisionSystem::update() {
 			}
 
 		}
+
+		for (const auto& b : bullets) {
+			for (const auto& f : fieldRects_) {
+				Transform* bulletTR = mngr_->getComponent<Transform>(b);
+				Transform* fieldTR = mngr_->getComponent<Transform>(f);
+				SDL_Rect bulletRect;
+				SDL_Rect fieldRect;
+				if (bulletTR != nullptr && fieldTR != nullptr) {
+					bulletRect = bulletTR->getRect();
+					fieldRect = fieldTR->getRect();
+					if(SDL_HasIntersection(&fieldRect, &bulletRect)) {
+						mngr_->setAlive(b, false);
+					}
+				}
+			}
+		}
+
 		earthquakeRects_.clear();
 		thunderRects_.clear();
 		meteoriteRects_.clear();

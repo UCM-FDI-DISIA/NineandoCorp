@@ -19,6 +19,9 @@ void TowerSystem::initSystem() {
 
 void TowerSystem::receive(const Message& m) {
 	switch (m.id) {
+	case _m_START_GAME:
+		cameraOffset_ = m.start_game_data.cameraOffset;
+		break;
 	case _m_ENTITY_TO_ATTACK://Mandado por el enemySystem al atacar una torre
 		if(m.entity_to_attack.targetId == _hdlr_LOW_TOWERS)onAttackTower(m.entity_to_attack.e, m.entity_to_attack.damage);
 		break;
@@ -29,7 +32,7 @@ void TowerSystem::receive(const Message& m) {
 		addTowerToInteract(m.tower_clicked_data.tower);
 		break;
 	case _m_PAUSE:
-		mActive = !m.start_pause.onPause;
+		mActive = !mActive;
 		break;
 	default:
 		break;
@@ -455,7 +458,7 @@ Entity* TowerSystem::shootFire(Vector2D spawnPos, float rot, float dmg, Entity* 
 	mngr_->addComponent<FireComponent>(fire, dmg, rot, src);
 	Message m;
 	m.id = _m_ADD_RECT;
-	m.rect_data.rect = fire;
+	m.rect_data.entity = fire;
 	m.rect_data.id = _FENIX;
 	mngr_->send(m);
 
@@ -481,7 +484,7 @@ void TowerSystem::addTower(twrId type,const Vector2D& pos, Height height) {
 	tr->setPosition(pos);
 	mngr_->addComponent<TowerStates>(t);
 	mngr_->addComponent<UpgradeTowerComponent>(t, type, 4);
-	mngr_->addComponent<InteractiveTower>(t);
+	mngr_->addComponent<InteractiveTower>(t, cameraOffset_);
 	float health = 100.0f;
 	if (height == LOW ||height == PATH) {
 		mngr_->addComponent<HealthComponent>(t, health);

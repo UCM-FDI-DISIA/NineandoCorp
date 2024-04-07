@@ -156,6 +156,8 @@ enum rectId : rectId_type {
 	_EARTHQUAKE,
 	_TORNADO,
 	_TSUNAMI,
+	_FIELD,
+	_BULLETS,
 
 	_LAST_RECT_ID
 };
@@ -380,6 +382,7 @@ struct Message {
 		//nivel
 		unsigned int level;
 		NetMap* netmap;
+		SDL_Rect* cameraOffset;
 	}start_game_data;
 
 	// _m_OVER_GAME
@@ -459,7 +462,7 @@ struct Message {
 
 	//_m_ADD_RECT
 	struct {
-		Entity* rect;
+		Entity* entity;
 		rectId id;
 	}rect_data;
 

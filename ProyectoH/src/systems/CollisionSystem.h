@@ -29,6 +29,7 @@ protected:
 	std::vector<Entity*> earthquakeRects_;
 	std::vector<Entity*> tornadoRects_;
 	std::vector<Entity*> tsunamiRects_;
+	std::vector<Entity*> fieldRects_;
 
 	bool mActive;
 };

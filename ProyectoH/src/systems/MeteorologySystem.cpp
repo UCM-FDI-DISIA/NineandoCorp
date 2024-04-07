@@ -7,6 +7,7 @@
 #include "../game/Game.h"
 
 
+
 MeteorologySystem::MeteorologySystem(): minTimeInterval_(10.0),
 maxTimeInterval_(12.0), 
 elapsedTime_(0) ,
@@ -53,7 +54,7 @@ void  MeteorologySystem::receive(const Message& m) {
 			addRectTo(m.return_entity.ent, rectId::_EARTHQUAKE);
 			break;
 		case _m_PAUSE:
-			mActive = !m.start_pause.onPause;
+			mActive = !mActive;
 			break;
 		default:
 			break;
@@ -68,7 +69,7 @@ void MeteorologySystem::addRectTo(Entity* e, rectId id) {
 	Message m;
 	m.id = _m_ADD_RECT;
 	m.rect_data.id = id;
-	m.rect_data.rect = e;
+	m.rect_data.entity = e;
 	mngr_->send(m);
 }
 
@@ -90,11 +91,9 @@ void MeteorologySystem::generateAnimEarthquake() {
 		auto position = net->getCell(i, j)->position;
 		auto x = position.getX();
 		auto y = position.getY();
-
 		auto anim = rand.nextInt(0, 3);
 		auto animInit = 6 * anim;
 		auto animEnd = 6 * anim + 5;
-
 		Message m;
 		m.id = _m_ANIM_CREATE;
 		m.anim_create.animSpeed = 3;
@@ -122,8 +121,8 @@ void MeteorologySystem::generateMeteorite() {
 
 	auto& rand = sdlutils().rand();
 
-	auto i = rand.nextInt(0, (int)tileSize_.getX() / 2 - 1);
-	auto j = rand.nextInt(0, (int)tileSize_.getY() - 1);
+	auto i = rand.nextInt(0, tileSize_.getX() / 2 - 1);
+	auto j = rand.nextInt(0, tileSize_.getY() - 1);
 
 	auto position = net->getCell(i, j)->position;
 	auto x = position.getX();
@@ -155,8 +154,8 @@ void MeteorologySystem::generateThunder() {
 
 	auto& rand = sdlutils().rand();
 
-	auto i = rand.nextInt(0, (int)tileSize_.getX() / 2 - 1);
-	auto j = rand.nextInt(0, (int)tileSize_.getY() - 1);
+	auto i = rand.nextInt(0, tileSize_.getX() / 2 - 1);
+	auto j = rand.nextInt(0, tileSize_.getY() - 1);
 
 	auto position = net->getCell(i, j)->position;
 	auto x = position.getX();
@@ -241,6 +240,7 @@ void MeteorologySystem::generateTsunami() {
 void MeteorologySystem::update() {
 
 	if (mActive) {
+
 		if (!eventActive_) { elapsedTime_ += game().getDeltaTime(); }
 
 		if (elapsedTime_ > timeToNextEvent_ && !eventActive_) {//comienza el evento
