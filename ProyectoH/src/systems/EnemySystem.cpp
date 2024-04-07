@@ -32,17 +32,11 @@ void EnemySystem::initSystem() {
 }
 void  EnemySystem::receive(const Message& m) {
 	switch (m.id) {
-	case _m_ROUND_START:
+	case _m_START_GAME:
 		netmap = m.start_game_data.netmap;
 		level = m.start_game_data.level;
 		numSpawns = sdlutils().numSpawns().at("nivel" + to_string(level));
 		onRoundStart(numSpawns, level);
-		
-
-		break;
-	case _m_ROUND_OVER:
-		onRoundOver();
-		wave++;
 		break;
 	case _m_WAVE_START:
 		generateEnemies_ = m.start_wave.play;
@@ -232,21 +226,28 @@ void EnemySystem::update()
 		const auto& towers = mngr_->getHandler(_hdlr_LOW_TOWERS);
 		if (generateEnemies_) {
 			if (enemies.empty() && stopGenerate) {
-				Message m;
-				m.id = _m_WAVE_START;
-				m.start_wave.play = false;
-				mngr_->send(m, true);
+				if (wave > sdlutils().waves().at("nivel" + std::to_string(level))) {
+					Message m;
+					m.id = _m_ROUND_OVER;
+					mngr_->send(m, true);
+				}
+				else {
+					Message m;
+					m.id = _m_WAVE_START;
+					m.start_wave.play = false;
+					mngr_->send(m, true);
+				}
 			}
 			else {
 				//Genero los enemigos segun el tiempo especificado en el json
 				for (auto& s : spawnsVector) {
 					auto spawn = mngr_->getComponent<generateEnemies>(s);
-					if (spawn->totalEnemies()!= 0 && spawn->getElapsedTime() >= spawn->getSpawnGroup()->timeSpawn && spawn->getNumEnemies() < spawn->totalEnemies() - 1) {
+					if (spawn->totalEnemies()!= 0 && spawn->getElapsedTime() >= spawn->getSpawnGroup()->timeSpawn && spawn->getNumEnemies() < spawn->totalEnemies() ) {
 						spawn->generateEnemy();
 						spawn->next_Enemy();
 						spawn->setElapsedTime(0.0);
 					}
-					else if (spawn->getNumEnemies() >= spawn->totalEnemies()- 1)
+					else if (spawn->getNumEnemies() >= spawn->totalEnemies())
 					{
 						stopGenerate = true;
 					}

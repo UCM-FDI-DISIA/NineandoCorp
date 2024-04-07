@@ -22,8 +22,7 @@ protected:
 	int numDoradasActuales;
 	int numDoradasIniciales;
 	int numDoradasPorSegundo;
-	int oleadaActual;
-	int numOleadas;
+	int currentLevel = 0;
 	float tiempoEntreOleadas;
 	double elapsedTime_;
 	VirtualTimer timer_;

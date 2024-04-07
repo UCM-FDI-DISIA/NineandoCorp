@@ -24,7 +24,8 @@ SDLUtils::SDLUtils(std::string windowTitle, int width, int height) :
 	intConstAccessWrapper_(intConst_, "Int Constant Table"),
 	rutesAccessWrapper_(rutes_, "Rutes Table"),
 	spawnAccessWrapper_(spawn_, "Enemies Spawn Table"),
-	intConstNumSpawsAccessWrapper_(intConstNumSpaws_, "Numero Spawns Table")
+	intConstNumSpawsAccessWrapper_(intConstNumSpaws_, "Numero Spawns Table"),
+	intConstWavesAccessWrapper_(intConstWaves_, "Waves Table")
 {
 
 	initWindow();
@@ -321,6 +322,32 @@ void SDLUtils::loadConstants(std::string filename) {
 						<< std::endl;
 #endif
 					rutes_.emplace(key, data);
+				}
+				else {
+					throw "'intConst' array in '" + filename
+						+ "' includes and invalid value";
+				}
+			}
+		}
+		else {
+			throw "'intConst' is not an array in '" + filename + "'";
+		}
+	}
+	jValue = root["oleadas/nivel"];
+	if (jValue != nullptr) {
+		if (jValue->IsArray()) {
+			msgs_.reserve(jValue->AsArray().size()); // reserve enough space to avoid resizing
+			for (auto& v : jValue->AsArray()) {
+				if (v->IsObject()) {
+					JSONObject vObj = v->AsObject();
+					std::string key = vObj["id"]->AsString();
+					int numWaves = vObj["oleadas"]->AsNumber();
+
+#ifdef _DEBUG
+					std::cout << "Loading int with id: " << key
+						<< std::endl;
+#endif
+					intConstWaves_.emplace(key, numWaves);
 				}
 				else {
 					throw "'intConst' array in '" + filename

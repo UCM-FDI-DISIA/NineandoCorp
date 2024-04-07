@@ -173,6 +173,9 @@ public:
 	inline auto& spawns() {
 		return spawnAccessWrapper_;
 	}
+	inline auto& waves() {
+		return intConstWavesAccessWrapper_;
+	}
 
 // Access to the random number generator. It is important to always
 // use this generator, this way you can regenerate the same sequence
@@ -222,6 +225,7 @@ private:
 	sdl_resource_table<int> floatConst_;
 	sdl_resource_table<int> intConst_;
 	sdl_resource_table<int> intConstNumSpaws_;
+	sdl_resource_table<int> intConstWaves_;
 	sdl_resource_table<RuteData> rutes_;
 	sdl_resource_table<spawnGroupData> spawn_;
 
@@ -233,6 +237,7 @@ private:
 	map_access_wrapper<int> floatConstAccessWrapper_;
 	map_access_wrapper<int> intConstAccessWrapper_;
 	map_access_wrapper<int> intConstNumSpawsAccessWrapper_;
+	map_access_wrapper<int> intConstWavesAccessWrapper_;
 	map_access_wrapper<RuteData> rutesAccessWrapper_;
 	map_access_wrapper<spawnGroupData> spawnAccessWrapper_;
 

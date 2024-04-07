@@ -17,6 +17,9 @@ void MainControlSystem::receive(const Message& m) {
 	case _m_START_GAME:
 		OnStartGame();
 		break;
+	case _m_ROUND_OVER:
+		game().changeState<MainMenuState>();
+		break;
 	case _m_LEVEL_SELECTED:
 		game().changeState<PlayState>();
 		break;

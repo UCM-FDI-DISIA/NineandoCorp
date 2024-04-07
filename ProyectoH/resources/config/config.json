@@ -1062,6 +1062,42 @@
 
   ],
 
+
+  "oleadas/nivel":[
+    {
+        "id": "nivel1",
+        "oleadas": 2
+    },
+    {
+        "id": "nivel2",
+        "oleadas": 3
+    },
+    {
+        "id": "nivel3",
+        "oleadas": 4
+    },
+    {
+        "id": "nivel4",
+        "oleadas": 7
+    },
+    {
+        "id": "nivel5",
+        "oleadas": 12
+    },
+    {
+        "id": "nivel6",
+        "oleadas": 20
+    },
+    {
+        "id": "nivel7",
+        "oleadas": 33
+    },
+    {
+        "id": "nivel8",
+        "oleadas": 55
+    }
+  ],
+
   "spawneoEnemies": [
     {
         "id": "nivel1",

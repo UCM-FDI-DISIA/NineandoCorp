@@ -381,7 +381,7 @@ struct Message {
 		//nivel 
 		int money;
 		//nivel
-		unsigned int level;
+		unsigned int level = 0;
 		NetMap* netmap;
 		SDL_Rect* cameraOffset;
 	}start_game_data;

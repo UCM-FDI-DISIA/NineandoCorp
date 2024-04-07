@@ -9,19 +9,17 @@ mapSystem::~mapSystem() {
 
 void mapSystem::initSystem() {
 	Message m;
-	m.id = _m_ROUND_START;
+	/*m.id = _m_ROUND_START;
 	m.start_game_data.netmap = net;
 	m.start_game_data.level = level;
-	mngr_->send(m, true);
+	mngr_->send(m, true);*/
 }
 
 void mapSystem::receive(const Message& m) {
 	switch (m.id) {
-	case _m_ROUND_START:
+	case _m_START_GAME:
+		level = m.start_game_data.level;
 		onRoundStart();
-		break;
-	case _m_ROUND_OVER:
-		level++;
 		break;
 	case _m_PAUSE:
 		onPause();
