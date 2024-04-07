@@ -30,7 +30,6 @@ public:
 	void onWaveStart();
 	void collideswithEnemy();
 	void AddMoney(enmId type);
-	void addEnemy(enmId type, Vector2D pos);
 	
 
 	std::vector<Vector2D> RouteTranslate(std::vector<Vector2D> route);
@@ -44,6 +43,8 @@ protected:
 	std::vector<Entity*> spawnsVector;
 	NetMap* netmap;
 	bool mActive;
+	bool generateEnemies_ = false;
+	bool stopGenerate = false;
 
 };
 

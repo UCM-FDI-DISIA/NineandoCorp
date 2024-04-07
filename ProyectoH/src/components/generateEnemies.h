@@ -20,6 +20,8 @@ private:
 	int level, wave, grp;
 	SDLUtils::spawnGroupData* spawnGroup;
 	int nextEnemy = 0;
+	int totalEnemies_ = 0;
+	int pos = 0;
 	enmId type;
 
 	double elapsedTime = 0.0;
@@ -41,5 +43,13 @@ public:
 	SDLUtils::spawnGroupData* getSpawnGroup() const { return spawnGroup; }
 	double getElapsedTime() const { return elapsedTime; }
 	void setElapsedTime(double time) { elapsedTime = time; }
-	void next_Enemy() { nextEnemy++; }
+	void next_Enemy() { totalEnemies_++; }
+	int getNumEnemies() const { return totalEnemies_; }
+	void resetNumEnemies() {
+		totalEnemies_ = 0;
+		pos = 0;
+		nextEnemy = 0;
+	}
+
+	int totalEnemies() const;
 };

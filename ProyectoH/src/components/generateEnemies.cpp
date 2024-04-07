@@ -7,10 +7,13 @@ void generateEnemies::initComponent() {
 /// generación de enemigos donde asigno cada etiqueta a su id
 /// </summary>
 void generateEnemies::generateEnemy() {
-	if (nextEnemy >= spawnGroup->typeEnemy.size()) {
-		return;
+	
+	if (nextEnemy == spawnGroup->numEnemies[pos]) {
+		pos++;
+		nextEnemy = 0;
 	}
-	std::string enemyType = spawnGroup->typeEnemy[nextEnemy];
+	std::string enemyType = spawnGroup->typeEnemy[pos];
+	
 	if (enemyType == "goblin")
 		type = _enm_GOBLIN;
 	else if (enemyType == "elfos")
@@ -44,7 +47,7 @@ void generateEnemies::generateEnemy() {
 	
 	
 	addEnemy(type, route);
-	
+	nextEnemy++;
 
 }
 /// <summary>
@@ -54,6 +57,14 @@ void generateEnemies::addGroupEnemies(){
 	std::string id = "nivel" + std::to_string(level) + "oleada" + std::to_string(wave) + "grupo" + std::to_string(grp);
 	auto spawneo = &sdlutils().spawns().at(id);
 	spawnGroup = spawneo;
+}
+
+int generateEnemies::totalEnemies() const{
+	int total = 0;
+	for (auto e : spawnGroup->numEnemies) {
+		total += e;
+	}
+	return total;
 }
 /// <summary>
 /// Hacemos una corrección de la ruta para colocar el sprite en el medio del camino

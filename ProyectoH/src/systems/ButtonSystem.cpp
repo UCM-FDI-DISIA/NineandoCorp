@@ -131,6 +131,9 @@ void ButtonSystem::manageButtons() {
 		case level_selected:
 			startGame();
 			break;
+		case play_wave:
+			startWave();
+			break;
 		case pause_main:
 			Pause();
 			pauseAllButtons();
@@ -232,7 +235,12 @@ void ButtonSystem::manageButtons() {
 		m.id = _m_LEVEL_SELECTED;
 		mngr_->send(m);
 	}
-
+	void ButtonSystem::startWave() {
+		Message m;
+		m.id = _m_WAVE_START;
+		m.start_wave.play = true;
+		mngr_->send(m);
+	}
 	void ButtonSystem::upgradeTower(twrId t) {
 		Message m;
 		m.id = _m_UPGRADE_TOWER;

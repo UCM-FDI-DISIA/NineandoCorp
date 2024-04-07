@@ -177,6 +177,7 @@ enum msgId : msgId_type {
 	_m_PAUSE,
 	_m_RESUME,
 	_m_START_GAME,
+	_m_WAVE_START,
 	_m_OVER_GAME,
 	_m_LEVEL_SELECTOR,
 	_m_ENEMY_BOOK,
@@ -455,6 +456,10 @@ struct Message {
 	struct {
 		bool onPause;
 	}start_pause;
+	// _m_WAVE_START
+	struct {
+		bool play;
+	}start_wave;
 
 	struct{
 		int lvl;

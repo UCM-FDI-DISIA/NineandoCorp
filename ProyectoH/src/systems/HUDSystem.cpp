@@ -192,6 +192,13 @@ void HUDSystem::initSystem() {
 		{50.0f, 50.0f},
 		gameTextures::pause_button, gameTextures::pause_button_hover,
 		ButtonTypes::pause_main);
+
+	
+	Vector2D pAux = { xAux * 8.6f, heightH };
+	Vector2D sAux = { 250, 90 };
+	
+	play = bS->addButton(pAux, sAux, gameTextures::play, gameTextures::play_hover, ButtonTypes::play_wave);
+
 }
 
 void HUDSystem::receive(const Message& m) {
@@ -203,13 +210,22 @@ void HUDSystem::receive(const Message& m) {
 	case _m_PAUSE:
 		mActive = !mActive;
 		break;
+	case _m_WAVE_START:
+		canStartWave = m.start_wave.play;
+		break;
 	default:
 		break;
 	}
 }	
 void HUDSystem::update() {
 	if (mActive) {
-
+		auto bC = mngr_->getComponent<ButtonComponent>(play);
+		if (canStartWave) {
+			bC->setActive(false);
+		}
+		else {
+			bC->setActive(true);
+		}
 		int i = 0;
 		for (auto en : towers_imgs) {
 			auto dC = mngr_->getComponent<DragAndDrop>(en);

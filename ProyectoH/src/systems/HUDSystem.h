@@ -35,7 +35,9 @@ private:
 	// Espacio designado para los botones de compra de las torres
 	float buttonsSpace_length_; 
 	float infoSpace_length_;
-
+	//boton de empezar la oleada
+	Entity* play = nullptr;
+	bool canStartWave = false;
 
 	// Para la interaccion con el HUD, no tocar de momento
 	std::vector<Entity*> towers_imgs;

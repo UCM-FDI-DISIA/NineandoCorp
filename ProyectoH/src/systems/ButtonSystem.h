@@ -96,6 +96,8 @@ private:
 	/// </summary>
 	void OnStartGame();
 
+	void startWave();
+
 	void showTempText(string txt, const SDL_Color& color, const Vector2D& pos, const Vector2D& scale, int time);
 
 	bool mActive;
