@@ -4,6 +4,7 @@
 #include "..//components/ShieldComponent.h"
 #include "..//components/TowerStates.h"
 #include "../components/InteractiveTower.h"
+#include "../sdlutils/RandomNumberGenerator.h"
 
 
 TowerSystem::TowerSystem() : mActive(true) {
@@ -120,6 +121,8 @@ void TowerSystem::onAttackTower(Entity* e, int dmg) {
 //Realiza las funcionalidades de las torres, accediendo a los atributos de los componentes y realizando la mecanica de cada torre
 void TowerSystem::update() {
 	if (mActive) {
+
+		auto& rand = sdlutils().rand();
 
 		const auto& bullets = mngr_->getEntities(_grp_BULLETS);
 
@@ -259,7 +262,7 @@ void TowerSystem::update() {
 						if (bt->isMaxLevel()) {//Mejora maxima de la torre de balas: targetear a un segundo enemigo. Funciona igual que el primer targeteo
 							bt->targetSecondEnemy(mngr_->getHandler(_hdlr_ENEMIES));
 							if (bt->getSecondTarget() != nullptr) {
-								;
+								
 
 								Vector2D dir = *(mngr_->getComponent<Transform>(bt->getSecondTarget())->getPosition()) - *(TR->getPosition());
 								if (dir.getX() >= 0 && dir.getY() >= 0) { valFrame = 4; offset.setX(floatAt("DiegoSniperOffset") * 2.5); }
@@ -341,9 +344,10 @@ void TowerSystem::update() {
 							mngr_->getComponent<FramedImage>(t)->setCurrentFrame(valFrame + mngr_->getComponent<UpgradeTowerComponent>(t)->getLevel());
 							RenderComponent* rc = mngr_->getComponent<RenderComponent>(t);
 							Vector2D spawn = { TR->getPosition()->getX() + offset.getX(),	TR->getPosition()->getY() + offset.getY() };
-
-							shootBullet(targetMostHP, t, ds->getDamage() * ds->getCritDamage(), floatAt("DiegoSniperVelocidad"), spawn, sniperBulletTexture, { 25, 20 }, _twr_DIEGO);
-							createBulletExplosion(spawn + Vector2D(-10, -20));
+							auto damage = ds->getDamage();
+							if (rand.nextInt(0, 10) > ds->getCritProb() * 10) { damage *= ds->getCritDamage(); }
+							shootBullet(targetMostHP, t, damage, floatAt("DiegoSniperVelocidad"), spawn, sniperBulletTexture, { 25, 20 }, _twr_DIEGO);
+							createBulletExplosion(spawn + Vector2D(-40, -15));
 						}
 						ds->setElapsedTime(0);
 					}
