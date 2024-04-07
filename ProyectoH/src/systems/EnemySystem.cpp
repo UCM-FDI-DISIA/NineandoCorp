@@ -67,16 +67,10 @@ void  EnemySystem::receive(const Message& m) {
 		if (m.entity_to_attack.targetId == _hdlr_ENEMIES && m.entity_to_attack.e != nullptr && mngr_->isAlive(m.entity_to_attack.e)) {
 			HealthComponent* h = mngr_->getComponent<HealthComponent>(m.entity_to_attack.e);
 			if (h->subtractHealth(m.entity_to_attack.damage)) {
+				enemyDeathAnim(*mngr_->getComponent<Transform>(m.entity_to_attack.e)->getPosition());
 				mngr_->deleteHandler(_hdlr_ENEMIES, m.entity_to_attack.e);
 				auto enemytype = mngr_->getComponent<EnemyTypeComponent>(m.entity_to_attack.e);
 				AddMoney(enemytype->GetEnemyType());
-				if (mngr_->hasComponent<AttackComponent>(m.entity_to_attack.src))mngr_->getComponent<AttackComponent>(m.entity_to_attack.src)->setTarget(nullptr);
-			};
-		}
-		if (m.entity_to_attack.e != nullptr && mngr_->isAlive(m.entity_to_attack.e) && m.entity_to_attack.targetId == _hdlr_ENEMIES) {
-			HealthComponent* h = mngr_->getComponent<HealthComponent>(m.entity_to_attack.e);
-			if (h->subtractHealth(m.entity_to_attack.damage)) {
-				mngr_->deleteHandler(_hdlr_ENEMIES, m.entity_to_attack.e);
 				if (mngr_->hasComponent<AttackComponent>(m.entity_to_attack.src))mngr_->getComponent<AttackComponent>(m.entity_to_attack.src)->setTarget(nullptr);
 			};
 		}
@@ -105,6 +99,24 @@ void  EnemySystem::receive(const Message& m) {
 		}
 		break;
 	}
+}
+
+void EnemySystem::enemyDeathAnim(Vector2D pos) {
+	Message m;
+	m.id = _m_ANIM_CREATE;
+	m.anim_create.idGrp = _grp_TOWERS_AND_ENEMIES;
+	m.anim_create.animSpeed = 15;
+	m.anim_create.iterationsToDelete = 1;
+	m.anim_create.pos = pos;
+	m.anim_create.frameInit = 0;
+	m.anim_create.frameEnd = 64;
+	m.anim_create.cols = 10;
+	m.anim_create.rows = 7;
+	m.anim_create.scale = { 100, 100 };
+	m.anim_create.width = 100;
+	m.anim_create.height = 100;
+	m.anim_create.tex = gameTextures::enemyDeath;
+	mngr_->send(m);
 }
 
 /// <summary>

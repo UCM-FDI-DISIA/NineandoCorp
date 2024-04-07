@@ -268,7 +268,7 @@ enum gameTextures {
 	bulletTexture, sniperBulletTexture, slimeBulletTexture, slimeArea, shield, hpIcon, blindedIcon, lightningIcon, powerIcon,
 
 	//explosions
-	shieldExp, bulletExplosion,
+	shieldExp, bulletExplosion, enemyDeath,
 
 
 	gmTxtrSize

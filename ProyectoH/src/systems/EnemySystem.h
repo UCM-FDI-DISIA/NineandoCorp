@@ -16,6 +16,7 @@ private:
 	unsigned int wave = 1;
 	unsigned int level = 1;
 	int numSpawns;
+	void enemyDeathAnim(Vector2D pos);
 public:
 
 	static constexpr sysId_type id = _sys_ENEMIES;

@@ -561,6 +561,10 @@
         {
             "id": "mensajero_icon",
             "file": "resources/images/Enemies/mensajero.png"
+        },
+        {
+          "id": "enemy_death",
+            "file": "resources/images/Enemies/enemyDeath.png"
         }
     ],
 

@@ -99,6 +99,7 @@ RenderSystem::RenderSystem() : winner_(0)
 	//Explosions
 	textures[shieldExp] = &sdlutils().images().at("shieldExp");
 	textures[bulletExplosion] = &sdlutils().images().at("bulletExp");
+	textures[enemyDeath] = &sdlutils().images().at("enemy_death");
 	//Miscelanious
 	textures[square] = &sdlutils().images().at("square");
 	textures[tileSet] = &sdlutils().images().at("map");
