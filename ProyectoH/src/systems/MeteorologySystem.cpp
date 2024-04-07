@@ -20,7 +20,7 @@ objectsSpawned_(0)
 	mActive = true;
 	auto& rand = sdlutils().rand();
 	timeToNextEvent_ = rand.nextInt(minTimeInterval_, maxTimeInterval_);
-	nextEvent_ = (MeteorologyEvent)rand.nextInt(0, 1);
+	nextEvent_ = (MeteorologyEvent)rand.nextInt(4, 5);
 }
 
 MeteorologySystem::~MeteorologySystem() {
@@ -317,7 +317,13 @@ void MeteorologySystem::update() {
 					objectsSpawned_++;
 					elapsedSpawn_ = 0;
 				}
-				if (objectsSpawned_ >= quantity_) { eventOver = true; }
+				if (objectsSpawned_ >= quantity_) { 
+					Message m;
+					m.id = _m_RESET_SPEED;
+					m.reset_speed.speed = 0.0;
+					mngr_->send(m);
+					eventOver = true; 
+				}
 				break;
 			default:
 				break;

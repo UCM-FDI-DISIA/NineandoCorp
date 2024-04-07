@@ -101,6 +101,10 @@ void CollisionSystem::update() {
 		const auto& enemies = mngr_->getHandler(_hdlr_ENEMIES);
 		const auto& lowTowers = mngr_->getHandler(_hdlr_LOW_TOWERS);
 		const auto& highTowers = mngr_->getHandler(_hdlr_HIGH_TOWERS);
+		
+		cout << "LT: " << lowTowers.size() << endl;
+		cout << "HT: " << highTowers.size() << endl;
+		cout << "EN: " << enemies.size() << endl;
 
 		for (const auto& er : enemies) {
 			SDL_Rect enemyRect = mngr_->getComponent<Transform>(er)->getRect();
@@ -122,6 +126,7 @@ void CollisionSystem::update() {
 							if (col) {
 								Message m;
 								m.id = _m_ENTITY_TO_ATTACK;
+								m.entity_to_attack.targetId = _hdlr_ENEMIES;
 								m.entity_to_attack.e = er;
 								m.entity_to_attack.src = fr;
 								m.entity_to_attack.damage = dps;
@@ -142,6 +147,7 @@ void CollisionSystem::update() {
 					if (SDL_HasIntersection(&meteoriteRect, &enemyRect)) {
 						Message m;
 						m.id = _m_ENTITY_TO_ATTACK;
+						m.entity_to_attack.targetId = _hdlr_ENEMIES;
 						m.entity_to_attack.e = er;
 						m.entity_to_attack.src = mt;
 						m.entity_to_attack.damage = 5;
@@ -175,6 +181,7 @@ void CollisionSystem::update() {
 						Message m;
 						m.id = _m_ENTITY_TO_ATTACK;
 						m.entity_to_attack.e = er;
+						m.entity_to_attack.targetId = _hdlr_ENEMIES;
 						m.entity_to_attack.src = th;
 						m.entity_to_attack.damage = 5;
 						mngr_->send(m);
@@ -207,6 +214,7 @@ void CollisionSystem::update() {
 					if (SDL_HasIntersection(&tsunamiRect, &enemyRect)) {
 						Message m;
 						m.id = _m_ENTITY_TO_ATTACK;
+						m.entity_to_attack.targetId = _hdlr_ENEMIES;
 						m.entity_to_attack.e = er;
 						m.entity_to_attack.src = ts;
 						m.entity_to_attack.damage = 10000;
@@ -228,6 +236,7 @@ void CollisionSystem::update() {
 						if (SDL_HasIntersection(&slime, &enemyRect)) {
 							Message m;
 							m.id = _m_ENTITY_TO_ATTACK;
+							m.entity_to_attack.targetId = _hdlr_ENEMIES;
 							m.entity_to_attack.e = er;
 							m.entity_to_attack.src = sr;
 							m.entity_to_attack.damage = sb->getDPS() / timeInterval;
@@ -251,7 +260,7 @@ void CollisionSystem::update() {
 			}
 		}
 
-		for (const auto& t : lowTowers)
+		for (auto& t : lowTowers)
 		{
 			SDL_Rect towerRect = mngr_->getComponent<Transform>(t)->getRect();
 
@@ -263,9 +272,10 @@ void CollisionSystem::update() {
 					auto towerState = mngr_->getComponent<TowerStates>(t);
 					if (SDL_HasIntersection(&thunderRect, &towerRect)) {
 						Message m;
-						m.id = _m_TOWER_TO_ATTACK;
-						m.tower_to_attack.e = t;
-						m.tower_to_attack.damage = 5;
+						m.id = _m_ENTITY_TO_ATTACK;
+						m.entity_to_attack.targetId = _hdlr_LOW_TOWERS;
+						m.entity_to_attack.e = t;
+						m.entity_to_attack.damage = 5;
 						mngr_->send(m);
 						if (towerState != nullptr) {
 							towerState->setCegado(true, 5.0f);//Ciega
@@ -284,9 +294,10 @@ void CollisionSystem::update() {
 							f->setDamage(f->getBaseDamage() + 20.0);
 						}
 						Message m;
-						m.id = _m_TOWER_TO_ATTACK;
-						m.tower_to_attack.e = t;
-						m.tower_to_attack.damage = 5;
+						m.id = _m_ENTITY_TO_ATTACK;
+						m.entity_to_attack.targetId = _hdlr_LOW_TOWERS;
+						m.entity_to_attack.e = t;
+						m.entity_to_attack.damage = 20;
 						mngr_->send(m);
 
 					}
@@ -298,10 +309,13 @@ void CollisionSystem::update() {
 					SDL_Rect earthquakeRect;
 					if (earthquakeTR != nullptr) earthquakeRect = earthquakeTR->getRect();
 					if (SDL_HasIntersection(&earthquakeRect, &towerRect)) {
+						int damage = 5;
+						if (mngr_->hasComponent<DirtTower>(t)) { damage = 300; }
 						Message m;
-						m.id = _m_TOWER_TO_ATTACK;
-						m.tower_to_attack.e = t;
-						m.tower_to_attack.damage = 5;
+						m.id = _m_ENTITY_TO_ATTACK;
+						m.entity_to_attack.targetId = _hdlr_LOW_TOWERS;
+						m.entity_to_attack.e = t;
+						m.entity_to_attack.damage = damage;
 						mngr_->send(m);
 					}
 				}
@@ -313,10 +327,84 @@ void CollisionSystem::update() {
 					if (tsunamieTR != nullptr) tsunamiRect = tsunamieTR->getRect();
 					if (SDL_HasIntersection(&tsunamiRect, &towerRect)) {
 						Message m;
-						m.id = _m_TOWER_TO_ATTACK;
-						m.tower_to_attack.e = t;
-						m.tower_to_attack.damage = 1000000;
+						m.id = _m_ENTITY_TO_ATTACK;
+						m.entity_to_attack.targetId = _hdlr_LOW_TOWERS;
+						m.entity_to_attack.e = t;
+						m.entity_to_attack.damage = 100000;
 						mngr_->send(m);
+					}
+				}
+			}
+
+		}
+
+		for (const auto& t : highTowers)
+		{
+			SDL_Rect towerRect = mngr_->getComponent<Transform>(t)->getRect();
+
+			for (const auto& th : thunderRects_) {//rayos-torres
+				if (mngr_->isAlive(t)) {
+					Transform* thunderTR = mngr_->getComponent<Transform>(th);
+					SDL_Rect thunderRect;
+					if (thunderTR != nullptr) thunderRect = thunderTR->getRect();
+					auto towerState = mngr_->getComponent<TowerStates>(t);
+					if (SDL_HasIntersection(&thunderRect, &towerRect)) {
+						Message m;
+						m.id = _m_ENTITY_TO_ATTACK;
+						m.entity_to_attack.targetId = _hdlr_HIGH_TOWERS;
+						m.entity_to_attack.e = t;
+						m.entity_to_attack.damage = 5;
+						mngr_->send(m);
+						if (towerState != nullptr) {
+							towerState->setCegado(true, 5.0f);//Ciega
+						}
+					}
+				}
+			}
+			for (const auto& mt : meteoriteRects_) {//meteoritos-torres
+				if (mngr_->isAlive(t)) {
+					Transform* meteoriteTR = mngr_->getComponent<Transform>(mt);
+					SDL_Rect meteoriteRect;
+					if (meteoriteTR != nullptr) meteoriteRect = meteoriteTR->getRect();
+					if (SDL_HasIntersection(&meteoriteRect, &towerRect)) {
+						if (mngr_->hasComponent<FireComponent>(t)) {//Potencia si es torre fenix
+							auto f = mngr_->getComponent<FireComponent>(t);
+							f->setDamage(f->getBaseDamage() + 20.0);
+						}
+						Message m;
+						m.id = _m_ENTITY_TO_ATTACK;
+						m.entity_to_attack.targetId = _hdlr_HIGH_TOWERS;
+						m.entity_to_attack.e = t;
+						m.entity_to_attack.damage = 20;
+
+					}
+				}
+			}
+			for (const auto& eq : earthquakeRects_) {//terremoto-torres
+				if (mngr_->isAlive(t)) {
+					Transform* earthquakeTR = mngr_->getComponent<Transform>(eq);
+					SDL_Rect earthquakeRect;
+					if (earthquakeTR != nullptr) earthquakeRect = earthquakeTR->getRect();
+					if (SDL_HasIntersection(&earthquakeRect, &towerRect)) {
+						Message m;
+						m.id = _m_ENTITY_TO_ATTACK;
+						m.entity_to_attack.targetId = _hdlr_HIGH_TOWERS;
+						m.entity_to_attack.e = t;
+						m.entity_to_attack.damage = 5;
+					}
+				}
+			}
+			for (const auto& ts : tsunamiRects_) {//tsunami-torres
+				if (mngr_->isAlive(t)) {
+					Transform* tsunamieTR = mngr_->getComponent<Transform>(ts);
+					SDL_Rect tsunamiRect;
+					if (tsunamieTR != nullptr) tsunamiRect = tsunamieTR->getRect();
+					if (SDL_HasIntersection(&tsunamiRect, &towerRect)) {
+						Message m;
+						m.id = _m_ENTITY_TO_ATTACK;
+						m.entity_to_attack.targetId = _hdlr_HIGH_TOWERS;
+						m.entity_to_attack.e = t;
+						m.entity_to_attack.damage = 10000;
 					}
 				}
 			}

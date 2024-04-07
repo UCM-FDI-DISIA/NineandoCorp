@@ -86,7 +86,7 @@ void mapSystem::loadTile(const tmx::Map& map, const tmx::TileLayer& layer) {
 			Vector2D tilePosition(((layer.getOffset().x + i - j) / sep),
 				((layer.getOffset().y + (i + j) / 2)) / sep);
 
-			std::cout << tile.ID << std::endl;
+			//std::cout << tile.ID << std::endl;
 			if (tile.ID == 3 || tile.ID == 2 || tile.ID == 133) {
 
 				entityTile = mngr_->addEntity(_grp_TILES_L1);

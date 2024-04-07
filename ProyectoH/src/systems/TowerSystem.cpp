@@ -483,7 +483,7 @@ void TowerSystem::addTower(twrId type,const Vector2D& pos, Height height) {
 	mngr_->addComponent<UpgradeTowerComponent>(t, type, 4);
 	mngr_->addComponent<InteractiveTower>(t);
 	float health = 100.0f;
-	if (height == LOW) {
+	if (height == LOW ||height == PATH) {
 		mngr_->addComponent<HealthComponent>(t, health);
 		mngr_->setHandler(_hdlr_LOW_TOWERS, t);
 	}
