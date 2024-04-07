@@ -564,7 +564,11 @@
         },
         {
           "id": "enemy_death",
-            "file": "resources/images/Enemies/enemyDeath.png"
+          "file": "resources/images/Enemies/enemyDeath.png"
+        },
+        {
+          "id": "cloud",
+          "file": "resources/images/Meteorology/fog.png"
         }
     ],
 

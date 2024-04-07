@@ -135,9 +135,9 @@ Entity* ParticleSystem::addParticle(grpId id, gameTextures tex, Vector2D pos,vec
 		mngr_->addComponent<RouteComponent>(p, route);
 		
 	}
-	
+	t->setScale(scale);
 	if (meteorologic) {
-		t->setScale(scale);
+		
 		Message m;
 		m.id = _m_RETURN_ENTITY;
 		m.return_entity.ent = p;

@@ -143,6 +143,7 @@ RenderSystem::RenderSystem() : winner_(0)
 	textures[earthquake] = &sdlutils().images().at("earthquake");
 	textures[tornado] = &sdlutils().images().at("tornado");
 	textures[tsunami] = &sdlutils().images().at("meteorites");
+	textures[cloud] = &sdlutils().images().at("cloud");
 
 }
 
