@@ -49,7 +49,10 @@ public:
 	static constexpr sysId_type id = _sys_MAP;
 
 	mapSystem(std::string filename);
-	virtual ~mapSystem();
+	virtual ~mapSystem() {
+		delete net;
+		net = nullptr;
+	};
 	virtual void receive(const Message& m);
 	void initSystem() override;
 	void update() override;

@@ -4,15 +4,7 @@ mapSystem::mapSystem(std::string filename) : filename(filename), winner_(0) {
 	net = new NetMap(32);
 }
 
-mapSystem::~mapSystem() {
-}
-
 void mapSystem::initSystem() {
-	Message m;
-	/*m.id = _m_ROUND_START;
-	m.start_game_data.netmap = net;
-	m.start_game_data.level = level;
-	mngr_->send(m, true);*/
 }
 
 void mapSystem::receive(const Message& m) {

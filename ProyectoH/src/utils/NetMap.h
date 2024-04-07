@@ -18,19 +18,17 @@ class NetMap
 private:
 
 	vector<vector<Cell*>> net;        //Malla
-	SDL_Rect* offset =new SDL_Rect(); // Este offset es el mismo que el del render system
+	SDL_Rect* offset; // Este offset es el mismo que el del render system
 
 public:
 	NetMap(int size);
-	~NetMap() {
+	virtual ~NetMap() {
 		for (vector<Cell*> v : net) {
 			for (Cell* c : v) {
 				delete c;
 				c = nullptr;
 			}
 		}
-		delete offset;
-		offset = nullptr;
 	};
 
 	/// <summary>
@@ -47,7 +45,7 @@ public:
 	/// <param name="fila">La fila de la malla</param>
 	/// <param name="columna">La columna de la malla</param>
 	/// <param name="c">La celda nueva</param>
-	void setCell(int fila, int columna, Cell* c) { net[fila][columna] = c; };
+	void setCell(int fila, int columna, Cell* c) { delete net[fila][columna]; net[fila][columna] = c; };
 
 	/// <summary>
 	/// Establece la referencia al offset

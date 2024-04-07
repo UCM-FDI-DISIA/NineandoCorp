@@ -148,6 +148,8 @@ RenderSystem::RenderSystem() : winner_(0)
 
 
 RenderSystem::~RenderSystem() {
+	delete offset;
+	offset = nullptr;
 }
 
 // Reaccionar a los mensajes recibidos (llamando a métodos correspondientes).
