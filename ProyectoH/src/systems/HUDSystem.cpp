@@ -308,7 +308,7 @@ void HUDSystem::showUpgradeMenu(Entity* twr, const Vector2D& pos) {
 
 	upM.upgradeButton = bS->addButton({ pos.getX() + 150 , pos.getY()+ 70},
 		{ 50.0f, 20.0f },
-		upgrade, upgrade_hover, ButtonTypes::upgrade_tower,
+		upgrade, upgrade_hover, ButtonTypes::upgrade_tower,0,
 		m
 		);
 }

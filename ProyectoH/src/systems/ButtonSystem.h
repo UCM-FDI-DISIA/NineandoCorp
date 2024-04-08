@@ -24,7 +24,7 @@ public:
 	/// <param name="tex">textura base del boton</param>
 	/// <param name="hov">textura del hover</param>
 	/// <param name="type">tipo del boton</param>
-	Entity* addButton(const Vector2D& pos, const Vector2D& scale, gameTextures tex, gameTextures hov, ButtonTypes type, Message m = Message());
+	Entity* addButton(const Vector2D& pos, const Vector2D& scale, gameTextures tex, gameTextures hov, ButtonTypes type, int level = 0, Message m = Message());
 
 	/// <summary>
 	/// Crea una imagen como entidad y lo añade al manager 
@@ -35,6 +35,8 @@ public:
 	/// <param name="t">textura de la imagen</param>
 	/// <param name="grpId">id del grupo con el que se añade la entidad al manager</param>
 	Entity* addImage(const Vector2D& pos, const Vector2D& scale, const double rot, gameTextures t, grpId_type grpId);
+
+	
 private:
 	/// <summary>
 	/// Llama a las funciones correspondientes dependiendo del tipo del boton cuando este es pulsado
@@ -73,7 +75,7 @@ private:
 	/// <summary>
 	/// Te carga PlayState
 	/// </summary>
-	void startGame();
+	void startGame(Entity* en);
 
 	/// <summary>
 	/// Envia mensaje para arrastrar 
