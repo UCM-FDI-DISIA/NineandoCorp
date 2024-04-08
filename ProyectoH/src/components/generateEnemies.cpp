@@ -161,7 +161,7 @@ void generateEnemies::addEnemy(enmId type, std::vector<Vector2D> route) {
 		RoutesCorrection(tr, route, 1.5f, 1.5f);
 		tr->setPosition(route[0]);
 		mngr_->addComponent<RouteComponent>(t, route);
-		mngr_->addComponent<AttackComponent>(t, 50, 1, 15, false);
+		mngr_->addComponent<AttackComponent>(t, 150, 1, 15, false);
 		mngr_->addComponent<FramedImage>(t, 8, 1, 150, 150, 0, 8, 7);
 		mngr_->addComponent<EnemyTypeComponent>(t, _enm_GOBLIN);
 		break;
@@ -228,7 +228,7 @@ void generateEnemies::addEnemy(enmId type, std::vector<Vector2D> route) {
 		RoutesCorrection(tr, route, 1.5f, 1.5f);
 		tr->setPosition(route[0]);
 		mngr_->addComponent<RouteComponent>(t, route);
-		mngr_->addComponent<AttackComponent>(t, 50, 3, 150, false);
+		mngr_->addComponent<AttackComponent>(t, 150, 3, 150, false);
 		mngr_->addComponent<FramedImage>(t, 8, 1, 64, 64, 0, 8, 7);
 		mngr_->addComponent<EnemyTypeComponent>(t, _enm_CMALDITO);
 		break;
