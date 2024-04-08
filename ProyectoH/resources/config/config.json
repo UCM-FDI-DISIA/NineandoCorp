@@ -1167,7 +1167,7 @@
               "grupo1": {
                 "spawn": "1",
                 "typeEnemy": [
-                  "maldito",
+                  "mensajero",
                   "goblin",
                   "elfos"
                 ],

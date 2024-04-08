@@ -6,6 +6,7 @@
 #include "../ecs/Manager.h"
 #include "..//components/AcechanteComponent.h"
 #include "../components/MaestroAlmasComponent.h"
+#include "../components/MensajeroMuerteComponent.h"
 #include "../components/AngelComponent.h"
 #include "../components/IconComponent.h"
 #include "../components/GolemComponent.h"
@@ -223,9 +224,10 @@ void EnemySystem::update()
 {
 	if (mActive) {
 		const auto& enemies = mngr_->getHandler(_hdlr_ENEMIES);
+		const auto& genemies = mngr_->getHandler(_hdlr_GHOST_ENEMIES);
 		const auto& towers = mngr_->getHandler(_hdlr_LOW_TOWERS);
 		if (generateEnemies_) {
-			if (enemies.empty() && stopGenerate) {
+			if (enemies.empty() && stopGenerate && genemies.empty()) {
 				if (wave > sdlutils().waves().at("nivel" + std::to_string(level))) {
 					Message m;
 					m.id = _m_ROUND_OVER;
@@ -272,6 +274,7 @@ void EnemySystem::update()
 			AngelComponent* anc = mngr_->getComponent<AngelComponent>(e);
 			DefensorRealComponent* drc = mngr_->getComponent<DefensorRealComponent>(e);
 			EnemyTypeComponent* etc = mngr_->getComponent<EnemyTypeComponent>(e);
+			MensajeroMuerteComponent* mm = mngr_->getComponent<MensajeroMuerteComponent>(e);
 			Transform* tr = mngr_->getComponent<Transform>(e);
 
 
@@ -333,7 +336,12 @@ void EnemySystem::update()
 					}
 					else {
 						mc->setStop(false);
-
+						if (mm != nullptr) {
+							if (!mm->Detect(towers)) {
+								std::cout << "invisible\n";
+								mm->changeGroup(_hdlr_GHOST_ENEMIES);
+							}
+						}
 					}
 				}
 			}
@@ -385,6 +393,39 @@ void EnemySystem::update()
 				}
 			}
 
+		}
+		for (auto e : genemies) {
+			RouteComponent* rc2 = mngr_->getComponent<RouteComponent>(e);
+			MovementComponent* mc2 = mngr_->getComponent<MovementComponent>(e);
+			AttackComponent* ac2 = mngr_->getComponent<AttackComponent>(e);
+			bool para = false;
+			IconComponent* ic2 = mngr_->getComponent<IconComponent>(e);
+			MensajeroMuerteComponent* mm2 = mngr_->getComponent<MensajeroMuerteComponent>(e);
+			Transform* tr2 = mngr_->getComponent<Transform>(e);
+
+			if (ic2 != nullptr && ic2->hasIcon()) {
+				Transform* iconTr = mngr_->getComponent<Transform>(ic2->getIcon());
+				iconTr->setPosition(*(tr2->getPosition()));
+			}
+
+			// route
+			if (rc2 != nullptr) {
+				rc2->checkdestiny();
+				if (mc2 != nullptr && !mc2->getStop()) {
+					mc2->Move();
+				}
+
+			}
+
+			//attack
+			if (mm2 != nullptr) {
+				
+				if (mm2->Detect(towers)) {
+					std::cout << "visible\n";
+					mm2->changeGroup(_hdlr_ENEMIES);
+				}
+			
+			}
 		}
 	}
 }
