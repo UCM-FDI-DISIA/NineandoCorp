@@ -24,7 +24,7 @@ public:
 	/// <param name="tex">textura base del boton</param>
 	/// <param name="hov">textura del hover</param>
 	/// <param name="type">tipo del boton</param>
-	Entity* addButton(const Vector2D& pos, const Vector2D& scale, gameTextures tex, gameTextures hov, ButtonTypes type);
+	Entity* addButton(const Vector2D& pos, const Vector2D& scale, gameTextures tex, gameTextures hov, ButtonTypes type, Message m = Message());
 
 	/// <summary>
 	/// Crea una imagen como entidad y lo añade al manager 

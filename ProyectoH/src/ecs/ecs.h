@@ -203,7 +203,8 @@ enum msgId : msgId_type {
 	_m_ADD_TEXT,
 	_m_ENEMYSEE,
 	_m_SHOW_UPGRADE_TOWER_MENU,
-	_m_TOWER_CLICKED
+	_m_TOWER_CLICKED,
+	_m_UPGRADE_TWR_INGAME
 };
 
 using twrId_type = uint8_t;
@@ -316,6 +317,12 @@ inline Uint8* _deserialize_(float& v, Uint8* buf) {
 }
 struct Message {
 	msgId_type id;
+	//_m_UPGRADE_TWR_INGAME
+	struct {
+		Entity* upCmp;
+	}upgrade_twr_ingame_data;
+
+
 	//_m_TOWER_CLICKED
 	struct {
 		Entity* tower;
@@ -323,10 +330,8 @@ struct Message {
 
 	//_m_SHOW_UPGRADE_TOWER_MENU
 	struct {
-		int cLevel;
-		twrId tId;
+		Entity* twr; 
 		Vector2D pos;
-
 	}show_upgrade_twr_menu_data;
 
 	//_m_ADD_TEXT

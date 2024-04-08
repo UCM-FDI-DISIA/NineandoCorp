@@ -188,6 +188,10 @@ void ButtonSystem::manageButtons() {
 		case slime_drag:
 			dragTower(_twr_SLIME);
 			break;
+		/*--- UPGRADE TOWER ---*/
+		case upgrade_tower: 
+			mngr_->send(mngr_->getComponent<ButtonComponent>(bC)->getMessage());
+			break;
 		/*----------------------------------------*/
 		default:
 			break;
@@ -259,7 +263,7 @@ void ButtonSystem::manageButtons() {
 #pragma endregion
 
 
-Entity* ButtonSystem::addButton(const Vector2D& pos, const Vector2D& scale, gameTextures tex, gameTextures hov, ButtonTypes type) {
+Entity* ButtonSystem::addButton(const Vector2D& pos, const Vector2D& scale, gameTextures tex, gameTextures hov, ButtonTypes type, Message m) {
 	Entity* b = mngr_->addEntity(_grp_HUD_FOREGROUND);
 	mngr_->setHandler(hdlr_but_id, b);
 
@@ -270,7 +274,7 @@ Entity* ButtonSystem::addButton(const Vector2D& pos, const Vector2D& scale, game
 
 	mngr_->addComponent<RenderComponent>(b, tex);
 
-	ButtonComponent* bC = mngr_->addComponent<ButtonComponent>(b, type);
+	ButtonComponent* bC = mngr_->addComponent<ButtonComponent>(b, type,m);
 	bC->setTexture(tex);
 	bC->setHover(hov);
 	return b;

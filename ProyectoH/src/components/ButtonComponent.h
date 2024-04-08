@@ -28,7 +28,8 @@ enum ButtonTypes {
 	fenix_drag,
 	enhancer_drag,
 
-
+	// --- UPGRADE IN-GAME --- //
+	upgrade_tower,
 
 	none
 };
@@ -39,7 +40,8 @@ class ButtonComponent : public Component
 public:
 	static const cmpId id = cmpId::_BUTTON;
 
-	ButtonComponent( ButtonTypes id) : id_(id), tr_(nullptr) {}
+	ButtonComponent() : id_(), tr_(nullptr), hoverTexture_(), texture_(), msg_(Message()) {}
+	ButtonComponent( ButtonTypes id, Message msg = Message()) : id_(id), tr_(nullptr), hoverTexture_(), texture_(), msg_(msg) {}
 	~ButtonComponent() {}
 
 	void initComponent() override;
@@ -82,6 +84,8 @@ public:
 	/// <returns>Si el boton está activo o no</returns>
 	inline bool isActive() { return isActive_; }
  
+
+	inline Message getMessage() { return msg_; }
 private:
 	//Transform del boton
 	Transform* tr_;
@@ -93,5 +97,8 @@ private:
 	gameTextures hoverTexture_;
 	//Atributo que define si el boton es interactuable o no
 	bool isActive_ = true;
+	//Mensaje del boton
+	Message msg_;
+
 };
 
