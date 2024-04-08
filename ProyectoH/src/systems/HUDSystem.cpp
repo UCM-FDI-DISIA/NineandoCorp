@@ -212,6 +212,7 @@ void HUDSystem::receive(const Message& m) {
 		break;
 	case _m_WAVE_START:
 		canStartWave = m.start_wave.play;
+		mngr_->getComponent<RenderComponent>(play)->setTexture(gameTextures::play);
 		break;
 	default:
 		break;

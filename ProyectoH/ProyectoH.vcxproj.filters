@@ -181,7 +181,6 @@
     <ClCompile Include="src\utils\NetMap.cpp">
       <Filter>Sources Files\utils</Filter>
     </ClCompile>
-    <ClCompile Include="src\components\generateEnemies.cpp" />
     <ClCompile Include="src\systems\MeteorologySystem.cpp">
       <Filter>Sources Files\Systems</Filter>
     </ClCompile>
@@ -197,6 +196,9 @@
       <Filter>Sources Files\Components</Filter>
     </ClCompile>
     <ClCompile Include="src\components\ForceFieldComponent.cpp" />
+    <ClCompile Include="src\components\generateEnemies.cpp">
+      <Filter>Sources Files\Components</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\components\AcechanteComponent.h">
@@ -418,7 +420,6 @@
     <ClInclude Include="src\utils\NetMap.h">
       <Filter>Headers Files\utils</Filter>
     </ClInclude>
-    <ClInclude Include="src\components\generateEnemies.h" />
     <ClInclude Include="src\systems\MeteorologySystem.h">
       <Filter>Headers Files\Systems</Filter>
     </ClInclude>
@@ -431,6 +432,9 @@
       <Filter>Headers Files\Components</Filter>
     </ClInclude>
     <ClInclude Include="src\components\ForceFieldComponent.h" />
+    <ClInclude Include="src\components\generateEnemies.h">
+      <Filter>Headers Files\Components</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\json\JSONValue.cpp">
