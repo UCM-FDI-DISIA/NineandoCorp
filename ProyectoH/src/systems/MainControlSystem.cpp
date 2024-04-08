@@ -43,7 +43,7 @@ void MainControlSystem::receive(const Message& m) {
 		upgradeTower(m.upgrade_tower.towerId);
 		break;
 	case _m_SHOW_UPGRADE_TOWER_MENU:
-		std::cout << "ID de torre: " << m.show_upgrade_twr_menu_data.tId << std::endl;
+		//std::cout << "ID de torre: " << m.show_upgrade_twr_menu_data.tId << std::endl;
 		break;
 	}
 }

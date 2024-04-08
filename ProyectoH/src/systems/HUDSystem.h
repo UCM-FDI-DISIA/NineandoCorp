@@ -3,7 +3,6 @@
 #include "../components/ButtonComponent.h"
 #include "ButtonSystem.h"
 #include "../components/DragAndDrop.h"
-
 class HUDSystem : public System
 {
 public:
@@ -18,7 +17,27 @@ public:
 	void update() override;
 
 private: 
+	struct UpgradeMenu{
+		Entity* background;
+		Entity* upgradeButton;
+		Entity* twrImg;
+		Entity* twrLvl;
+		Entity* exitButton;
+		UpgradeMenu() :
+			background(nullptr), //
+			upgradeButton(nullptr), //
+			twrImg(nullptr), // 
+			twrLvl(nullptr), // 
+			exitButton(nullptr)
+		{}
+
+		~UpgradeMenu() {}
+	};
+
+
 	bool mActive;
+
+	void showUpgradeMenu(Entity* twr, const Vector2D& pos);
 
 	int intAt(basic_string<char> s) { return sdlutils().intConst().at(s); }
 	float floatAt(basic_string<char> s) { return sdlutils().floatConst().at(s); }

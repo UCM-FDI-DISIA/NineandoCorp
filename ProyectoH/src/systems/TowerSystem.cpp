@@ -35,6 +35,9 @@ void TowerSystem::receive(const Message& m) {
 	case _m_PAUSE:
 		mActive = !mActive;
 		break;
+	case _m_UPGRADE_TWR_INGAME:
+		std::cout << "NIVEL DE TORRE: " << mngr_->getComponent<UpgradeTowerComponent>(m.upgrade_twr_ingame_data.upCmp)->getLevel() << std::endl;
+		break;
 	default:
 		break;
 	}
@@ -147,8 +150,7 @@ void TowerSystem::update() {
 			Message m;
 			m.id = _m_SHOW_UPGRADE_TOWER_MENU;
 			auto upgrdCmp = mngr_->getComponent<UpgradeTowerComponent>(tower);
-			m.show_upgrade_twr_menu_data.cLevel = upgrdCmp->getLevel();
-			m.show_upgrade_twr_menu_data.tId = upgrdCmp->id_;
+			m.show_upgrade_twr_menu_data.twr = tower;
 			m.show_upgrade_twr_menu_data.pos = mngr_->getComponent<Transform>(tower)->getPosition();
 			mngr_->send(m);
 

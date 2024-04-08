@@ -213,6 +213,9 @@ void HUDSystem::receive(const Message& m) {
 	case _m_WAVE_START:
 		canStartWave = m.start_wave.play;
 		break;
+	case _m_SHOW_UPGRADE_TOWER_MENU:
+		showUpgradeMenu(m.show_upgrade_twr_menu_data.twr, m.show_upgrade_twr_menu_data.pos);
+		break;
 	default:
 		break;
 	}
@@ -284,6 +287,31 @@ void HUDSystem::update() {
 
 }
 
+void HUDSystem::showUpgradeMenu(Entity* twr, const Vector2D& pos) {
+	auto bS = mngr_->getSystem<ButtonSystem>();
+	UpgradeMenu upM;
+	/** 
+	* BACKGROUND DE MENU
+	*/
+	upM.background = bS->addImage({ pos.getX(), pos.getY() - 100.0f},
+		{ 300.0f, 200.0f },
+		0.0,
+		gameTextures::box,
+		_grp_HUD_BACKGROUND);
+	/**
+	* BOTON DE MEJORA
+	*/
+	Message m;
+	m.id = _m_UPGRADE_TWR_INGAME;
+	m.upgrade_twr_ingame_data.upCmp = twr;
+
+	upM.upgradeButton = bS->addButton({ pos.getX() + 150 , pos.getY()+ 70},
+		{ 50.0f, 20.0f },
+		upgrade, upgrade_hover, ButtonTypes::upgrade_tower,
+		m
+		);
+}
+
 Cell* HUDSystem::getCellFromTile(const Vector2D& pos) {
 	auto mS = mngr_->getSystem<mapSystem>();
 	auto net = mS->getMalla();
@@ -336,7 +364,6 @@ void HUDSystem::enableAllButtons(bool b)
 	m.able_buttons_data.isAble = b;
 	mngr_->send(m);
 }
-
 
 
 
