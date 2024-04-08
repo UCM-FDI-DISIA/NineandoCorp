@@ -107,15 +107,18 @@ void TowerSystem::onAttackTower(Entity* e, int dmg) {
 			clearShieldsArea(e);
 			h->subtractHealth(dmg);		 
 		}
-		else {
-			if(s->getShield() > 0 && s->getShield() - dmg <= 0 ){ 
+		else if (s->getShield() > 0){
+			 if(s->getShield() - dmg <= 0 ){ 
 				
 				Transform* t = mngr_->getComponent<Transform>(e);				
 				if(t != nullptr){ createShieldExplosion(*(t->getPosition())); }
 				if(s->getImg() != NULL)mngr_->setAlive(s->getImg(), false);
 			}
 			s->subtractShield((float)dmg);
-		}	
+		}
+		else {
+			h->subtractHealth(dmg);
+		}
 	}
 }
 //Realiza las funcionalidades de las torres, accediendo a los atributos de los componentes y realizando la mecanica de cada torre
