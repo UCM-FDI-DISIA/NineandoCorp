@@ -143,6 +143,7 @@ RenderSystem::RenderSystem() : winner_(0)
 	textures[earthquake] = &sdlutils().images().at("earthquake");
 	textures[tornado] = &sdlutils().images().at("tornado");
 	textures[tsunami] = &sdlutils().images().at("meteorites");
+	textures[cloud] = &sdlutils().images().at("cloud");
 
 }
 
@@ -179,28 +180,28 @@ void RenderSystem::update() {
 
 		//Este control tiene que estar en el main control sistem
 		////Control de camara
-		if (ih().isKeyDown(SDLK_UP)) {
+		if (ih().isKeyDown(SDL_SCANCODE_W)) {
 			k_up = true;
 		}
-		else if (ih().isKeyUp(SDLK_UP)) {
+		else if (ih().isKeyUp(SDL_SCANCODE_W)) {
 			k_up = false;
 		}
-		if (ih().isKeyDown(SDLK_LEFT)) {
+		if (ih().isKeyDown(SDL_SCANCODE_A)) {
 			k_left = true;
 		}
-		else if (ih().isKeyUp(SDLK_LEFT)) {
+		else if (ih().isKeyUp(SDL_SCANCODE_A)) {
 			k_left = false;
 		}
-		if (ih().isKeyDown(SDLK_RIGHT)) {
+		if (ih().isKeyDown(SDL_SCANCODE_D)) {
 			k_right = true;
 		}
-		else if (ih().isKeyUp(SDLK_RIGHT)) {
+		else if (ih().isKeyUp(SDL_SCANCODE_D)) {
 			k_right = false;
 		}
-		if (ih().isKeyDown(SDLK_DOWN)) {
+		if (ih().isKeyDown(SDL_SCANCODE_S)) {
 			k_down = true;
 		}
-		else if (ih().isKeyUp(SDLK_DOWN)) {
+		else if (ih().isKeyUp(SDL_SCANCODE_S)) {
 			k_down = false;
 		}
 

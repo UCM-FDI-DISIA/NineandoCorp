@@ -70,6 +70,7 @@ enum hdlrId : hdlrId_type {
 	_hdlr_LOW_TOWERS,
 	_hdlr_HIGH_TOWERS,
 	_hdlr_ENEMIES,
+	_hdlr_GHOST_ENEMIES,
 	_hdlr_SPAWNS,
 	//botones de las escenas
 	_hdlr_BUTTON,
@@ -265,7 +266,7 @@ enum gameTextures {
 	nexus_level_text,
 
 	//others
-    meteorites, earthquake,tornado,thunder, tsunami,
+    meteorites, earthquake,tornado,thunder, tsunami,cloud,
 	bulletTexture, sniperBulletTexture, slimeBulletTexture, slimeArea, shield, hpIcon, blindedIcon, lightningIcon, powerIcon,
 
 	//explosions

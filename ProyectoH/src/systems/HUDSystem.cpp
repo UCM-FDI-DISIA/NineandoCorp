@@ -212,6 +212,7 @@ void HUDSystem::receive(const Message& m) {
 		break;
 	case _m_WAVE_START:
 		canStartWave = m.start_wave.play;
+		mngr_->getComponent<RenderComponent>(play)->setTexture(gameTextures::play);
 		break;
 	case _m_SHOW_UPGRADE_TOWER_MENU:
 		showUpgradeMenu(m.show_upgrade_twr_menu_data.twr, m.show_upgrade_twr_menu_data.pos);

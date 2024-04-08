@@ -29,10 +29,17 @@ void LevelSelectorSystem::initSystem()
 	sAux = { 70.0f, 70.0f };
 	bS->addButton(pAux, sAux, gameTextures::close, gameTextures::close_hover, ButtonTypes::back_selector);
 
-	//play button
-	pAux = { sdlutils().width() / 2.0f, sdlutils().height() / 2.0f };
-	sAux = { 350, 110 };
-	bS->addButton(pAux, sAux, gameTextures::play, gameTextures::play_hover, ButtonTypes::level_selected);
+	////play button
+	//pAux = { sdlutils().width() / 2.0f, sdlutils().height() / 2.0f };
+	//sAux = { 350, 110 };
+	//bS->addButton(pAux, sAux, gameTextures::play, gameTextures::play_hover, ButtonTypes::level_selected);
+
+	/*for (int i = 1; i <= 8; i++) {*/
+		//level1 button
+		pAux = { sdlutils().width()/ 2 - 350.0f, sdlutils().height() / 2 - 150.f };
+		sAux = { 150, 150 };
+		bS->addButton(pAux, sAux, gameTextures::close, gameTextures::close_hover, ButtonTypes::level_selected);
+	//}
 	
 }
 

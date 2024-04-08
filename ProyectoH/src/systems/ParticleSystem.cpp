@@ -57,21 +57,17 @@ void ParticleSystem::update() {
 						m.id = _m_REMOVE_RECT;
 						m.rect_data.entity = par;
 						m.rect_data.id = _TORNADO;
-						mngr_->send(m);
-						mngr_->setAlive(par, false);
-						mngr_->deleteHandler(_hdlr_PARTICLES, par);
+						mngr_->send(m);						
 					}
-					else {
+					else if(r->getTexture() == tsunami){
 						Message m;
 						m.id = _m_REMOVE_RECT;
 						m.rect_data.entity = par;
 						m.rect_data.id = _TSUNAMI;
 						mngr_->send(m);
-
-						mngr_->setAlive(par, false);
-						mngr_->deleteHandler(_hdlr_PARTICLES, par);
 					}
-					
+					mngr_->setAlive(par, false);
+					mngr_->deleteHandler(_hdlr_PARTICLES, par);
 				}
 
 			}
@@ -121,6 +117,13 @@ Entity* ParticleSystem::addParticle(grpId id, gameTextures tex, Vector2D pos,vec
 			e = e - correct;
 		}
 		break;
+	case cloud:
+		correct = { t->getWidth(), t->getHeight() };
+		for (auto& e : route) {
+			e = e - correct;
+		}
+		t->setRotation(sdlutils().rand().nextInt(0, 360));
+		break;
 	default:
 		break;
 	}
@@ -135,9 +138,9 @@ Entity* ParticleSystem::addParticle(grpId id, gameTextures tex, Vector2D pos,vec
 		mngr_->addComponent<RouteComponent>(p, route);
 		
 	}
-	
+	t->setScale(scale);
 	if (meteorologic) {
-		t->setScale(scale);
+		
 		Message m;
 		m.id = _m_RETURN_ENTITY;
 		m.return_entity.ent = p;
