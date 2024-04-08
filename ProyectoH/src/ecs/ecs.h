@@ -264,7 +264,7 @@ enum gameTextures {
 	nexus_level_text,
 
 	//others
-    meteorites, earthquake,tornado,thunder, tsunami,
+    meteorites, earthquake,tornado,thunder, tsunami,cloud,
 	bulletTexture, sniperBulletTexture, slimeBulletTexture, slimeArea, shield, hpIcon, blindedIcon, lightningIcon, powerIcon,
 
 	//explosions

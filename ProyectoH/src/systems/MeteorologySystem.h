@@ -31,6 +31,7 @@ private:
 	void generateThunder();
 	void generateTsunami();
 	void generateNetMap();
+	void generateCloud();
 	void generateAnimEarthquake();
 	std::vector<Vector2D> RouteTranslate(std::vector<Vector2D> route);
 	void addRectTo(Entity* t, rectId id);
