@@ -8,8 +8,8 @@
 
 
 
-MeteorologySystem::MeteorologySystem(): minTimeInterval_(10.0),
-maxTimeInterval_(12.0), 
+MeteorologySystem::MeteorologySystem(): minTimeInterval_(1.0),
+maxTimeInterval_(3.0), 
 elapsedTime_(0) ,
 thundersInterval_(0.5),
 meteoriteInterval_(1.5),
@@ -74,19 +74,26 @@ void MeteorologySystem::addRectTo(Entity* e, rectId id) {
 }
 
 void MeteorologySystem::generateCloud() {
-	auto ruta = &sdlutils().rutes().at("tornado");
+	
+	auto& rand = sdlutils().rand();
+	auto x = (float)rand.nextInt(400, 700);
+	auto y = (float)rand.nextInt(300, 700);
+	auto r = rand.nextInt(1, 6);
+	auto ruta = &sdlutils().rutes().at("nube" + to_string(r));
 	auto rutaPantalla = RouteTranslate(ruta->points);
+
+
 	Message m;
 	m.id = _m_ANIM_CREATE;
 	m.anim_create.animSpeed = 1;
 	m.anim_create.idGrp = _grp_AREAOFATTACK;
-	m.anim_create.iterationsToDelete = 40;
-	m.anim_create.scale = { 1000, 1000 };
+	m.anim_create.iterationsToDelete = 1;
+	m.anim_create.scale = { x, y};
 	m.anim_create.cols = 1;
 	m.anim_create.rows = 1;
 	m.anim_create.tex = gameTextures::cloud;
 	m.anim_create.frameInit = 0;
-	m.anim_create.frameEnd = 0;
+	m.anim_create.frameEnd = 1;
 	m.anim_create.height = 256;
 	m.anim_create.width = 256;
 	m.anim_create.route = rutaPantalla;
@@ -167,7 +174,11 @@ void MeteorologySystem::generateMeteorite() {
 }
 
 void MeteorologySystem::generateStorm(int num) {
-
+	for (size_t i = 0; i < 10; i++)
+	{
+		generateCloud();
+	}
+	
 	quantity_ = num;
 }
 
@@ -198,7 +209,7 @@ void MeteorologySystem::generateThunder() {
 	m.anim_create.pos = Vector2D(x, y);
 	mngr_->send(m);
 
-	//generateCloud();
+	
 }
 
 void MeteorologySystem::generateAnimTornado() {
