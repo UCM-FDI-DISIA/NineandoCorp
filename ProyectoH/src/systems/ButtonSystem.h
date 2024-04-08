@@ -17,28 +17,28 @@ public:
 
 	void manageButtons();
 	/// <summary>
-	/// Crea un boton como entidad y lo añade al manager con grpId = _grp_HUD_FOREGROUND y hdlrId = button_id
+	/// Crea un boton como entidad y lo aï¿½ade al manager con grpId = _grp_HUD_FOREGROUND y hdlrId = button_id
 	/// </summary>
 	/// <param name="pos">posicion del boton</param>
 	/// <param name="scale">escala del boton</param>
 	/// <param name="tex">textura base del boton</param>
 	/// <param name="hov">textura del hover</param>
 	/// <param name="type">tipo del boton</param>
-	Entity* addButton(const Vector2D& pos, const Vector2D& scale, gameTextures tex, gameTextures hov, ButtonTypes type, Message m = Message());
+	Entity* addButton(const Vector2D& pos, const Vector2D& scale, gameTextures tex, gameTextures hov, ButtonTypes type, int level = 0, Message m = Message());
 
 	/// <summary>
-	/// Crea una imagen como entidad y lo añade al manager 
+	/// Crea una imagen como entidad y lo aï¿½ade al manager 
 	/// </summary>
 	/// <param name="pos">posicion de la imagen</param>
 	/// <param name="scale">escala de la imagen</param>
 	/// <param name="rot">rotacion de la imagen</param>
 	/// <param name="t">textura de la imagen</param>
-	/// <param name="grpId">id del grupo con el que se añade la entidad al manager</param>
+	/// <param name="grpId">id del grupo con el que se aï¿½ade la entidad al manager</param>
 	Entity* addImage(const Vector2D& pos, const Vector2D& scale, const double rot, gameTextures t, grpId_type grpId);
 	
 	
 	/// <summary>
-	/// Añade una entitdad de tipo texto al manager
+	/// Aï¿½ade una entitdad de tipo texto al manager
 	/// </summary>
 	/// <returns> La propia entidad </returns>
 	Entity* addText(string txt, const SDL_Color& color, const Vector2D& pos, const Vector2D& scale);
@@ -80,7 +80,7 @@ private:
 	/// <summary>
 	/// Te carga PlayState
 	/// </summary>
-	void startGame();
+	void startGame(Entity* en);
 
 	/// <summary>
 	/// Envia mensaje para arrastrar 
@@ -88,8 +88,8 @@ private:
 	void dragTower(twrId tower);
 
 	/// <summary>
-	/// Método encargado de enviar el mensaje de mejorar una torre
-	/// con x Id pasado por parámetro
+	/// Mï¿½todo encargado de enviar el mensaje de mejorar una torre
+	/// con x Id pasado por parï¿½metro
 	/// </summary>
 	void upgradeTower(twrId t);
 

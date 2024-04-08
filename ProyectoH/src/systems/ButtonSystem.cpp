@@ -129,7 +129,7 @@ void ButtonSystem::manageButtons() {
 			backToMainMenu();
 			break;
 		case level_selected:
-			startGame();
+			startGame(bC);
 			break;
 		case play_wave:
 			startWave();
@@ -236,9 +236,11 @@ void ButtonSystem::manageButtons() {
 		m.id = _m_BACK_TO_MAINMENU;
 		mngr_->send(m);
 	}
-	void ButtonSystem::startGame() {
+	void ButtonSystem::startGame(Entity* bC) {
+		auto butC = mngr_->getComponent<ButtonComponent>(bC);
 		Message m;
 		m.id = _m_LEVEL_SELECTED;
+		m.start_game_data.level = butC->getLevel();
 		mngr_->send(m);
 	}
 	void ButtonSystem::startWave() {
@@ -265,7 +267,7 @@ void ButtonSystem::manageButtons() {
 #pragma endregion
 
 
-Entity* ButtonSystem::addButton(const Vector2D& pos, const Vector2D& scale, gameTextures tex, gameTextures hov, ButtonTypes type, Message m) {
+Entity* ButtonSystem::addButton(const Vector2D& pos, const Vector2D& scale, gameTextures tex, gameTextures hov, ButtonTypes type,int level, Message m) {
 	Entity* b = mngr_->addEntity(_grp_HUD_FOREGROUND);
 	mngr_->setHandler(hdlr_but_id, b);
 
@@ -279,6 +281,9 @@ Entity* ButtonSystem::addButton(const Vector2D& pos, const Vector2D& scale, game
 	ButtonComponent* bC = mngr_->addComponent<ButtonComponent>(b, type,m);
 	bC->setTexture(tex);
 	bC->setHover(hov);
+	if (level != 0) {
+		bC->setLevel(level);
+	}
 	return b;
 }
 

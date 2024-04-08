@@ -1,7 +1,7 @@
 #include "PlayState.h"
 #include "../game/Game.h"
 
-PlayState::PlayState() : GameState(_gmStt_PLAY) {
+PlayState::PlayState(int level_) : GameState(_gmStt_PLAY), level(level_) {
 
 	// Sistemas requeridos para que funcione el juego
 	mngr_->addSystem<MainControlSystem>();
@@ -20,7 +20,7 @@ PlayState::PlayState() : GameState(_gmStt_PLAY) {
 	m.start_game_data.money = 15000;
 	m.start_game_data.cameraOffset = offset;
 	m.start_game_data.netmap = map->getMalla();
-	m.start_game_data.level = 1;
+	m.start_game_data.level = level;
 	mngr_->send(m, true);
 }
 

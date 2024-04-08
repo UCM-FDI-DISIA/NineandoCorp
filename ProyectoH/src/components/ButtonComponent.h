@@ -34,7 +34,7 @@ enum ButtonTypes {
 
 	none
 };
-
+ 
 class ButtonComponent : public Component
 {
 	
@@ -87,6 +87,10 @@ public:
  
 
 	inline Message getMessage() { return msg_; }
+
+	inline void setLevel(int currentLevel) { level = currentLevel; };
+
+	inline int getLevel() const { return level; };
 private:
 	//Transform del boton
 	Transform* tr_;
@@ -100,6 +104,6 @@ private:
 	bool isActive_ = true;
 	//Mensaje del boton
 	Message msg_;
-
+	int level = 1;
 };
 

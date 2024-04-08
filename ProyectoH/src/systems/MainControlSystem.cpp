@@ -21,7 +21,7 @@ void MainControlSystem::receive(const Message& m) {
 		game().changeState<MainMenuState>();
 		break;
 	case _m_LEVEL_SELECTED:
-		game().changeState<PlayState>();
+		game().changeState<PlayState>(m.start_game_data.level);
 		break;
 	case _m_LEVEL_SELECTOR:
 		game().pushState<LevelSelectorState>(mngr_);
