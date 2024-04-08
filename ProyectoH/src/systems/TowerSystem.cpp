@@ -24,7 +24,7 @@ void TowerSystem::receive(const Message& m) {
 		cameraOffset_ = m.start_game_data.cameraOffset;
 		break;
 	case _m_ENTITY_TO_ATTACK://Mandado por el enemySystem al atacar una torre
-		if(m.entity_to_attack.targetId == _hdlr_LOW_TOWERS)onAttackTower(m.entity_to_attack.e, m.entity_to_attack.damage);
+		if(m.entity_to_attack.targetId == _hdlr_LOW_TOWERS)onAttackTower(m.entity_to_attack.e, m.entity_to_attack.damage, m.entity_to_attack.src);
 		break;
 	case _m_ADD_TOWER:
 		addTower(m.add_tower_data.towerId, m.add_tower_data.pos, m.add_tower_data.height);
@@ -94,12 +94,19 @@ void TowerSystem::createBulletExplosion(Vector2D pos) {
 }
 
 
-void TowerSystem::onAttackTower(Entity* e, int dmg) {
+void TowerSystem::onAttackTower(Entity* e, int dmg, Entity* src) {
 	if (e != nullptr && mngr_->isAlive(e)) {
 		HealthComponent* h = mngr_->getComponent<HealthComponent>(e);
 		ShieldComponent* s = mngr_->getComponent<ShieldComponent>(e);
 		
-		
+		if (mngr_->hasComponent<DirtTower>(e) && mngr_->getComponent<UpgradeTowerComponent>(e)->getLevel() == 4) {//Reflejar daño torre de arcilla
+			Message m;
+			m.id = _m_ENTITY_TO_ATTACK;
+			m.entity_to_attack.targetId = _hdlr_ENEMIES;
+			m.entity_to_attack.src = e;
+			m.entity_to_attack.e = src;
+			mngr_->send(m);
+		}
 		if (s->getShield() <= 0 && h->getHealth() - dmg <= 0) {		
 			eliminateDestroyedTowers(e);
 			//std::cout << "Torre eliminada-TorresTotales: " << towers.size() << std::endl;
@@ -345,7 +352,7 @@ void TowerSystem::update() {
 							RenderComponent* rc = mngr_->getComponent<RenderComponent>(t);
 							Vector2D spawn = { TR->getPosition()->getX() + offset.getX(),	TR->getPosition()->getY() + offset.getY() };
 							auto damage = ds->getDamage();
-							if (rand.nextInt(0, 10) > ds->getCritProb() * 10) { damage *= ds->getCritDamage(); }
+							if (rand.nextInt(0, 10) <= ds->getCritProb() * 10) { damage *= ds->getCritDamage(); }
 							shootBullet(targetMostHP, t, damage, floatAt("DiegoSniperVelocidad"), spawn, sniperBulletTexture, { 25, 20 }, _twr_DIEGO);
 							createBulletExplosion(spawn + Vector2D(-40, -15));
 						}

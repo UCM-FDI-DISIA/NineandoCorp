@@ -38,7 +38,7 @@ public:
 	/// </summary>
 	/// <param name="e">Torre atacada</param>
 	/// <param name="dmg">Dano que debe recibir la torre</param>
-	void onAttackTower(Entity* e, int dmg); //Hace da�o a la torre mandada por mensaje
+	void onAttackTower(Entity* e, int dmg, Entity* src); //Hace da�o a la torre mandada por mensaje
 
 	/// <summary>
 	/// Anade una torre al sistema, con un tipo, una posicion y una elevacion. A cada torre le anade un render component, un 
