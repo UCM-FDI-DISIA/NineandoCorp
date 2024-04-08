@@ -35,6 +35,13 @@ public:
 	/// <param name="t">textura de la imagen</param>
 	/// <param name="grpId">id del grupo con el que se añade la entidad al manager</param>
 	Entity* addImage(const Vector2D& pos, const Vector2D& scale, const double rot, gameTextures t, grpId_type grpId);
+	
+	
+	/// <summary>
+	/// Añade una entitdad de tipo texto al manager
+	/// </summary>
+	/// <returns> La propia entidad </returns>
+	Entity* addText(string txt, const SDL_Color& color, const Vector2D& pos, const Vector2D& scale);
 private:
 	/// <summary>
 	/// Llama a las funciones correspondientes dependiendo del tipo del boton cuando este es pulsado
@@ -99,6 +106,8 @@ private:
 	void startWave();
 
 	void showTempText(string txt, const SDL_Color& color, const Vector2D& pos, const Vector2D& scale, int time);
+
+
 
 	bool mActive;
 	int money_ = 0;

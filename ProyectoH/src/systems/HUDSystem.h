@@ -20,20 +20,26 @@ private:
 	struct UpgradeMenu{
 		Entity* background;
 		Entity* upgradeButton;
-		Entity* twrImg;
+		Entity* twrDescription;
 		Entity* twrLvl;
 		Entity* exitButton;
+		Entity* cost;
 		UpgradeMenu() :
 			background(nullptr), //
 			upgradeButton(nullptr), //
-			twrImg(nullptr), // 
+			twrDescription(nullptr), // 
 			twrLvl(nullptr), // 
-			exitButton(nullptr)
+			exitButton(nullptr), //
+			cost(nullptr)
 		{}
 
 		~UpgradeMenu() {}
 	};
+	UpgradeMenu upM_;
 
+	void exitUpgradeMenu();
+
+	void changeText(TextComponent* tC, string newTxt);
 
 	bool mActive;
 

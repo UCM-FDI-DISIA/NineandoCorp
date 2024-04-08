@@ -30,6 +30,7 @@ enum ButtonTypes {
 
 	// --- UPGRADE IN-GAME --- //
 	upgrade_tower,
+	exit_up_menu,
 
 	none
 };

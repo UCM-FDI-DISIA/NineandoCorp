@@ -11,7 +11,7 @@ public:
 	UpgradeTowerComponent(twrId id, int maxLevel);
 	~UpgradeTowerComponent() {};
 
-	void LevelUp();
+	void levelUp();
 	int getLevel() const { return currentLevel_; }
 	int getMaxLevel() { return maxLevel_; }
 	twrId id_;
@@ -19,6 +19,9 @@ public:
 protected:
 	int maxLevel_;
 	int currentLevel_;
+
+	//cuanto cuesta la mejora actual
+	int upgradeCost_;
 	//JSONValue* upgradeInfo_;
 };
 

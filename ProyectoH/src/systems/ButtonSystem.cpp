@@ -64,9 +64,9 @@ void ButtonSystem::receive(const Message& m){
 void ButtonSystem::manageButtons() {
 	//Posicion actual del mouse
 	Vector2D pos = { (float)ih().getMousePos().first, (float)ih().getMousePos().second };
-
+	auto buts = mngr_->getHandler(hdlr_but_id);
 	//hover 
-	for (auto en : mngr_->getHandler(hdlr_but_id)) {
+	for (auto en : buts) {
 		if (en != nullptr) {
 
 			ButtonComponent* bC = mngr_->getComponent<ButtonComponent>(en);
@@ -192,9 +192,11 @@ void ButtonSystem::manageButtons() {
 		case upgrade_tower: 
 			mngr_->send(mngr_->getComponent<ButtonComponent>(bC)->getMessage());
 			break;
+		case exit_up_menu:
+			Message m;
+			m.id = _m_EXIT_UP_MENU;
+			mngr_->send(m);
 		/*----------------------------------------*/
-		default:
-			break;
 		}
 	}
 	void ButtonSystem::pauseAllButtons() {
@@ -308,6 +310,16 @@ void ButtonSystem::showTempText(string txt, const SDL_Color& color, const Vector
 	tr->setScale(scale);
 	mngr_->addComponent<TextComponent>(text, txt, color);
 	mngr_->addComponent<LimitedTime>(text, time);
+}
+
+Entity* ButtonSystem::addText(string txt, const SDL_Color& color, const Vector2D& pos, const Vector2D& scale)
+{
+	Entity* text = mngr_->addEntity(_grp_TEXTS);
+	Transform* tr = mngr_->addComponent<Transform>(text);
+	tr->setPosition(pos);
+	tr->setScale(scale);
+	mngr_->addComponent<TextComponent>(text, txt, color);
+	return text;
 }
 
 void ButtonSystem::updateText() {

@@ -217,10 +217,20 @@ void HUDSystem::receive(const Message& m) {
 	case _m_SHOW_UPGRADE_TOWER_MENU:
 		showUpgradeMenu(m.show_upgrade_twr_menu_data.twr, m.show_upgrade_twr_menu_data.pos);
 		break;
+	case _m_UPGRADE_TWR_INGAME: 
+		mngr_->getComponent<TextComponent>(upM_.twrLvl)->changeText("LVL: " + std::to_string(
+			mngr_->getComponent<UpgradeTowerComponent>(m.upgrade_twr_ingame_data.upCmp)->getLevel()));
+		break;
+	case _m_EXIT_UP_MENU:
+		exitUpgradeMenu();
+		break;
 	default:
 		break;
 	}
 }	
+
+
+
 void HUDSystem::update() {
 	if (mActive) {
 		auto bC = mngr_->getComponent<ButtonComponent>(play);
@@ -290,27 +300,61 @@ void HUDSystem::update() {
 
 void HUDSystem::showUpgradeMenu(Entity* twr, const Vector2D& pos) {
 	auto bS = mngr_->getSystem<ButtonSystem>();
-	UpgradeMenu upM;
+	upM_ = UpgradeMenu();
 	/** 
-	* BACKGROUND DE MENU
+	*	BACKGROUND DE MENU
 	*/
-	upM.background = bS->addImage({ pos.getX(), pos.getY() - 100.0f},
-		{ 300.0f, 200.0f },
+	upM_.background = bS->addImage({ pos.getX() + 300, pos.getY()},
+		{ 400.0f, 300.0f },
 		0.0,
 		gameTextures::box,
 		_grp_HUD_BACKGROUND);
 	/**
-	* BOTON DE MEJORA
+	*	BOTON DE MEJORA
 	*/
 	Message m;
 	m.id = _m_UPGRADE_TWR_INGAME;
 	m.upgrade_twr_ingame_data.upCmp = twr;
-
-	upM.upgradeButton = bS->addButton({ pos.getX() + 150 , pos.getY()+ 70},
-		{ 50.0f, 20.0f },
+	upM_.upgradeButton = bS->addButton({ pos.getX() + 380 , pos.getY() + 85},
+		{ 150.0f, 60.0f },
 		upgrade, upgrade_hover, ButtonTypes::upgrade_tower,
 		m
 		);
+	/**
+	*	TEXTO DE NIVEL
+	*/
+	auto upCmp = mngr_->getComponent<UpgradeTowerComponent>(twr);
+	SDL_Color color = { 255, 255,255,255 };
+	Vector2D lvlPos = { pos.getX() + 150 , pos.getY() + 70};
+	Vector2D lvlScale = { 120.0f, 35.0f };
+	upM_.twrLvl = bS->addText("LVL: " + std::to_string(upCmp->getLevel()), color, lvlPos, lvlScale);
+
+	/**
+	*	BOTON DE SALIR
+	*/
+
+	upM_.exitButton = bS->addButton({pos.getX() + 460.0f , pos.getY() - 105.0f},
+		{ 40.0f , 40.0f },
+		gameTextures::close, gameTextures::close_hover, ButtonTypes::exit_up_menu);
+}
+
+void HUDSystem::exitUpgradeMenu() {
+	auto hId = mngr_->getSystem<ButtonSystem>()->hdlr_but_id;
+
+	mngr_->setAlive(upM_.background, false);
+	mngr_->setAlive(upM_.upgradeButton, false);
+	mngr_->setAlive(upM_.twrDescription, false);
+	mngr_->setAlive(upM_.twrLvl, false);
+	mngr_->setAlive(upM_.exitButton, false);
+	mngr_->setAlive(upM_.cost, false);
+	mngr_->refresh();
+
+	mngr_->deleteHandler(hId, upM_.exitButton);
+	mngr_->deleteHandler(hId, upM_.upgradeButton);
+	mngr_->deleteHandler(hId, upM_.background);
+
+	upM_ = UpgradeMenu();
+
 }
 
 Cell* HUDSystem::getCellFromTile(const Vector2D& pos) {

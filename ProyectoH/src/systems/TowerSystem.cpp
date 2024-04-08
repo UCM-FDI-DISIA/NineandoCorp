@@ -36,6 +36,7 @@ void TowerSystem::receive(const Message& m) {
 		mActive = !mActive;
 		break;
 	case _m_UPGRADE_TWR_INGAME:
+		mngr_->getComponent<UpgradeTowerComponent>(m.upgrade_twr_ingame_data.upCmp)->levelUp();
 		std::cout << "NIVEL DE TORRE: " << mngr_->getComponent<UpgradeTowerComponent>(m.upgrade_twr_ingame_data.upCmp)->getLevel() << std::endl;
 		break;
 	default:

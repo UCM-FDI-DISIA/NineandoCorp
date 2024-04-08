@@ -14,7 +14,7 @@ UpgradeTowerComponent::UpgradeTowerComponent(twrId id, int maxLevel) : id_(id), 
 	//upgradeInfo_ = JSON::ParseFromFile("tower_upgrade_info.json");
 }
 
-void UpgradeTowerComponent::LevelUp() {
+void UpgradeTowerComponent::levelUp() {
 	if(currentLevel_ < maxLevel_)currentLevel_++;
 
 	switch (id_) {

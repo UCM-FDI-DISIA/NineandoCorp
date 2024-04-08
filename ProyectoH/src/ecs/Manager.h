@@ -71,6 +71,7 @@ public:
 	}
 	// Entities
 	inline void setAlive(Entity* e, bool alive) {
+		if(e != nullptr)
 		e->alive_ = alive;
 	}
 	inline bool isAlive(Entity* e) {

@@ -204,7 +204,8 @@ enum msgId : msgId_type {
 	_m_ENEMYSEE,
 	_m_SHOW_UPGRADE_TOWER_MENU,
 	_m_TOWER_CLICKED,
-	_m_UPGRADE_TWR_INGAME
+	_m_UPGRADE_TWR_INGAME,
+	_m_EXIT_UP_MENU
 };
 
 using twrId_type = uint8_t;
@@ -317,6 +318,7 @@ inline Uint8* _deserialize_(float& v, Uint8* buf) {
 }
 struct Message {
 	msgId_type id;
+
 	//_m_UPGRADE_TWR_INGAME
 	struct {
 		Entity* upCmp;
