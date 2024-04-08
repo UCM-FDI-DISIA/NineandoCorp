@@ -64,6 +64,9 @@ void  EnemySystem::receive(const Message& m) {
 				enemyDeathAnim(*mngr_->getComponent<Transform>(m.entity_to_attack.e)->getPosition());
 				mngr_->deleteHandler(_hdlr_ENEMIES, m.entity_to_attack.e);
 				auto enemytype = mngr_->getComponent<EnemyTypeComponent>(m.entity_to_attack.e);
+				if (enemytype->GetEnemyType() == _enm_DREAL) {
+					addField(*(mngr_->getComponent<Transform>(m.entity_to_attack.e)->getPosition()));
+				}
 				AddMoney(enemytype->GetEnemyType());
 				if (mngr_->hasComponent<AttackComponent>(m.entity_to_attack.src))mngr_->getComponent<AttackComponent>(m.entity_to_attack.src)->setTarget(nullptr);
 			};
@@ -372,29 +375,21 @@ void EnemySystem::update()
 				}
 			}
 
-			//defensor real
-			if (etc!= nullptr) {
-				if (!mngr_->isAlive(e) && etc->GetEnemyType()==_enm_DREAL) {
-					Entity* field = addField(*(tr->getPosition()) + Vector2D(20, 0));
-					Transform* fieldTR = mngr_->getComponent<Transform>(field);
-					SDL_Rect fieldRect = fieldTR->getRect();
-					Message m;
-					m.id = _m_ADD_RECT;
-					m.rect_data.id = _FIELD;
-					m.rect_data.entity = field;
-				}
-			}
-
 		}
 	}
 }
 			
-Entity* EnemySystem::addField(Vector2D pos) {
+void EnemySystem::addField(Vector2D pos) {
 	Entity* field = mngr_->addEntity(_grp_AREAOFATTACK);
 	Transform* fieldTR = mngr_->addComponent<Transform>(field);
 	mngr_->addComponent<RenderComponent>(field, shield);
+	mngr_->addComponent<FramedImage>(field, 7, 1, 626, 352, 0, 5, 6);
 	fieldTR->setScale({ 320, 165 });
 	fieldTR->setPosition(pos + Vector2D(-120, -10));
-	return field;
+	SDL_Rect fieldRect = fieldTR->getRect();
+	Message m;
+	m.id = _m_ADD_RECT;
+	m.rect_data.id = _FIELD;
+	m.rect_data.entity = field;
 }
 	

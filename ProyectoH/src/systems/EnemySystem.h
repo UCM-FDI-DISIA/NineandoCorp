@@ -38,7 +38,7 @@ public:
 	unsigned int getWave() { return wave; }
 	void setWave() { wave++; }
 protected:
-	Entity* addField(Vector2D pos);
+	void addField(Vector2D pos);
 
 	std::vector<Transform*> enemiesTransforms;
 	std::vector<Entity*> spawnsVector;

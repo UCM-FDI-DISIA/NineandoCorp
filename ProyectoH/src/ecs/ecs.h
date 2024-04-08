@@ -80,6 +80,7 @@ enum hdlrId : hdlrId_type {
 	_hdlr_BUTTON_PLAY,
 	_hdlr_PARTICLES,
 	_hdlr_ICONS,
+	_hdlr_BULLETS,
 	
 	// do not remove this
 	_LAST_HDLR_ID };
