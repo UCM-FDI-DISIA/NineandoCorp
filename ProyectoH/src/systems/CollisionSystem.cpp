@@ -425,7 +425,12 @@ void CollisionSystem::update() {
 					bulletRect = bulletTR->getRect();
 					fieldRect = fieldTR->getRect();
 					if(SDL_HasIntersection(&fieldRect, &bulletRect)) {
-						mngr_->setAlive(b, false);
+						/*Message m;
+						m.id = _m_ENTITY_TO_ATTACK;
+						m.entity_to_attack.targetId = _hdlr_BULLETS;
+						m.entity_to_attack.e = b;
+						m.entity_to_attack.src = f;*/
+						std::cout << "aosdnf";
 					}
 				}
 			}
