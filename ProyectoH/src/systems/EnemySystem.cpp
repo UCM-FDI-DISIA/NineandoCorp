@@ -231,6 +231,7 @@ void EnemySystem::update()
 				if (wave > sdlutils().waves().at("nivel" + std::to_string(level))) {
 					Message m;
 					m.id = _m_ROUND_OVER;
+					m.money_data.Hmoney = mngr_->getSystem<ButtonSystem>()->getHMoney();
 					mngr_->send(m, true);
 				}
 				else {

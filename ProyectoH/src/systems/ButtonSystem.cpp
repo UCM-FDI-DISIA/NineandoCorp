@@ -35,7 +35,12 @@ void ButtonSystem::receive(const Message& m){
 	switch (m.id) {
 	case _m_ADD_MONEY:
 		money_ += m.money_data.money;
+		HMoney_ += m.money_data.money;
 		updateText();
+		break;
+	case _m_START_MENU:
+		HMoney_ = m.money_data.Hmoney;
+		generateHMoneyText();
 		break;
 	case _m_START_GAME:
 		money_ = m.start_game_data.money;
@@ -332,4 +337,12 @@ Entity* ButtonSystem::addText(string txt, const SDL_Color& color, const Vector2D
 
 void ButtonSystem::updateText() {
 	mngr_->getComponent<TextComponent>(moneyText_)->changeText("Monedas: " + std::to_string(money_));
+}
+
+void ButtonSystem::generateHMoneyText() {
+	moneyText_ = mngr_->addEntity(_grp_TEXTS);
+	Transform* tr = mngr_->addComponent<Transform>(moneyText_);
+	tr->setPosition({ 50,75 });
+	tr->setScale({ 300, 75 });
+	mngr_->addComponent<TextComponent>(moneyText_, "Monedas H: " + std::to_string(HMoney_));
 }
