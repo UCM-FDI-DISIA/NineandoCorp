@@ -1111,7 +1111,7 @@
               "grupo1": {
                 "spawn": "1",
                 "typeEnemy": [
-                  "maldito",
+                  "defensor",
                   "goblin",
                   "elfos"
                 ],

@@ -9,8 +9,8 @@
 #include "../components/AngelComponent.h"
 #include "../components/IconComponent.h"
 #include "../components/GolemComponent.h"
+#include "../components/LimitedTime.h"
 #include "../sdlutils/SDLUtils.h"
-
 #include "../systems/EnemyBookSystem.h"
 
 
@@ -23,11 +23,7 @@ EnemySystem::~EnemySystem() {
 
 
 void EnemySystem::initSystem() {
-	
-	// addEnemy(_enm_AELECTRICO, { 300,300 });
-	// addEnemy(_enm_AELECTRICO, { 500,300 });
 
-	// addEnemy(_enm_ANGEL, { 700,300 });
 
 }
 void  EnemySystem::receive(const Message& m) {
@@ -384,12 +380,14 @@ void EnemySystem::addField(Vector2D pos) {
 	Transform* fieldTR = mngr_->addComponent<Transform>(field);
 	mngr_->addComponent<RenderComponent>(field, shield);
 	mngr_->addComponent<FramedImage>(field, 7, 1, 626, 352, 0, 5, 6);
-	fieldTR->setScale({ 320, 165 });
+	mngr_->addComponent<LimitedTime>(field, 5);
+	fieldTR->setScale({ 640, 330 });
 	fieldTR->setPosition(pos + Vector2D(-120, -10));
 	SDL_Rect fieldRect = fieldTR->getRect();
 	Message m;
 	m.id = _m_ADD_RECT;
 	m.rect_data.id = _FIELD;
 	m.rect_data.entity = field;
+	mngr_->send(m);
 }
 	

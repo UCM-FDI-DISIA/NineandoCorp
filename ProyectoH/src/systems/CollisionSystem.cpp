@@ -380,7 +380,7 @@ void CollisionSystem::update() {
 						m.entity_to_attack.targetId = _hdlr_HIGH_TOWERS;
 						m.entity_to_attack.e = t;
 						m.entity_to_attack.damage = 20;
-
+						mngr_->send(m);
 					}
 				}
 			}
@@ -395,6 +395,7 @@ void CollisionSystem::update() {
 						m.entity_to_attack.targetId = _hdlr_HIGH_TOWERS;
 						m.entity_to_attack.e = t;
 						m.entity_to_attack.damage = 5;
+						mngr_->send(m);
 					}
 				}
 			}
@@ -409,6 +410,7 @@ void CollisionSystem::update() {
 						m.entity_to_attack.targetId = _hdlr_HIGH_TOWERS;
 						m.entity_to_attack.e = t;
 						m.entity_to_attack.damage = 10000;
+						mngr_->send(m);
 					}
 				}
 			}
@@ -424,13 +426,14 @@ void CollisionSystem::update() {
 				if (bulletTR != nullptr && fieldTR != nullptr) {
 					bulletRect = bulletTR->getRect();
 					fieldRect = fieldTR->getRect();
+
 					if(SDL_HasIntersection(&fieldRect, &bulletRect)) {
-						/*Message m;
+						Message m;
 						m.id = _m_ENTITY_TO_ATTACK;
 						m.entity_to_attack.targetId = _hdlr_BULLETS;
 						m.entity_to_attack.e = b;
-						m.entity_to_attack.src = f;*/
-						std::cout << "aosdnf";
+						m.entity_to_attack.src = f;
+						mngr_->send(m);
 					}
 				}
 			}
@@ -439,6 +442,7 @@ void CollisionSystem::update() {
 		earthquakeRects_.clear();
 		thunderRects_.clear();
 		meteoriteRects_.clear();
+		//fieldRects_.clear();
 		//if(thunderRects_.size() > 0)thunderRects_.clear();
 	}
 }
