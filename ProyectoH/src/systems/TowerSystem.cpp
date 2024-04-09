@@ -35,9 +35,22 @@ void TowerSystem::receive(const Message& m) {
 	case _m_PAUSE:
 		mActive = !mActive;
 		break;
+	case _m_SHOW_UPGRADE_TOWER_MENU:
+		if(mngr_->getSystem<HUDSystem>()->isOnSelector(m.show_upgrade_twr_menu_data.pos + Vector2D(0, 30)))
+			enableAllInteractiveTowers(false);
+		break;
 	case _m_UPGRADE_TWR_INGAME:
 		mngr_->getComponent<UpgradeTowerComponent>(m.upgrade_twr_ingame_data.upCmp)->levelUp();
 		std::cout << "NIVEL DE TORRE: " << mngr_->getComponent<UpgradeTowerComponent>(m.upgrade_twr_ingame_data.upCmp)->getLevel() << std::endl;
+		break;
+	case _m_EXIT_UP_MENU:
+		enableAllInteractiveTowers(true);
+		break;
+	case _m_DRAG: 
+		enableAllInteractiveTowers(false);
+		break;
+	case _m_STOP_DRAG:
+		enableAllInteractiveTowers(true);
 		break;
 	default:
 		break;
@@ -451,6 +464,12 @@ void TowerSystem::eliminateDestroyedTowers(Entity* t) {//elimina del array las t
 	towers.erase(find(towers.begin(), towers.end(), t));
 }
 
+
+void TowerSystem::enableAllInteractiveTowers(bool b) {
+	for (auto t : towers) {
+		mngr_->getComponent<InteractiveTower>(t)->canInteract_ = b;
+	}
+}
 
 Entity* TowerSystem::shootBullet(Entity* target, Entity* src ,float damage, float speed, Vector2D spawnPos, gameTextures texture, Vector2D bulletScale, twrId id) {
 	Entity* bullet = mngr_->addEntity(_grp_BULLETS);//crea bala

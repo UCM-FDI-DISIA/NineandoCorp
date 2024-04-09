@@ -16,6 +16,10 @@ public:
 
 	void update() override;
 
+	bool isOnSelector(const Vector2D& pos) {
+		return pos.getY() + cameraOffset_->y < sdlutils().height() - twrSel_.selectorHeight;
+	}
+
 private: 
 	struct UpgradeMenu{
 		Entity* background;
@@ -35,11 +39,26 @@ private:
 
 		~UpgradeMenu() {}
 	};
+
+	struct TowerSelector {
+		std::vector<Entity*> buttons;
+		std::vector<Entity*> imgs;
+		Entity* background;
+		Entity* roundButton;
+		int selectorHeight = 200;
+		TowerSelector() :
+			buttons(), //
+			imgs(), //
+			background(nullptr), //
+			roundButton(nullptr) {}		
+	};
+
 	UpgradeMenu upM_;
+	TowerSelector twrSel_;
 
 	void exitUpgradeMenu();
 
-	void changeText(TextComponent* tC, string newTxt);
+	void showSelector(bool active);
 
 	bool mActive;
 
@@ -60,14 +79,12 @@ private:
 	// Espacio designado para los botones de compra de las torres
 	float buttonsSpace_length_; 
 	float infoSpace_length_;
-	//boton de empezar la oleada
-	Entity* play = nullptr;
+
 	bool canStartWave = false;
 
-	// Para la interaccion con el HUD, no tocar de momento
-	std::vector<Entity*> towers_imgs;
+	// Posiciones de los iconos de las torres
 	std::vector<Vector2D> initial_pos;
-	std::vector<Vector2D> intial_scale;
-	//std::vector<std::pair<Entity*, Entity*>> tower_selector_; 
+	//ofset de la camara al renderizar
+	SDL_Rect* cameraOffset_;
 };
 

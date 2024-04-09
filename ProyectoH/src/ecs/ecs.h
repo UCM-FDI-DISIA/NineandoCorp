@@ -186,6 +186,7 @@ enum msgId : msgId_type {
 	_m_BACK_TO_MAINMENU,
 	_m_TEXT_MESSAGE,
 	_m_DRAG,
+	_m_STOP_DRAG,
 	_m_LEVELS_INFO,
 	_m_ADD_TOWER,
 	_m_OFFSET_CONTEXT,

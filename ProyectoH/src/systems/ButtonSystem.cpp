@@ -91,7 +91,10 @@ void ButtonSystem::manageButtons() {
 				if (en != nullptr && bC != nullptr) {
 					//comprueba la id del button y si no es none llama a la funcion correspondiente
 					auto type = bC->isPressed(pos);
-					if (type != ButtonTypes::none) callFunction(type, en);
+					if (type != ButtonTypes::none) {
+						callFunction(type, en);
+						break;
+					}
 				}
 			}
 		}

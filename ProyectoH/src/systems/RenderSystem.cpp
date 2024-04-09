@@ -366,7 +366,8 @@ void RenderSystem::update() {
 	for (auto& h : hudB) {
 		Transform* tr = mngr_->getComponent<Transform>(h);
 		gameTextures textureId = mngr_->getComponent<RenderComponent>(h)->getTexture();
-		textures[textureId]->render(tr->getRect(), tr->getRotation());
+		if (mngr_->getComponent<RenderComponent>(h)->isActive_)
+			textures[textureId]->render(tr->getRect(), tr->getRotation());
 	}
 
 	//HUD FOREGROUND
@@ -375,13 +376,14 @@ void RenderSystem::update() {
 		auto fI = mngr_->getComponent<FramedImage>(h);
 		Transform* tr = mngr_->getComponent<Transform>(h);
 		gameTextures textureId = mngr_->getComponent<RenderComponent>(h)->getTexture();
-
-		if (fI != nullptr) {
-			SDL_Rect srcRect = fI->getSrcRect();
-			textures[textureId]->render(srcRect, tr->getRect(), tr->getRotation());
-		}
-		else {
-			textures[textureId]->render(tr->getRect(), tr->getRotation());
+		if (mngr_->getComponent<RenderComponent>(h)->isActive_) {
+			if (fI != nullptr) {
+				SDL_Rect srcRect = fI->getSrcRect();
+				textures[textureId]->render(srcRect, tr->getRect(), tr->getRotation());
+			}
+			else {
+				textures[textureId]->render(tr->getRect(), tr->getRotation());
+			}
 		}
 	}
 

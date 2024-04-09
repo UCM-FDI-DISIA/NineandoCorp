@@ -8,14 +8,17 @@ void InteractiveTower::initComponent()
 }
 
 void InteractiveTower::update() {
-	Vector2D mPos = { (float)ih().getMousePos().first, (float)ih().getMousePos().second };
+	if (canInteract_) {
 
-	if (ih().getMouseButtonState(InputHandler::MOUSEBUTTON::LEFT) == 1 
-	 && isOnRect(mPos)) 
-	{
-		Message m; 
-		m.id = _m_TOWER_CLICKED;
-		m.tower_clicked_data.tower = ent_;
-		mngr_->send(m);
+		Vector2D mPos = { (float)ih().getMousePos().first, (float)ih().getMousePos().second };
+
+		if (ih().getMouseButtonState(InputHandler::MOUSEBUTTON::LEFT) == 1 
+		 && isOnRect(mPos)) 
+		{
+			Message m; 
+			m.id = _m_TOWER_CLICKED;
+			m.tower_clicked_data.tower = ent_;
+			mngr_->send(m);
+		}
 	}
 }
