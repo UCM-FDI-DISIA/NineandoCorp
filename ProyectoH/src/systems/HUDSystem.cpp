@@ -308,8 +308,6 @@ void HUDSystem::update() {
 			i++;
 		}
 	}
-	
-
 }
 
 void HUDSystem::showUpgradeMenu(Entity* twr, const Vector2D& pos) {
@@ -327,6 +325,11 @@ void HUDSystem::showUpgradeMenu(Entity* twr, const Vector2D& pos) {
 		int dif = sdlutils().width() - (posA.getX() + 200);
 		offset.setX(dif);
 	}
+	if (posA.getY() - 150.0f < 0) {
+		offset.setY((posA.getY() + 150) - posA.getY());
+		std::cout << std::endl << "DIF Y: " << offset.getY() << std::endl;
+	}
+	
 	upM_.background = bS->addImage(posA + offset,
 		{ 400.0f, 300.0f },
 		0.0,
