@@ -382,7 +382,7 @@ void EnemySystem::addField(Vector2D pos) {
 	mngr_->addComponent<FramedImage>(field, 7, 1, 626, 352, 0, 5, 6);
 	mngr_->addComponent<LimitedTime>(field, 5);
 	fieldTR->setScale({ 640, 330 });
-	fieldTR->setPosition(pos + Vector2D(-120, -10));
+	fieldTR->setPosition(pos + Vector2D(-240, -20));
 	SDL_Rect fieldRect = fieldTR->getRect();
 	Message m;
 	m.id = _m_ADD_RECT;

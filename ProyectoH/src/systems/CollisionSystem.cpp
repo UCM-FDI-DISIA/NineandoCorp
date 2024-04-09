@@ -1,6 +1,7 @@
 #include "CollisionSystem.h"
 #include "..//components/SlimeBullet.h"
 #include "..//components/TowerStates.h"
+#include "..//components/LimitedTime.h"
 #include "../game/Game.h"
 
 CollisionSystem::CollisionSystem():fenixRects_(), slimeRects_(), enemyRects_() {
@@ -436,6 +437,16 @@ void CollisionSystem::update() {
 						mngr_->send(m);
 					}
 				}
+			}
+		}
+
+		for (const auto& f: fieldRects_) {
+			LimitedTime* lt = mngr_->getComponent<LimitedTime>(f);
+			lt->setCurrTime(lt->getCurrTime()+game().getDeltaTime());
+
+			if (lt->getCurrTime() > lt->getLifeTime()) {
+				removeRect(f, _FIELD);
+				mngr_->setAlive(f, false);
 			}
 		}
 
