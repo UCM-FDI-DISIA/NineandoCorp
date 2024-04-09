@@ -272,7 +272,7 @@ void EnemySystem::update()
 			DefensorRealComponent* drc = mngr_->getComponent<DefensorRealComponent>(e);
 			EnemyTypeComponent* etc = mngr_->getComponent<EnemyTypeComponent>(e);
 			Transform* tr = mngr_->getComponent<Transform>(e);
-
+			FramedImage* fi = mngr_->getComponent<FramedImage>(e);
 
 			if (ic != nullptr && ic->hasIcon()) {
 				Transform* iconTr = mngr_->getComponent<Transform>(ic->getIcon());
@@ -332,7 +332,6 @@ void EnemySystem::update()
 					}
 					else {
 						mc->setStop(false);
-
 					}
 				}
 			}
@@ -389,5 +388,50 @@ void EnemySystem::addField(Vector2D pos) {
 	m.rect_data.id = _FIELD;
 	m.rect_data.entity = field;
 	mngr_->send(m);
+}
+
+void EnemySystem::changeAnimation(bool animation, enmId enemy_type) {
+	switch (enemy_type)
+	{
+	case _enm_MALMAS:
+		break;
+	case _enm_AELECTRICO:
+		break;
+	case _enm_MALDITO:
+		break;
+	case _enm_GOLEM:
+		break;
+	case _enm_DALADO:
+		break;
+	case _enm_GOBLIN:
+		break;
+	case _enm_ELFO:
+		if (animation) {
+			std::cout << "atacar";
+		}
+		else
+		{
+			std::cout << "idle";
+		}
+		break;
+	case _enm_MMUERTE:
+		break;
+	case _enm_ANGEL:
+		break;
+	case _enm_DINFERNAL:
+		break;
+	case _enm_DREAL:
+		break;
+	case _enm_CMALDITO:
+		break;
+	case _enm_PRINCIPITO:
+		break;
+	case _enm_MONJE:
+		break;
+	case _enm_MUERTE:
+		break;
+	default:
+		break;
+	}
 }
 	
