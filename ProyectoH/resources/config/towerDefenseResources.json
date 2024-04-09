@@ -569,6 +569,70 @@
         {
           "id": "cloud",
           "file": "resources/images/Meteorology/fog.png"
+        },
+        {
+            "id": "level1_button",
+            "file": "resources/images/UI/level1.png"
+        },
+        {
+            "id": "level2_button",
+            "file": "resources/images/UI/level2.png"
+        },
+        {
+            "id": "level3_button",
+            "file": "resources/images/UI/level3.png"
+        },
+        {
+            "id": "level4_button",
+            "file": "resources/images/UI/level4.png"
+        },
+        {
+            "id": "level5_button",
+            "file": "resources/images/UI/level5.png"
+        },
+        {
+            "id": "level6_button",
+            "file": "resources/images/UI/level6.png"
+        },
+        {
+            "id": "level7_button",
+            "file": "resources/images/UI/level7.png"
+        },
+        {
+            "id": "level8_button",
+            "file": "resources/images/UI/level8.png"
+        },
+        {
+            "id": "level1_hover",
+            "file": "resources/images/UI/level1_hover.png"
+        },
+        {
+            "id": "level2_hover",
+            "file": "resources/images/UI/level2_hover.png"
+        },
+        {
+            "id": "level3_hover",
+            "file": "resources/images/UI/level3_hover.png"
+        },
+        {
+            "id": "level4_hover",
+            "file": "resources/images/UI/level4_hover.png"
+        },
+        {
+            "id": "level5_hover",
+            "file": "resources/images/UI/level5_hover.png"
+        },
+        {
+            "id": "level6_hover",
+            "file": "resources/images/UI/level6_hover.png"
+        },
+        {
+            "id": "level7_hover",
+            "file": "resources/images/UI/level7_hover.png"
+        },
+        {
+            "id": "level8_hover",
+            "file": "resources/images/UI/level8_hover.png"
         }
     ],
 

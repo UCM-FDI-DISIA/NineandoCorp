@@ -94,7 +94,22 @@ RenderSystem::RenderSystem() : winner_(0)
 	textures[blindedIcon] = &sdlutils().images().at("blinded_icon");
 	textures[slimeArea] = &sdlutils().images().at("slime_area");
 	textures[fireTexture] = &sdlutils().images().at("fireball");
-
+	textures[level1] = &sdlutils().images().at("level1_button");
+	textures[level1_hover] = &sdlutils().images().at("level1_hover");
+	textures[level2] = &sdlutils().images().at("level2_button");
+	textures[level2_hover] = &sdlutils().images().at("level2_hover");
+	textures[level3] = &sdlutils().images().at("level3_button");
+	textures[level3_hover] = &sdlutils().images().at("level3_hover");
+	textures[level4] = &sdlutils().images().at("level4_button");
+	textures[level4_hover] = &sdlutils().images().at("level4_hover");
+	textures[level5] = &sdlutils().images().at("level5_button");
+	textures[level5_hover] = &sdlutils().images().at("level5_hover");
+	textures[level6] = &sdlutils().images().at("level6_button");
+	textures[level6_hover] = &sdlutils().images().at("level6_hover");
+	textures[level7] = &sdlutils().images().at("level7_button");
+	textures[level7_hover] = &sdlutils().images().at("level7_hover");
+	textures[level8] = &sdlutils().images().at("level8_button");
+	textures[level8_hover] = &sdlutils().images().at("level8_hover");
 
 	//Explosions
 	textures[shieldExp] = &sdlutils().images().at("shieldExp");

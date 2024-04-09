@@ -17,5 +17,6 @@ public:
 	void update() override; 
 private:
 	bool mActive;
+
 };
 
