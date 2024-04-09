@@ -65,7 +65,7 @@ void  EnemySystem::receive(const Message& m) {
 				enemyDeathAnim(*mngr_->getComponent<Transform>(m.entity_to_attack.e)->getPosition());
 				mngr_->deleteHandler(_hdlr_ENEMIES, m.entity_to_attack.e);
 				auto enemytype = mngr_->getComponent<EnemyTypeComponent>(m.entity_to_attack.e);
-				AddMoney(enemytype->GetEnemyType(), 1);
+				AddMoney(enemytype->GetEnemyType(), level);
 				if (mngr_->hasComponent<AttackComponent>(m.entity_to_attack.src))mngr_->getComponent<AttackComponent>(m.entity_to_attack.src)->setTarget(nullptr);
 			};
 		}
