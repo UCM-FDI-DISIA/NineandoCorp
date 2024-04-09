@@ -398,15 +398,14 @@ void TowerSystem::update() {
 						}
 					}
 					if (pt->getRotation() == 90.0f)offset = Vector2D(0.0f, 0.0f);//Ajuste del rect en funcion del angulo
-					else if (pt->getRotation() == 180.0f) offset = Vector2D(65.0f, 60.0f);
-					else if (pt->getRotation() == 0.0f)offset = Vector2D(-80.0f, 50.0f);
-					else if (pt->getRotation() == 270.0f) offset = Vector2D(-15.0f, 90.0f);
+					else if (pt->getRotation() == 180.0f) offset = Vector2D(floatAt("FireOffset180X"), floatAt("FireOffset180X"));
+					else if (pt->getRotation() == 0.0f)offset = Vector2D(floatAt("FireOffset0X"), floatAt("FireOffset0Y"));
+					else if (pt->getRotation() == 270.0f) offset = Vector2D(floatAt("FireOffset270X"), floatAt("FireOffset270Y"));
 					if (pt->getFire() != nullptr) {
 						Transform* fTR = mngr_->getComponent<Transform>(pt->getFire());
 						fTR->setPosition(Vector2D(spawn.getX() + offset.getX(), spawn.getY() + offset.getY()));
 					}
-					//std::cout << pt->getRotation() << "\n";
-					if (pt->getElapsedTime() > pt->getCoolingTime() && !pt->isShooting()) {
+					if (pt->getElapsedTime() > pt->getCoolingTime() && !pt->isShooting() && pt->getTarget()!=nullptr) {
 
 						pt->setFire(shootFire(Vector2D(spawn.getX() + offset.getX(), spawn.getY() + offset.getY()), pt->getRotation(), pt->getDamage(), t));
 						pt->setIsShooting(true);
@@ -486,6 +485,7 @@ Entity* TowerSystem::shootFire(Vector2D spawnPos, float rot, float dmg, Entity* 
 	Transform* t = mngr_->addComponent<Transform>(fire);
 	t->setPosition(spawnPos);
 	t->setRotation(rot);
+	t->setHeight(floatAt("FireHeightProportion"));
 	mngr_->addComponent<RenderComponent>(fire, fireTexture);
 	mngr_->addComponent<FramedImage>(fire, intAt("FireFrames"), 1, intAt("FireWidth"), intAt("FireHeight"), 0, intAt("FireFrames"), intAt("FireFrames"));
 	mngr_->addComponent<FireComponent>(fire, dmg, rot, src);

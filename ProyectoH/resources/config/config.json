@@ -527,119 +527,119 @@
       ]
     }
   ],
-  "floatConst": [   
+  "floatConst": [
     {
-        "id": "FenixScaleX",
-        "value": 124
+      "id": "FenixScaleX",
+      "value": 124
     },
     {
-        "id": "FenixScaleY",
-        "value": 145
+      "id": "FenixScaleY",
+      "value": 145
     },
     {
-        "id": "BulletScaleX",
-        "value": 125
+      "id": "BulletScaleX",
+      "value": 125
     },
     {
-        "id": "BulletScaleY",
-        "value": 150
+      "id": "BulletScaleY",
+      "value": 150
     },
     {
-        "id": "SniperScaleX",
-        "value": 125
+      "id": "SniperScaleX",
+      "value": 125
     },
     {
-        "id": "SniperScaleY",
-        "value": 150
+      "id": "SniperScaleY",
+      "value": 150
     },
     {
-        "id": "SlimeScaleX",
-        "value": 120
+      "id": "SlimeScaleX",
+      "value": 120
     },
     {
-        "id": "SlimeScaleY",
-        "value": 126
+      "id": "SlimeScaleY",
+      "value": 126
     },
     {
-        "id": "CristalScaleX",
-        "value": 135
+      "id": "CristalScaleX",
+      "value": 135
     },
     {
-        "id": "CristalScaleY",
-        "value": 140
+      "id": "CristalScaleY",
+      "value": 140
     },
     {
-        "id": "ClayScaleX",
-        "value": 120
+      "id": "ClayScaleX",
+      "value": 120
     },
     {
-        "id": "ClayScaleY",
-        "value": 126
+      "id": "ClayScaleY",
+      "value": 126
     },
     {
-        "id": "PotenciadorScaleX",
-        "value": 120
+      "id": "PotenciadorScaleX",
+      "value": 120
     },
     {
-        "id": "PotenciadorScaleY",
-        "value": 126
+      "id": "PotenciadorScaleY",
+      "value": 126
     },
 
     {
-        "id": "IconFenixScaleX",
-        "value": 60
+      "id": "IconFenixScaleX",
+      "value": 60
     },
     {
-        "id": "IconFenixScaleY",
-        "value": 80
+      "id": "IconFenixScaleY",
+      "value": 80
     },
     {
-        "id": "IconBulletScaleX",
-        "value": 55
+      "id": "IconBulletScaleX",
+      "value": 55
     },
     {
-        "id": "IconBulletScaleY",
-        "value": 80
+      "id": "IconBulletScaleY",
+      "value": 80
     },
     {
-        "id": "IconSniperScaleX",
-        "value": 45
+      "id": "IconSniperScaleX",
+      "value": 45
     },
     {
-        "id": "IconSniperScaleY",
-        "value": 80
+      "id": "IconSniperScaleY",
+      "value": 80
     },
     {
-        "id": "IconSlimeScaleX",
-        "value": 60
+      "id": "IconSlimeScaleX",
+      "value": 60
     },
     {
-        "id": "IconSlimeScaleY",
-        "value": 80
+      "id": "IconSlimeScaleY",
+      "value": 80
     },
     {
-        "id": "IconCristalScaleX",
-        "value": 55
+      "id": "IconCristalScaleX",
+      "value": 55
     },
     {
-        "id": "IconCristalScaleY",
-        "value": 80
+      "id": "IconCristalScaleY",
+      "value": 80
     },
     {
-        "id": "IconClayScaleX",
-        "value": 60
+      "id": "IconClayScaleX",
+      "value": 60
     },
     {
-        "id": "IconClayScaleY",
-        "value": 80
+      "id": "IconClayScaleY",
+      "value": 80
     },
     {
-        "id": "IconPotenciadorScaleX",
-        "value": 55
+      "id": "IconPotenciadorScaleX",
+      "value": 55
     },
     {
-        "id": "IconPotenciadorScaleY",
-        "value": 80
+      "id": "IconPotenciadorScaleY",
+      "value": 80
     },
 
 
@@ -715,7 +715,7 @@
     },
     {
       "id": "SlimeTiempoSlime",
-      "value": 2
+      "value": 0.5
     },
     {
       "id": "SlimeVelocidad",
@@ -790,9 +790,9 @@
       "value": 20
     },
     {
-        "id": "CristalRango",
-        "value": 100.0
-      },
+      "id": "CristalRango",
+      "value": 100.0
+    },
     {
       "id": "ArcillaVida1",
       "value": 750
@@ -808,6 +808,34 @@
     {
       "id": "ArcillaVida4",
       "value": 1500
+    },
+    {
+      "id": "FireOffset180X",
+      "value": 65
+    },
+    {
+      "id": "FireOffset180Y",
+      "value": 60
+    },
+    {
+      "id": "FireOffset0X",
+      "value": -80
+    },
+    {
+      "id": "FireOffset0Y",
+      "value": 50
+    },
+    {
+      "id": "FireOffset270X",
+      "value": -15
+    },
+    {
+      "id": "FireOffset270Y",
+      "value": 90
+    },
+    {
+      "id": "FireHeightProportion",
+      "value": 70
     }
   ],
 

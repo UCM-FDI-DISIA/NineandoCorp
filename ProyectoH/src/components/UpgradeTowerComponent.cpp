@@ -7,6 +7,7 @@
 #include "..//components/DiegoSniperTower.h"
 #include "..//components/PhoenixTower.h"
 #include "..//components/DirtTower.h"
+#include "..//components/SlimeTowerComponent.h"
 
 using namespace std;
 
@@ -22,15 +23,16 @@ void UpgradeTowerComponent::levelUp() {
 			mngr_->getComponent<BulletTower>(ent_)->levelUp(currentLevel_);
 			break;
 		case _twr_CRISTAL:
-			//mngr_->getComponent<BulletTower>(ent_)->levelUp(currentLevel_);
+			mngr_->getComponent<CrystalTower>(ent_)->levelUp(currentLevel_);
 			break;
 		case _twr_SLIME:
-			//mngr_->getComponent<>(ent_)->levelUp(currentLevel_);
+			mngr_->getComponent<SlimeTowerComponent>(ent_)->levelUp(currentLevel_);
 			break;
 		case _twr_DIEGO:
 			mngr_->getComponent<DiegoSniperTower>(ent_)->levelUp(currentLevel_);
 			break;
 		case _twr_FENIX:
+			mngr_->getComponent<PhoenixTower>(ent_)->levelUp(currentLevel_);
 			break;
 		case _twr_CLAY:
 			mngr_->getComponent<DirtTower>(ent_)->levelUp(currentLevel_);

@@ -11,5 +11,6 @@ public:
 
 private:
 	int reflectDamage_ = 0;
+	bool isMaxLevel_;
 };
 
