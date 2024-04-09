@@ -208,14 +208,17 @@ void EnemySystem::AddMoney(enmId type, int level) {
 	case 1:
 	case 2:
 		Hmoney = 1;
+		break;
 	case 3:
 	case 4:
 	case 5:
 	case 6:
 		Hmoney = 2;
+		break;
 	case 7:
 	case 8:
 		Hmoney = 3;
+		break;
 	default:
 		break;
 	}
