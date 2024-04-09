@@ -348,7 +348,7 @@ struct Message {
 	}add_text_data;
 	// _m_ABLEBUTTONS
 	struct {
-		hdlrId_type buttonId;
+		grpId buttonId;
 		bool isAble;
 	}able_buttons_data;
 

@@ -55,7 +55,7 @@ private:
 	/// </summary>
 	void pauseAllButtons();
 
-	void enableAllButton(bool b, hdlrId_type bType);
+	void enableAllButton(bool b, grpId bType);
 
 	/// <summary>
 	/// Mensaje de carga de estado de selector de niveles

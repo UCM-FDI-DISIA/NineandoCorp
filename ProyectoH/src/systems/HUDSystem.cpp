@@ -271,7 +271,7 @@ void HUDSystem::update() {
 						dC->enableDrag(false);
 						Message m;
 						m.id = _m_STOP_DRAG;
-						mngr_->send(m);
+						mngr_->send(m, true);
 					}
 					//click izquierdo para colocar la torre
 					else if (ih().getMouseButtonState(InputHandler::MOUSEBUTTON::LEFT) == 1) {
@@ -300,7 +300,7 @@ void HUDSystem::update() {
 						tr->setPosition(initial_pos[i] - aux / 2);
 						Message m;
 						m.id = _m_STOP_DRAG;
-						mngr_->send(m);
+						mngr_->send(m, true);
 					}
 
 				}
@@ -447,7 +447,7 @@ void HUDSystem::enableAllButtons(bool b)
 {
 	Message m;
 	m.id = _m_ABLEBUTTONS;
-	m.able_buttons_data.buttonId = _hdlr_BUTTON_PLAY;
+	m.able_buttons_data.buttonId = _grp_HUD_FOREGROUND;
 	m.able_buttons_data.isAble = b;
 	mngr_->send(m);
 }

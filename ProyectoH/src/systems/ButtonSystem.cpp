@@ -209,9 +209,9 @@ void ButtonSystem::manageButtons() {
 		}
 	}
 
-	void ButtonSystem::enableAllButton(bool b, hdlrId_type bType)
+	void ButtonSystem::enableAllButton(bool b, grpId bType)
 	{
-		for (auto but : mngr_->getHandler(bType)) {
+		for (auto but : mngr_->getEntities(bType)) {
 			auto bC = mngr_->getComponent<ButtonComponent>(but);
 			if (bC != nullptr) bC->setActive(b);
 		}
