@@ -65,7 +65,7 @@ void  EnemySystem::receive(const Message& m) {
 				enemyDeathAnim(*mngr_->getComponent<Transform>(m.entity_to_attack.e)->getPosition());
 				mngr_->deleteHandler(_hdlr_ENEMIES, m.entity_to_attack.e);
 				auto enemytype = mngr_->getComponent<EnemyTypeComponent>(m.entity_to_attack.e);
-				AddMoney(enemytype->GetEnemyType());
+				AddMoney(enemytype->GetEnemyType(), 1);
 				if (mngr_->hasComponent<AttackComponent>(m.entity_to_attack.src))mngr_->getComponent<AttackComponent>(m.entity_to_attack.src)->setTarget(nullptr);
 			};
 		}
@@ -161,14 +161,14 @@ std::vector<Vector2D> EnemySystem::RouteTranslate(std::vector<Vector2D> route) {
 	return route_aux;
 }
 
-void EnemySystem::AddMoney(enmId type) {
+void EnemySystem::AddMoney(enmId type, int level) {
 	int money = 0;
+	int Hmoney = 0;
 	switch (type)
 	{
 	case _enm_MALMAS:
-		money = 30;
-		break;
 	case _enm_AELECTRICO:
+	case _enm_DREAL:
 		money = 30;
 		break;
 	case _enm_MALDITO:
@@ -178,8 +178,6 @@ void EnemySystem::AddMoney(enmId type) {
 		money = 100;
 		break;
 	case _enm_DALADO:
-		money = 5;
-		break;
 	case _enm_GOBLIN:
 		money = 5;
 		break;
@@ -195,27 +193,36 @@ void EnemySystem::AddMoney(enmId type) {
 	case _enm_DINFERNAL:
 		money = 75;
 		break;
-	case _enm_DREAL:
-		money = 30;
-		break;
 	case _enm_CMALDITO:
-		money = 0;
-		break;
 	case _enm_PRINCIPITO:
-		money = 0;
-		break;
 	case _enm_MONJE:
-		money = 0;
-		break;
 	case _enm_MUERTE:
 		money = 0;
 		break;
 	default:
 		break;
 	}
+
+	switch (level)
+	{
+	case 1:
+	case 2:
+		Hmoney = 1;
+	case 3:
+	case 4:
+	case 5:
+	case 6:
+		Hmoney = 2;
+	case 7:
+	case 8:
+		Hmoney = 3;
+	default:
+		break;
+	}
 	Message m;
 	m.id = _m_ADD_MONEY;
 	m.money_data.money = money;
+	m.money_data.Hmoney = Hmoney;
 	mngr_->send(m);
 }
 
