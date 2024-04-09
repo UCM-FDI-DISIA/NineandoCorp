@@ -8,10 +8,10 @@
 
 
 
-MeteorologySystem::MeteorologySystem(): minTimeInterval_(1.0),
-maxTimeInterval_(3.0), 
+MeteorologySystem::MeteorologySystem(): minTimeInterval_(15.0),
+maxTimeInterval_(30.0), 
 elapsedTime_(0) ,
-thundersInterval_(0.5),
+thundersInterval_(0.1),
 meteoriteInterval_(1.5),
 elapsedSpawn_(0),
 quantity_(0),
@@ -21,7 +21,8 @@ objectsSpawned_(0)
 	mActive = true;
 	auto& rand = sdlutils().rand();
 	timeToNextEvent_ = rand.nextInt(minTimeInterval_, maxTimeInterval_);
-	nextEvent_ = (MeteorologyEvent)rand.nextInt(0, 5);
+	nextEvent_ = (MeteorologyEvent)rand.nextInt(1, 2);
+	imgEvent_ = nullptr;
 }
 
 MeteorologySystem::~MeteorologySystem() {
@@ -30,7 +31,11 @@ MeteorologySystem::~MeteorologySystem() {
 
 
 void MeteorologySystem::initSystem() {
-
+	
+	imgEvent_ = mngr_->addEntity(_grp_HUD_BACKGROUND);
+	mngr_->addComponent<RenderComponent>(imgEvent_, gameTextures::meteorites);
+	auto t = mngr_->addComponent<Transform>(imgEvent_);
+	t->setPosition(Vector2D(70.0, 70.0));
 }
 
 void  MeteorologySystem::receive(const Message& m) {
@@ -276,10 +281,24 @@ void MeteorologySystem::update() {
 
 		if (!eventActive_) { elapsedTime_ += game().getDeltaTime(); }
 
+		if (!eventActive_ && timeToNextEvent_ - elapsedTime_ < 30.0) {//Tiempo para el siguiente evento
+			int time = (int)(timeToNextEvent_ - elapsedTime_);
+			Message m;
+			m.id = _m_ADD_TEXT;
+			m.add_text_data.txt = to_string(time);
+			m.add_text_data.color = { 100, 100 ,0, 255 };
+			Vector2D txtScale = Vector2D(40.0f, 40.0f);
+			if (time < 10.0) { txtScale = Vector2D(20.0, 40.0); }
+			m.add_text_data.pos = Vector2D(25.0, 70.0) - (txtScale / 2);
+			m.add_text_data.scale = txtScale;
+			m.add_text_data.time = 1;
+			mngr_->send(m);
+		}
+
 		if (elapsedTime_ > timeToNextEvent_ && !eventActive_) {//comienza el evento
 
 			eventActive_ = true;
-
+		
 			switch (nextEvent_)
 			{
 			case MeteorologySystem::TSUNAMI:
@@ -287,7 +306,7 @@ void MeteorologySystem::update() {
 				break;
 			case MeteorologySystem::STORM:
 				generateNetMap();
-				generateStorm(50);
+				generateStorm(250);
 				break;
 			case MeteorologySystem::METEORITES:
 				generateNetMap();
@@ -371,6 +390,7 @@ void MeteorologySystem::update() {
 				objectsSpawned_ = 0;
 				elapsedSpawn_ = 0;
 				quantity_ = 0;
+				if (imgEvent_ != nullptr && mngr_->isAlive(imgEvent_)) { mngr_->setAlive(imgEvent_, false); }
 			}
 		}
 	}
