@@ -209,6 +209,7 @@ void HUDSystem::receive(const Message& m) {
 		break;
 	case _m_STOP_DRAG:
 		showSelector(true);
+		enableAllButtons(true);
 		break;
 	case _m_PAUSE:
 		mActive = !mActive;
@@ -317,7 +318,9 @@ void HUDSystem::showUpgradeMenu(Entity* twr, const Vector2D& pos) {
 
 	Vector2D offset = Vector2D(0, 0);
 	/** 
-	*	/* --- BACKGROUND DE MENU --- / 
+	*	/ --- BACKGROUND DE MENU --- / 
+	* 
+	*	Ajuste del menu con los limites de la camara y HUD
 	*/
 	Vector2D posA = { pos.getX() + 300 + cameraOffset_->x , pos.getY() + cameraOffset_->y };
 	if (posA.getX() + 200  > sdlutils().width()) {
@@ -434,7 +437,7 @@ Vector2D HUDSystem::resetScale(twrId tId)
 }
 
 void HUDSystem::dragTowerIcon(Entity* en){
-	//enableAllButtons(false);
+	enableAllButtons(false);
 	showSelector(false);
 	mngr_->changeEntityId(_grp_HUD_DRAG_AND_DROP, en);
 	mngr_->getComponent<DragAndDrop>(en)->enableDrag(true);
