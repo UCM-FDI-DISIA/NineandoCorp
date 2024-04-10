@@ -18,6 +18,8 @@ enum ButtonTypes {
 	upgrade_slime_main, upgrade_bullet_main, 
 	upgrade_sniper_main, upgrade_fenix_main,
 	upgrade_clay_main, upgrade_enhancer_main,
+	//Enemybook
+	enemybook,
 
 	// ----- HUD -----//
 	crystal_drag,

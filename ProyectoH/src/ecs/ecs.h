@@ -183,6 +183,7 @@ enum msgId : msgId_type {
 	_m_OVER_GAME,
 	_m_LEVEL_SELECTOR,
 	_m_ENEMY_BOOK,
+	_m_ENEMY_BOOK_BUT,
 	_m_UPGRADE_TOWER,
 	_m_BACK_TO_MAINMENU,
 	_m_TEXT_MESSAGE,
@@ -410,6 +411,11 @@ struct Message {
 	{
 		int n;
 	}start_enemy_book;
+	//_m_ENEMY_BOOK_BUTTON
+	struct
+	{
+		int n;
+	}start_enemy_book_but;
 	//_m_RETURN_ENTITY
 	struct {
 		Entity* ent;
