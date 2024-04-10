@@ -637,7 +637,28 @@
         {
             "id": "level8_hover",
             "file": "resources/images/UI/level8_hover.png"
+        },
+        {
+            "id": "meteorite_icon",
+            "file": "resources/images/Meteorology/meteoritoIcon.png"
+        },
+        {
+            "id": "tsunami_icon",
+            "file": "resources/images/Meteorology/tsunamiIcon.png"
+        },
+        {
+            "id": "earthquake_icon",
+            "file": "resources/images/Meteorology/terremotoIcon.png"
+        },
+        {
+            "id": "tornado_icon",
+            "file": "resources/images/Meteorology/tornadoIcon.png"
+        },
+        {
+            "id": "storm_icon",
+            "file": "resources/images/Meteorology/tormentaIcon.png"
         }
+
     ],
 
   "fonts":[
