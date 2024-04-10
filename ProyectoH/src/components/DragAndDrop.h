@@ -73,6 +73,9 @@ public:
 		}
 		else canDrop_ = false;
 	}
+
+	inline int getCost() const { return cost; }
+
 private:
 
 	bool dragging_;

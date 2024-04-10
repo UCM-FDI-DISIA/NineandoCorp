@@ -43,18 +43,25 @@ private:
 	};
 
 	 struct TowerButton {
+
 		Vector2D initialPos;
 		Entity* button;
 		Entity* img;
+		Entity* coinImg;
+		Entity* moneyTxt;
 
 		TowerButton() : 
 			initialPos(Vector2D()),
-			button(nullptr), 
+			button(nullptr), //
+			coinImg(nullptr), //
+			moneyTxt(nullptr), //
 			img(nullptr) {}
 
-		TowerButton(Entity* but, Entity* im, const Vector2D& pos) : 
-			initialPos(pos),
-			button(but),
+		TowerButton(Entity* but, Entity* im, const Vector2D& pos, Entity* coin, Entity* money) : 
+			initialPos(pos), //
+			button(but), //
+			coinImg(coin), //
+			moneyTxt(money), // 
 			img(im) {}
 	};
 

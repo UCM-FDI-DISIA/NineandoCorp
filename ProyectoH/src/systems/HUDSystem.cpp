@@ -39,6 +39,8 @@ void HUDSystem::initSystem() {
 	*	/ -- ICONS & BUTTONS -- /
 	*
 	*/
+
+	SDL_Color moneyColor = { 255, 255, 255, 255 };
 	#pragma region BULLET TOWER
 	TowerButton tb1;
 		tb1.button = bS->addButton({ xAux, heightH },
@@ -59,6 +61,9 @@ void HUDSystem::initSystem() {
 			intAt("BalasWidth"), intAt("BalasHeight"),
 			0, 0);
 		tb1.initialPos = Vector2D( xAux + 3, heightH );
+		
+		// Set tower price
+		tb1.moneyTxt = bS->addText(std::to_string(dndBullet->getCost()), moneyColor, { xAux * 3, heightH + 30 }, { bSize.getX(), 20});
 
 		twrSel_.buttons[_twr_BULLET] = tb1;
 	#pragma endregion

@@ -1,8 +1,8 @@
 #pragma once
 #include <vector>
-
+#include <string>
 class SaveGame
-{
+{	
 private:
 	int monedasH_ = 0;
 	std::vector<int>* turretsLevel_;

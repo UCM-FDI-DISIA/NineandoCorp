@@ -203,9 +203,6 @@
     <ClCompile Include="src\utils\SaveGame.cpp">
       <Filter>Sources Files\utils</Filter>
     </ClCompile>
-    <ClCompile Include="U:\hlocal\NineandoCorp\NineandoCorp\ProyectoH\src\components\PrincipitoComponent.cpp">
-      <Filter>Sources Files\Components</Filter>
-    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\components\AcechanteComponent.h">
@@ -445,9 +442,6 @@
     </ClInclude>
     <ClInclude Include="src\utils\SaveGame.h">
       <Filter>Headers Files\utils</Filter>
-    </ClInclude>
-    <ClInclude Include="U:\hlocal\NineandoCorp\NineandoCorp\ProyectoH\src\components\PrincipitoComponent.h">
-      <Filter>Headers Files\Components</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
