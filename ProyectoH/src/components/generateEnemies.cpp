@@ -241,9 +241,10 @@ void generateEnemies::addEnemy(enmId type, std::vector<Vector2D> route) {
 		RoutesCorrection(tr, route, 1.5f, 1.5f);
 		tr->setPosition(route[0]);
 		mngr_->addComponent<RouteComponent>(t, route);
-		mngr_->addComponent<AttackComponent>(t, 100, 0.25, 10, true);
+		mngr_->addComponent<AttackComponent>(t, 100, 3, 10, true);
 		mngr_->addComponent<FramedImage>(t, 8, 1, 128, 128, 0, 8, 7);
 		mngr_->addComponent<EnemyTypeComponent>(t, _enm_PRINCIPITO);
+		mngr_->addComponent<PrincipitoComponent>(t);
 		break;
 	case _enm_MONJE:
 		tr->setSpeed(30.0f);

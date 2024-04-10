@@ -28,12 +28,14 @@ private:
 		Entity* twrLvl;
 		Entity* exitButton;
 		Entity* cost;
+		Entity* lvlText;
 		UpgradeMenu() :
 			background(nullptr), //
 			upgradeButton(nullptr), //
 			twrDescription(nullptr), // 
 			twrLvl(nullptr), // 
 			exitButton(nullptr), //
+			lvlText(nullptr), //
 			cost(nullptr)
 		{}
 

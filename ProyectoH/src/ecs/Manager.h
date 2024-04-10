@@ -132,5 +132,6 @@ public:
 
 	std::vector<Entity*>& getEntities(grpId_type gId = _grp_GENERAL);
 	void addToGroupList(grpId_type gId, Entity* e);
+
 };
 

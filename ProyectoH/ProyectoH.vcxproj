@@ -102,6 +102,7 @@
     <ClInclude Include="src\utils\NetMap.h" />
     <ClInclude Include="src\utils\Singleton.h" />
     <ClInclude Include="src\utils\Vector2D.h" />
+    <ClInclude Include="U:\hlocal\NineandoCorp\NineandoCorp\ProyectoH\src\components\PrincipitoComponent.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="EnemyBookState.cpp" />
@@ -175,6 +176,7 @@
     <ClCompile Include="src\utils\Collisions.cpp" />
     <ClCompile Include="src\utils\NetMap.cpp" />
     <ClCompile Include="src\utils\Vector2D.cpp" />
+    <ClCompile Include="U:\hlocal\NineandoCorp\NineandoCorp\ProyectoH\src\components\PrincipitoComponent.cpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>

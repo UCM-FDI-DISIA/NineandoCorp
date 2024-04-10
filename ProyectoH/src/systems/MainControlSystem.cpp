@@ -18,7 +18,7 @@ void MainControlSystem::receive(const Message& m) {
 		OnStartGame();
 		break;
 	case _m_ROUND_OVER:
-		game().changeState<MainMenuState>();
+		game().changeState<MainMenuState>(m.money_data.Hmoney);
 		break;
 	case _m_LEVEL_SELECTED:
 		game().changeState<PlayState>(m.start_game_data.level);

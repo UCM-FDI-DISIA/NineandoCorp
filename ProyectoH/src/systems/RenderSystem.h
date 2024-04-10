@@ -48,6 +48,9 @@ private:
 	void onResume();
 	void onGameOver(Uint8 winner);
 
+	//si el juego esta en el upgrade menu de una torre
+	bool isOnUpMenu;
+
 	bool mActive;
 
 	//void onPause();

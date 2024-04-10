@@ -16,6 +16,7 @@ struct cmpIsometricY {
 RenderSystem::RenderSystem() : winner_(0)
 {
 	mActive = true;
+	isOnUpMenu = false;
 	//Camera offset
 	*offset = build_sdlrect(0, 0, 0, 0);
 
@@ -73,6 +74,7 @@ RenderSystem::RenderSystem() : winner_(0)
 	//HUD
 	cursorTexture = &sdlutils().images().at("cursor");
 	cursorTexture2 = &sdlutils().images().at("cursorpress");
+	textures[monedaH] = &sdlutils().images().at("H_coin");
 	textures[box] = &sdlutils().images().at("box"); 
 	textures[box_hover] = &sdlutils().images().at("box_hover");
 	textures[large_box] = &sdlutils().images().at("large_box");
@@ -135,6 +137,7 @@ RenderSystem::RenderSystem() : winner_(0)
 	textures[principito] = &sdlutils().images().at("principito");
 	textures[monje] = &sdlutils().images().at("monje");
 	textures[muerte] = &sdlutils().images().at("muerte");
+
 	//Enemies Icons
 	textures[goblin_icon] = &sdlutils().images().at("goblin_icon");
 	textures[maldito_icon] = &sdlutils().images().at("maldito_icon");
@@ -179,6 +182,11 @@ void RenderSystem::receive(const Message& m) {
 	case _m_PAUSE:
 		mActive = !m.start_pause.onPause;
 		break;
+	case _m_SHOW_UPGRADE_TOWER_MENU:
+		isOnUpMenu = true;
+		break;
+	case _m_EXIT_UP_MENU:
+		isOnUpMenu = false;
 	default:
 		break;
 	}
@@ -196,7 +204,7 @@ void RenderSystem::update() {
 
 	sdlutils().clearRenderer();
 
-	if(mActive) {
+	if(mActive && !isOnUpMenu) {
 
 		//Este control tiene que estar en el main control sistem
 		////Control de camara

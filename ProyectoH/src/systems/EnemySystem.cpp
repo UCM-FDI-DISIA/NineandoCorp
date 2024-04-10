@@ -7,6 +7,7 @@
 #include "..//components/AcechanteComponent.h"
 #include "../components/MaestroAlmasComponent.h"
 #include "../components/MensajeroMuerteComponent.h"
+#include "../components/PrincipitoComponent.h"
 #include "../components/AngelComponent.h"
 #include "../components/IconComponent.h"
 #include "../components/GolemComponent.h"
@@ -65,7 +66,7 @@ void  EnemySystem::receive(const Message& m) {
 				enemyDeathAnim(*mngr_->getComponent<Transform>(m.entity_to_attack.e)->getPosition());
 				mngr_->deleteHandler(_hdlr_ENEMIES, m.entity_to_attack.e);
 				auto enemytype = mngr_->getComponent<EnemyTypeComponent>(m.entity_to_attack.e);
-				AddMoney(enemytype->GetEnemyType());
+				AddMoney(enemytype->GetEnemyType(), level);
 				if (mngr_->hasComponent<AttackComponent>(m.entity_to_attack.src))mngr_->getComponent<AttackComponent>(m.entity_to_attack.src)->setTarget(nullptr);
 			};
 		}
@@ -161,14 +162,14 @@ std::vector<Vector2D> EnemySystem::RouteTranslate(std::vector<Vector2D> route) {
 	return route_aux;
 }
 
-void EnemySystem::AddMoney(enmId type) {
+void EnemySystem::AddMoney(enmId type, int level) {
 	int money = 0;
+	int Hmoney = 0;
 	switch (type)
 	{
 	case _enm_MALMAS:
-		money = 30;
-		break;
 	case _enm_AELECTRICO:
+	case _enm_DREAL:
 		money = 30;
 		break;
 	case _enm_MALDITO:
@@ -178,8 +179,6 @@ void EnemySystem::AddMoney(enmId type) {
 		money = 100;
 		break;
 	case _enm_DALADO:
-		money = 5;
-		break;
 	case _enm_GOBLIN:
 		money = 5;
 		break;
@@ -195,20 +194,31 @@ void EnemySystem::AddMoney(enmId type) {
 	case _enm_DINFERNAL:
 		money = 75;
 		break;
-	case _enm_DREAL:
-		money = 30;
-		break;
 	case _enm_CMALDITO:
-		money = 0;
-		break;
 	case _enm_PRINCIPITO:
-		money = 0;
-		break;
 	case _enm_MONJE:
-		money = 0;
-		break;
 	case _enm_MUERTE:
 		money = 0;
+		break;
+	default:
+		break;
+	}
+
+	switch (level)
+	{
+	case 1:
+	case 2:
+		Hmoney = 1;
+		break;
+	case 3:
+	case 4:
+	case 5:
+	case 6:
+		Hmoney = 2;
+		break;
+	case 7:
+	case 8:
+		Hmoney = 3;
 		break;
 	default:
 		break;
@@ -216,6 +226,7 @@ void EnemySystem::AddMoney(enmId type) {
 	Message m;
 	m.id = _m_ADD_MONEY;
 	m.money_data.money = money;
+	m.money_data.Hmoney = Hmoney;
 	mngr_->send(m);
 }
 
@@ -231,6 +242,7 @@ void EnemySystem::update()
 				if (wave > sdlutils().waves().at("nivel" + std::to_string(level))) {
 					Message m;
 					m.id = _m_ROUND_OVER;
+					m.money_data.Hmoney = mngr_->getSystem<ButtonSystem>()->getHMoney();
 					mngr_->send(m, true);
 				}
 				else {
@@ -248,8 +260,9 @@ void EnemySystem::update()
 						spawn->generateEnemy();
 						spawn->next_Enemy();
 						spawn->setElapsedTime(0.0);
+						stopGenerate = false;
 					}
-					else if (spawn->getNumEnemies() >= spawn->totalEnemies())
+					else if (spawn->totalEnemies() != 0 && spawn->getNumEnemies() >= spawn->totalEnemies())
 					{
 						stopGenerate = true;
 					}
@@ -274,14 +287,18 @@ void EnemySystem::update()
 			AngelComponent* anc = mngr_->getComponent<AngelComponent>(e);
 			DefensorRealComponent* drc = mngr_->getComponent<DefensorRealComponent>(e);
 			EnemyTypeComponent* etc = mngr_->getComponent<EnemyTypeComponent>(e);
+			PrincipitoComponent* pc = mngr_->getComponent<PrincipitoComponent>(e);
 			MensajeroMuerteComponent* mm = mngr_->getComponent<MensajeroMuerteComponent>(e);
 			Transform* tr = mngr_->getComponent<Transform>(e);
 
-
-			if (ic != nullptr && ic->hasIcon()) {
-				Transform* iconTr = mngr_->getComponent<Transform>(ic->getIcon());
-				iconTr->setPosition(*(tr->getPosition()));
+			if (ic != nullptr) {
+				for (int i = 0; i < ic->getIcons().size(); i++) {
+					icon enemyIcon = ic->getIcons()[i];
+					Transform* iconTr = mngr_->getComponent<Transform>(enemyIcon.ent_);
+					iconTr->setPosition(*(tr->getPosition()) + Vector2D(intAt("IconOffset") * i, 0));
+				}
 			}
+
 
 			// golem
 			if (gc != nullptr) {
@@ -332,6 +349,10 @@ void EnemySystem::update()
 							ac->doDamageTo(ac->getTarget(), ac->getDamage(), _hdlr_LOW_TOWERS);
 							ac->setElapsedTime(0.0f);
 							ac->setLoaded(false);
+							if (pc != nullptr) {
+								pc->setAttackSpeed();
+								std::cout << ac->getReloadTime()<<"\n";
+							}
 						}
 					}
 					else {
@@ -353,27 +374,16 @@ void EnemySystem::update()
 					for (const auto& enemy : enemies) {
 						IconComponent* icOther = mngr_->getComponent<IconComponent>(enemy);
 						if (anc->getDistance(mngr_->getComponent<Transform>(enemy)->getPosition()) < anc->getRange() && enemy != e) {
-							if (icOther == nullptr)	icOther = mngr_->addComponent<IconComponent>(enemy, _HEALED);//Agregarselo si no lo tiene
-							if (icOther->getIconType() == _HEALED) {
-								if (!icOther->hasIcon()) {//Crearlo si no lo tiene
-									Entity* icon = mngr_->addEntity(_grp_ICONS);
-									mngr_->addComponent<RenderComponent>(icon, hpIcon);
-									Transform* tr = mngr_->addComponent<Transform>(icon);
-									Transform* targetTR = mngr_->getComponent<Transform>(enemy);
-									tr->setPosition(*(targetTR->getPosition()));
-									tr->setScale(*(targetTR->getScale()) / 4);
-
-									icOther->setHasIcon(true);
-									icOther->setIcon(icon);
-								}
+							if (!icOther->hasIcon(_HEALED)) {//Crearlo si no lo tiene
+								icOther->addIcon(_HEALED);
 							}
+							
 							mngr_->getComponent<HealthComponent>(enemy)->addHealth(mngr_->getComponent<HealthComponent>(enemy)->getBaseHealth() / 100.0f);
 							anc->setElapsed(0);
 						}
 						else {
-							if (icOther != nullptr && icOther->hasIcon() && icOther->getIconType() == _ANGEL) {//Eliminarlo si no se encuentra en la distancia
-								icOther->setHasIcon(false);
-								mngr_->setAlive(icOther->getIcon(), false);
+							if (icOther != nullptr && icOther->hasIcon(_HEALED)) {//Eliminarlo si no se encuentra en la distancia
+								icOther->removeIcon(_HEALED);
 							}
 						}
 					}
@@ -403,9 +413,12 @@ void EnemySystem::update()
 			MensajeroMuerteComponent* mm2 = mngr_->getComponent<MensajeroMuerteComponent>(e);
 			Transform* tr2 = mngr_->getComponent<Transform>(e);
 
-			if (ic2 != nullptr && ic2->hasIcon()) {
-				Transform* iconTr = mngr_->getComponent<Transform>(ic2->getIcon());
-				iconTr->setPosition(*(tr2->getPosition()));
+			if (ic2 != nullptr) {
+				for (int i = 0; i < ic2->getIcons().size(); i++) {
+					icon enemyIcon = ic2->getIcons()[i];
+					Transform* iconTr = mngr_->getComponent<Transform>(enemyIcon.ent_);
+					iconTr->setPosition(*(tr2->getPosition()) + Vector2D(intAt("IconOffset") * i,0));
+				}		
 			}
 
 			// route

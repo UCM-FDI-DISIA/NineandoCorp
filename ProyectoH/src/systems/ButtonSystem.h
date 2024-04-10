@@ -42,6 +42,12 @@ public:
 	/// </summary>
 	/// <returns> La propia entidad </returns>
 	Entity* addText(string txt, const SDL_Color& color, const Vector2D& pos, const Vector2D& scale);
+
+	/// <summary>
+	/// Devuelve las monedas H acumuladas en la partida
+	/// </summary>
+	/// <returns>Las monedas H</returns>
+	int getHMoney() { return HMoney_; };
 private:
 	/// <summary>
 	/// Llama a las funciones correspondientes dependiendo del tipo del boton cuando este es pulsado
@@ -49,6 +55,11 @@ private:
 	/// <param name="type">tipo del boton</param>
 	/// <param name="en">entidad correspondiente del boton</param>
 	void callFunction(ButtonTypes type, Entity* en);
+
+	/// <summary>
+	/// Crea el texto con las monedas H
+	/// </summary>
+	void generateHMoneyText();
 
 	/// <summary>
 	/// Desactiva todos los botones de la escena
@@ -111,6 +122,7 @@ private:
 
 	bool mActive;
 	int money_ = 0;
+	int HMoney_ = 0;
 	int costs[_twr_SIZE];
 	Entity* moneyText_;
 };

@@ -56,6 +56,7 @@ enum cmpId : cmpId_type {
 	_ENEMYTYPE,
 	_DEFENSORREAL,
 	_FORCEFIELD,
+	_PRINCIPITO,
 
 
 	// do not remove this
@@ -196,6 +197,7 @@ enum msgId : msgId_type {
 	_m_NETMAP_SET,
 	_m_REMOVE_RECT,
 	_m_ADD_MONEY,
+	_m_START_MENU,
 	_m_LEVEL_SELECTED,
 	_m_ANIM_CREATE,
 	_m_RETURN_ENTITY,
@@ -271,7 +273,7 @@ enum gameTextures {
 
 	//others
     meteorites, earthquake,tornado,thunder, tsunami,cloud,
-	bulletTexture, sniperBulletTexture, slimeBulletTexture, slimeArea, shield, hpIcon, blindedIcon, lightningIcon, powerIcon,
+	bulletTexture, sniperBulletTexture, slimeBulletTexture, slimeArea, shield, hpIcon, blindedIcon, lightningIcon, powerIcon, monedaH,
 
 	//explosions
 	shieldExp, bulletExplosion, enemyDeath,
@@ -488,6 +490,7 @@ struct Message {
   
 	struct {
 		int money;
+		int Hmoney;
 	}money_data;
 
 	

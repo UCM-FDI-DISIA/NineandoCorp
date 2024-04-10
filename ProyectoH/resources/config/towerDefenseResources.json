@@ -410,6 +410,10 @@
             "file": "resources/images/UI/LogodeHDefense.png"
         },
         {
+            "id": "H_coin",
+            "file": "resources/images/UI/H_coin.png"
+        },
+        {
             "id": "cristal_tower_image",
             "file": "resources/images/towers/1_cristal_tower.png"
         },
@@ -563,12 +567,12 @@
             "file": "resources/images/Enemies/mensajero.png"
         },
         {
-          "id": "enemy_death",
-          "file": "resources/images/Enemies/enemyDeath.png"
+            "id": "enemy_death",
+            "file": "resources/images/Enemies/enemyDeath.png"
         },
         {
-          "id": "cloud",
-          "file": "resources/images/Meteorology/fog.png"
+            "id": "cloud",
+            "file": "resources/images/Meteorology/fog.png"
         },
         {
             "id": "level1_button",

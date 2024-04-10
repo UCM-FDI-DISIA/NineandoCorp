@@ -66,6 +66,7 @@ public:
 	}
 
 	inline GameState* currentState() {return gameStateMachine->currentState(); }
+
 };
 
 // Returns reference to game instance

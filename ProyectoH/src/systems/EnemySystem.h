@@ -30,7 +30,7 @@ public:
 	void onRoundStart(int n_grp, unsigned int level);
 	void onWaveStart();
 	void collideswithEnemy();
-	void AddMoney(enmId type);
+	void AddMoney(enmId type, int level);
 	
 
 	std::vector<Vector2D> RouteTranslate(std::vector<Vector2D> route);
@@ -46,6 +46,9 @@ protected:
 	bool mActive;
 	bool generateEnemies_ = false;
 	bool stopGenerate = false;
+
+	int intAt(basic_string<char> s) { return sdlutils().intConst().at(s); }
+	float floatAt(basic_string<char> s) { return sdlutils().floatConst().at(s); }
 
 };
 

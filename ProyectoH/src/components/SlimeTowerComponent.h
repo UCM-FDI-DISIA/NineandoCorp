@@ -12,9 +12,12 @@ public:
 	float getSpeedDecrease() const;
 	void setDPS(float dps);
 	float getDPS() const;
+
+	void levelUp(int level);
 private:
 	float slimeDuration_;
 	float speedDecreasePer_;
 	float slimeDPS_;
+	bool isMaxLevel_;
 };
 
