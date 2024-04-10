@@ -120,16 +120,16 @@ RenderSystem::RenderSystem() : winner_(0)
 	textures[principito] = &sdlutils().images().at("principito");
 	textures[monje] = &sdlutils().images().at("monje");
 	textures[muerte] = &sdlutils().images().at("muerte");
-	textures[elfo_attack] = &sdlutils().images().at("elfo_attack");
-	textures[angel_attack] = &sdlutils().images().at("angel_attack");
-	textures[maestro_attack] = &sdlutils().images().at("maestro_attack");
-	textures[defensor_attack] = &sdlutils().images().at("defensor_attack");
-	textures[demonioAlado_attack] = &sdlutils().images().at("demonioAlado_attack");
-	textures[demonioInfernal_attack] = &sdlutils().images().at("demonioInfernal_attack");
-	textures[mensajero_attack] = &sdlutils().images().at("mensajero_attack");
-	textures[principito_attack] = &sdlutils().images().at("principito_attack");
-	textures[monje_attack] = &sdlutils().images().at("monje_attack");
-	textures[muerte_attack] = &sdlutils().images().at("muerte_attack");
+	textures[elfo_attack] = &sdlutils().images().at("elfo_Attack");
+	//textures[angel_attack] = &sdlutils().images().at("angel_Attack");
+	textures[maestro_attack] = &sdlutils().images().at("maestro_Attack");
+	textures[defensor_attack] = &sdlutils().images().at("defensor_Attack");
+	textures[demonioAlado_attack] = &sdlutils().images().at("demonioAlado_Attack");
+	//textures[demonioInfernal_attack] = &sdlutils().images().at("demonioInfernal_Attack");
+	//textures[mensajero_attack] = &sdlutils().images().at("mensajero_Attack");
+	textures[principito_attack] = &sdlutils().images().at("principito_Attack");
+	//textures[monje_attack] = &sdlutils().images().at("monje_Attack");
+	textures[muerte_attack] = &sdlutils().images().at("muerte_Attack");
 	//Enemies Icons
 	textures[goblin_icon] = &sdlutils().images().at("goblin_icon");
 	textures[maldito_icon] = &sdlutils().images().at("maldito_icon");

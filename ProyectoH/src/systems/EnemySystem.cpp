@@ -403,7 +403,7 @@ void EnemySystem::addField(Vector2D pos) {
 void EnemySystem::changeAnimation(bool isAttacking, Entity* e) {
 	FramedImage* fi = mngr_->getComponent<FramedImage>(e);
 	enmId enemy_type = mngr_->getComponent<EnemyTypeComponent>(e)->GetEnemyType();
-
+	RenderComponent* rc = mngr_->getComponent<RenderComponent>(e);
 	switch (enemy_type)
 	{
 	case _enm_MALMAS:
@@ -462,12 +462,13 @@ void EnemySystem::changeAnimation(bool isAttacking, Entity* e) {
 		break;
 	case _enm_ELFO:
 		if (isAttacking) {
-			
+			rc->setTexture(gameTextures::elfo_attack);
 		}
 		else
 		{
-			mngr_->addComponent<FramedImage>(e, 8, 1, 100, 100, 0, 8, 7);
-			
+			//mngr_->addComponent<FramedImage>(e, 8, 1, 100, 100, 0, 8, 7);
+			rc->setTexture(gameTextures::elfo);
+
 		}
 		break;
 	case _enm_MMUERTE:
