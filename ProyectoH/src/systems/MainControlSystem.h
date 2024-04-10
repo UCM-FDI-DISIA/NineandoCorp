@@ -1,8 +1,8 @@
 #pragma once
 #include "../ecs/System.h"
-#include "..//sdlutils/VirtualTimer.h"
 #include "../game/Game.h"
 #include "../components/NexusComponent.h"
+#include "../utils/SaveGame.h"
 #include <vector>
 
 class MainControlSystem : public System
@@ -27,6 +27,7 @@ protected:
 	double elapsedTime_;
 	VirtualTimer timer_;
 	Entity* nexo;
+	SaveGame saveGame = SaveGame();
 
 	// Niveles de nexo y torres
 	int turrentLevels_ [_twr_SIZE];	// Nexo última torre

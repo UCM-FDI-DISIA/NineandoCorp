@@ -56,6 +56,8 @@ enum cmpId : cmpId_type {
 	_ENEMYTYPE,
 	_DEFENSORREAL,
 	_FORCEFIELD,
+	_PRINCIPITO,
+	_MONJE,
 
 
 	// do not remove this
@@ -182,6 +184,7 @@ enum msgId : msgId_type {
 	_m_OVER_GAME,
 	_m_LEVEL_SELECTOR,
 	_m_ENEMY_BOOK,
+	_m_ENEMY_BOOK_BUT,
 	_m_UPGRADE_TOWER,
 	_m_BACK_TO_MAINMENU,
 	_m_TEXT_MESSAGE,
@@ -207,7 +210,8 @@ enum msgId : msgId_type {
 	_m_SHOW_UPGRADE_TOWER_MENU,
 	_m_TOWER_CLICKED,
 	_m_UPGRADE_TWR_INGAME,
-	_m_EXIT_UP_MENU
+	_m_EXIT_UP_MENU,
+	_m_SAVE_GAME
 };
 
 using twrId_type = uint8_t;
@@ -253,6 +257,7 @@ enum gameTextures {
 	crystal_tower_image, bullet_tower_image, slime_tower_image,
 	sniper_tower_image, phoenix_tower_image, clay_tower_image,
 	power_tower_image, nexus_level_3_image,
+	tsunami_icon,meteorite_icon, thunder_icon, tornado_icon, earthquake_icon, 
 	level1,level1_hover,level2,level2_hover,level3,level3_hover,level4,level4_hover,level5,level5_hover,level6,level6_hover,level7,level7_hover,level8,level8_hover,
 	// towers
 	square, bulletTowerTexture, cristalTowerTexture, phoenixTowerTexture,
@@ -408,6 +413,11 @@ struct Message {
 	{
 		int n;
 	}start_enemy_book;
+	//_m_ENEMY_BOOK_BUTTON
+	struct
+	{
+		int n;
+	}start_enemy_book_but;
 	//_m_RETURN_ENTITY
 	struct {
 		Entity* ent;
@@ -490,6 +500,11 @@ struct Message {
 		int money;
 		int Hmoney;
 	}money_data;
+
+	struct {
+		int Hmoney;
+	}save_data;
+	//_m_SAVE_GAME
 
 	
 };

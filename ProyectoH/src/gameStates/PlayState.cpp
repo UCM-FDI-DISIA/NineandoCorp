@@ -6,7 +6,7 @@ PlayState::PlayState(int level_) : GameState(_gmStt_PLAY), level(level_) {
 	// Sistemas requeridos para que funcione el juego
 	mngr_->addSystem<MainControlSystem>();
 	SDL_Rect* offset = mngr_->addSystem<RenderSystem>()->getOffset();
-	auto map = mngr_->addSystem<mapSystem>("../ProyectoH/resources/tileMap/nivel");
+	auto map = mngr_->addSystem<mapSystem>();
 	mngr_->addSystem<ButtonSystem>(_hdlr_BUTTON_PLAY);
 	mngr_->addSystem<HUDSystem>();
 	mngr_->addSystem<TowerSystem>();

@@ -840,14 +840,90 @@
   ],
 
   "intConst": [
+    {
+      "id": "MALMASmoney",
+      "value": 30
+    },
+    {
+      "id": "AELECTRICOmoney",
+      "value": 30
+    },
+    {
+      "id": "DREALmoney",
+      "value": 30
+    },
+    {
+      "id": "ELFOmoney",
+      "value": 15
+    },
+    {
+      "id": "MALDITOmoney",
+      "value": 15
+    },
+    {
+      "id": "GOLEMmoney",
+      "value": 100
+    },
+    {
+      "id": "DALADOmoney",
+      "value": 5
+    },
+    {
+      "id": "GOBLINmoney",
+      "value": 5
+    },
+    {
+      "id": "MMUERTEmoney",
+      "value": 50
+    },
+    {
+      "id": "ANGELmoney",
+      "value": 25
+    },
 
+    {
+      "id": "DINFERNALmoney",
+      "value": 75
+    },
+
+    {
+      "id": "CMALDITOmoney",
+      "value": 0
+    },
+
+    {
+      "id": "PRINCIPITOmoney",
+      "value": 0
+    },
+    {
+      "id": "MONJEmoney",
+      "value": 0
+    },
+    {
+      "id": "MUERTEmoney",
+      "value": 0
+    },
+
+
+    {
+      "id": "Hmoney1",
+      "value": 1
+    },
+    {
+      "id": "Hmoney2",
+      "value": 2
+    },
+    {
+      "id": "Hmoney3",
+      "value": 3
+    },
     {
       "id": "FenixVida",
       "value": 100
     },
     {
       "id": "IconOffset",
-      "value":  20
+      "value": 20
     },
 
     {
@@ -1140,9 +1216,9 @@
       "value": 800
     },
     {
-        "id": "FireHeight",
-        "value": 320
-      },
+      "id": "FireHeight",
+      "value": 320
+    },
     {
       "id": "FireFrames",
       "value": 10

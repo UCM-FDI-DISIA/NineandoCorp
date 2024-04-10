@@ -8,29 +8,57 @@
 
 
 
-MeteorologySystem::MeteorologySystem(): minTimeInterval_(1.0),
-maxTimeInterval_(3.0), 
+MeteorologySystem::MeteorologySystem(): minTimeInterval_(5.0),
+maxTimeInterval_(10.0), 
 elapsedTime_(0) ,
-thundersInterval_(0.5),
-meteoriteInterval_(1.5),
+thundersInterval_(0.1),
+meteoriteInterval_(0.2),
 elapsedSpawn_(0),
 quantity_(0),
 eventActive_(false),
-objectsSpawned_(0)
+objectsSpawned_(0),
+currentWaves_(0),
+wavesToNextevent_(0)
 {
 	mActive = true;
-	auto& rand = sdlutils().rand();
-	timeToNextEvent_ = rand.nextInt(minTimeInterval_, maxTimeInterval_);
-	nextEvent_ = (MeteorologyEvent)rand.nextInt(0, 5);
+	imgEvent_ = nullptr;
 }
 
 MeteorologySystem::~MeteorologySystem() {
 
 }
 
+void MeteorologySystem::setIcon() {
+	gameTextures tex = gameTextures::tsunami_icon;
+	switch (nextEvent_)
+	{
+	case MeteorologySystem::TSUNAMI:
+		break;
+	case MeteorologySystem::STORM:
+		tex = gameTextures::thunder_icon;
+		break;
+	case MeteorologySystem::METEORITES:
+		tex = gameTextures::meteorite_icon;
+		break;
+	case MeteorologySystem::TORNADO:
+		tex = gameTextures::tornado_icon;
+		break;
+	case MeteorologySystem::EARTHQUAKE:
+		tex = gameTextures::earthquake_icon;
+		break;
+	default:
+		break;
+	}
+	imgEvent_ = mngr_->addEntity(_grp_HUD_BACKGROUND);
+	mngr_->addComponent<RenderComponent>(imgEvent_, tex);
+	auto t = mngr_->addComponent<Transform>(imgEvent_);
+	t->setPosition(Vector2D(100.0, 40.0));
+	t->setScale(Vector2D(70.0, 70.0));
+}
+
 
 void MeteorologySystem::initSystem() {
-
+	setNextEvent(1, TORNADO);
 }
 
 void  MeteorologySystem::receive(const Message& m) {
@@ -59,6 +87,9 @@ void  MeteorologySystem::receive(const Message& m) {
 		default:
 			break;
 		}
+		break;
+	case _m_WAVE_START:
+		currentWaves_++;
 		break;
 	default:
 		break;
@@ -270,16 +301,36 @@ void MeteorologySystem::generateTsunami() {
 	
 }
 
+void MeteorologySystem::setNextEvent(int waves, MeteorologyEvent event) {//metodo para setear cuando quieres un evento
+	wavesToNextevent_ = waves;
+	nextEvent_ = event;
+	setIcon();
+}
+
 void MeteorologySystem::update() {
 
 	if (mActive) {
 
 		if (!eventActive_) { elapsedTime_ += game().getDeltaTime(); }
 
-		if (elapsedTime_ > timeToNextEvent_ && !eventActive_) {//comienza el evento
+		if (!eventActive_) {//Tiempo para el siguiente evento
+			int waves = (int)(wavesToNextevent_ - currentWaves_);
+			Message m;
+			m.id = _m_ADD_TEXT;
+			m.add_text_data.txt = "Rounds: " + to_string(waves);
+			m.add_text_data.color = { 255, 255 ,255, 255 };
+			Vector2D txtScale = Vector2D(120.0f, 40.0f);
+			if (waves < 10.0) { txtScale = Vector2D(110.0, 40.0); }
+			m.add_text_data.pos = Vector2D(60.0, 70.0) - (txtScale / 2);
+			m.add_text_data.scale = txtScale;
+			m.add_text_data.time = 1;
+			mngr_->send(m);
+		}
+
+		if (currentWaves_ >= wavesToNextevent_ && !eventActive_) {//comienza el evento
 
 			eventActive_ = true;
-
+		
 			switch (nextEvent_)
 			{
 			case MeteorologySystem::TSUNAMI:
@@ -287,11 +338,11 @@ void MeteorologySystem::update() {
 				break;
 			case MeteorologySystem::STORM:
 				generateNetMap();
-				generateStorm(50);
+				generateStorm(250);
 				break;
 			case MeteorologySystem::METEORITES:
 				generateNetMap();
-				generateMeteorites(50);
+				generateMeteorites(125);
 				break;
 			case MeteorologySystem::TORNADO:
 				generateNetMap();
@@ -303,7 +354,6 @@ void MeteorologySystem::update() {
 			default:
 				break;
 			}
-			elapsedTime_ = 0.0;
 		}
 
 		if (eventActive_) {//evento activo
@@ -364,13 +414,11 @@ void MeteorologySystem::update() {
 
 			if (eventOver) {//acaba el evento
 				eventActive_ = false;
-				auto& rand = sdlutils().rand();
-				elapsedTime_ = 0.0;
-				timeToNextEvent_ = rand.nextInt(minTimeInterval_, maxTimeInterval_);
-				nextEvent_ = (MeteorologyEvent)rand.nextInt(0, 5);
+				currentWaves_ = 0;
 				objectsSpawned_ = 0;
 				elapsedSpawn_ = 0;
 				quantity_ = 0;
+				if (imgEvent_ != nullptr && mngr_->isAlive(imgEvent_)) { mngr_->setAlive(imgEvent_, false); }
 			}
 		}
 	}

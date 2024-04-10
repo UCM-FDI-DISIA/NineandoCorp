@@ -41,6 +41,7 @@ void EnemyBookSystem::initSystem() {
 		gameTextures::muerte_icon
 	};
 
+
 	// Calcular la posición inicial del contenido
 	float contentPosX = 350.f; // Posición inicial x del contenido
 	float contentPosY = 300.f; // Posición y del contenido
@@ -48,10 +49,14 @@ void EnemyBookSystem::initSystem() {
 	float contentWidth = 100.f; // Ancho del contenido
 	float contentHeight = 100.f; // Alto del contenido
 
+
 	// Añadir imágenes de enemigos
 	int enemies = 15;
 	float spacingX = 120.f; // Espacio horizontal entre las imágenes de enemigos
 	int t = 0;
+	Message M;
+	M.id = _m_ENEMY_BOOK_BUT;
+
 	 auto text = gameTextures::large_box;
 	for (size_t i = 0; i < enemies; i++) {
 		// Calcular la posición de la imagen del enemigo
@@ -60,13 +65,17 @@ void EnemyBookSystem::initSystem() {
 		Vector2D sAuxbox = { contentWidth + 15, contentHeight + 15 };
 		if (Vistos[i] == true)
 		{
-			bS->addImage(pAux, sAuxbox, 0.0, gameTextures::large_box, _grp_HUD_FOREGROUND);
+			M.start_enemy_book_but.n = i;
 			text = Texturas[i];
+			bS->addImage(pAux, sAuxbox, 0.0, gameTextures::large_box, _grp_HUD_FOREGROUND);
+			bS->addButton(pAux, sAux, text, text, ButtonTypes::enemybook,0 ,M);
+			
 		}
 		else {
 			text = gameTextures::large_box;
+			bS->addImage(pAux, sAuxbox, 0.0,text, _grp_HUD_FOREGROUND);
 		}
-		bS->addImage(pAux, sAux, 0.0,text, _grp_HUD_FOREGROUND);
+		
 		t++;
 		if (t%5 ==0 && t!= 0)
 		{

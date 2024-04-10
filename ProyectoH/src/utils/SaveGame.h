@@ -1,0 +1,19 @@
+#pragma once
+#include <vector>
+
+class SaveGame
+{
+private:
+	int monedasH_ = 0;
+	std::vector<int>* turretsLevel_;
+	int levelsDesb;
+	std::vector<std::string>* turretsLevel_;
+
+public:
+	int getHCoins() { return monedasH_; };
+	void setHCoins(int h) { monedasH_ = h; };
+
+	void saveFile();
+	void loadFile();
+};
+

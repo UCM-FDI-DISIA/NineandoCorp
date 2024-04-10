@@ -45,6 +45,10 @@ void MainControlSystem::receive(const Message& m) {
 	case _m_SHOW_UPGRADE_TOWER_MENU:
 		//std::cout << "ID de torre: " << m.show_upgrade_twr_menu_data.tId << std::endl;
 		break;
+	case _m_SAVE_GAME:
+		saveGame.setHCoins(m.save_data.Hmoney);
+		saveGame.saveFile();
+		break;
 	}
 }
 
