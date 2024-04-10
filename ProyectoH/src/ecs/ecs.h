@@ -209,7 +209,8 @@ enum msgId : msgId_type {
 	_m_SHOW_UPGRADE_TOWER_MENU,
 	_m_TOWER_CLICKED,
 	_m_UPGRADE_TWR_INGAME,
-	_m_EXIT_UP_MENU
+	_m_EXIT_UP_MENU,
+	_m_SAVE_GAME
 };
 
 using twrId_type = uint8_t;
@@ -493,6 +494,11 @@ struct Message {
 		int money;
 		int Hmoney;
 	}money_data;
+
+	struct {
+		int Hmoney;
+	}save_data;
+	//_m_SAVE_GAME
 
 	
 };

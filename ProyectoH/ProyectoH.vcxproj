@@ -100,6 +100,7 @@
     <ClInclude Include="src\utils\Collisions.h" />
     <ClInclude Include="src\utils\mpl.h" />
     <ClInclude Include="src\utils\NetMap.h" />
+    <ClInclude Include="src\utils\SaveGame.h" />
     <ClInclude Include="src\utils\Singleton.h" />
     <ClInclude Include="src\utils\Vector2D.h" />
     <ClInclude Include="U:\hlocal\NineandoCorp\NineandoCorp\ProyectoH\src\components\PrincipitoComponent.h" />
@@ -175,6 +176,7 @@
     <ClCompile Include="src\systems\TowerSystem.cpp" />
     <ClCompile Include="src\utils\Collisions.cpp" />
     <ClCompile Include="src\utils\NetMap.cpp" />
+    <ClCompile Include="src\utils\SaveGame.cpp" />
     <ClCompile Include="src\utils\Vector2D.cpp" />
     <ClCompile Include="U:\hlocal\NineandoCorp\NineandoCorp\ProyectoH\src\components\PrincipitoComponent.cpp" />
   </ItemGroup>
