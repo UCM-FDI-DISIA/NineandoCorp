@@ -214,6 +214,9 @@
     <ClCompile Include="src\components\LimitedTime.cpp">
       <Filter>Sources Files\Components</Filter>
     </ClCompile>
+    <ClCompile Include="U:\hlocal\NineandoCorp\NineandoCorp\ProyectoH\src\components\PrincipitoComponent.cpp">
+      <Filter>Sources Files\Components</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\components\AcechanteComponent.h">
@@ -463,6 +466,9 @@
       <Filter>Headers Files\Components</Filter>
     </ClInclude>
     <ClInclude Include="src\components\TowerStates.h">
+      <Filter>Headers Files\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="U:\hlocal\NineandoCorp\NineandoCorp\ProyectoH\src\components\PrincipitoComponent.h">
       <Filter>Headers Files\Components</Filter>
     </ClInclude>
   </ItemGroup>

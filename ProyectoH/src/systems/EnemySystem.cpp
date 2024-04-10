@@ -7,6 +7,7 @@
 #include "..//components/AcechanteComponent.h"
 #include "../components/MaestroAlmasComponent.h"
 #include "../components/MensajeroMuerteComponent.h"
+#include "../components/PrincipitoComponent.h"
 #include "../components/AngelComponent.h"
 #include "../components/IconComponent.h"
 #include "../components/GolemComponent.h"
@@ -285,6 +286,7 @@ void EnemySystem::update()
 			AngelComponent* anc = mngr_->getComponent<AngelComponent>(e);
 			DefensorRealComponent* drc = mngr_->getComponent<DefensorRealComponent>(e);
 			EnemyTypeComponent* etc = mngr_->getComponent<EnemyTypeComponent>(e);
+			PrincipitoComponent* pc = mngr_->getComponent<PrincipitoComponent>(e);
 			MensajeroMuerteComponent* mm = mngr_->getComponent<MensajeroMuerteComponent>(e);
 			Transform* tr = mngr_->getComponent<Transform>(e);
 
@@ -346,6 +348,10 @@ void EnemySystem::update()
 							ac->doDamageTo(ac->getTarget(), ac->getDamage(), _hdlr_LOW_TOWERS);
 							ac->setElapsedTime(0.0f);
 							ac->setLoaded(false);
+							if (pc != nullptr) {
+								pc->setAttackSpeed();
+								std::cout << ac->getReloadTime()<<"\n";
+							}
 						}
 					}
 					else {
