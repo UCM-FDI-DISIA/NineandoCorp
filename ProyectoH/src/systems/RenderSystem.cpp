@@ -120,6 +120,16 @@ RenderSystem::RenderSystem() : winner_(0)
 	textures[principito] = &sdlutils().images().at("principito");
 	textures[monje] = &sdlutils().images().at("monje");
 	textures[muerte] = &sdlutils().images().at("muerte");
+	textures[elfo_attack] = &sdlutils().images().at("elfo_attack");
+	textures[angel_attack] = &sdlutils().images().at("angel_attack");
+	textures[maestro_attack] = &sdlutils().images().at("maestro_attack");
+	textures[defensor_attack] = &sdlutils().images().at("defensor_attack");
+	textures[demonioAlado_attack] = &sdlutils().images().at("demonioAlado_attack");
+	textures[demonioInfernal_attack] = &sdlutils().images().at("demonioInfernal_attack");
+	textures[mensajero_attack] = &sdlutils().images().at("mensajero_attack");
+	textures[principito_attack] = &sdlutils().images().at("principito_attack");
+	textures[monje_attack] = &sdlutils().images().at("monje_attack");
+	textures[muerte_attack] = &sdlutils().images().at("muerte_attack");
 	//Enemies Icons
 	textures[goblin_icon] = &sdlutils().images().at("goblin_icon");
 	textures[maldito_icon] = &sdlutils().images().at("maldito_icon");
@@ -136,6 +146,8 @@ RenderSystem::RenderSystem() : winner_(0)
 	textures[principito_icon] = &sdlutils().images().at("principito_icon");
 	textures[monje_icon] = &sdlutils().images().at("monje_icon");
 	textures[muerte_icon] = &sdlutils().images().at("muerte_icon");
+
+
 
 	//fenomenos
 	textures[thunder] = &sdlutils().images().at("thunder");

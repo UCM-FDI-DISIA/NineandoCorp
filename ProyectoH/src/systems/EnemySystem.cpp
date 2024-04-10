@@ -413,7 +413,7 @@ void EnemySystem::changeAnimation(bool isAttacking, Entity* e) {
 	{
 	case _enm_MALMAS:
 		if (isAttacking) {
-
+			
 		}
 		else
 		{
@@ -471,7 +471,8 @@ void EnemySystem::changeAnimation(bool isAttacking, Entity* e) {
 		}
 		else
 		{
-
+			mngr_->addComponent<FramedImage>(e, 8, 1, 100, 100, 0, 8, 7);
+			
 		}
 		break;
 	case _enm_MMUERTE:
