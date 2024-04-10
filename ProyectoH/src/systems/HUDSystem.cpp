@@ -17,7 +17,7 @@ void HUDSystem::initSystem() {
 	ButtonSystem* bS = mngr_->getSystem<ButtonSystem>();
 
 	buttonsSpace_length_ = sdlutils().width() - 200; 
-	float heightH = (float)sdlutils().height() - 80.0f;
+	float heightH = (float)sdlutils().height() - 100.0f;
 	float xAux = (float)(buttonsSpace_length_ - 150 ) / 7;
 	float separation = 150.0f;
 	Vector2D bSize = Vector2D(100.0f, 100.0f);
@@ -40,7 +40,9 @@ void HUDSystem::initSystem() {
 	*
 	*/
 
+	// Color general para el texto
 	SDL_Color moneyColor = { 255, 255, 255, 255 };
+
 	#pragma region BULLET TOWER
 	TowerButton tb1;
 		tb1.button = bS->addButton({ xAux, heightH },
@@ -63,7 +65,15 @@ void HUDSystem::initSystem() {
 		tb1.initialPos = Vector2D( xAux + 3, heightH );
 		
 		// Set tower price
-		tb1.moneyTxt = bS->addText(std::to_string(dndBullet->getCost()), moneyColor, { xAux * 3, heightH + 30 }, { bSize.getX(), 20});
+		tb1.moneyTxt = bS->addText(std::to_string(sdlutils().intConst().at("BalasPrecio")), moneyColor, { xAux - bSize.getX() / 2 , heightH + 50}, {bSize.getX() / 2 , 30});
+
+		//Icono de moneda - TEMPORAL, CAMBIAR MAS TARDE A LA MONEDA INGAME
+		tb1.coinImg = bS->addImage(
+			{ xAux + bSize.getX() / 4, heightH + 67.5f},
+			{30.0f, 30.0f },
+			0.0f,
+			gameTextures::monedaH,
+			_grp_HUD_FOREGROUND);
 
 		twrSel_.buttons[_twr_BULLET] = tb1;
 	#pragma endregion
@@ -87,6 +97,18 @@ void HUDSystem::initSystem() {
 			intAt("CristalWidth"), intAt("CristalHeight"),
 			0, 0);
 		tb2.initialPos = Vector2D(xAux * 2 + 3, heightH - 10 );
+
+		// Set tower price
+		tb2.moneyTxt = bS->addText(std::to_string(sdlutils().intConst().at("CristalPrecio")), moneyColor, { (xAux * 2)  - bSize.getX() / 2 , heightH + 50 }, { bSize.getX() / 2 , 30 });
+
+		//Icono de moneda - TEMPORAL, CAMBIAR MAS TARDE A LA MONEDA INGAME
+		tb2.coinImg = bS->addImage(
+			{ (xAux * 2) + bSize.getX() / 4 , heightH + 67.5f },
+			{ 30.0f, 30.0f },
+			0.0f,
+			gameTextures::monedaH,
+			_grp_HUD_FOREGROUND);
+
 		twrSel_.buttons[_twr_CRISTAL] = tb2;
 
 	#pragma endregion
@@ -112,6 +134,18 @@ void HUDSystem::initSystem() {
 			0, 0);
 
 		tb3.initialPos = Vector2D(xAux * 3 + 3, heightH );
+
+		// Set tower price
+		tb3.moneyTxt = bS->addText(std::to_string(sdlutils().intConst().at("FenixPrecio")), moneyColor, { (xAux * 3) - bSize.getX() / 2 , heightH + 50 }, { bSize.getX() / 2 , 30 });
+
+		//Icono de moneda - TEMPORAL, CAMBIAR MAS TARDE A LA MONEDA INGAME
+		tb3.coinImg = bS->addImage(
+			{ (xAux * 3) + bSize.getX() / 4 , heightH + 67.5f },
+			{ 30.0f, 30.0f },
+			0.0f,
+			gameTextures::monedaH,
+			_grp_HUD_FOREGROUND);
+
 		twrSel_.buttons[_twr_FENIX] = tb3;
 	#pragma endregion
 
@@ -135,6 +169,18 @@ void HUDSystem::initSystem() {
 			0, 0);
 
 		tb4.initialPos = Vector2D( xAux * 4 + 3, heightH );
+
+		// Set tower price
+		tb4.moneyTxt = bS->addText(std::to_string(sdlutils().intConst().at("ArcillaPrecio")), moneyColor, { (xAux * 4) - bSize.getX() / 2 , heightH + 50 }, { bSize.getX() / 2 , 30 });
+
+		//Icono de moneda - TEMPORAL, CAMBIAR MAS TARDE A LA MONEDA INGAME
+		tb4.coinImg = bS->addImage(
+			{ (xAux * 4) + bSize.getX() / 4 , heightH + 67.5f },
+			{ 30.0f, 30.0f },
+			0.0f,
+			gameTextures::monedaH,
+			_grp_HUD_FOREGROUND);
+
 		twrSel_.buttons[_twr_CLAY] = tb4;
 	#pragma endregion
 
@@ -159,6 +205,18 @@ void HUDSystem::initSystem() {
 			0, 0);
 
 		tb5.initialPos = Vector2D( xAux * 5 + 3, heightH );
+
+		// Set tower price
+		tb5.moneyTxt = bS->addText(std::to_string(sdlutils().intConst().at("DiegoSniperPrecio")), moneyColor, { (xAux * 5) - bSize.getX() / 2 , heightH + 50 }, { bSize.getX() / 2 , 30 });
+
+		//Icono de moneda - TEMPORAL, CAMBIAR MAS TARDE A LA MONEDA INGAME
+		tb5.coinImg = bS->addImage(
+			{ (xAux * 5) + bSize.getX() / 4 , heightH + 67.5f },
+			{ 30.0f, 30.0f },
+			0.0f,
+			gameTextures::monedaH,
+			_grp_HUD_FOREGROUND);
+
 		twrSel_.buttons[_twr_DIEGO] = tb5;
 	#pragma endregion
 	
@@ -183,6 +241,18 @@ void HUDSystem::initSystem() {
 			0, 0);
 
 		tb6.initialPos =  Vector2D( xAux * 6 + 3, heightH );
+
+		// Set tower price
+		tb6.moneyTxt = bS->addText(std::to_string(sdlutils().intConst().at("SlimePrecio")), moneyColor, { (xAux * 6) - bSize.getX() / 2 , heightH + 50 }, { bSize.getX() / 2 , 30 });
+
+		//Icono de moneda - TEMPORAL, CAMBIAR MAS TARDE A LA MONEDA INGAME
+		tb6.coinImg = bS->addImage(
+			{ (xAux * 6) + bSize.getX() / 4 , heightH + 67.5f },
+			{ 30.0f, 30.0f },
+			0.0f,
+			gameTextures::monedaH,
+			_grp_HUD_FOREGROUND);
+
 		twrSel_.buttons[_twr_SLIME] = tb6;
 	#pragma endregion
 
@@ -207,6 +277,17 @@ void HUDSystem::initSystem() {
 			0, 0);
 
 		tb7.initialPos = Vector2D( xAux * 7 + 3 , heightH - 4 );
+		// Set tower price
+		tb7.moneyTxt = bS->addText(std::to_string(sdlutils().intConst().at("PotenciadoraPrecio")), moneyColor, { (xAux * 7) - bSize.getX() / 2 , heightH + 50 }, { bSize.getX() / 2 , 30 });
+
+		//Icono de moneda - TEMPORAL, CAMBIAR MAS TARDE A LA MONEDA INGAME
+		tb7.coinImg = bS->addImage(
+			{ (xAux * 7) + bSize.getX() / 4 , heightH + 67.5f },
+			{ 30.0f, 30.0f },
+			0.0f,
+			gameTextures::monedaH,
+			_grp_HUD_FOREGROUND);
+
 		twrSel_.buttons[_twr_POWER] = tb7;
 	#pragma endregion
 
@@ -272,6 +353,11 @@ void HUDSystem::receive(const Message& m) {
 	case _m_EXIT_UP_MENU:
 		exitUpgradeMenu();
 		showSelector(true);
+		break;
+	case _m_SELL_TOWER:
+		Message m;
+		m.id = _m_EXIT_UP_MENU;
+		mngr_->send(m);
 		break;
 	}
 }	
@@ -413,10 +499,26 @@ void HUDSystem::showUpgradeMenu(Entity* twr, const Vector2D& pos) {
 	upM_.lvlText = bS->addText(lvltxt, c1, lvlPos2 + offset, lvlScale2);
 
 	/**
+	*	BOTON DE VENDER
+	*/
+	Message m1;
+	m1.id = _m_SELL_TOWER;
+	m1.sell_tower_data.twr = twr;
+	int cost = mngr_->getComponent<DragAndDrop>(twrSel_.buttons[upCmp->id_].img)->getCost();
+	m1.sell_tower_data.money = (cost * 75) / 100 ;
+
+	Vector2D posC = { pos.getX() + 390 + cameraOffset_->x, pos.getY() + cameraOffset_->y };
+	upM_.sellButton = bS->addButton(posC + offset,
+		{ 150.0f, 60.0f },
+		sell, sell_hover, ButtonTypes::sell_tower, 0,
+		m1
+	);
+
+	/**
 	*	BOTON DE SALIR
 	*/
-	Vector2D posC = { pos.getX() + 460.0f + cameraOffset_->x, pos.getY() - 105.0f + cameraOffset_->y };
-	upM_.exitButton = bS->addButton(posC + offset,
+	Vector2D posD = { pos.getX() + 460.0f + cameraOffset_->x, pos.getY() - 105.0f + cameraOffset_->y };
+	upM_.exitButton = bS->addButton(posD + offset,
 		{ 40.0f , 40.0f },
 		gameTextures::close, gameTextures::close_hover, ButtonTypes::exit_up_menu);
 }
@@ -426,13 +528,15 @@ void HUDSystem::exitUpgradeMenu() {
 
 	mngr_->setAlive(upM_.background, false);
 	mngr_->setAlive(upM_.upgradeButton, false);
-	mngr_->setAlive(upM_.twrDescription, false);
+	mngr_->setAlive(upM_.twrName, false);
 	mngr_->setAlive(upM_.twrLvl, false);
 	mngr_->setAlive(upM_.exitButton, false);
 	mngr_->setAlive(upM_.cost, false);
 	mngr_->setAlive(upM_.lvlText, false);
+	mngr_->setAlive(upM_.sellButton, false);
 	mngr_->refresh();
 
+	mngr_->deleteHandler(hId, upM_.sellButton);
 	mngr_->deleteHandler(hId, upM_.exitButton);
 	mngr_->deleteHandler(hId, upM_.upgradeButton);
 	mngr_->deleteHandler(hId, upM_.background);
@@ -442,19 +546,24 @@ void HUDSystem::exitUpgradeMenu() {
 }
 
 void HUDSystem::showSelector(bool active) {
-	// buttons
+	// TowerButtons
 	for (auto tb : twrSel_.buttons) {
+		//Boton
 		auto b = tb.button;
 		mngr_->getComponent<ButtonComponent>(b)->setActive(active);
-		mngr_->getComponent<RenderComponent>(b)->isActive_ = active;
-		auto i = tb.img;
-		mngr_->getComponent<RenderComponent>(i)->isActive_ = active;
+		mngr_->getComponent<RenderComponent>(b)->isActive = active;
+		//Icono torre
+		mngr_->getComponent<RenderComponent>(tb.img)->isActive = active;
+		//Texto de dinero
+		mngr_->getComponent<TextComponent>(tb.moneyTxt)->isActive = active;
+		mngr_->getComponent<RenderComponent>(tb.coinImg)->isActive = active;
 	}
-
+	// Boton de iniciar ronda
 	mngr_->getComponent<ButtonComponent>(twrSel_.roundButton)->setActive(active);
-	mngr_->getComponent<RenderComponent>(twrSel_.roundButton)->isActive_ = active;
-
-	mngr_->getComponent<RenderComponent>(twrSel_.background)->isActive_ = active;
+	mngr_->getComponent<RenderComponent>(twrSel_.roundButton)->isActive = active;
+	
+	// Background
+	mngr_->getComponent<RenderComponent>(twrSel_.background)->isActive = active;
 }
 
 Cell* HUDSystem::getCellFromTile(const Vector2D& pos) {

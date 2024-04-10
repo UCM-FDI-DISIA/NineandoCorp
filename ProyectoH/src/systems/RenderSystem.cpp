@@ -112,6 +112,8 @@ RenderSystem::RenderSystem() : winner_(0)
 	textures[level7_hover] = &sdlutils().images().at("level7_hover");
 	textures[level8] = &sdlutils().images().at("level8_button");
 	textures[level8_hover] = &sdlutils().images().at("level8_hover");
+	textures[sell] = &sdlutils().images().at("sell");
+	textures[sell_hover] = &sdlutils().images().at("sell_hover");
 
 	//Explosions
 	textures[shieldExp] = &sdlutils().images().at("shieldExp");
@@ -187,6 +189,7 @@ void RenderSystem::receive(const Message& m) {
 		break;
 	case _m_EXIT_UP_MENU:
 		isOnUpMenu = false;
+		break;
 	default:
 		break;
 	}
@@ -394,7 +397,7 @@ void RenderSystem::update() {
 	for (auto& h : hudB) {
 		Transform* tr = mngr_->getComponent<Transform>(h);
 		gameTextures textureId = mngr_->getComponent<RenderComponent>(h)->getTexture();
-		if (mngr_->getComponent<RenderComponent>(h)->isActive_)
+		if (mngr_->getComponent<RenderComponent>(h)->isActive)
 			textures[textureId]->render(tr->getRect(), tr->getRotation());
 	}
 
@@ -404,7 +407,7 @@ void RenderSystem::update() {
 		auto fI = mngr_->getComponent<FramedImage>(h);
 		Transform* tr = mngr_->getComponent<Transform>(h);
 		gameTextures textureId = mngr_->getComponent<RenderComponent>(h)->getTexture();
-		if (mngr_->getComponent<RenderComponent>(h)->isActive_) {
+		if (mngr_->getComponent<RenderComponent>(h)->isActive) {
 			if (fI != nullptr) {
 				SDL_Rect srcRect = fI->getSrcRect();
 				textures[textureId]->render(srcRect, tr->getRect(), tr->getRotation());
@@ -419,7 +422,8 @@ void RenderSystem::update() {
 	const auto& texts = mngr_->getEntities(_grp_TEXTS);
 	for (auto& t : texts) {
 		Transform* tr = mngr_->getComponent<Transform>(t);
-		mngr_->getComponent<TextComponent>(t)->getTexture()->render(tr->getRect(), tr->getRotation());
+		auto tC = mngr_->getComponent<TextComponent>(t);
+		if(tC->isActive) tC->getTexture()->render(tr->getRect(), tr->getRotation());
 	}
 
 	//DRAG AND DROP

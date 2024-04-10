@@ -24,18 +24,20 @@ private:
 	struct UpgradeMenu{
 		Entity* background;
 		Entity* upgradeButton;
-		Entity* twrDescription;
+		Entity* twrName;
 		Entity* twrLvl;
 		Entity* exitButton;
 		Entity* cost;
 		Entity* lvlText;
+		Entity* sellButton;
 		UpgradeMenu() :
 			background(nullptr), //
 			upgradeButton(nullptr), //
-			twrDescription(nullptr), // 
+			twrName(nullptr), // 
 			twrLvl(nullptr), // 
 			exitButton(nullptr), //
 			lvlText(nullptr), //
+			sellButton(nullptr), //
 			cost(nullptr)
 		{}
 

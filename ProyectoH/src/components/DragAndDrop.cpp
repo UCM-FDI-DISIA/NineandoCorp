@@ -28,6 +28,7 @@ void DragAndDrop::drop(const Vector2D& pos, Height h){
 		m.add_tower_data.towerId = tId_; 
 		m.add_tower_data.pos = pos; 
 		m.add_tower_data.height = height_;
+		m.add_tower_data.sellMoney = cost / 0.75;
 		mngr_->send(m);
 	
 		Message m2;

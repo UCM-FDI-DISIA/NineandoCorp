@@ -101,7 +101,7 @@ private:
 
 	/// <summary>
 	/// M�todo encargado de enviar el mensaje de mejorar una torre
-	/// con x Id pasado por par�metro
+	/// con x Id pasado por par�metro 
 	/// </summary>
 	void upgradeTower(twrId t);
 
@@ -114,6 +114,11 @@ private:
 	/// Funcion que realiza el mensaje START_GAME
 	/// </summary>
 	void OnStartGame();
+
+	/// <summary>
+	/// Envia mensaje para salirse del menu de mejora
+	/// </summary>
+	void exitUpMenu();
 
 	void startWave();
 

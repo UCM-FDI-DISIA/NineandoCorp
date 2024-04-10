@@ -56,6 +56,7 @@
     <ClInclude Include="src\components\SlimeBullet.h" />
     <ClInclude Include="src\components\SlimeTowerComponent.h" />
     <ClInclude Include="src\components\TextComponent.h" />
+    <ClInclude Include="src\components\TowerComponent.h" />
     <ClInclude Include="src\components\TowerStates.h" />
     <ClInclude Include="src\components\Transform.h" />
     <ClInclude Include="src\components\UpgradeTowerComponent.h" />

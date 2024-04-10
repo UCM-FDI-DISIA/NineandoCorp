@@ -34,6 +34,9 @@ enum ButtonTypes {
 	upgrade_tower,
 	exit_up_menu,
 
+	// --- SELL --- //
+	sell_tower,
+
 	none
 };
  

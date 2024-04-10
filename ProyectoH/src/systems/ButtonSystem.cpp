@@ -38,6 +38,10 @@ void ButtonSystem::receive(const Message& m){
 		HMoney_ += m.money_data.money;
 		updateText();
 		break;
+	case _m_SELL_TOWER:
+		money_ += m.sell_tower_data.money;
+		updateText();
+		break;
 	case _m_START_MENU:
 		HMoney_ = m.money_data.Hmoney;
 		generateHMoneyText();
@@ -198,14 +202,17 @@ void ButtonSystem::manageButtons() {
 		case slime_drag:
 			dragTower(_twr_SLIME);
 			break;
+		case sell_tower:
+			mngr_->send(mngr_->getComponent<ButtonComponent>(bC)->getMessage());
+			break;
+
 		/*--- UPGRADE TOWER ---*/
 		case upgrade_tower: 
 			mngr_->send(mngr_->getComponent<ButtonComponent>(bC)->getMessage());
 			break;
 		case exit_up_menu:
-			Message m;
-			m.id = _m_EXIT_UP_MENU;
-			mngr_->send(m);
+			exitUpMenu();
+			break;
 		/*----------------------------------------*/
 		}
 	}
@@ -251,6 +258,12 @@ void ButtonSystem::manageButtons() {
 		Message m;
 		m.id = _m_LEVEL_SELECTED;
 		m.start_game_data.level = butC->getLevel();
+		mngr_->send(m);
+	}
+	void ButtonSystem::exitUpMenu()
+	{
+		Message m;
+		m.id = _m_EXIT_UP_MENU;
 		mngr_->send(m);
 	}
 	void ButtonSystem::startWave() {

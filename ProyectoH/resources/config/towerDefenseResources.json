@@ -657,6 +657,14 @@
         {
             "id": "storm_icon",
             "file": "resources/images/Meteorology/tormentaIcon.png"
+        },
+        {
+            "id": "sell",
+            "file": "resources/images/UI/sell_button.png"
+        },
+        {
+            "id": "sell_hover",
+            "file": "resources/images/UI/sell_button_hover.png"
         }
 
     ],

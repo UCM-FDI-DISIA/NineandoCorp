@@ -6,7 +6,7 @@ class TextComponent : public Component
 public:
 	static const cmpId id = cmpId::_TEXT;
 
-	TextComponent(std::string text, const SDL_Color& color = {255, 255, 255, 255}, std::string font = "ARIAL_ROUNDED") : textTexture_(nullptr), text_(text), font_(font), color_(color) { update(); };
+	TextComponent(std::string text, const SDL_Color& color = {255, 255, 255, 255}, std::string font = "ARIAL_ROUNDED") : textTexture_(nullptr), text_(text), font_(font), color_(color) , isActive(true){ update(); };
 
 	~TextComponent() { 
 		delete textTexture_;
@@ -66,11 +66,12 @@ public:
 	/// </summary>
 	void update();
 
+	// Si el componente se renderiza o no
+	bool isActive;
 private:
 	Texture* textTexture_;
 	std::string text_;
 	std::string font_;
-	//std::string color_;
 	SDL_Color color_;
 };
 

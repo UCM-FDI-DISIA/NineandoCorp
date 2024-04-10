@@ -13,9 +13,9 @@ private:
 public:
 	static const cmpId id = cmpId::_RENDER;
 
-	bool isActive_;
+	bool isActive;
 
-	RenderComponent(gameTextures texture) : texture(texture), isActive_(true){
+	RenderComponent(gameTextures texture) : texture(texture), isActive(true){
 		flip_ = SDL_FLIP_NONE;
 	};
 

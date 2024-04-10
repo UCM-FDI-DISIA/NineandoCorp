@@ -5,6 +5,7 @@
 #include "..//components/TowerStates.h"
 #include "../components/InteractiveTower.h"
 #include "../sdlutils/RandomNumberGenerator.h"
+#include "../components/TowerComponent.h"
 
 
 TowerSystem::TowerSystem() : mActive(true) {
@@ -27,7 +28,7 @@ void TowerSystem::receive(const Message& m) {
 		if(m.entity_to_attack.targetId == _hdlr_LOW_TOWERS)onAttackTower(m.entity_to_attack.e, m.entity_to_attack.damage, m.entity_to_attack.src);
 		break;
 	case _m_ADD_TOWER:
-		addTower(m.add_tower_data.towerId, m.add_tower_data.pos, m.add_tower_data.height);
+		addTower(m.add_tower_data.towerId, m.add_tower_data.pos, m.add_tower_data.height, m.add_tower_data.sellMoney);
 		break;
 	case _m_TOWER_CLICKED:
 		addTowerToInteract(m.tower_clicked_data.tower);
@@ -51,6 +52,9 @@ void TowerSystem::receive(const Message& m) {
 		break;
 	case _m_STOP_DRAG:
 		enableAllInteractiveTowers(true);
+		break;
+	case _m_SELL_TOWER:
+		removeTower(m.sell_tower_data.twr);
 		break;
 	default:
 		break;
@@ -471,6 +475,20 @@ void TowerSystem::eliminateDestroyedTowers(Entity* t) {//elimina del array las t
 }
 
 
+void TowerSystem::removeTower(Entity* twr)
+{
+	auto h = mngr_->getComponent<TowerComponent>(twr)->getTowerHeight();
+	if (h == PATH || h == LOW) {
+		mngr_->deleteHandler(_hdlr_LOW_TOWERS, twr);
+	}
+	else {
+		mngr_->deleteHandler(_hdlr_HIGH_TOWERS, twr);
+	}
+	towers.erase(find(towers.begin(), towers.end(), twr));
+	mngr_->setAlive(twr, false);
+	mngr_->refresh();
+}
+
 void TowerSystem::enableAllInteractiveTowers(bool b) {
 	for (auto t : towers) {
 		mngr_->getComponent<InteractiveTower>(t)->canInteract_ = b;
@@ -517,9 +535,10 @@ Entity* TowerSystem::addShield(Vector2D pos) {
 
 
 
-void TowerSystem::addTower(twrId type,const Vector2D& pos, Height height) {
+void TowerSystem::addTower(twrId type,const Vector2D& pos, Height height, int sellMoney) {
 	Entity* t = mngr_->addEntity(_grp_TOWERS_AND_ENEMIES);//Se a?ade al mngr
 	Transform* tr = mngr_->addComponent<Transform>(t);//transform
+	mngr_->addComponent<TowerComponent>(t, type, height, sellMoney);
 	mngr_->addComponent<ShieldComponent>(t, 0);
 	tr->setPosition(pos);
 	mngr_->addComponent<TowerStates>(t);
@@ -538,7 +557,7 @@ void TowerSystem::addTower(twrId type,const Vector2D& pos, Height height) {
 		tr->setScale({ floatAt("FenixScaleX"), floatAt("FenixScaleY")});
  		mngr_->addComponent<PhoenixTower>(t, floatAt("FenixDano"), floatAt("FenixEnfriamiento"), floatAt("FenixTiempoDisparo"), floatAt("FenixRango"));
 		mngr_->addComponent<RenderComponent>(t, phoenixTowerTexture);
-		mngr_->addComponent<FramedImage>(t, intAt("FenixColumns"), intAt("FenixRows"), intAt("FenixWidth"), intAt("FenixHeight"), 3, 0);
+		mngr_->addComponent<FramedImage>(t, intAt("FenixColumns"), intAt("FenixRows"), intAt("FenixWidth"), intAt("FenixHeight"), 0, 0);
 
 		break;
 	case _twr_BULLET://Pasar rango, recarga, da?o y si dispara

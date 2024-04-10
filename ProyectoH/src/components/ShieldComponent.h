@@ -14,6 +14,9 @@ private:
 public:
 	static const cmpId id = cmpId::_SHIELD;
 	ShieldComponent(float l);
+	virtual ~ShieldComponent() {
+		mngr_->setAlive(imgShield_, false);
+	}
 	float getShield() { return currentHealth_; };
 	void addShield(float health);
 	float getMaxShield() { return maxHealth_; };

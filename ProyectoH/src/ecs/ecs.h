@@ -58,6 +58,7 @@ enum cmpId : cmpId_type {
 	_FORCEFIELD,
 	_PRINCIPITO,
 	_MONJE,
+	_TOWER,
 
 
 	// do not remove this
@@ -211,7 +212,8 @@ enum msgId : msgId_type {
 	_m_TOWER_CLICKED,
 	_m_UPGRADE_TWR_INGAME,
 	_m_EXIT_UP_MENU,
-	_m_SAVE_GAME
+	_m_SAVE_GAME,
+	_m_SELL_TOWER
 };
 
 using twrId_type = uint8_t;
@@ -259,6 +261,7 @@ enum gameTextures {
 	power_tower_image, nexus_level_3_image,
 	tsunami_icon,meteorite_icon, thunder_icon, tornado_icon, earthquake_icon, 
 	level1,level1_hover,level2,level2_hover,level3,level3_hover,level4,level4_hover,level5,level5_hover,level6,level6_hover,level7,level7_hover,level8,level8_hover,
+	sell, sell_hover, 
 	// towers
 	square, bulletTowerTexture, cristalTowerTexture, phoenixTowerTexture,
 	slimeTowerTexture, boosterTowerTexture, sniperTowerTexture, clayTowerTexture, nexusTexture, fireTexture,
@@ -276,7 +279,8 @@ enum gameTextures {
 
 	//others
     meteorites, earthquake,tornado,thunder, tsunami,cloud,
-	bulletTexture, sniperBulletTexture, slimeBulletTexture, slimeArea, shield, hpIcon, blindedIcon, lightningIcon, powerIcon, monedaH,
+	bulletTexture, sniperBulletTexture, slimeBulletTexture, 
+	slimeArea, shield, hpIcon, blindedIcon, lightningIcon, powerIcon, monedaH,
 
 	//explosions
 	shieldExp, bulletExplosion, enemyDeath,
@@ -326,6 +330,13 @@ inline Uint8* _deserialize_(float& v, Uint8* buf) {
 }
 struct Message {
 	msgId_type id;
+	//_m_SELL_TOWER
+	struct
+	{
+		Entity* twr;
+		int money;
+
+	}sell_tower_data;
 
 	//_m_UPGRADE_TWR_INGAME
 	struct {
@@ -364,6 +375,7 @@ struct Message {
 		twrId towerId;
 		Vector2D pos;
 		Height height;
+		int sellMoney;
 
 	} add_tower_data;
 
