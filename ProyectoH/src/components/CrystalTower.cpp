@@ -4,7 +4,7 @@ CrystalTower::CrystalTower(int shieldVal, float timeToShield, int explosionDmg, 
 	shieldVal_(shieldVal), timeToShield_(timeToShield),explosionDmg_(explosionDmg), elapsedTime_(timeToShield), range_(range){}
 
 void CrystalTower::levelUp(int level) {
-	switch (level) {
+	/*switch (level) {
 		case 1:
 			setShieldVal(getShieldVal()+ sdlutils().floatConst().at("CristalEscudo1"));
 			break;
@@ -19,5 +19,5 @@ void CrystalTower::levelUp(int level) {
 			break;
 		default:
 			break;
-	}
+	}*/
 }

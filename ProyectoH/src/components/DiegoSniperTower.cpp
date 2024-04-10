@@ -12,7 +12,7 @@ void DiegoSniperTower::setCritDamage(float percentage) { critDamageIncrease_ = p
 void DiegoSniperTower::setCritProb(float prob) { critProbability_ = prob; }
 
 void DiegoSniperTower::levelUp(int level) {
-	switch (level) {
+	/*switch (level) {
 	case 1:
 		setDamage(sdlutils().floatConst().at("DiegoSniperDano1"));
 		break;
@@ -29,5 +29,5 @@ void DiegoSniperTower::levelUp(int level) {
 		break;
 	default:
 		break;
-	}
+	}*/
 }

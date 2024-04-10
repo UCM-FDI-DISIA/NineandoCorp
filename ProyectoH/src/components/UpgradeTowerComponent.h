@@ -13,9 +13,9 @@ public:
 
 	void levelUp();
 	int getLevel() const { return currentLevel_; }
-	int getMaxLevel() { return maxLevel_; }
+	int getMaxLevel() const { return maxLevel_; }
 	twrId id_;
-
+	bool isMaxLeveled() const { return currentLevel_ == maxLevel_; }
 protected:
 	int maxLevel_;
 	int currentLevel_;

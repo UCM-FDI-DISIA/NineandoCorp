@@ -16,6 +16,7 @@ struct cmpIsometricY {
 RenderSystem::RenderSystem() : winner_(0)
 {
 	mActive = true;
+	isOnUpMenu = false;
 	//Camera offset
 	*offset = build_sdlrect(0, 0, 0, 0);
 
@@ -176,6 +177,11 @@ void RenderSystem::receive(const Message& m) {
 	case _m_PAUSE:
 		mActive = !m.start_pause.onPause;
 		break;
+	case _m_SHOW_UPGRADE_TOWER_MENU:
+		isOnUpMenu = true;
+		break;
+	case _m_EXIT_UP_MENU:
+		isOnUpMenu = false;
 	default:
 		break;
 	}
@@ -193,7 +199,7 @@ void RenderSystem::update() {
 
 	sdlutils().clearRenderer();
 
-	if(mActive) {
+	if(mActive && !isOnUpMenu) {
 
 		//Este control tiene que estar en el main control sistem
 		////Control de camara

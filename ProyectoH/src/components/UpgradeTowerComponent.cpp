@@ -11,7 +11,7 @@
 
 using namespace std;
 
-UpgradeTowerComponent::UpgradeTowerComponent(twrId id, int maxLevel) : id_(id), maxLevel_(maxLevel), currentLevel_(0) {
+UpgradeTowerComponent::UpgradeTowerComponent(twrId id, int maxLevel) : id_(id), maxLevel_(maxLevel), currentLevel_(1) {
 	//upgradeInfo_ = JSON::ParseFromFile("tower_upgrade_info.json");
 }
 

@@ -6,7 +6,7 @@ DirtTower::DirtTower()
 void DirtTower::levelUp(int level) {
 	HealthComponent* h = mngr_->getComponent<HealthComponent>(ent_);
 	if (h != nullptr) {
-		switch (level) {
+		/*switch (level) {
 		case 1:
 			h->setMaxHealth(sdlutils().floatConst().at("ArcillaVida1"));
 			break;
@@ -22,7 +22,7 @@ void DirtTower::levelUp(int level) {
 			break;
 		default:
 			break;
-		}
+		}*/
 		h->setHealth(h->getMaxHealth());
 	}	
 }

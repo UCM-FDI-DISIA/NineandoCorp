@@ -228,14 +228,17 @@ void HUDSystem::receive(const Message& m) {
 		}
 		break;
 	case _m_UPGRADE_TWR_INGAME: 
-		mngr_->getComponent<TextComponent>(upM_.twrLvl)->changeText("LVL: " + std::to_string(
-			mngr_->getComponent<UpgradeTowerComponent>(m.upgrade_twr_ingame_data.upCmp)->getLevel()));
+		if (mngr_->getComponent<UpgradeTowerComponent>(m.upgrade_twr_ingame_data.upCmp)->isMaxLeveled()) {
+			mngr_->getComponent<TextComponent>(upM_.twrLvl)->changeText("LVL: MAX.");
+		}
+		else {
+			mngr_->getComponent<TextComponent>(upM_.twrLvl)->changeText("LVL: " + std::to_string(mngr_->getComponent<UpgradeTowerComponent>(m.upgrade_twr_ingame_data.upCmp)->getLevel()));
+		}
+		
 		break;
 	case _m_EXIT_UP_MENU:
 		exitUpgradeMenu();
 		showSelector(true);
-		break;
-	default:
 		break;
 	}
 }	
@@ -313,6 +316,7 @@ void HUDSystem::update() {
 void HUDSystem::showUpgradeMenu(Entity* twr, const Vector2D& pos) {
 	auto bS = mngr_->getSystem<ButtonSystem>();
 	upM_ = UpgradeMenu();
+	auto upCmp = mngr_->getComponent<UpgradeTowerComponent>(twr);
 
 	Vector2D offset = Vector2D(0, 0);
 	/** 
@@ -320,13 +324,13 @@ void HUDSystem::showUpgradeMenu(Entity* twr, const Vector2D& pos) {
 	* 
 	*	Ajuste del menu con los limites de la camara y HUD
 	*/
-	Vector2D posA = { pos.getX() + 300 + cameraOffset_->x , pos.getY() + cameraOffset_->y };
+	Vector2D posA = { pos.getX() + 300 + 20 + cameraOffset_->x , pos.getY() + cameraOffset_->y };
 	if (posA.getX() + 200  > sdlutils().width()) {
-		int dif = sdlutils().width() - (posA.getX() + 200);
-		offset.setX(dif);
+	
+		offset.setX(-520);
 	}
 	if (posA.getY() - 150.0f < 0) {
-		offset.setY((posA.getY() + 150) - posA.getY());
+		offset.setY(- (posA.getY() - 150));
 		std::cout << std::endl << "DIF Y: " << offset.getY() << std::endl;
 	}
 	
@@ -350,11 +354,17 @@ void HUDSystem::showUpgradeMenu(Entity* twr, const Vector2D& pos) {
 	/**
 	*	TEXTO DE NIVEL
 	*/
-	auto upCmp = mngr_->getComponent<UpgradeTowerComponent>(twr);
 	SDL_Color color = { 255, 255,255,255 };
 	Vector2D lvlPos = { pos.getX() + 150 + cameraOffset_->x , pos.getY() + 70 + cameraOffset_->y};
 	Vector2D lvlScale = { 120.0f, 35.0f };
-	upM_.twrLvl = bS->addText("LVL: " + std::to_string(upCmp->getLevel()), color, lvlPos + offset, lvlScale);
+	std::string lvltxt = std::to_string(upCmp->getLevel());
+	
+	upM_.twrLvl = bS->addText("LVL: " + lvltxt, color, lvlPos + offset, lvlScale);
+
+	/**
+	*	TEXTO DE NUMERO
+	*/
+
 
 	/**
 	*	BOTON DE SALIR
