@@ -16,6 +16,11 @@ public:
 	void checkdestiny();
 	void changevelocity(Vector2D destino);
 	void changeRoute(std::vector<Vector2D> route);
+
+	int getDestiny() { return destiny_; }
+	vector<Vector2D> getRoute() { return route_; }
+
+	void setDestiny(int destiny) { destiny_ = destiny; }
 private:
 	int destiny_;
 	std::vector<Vector2D> route_;
