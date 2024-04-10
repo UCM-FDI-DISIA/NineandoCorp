@@ -318,6 +318,11 @@ void EnemySystem::update()
 
 					if (ac->getTarget() != nullptr && (ac->getAttackTowers() || mngr_->getComponent<NexusComponent>(ac->getTarget()))) {
 						mc->setStop(true);
+						if (!ac->getAttack()) {
+							ac->setAttack(true);
+							changeAnimation(ac->getAttack(), etc->GetEnemyType());
+						}
+						
 						if (ma != nullptr) {
 							ma->CiegaTorre(ac->getTarget());
 							ac->setElapsedTime(0.0f);
@@ -332,6 +337,12 @@ void EnemySystem::update()
 					}
 					else {
 						mc->setStop(false);
+						if (ac->getAttack()) {
+							
+							ac->setAttack(false);
+							changeAnimation(ac->getAttack(), etc->GetEnemyType());
+						}
+						
 					}
 				}
 			}
@@ -407,11 +418,11 @@ void EnemySystem::changeAnimation(bool animation, enmId enemy_type) {
 		break;
 	case _enm_ELFO:
 		if (animation) {
-			std::cout << "atacar";
+			std::cout << "atacar ";
 		}
 		else
 		{
-			std::cout << "idle";
+			std::cout << "run ";
 		}
 		break;
 	case _enm_MMUERTE:

@@ -29,6 +29,7 @@ public:
 	float getTimeToShoot()const;
 	float getReloadTime()const;
 	float getElapsedTime()const;
+	bool getAttack() const;
 
 	//Setters
 	void setDamage(int dmg);
@@ -41,6 +42,7 @@ public:
 	bool getNexo() { return nexo_; }
 	bool getAttackTowers() { return towers_; };
 	void setNexo(bool n) { nexo_=n; }
+	void setAttack(bool a) { isAttacking = a; };
 
 protected:
 	
@@ -55,7 +57,7 @@ protected:
 	float elapsedTime_;
 	bool nexo_;
 	bool towers_;
-
+	bool isAttacking;
 	bool loaded_;
 };
 

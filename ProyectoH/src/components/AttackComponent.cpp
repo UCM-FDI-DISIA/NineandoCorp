@@ -5,7 +5,7 @@
 #include "../components/HealthComponent.h"
 
 AttackComponent::AttackComponent(float range, float reloadTime, int damage, bool towers) : range_(range), reloadTime_(reloadTime), damage_(damage), baseDamage_(damage),towers_(towers), elapsedTime_(reloadTime), nexo_(true) {
-	target_ = nullptr; timeToShoot_ = reloadTime; loaded_ = false;
+	target_ = nullptr; timeToShoot_ = reloadTime; loaded_ = false; isAttacking = false;
 }
 
 void AttackComponent::initComponent() {
@@ -37,7 +37,7 @@ void AttackComponent::targetEnemy(const std::list<Entity*>& targetGroup) {//Busc
 			}		
 		}		
 	}	
-	else if(target_ != nullptr && mngr_->isAlive(target_)){
+	else if(!mngr_->isAlive(target_)){
 		target_ = nullptr;
 	}
 }
@@ -62,6 +62,10 @@ float AttackComponent::getTimeToShoot()const { return timeToShoot_; }
 float AttackComponent::getReloadTime()const { return reloadTime_; }
 
 float AttackComponent::getElapsedTime()const { return elapsedTime_; }
+
+bool AttackComponent::getAttack() const {
+	return isAttacking;
+}
 
 
 void AttackComponent::setDamage(int dmg) {
