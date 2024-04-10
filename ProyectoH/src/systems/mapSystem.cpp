@@ -1,6 +1,6 @@
 ﻿#include "mapSystem.h"
 
-mapSystem::mapSystem(std::string filename) : filename(filename), winner_(0) {
+mapSystem::mapSystem() : winner_(0) {
 	net = new NetMap(32);
 }
 

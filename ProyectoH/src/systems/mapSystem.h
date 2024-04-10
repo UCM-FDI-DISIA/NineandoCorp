@@ -43,12 +43,12 @@ private:
 	Vector2D tileSize_;
 	unsigned int level = 1;
 
-	std::string filename;
+	std::string filename = "../ProyectoH/resources/tileMap/nivel";
 
 public:
 	static constexpr sysId_type id = _sys_MAP;
 
-	mapSystem(std::string filename);
+	mapSystem();
 	virtual ~mapSystem() {
 		delete net;
 		net = nullptr;
