@@ -33,6 +33,7 @@ private:
 	void generateNetMap();
 	void generateCloud();
 	void generateAnimEarthquake();
+	void setIcon();
 	std::vector<Vector2D> RouteTranslate(std::vector<Vector2D> route);
 	void addRectTo(Entity* t, rectId id);
 

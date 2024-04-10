@@ -8,11 +8,11 @@
 
 
 
-MeteorologySystem::MeteorologySystem(): minTimeInterval_(15.0),
-maxTimeInterval_(30.0), 
+MeteorologySystem::MeteorologySystem(): minTimeInterval_(5.0),
+maxTimeInterval_(10.0), 
 elapsedTime_(0) ,
 thundersInterval_(0.1),
-meteoriteInterval_(1.5),
+meteoriteInterval_(0.2),
 elapsedSpawn_(0),
 quantity_(0),
 eventActive_(false),
@@ -21,7 +21,7 @@ objectsSpawned_(0)
 	mActive = true;
 	auto& rand = sdlutils().rand();
 	timeToNextEvent_ = rand.nextInt(minTimeInterval_, maxTimeInterval_);
-	nextEvent_ = (MeteorologyEvent)rand.nextInt(1, 2);
+	nextEvent_ = (MeteorologyEvent)rand.nextInt(0, 5);
 	imgEvent_ = nullptr;
 }
 
@@ -29,13 +29,37 @@ MeteorologySystem::~MeteorologySystem() {
 
 }
 
+void MeteorologySystem::setIcon() {
+	gameTextures tex = gameTextures::tsunami_icon;
+	switch (nextEvent_)
+	{
+	case MeteorologySystem::TSUNAMI:
+		break;
+	case MeteorologySystem::STORM:
+		tex = gameTextures::thunder_icon;
+		break;
+	case MeteorologySystem::METEORITES:
+		tex = gameTextures::meteorite_icon;
+		break;
+	case MeteorologySystem::TORNADO:
+		tex = gameTextures::tornado_icon;
+		break;
+	case MeteorologySystem::EARTHQUAKE:
+		tex = gameTextures::earthquake_icon;
+		break;
+	default:
+		break;
+	}
+	imgEvent_ = mngr_->addEntity(_grp_HUD_BACKGROUND);
+	mngr_->addComponent<RenderComponent>(imgEvent_, tex);
+	auto t = mngr_->addComponent<Transform>(imgEvent_);
+	t->setPosition(Vector2D(40.0, 40.0));
+	t->setScale(Vector2D(70.0, 70.0));
+}
+
 
 void MeteorologySystem::initSystem() {
-	
-	imgEvent_ = mngr_->addEntity(_grp_HUD_BACKGROUND);
-	mngr_->addComponent<RenderComponent>(imgEvent_, gameTextures::meteorites);
-	auto t = mngr_->addComponent<Transform>(imgEvent_);
-	t->setPosition(Vector2D(70.0, 70.0));
+	setIcon();	
 }
 
 void  MeteorologySystem::receive(const Message& m) {
@@ -286,7 +310,7 @@ void MeteorologySystem::update() {
 			Message m;
 			m.id = _m_ADD_TEXT;
 			m.add_text_data.txt = to_string(time);
-			m.add_text_data.color = { 100, 100 ,0, 255 };
+			m.add_text_data.color = { 255, 255 ,255, 255 };
 			Vector2D txtScale = Vector2D(40.0f, 40.0f);
 			if (time < 10.0) { txtScale = Vector2D(20.0, 40.0); }
 			m.add_text_data.pos = Vector2D(25.0, 70.0) - (txtScale / 2);
@@ -310,7 +334,7 @@ void MeteorologySystem::update() {
 				break;
 			case MeteorologySystem::METEORITES:
 				generateNetMap();
-				generateMeteorites(50);
+				generateMeteorites(125);
 				break;
 			case MeteorologySystem::TORNADO:
 				generateNetMap();
@@ -391,6 +415,7 @@ void MeteorologySystem::update() {
 				elapsedSpawn_ = 0;
 				quantity_ = 0;
 				if (imgEvent_ != nullptr && mngr_->isAlive(imgEvent_)) { mngr_->setAlive(imgEvent_, false); }
+				setIcon();
 			}
 		}
 	}
