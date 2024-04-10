@@ -57,6 +57,7 @@ enum cmpId : cmpId_type {
 	_DEFENSORREAL,
 	_FORCEFIELD,
 	_PRINCIPITO,
+	_MONJE,
 
 
 	// do not remove this
