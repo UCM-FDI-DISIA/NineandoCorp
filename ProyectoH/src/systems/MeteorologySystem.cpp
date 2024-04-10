@@ -52,7 +52,7 @@ void MeteorologySystem::setIcon() {
 	imgEvent_ = mngr_->addEntity(_grp_HUD_BACKGROUND);
 	mngr_->addComponent<RenderComponent>(imgEvent_, tex);
 	auto t = mngr_->addComponent<Transform>(imgEvent_);
-	t->setPosition(Vector2D(40.0, 40.0));
+	t->setPosition(Vector2D(100.0, 40.0));
 	t->setScale(Vector2D(70.0, 70.0));
 }
 
@@ -317,11 +317,11 @@ void MeteorologySystem::update() {
 			int waves = (int)(wavesToNextevent_ - currentWaves_);
 			Message m;
 			m.id = _m_ADD_TEXT;
-			m.add_text_data.txt = to_string(waves);
+			m.add_text_data.txt = "Rounds: " + to_string(waves);
 			m.add_text_data.color = { 255, 255 ,255, 255 };
-			Vector2D txtScale = Vector2D(40.0f, 40.0f);
-			if (waves < 10.0) { txtScale = Vector2D(20.0, 40.0); }
-			m.add_text_data.pos = Vector2D(25.0, 70.0) - (txtScale / 2);
+			Vector2D txtScale = Vector2D(120.0f, 40.0f);
+			if (waves < 10.0) { txtScale = Vector2D(110.0, 40.0); }
+			m.add_text_data.pos = Vector2D(60.0, 70.0) - (txtScale / 2);
 			m.add_text_data.scale = txtScale;
 			m.add_text_data.time = 1;
 			mngr_->send(m);
