@@ -224,7 +224,7 @@ void generateEnemies::addEnemy(enmId type, std::vector<Vector2D> route) {
 	case _enm_CMALDITO:
 		tr->setSpeed(10.0f);
 		mngr_->addComponent<RenderComponent>(t, CMaldito);
-		mngr_->addComponent<HealthComponent>(t, 1000);
+		mngr_->addComponent<HealthComponent>(t, 100);
 		RoutesCorrection(tr, route, 1.5f, 1.5f);
 		tr->setPosition(route[0]);
 		mngr_->addComponent<RouteComponent>(t, route);
