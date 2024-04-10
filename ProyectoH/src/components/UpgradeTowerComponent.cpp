@@ -16,8 +16,17 @@ UpgradeTowerComponent::UpgradeTowerComponent(twrId id, int maxLevel) : id_(id), 
 }
 
 void UpgradeTowerComponent::levelUp() {
-	if(currentLevel_ < maxLevel_)currentLevel_++;
+	auto fi = mngr_->getComponent<FramedImage>(ent_);
+	if (currentLevel_ < maxLevel_) {
+		fi->setCurrentFrame(fi->getCurrentFrame() + 1);
+		auto tr = mngr_->getComponent<Transform>(ent_);
+		//Vector de ajuste debido al desplazamiento causado por el spritesheet
+		Vector2D adjustOffset = Vector2D(3.0f * currentLevel_, 0);
 
+		tr->setPosition(*tr->getPosition() - adjustOffset);
+		currentLevel_++;
+	}
+	
 	switch (id_) {
 		case _twr_BULLET:
 			mngr_->getComponent<BulletTower>(ent_)->levelUp(currentLevel_);
@@ -41,7 +50,6 @@ void UpgradeTowerComponent::levelUp() {
 			mngr_->getComponent<EnhancerTower>(ent_)->levelUp(currentLevel_);
 			break;
 		default:
-
 			break;
 	}
 }

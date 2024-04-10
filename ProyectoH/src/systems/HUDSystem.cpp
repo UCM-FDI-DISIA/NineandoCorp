@@ -24,13 +24,23 @@ void HUDSystem::initSystem() {
 	float separation = 150.0f;
 	Vector2D bSize = Vector2D(100.0f, 100.0f);
 
+	/**
+	* 
+	*	/ -- BACKGROUND -- /
+	* 
+	*/
 	twrSel_.background = bS->addImage({ (float)sdlutils().width() / 2 , heightH },
 		{ (float)sdlutils().width() + 30.0f, 200.0f },
 
 		0.0,
 		gameTextures::box,
 		_grp_HUD_BACKGROUND);
-	
+
+	/**
+	*
+	*	/ -- ICONS & BUTTONS -- /
+	*
+	*/
 	#pragma region BULLET TOWER
 		twrSel_.buttons[_twr_BULLET] = bS->addButton({ xAux, heightH },
 			bSize,
@@ -188,6 +198,11 @@ void HUDSystem::initSystem() {
 		initial_pos[_twr_POWER] = { xAux * 7 + 3 , heightH - 4 };
 	#pragma endregion
 
+	/**
+	*
+	*	/ -- PAUSE BUTTON -- /
+	*
+	*/
 	bS->addButton({ (float)sdlutils().width() - 50.0f , 50.0f },
 		{50.0f, 50.0f},
 		gameTextures::pause_button, gameTextures::pause_button_hover,
@@ -197,6 +212,11 @@ void HUDSystem::initSystem() {
 	Vector2D pAux = { xAux * 8.6f, heightH };
 	Vector2D sAux = { 250, 90 };
 	
+	/**
+	*
+	*	/ -- START ROUND BUTTON -- /
+	*
+	*/
 	twrSel_.roundButton = bS->addButton(pAux, sAux, gameTextures::play, gameTextures::play_hover, ButtonTypes::play_wave);
 
 }
@@ -229,10 +249,11 @@ void HUDSystem::receive(const Message& m) {
 		break;
 	case _m_UPGRADE_TWR_INGAME: 
 		if (mngr_->getComponent<UpgradeTowerComponent>(m.upgrade_twr_ingame_data.upCmp)->isMaxLeveled()) {
-			mngr_->getComponent<TextComponent>(upM_.twrLvl)->changeText("LVL: MAX.");
+			mngr_->getComponent<TextComponent>(upM_.lvlText)->changeText("MAX.");
+			mngr_->getComponent<Transform>(upM_.lvlText)->getScale()->setX(60.0f);
 		}
 		else {
-			mngr_->getComponent<TextComponent>(upM_.twrLvl)->changeText("LVL: " + std::to_string(mngr_->getComponent<UpgradeTowerComponent>(m.upgrade_twr_ingame_data.upCmp)->getLevel()));
+			mngr_->getComponent<TextComponent>(upM_.lvlText)->changeText(std::to_string(mngr_->getComponent<UpgradeTowerComponent>(m.upgrade_twr_ingame_data.upCmp)->getLevel()));
 		}
 		
 		break;
@@ -323,6 +344,7 @@ void HUDSystem::showUpgradeMenu(Entity* twr, const Vector2D& pos) {
 	*	/ --- BACKGROUND DE MENU --- / 
 	* 
 	*	Ajuste del menu con los limites de la camara y HUD
+	* 
 	*/
 	Vector2D posA = { pos.getX() + 300 + 20 + cameraOffset_->x , pos.getY() + cameraOffset_->y };
 	if (posA.getX() + 200  > sdlutils().width()) {
@@ -345,7 +367,7 @@ void HUDSystem::showUpgradeMenu(Entity* twr, const Vector2D& pos) {
 	Message m;
 	m.id = _m_UPGRADE_TWR_INGAME;
 	m.upgrade_twr_ingame_data.upCmp = twr;
-	Vector2D posB = { pos.getX() + 380 + cameraOffset_->x, pos.getY() + 85 + cameraOffset_->y };
+	Vector2D posB = { pos.getX() + 390 + cameraOffset_->x, pos.getY() + 85 + cameraOffset_->y };
 	upM_.upgradeButton = bS->addButton(posB + offset, 
 		{ 150.0f, 60.0f },
 		upgrade, upgrade_hover, ButtonTypes::upgrade_tower, 0,
@@ -354,17 +376,30 @@ void HUDSystem::showUpgradeMenu(Entity* twr, const Vector2D& pos) {
 	/**
 	*	TEXTO DE NIVEL
 	*/
-	SDL_Color color = { 255, 255,255,255 };
-	Vector2D lvlPos = { pos.getX() + 150 + cameraOffset_->x , pos.getY() + 70 + cameraOffset_->y};
-	Vector2D lvlScale = { 120.0f, 35.0f };
-	std::string lvltxt = std::to_string(upCmp->getLevel());
-	
-	upM_.twrLvl = bS->addText("LVL: " + lvltxt, color, lvlPos + offset, lvlScale);
+	SDL_Color c1 = { 255, 255,255,255 };
+	Vector2D lvlPos1 = { pos.getX() + 150 + cameraOffset_->x , pos.getY() + 70 + cameraOffset_->y};
+	Vector2D lvlScale1 = { 60.0f, 35.0f };
+	upM_.twrLvl = bS->addText("LVL: ", c1, lvlPos1 + offset, lvlScale1);
 
 	/**
 	*	TEXTO DE NUMERO
 	*/
+	SDL_Color c2 = { 220, 220, 220, 255 };
+	Vector2D lvlPos2 = { pos.getX() + 220 + cameraOffset_->x , pos.getY() + 70 + cameraOffset_->y };
+	Vector2D lvlScale2;
 
+		//Comprobacion de nivel para nivel maximo
+	std::string lvltxt;
+	if (upCmp->isMaxLeveled()) { 
+		lvlScale2 = { 60.0f, 35.0f };
+		lvltxt = "MAX."; 
+	}
+	else {
+		lvlScale2 = { 20.0f, 35.0f };
+		lvltxt = std::to_string(upCmp->getLevel());
+	}
+
+	upM_.lvlText = bS->addText(lvltxt, c1, lvlPos2 + offset, lvlScale2);
 
 	/**
 	*	BOTON DE SALIR
@@ -384,6 +419,7 @@ void HUDSystem::exitUpgradeMenu() {
 	mngr_->setAlive(upM_.twrLvl, false);
 	mngr_->setAlive(upM_.exitButton, false);
 	mngr_->setAlive(upM_.cost, false);
+	mngr_->setAlive(upM_.lvlText, false);
 	mngr_->refresh();
 
 	mngr_->deleteHandler(hId, upM_.exitButton);

@@ -260,8 +260,9 @@ void EnemySystem::update()
 						spawn->generateEnemy();
 						spawn->next_Enemy();
 						spawn->setElapsedTime(0.0);
+						stopGenerate = false;
 					}
-					else if (spawn->getNumEnemies() >= spawn->totalEnemies())
+					else if (spawn->totalEnemies() != 0 && spawn->getNumEnemies() >= spawn->totalEnemies())
 					{
 						stopGenerate = true;
 					}
