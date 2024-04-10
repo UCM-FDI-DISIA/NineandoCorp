@@ -7,7 +7,7 @@ private:
 	int monedasH_ = 0;
 	std::vector<int>* turretsLevel_;
 	int levelsDesb;
-	std::vector<std::string>* turretsLevel_;
+	std::vector<std::string>* enemiesBook_;
 
 public:
 	int getHCoins() { return monedasH_; };

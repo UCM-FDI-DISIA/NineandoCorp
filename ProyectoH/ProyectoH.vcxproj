@@ -49,6 +49,7 @@
     <ClInclude Include="src\components\NexusComponent.h" />
     <ClInclude Include="src\components\ParticleLifeTime.h" />
     <ClInclude Include="src\components\PhoenixTower.h" />
+    <ClInclude Include="src\components\PrincipitoComponent.h" />
     <ClInclude Include="src\components\RenderComponent.h" />
     <ClInclude Include="src\components\RouteComponent.h" />
     <ClInclude Include="src\components\ShieldComponent.h" />
@@ -134,6 +135,7 @@
     <ClCompile Include="src\components\MovementComponent.cpp" />
     <ClCompile Include="src\components\NexusComponent.cpp" />
     <ClCompile Include="src\components\PhoenixTower.cpp" />
+    <ClCompile Include="src\components\PrincipitoComponent.cpp" />
     <ClCompile Include="src\components\RouteComponent.cpp" />
     <ClCompile Include="src\components\ShieldComponent.cpp" />
     <ClCompile Include="src\components\SlimeBullet.cpp" />
