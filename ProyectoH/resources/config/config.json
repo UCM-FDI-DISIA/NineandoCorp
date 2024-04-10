@@ -845,6 +845,10 @@
       "id": "FenixVida",
       "value": 100
     },
+    {
+      "id": "IconOffset",
+      "value":  20
+    },
 
     {
       "id": "FenixPrecio",
