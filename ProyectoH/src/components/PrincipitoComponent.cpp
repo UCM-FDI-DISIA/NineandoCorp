@@ -3,7 +3,7 @@
 
 void PrincipitoComponent::setAttackSpeed() {
 	auto ac = mngr_->getComponent<AttackComponent>(ent_);
-	if (ac->getReloadTime() >= 0.25) {
+	if (ac->getReloadTime() > 0.25) {
 		ac->setReloadTime(ac->getReloadTime()*0.85f);
 	}
 	else {
