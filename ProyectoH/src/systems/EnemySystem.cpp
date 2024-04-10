@@ -367,18 +367,8 @@ void EnemySystem::update()
 					for (const auto& enemy : enemies) {
 						IconComponent* icOther = mngr_->getComponent<IconComponent>(enemy);
 						if (anc->getDistance(mngr_->getComponent<Transform>(enemy)->getPosition()) < anc->getRange() && enemy != e) {
-							if (icOther == nullptr)	icOther = mngr_->addComponent<IconComponent>(enemy);//Agregarselo si no lo tiene
-
 							if (!icOther->hasIcon(_HEALED)) {//Crearlo si no lo tiene
-								Entity* icon = mngr_->addEntity(_grp_ICONS);
-								mngr_->addComponent<RenderComponent>(icon, hpIcon);
-								Transform* tr = mngr_->addComponent<Transform>(icon);
-								Transform* targetTR = mngr_->getComponent<Transform>(enemy);
-								auto icons = icOther->getIcons();
-								tr->setPosition(*(targetTR->getPosition())+Vector2D(intAt("IconOffset")*icons.size(), 0));
-								tr->setScale(*(targetTR->getScale()) / 4);
-
-								icOther->addIcon(icon, _HEALED);
+								icOther->addIcon(_HEALED);
 							}
 							
 							mngr_->getComponent<HealthComponent>(enemy)->addHealth(mngr_->getComponent<HealthComponent>(enemy)->getBaseHealth() / 100.0f);

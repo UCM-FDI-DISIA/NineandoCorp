@@ -1,9 +1,33 @@
 #include "iconComponent.h"
 #include "../ecs/Manager.h"
+#include "RenderComponent.h"
 
-void IconComponent::addIcon(Entity* e, iconId id) {
+void IconComponent::addIcon(iconId id) {
+	Entity* icono = mngr_->addEntity(_grp_ICONS);
+	gameTextures text;
+	switch (id) {
+		case _BLINDED:
+			text = blindedIcon;
+			break;
+		case _HEALED:
+				text = hpIcon;
+				break;
+		case _POWERUP:
+			text = powerIcon;
+			break;
+		case _PARALIZED:
+			text = lightningIcon;
+			break;
+		default:
+			break;
+	}
+	mngr_->addComponent<RenderComponent>(icono, text);
+	Transform* tr = mngr_->addComponent<Transform>(icono);
+	Transform* targetTR = mngr_->getComponent<Transform>(ent_);
+	tr->setPosition(*(targetTR->getPosition()) + Vector2D(sdlutils().intConst().at("IconOffset") * icons_.size(), 0));
+	tr->setScale(*(targetTR->getScale()) / 4);
 	icon i;
-	i.ent_ = e;
+	i.ent_ = icono;
 	i.id_ = id;
 	icons_.push_back(i);
 }

@@ -24,7 +24,7 @@ public:
 	vector<icon> getIcons() { return icons_; }
 
 	bool hasIcon(iconId id);
-	void addIcon(Entity* icono, iconId id);
+	void addIcon(iconId id);
 	void removeIcon(iconId id);
 
 	icon getIcon(iconId id);

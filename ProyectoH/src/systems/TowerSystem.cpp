@@ -192,36 +192,6 @@ void TowerSystem::update() {
 			Transform* TR = mngr_->getComponent<Transform>(t);
 			TowerStates* tw = mngr_->getComponent<TowerStates>(t);
 			IconComponent* ic = mngr_->getComponent<IconComponent>(t);
-			if (ic != nullptr && !ic->hasIcon(_POWERUP)) {
-				Entity* icon = mngr_->addEntity(_grp_ICONS);
-				mngr_->addComponent<RenderComponent>(icon, powerIcon);
-				Transform* tr = mngr_->addComponent<Transform>(icon);
-				Transform* targetTR = mngr_->getComponent<Transform>(t);
-				tr->setPosition(*(targetTR->getPosition()) + Vector2D(intAt("IconOffset") * ic->getIcons().size(), 0));
-				tr->setScale(*(targetTR->getScale()) / 4);
-
-				ic->addIcon(icon, _POWERUP);
-			}
-			if (ic != nullptr && !ic->hasIcon(_BLINDED)) {
-				Entity* icon = mngr_->addEntity(_grp_ICONS);
-				mngr_->addComponent<RenderComponent>(icon, blindedIcon);
-				Transform* tr = mngr_->addComponent<Transform>(icon);
-				Transform* targetTR = mngr_->getComponent<Transform>(t);
-				tr->setPosition(*(targetTR->getPosition()) + Vector2D(intAt("IconOffset") * ic->getIcons().size(), 0));
-				tr->setScale(*(targetTR->getScale()) / 4);
-
-				ic->addIcon(icon, _BLINDED);
-			}
-			if (ic != nullptr && !ic->hasIcon(_HEALED)) {
-				Entity* icon = mngr_->addEntity(_grp_ICONS);
-				mngr_->addComponent<RenderComponent>(icon, hpIcon);
-				Transform* tr = mngr_->addComponent<Transform>(icon);
-				Transform* targetTR = mngr_->getComponent<Transform>(t);
-				tr->setPosition(*(targetTR->getPosition()) + Vector2D(intAt("IconOffset") * ic->getIcons().size(), 0));
-				tr->setScale(*(targetTR->getScale()) / 4);
-
-				ic->addIcon(icon, _HEALED);
-			}
 			
 			if (ic != nullptr) {
 				for (int i = 0; i < ic->getIcons().size(); i++) {
@@ -230,20 +200,17 @@ void TowerSystem::update() {
 					iconTr->setPosition(*(TR->getPosition()) + Vector2D(intAt("IconOffset") * i, 0));
 				}
 			}
-
+			if (tw->getPotenciado()) {
+				if (!ic->hasIcon(_POWERUP)) {//Crearlo si no lo tiene
+					ic->addIcon(_POWERUP);
+				}
+			}
 
 			if (tw->getCegado()) {//si esta cegada
 				tw->setElapsed(tw->getElapsed() + game().getDeltaTime());
 				IconComponent* ic = mngr_->getComponent<IconComponent>(t);
-				if (ic!= nullptr && !ic->hasIcon(_BLINDED)) {//Crearlo si no lo tiene
-					Entity* icon = mngr_->addEntity(_grp_ICONS);
-					mngr_->addComponent<RenderComponent>(icon, blindedIcon);
-					Transform* tr = mngr_->addComponent<Transform>(icon);
-					Transform* targetTR = mngr_->getComponent<Transform>(t);
-					tr->setPosition(*(targetTR->getPosition()) + Vector2D(intAt("IconOffset") * ic->getIcons().size(), 0));
-					tr->setScale(*(targetTR->getScale()) / 4);
-
-					ic->addIcon(icon, _BLINDED);
+				if (ic!= nullptr && !ic->hasIcon(_BLINDED)) {//Crearlo si no lo tiene					
+					ic->addIcon(_BLINDED);
 				}
 				
 				if (tw->getElapsed() > tw->getCegado()) {
@@ -260,38 +227,29 @@ void TowerSystem::update() {
 					int lvl = mngr_->getComponent<UpgradeTowerComponent>(t)->getLevel();
 					mngr_->getComponent<FramedImage>(t)->setCurrentFrame(lvl);
 					Vector2D myPos = mngr_->getComponent<Transform>(t)->getPosition();
-					//std::cout << et->getRange() << std::endl;
 					for (size_t i = 0; i < towers.size(); i++)//miramos las torres de alarededor para potenciarlas
 					{
 						Vector2D towerPos = mngr_->getComponent<Transform>(towers[i])->getPosition();
 						float distance = sqrt(pow(towerPos.getX() - myPos.getX(), 2) + pow(towerPos.getY() - myPos.getY(), 2));//distancia a la torre
 						IconComponent* ic = mngr_->getComponent<IconComponent>(towers[i]);
-						if (distance <= et->getRange() && towers[i] != t) {//enRango
-							//std::cout << "Potenciada: " << i << std::endl;						
-							if (ic == nullptr) {
-								ic = mngr_->addComponent<IconComponent>(towers[i]);//Agregarselo si no lo tiene
-							}
-							if (!ic->hasIcon(_POWERUP)) {//Crearlo si no lo tiene
-								Entity* icon = mngr_->addEntity(_grp_ICONS);
-								mngr_->addComponent<RenderComponent>(icon, powerIcon);
-								Transform* tr = mngr_->addComponent<Transform>(icon);
-								Transform* targetTR = mngr_->getComponent<Transform>(towers[i]);
-								tr->setPosition(*(targetTR->getPosition()) + Vector2D(intAt("IconOffset") * ic->getIcons().size(), 0));
-								tr->setScale(*(targetTR->getScale()) / 4);
-
-								ic->addIcon(icon, _POWERUP);
-							}
-							
-							DiegoSniperTower* ac = mngr_->getComponent<DiegoSniperTower>(towers[i]);
+						TowerStates* ts = mngr_->getComponent<TowerStates>(towers[i]);
+						if (distance <= et->getRange() && towers[i] != t && !ts->getPotenciado()) {//enRango						
+											
+							DiegoSniperTower* ac = mngr_->getComponent<DiegoSniperTower>(t);
 							if (ac != nullptr) {
 								ac->setDamage(ac->getBaseDamage() * (1 + et->getDamageIncreasePercentage()));
 							}//incrementamos daño
 							HealthComponent* h = mngr_->getComponent<HealthComponent>(towers[i]);
 							if (h != nullptr) { h->setMaxHealth(h->getBaseHealth() + et->getTowersHPboost()); }//incrementamos vida
+
+							ts->setPotenciado(true);
+							ts->setPotenciadora(t);
 						}
-						else if (ic != nullptr && ic->hasIcon(_POWERUP)) {//Eliminarlo si no se encuentra en la distancia
+						else if (distance > et->getRange() && ts->getPotenciado() && ts->getSrcPotencia() == t) {//Sale de rango al ser eliminada o movida
+							ts->setPotenciado(false);
+							ts->setPotenciadora(nullptr);
 							ic->removeIcon(_POWERUP);
-						}					
+						}
 					}
 				}
 				//Cada cierto tiempo targetea a un enemigo y le dispara, cambiando su imagen en funci�n de la direcci�n del disparo
