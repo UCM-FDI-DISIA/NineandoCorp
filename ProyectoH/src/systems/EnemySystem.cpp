@@ -168,37 +168,49 @@ void EnemySystem::AddMoney(enmId type, int level) {
 	switch (type)
 	{
 	case _enm_MALMAS:
+		money = sdlutils().intConst().at("MALMASmoney");
+		break;
 	case _enm_AELECTRICO:
+		money = sdlutils().intConst().at("AELECTRICOmoney");
+		break;
 	case _enm_DREAL:
-		money = 30;
-		break;
-	case _enm_MALDITO:
-		money = 15;
-		break;
-	case _enm_GOLEM:
-		money = 100;
-		break;
-	case _enm_DALADO:
-	case _enm_GOBLIN:
-		money = 5;
+		money = sdlutils().intConst().at("DREALmoney");
 		break;
 	case _enm_ELFO:
-		money = 15;
+		money = sdlutils().intConst().at("ELFOmoney");
+		break;
+	case _enm_MALDITO:
+		money = sdlutils().intConst().at("MALDITOmoney");
+		break;
+	case _enm_GOLEM:
+		money = sdlutils().intConst().at("GOLEMmoney");
+		break;
+	case _enm_DALADO:
+		money = sdlutils().intConst().at("DALADOmoney");
+		break;
+	case _enm_GOBLIN:
+		money = sdlutils().intConst().at("GOBLINmoney");
 		break;
 	case _enm_MMUERTE:
-		money = 50;
+		money = sdlutils().intConst().at("MMUERTEmoney");
 		break;
 	case _enm_ANGEL:
-		money = 25;
+		money = sdlutils().intConst().at("ANGELmoney");
 		break;
 	case _enm_DINFERNAL:
-		money = 75;
+		money = sdlutils().intConst().at("DINFERNALmoney");
 		break;
 	case _enm_CMALDITO:
+		money = sdlutils().intConst().at("CMALDITOmoney");
+		break;
 	case _enm_PRINCIPITO:
+		money = sdlutils().intConst().at("PRINCIPITOmoney");
+		break;
 	case _enm_MONJE:
+		money = sdlutils().intConst().at("MONJEmoney");
+		break;
 	case _enm_MUERTE:
-		money = 0;
+		money = sdlutils().intConst().at("MUERTEmoney");
 		break;
 	default:
 		break;
