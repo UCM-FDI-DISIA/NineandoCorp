@@ -22,8 +22,8 @@ public:
 	void initSystem() override;
 	void receive(const Message& m) override;
 	void update();
+	void setNextEvent(int wavesToEvent, MeteorologyEvent event);
 private:
-
 	void generateMeteorites(int num);
 	void generateMeteorite();
 	void generateAnimTornado();
@@ -56,4 +56,6 @@ private:
 	NetMap* net;
 	Entity* imgEvent_;
 	MeteorologyEvent nextEvent_;
+	int wavesToNextevent_;
+	int currentWaves_;
 };
