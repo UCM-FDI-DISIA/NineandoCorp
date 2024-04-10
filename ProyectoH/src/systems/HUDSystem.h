@@ -42,18 +42,33 @@ private:
 		~UpgradeMenu() {}
 	};
 
+	 struct TowerButton {
+		Vector2D initialPos;
+		Entity* button;
+		Entity* img;
+
+		TowerButton() : 
+			initialPos(Vector2D()),
+			button(nullptr), 
+			img(nullptr) {}
+
+		TowerButton(Entity* but, Entity* im, const Vector2D& pos) : 
+			initialPos(pos),
+			button(but),
+			img(im) {}
+	};
+
 	struct TowerSelector {
-		std::vector<Entity*> buttons;
-		std::vector<Entity*> imgs;
+		std::vector<TowerButton> buttons;
 		Entity* background;
 		Entity* roundButton;
 		int selectorHeight = 200;
 		TowerSelector() :
 			buttons(), //
-			imgs(), //
 			background(nullptr), //
 			roundButton(nullptr) {}		
 	};
+
 
 	UpgradeMenu upM_;
 	TowerSelector twrSel_;
@@ -84,8 +99,6 @@ private:
 
 	bool canStartWave = false;
 
-	// Posiciones de los iconos de las torres
-	std::vector<Vector2D> initial_pos;
 	//ofset de la camara al renderizar
 	SDL_Rect* cameraOffset_;
 };

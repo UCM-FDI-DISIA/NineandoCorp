@@ -12,9 +12,7 @@ HUDSystem::~HUDSystem(){
 }
 
 void HUDSystem::initSystem() {
-	twrSel_.imgs.resize(twrId::_twr_SIZE - 1);
 	twrSel_.buttons.resize(twrId::_twr_SIZE - 1);
-	initial_pos.resize(twrId::_twr_SIZE - 1);
 
 	ButtonSystem* bS = mngr_->getSystem<ButtonSystem>();
 
@@ -42,163 +40,172 @@ void HUDSystem::initSystem() {
 	*
 	*/
 	#pragma region BULLET TOWER
-		twrSel_.buttons[_twr_BULLET] = bS->addButton({ xAux, heightH },
+	TowerButton tb1;
+		tb1.button = bS->addButton({ xAux, heightH },
 			bSize,
 			gameTextures::none_box, gameTextures::none_box_hover,
 			ButtonTypes::bullet_drag);
 
-		twrSel_.imgs[_twr_BULLET] = bS->addImage(
+		tb1.img = bS->addImage(
 			{ xAux + 3, heightH },
 			{ floatAt("IconBulletScaleX"), floatAt("IconBulletScaleY")},
 			0.0f,
 			gameTextures::bulletTowerTexture,
 			_grp_HUD_FOREGROUND);
-		auto dndBullet = mngr_->addComponent<DragAndDrop>(twrSel_.imgs[_twr_BULLET], _twr_BULLET, sdlutils().intConst().at("BalasPrecio"), Height::LOW);
+		auto dndBullet = mngr_->addComponent<DragAndDrop>(tb1.img , _twr_BULLET, sdlutils().intConst().at("BalasPrecio"), Height::LOW);
 		
-		mngr_->addComponent<FramedImage>(twrSel_.imgs[_twr_BULLET],
+		mngr_->addComponent<FramedImage>(tb1.img ,
 			intAt("BalasColumns"), intAt("BalasRows"),
 			intAt("BalasWidth"), intAt("BalasHeight"),
 			0, 0);
-		initial_pos[_twr_BULLET] = { xAux + 3, heightH };
+		tb1.initialPos = Vector2D( xAux + 3, heightH );
 
+		twrSel_.buttons[_twr_BULLET] = tb1;
 	#pragma endregion
 
 	#pragma region CRISTAL TOWER
-		twrSel_.buttons[_twr_CRISTAL] = bS->addButton({ xAux * 2, heightH},
+		TowerButton tb2;
+		tb2.button = bS->addButton({ xAux * 2, heightH},
 			bSize,
 			gameTextures::none_box, gameTextures::none_box_hover,
 			ButtonTypes::crystal_drag);
-		twrSel_.imgs[_twr_CRISTAL] = bS->addImage(
+		tb2.img = bS->addImage(
 			{ xAux * 2 + 3, heightH - 10 },
 			{ floatAt("IconCristalScaleX"), floatAt("IconCristalScaleY") },
 			0.0,
 			cristalTowerTexture,
 			_grp_HUD_FOREGROUND);
 
-		mngr_->addComponent<DragAndDrop>(twrSel_.imgs[_twr_CRISTAL], _twr_CRISTAL, sdlutils().intConst().at("CristalPrecio"), Height::HIGH);
-		mngr_->addComponent<FramedImage>(twrSel_.imgs[_twr_CRISTAL],
+		mngr_->addComponent<DragAndDrop>(tb2.img, _twr_CRISTAL, sdlutils().intConst().at("CristalPrecio"), Height::HIGH);
+		mngr_->addComponent<FramedImage>(tb2.img,
 			intAt("CristalColumns"), intAt("CristalRows"),
 			intAt("CristalWidth"), intAt("CristalHeight"),
 			0, 0);
-		initial_pos[_twr_CRISTAL] = { xAux * 2 + 3, heightH - 10 };
+		tb2.initialPos = Vector2D(xAux * 2 + 3, heightH - 10 );
+		twrSel_.buttons[_twr_CRISTAL] = tb2;
 
 	#pragma endregion
 
 	#pragma region PHOENIX TOWER
-
-		twrSel_.buttons[_twr_FENIX] = bS->addButton({ xAux * 3, heightH },
+		TowerButton tb3;
+		tb3.button = bS->addButton({ xAux * 3, heightH },
 			bSize,
 			gameTextures::none_box, gameTextures::none_box_hover,
 			ButtonTypes::fenix_drag);
 
-		twrSel_.imgs[_twr_FENIX] = bS->addImage(
+		tb3.img = bS->addImage(
 			{ xAux * 3 + 3, heightH },
 			{ floatAt("IconFenixScaleX"), floatAt("IconFenixScaleY") },
 			0.0,
 			phoenixTowerTexture,
 			_grp_HUD_FOREGROUND);
 
-		mngr_->addComponent<DragAndDrop>(twrSel_.imgs[_twr_FENIX], _twr_FENIX, sdlutils().intConst().at("FenixPrecio"), Height::BOTH);
-		mngr_->addComponent<FramedImage>(twrSel_.imgs[_twr_FENIX],
+		mngr_->addComponent<DragAndDrop>(tb3.img, _twr_FENIX, sdlutils().intConst().at("FenixPrecio"), Height::BOTH);
+		mngr_->addComponent<FramedImage>(tb3.img,
 			intAt("FenixColumns"), intAt("FenixRows"),
 			intAt("FenixWidth"), intAt("FenixHeight"),
 			0, 0);
 
-		initial_pos[_twr_FENIX] = { xAux * 3 + 3, heightH };
+		tb3.initialPos = Vector2D(xAux * 3 + 3, heightH );
+		twrSel_.buttons[_twr_FENIX] = tb3;
 	#pragma endregion
 
 	#pragma region CLAY TOWER
-
-		twrSel_.buttons[_twr_CLAY] = bS->addButton({ xAux * 4, heightH },
+		TowerButton tb4;
+		tb4.button = bS->addButton({ xAux * 4, heightH },
 			bSize,
 			gameTextures::none_box, gameTextures::none_box_hover,
 			ButtonTypes::clay_drag);
-		twrSel_.imgs[_twr_CLAY] = bS->addImage(
+		tb4.img = bS->addImage(
 			{ xAux * 4 + 3, heightH },
 			{ floatAt("IconClayScaleX"), floatAt("IconClayScaleY") },
 			0.0,
 			clayTowerTexture,
 			_grp_HUD_FOREGROUND);
 
-		mngr_->addComponent<DragAndDrop>(twrSel_.imgs[_twr_CLAY], _twr_CLAY, sdlutils().intConst().at("ArcillaPrecio"), Height::PATH);
-		mngr_->addComponent<FramedImage>(twrSel_.imgs[_twr_CLAY],
+		mngr_->addComponent<DragAndDrop>(tb4.img, _twr_CLAY, sdlutils().intConst().at("ArcillaPrecio"), Height::PATH);
+		mngr_->addComponent<FramedImage>(tb4.img,
 			intAt("ArcillaColumns"), intAt("ArcillaRows"),
 			intAt("ArcillaWidth"), intAt("ArcillaHeight"),
 			0, 0);
 
-		initial_pos[_twr_CLAY] = { xAux * 4 + 3, heightH };
+		tb4.initialPos = Vector2D( xAux * 4 + 3, heightH );
+		twrSel_.buttons[_twr_CLAY] = tb4;
 	#pragma endregion
 
 	#pragma region SNIPER TOWER
-
-		twrSel_.buttons[_twr_DIEGO] = bS->addButton({ xAux * 5, heightH },
+		TowerButton tb5;
+		tb5.button = bS->addButton({ xAux * 5, heightH },
 			bSize,
 			gameTextures::none_box, gameTextures::none_box_hover,
 			ButtonTypes::sniper_drag);
 
-		twrSel_.imgs[_twr_DIEGO] = bS->addImage(
+		tb5.img = bS->addImage(
 			{ xAux * 5 + 3, heightH },
 			{ floatAt("IconSniperScaleX"), floatAt("IconSniperScaleY") },
 			0.0,
 			sniperTowerTexture,
 			_grp_HUD_FOREGROUND);
 
-		mngr_->addComponent<DragAndDrop>(twrSel_.imgs[_twr_DIEGO], _twr_DIEGO, sdlutils().intConst().at("DiegoSniperPrecio"), Height::HIGH);
-		mngr_->addComponent<FramedImage>(twrSel_.imgs[_twr_DIEGO],
+		mngr_->addComponent<DragAndDrop>(tb5.img, _twr_DIEGO, sdlutils().intConst().at("DiegoSniperPrecio"), Height::HIGH);
+		mngr_->addComponent<FramedImage>(tb5.img,
 			intAt("DiegoSniperColumns"), intAt("DiegoSniperRows"),
 			intAt("DiegoSniperWidth"), intAt("DiegoSniperHeight"),
 			0, 0);
 
-		initial_pos[_twr_DIEGO] = { xAux * 5 + 3, heightH };
+		tb5.initialPos = Vector2D( xAux * 5 + 3, heightH );
+		twrSel_.buttons[_twr_DIEGO] = tb5;
 	#pragma endregion
 	
 	#pragma region SLIME TOWER
-
-		twrSel_.buttons[_twr_SLIME] = bS->addButton({ xAux * 6, heightH },
+		TowerButton tb6;
+		tb6.button = bS->addButton({ xAux * 6, heightH },
 			bSize,
 			gameTextures::none_box, gameTextures::none_box_hover,
 			ButtonTypes::slime_drag);
 
-		twrSel_.imgs[_twr_SLIME] = bS->addImage(
+		tb6.img = bS->addImage(
 			{ xAux * 6 + 3, heightH },
 			{ floatAt("IconSlimeScaleX"), floatAt("IconSlimeScaleY") },
 			0.0,
 			slimeTowerTexture,
 			_grp_HUD_FOREGROUND);
 
-		mngr_->addComponent<DragAndDrop>(twrSel_.imgs[_twr_SLIME], _twr_SLIME, sdlutils().intConst().at("SlimePrecio"), Height::LOW);
-		mngr_->addComponent<FramedImage>(twrSel_.imgs[_twr_SLIME],
+		mngr_->addComponent<DragAndDrop>(tb6.img, _twr_SLIME, sdlutils().intConst().at("SlimePrecio"), Height::LOW);
+		mngr_->addComponent<FramedImage>(tb6.img,
 			intAt("SlimeColumns"), intAt("SlimeRows"),
 			intAt("SlimeWidth"), intAt("SlimeHeight"),
 			0, 0);
 
-		initial_pos[_twr_SLIME] = { xAux * 6 + 3, heightH };
+		tb6.initialPos =  Vector2D( xAux * 6 + 3, heightH );
+		twrSel_.buttons[_twr_SLIME] = tb6;
 	#pragma endregion
 
 	#pragma region POWER TOWER
-
-		twrSel_.buttons[_twr_POWER] = bS->addButton({ xAux * 7, heightH },
+		TowerButton tb7;
+		tb7.button = bS->addButton({ xAux * 7, heightH },
 			bSize,
 			gameTextures::none_box, gameTextures::none_box_hover,
 			ButtonTypes::enhancer_drag);
 
-		twrSel_.imgs[_twr_POWER] = bS->addImage(
+		tb7.img = bS->addImage(
 			{ xAux * 7 + 3, heightH - 4},
 			{ floatAt("IconPotenciadorScaleX"), floatAt("IconPotenciadorScaleY") },
 			0.0,
 			boosterTowerTexture,
 			_grp_HUD_FOREGROUND);
 
-		mngr_->addComponent<DragAndDrop>(twrSel_.imgs[_twr_POWER], _twr_POWER, sdlutils().intConst().at("PotenciadoraPrecio"), Height::BOTH);
-		mngr_->addComponent<FramedImage>(twrSel_.imgs[_twr_POWER],
+		mngr_->addComponent<DragAndDrop>(tb7.img, _twr_POWER, sdlutils().intConst().at("PotenciadoraPrecio"), Height::BOTH);
+		mngr_->addComponent<FramedImage>(tb7.img,
 			intAt("PotenciadoraColumns"), intAt("PotenciadoraRows"),
 			intAt("PotenciadoraWidth"), intAt("PotenciadoraHeight"),
 			0, 0);
 
-		initial_pos[_twr_POWER] = { xAux * 7 + 3 , heightH - 4 };
+		tb7.initialPos = Vector2D( xAux * 7 + 3 , heightH - 4 );
+		twrSel_.buttons[_twr_POWER] = tb7;
 	#pragma endregion
 
-	/**
+	/** 
 	*
 	*	/ -- PAUSE BUTTON -- /
 	*
@@ -225,7 +232,7 @@ void HUDSystem::receive(const Message& m) {
 	switch (m.id) 
 	{
 	case _m_DRAG:
-		dragTowerIcon(twrSel_.imgs[m.drag_data.towerId]);
+		dragTowerIcon(twrSel_.buttons[m.drag_data.towerId].img);
 		break;
 	case _m_STOP_DRAG:
 		showSelector(true);
@@ -275,8 +282,8 @@ void HUDSystem::update() {
 		else {
 			bC->setActive(true);
 		}
-		int i = 0;
-		for (auto en : twrSel_.imgs) {
+		for (auto tb : twrSel_.buttons) {
+			auto en = tb.img;
 			auto dC = mngr_->getComponent<DragAndDrop>(en);
 			if (dC != nullptr && dC->isDragged()) {
 				Vector2D mPos = { (float)ih().getMousePos().first, (float)ih().getMousePos().second };
@@ -291,7 +298,7 @@ void HUDSystem::update() {
 						mngr_->changeEntityId(_grp_HUD_FOREGROUND, en);
 						tr->setScale(resetScale(dC->getTowerId()));
 						Vector2D aux = tr->getScale();
-						tr->setPosition(initial_pos[i] - aux / 2);
+						tr->setPosition(tb.initialPos - aux / 2);
 						dC->enableDrag(false);
 						Message m;
 						m.id = _m_STOP_DRAG;
@@ -321,7 +328,7 @@ void HUDSystem::update() {
 						mngr_->changeEntityId(_grp_HUD_FOREGROUND, en);
 						tr->setScale(resetScale(dC->getTowerId()));
 						Vector2D aux = tr->getScale();
-						tr->setPosition(initial_pos[i] - aux / 2);
+						tr->setPosition(tb.initialPos - aux / 2);
 						Message m;
 						m.id = _m_STOP_DRAG;
 						mngr_->send(m, true);
@@ -329,7 +336,6 @@ void HUDSystem::update() {
 
 				}
 			}
-			i++;
 		}
 	}
 }
@@ -432,12 +438,11 @@ void HUDSystem::exitUpgradeMenu() {
 
 void HUDSystem::showSelector(bool active) {
 	// buttons
-	for (auto b : twrSel_.buttons) {
+	for (auto tb : twrSel_.buttons) {
+		auto b = tb.button;
 		mngr_->getComponent<ButtonComponent>(b)->setActive(active);
 		mngr_->getComponent<RenderComponent>(b)->isActive_ = active;
-	}
-	// images
-	for (auto i : twrSel_.imgs) {
+		auto i = tb.img;
 		mngr_->getComponent<RenderComponent>(i)->isActive_ = active;
 	}
 
