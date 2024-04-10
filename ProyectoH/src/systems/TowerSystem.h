@@ -49,7 +49,7 @@ public:
 	/// <param name="pos">Posicion en la que se coloca la torre</param>
 	/// <param name="height">Elevacion de la torre; puede ser alta o baja</param>
 	void addTower(twrId type, const Vector2D& pos, Height height);
-	
+
 	int intAt(basic_string<char> s) { return sdlutils().intConst().at(s); }
 	float floatAt(basic_string<char> s) { return sdlutils().floatConst().at(s); }
 
@@ -88,5 +88,6 @@ protected:
 
 	std::vector<Entity*> towersToInteract;
 	SDL_Rect* cameraOffset_;
+
 };
 

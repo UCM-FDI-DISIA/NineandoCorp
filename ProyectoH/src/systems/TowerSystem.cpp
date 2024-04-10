@@ -191,35 +191,37 @@ void TowerSystem::update() {
 		for (auto& t : towers) {
 			Transform* TR = mngr_->getComponent<Transform>(t);
 			TowerStates* tw = mngr_->getComponent<TowerStates>(t);
+			IconComponent* ic = mngr_->getComponent<IconComponent>(t);
+			
+			if (ic != nullptr) {
+				for (int i = 0; i < ic->getIcons().size(); i++) {
+					icon towerIcon = ic->getIcons()[i];
+					Transform* iconTr = mngr_->getComponent<Transform>(towerIcon.ent_);
+					iconTr->setPosition(*(TR->getPosition()) + Vector2D(intAt("IconOffset") * i, 0));
+				}
+			}
+			if (tw->getPotenciado()) {
+				if (!ic->hasIcon(_POWERUP)) {//Crearlo si no lo tiene
+					ic->addIcon(_POWERUP);
+				}
+			}
 
 			if (tw->getCegado()) {//si esta cegada
 				tw->setElapsed(tw->getElapsed() + game().getDeltaTime());
 				IconComponent* ic = mngr_->getComponent<IconComponent>(t);
-				if (ic == nullptr)	ic = mngr_->addComponent<IconComponent>(t, _BLINDED);//Agregarselo si no lo tiene
-				if (ic->getIconType() == _BLINDED) {
-					if (!ic->hasIcon()) {//Crearlo si no lo tiene
-						Entity* icon = mngr_->addEntity(_grp_ICONS);
-						mngr_->addComponent<RenderComponent>(icon, blindedIcon);
-						Transform* tr = mngr_->addComponent<Transform>(icon);
-						Transform* targetTR = mngr_->getComponent<Transform>(t);
-						tr->setPosition(*(targetTR->getPosition()));
-						tr->setScale(*(targetTR->getScale()) / 4);
-
-						ic->setHasIcon(true);
-						ic->setIcon(icon);
-					}
+				if (ic!= nullptr && !ic->hasIcon(_BLINDED)) {//Crearlo si no lo tiene					
+					ic->addIcon(_BLINDED);
 				}
+				
 				if (tw->getElapsed() > tw->getCegado()) {
-					if (ic != nullptr && ic->hasIcon() && ic->getIconType() == _BLINDED) {//Eliminarlo si no se encuentra en la distancia
-						ic->setHasIcon(false);
-						mngr_->setAlive(ic->getIcon(), false);
+					if (ic != nullptr && ic->hasIcon(_BLINDED)) {//Eliminarlo si no se encuentra en la distancia
+						ic->removeIcon(_BLINDED);
 					}
 					tw->setCegado(false, 0.0);
 					tw->setElapsed(0.0);
 				}
 			}
 			else {
-
 				#pragma region ENHANCER
 					EnhancerTower* et = mngr_->getComponent<EnhancerTower>(t);
 					if (et != nullptr) {
@@ -536,6 +538,7 @@ void TowerSystem::addTower(twrId type,const Vector2D& pos, Height height) {
 	mngr_->addComponent<TowerStates>(t);
 	mngr_->addComponent<UpgradeTowerComponent>(t, type, 4);
 	mngr_->addComponent<InteractiveTower>(t, cameraOffset_);
+	mngr_->addComponent<IconComponent>(t);
 	float health = 100.0f;
 	if (height == LOW ||height == PATH) {
 		mngr_->addComponent<HealthComponent>(t, health);

@@ -1,24 +1,32 @@
 #pragma once
 #include "../ecs/Component.h"
 #include "Transform.h"
+#include <vector>
+
+struct icon {
+	Entity* ent_;
+	iconId id_;
+
+	inline bool operator==(const icon& r) {
+		return ent_ == r.ent_ && id_ == r.id_;
+	}
+};
 
 class IconComponent:public Component
 {
 private:
-	bool hasIcon_;
-	Entity* icon_;
-	iconId iconType_;
+	vector<icon> icons_;
 public:
 	static const cmpId id = cmpId::_ICON;
 
-	IconComponent(iconId iconType) : hasIcon_(false), iconType_(iconType), icon_(nullptr) {};
+	IconComponent() : icons_() {};
 
-	Entity* getIcon() { return icon_; }
-	iconId getIconType() { return iconType_; }
+	vector<icon> getIcons() { return icons_; }
 
-	bool hasIcon() { return hasIcon_; }
-	void setHasIcon(bool hasIcon) { hasIcon_ = hasIcon; }
-	void setIcon(Entity* icon) { icon_ = icon; }
+	bool hasIcon(iconId id);
+	void addIcon(iconId id);
+	void removeIcon(iconId id);
 
+	icon getIcon(iconId id);
 };
 

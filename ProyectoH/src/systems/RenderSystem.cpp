@@ -74,7 +74,7 @@ RenderSystem::RenderSystem() : winner_(0)
 	//HUD
 	cursorTexture = &sdlutils().images().at("cursor");
 	cursorTexture2 = &sdlutils().images().at("cursorpress");
-	textures[shield] = &sdlutils().images().at("H_coin");
+	textures[MonedaH] = &sdlutils().images().at("H_coin");
 	textures[box] = &sdlutils().images().at("box"); 
 	textures[box_hover] = &sdlutils().images().at("box_hover");
 	textures[large_box] = &sdlutils().images().at("large_box");
