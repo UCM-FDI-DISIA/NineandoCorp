@@ -258,7 +258,7 @@ enum gameTextures {
 	square, bulletTowerTexture, cristalTowerTexture, phoenixTowerTexture,
 	slimeTowerTexture, boosterTowerTexture, sniperTowerTexture, clayTowerTexture, nexusTexture, fireTexture,
 	// nexus
-	nexusLvl1, nexusLvl2, nexusLvl3, nexusLvl4,
+	nexusLvl,
 
 	//enemies
 	goblin, maldito, elfo, golem, angel, maestro, acechante, defensor, demonioAlado,
@@ -359,6 +359,7 @@ struct Message {
 		twrId towerId;
 		Vector2D pos;
 		Height height;
+		int maxLvl;
 
 	} add_tower_data;
 
@@ -393,6 +394,7 @@ struct Message {
 		int money;
 		//nivel
 		unsigned int level = 0;
+		vector<int>* turrentLevels;
 		NetMap* netmap;
 		SDL_Rect* cameraOffset;
 	}start_game_data;
