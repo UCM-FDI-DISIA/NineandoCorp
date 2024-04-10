@@ -162,6 +162,11 @@ RenderSystem::RenderSystem() : winner_(0)
 	textures[tornado] = &sdlutils().images().at("tornado");
 	textures[tsunami] = &sdlutils().images().at("meteorites");
 	textures[cloud] = &sdlutils().images().at("cloud");
+	textures[tsunami_icon] = &sdlutils().images().at("tsunami_icon");
+	textures[thunder_icon] = &sdlutils().images().at("storm_icon");
+	textures[earthquake_icon] = &sdlutils().images().at("earthquake_icon");
+	textures[tornado_icon] = &sdlutils().images().at("tornado_icon");
+	textures[meteorite_icon] = &sdlutils().images().at("meteorite_icon");
 
 }
 
