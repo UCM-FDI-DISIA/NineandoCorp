@@ -146,7 +146,9 @@ void ButtonSystem::manageButtons() {
 			Pause();
 			pauseAllButtons();
 			break;
-
+		case enemybook:
+			mngr_->send(mngr_->getComponent<ButtonComponent>(bC)->getMessage());			
+			break;
 		/*--- MEJORAS DEL MENU ---*/
 		case upgrade_nexus:
 			upgradeTower(_twr_NEXUS);
