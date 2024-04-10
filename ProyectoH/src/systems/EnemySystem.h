@@ -39,7 +39,7 @@ public:
 	void setWave() { wave++; }
 protected:
 	void addField(Vector2D pos);
-	void changeAnimation(bool animation, enmId enemy_type);
+	void changeAnimation(bool animation, Entity* e);
 
 	std::vector<Transform*> enemiesTransforms;
 	std::vector<Entity*> spawnsVector;

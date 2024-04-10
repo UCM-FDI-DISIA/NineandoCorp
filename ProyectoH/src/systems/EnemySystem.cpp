@@ -320,7 +320,7 @@ void EnemySystem::update()
 						mc->setStop(true);
 						if (!ac->getAttack()) {
 							ac->setAttack(true);
-							changeAnimation(ac->getAttack(), etc->GetEnemyType());
+							changeAnimation(ac->getAttack(), e);
 						}
 						
 						if (ma != nullptr) {
@@ -338,9 +338,8 @@ void EnemySystem::update()
 					else {
 						mc->setStop(false);
 						if (ac->getAttack()) {
-							
 							ac->setAttack(false);
-							changeAnimation(ac->getAttack(), etc->GetEnemyType());
+							changeAnimation(ac->getAttack(), e);
 						}
 						
 					}
@@ -401,45 +400,146 @@ void EnemySystem::addField(Vector2D pos) {
 	mngr_->send(m);
 }
 
-void EnemySystem::changeAnimation(bool animation, enmId enemy_type) {
+void EnemySystem::changeAnimation(bool isAttacking, Entity* e) {
+	FramedImage* fi = mngr_->getComponent<FramedImage>(e);
+	enmId enemy_type = mngr_->getComponent<EnemyTypeComponent>(e)->GetEnemyType();
+
 	switch (enemy_type)
 	{
 	case _enm_MALMAS:
-		break;
-	case _enm_AELECTRICO:
-		break;
-	case _enm_MALDITO:
-		break;
-	case _enm_GOLEM:
-		break;
-	case _enm_DALADO:
-		break;
-	case _enm_GOBLIN:
-		break;
-	case _enm_ELFO:
-		if (animation) {
-			std::cout << "atacar ";
+		if (isAttacking) {
+
 		}
 		else
 		{
-			std::cout << "run ";
+
+		}
+		break;
+	case _enm_AELECTRICO:
+		if (isAttacking) {
+
+		}
+		else
+		{
+
+		}
+		break;
+	case _enm_MALDITO:
+		if (isAttacking) {
+
+		}
+		else
+		{
+
+		}
+		break;
+	case _enm_GOLEM:
+		if (isAttacking) {
+
+		}
+		else
+		{
+
+		}
+		break;
+	case _enm_DALADO:
+		if (isAttacking) {
+
+		}
+		else
+		{
+
+		}
+		break;
+	case _enm_GOBLIN:
+		if (isAttacking) {
+
+		}
+		else
+		{
+
+		}
+		break;
+	case _enm_ELFO:
+		if (isAttacking) {
+			
+		}
+		else
+		{
+
 		}
 		break;
 	case _enm_MMUERTE:
+		if (isAttacking) {
+
+		}
+		else
+		{
+
+		}
 		break;
 	case _enm_ANGEL:
+		if (isAttacking) {
+
+		}
+		else
+		{
+
+		}
 		break;
 	case _enm_DINFERNAL:
+		if (isAttacking) {
+
+		}
+		else
+		{
+
+		}
 		break;
 	case _enm_DREAL:
+		if (isAttacking) {
+
+		}
+		else
+		{
+
+		}
 		break;
 	case _enm_CMALDITO:
+		if (isAttacking) {
+
+		}
+		else
+		{
+
+		}
 		break;
 	case _enm_PRINCIPITO:
+		if (isAttacking) {
+
+		}
+		else
+		{
+
+		}
 		break;
 	case _enm_MONJE:
+		if (isAttacking) {
+
+		}
+		else
+		{
+
+		}
 		break;
 	case _enm_MUERTE:
+		if (isAttacking) {
+
+		}
+		else
+		{
+
+		}
 		break;
 	default:
 		break;
