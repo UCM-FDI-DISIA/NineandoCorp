@@ -234,20 +234,7 @@ void TowerSystem::update() {
 							IconComponent* ic = mngr_->getComponent<IconComponent>(towers[i]);
 							if (distance <= et->getRange() && towers[i] != t) {//enRango
 								//std::cout << "Potenciada: " << i << std::endl;						
-								if (ic == nullptr)	ic = mngr_->addComponent<IconComponent>(towers[i], _POWERUP);//Agregarselo si no lo tiene
-								if (ic->getIconType() == _POWERUP) {
-									if (!ic->hasIcon()) {//Crearlo si no lo tiene
-										Entity* icon = mngr_->addEntity(_grp_ICONS);
-										mngr_->addComponent<RenderComponent>(icon, powerIcon);
-										Transform* tr = mngr_->addComponent<Transform>(icon);
-										Transform* targetTR = mngr_->getComponent<Transform>(towers[i]);
-										tr->setPosition(*(targetTR->getPosition()));
-										tr->setScale(*(targetTR->getScale()) / 4);
-
-										ic->setHasIcon(true);
-										ic->setIcon(icon);
-									}
-								}
+								
 								DiegoSniperTower* ac = mngr_->getComponent<DiegoSniperTower>(towers[i]);
 								if (ac != nullptr) {
 									ac->setDamage(ac->getBaseDamage() * (1 + et->getDamageIncreasePercentage()));
@@ -255,9 +242,9 @@ void TowerSystem::update() {
 								HealthComponent* h = mngr_->getComponent<HealthComponent>(towers[i]);
 								if (h != nullptr) { h->setMaxHealth(h->getBaseHealth() + et->getTowersHPboost()); }//incrementamos vida
 							}
-							else if (ic != nullptr && ic->hasIcon() && ic->getIconType() == _POWERUP) {//Eliminarlo si no se encuentra en la distancia
-								ic->setHasIcon(false);
-								mngr_->setAlive(ic->getIcon(), false);
+							else if (ic != nullptr && tw->getPotenciado() && tw->getSrcPotencia() == t) {//Eliminarlo si no se encuentra en la distancia
+								tw->setPotenciado(false);
+								ic->removeIcon(_POWERUP);
 							}
 						}
 					}

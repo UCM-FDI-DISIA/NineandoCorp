@@ -271,7 +271,7 @@ enum gameTextures {
 
 	//others
     meteorites, earthquake,tornado,thunder, tsunami,cloud,
-	bulletTexture, sniperBulletTexture, slimeBulletTexture, slimeArea, shield, hpIcon, blindedIcon, lightningIcon, powerIcon,
+	bulletTexture, sniperBulletTexture, slimeBulletTexture, slimeArea, shield, hpIcon, blindedIcon, lightningIcon, powerIcon, monedaH,
 
 	//explosions
 	shieldExp, bulletExplosion, enemyDeath,
