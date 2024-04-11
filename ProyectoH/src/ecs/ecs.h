@@ -394,7 +394,7 @@ struct Message {
 		int money;
 		//nivel
 		unsigned int level = 0;
-		vector<int>* turrentLevels;
+		int* turrentLevels;
 		NetMap* netmap;
 		SDL_Rect* cameraOffset;
 	}start_game_data;
