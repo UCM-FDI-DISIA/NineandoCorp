@@ -13,15 +13,15 @@
 
 
 ## Enlaces:
+[GDD](#GDD)
+
 [Web del juego](https://pokoli0.github.io/PVLI-Taxistas/)
 
 [Presentaciones](#Presentaciones)
 
-[UML]()
+[UML](UML.jpg)
 
 [QA]()
-
-[GDD](#GDD)
 
 [GRÁFICA DE DATOS](https://docs.google.com/spreadsheets/d/17VJqKdXs5HxnRE7XhKgaJPYE78I2Osd8cGOCqmh4Tbk/edit?usp=drive_link)
 
@@ -141,8 +141,8 @@ Estas zonas son:
 |Montaña| Son zonas más alejadas de los caminos. En ella solo se pueden poner torres de gran alcance o torres que ataque a enemigos aéreos|
 |Lagos|Estas zonas imposibilitan poner todo tipo de torres.|
 
-##### 4.3.3 Zonas del escenario
-Durante el transcurso de los niveles aparecerán una vez pasada x rondas un fenómeno meteorológico que modificará el escenario, antes de que ocurran dichos desastres se le avisará al jugador en pantalla cuantas rondas le quedan para que ocurra. Pueden  ser:
+##### 4.3.3 Fenómenos Naturales
+Cada vez que se inicia un nivel, aparecerá el rango posible de oleadas en las que aparecerá el fenómeno natural que será elegido de forma aleatoria. Por lo tanto, una vez ocurra dicho fenómeno los siguientes aparecen cada 5 oleadas hasta el fin del nivel. Pueden  ser:
 - Tornados: estos reubicarán a los enemigos cambiandolos a otros caminos.
 - Terremoto: destruirán las torres de arcilla que se ubiquen en los caminos y baja la velocidad de los enemigos durante el periodo que dure el fenómeno meteorológico.
 - Tormenta: caerán rayos que paralicen las torretas y enemigos según donde caiga. Además, se desactivan las torres Fénix durante el periodo de tormenta impidiendo que lanzan fuego. Las torres paralizadas tendrán un icono encima que lo indique.
@@ -363,7 +363,9 @@ En respuesta a la inminente amenaza de las fuerzas oscuras, el Consejo de la Luz
 
 
 ## Presentaciones
-- Hito 0: https://www.canva.com/design/DAF77q2_lN4/kAq_e8tkWTQHgje6bMVrdA/edit?utm_content=DAF77q2_lN4&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton
+- [Hito 0:](Presentaciones/PresentaciónHDefenseHito0.pdf)
+- [Hito 1:](Presentaciones/Hito1_NineandoCorp.pdf)
+- [Hito 2:](Presentaciones/PresentaciónHito2NineandoCorp.pdf)
 
 ## 12. Referencias
 
