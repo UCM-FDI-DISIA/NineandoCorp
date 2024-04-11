@@ -105,7 +105,7 @@ void generateEnemies::addEnemy(enmId type, std::vector<Vector2D> route) {
 		tr->setPosition(route[0]);
 		mngr_->addComponent<RouteComponent>(t, route);
 		mngr_->addComponent<AttackComponent>(t, 100, 1.0, 20, true);
-		mngr_->addComponent<FramedImage>(t, 1, 1, 250, 250, 0, 8, 7);
+		mngr_->addComponent<FramedImage>(t, 8, 1, 250, 250, 0, 8, 7);
 		mngr_->addComponent<EnemyTypeComponent>(t, _enm_MALMAS);
 		break;
 	case _enm_AELECTRICO:

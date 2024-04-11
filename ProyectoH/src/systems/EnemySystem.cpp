@@ -413,11 +413,13 @@ void EnemySystem::changeAnimation(bool isAttacking, Entity* e) {
 	{
 	case _enm_MALMAS:
 		if (isAttacking) {
-			
+			rc->setTexture(gameTextures::maestro_attack);
+			fi->setFrames(8, 1, 0, 8, 7);
 		}
 		else
 		{
-
+			rc->setTexture(gameTextures::maestro);
+			fi->setFrames(8, 1, 0, 8, 7);
 		}
 		break;
 	case _enm_AELECTRICO:
@@ -449,11 +451,13 @@ void EnemySystem::changeAnimation(bool isAttacking, Entity* e) {
 		break;
 	case _enm_DALADO:
 		if (isAttacking) {
-
+			rc->setTexture(gameTextures::demonioAlado_attack);
+			fi->setFrames(8, 1, 0, 8, 7);
 		}
 		else
 		{
-
+			rc->setTexture(gameTextures::demonioAlado);
+			fi->setFrames(8, 1, 0, 8, 7);
 		}
 		break;
 	case _enm_GOBLIN:
@@ -468,12 +472,12 @@ void EnemySystem::changeAnimation(bool isAttacking, Entity* e) {
 	case _enm_ELFO:
 		if (isAttacking) {
 			rc->setTexture(gameTextures::elfo_attack);
+			fi->setFrames(6, 1, 0, 8, 5);
 		}
 		else
 		{
-			//mngr_->addComponent<FramedImage>(e, 8, 1, 100, 100, 0, 8, 7);
 			rc->setTexture(gameTextures::elfo);
-
+			fi->setFrames(8, 1, 0, 8, 7);
 		}
 		break;
 	case _enm_MMUERTE:
@@ -505,11 +509,13 @@ void EnemySystem::changeAnimation(bool isAttacking, Entity* e) {
 		break;
 	case _enm_DREAL:
 		if (isAttacking) {
-
+			rc->setTexture(gameTextures::defensor_attack);
+			fi->setFrames(8, 1, 0, 8, 7);
 		}
 		else
 		{
-
+			rc->setTexture(gameTextures::defensor);
+			fi->setFrames(8, 1, 0, 8, 7);
 		}
 		break;
 	case _enm_CMALDITO:
@@ -523,11 +529,13 @@ void EnemySystem::changeAnimation(bool isAttacking, Entity* e) {
 		break;
 	case _enm_PRINCIPITO:
 		if (isAttacking) {
-
+			rc->setTexture(gameTextures::principito_attack);
+			fi->setFrames(10, 1, 0, 8, 9);
 		}
 		else
 		{
-
+			rc->setTexture(gameTextures::principito);
+			fi->setFrames(8, 1, 0, 8, 7);
 		}
 		break;
 	case _enm_MONJE:
@@ -541,11 +549,13 @@ void EnemySystem::changeAnimation(bool isAttacking, Entity* e) {
 		break;
 	case _enm_MUERTE:
 		if (isAttacking) {
-
+			rc->setTexture(gameTextures::muerte_attack);
+			fi->setFrames(6, 1, 0, 8, 5);
 		}
 		else
 		{
-
+			rc->setTexture(gameTextures::muerte);
+			fi->setFrames(1, 1, 0, 0, 1);
 		}
 		break;
 	default:
