@@ -225,26 +225,29 @@ void EnemySystem::AddMoney(enmId type, int level) {
 	{
 	case 1:
 	case 2:
-		Hmoney = 1;
+		Hmoney = sdlutils().intConst().at("Hmoney1");
 		break;
 	case 3:
 	case 4:
 	case 5:
 	case 6:
-		Hmoney = 2;
+		Hmoney = sdlutils().intConst().at("Hmoney2");
 		break;
 	case 7:
 	case 8:
-		Hmoney = 3;
+		Hmoney = sdlutils().intConst().at("Hmoney3");
 		break;
 	default:
 		break;
 	}
-	Message m;
-	m.id = _m_ADD_MONEY;
-	m.money_data.money = money;
-	m.money_data.Hmoney = Hmoney;
-	mngr_->send(m);
+	Message m1;
+	m1.id = _m_ADD_MONEY;
+	m1.money_data.money = money;
+	mngr_->send(m1);
+	Message m2;
+	m2.id = _m_ADD_MONEY;
+	m2.money_data.Hmoney = Hmoney;
+	mngr_->send(m2);
 }
 
 
