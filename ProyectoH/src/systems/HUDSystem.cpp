@@ -399,7 +399,7 @@ void HUDSystem::update() {
 					else if (ih().getMouseButtonState(InputHandler::MOUSEBUTTON::LEFT) == 1) {
 						auto tr = mngr_->getComponent<Transform>(en);
 						if (cell->isFree) {
-							dC->drop(tr->getPosition(), Height::LOW);
+							dC->drop(tr->getPosition(), Height::LOW, cell);
 							cell->isFree = false;
 						}
 						else {

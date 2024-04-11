@@ -20,7 +20,7 @@ public:
 	/// </summary>
 	/// <param name="pos"> posicion</param>
 	/// <param name="h"> pradera o montaña</param>
-	void drop(const Vector2D& pos, Height h);
+	void drop(const Vector2D& pos, Height h, Cell* cell);
 
 	/// <summary>
 	/// habilita si el objeto esta siendo arrastrado o no

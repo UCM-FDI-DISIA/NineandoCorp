@@ -28,7 +28,7 @@ void TowerSystem::receive(const Message& m) {
 		if(m.entity_to_attack.targetId == _hdlr_LOW_TOWERS)onAttackTower(m.entity_to_attack.e, m.entity_to_attack.damage, m.entity_to_attack.src);
 		break;
 	case _m_ADD_TOWER:
-		addTower(m.add_tower_data.towerId, m.add_tower_data.pos, m.add_tower_data.height, m.add_tower_data.sellMoney);
+		addTower(m.add_tower_data.towerId, m.add_tower_data.pos, m.add_tower_data.height, m.add_tower_data.sellMoney, m.add_tower_data.cell);
 		break;
 	case _m_TOWER_CLICKED:
 		addTowerToInteract(m.tower_clicked_data.tower);
@@ -472,6 +472,12 @@ void TowerSystem::eliminateDestroyedTowers(Entity* t) {//elimina del array las t
 }
 
 
+Entity* TowerSystem::getFrontTower()
+{
+	sort(towersToInteract.begin(), towersToInteract.end(), cmpIsometricY(mngr_));
+	return towersToInteract.back();
+}
+
 void TowerSystem::removeTower(Entity* twr)
 {
 	auto h = mngr_->getComponent<TowerComponent>(twr)->getTowerHeight();
@@ -481,6 +487,8 @@ void TowerSystem::removeTower(Entity* twr)
 	else {
 		mngr_->deleteHandler(_hdlr_HIGH_TOWERS, twr);
 	}
+	mngr_->getComponent<TowerComponent>(twr)->getCell()->isFree = true;
+
 	towers.erase(find(towers.begin(), towers.end(), twr));
 	mngr_->setAlive(twr, false);
 	mngr_->refresh();
@@ -532,10 +540,10 @@ Entity* TowerSystem::addShield(Vector2D pos) {
 
 
 
-void TowerSystem::addTower(twrId type,const Vector2D& pos, Height height, int sellMoney) {
+void TowerSystem::addTower(twrId type, const Vector2D& pos, Height height, int sellMoney, Cell* cell) {
 	Entity* t = mngr_->addEntity(_grp_TOWERS_AND_ENEMIES);//Se a?ade al mngr
 	Transform* tr = mngr_->addComponent<Transform>(t);//transform
-	mngr_->addComponent<TowerComponent>(t, type, height, sellMoney);
+	mngr_->addComponent<TowerComponent>(t, type, height, cell, sellMoney);
 	mngr_->addComponent<ShieldComponent>(t, 0);
 	tr->setPosition(pos);
 	mngr_->addComponent<TowerStates>(t);

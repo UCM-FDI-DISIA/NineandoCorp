@@ -377,6 +377,7 @@ struct Message {
 		Vector2D pos;
 		Height height;
 		int sellMoney;
+		Cell* cell;
 
 	} add_tower_data;
 

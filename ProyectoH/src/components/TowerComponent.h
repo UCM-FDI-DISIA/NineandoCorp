@@ -4,9 +4,10 @@ class TowerComponent : public Component {
 public:
 	static const cmpId id = cmpId::_TOWER;
 
-	TowerComponent(twrId tId, Height h, int sell = 0) : 
+	TowerComponent(twrId tId, Height h, Cell* cell,int sell = 0) : 
 		tId_(tId), // 
 		height_(h), // 
+		cell_(cell), //
 		sellMoney_(sell) {}
 
 	virtual ~TowerComponent() {
@@ -18,8 +19,11 @@ public:
 
 	inline twrId getTowerId() const { return tId_; }
 
+	inline Cell* getCell() const { return cell_;}
+
 private:
 	Height height_;
 	int sellMoney_;
 	twrId tId_;
+	Cell* cell_;
 };
