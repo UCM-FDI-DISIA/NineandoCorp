@@ -213,7 +213,8 @@ enum msgId : msgId_type {
 	_m_UPGRADE_TWR_INGAME,
 	_m_EXIT_UP_MENU,
 	_m_SAVE_GAME,
-	_m_SELL_TOWER
+	_m_SELL_TOWER,
+	_m_ENEMY_DIED,
 };
 
 using twrId_type = uint8_t;

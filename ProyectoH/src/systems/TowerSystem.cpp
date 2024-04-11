@@ -56,6 +56,15 @@ void TowerSystem::receive(const Message& m) {
 	case _m_SELL_TOWER:
 		removeTower(m.sell_tower_data.twr);
 		break;
+	case _m_ENEMY_DIED:
+		for (auto& b: mngr_->getEntities(_grp_BULLETS))
+		{
+			auto bc = mngr_->getComponent<BulletComponent>(b);
+			if (bc->getTarget() == m.return_entity.ent) { 
+				bc->onTravelEnds(); 
+			}
+		}
+		break;
 	default:
 		break;
 	}
@@ -236,15 +245,15 @@ void TowerSystem::update() {
 							Vector2D towerPos = mngr_->getComponent<Transform>(towers[i])->getPosition();
 							float distance = sqrt(pow(towerPos.getX() - myPos.getX(), 2) + pow(towerPos.getY() - myPos.getY(), 2));//distancia a la torre
 							IconComponent* ic = mngr_->getComponent<IconComponent>(towers[i]);
-							if (distance <= et->getRange() && towers[i] != t) {//enRango
-								//std::cout << "Potenciada: " << i << std::endl;						
-								
-								DiegoSniperTower* ac = mngr_->getComponent<DiegoSniperTower>(towers[i]);
-								if (ac != nullptr) {
-									ac->setDamage(ac->getBaseDamage() * (1 + et->getDamageIncreasePercentage()));
-								}//incrementamos daño
-								HealthComponent* h = mngr_->getComponent<HealthComponent>(towers[i]);
-								if (h != nullptr) { h->setMaxHealth(h->getBaseHealth() + et->getTowersHPboost()); }//incrementamos vida
+							if (distance <= et->getRange() && towers[i] != t) {//enRango						
+								auto bt = mngr_->getComponent<BulletTower>(towers[i]);
+								auto ac = mngr_->getComponent<DiegoSniperTower>(towers[i]);
+								auto st = mngr_->getComponent<SlimeTowerComponent>(towers[i]);
+								auto h = mngr_->getComponent<HealthComponent>(towers[i]);
+								if (ac != nullptr)ac->setDamage(ac->getBaseDamage() * (1 + et->getDamageIncreasePercentage()));//incrementamos daño
+								if (bt != nullptr)bt->setDamage(bt->getBaseDamage() * (1 + et->getDamageIncreasePercentage()));			
+								if (st != nullptr)st->setDamage(st->getBaseDamage() * (1 + et->getDamageIncreasePercentage()));
+								if (h != nullptr)h->setMaxHealth(h->getBaseHealth() + et->getTowersHPboost());//incrementamos vida
 							}
 							else if (ic != nullptr && tw->getPotenciado() && tw->getSrcPotencia() == t) {//Eliminarlo si no se encuentra en la distancia
 								tw->setPotenciado(false);
@@ -282,18 +291,7 @@ void TowerSystem::update() {
 							if (bt->isMaxLevel()) {//Mejora maxima de la torre de balas: targetear a un segundo enemigo. Funciona igual que el primer targeteo
 								bt->targetSecondEnemy(mngr_->getHandler(_hdlr_ENEMIES));
 								if (bt->getSecondTarget() != nullptr) {
-								
-
-									Vector2D dir = *(mngr_->getComponent<Transform>(bt->getSecondTarget())->getPosition()) - *(TR->getPosition());
-									if (dir.getX() >= 0 && dir.getY() >= 0) { valFrame = 4; offset.setX(floatAt("DiegoSniperOffset") * 2.5); }
-									else if (dir.getX() >= 0 && dir.getY() < 0) { valFrame = 12; offset.setY(0); offset.setX(floatAt("DiegoSniperOffset") * 2.5); }
-									else if (dir.getX() < 0 && dir.getY() >= 0) { offset.setX(0); }
-									else if (dir.getX() < 0 && dir.getY() < 0) { valFrame = 8; offset.setX(0); offset.setY(0); }
 									shootBullet(bt->getSecondTarget(), t, bt->getDamage(), floatAt("BalasVelocidad"), TR->getPosition(), bulletTexture, { 35, 35 }, _twr_BULLET);
-									createBulletExplosion(TR->getPosition());
-									//mngr_->getComponent<FramedImage>(t)->setCurrentFrame(valFrame + mngr_->getComponent<UpgradeTowerComponent>(t)->getLevel());
-
-
 								}
 							}
 
@@ -369,7 +367,9 @@ void TowerSystem::update() {
 								else if (dir.getX() >= 0 && dir.getY() < 0) { valFrame = 12; offset.setY(0); offset.setX(floatAt("DiegoSniperOffset") * 3.5); }
 								else if (dir.getX() < 0 && dir.getY() >= 0) { offset.setX(0); }
 								else if (dir.getX() < 0 && dir.getY() < 0) { valFrame = 8; offset.setX(0); offset.setY(0); }
-								mngr_->getComponent<FramedImage>(t)->setCurrentFrame(valFrame + mngr_->getComponent<UpgradeTowerComponent>(t)->getLevel());
+								int level = mngr_->getComponent<UpgradeTowerComponent>(t)->getLevel(); 
+								assert(level > 0 && level < 5);
+								mngr_->getComponent<FramedImage>(t)->setCurrentFrame(valFrame + level - 1);
 								RenderComponent* rc = mngr_->getComponent<RenderComponent>(t);
 								Vector2D spawn = { TR->getPosition()->getX() + offset.getX(),	TR->getPosition()->getY() + offset.getY() };
 								auto damage = ds->getDamage();
@@ -431,7 +431,7 @@ void TowerSystem::update() {
 			}
 		}
 		//Mueve y dirige las balas, y destruye las balas si su objetivo muere o si choca con el objetivo, causandole dano
-		for (auto& b : bullets) {
+		for (auto& b : bullets) {		
 			Transform* t = mngr_->getComponent<Transform>(b);
 			BulletComponent* bc = mngr_->getComponent<BulletComponent>(b);
 			SlimeBullet* sb = mngr_->getComponent<SlimeBullet>(b);
@@ -444,10 +444,7 @@ void TowerSystem::update() {
 			}
 			Vector2D myPos = *(t->getPosition());
 
-			if (!mngr_->isAlive(bc->getTarget())) {//Si ha muerto por el camino
-				bc->onTravelEnds();
-			}
-			else if (((targetPos - myPos).magnitude() <= 5.0f)) { //Si choca con el enemigo
+			if (((targetPos - myPos).magnitude() <= 5.0f)) { //Si choca con el enemigo
 				if (sb != nullptr) {
 					Entity* area = mngr_->addEntity(_grp_AREAOFATTACK);
 					Transform* tr = mngr_->addComponent<Transform>(area);

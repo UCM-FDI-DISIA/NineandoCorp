@@ -26,6 +26,7 @@ void UpgradeTowerComponent::levelUp() {
 		tr->setPosition(*tr->getPosition() - adjustOffset);
 		currentLevel_++;
 	}
+	if (currentLevel_ == 0) { currentLevel_ = 1; }
 	
 	switch (id_) {
 		case _twr_BULLET:
