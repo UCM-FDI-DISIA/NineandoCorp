@@ -8,7 +8,7 @@
 class LevelSelectorState : public GameState
 {
 public:
-	LevelSelectorState(Manager* mngr);
+	LevelSelectorState(Manager* mngr, int level_);
 	virtual ~LevelSelectorState();
 };
 

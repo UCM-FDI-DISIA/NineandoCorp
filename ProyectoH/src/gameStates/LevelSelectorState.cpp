@@ -1,11 +1,11 @@
 #include "LevelSelectorState.h"
 
-LevelSelectorState::LevelSelectorState(Manager* mngr) : GameState(_gmStt_LEVELSELECTOR, mngr)
+LevelSelectorState::LevelSelectorState(Manager* mngr, int level_) : GameState(_gmStt_LEVELSELECTOR, mngr)
 {
 	mngr_->removeSystem<ButtonSystem>();
 	mngr_->removeSystem<MainMenuSystem>();
 	mngr_->addSystem<ButtonSystem>(_hdlr_BUTTON_LVLSEL);
-	mngr_->addSystem<LevelSelectorSystem>();
+	mngr_->addSystem<LevelSelectorSystem>(level_);
 }
 
 LevelSelectorState::~LevelSelectorState(){

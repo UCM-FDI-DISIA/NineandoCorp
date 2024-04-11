@@ -1,9 +1,9 @@
 #include "MainMenuState.h"
 
-MainMenuState::MainMenuState(int moneyToAdd) : GameState(_gmStt_MAINMENU) {
+MainMenuState::MainMenuState(int moneyToAdd, int currentLevel_) : GameState(_gmStt_MAINMENU) {
 
 	// Sistemas requeridos para que funcione el juego
-	mngr_->addSystem<MainControlSystem>();
+	mngr_->addSystem<MainControlSystem>(currentLevel_);
 	mngr_->addSystem<RenderSystem>();
 	mngr_->addSystem<ButtonSystem>(_hdlr_BUTTON_MAIN);
 	mngr_->addSystem<MainMenuSystem>();
