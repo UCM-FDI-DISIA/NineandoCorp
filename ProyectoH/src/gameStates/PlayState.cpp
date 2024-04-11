@@ -30,7 +30,7 @@ PlayState::PlayState(int level_, vector<int>& turrentLevels) : GameState(_gmStt_
 	m2.add_tower_data.towerId = _twr_NEXUS;
 	m2.add_tower_data.pos = { 580.0f, 980.0f };
 	m2.add_tower_data.height = BOTH;
-	m2.add_tower_data.maxLvl = 
+	m2.add_tower_data.maxLvl = turrentLevels[_twr_NEXUS];
 
 }
 

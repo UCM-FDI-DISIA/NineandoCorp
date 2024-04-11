@@ -66,10 +66,7 @@ RenderSystem::RenderSystem() : winner_(0)
 	textures[shield] = &sdlutils().images().at("shield");
 
 	//Nexus
-	textures[nexusLvl1] = &sdlutils().images().at("nexusLvl1");
-	textures[nexusLvl2] = &sdlutils().images().at("nexusLvl2");
-	textures[nexusLvl3] = &sdlutils().images().at("nexusLvl3");
-	textures[nexusLvl4] = &sdlutils().images().at("nexusLvl4");
+	textures[nexusLvl] = &sdlutils().images().at("nexus");	// Borrados nexos anteriores y cambiar este enombre
 
 	//HUD
 	cursorTexture = &sdlutils().images().at("cursor");
