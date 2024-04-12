@@ -159,6 +159,7 @@ RenderSystem::RenderSystem() : winner_(0)
 	textures[earthquake_icon] = &sdlutils().images().at("earthquake_icon");
 	textures[tornado_icon] = &sdlutils().images().at("tornado_icon");
 	textures[meteorite_icon] = &sdlutils().images().at("meteorite_icon");
+	textures[rangeCircle] = &sdlutils().images().at("range_circle");
 
 }
 

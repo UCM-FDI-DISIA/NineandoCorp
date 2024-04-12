@@ -436,8 +436,10 @@ void HUDSystem::showUpgradeMenu(Entity* twr, const Vector2D& pos) {
 	upM_ = UpgradeMenu();
 	auto upCmp = mngr_->getComponent<UpgradeTowerComponent>(twr);
 
+
 	Vector2D offset = Vector2D(0, 0);
 	/** 
+	*   / --- RANGO DE LA TORRE --- / 
 	*	/ --- BACKGROUND DE MENU --- / 
 	* 
 	*	Ajuste del menu con los limites de la camara y HUD
@@ -452,7 +454,12 @@ void HUDSystem::showUpgradeMenu(Entity* twr, const Vector2D& pos) {
 		offset.setY(- (posA.getY() - 150));
 		std::cout << std::endl << "DIF Y: " << offset.getY() << std::endl;
 	}
-	
+	upM_.range = bS->addImage(posA + Vector2D(-260.0, 100.0),
+		{ 400.0f, 300.0f },
+		0.0,
+		gameTextures::rangeCircle,
+		_grp_HUD_BACKGROUND);
+
 	upM_.background = bS->addImage(posA + offset,
 		{ 400.0f, 300.0f },
 		0.0,
@@ -534,12 +541,14 @@ void HUDSystem::exitUpgradeMenu() {
 	mngr_->setAlive(upM_.cost, false);
 	mngr_->setAlive(upM_.lvlText, false);
 	mngr_->setAlive(upM_.sellButton, false);
+	mngr_->setAlive(upM_.range, false);
 	mngr_->refresh();
 
 	mngr_->deleteHandler(hId, upM_.sellButton);
 	mngr_->deleteHandler(hId, upM_.exitButton);
 	mngr_->deleteHandler(hId, upM_.upgradeButton);
 	mngr_->deleteHandler(hId, upM_.background);
+	mngr_->deleteHandler(hId, upM_.range);
 
 	upM_ = UpgradeMenu();
 

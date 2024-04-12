@@ -30,6 +30,7 @@ private:
 		Entity* cost;
 		Entity* lvlText;
 		Entity* sellButton;
+		Entity* range;
 		UpgradeMenu() :
 			background(nullptr), //
 			upgradeButton(nullptr), //
@@ -38,7 +39,8 @@ private:
 			exitButton(nullptr), //
 			lvlText(nullptr), //
 			sellButton(nullptr), //
-			cost(nullptr)
+			cost(nullptr),
+			range(nullptr)
 		{}
 
 		~UpgradeMenu() {}
