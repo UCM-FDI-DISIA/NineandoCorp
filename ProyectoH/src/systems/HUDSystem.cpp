@@ -72,7 +72,7 @@ void HUDSystem::initSystem() {
 			{ xAux + bSize.getX() / 4, heightH + 67.5f},
 			{30.0f, 30.0f },
 			0.0f,
-			gameTextures::monedaH,
+			gameTextures::monedaDorada,
 			_grp_HUD_FOREGROUND);
 
 		twrSel_.buttons[_twr_BULLET] = tb1;
@@ -106,7 +106,7 @@ void HUDSystem::initSystem() {
 			{ (xAux * 2) + bSize.getX() / 4 , heightH + 67.5f },
 			{ 30.0f, 30.0f },
 			0.0f,
-			gameTextures::monedaH,
+			gameTextures::monedaDorada,
 			_grp_HUD_FOREGROUND);
 
 		twrSel_.buttons[_twr_CRISTAL] = tb2;
@@ -143,7 +143,7 @@ void HUDSystem::initSystem() {
 			{ (xAux * 3) + bSize.getX() / 4 , heightH + 67.5f },
 			{ 30.0f, 30.0f },
 			0.0f,
-			gameTextures::monedaH,
+			gameTextures::monedaDorada,
 			_grp_HUD_FOREGROUND);
 
 		twrSel_.buttons[_twr_FENIX] = tb3;
@@ -178,7 +178,7 @@ void HUDSystem::initSystem() {
 			{ (xAux * 4) + bSize.getX() / 4 , heightH + 67.5f },
 			{ 30.0f, 30.0f },
 			0.0f,
-			gameTextures::monedaH,
+			gameTextures::monedaDorada,
 			_grp_HUD_FOREGROUND);
 
 		twrSel_.buttons[_twr_CLAY] = tb4;
@@ -214,7 +214,7 @@ void HUDSystem::initSystem() {
 			{ (xAux * 5) + bSize.getX() / 4 , heightH + 67.5f },
 			{ 30.0f, 30.0f },
 			0.0f,
-			gameTextures::monedaH,
+			gameTextures::monedaDorada,
 			_grp_HUD_FOREGROUND);
 
 		twrSel_.buttons[_twr_DIEGO] = tb5;
@@ -250,7 +250,7 @@ void HUDSystem::initSystem() {
 			{ (xAux * 6) + bSize.getX() / 4 , heightH + 67.5f },
 			{ 30.0f, 30.0f },
 			0.0f,
-			gameTextures::monedaH,
+			gameTextures::monedaDorada,
 			_grp_HUD_FOREGROUND);
 
 		twrSel_.buttons[_twr_SLIME] = tb6;
@@ -285,7 +285,7 @@ void HUDSystem::initSystem() {
 			{ (xAux * 7) + bSize.getX() / 4 , heightH + 67.5f },
 			{ 30.0f, 30.0f },
 			0.0f,
-			gameTextures::monedaH,
+			gameTextures::monedaDorada,
 			_grp_HUD_FOREGROUND);
 
 		twrSel_.buttons[_twr_POWER] = tb7;
