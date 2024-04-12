@@ -20,15 +20,28 @@ void PauseSystem::initSystem() {
 	ButtonSystem* bS = mngr_->getSystem<ButtonSystem>();
 	
 	Vector2D posAux = { sdlutils().width() / 2.0f, sdlutils().height() / 2.0f };
-	Vector2D scaleAux = { 400.0f , 250.0f };
+	Vector2D scaleAux = { 350.0f , 300.0f };
 
-	Entity* fondo = bS->addImage(posAux, scaleAux, 0.0, gameTextures::large_box, _grp_HUD_FOREGROUND);
+	Entity* background = bS->addImage(posAux, scaleAux,
+		90.0, gameTextures::large_box, _grp_HUD_FOREGROUND);
+	mngr_->setHandler(_hdlr_BUTTON_PAUSE, background);
 
-	posAux = posAux + Vector2D(165.0f, -90.0f);
-	scaleAux = { 50.0f, 50.0f };
-	Entity* pause = bS->addButton(posAux, scaleAux, gameTextures::close, gameTextures::close_hover, ButtonTypes::resume_main);
-	mngr_->setHandler(_hdlr_BUTTON_PAUSE, pause);
-	mngr_->setHandler(_hdlr_BUTTON_PAUSE, fondo);
+	scaleAux = { 210.0f, 70.0f };//escala de los botones
+
+	posAux = posAux + Vector2D( 0.0f, -100.0f);
+	Entity* resume = bS->addButton(posAux, scaleAux, 
+		gameTextures::resume_button, gameTextures::resume_button_hover, ButtonTypes::resume_main);
+	mngr_->setHandler(_hdlr_BUTTON_PAUSE, resume);
+
+	posAux = posAux + Vector2D(0.0f, 100.0f);
+	Entity* backToMenu = bS->addButton(posAux, scaleAux, 
+		gameTextures::backToMenu_button, gameTextures::backToMenu_button_hover, ButtonTypes::none);
+	mngr_->setHandler(_hdlr_BUTTON_PAUSE, backToMenu);
+
+	posAux = posAux + Vector2D(0.0f, 100.0f);
+	Entity* exitGame = bS->addButton(posAux, scaleAux, 
+		gameTextures::exitGame_button, gameTextures::exitGame_button_hover, ButtonTypes::exit_button);
+	mngr_->setHandler(_hdlr_BUTTON_PAUSE, exitGame);
 }
 
 void PauseSystem::receive(const Message& m) {
