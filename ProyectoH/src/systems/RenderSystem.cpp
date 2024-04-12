@@ -65,7 +65,7 @@ RenderSystem::RenderSystem() : winner_(0)
 	cursorTexture = &sdlutils().images().at("cursor");
 	cursorTexture2 = &sdlutils().images().at("cursorpress");
 	textures[monedaH] = &sdlutils().images().at("H_coin");
-	textures[monedaDorada] = &sdlutils().images().at("coin");
+	textures[monedaDorada] = &sdlutils().images().at("gold_coin");
 	textures[box] = &sdlutils().images().at("box"); 
 	textures[box_hover] = &sdlutils().images().at("box_hover");
 	textures[large_box] = &sdlutils().images().at("large_box");

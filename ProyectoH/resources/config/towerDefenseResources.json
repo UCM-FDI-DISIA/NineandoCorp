@@ -695,8 +695,8 @@
             "file": "resources/images/Towers/rangeCircle.png"
         },
         {
-            "id": "coin",
-            "file": "resources/images/UI/coin.png"
+            "id": "gold_coin",
+            "file": "resources/images/UI/gold_coin.png"
         }
 
     ],
