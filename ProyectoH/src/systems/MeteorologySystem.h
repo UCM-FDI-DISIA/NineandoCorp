@@ -36,12 +36,10 @@ private:
 	void setIcon();
 	std::vector<Vector2D> RouteTranslate(std::vector<Vector2D> route);
 	void addRectTo(Entity* t, rectId id);
+	void showWarningMessage();
 
-	float timeToNextEvent_;
-	float elapsedTime_;
+	const int wavesToNextEvent_ = 5;
 	float elapsedSpawn_;
-	float minTimeInterval_;
-	float maxTimeInterval_;
 	float meteoriteInterval_;
 	float thundersInterval_;
 	int quantity_;
