@@ -325,7 +325,7 @@ void HUDSystem::receive(const Message& m) {
 		enableAllButtons(true);
 		break;
 	case _m_PAUSE:
-		mActive = !mActive;
+		mActive = !m.start_pause.onPause;
 		break;
 	case _m_OFFSET_CONTEXT:
 		cameraOffset_ = m.offset_context.offset;
@@ -399,7 +399,7 @@ void HUDSystem::update() {
 					else if (ih().getMouseButtonState(InputHandler::MOUSEBUTTON::LEFT) == 1) {
 						auto tr = mngr_->getComponent<Transform>(en);
 						if (cell->isFree) {
-							dC->drop(tr->getPosition(), Height::LOW);
+							dC->drop(tr->getPosition(), Height::LOW, cell);
 							cell->isFree = false;
 						}
 						else {

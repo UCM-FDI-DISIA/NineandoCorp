@@ -2,16 +2,6 @@
 #include "../ecs/Manager.h"
 #include "../game/Game.h"
 
-struct cmpIsometricY {
-	cmpIsometricY(Manager* mngr_) { this->mngr_ = mngr_; }
-	bool operator ()(Entity* e1, Entity* e2) {
-		if (mngr_->getComponent<Transform>(e1)->getY() < mngr_->getComponent<Transform>(e2)->getY())
-			return true;
-		return false;
-	}
-	Manager* mngr_;
-};
-
 // Constructorss
 RenderSystem::RenderSystem() : winner_(0)
 {
@@ -185,7 +175,8 @@ void RenderSystem::receive(const Message& m) {
 		mActive = !m.start_pause.onPause;
 		break;
 	case _m_SHOW_UPGRADE_TOWER_MENU:
-		isOnUpMenu = true;
+		if (mngr_->getSystem<HUDSystem>()->isOnSelector(m.show_upgrade_twr_menu_data.pos + Vector2D(0, 30)))
+			isOnUpMenu = true;
 		break;
 	case _m_EXIT_UP_MENU:
 		isOnUpMenu = false;

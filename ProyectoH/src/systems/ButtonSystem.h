@@ -16,6 +16,7 @@ public:
 
 
 	void manageButtons();
+	void managePauseButtons();
 	/// <summary>
 	/// Crea un boton como entidad y lo a�ade al manager con grpId = _grp_HUD_FOREGROUND y hdlrId = button_id
 	/// </summary>
@@ -76,7 +77,7 @@ private:
 	/// <summary>
 	/// Mensaje para la pausa
 	/// </summary>
-	void Pause();
+	void Pause(bool onPause);
 
 	/// <summary>
 	/// Mensaje de carga enemyBook para ver los enemigos encontrados

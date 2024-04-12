@@ -82,7 +82,7 @@ void  MeteorologySystem::receive(const Message& m) {
 			addRectTo(m.return_entity.ent, rectId::_EARTHQUAKE);
 			break;
 		case _m_PAUSE:
-			mActive = !mActive;
+			mActive = !m.start_pause.onPause;
 			break;
 		default:
 			break;

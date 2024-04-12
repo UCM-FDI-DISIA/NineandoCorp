@@ -14,6 +14,16 @@
 #include "mapSystem.h"
 
 
+struct cmpIsometricY {
+	cmpIsometricY(Manager* mngr_) { this->mngr_ = mngr_; }
+	bool operator ()(Entity* e1, Entity* e2) {
+		if (mngr_->getComponent<Transform>(e1)->getY() < mngr_->getComponent<Transform>(e2)->getY())
+			return true;
+		return false;
+	}
+	Manager* mngr_;
+};
+
 class RenderSystem : public System {
 public:
 	static constexpr sysId_type id = _sys_RENDER;
@@ -44,8 +54,7 @@ public:
 	void drawDiamond(SDL_Renderer* renderer, const SDL_Point& top, 
 					int width, int height, const SDL_Color& fillColor);
 private:
-	void onPause();
-	void onResume();
+
 	void onGameOver(Uint8 winner);
 
 	//si el juego esta en el upgrade menu de una torre

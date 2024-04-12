@@ -2,7 +2,7 @@
 #include "../ecs/Manager.h"
 #include "../game/Game.h"
 
-LevelSelectorSystem::LevelSelectorSystem()
+LevelSelectorSystem::LevelSelectorSystem( int currentLevel): currentLevel(currentLevel)
 {
 	mActive = true;
 }
@@ -62,8 +62,11 @@ void LevelSelectorSystem::initSystem()
 			std::string levelHovImg = "level" + to_string(levels) + "_hover";
 			auto it = textureMap.find(levelImg);
 			auto itHov = textureMap.find(levelHovImg);
+			Entity* levelBt = nullptr;
 			if (it != textureMap.end() && itHov != textureMap.end()) {
-				auto levelBt = bS->addButton(pAux, sAux, it->second, itHov->second, ButtonTypes::level_selected, levels);
+				levelBt = bS->addButton(pAux, sAux, it->second, itHov->second, ButtonTypes::level_selected, levels);
+				if (levels > currentLevel)
+					mngr_->getComponent<ButtonComponent>(levelBt)->setActive(false);
 			}
 			
 			levels++;
@@ -75,6 +78,7 @@ void LevelSelectorSystem::initSystem()
 
 void LevelSelectorSystem::receive(const Message& m)
 {
+	
 }
 
 void LevelSelectorSystem::update() {

@@ -10,7 +10,7 @@ class MainControlSystem : public System
 public:
 	static constexpr sysId_type id = _sys_MAINCONTROL;
 
-	MainControlSystem();
+	MainControlSystem(int currentLevel);
 	~MainControlSystem() {};
 
 	void initSystem() override;
@@ -22,7 +22,7 @@ protected:
 	int numDoradasActuales;
 	int numDoradasIniciales;
 	int numDoradasPorSegundo;
-	int currentLevel = 0;
+	int currentLevel;
 	float tiempoEntreOleadas;
 	double elapsedTime_;
 	VirtualTimer timer_;

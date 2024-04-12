@@ -1,6 +1,6 @@
 #include "MainControlSystem.h"
 
-MainControlSystem::MainControlSystem() :active_(false)
+MainControlSystem::MainControlSystem(int currentLevel) :active_(false), currentLevel(currentLevel)
 {
 	
 }
@@ -18,13 +18,14 @@ void MainControlSystem::receive(const Message& m) {
 		OnStartGame();
 		break;
 	case _m_ROUND_OVER:
-		game().changeState<MainMenuState>(m.money_data.Hmoney);
+		currentLevel++;
+		game().changeState<MainMenuState>(m.money_data.Hmoney, currentLevel);
 		break;
 	case _m_LEVEL_SELECTED:
 		game().changeState<PlayState>(m.start_game_data.level);
 		break;
 	case _m_LEVEL_SELECTOR:
-		game().pushState<LevelSelectorState>(mngr_);
+		game().pushState<LevelSelectorState>(mngr_, currentLevel);
 		break;
 	case _m_ENEMY_BOOK:
 		game().pushState<EnemyBookState>(mngr_);
