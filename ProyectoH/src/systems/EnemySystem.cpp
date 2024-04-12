@@ -424,29 +424,36 @@ void EnemySystem::changeAnimation(bool isAttacking, Entity* e) {
 		break;
 	case _enm_AELECTRICO:
 		if (isAttacking) {
-
+			rc->setTexture(gameTextures::acechante_attack);
+			fi->setFrames(8, 1, 0, 8, 7);
 		}
 		else
 		{
-
+			rc->setTexture(gameTextures::acechante);
+			fi->setFrames(8, 1, 0, 8, 7);
 		}
 		break;
 	case _enm_MALDITO:
 		if (isAttacking) {
-
+			rc->setTexture(gameTextures::maldito_attack);
+			fi->setFrames(7, 1, 0, 8, 6);
 		}
 		else
 		{
-
+			rc->setTexture(gameTextures::maldito);
+			fi->setFrames(8, 1, 0, 8, 7);
 		}
 		break;
 	case _enm_GOLEM:
 		if (isAttacking) {
-
+			// este funciona distinto
+			/*rc->setTexture(gameTextures::golem);
+			fi->setFrames(8, 1, 0, 8, 7);*/
 		}
 		else
 		{
-
+			rc->setTexture(gameTextures::golem);
+			fi->setFrames(10, 10, 40, 10, 46);
 		}
 		break;
 	case _enm_DALADO:
@@ -462,11 +469,13 @@ void EnemySystem::changeAnimation(bool isAttacking, Entity* e) {
 		break;
 	case _enm_GOBLIN:
 		if (isAttacking) {
-
+			rc->setTexture(gameTextures::goblin_attack);
+			fi->setFrames(8, 1, 0, 8, 7);
 		}
 		else
 		{
-
+			rc->setTexture(gameTextures::goblin);
+			fi->setFrames(8, 1, 0, 8, 7);
 		}
 		break;
 	case _enm_ELFO:
@@ -482,29 +491,35 @@ void EnemySystem::changeAnimation(bool isAttacking, Entity* e) {
 		break;
 	case _enm_MMUERTE:
 		if (isAttacking) {
-
+			rc->setTexture(gameTextures::mensajero);
+			fi->setFrames(8, 16, 16, 8, 23);
 		}
 		else
 		{
-
+			rc->setTexture(gameTextures::mensajero);
+			fi->setFrames(8, 8, 8, 8, 15);
 		}
 		break;
 	case _enm_ANGEL:
 		if (isAttacking) {
-
+			rc->setTexture(gameTextures::angel);
+			fi->setFrames(8, 1, 0, 8, 7);
 		}
 		else
 		{
-
+			rc->setTexture(gameTextures::angel);
+			fi->setFrames(8, 1, 0, 8, 7);
 		}
 		break;
 	case _enm_DINFERNAL:
 		if (isAttacking) {
-
+			rc->setTexture(gameTextures::demonioInfernal);
+			fi->setFrames(6, 2, 6, 8, 11);
 		}
 		else
 		{
-
+			rc->setTexture(gameTextures::demonioInfernal);
+			fi->setFrames(8, 4, 16, 4, 19);
 		}
 		break;
 	case _enm_DREAL:
@@ -520,11 +535,13 @@ void EnemySystem::changeAnimation(bool isAttacking, Entity* e) {
 		break;
 	case _enm_CMALDITO:
 		if (isAttacking) {
-
+			rc->setTexture(gameTextures::maldito_attack);
+			fi->setFrames(7, 1, 0, 8, 6);
 		}
 		else
 		{
-
+			rc->setTexture(gameTextures::maldito);
+			fi->setFrames(8, 1, 0, 8, 7);
 		}
 		break;
 	case _enm_PRINCIPITO:
@@ -540,11 +557,13 @@ void EnemySystem::changeAnimation(bool isAttacking, Entity* e) {
 		break;
 	case _enm_MONJE:
 		if (isAttacking) {
-
+			rc->setTexture(gameTextures::monje_attack);
+			fi->setFrames(8, 1, 0, 8, 7);
 		}
 		else
 		{
-
+			rc->setTexture(gameTextures::defensor_attack);
+			fi->setFrames(8, 1, 0, 8, 7);
 		}
 		break;
 	case _enm_MUERTE:

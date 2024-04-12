@@ -150,6 +150,10 @@
       "file": "resources/images/Enemies/monje/Move.png"
     },
     {
+      "id": "monje_Attack",
+      "file": "resources/images/Enemies/monje/Attack.png"
+    },
+    {
       "id": "principito_Run",
       "file": "resources/images/Enemies/principito/Run.png"
     },

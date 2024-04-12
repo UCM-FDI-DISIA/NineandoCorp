@@ -130,6 +130,10 @@ RenderSystem::RenderSystem() : winner_(0)
 	textures[principito_attack] = &sdlutils().images().at("principito_Attack");
 	//textures[monje_attack] = &sdlutils().images().at("monje_Attack");
 	textures[muerte_attack] = &sdlutils().images().at("muerte_Attack");
+	textures[acechante_attack] = &sdlutils().images().at("acechante_Attack");
+	textures[maldito_attack] = &sdlutils().images().at("maldito_Attack");
+	textures[goblin_attack] = &sdlutils().images().at("goblin_Attack");
+
 	//Enemies Icons
 	textures[goblin_icon] = &sdlutils().images().at("goblin_icon");
 	textures[maldito_icon] = &sdlutils().images().at("maldito_icon");
