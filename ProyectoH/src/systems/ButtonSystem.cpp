@@ -22,9 +22,12 @@ ButtonSystem::ButtonSystem(hdlrId_type but_id) :
 ButtonSystem::~ButtonSystem(){
 }
 void ButtonSystem::update () {
-	
+	if (mActive) {
 		manageButtons();
-	
+	}
+	else {
+		managePauseButtons();
+	}
 }
 
 
@@ -117,6 +120,45 @@ void ButtonSystem::manageButtons() {
 		}
 	}
 }
+void ButtonSystem::managePauseButtons() {
+	//Posicion actual del mouse
+	Vector2D pos = { (float)ih().getMousePos().first, (float)ih().getMousePos().second };
+	auto buts = mngr_->getHandler(_hdlr_BUTTON_PAUSE);
+	//hover 
+	for (auto en : buts) {
+		if (en != nullptr) {
+
+			ButtonComponent* bC = mngr_->getComponent<ButtonComponent>(en);
+			RenderComponent* rC = mngr_->getComponent<RenderComponent>(en);
+			if (bC != nullptr) {
+				if (bC->isActive()) {
+					if (bC->hover(pos)) rC->setTexture(bC->getHover());
+					else rC->setTexture(bC->getTexture());
+				}
+			}
+		}
+	}
+
+	//click
+	if (ih().mouseButtonEvent()) {
+
+		if (ih().getMouseButtonState(InputHandler::MOUSEBUTTON::LEFT) == 1) {
+
+			//Recorre lista de entities de tipo HUD_FOREGROUND
+			for (auto en : mngr_->getHandler(_hdlr_BUTTON_PAUSE)) {
+				auto bC = mngr_->getComponent<ButtonComponent>(en);
+				if (en != nullptr && bC != nullptr) {
+					//comprueba la id del button y si no es none llama a la funcion correspondiente
+					auto type = bC->isPressed(pos);
+					if (type != ButtonTypes::none) {
+						callFunction(type, en);
+						break;
+					}
+				}
+			}
+		}
+	}
+}
 
 #pragma region FUNCIONES DE BOTONES
 
@@ -147,7 +189,6 @@ void ButtonSystem::manageButtons() {
 			break;
 		case pause_main:
 			Pause(true);
-			pauseAllButtons();
 			break;
 		case resume_main:
 			game().popState();
