@@ -128,7 +128,7 @@ RenderSystem::RenderSystem() : winner_(0)
 	//textures[demonioInfernal_attack] = &sdlutils().images().at("demonioInfernal_Attack");
 	//textures[mensajero_attack] = &sdlutils().images().at("mensajero_Attack");
 	textures[principito_attack] = &sdlutils().images().at("principito_Attack");
-	//textures[monje_attack] = &sdlutils().images().at("monje_Attack");
+	textures[monje_attack] = &sdlutils().images().at("monje_Attack");
 	textures[muerte_attack] = &sdlutils().images().at("muerte_Attack");
 	textures[acechante_attack] = &sdlutils().images().at("acechante_Attack");
 	textures[maldito_attack] = &sdlutils().images().at("maldito_Attack");
