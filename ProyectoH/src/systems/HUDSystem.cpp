@@ -325,7 +325,7 @@ void HUDSystem::receive(const Message& m) {
 		enableAllButtons(true);
 		break;
 	case _m_PAUSE:
-		mActive = !mActive;
+		mActive = !m.start_pause.onPause;
 		break;
 	case _m_OFFSET_CONTEXT:
 		cameraOffset_ = m.offset_context.offset;
