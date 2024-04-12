@@ -105,6 +105,12 @@ RenderSystem::RenderSystem() : winner_(0)
 	textures[level8_hover] = &sdlutils().images().at("level8_hover");
 	textures[sell] = &sdlutils().images().at("sell");
 	textures[sell_hover] = &sdlutils().images().at("sell_hover");
+	textures[resume_button] = &sdlutils().images().at("resume_button");
+	textures[resume_button_hover] = &sdlutils().images().at("resume_button_hover");
+	textures[backToMenu_button] = &sdlutils().images().at("backToMenu_button");
+	textures[backToMenu_button_hover] = &sdlutils().images().at("backToMenu_button_hover");
+	textures[exitGame_button] = &sdlutils().images().at("exitGame_button");
+	textures[exitGame_button_hover] = &sdlutils().images().at("exitGame_button_hover");
 
 	//Explosions
 	textures[shieldExp] = &sdlutils().images().at("shieldExp");

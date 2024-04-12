@@ -406,6 +406,30 @@
             "file": "resources/images/UI/upgrade_button_hover.png"
         },
         {
+            "id": "resume_button",
+            "file": "resources/images/UI/resume_button.png"
+        },
+        {
+            "id": "resume_button_hover",
+            "file": "resources/images/UI/resume_button_hover.png"
+        },
+        {
+            "id": "backToMenu_button",
+            "file": "resources/images/UI/backToMenu_button.png"
+        },
+        {
+            "id": "backToMenu_button_hover",
+            "file": "resources/images/UI/backToMenu_button_hover.png"
+        },
+        {
+            "id": "exitGame_button",
+            "file": "resources/images/UI/exitGame_button.png"
+        },
+        {
+            "id": "exitGame_button_hover",
+            "file": "resources/images/UI/exitGame_button_hover.png"
+        },
+        {
             "id": "logo",
             "file": "resources/images/UI/LogodeHDefense.png"
         },
@@ -666,14 +690,14 @@
             "id": "sell_hover",
             "file": "resources/images/UI/sell_button_hover.png"
         },
-      {
-        "id": "range_circle",
-        "file": "resources/images/Towers/rangeCircle.png"
-      },
-      {
-        "id": "coin",
-        "file": "resources/images/UI/coin.png"
-      }
+        {
+            "id": "range_circle",
+            "file": "resources/images/Towers/rangeCircle.png"
+        },
+        {
+            "id": "coin",
+            "file": "resources/images/UI/coin.png"
+        }
 
     ],
 
