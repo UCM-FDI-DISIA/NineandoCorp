@@ -22,10 +22,9 @@ ButtonSystem::ButtonSystem(hdlrId_type but_id) :
 ButtonSystem::~ButtonSystem(){
 }
 void ButtonSystem::update () {
-	if (mActive)
-	{
+	
 		manageButtons();
-	}
+	
 }
 
 
@@ -147,8 +146,12 @@ void ButtonSystem::manageButtons() {
 			startWave();
 			break;
 		case pause_main:
-			Pause();
+			Pause(true);
 			pauseAllButtons();
+			break;
+		case resume_main:
+			game().popState();
+			Pause(false);
 			break;
 		case enemybook:
 			mngr_->send(mngr_->getComponent<ButtonComponent>(bC)->getMessage());			
@@ -237,10 +240,10 @@ void ButtonSystem::manageButtons() {
 		m.id = _m_LEVEL_SELECTOR;
 		mngr_->send(m, true);
 	}
-	void ButtonSystem::Pause() {
+	void ButtonSystem::Pause(bool onPause) {
 		Message m;
 		m.id = _m_PAUSE;
-		m.start_pause.onPause = true;
+		m.start_pause.onPause = onPause;
 		mngr_->send(m, true);
 	}
 	void ButtonSystem::EnemyBook() {

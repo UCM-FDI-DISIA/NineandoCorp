@@ -34,7 +34,7 @@ void TowerSystem::receive(const Message& m) {
 		addTowerToInteract(m.tower_clicked_data.tower);
 		break;
 	case _m_PAUSE:
-		mActive = !mActive;
+		mActive = !m.start_pause.onPause;
 		break;
 	case _m_SHOW_UPGRADE_TOWER_MENU:
 		if(mngr_->getSystem<HUDSystem>()->isOnSelector(m.show_upgrade_twr_menu_data.pos + Vector2D(0, 30)))

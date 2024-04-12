@@ -76,7 +76,7 @@ private:
 	/// <summary>
 	/// Mensaje para la pausa
 	/// </summary>
-	void Pause();
+	void Pause(bool onPause);
 
 	/// <summary>
 	/// Mensaje de carga enemyBook para ver los enemigos encontrados
