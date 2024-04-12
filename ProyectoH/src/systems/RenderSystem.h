@@ -86,6 +86,9 @@ private:
 	bool k_left = false;
 	bool k_right = false;
 
+	//Posicion del raton
+	int mouseX, mouseY;
+
 	// Textures
 	Texture* textures[gameTextures::gmTxtrSize];
 	Texture* cursorTexture;

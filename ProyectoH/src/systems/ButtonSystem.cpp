@@ -37,7 +37,7 @@ void ButtonSystem::receive(const Message& m){
 	switch (m.id) {
 	case _m_ADD_MONEY:
 		money_ += m.money_data.money;
-		HMoney_ += m.money_data.money;
+		HMoney_ += m.money_data.Hmoney;
 		updateText();
 		break;
 	case _m_SELL_TOWER:

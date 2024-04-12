@@ -243,11 +243,12 @@ void EnemySystem::AddMoney(enmId type, int level) {
 	Message m1;
 	m1.id = _m_ADD_MONEY;
 	m1.money_data.money = money;
+	m1.money_data.Hmoney = Hmoney;
 	mngr_->send(m1);
-	Message m2;
-	m2.id = _m_ADD_MONEY;
-	m2.money_data.Hmoney = Hmoney;
-	mngr_->send(m2);
+	//Message m2;
+	//m2.id = _m_ADD_MONEY;
+	//m2.money_data.Hmoney = Hmoney;
+	//mngr_->send(m2);
 }
 
 
