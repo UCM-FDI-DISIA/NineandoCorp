@@ -37,7 +37,7 @@ void ButtonSystem::receive(const Message& m){
 	switch (m.id) {
 	case _m_ADD_MONEY:
 		money_ += m.money_data.money;
-		HMoney_ += m.money_data.money;
+		HMoney_ += m.money_data.Hmoney;
 		updateText();
 		break;
 	case _m_SELL_TOWER:
@@ -371,7 +371,7 @@ void ButtonSystem::OnStartGame() {
 	Transform* tr = mngr_->addComponent<Transform>(moneyText_);
 	tr->setPosition({ 0,0 });
 	tr->setScale({ 150, 50 });
-	mngr_->addComponent<TextComponent>(moneyText_, "Monedas: " + std::to_string(money_));
+	mngr_->addComponent<TextComponent>(moneyText_, std::to_string(money_));
 }
 
 void ButtonSystem::showTempText(string txt, const SDL_Color& color, const Vector2D& pos, const Vector2D& scale, int time)
@@ -395,13 +395,13 @@ Entity* ButtonSystem::addText(string txt, const SDL_Color& color, const Vector2D
 }
 
 void ButtonSystem::updateText() {
-	mngr_->getComponent<TextComponent>(moneyText_)->changeText("Monedas: " + std::to_string(money_));
+	mngr_->getComponent<TextComponent>(moneyText_)->changeText(std::to_string(money_));
 }
 
 void ButtonSystem::generateHMoneyText() {
 	moneyText_ = mngr_->addEntity(_grp_TEXTS);
 	Transform* tr = mngr_->addComponent<Transform>(moneyText_);
-	tr->setPosition({ 50,75 });
-	tr->setScale({ 300, 75 });
-	mngr_->addComponent<TextComponent>(moneyText_, "Monedas H: " + std::to_string(HMoney_));
+	tr->setPosition({ 100,75 });
+	tr->setScale({ 75, 100 });
+	mngr_->addComponent<TextComponent>(moneyText_, std::to_string(HMoney_));
 }

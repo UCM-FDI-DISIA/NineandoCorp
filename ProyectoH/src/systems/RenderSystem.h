@@ -46,7 +46,7 @@ public:
 	void renderFillPolygon(SDL_Renderer* renderer, int width, int height, const SDL_Point vertices[],
 		int numVertices, const SDL_Color& color);
 	
-	SDL_Rect* getOffset() { return offset; };
+	SDL_Rect* getOffset() const{ return offset; };
 
 	/// <summary>
 	/// Define un rombo en base a su centro, ancho y alto y lo renderiza
@@ -85,6 +85,9 @@ private:
 	bool k_down = false;
 	bool k_left = false;
 	bool k_right = false;
+
+	//Posicion del raton
+	int mouseX, mouseY;
 
 	// Textures
 	Texture* textures[gameTextures::gmTxtrSize];

@@ -31,13 +31,3 @@ void
 HealthComponent::resetHealth() {
 	currentHealth_ = maxHealth_;
 }
-
-void 
-HealthComponent::setHealth(float health) {
-	currentHealth_ = health;
-}
-
-void 
-HealthComponent::setMaxHealth(float health) {
-	maxHealth_ = health;
-}

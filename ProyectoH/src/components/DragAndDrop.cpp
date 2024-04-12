@@ -35,6 +35,7 @@ void DragAndDrop::drop(const Vector2D& pos, Height h, Cell* cell){
 		Message m2;
 		m2.id = _m_ADD_MONEY;
 		m2.money_data.money = -cost;
+		m2.money_data.Hmoney = 0;
 		mngr_->send(m2);
 
 		dragging_ = false;

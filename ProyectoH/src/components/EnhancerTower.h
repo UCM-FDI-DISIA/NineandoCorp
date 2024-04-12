@@ -9,11 +9,11 @@ public:
 	static const cmpId id = cmpId::_POWERTOWER;
 	EnhancerTower(float range, float damageIncrease, float healthIncrease);
 	void levelUp(int level);
-	float getTowersHPboost() const;
-	float getDamageIncreasePercentage() const;
-	float getRange() const;
-	void setTowersHPboost(float hp);
-	void setDamageIncreasePercentage(float damage);
+	float getTowersHPboost() const { return towersHPboost_; };
+	float getDamageIncreasePercentage()  const { return damageIncreasePercentage_; };
+	float getRange() const { return range_; };
+	void setTowersHPboost(float hp) { towersHPboost_ = hp; };
+	void setDamageIncreasePercentage(float damage) { damageIncreasePercentage_ = damage; };
 private:
 	float towersHPboost_;
 	float damageIncreasePercentage_;

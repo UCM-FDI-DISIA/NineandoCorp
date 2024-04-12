@@ -65,6 +65,7 @@ RenderSystem::RenderSystem() : winner_(0)
 	cursorTexture = &sdlutils().images().at("cursor");
 	cursorTexture2 = &sdlutils().images().at("cursorpress");
 	textures[monedaH] = &sdlutils().images().at("H_coin");
+	textures[monedaDorada] = &sdlutils().images().at("coin");
 	textures[box] = &sdlutils().images().at("box"); 
 	textures[box_hover] = &sdlutils().images().at("box_hover");
 	textures[large_box] = &sdlutils().images().at("large_box");
@@ -159,6 +160,7 @@ RenderSystem::RenderSystem() : winner_(0)
 	textures[earthquake_icon] = &sdlutils().images().at("earthquake_icon");
 	textures[tornado_icon] = &sdlutils().images().at("tornado_icon");
 	textures[meteorite_icon] = &sdlutils().images().at("meteorite_icon");
+	textures[rangeCircle] = &sdlutils().images().at("range_circle");
 
 }
 
@@ -240,6 +242,26 @@ void RenderSystem::update() {
 			offset->x = cameraX_;
 		}
 		if (k_down && offset->y > limbot) {
+			cameraY_ -= VelCam * game().getDeltaTime();
+			offset->y = cameraY_;
+		}
+
+		SDL_GetMouseState(&mouseX, &mouseY);
+		int margin = 10;
+		if (mouseX < margin && offset->x < limleft) {
+			cameraX_ += VelCam * game().getDeltaTime();
+			offset->x = cameraX_;
+		}
+		else if (mouseX > sdlutils().width() - margin && offset->x > limright) {
+			cameraX_ -= VelCam * game().getDeltaTime();
+			offset->x = cameraX_;
+		}
+
+		if (mouseY < margin && offset->y < limtop) {
+			cameraY_ += VelCam * game().getDeltaTime();
+			offset->y = cameraY_;
+		}
+		else if (mouseY > sdlutils().height() - margin && offset->y > limbot) {
 			cameraY_ -= VelCam * game().getDeltaTime();
 			offset->y = cameraY_;
 		}

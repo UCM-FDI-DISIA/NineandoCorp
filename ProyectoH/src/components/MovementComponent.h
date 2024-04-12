@@ -13,7 +13,7 @@ public:
 	void rotate(float rotation);
 	void initComponent();
 	void Move();
-	void setStop(bool stop);
+	void setStop(bool stop) { stop_ = stop;};
 	void activateSlow(float val, bool active);
 	void activateAcceleration(float val, bool active);
 	bool getSlow() const{ return slowed_; }

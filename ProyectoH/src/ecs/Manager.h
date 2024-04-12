@@ -31,7 +31,7 @@ public:
 	inline void deleteAllHandlers(hdlrId_type hId) {
 		hdlrs_[hId].clear();
 	}
-	inline std::list<Entity*> getHandler(hdlrId_type hId) {
+	inline std::list<Entity*> getHandler(hdlrId_type hId) const {
 		return hdlrs_[hId];
 	}
 

@@ -39,6 +39,11 @@ void MainMenuSystem::initSystem() {
 		{ sdlutils().height() - 0.0f , 400 },
 		90.0, gameTextures::box, _grp_HUD_BACKGROUND);
 
+	//MONEDAS H DEL JUGADOR
+	bS->addImage({ 250,  125 },
+		{ 100, 100 },
+		0.0, gameTextures::monedaH, _grp_HUD_BACKGROUND);
+
 	// RIGHT COLUMN
 	bS->addImage({ sdlutils().width() - 200.0f,  sdlutils().height() / 2.0f },
 		{ sdlutils().height() - 0.0f , 400 },

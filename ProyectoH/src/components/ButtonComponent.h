@@ -76,10 +76,10 @@ public:
 	inline void setTexture(gameTextures t) { texture_ = t; }
 	
 	/// <returns> Textura del boton</returns>
-	inline gameTextures getTexture() { return texture_; }
+	inline gameTextures getTexture() const { return texture_; }
 
 	/// <returns> Textura del hover</returns>
-	inline gameTextures getHover() { return hoverTexture_; }
+	inline gameTextures getHover() const { return hoverTexture_; }
 
 	/// <summary>
 	/// Activa y desactiva el boton
@@ -88,7 +88,7 @@ public:
 	inline void setActive(bool b) { isActive_ = b; }
 
 	/// <returns>Si el boton está activo o no</returns>
-	inline bool isActive() { return isActive_; }
+	inline bool isActive() const { return isActive_; }
  
 
 	inline Message getMessage() { return msg_; }

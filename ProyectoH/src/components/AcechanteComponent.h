@@ -13,8 +13,8 @@ public:
 	float getDistance(Vector2D otherPos);
 
 	void setTime(float t) { elapsedTime_ = t; };
-	float getElapsed() { return elapsedTime_; };
-	float getReload() { return reloadTime_; }
+	float getElapsed() const{ return elapsedTime_; };
+	float getReload() const{ return reloadTime_; }
 
 
 private:

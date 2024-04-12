@@ -25,11 +25,6 @@ MovementComponent::rotate(float rotation) {
 }
 
 void
-MovementComponent::setStop(bool stop) {
-	stop_ = stop;
-}
-
-void
 MovementComponent::activateSlow(float val, bool active) {
 	slowed_ = active;
 	speedDecrease_ = val;

@@ -18,7 +18,8 @@ void MainControlSystem::receive(const Message& m) {
 		OnStartGame();
 		break;
 	case _m_ROUND_OVER:
-		currentLevel++;
+		if(active_)
+			currentLevel++;
 		game().changeState<MainMenuState>(m.money_data.Hmoney, currentLevel);
 		break;
 	case _m_LEVEL_SELECTED:
@@ -73,8 +74,9 @@ void MainControlSystem::update() {
 		// Si la vida del Nexo llega a cero se acaba la partida
 		if (mngr_->getComponent<HealthComponent>(nexo)->getHealth() <= 0) {
 			Message m;
-			m.id = _m_OVER_GAME;
+			m.id = _m_ROUND_OVER;
 			mngr_->send(m);
+			active_ = false;
 			// Pushear Estado Nuevo?
 		}
 	}

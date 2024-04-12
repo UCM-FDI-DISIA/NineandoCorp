@@ -72,7 +72,7 @@ void HUDSystem::initSystem() {
 			{ xAux + bSize.getX() / 4, heightH + 67.5f},
 			{30.0f, 30.0f },
 			0.0f,
-			gameTextures::monedaH,
+			gameTextures::monedaDorada,
 			_grp_HUD_FOREGROUND);
 
 		twrSel_.buttons[_twr_BULLET] = tb1;
@@ -106,7 +106,7 @@ void HUDSystem::initSystem() {
 			{ (xAux * 2) + bSize.getX() / 4 , heightH + 67.5f },
 			{ 30.0f, 30.0f },
 			0.0f,
-			gameTextures::monedaH,
+			gameTextures::monedaDorada,
 			_grp_HUD_FOREGROUND);
 
 		twrSel_.buttons[_twr_CRISTAL] = tb2;
@@ -143,7 +143,7 @@ void HUDSystem::initSystem() {
 			{ (xAux * 3) + bSize.getX() / 4 , heightH + 67.5f },
 			{ 30.0f, 30.0f },
 			0.0f,
-			gameTextures::monedaH,
+			gameTextures::monedaDorada,
 			_grp_HUD_FOREGROUND);
 
 		twrSel_.buttons[_twr_FENIX] = tb3;
@@ -178,7 +178,7 @@ void HUDSystem::initSystem() {
 			{ (xAux * 4) + bSize.getX() / 4 , heightH + 67.5f },
 			{ 30.0f, 30.0f },
 			0.0f,
-			gameTextures::monedaH,
+			gameTextures::monedaDorada,
 			_grp_HUD_FOREGROUND);
 
 		twrSel_.buttons[_twr_CLAY] = tb4;
@@ -214,7 +214,7 @@ void HUDSystem::initSystem() {
 			{ (xAux * 5) + bSize.getX() / 4 , heightH + 67.5f },
 			{ 30.0f, 30.0f },
 			0.0f,
-			gameTextures::monedaH,
+			gameTextures::monedaDorada,
 			_grp_HUD_FOREGROUND);
 
 		twrSel_.buttons[_twr_DIEGO] = tb5;
@@ -250,7 +250,7 @@ void HUDSystem::initSystem() {
 			{ (xAux * 6) + bSize.getX() / 4 , heightH + 67.5f },
 			{ 30.0f, 30.0f },
 			0.0f,
-			gameTextures::monedaH,
+			gameTextures::monedaDorada,
 			_grp_HUD_FOREGROUND);
 
 		twrSel_.buttons[_twr_SLIME] = tb6;
@@ -285,11 +285,16 @@ void HUDSystem::initSystem() {
 			{ (xAux * 7) + bSize.getX() / 4 , heightH + 67.5f },
 			{ 30.0f, 30.0f },
 			0.0f,
-			gameTextures::monedaH,
+			gameTextures::monedaDorada,
 			_grp_HUD_FOREGROUND);
 
 		twrSel_.buttons[_twr_POWER] = tb7;
 	#pragma endregion
+
+	//ICONO MONEDAS DEL JUGADOR
+	bS->addImage({ 175,  25 },
+		{ 60, 60 },
+		0.0, gameTextures::monedaDorada, _grp_HUD_BACKGROUND);
 
 	/** 
 	*
@@ -436,8 +441,10 @@ void HUDSystem::showUpgradeMenu(Entity* twr, const Vector2D& pos) {
 	upM_ = UpgradeMenu();
 	auto upCmp = mngr_->getComponent<UpgradeTowerComponent>(twr);
 
+
 	Vector2D offset = Vector2D(0, 0);
 	/** 
+	*   / --- RANGO DE LA TORRE --- / 
 	*	/ --- BACKGROUND DE MENU --- / 
 	* 
 	*	Ajuste del menu con los limites de la camara y HUD
@@ -452,7 +459,12 @@ void HUDSystem::showUpgradeMenu(Entity* twr, const Vector2D& pos) {
 		offset.setY(- (posA.getY() - 150));
 		std::cout << std::endl << "DIF Y: " << offset.getY() << std::endl;
 	}
-	
+	upM_.range = bS->addImage(posA + Vector2D(-260.0, 100.0),
+		{ 400.0f, 300.0f },
+		0.0,
+		gameTextures::rangeCircle,
+		_grp_HUD_BACKGROUND);
+
 	upM_.background = bS->addImage(posA + offset,
 		{ 400.0f, 300.0f },
 		0.0,
@@ -534,12 +546,14 @@ void HUDSystem::exitUpgradeMenu() {
 	mngr_->setAlive(upM_.cost, false);
 	mngr_->setAlive(upM_.lvlText, false);
 	mngr_->setAlive(upM_.sellButton, false);
+	mngr_->setAlive(upM_.range, false);
 	mngr_->refresh();
 
 	mngr_->deleteHandler(hId, upM_.sellButton);
 	mngr_->deleteHandler(hId, upM_.exitButton);
 	mngr_->deleteHandler(hId, upM_.upgradeButton);
 	mngr_->deleteHandler(hId, upM_.background);
+	mngr_->deleteHandler(hId, upM_.range);
 
 	upM_ = UpgradeMenu();
 

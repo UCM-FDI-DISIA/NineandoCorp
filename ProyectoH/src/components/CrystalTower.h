@@ -8,12 +8,12 @@ public:
 	CrystalTower(int shieldVal, float timeToShield, int explosionDmg, float range);
 	void levelUp(int level);
 
-	int getShieldVal() { return shieldVal_; }
-	float getTimeToShield() { return timeToShield_; }
-	float getElapsedTime() { return elapsedTime_; }
-	int getExplosionDmg() { return explosionDmg_; }
-	bool isMaxLevel() { return isMaxLevel_; }
-	float getRange() { return range_; }
+	int getShieldVal() const { return shieldVal_; }
+	float getTimeToShield() const { return timeToShield_; }
+	float getElapsedTime() const { return elapsedTime_; }
+	int getExplosionDmg() const { return explosionDmg_; }
+	bool isMaxLevel() const { return isMaxLevel_; }
+	float getRange() const { return range_; }
 
 	void setShieldVal(int val) { shieldVal_ = val; }
 	void setTimeToShield(float time) {  timeToShield_ = time; }
