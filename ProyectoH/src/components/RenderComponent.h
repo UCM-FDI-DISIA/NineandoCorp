@@ -19,7 +19,7 @@ public:
 		flip_ = SDL_FLIP_NONE;
 	};
 
-	gameTextures getTexture() { return texture; };
+	gameTextures getTexture() const { return texture; };
 	inline void setTexture(gameTextures t) {
 		texture = t;
 	}

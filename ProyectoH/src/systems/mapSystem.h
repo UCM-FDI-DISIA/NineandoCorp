@@ -60,5 +60,5 @@ public:
 	void loadMap(std::string filename);
 	void loadTile(const tmx::Map& map, const tmx::TileLayer& layer);
 	Vector2D getTileSize() const { return tileSize_; }
-	NetMap* getMalla() { return net; };
+	NetMap* getMalla() const { return net; };
 };

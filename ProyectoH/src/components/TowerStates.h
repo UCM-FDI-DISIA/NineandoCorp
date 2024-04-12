@@ -14,10 +14,10 @@ public:
 	void setElapsed(float time) { elapsed_ = time; };
 
 	void setPotenciado(bool p) { potenciado_ = p; }
-	bool getPotenciado() { return potenciado_; }
+	bool getPotenciado() const { return potenciado_; }
 
 	void setPotenciadora(Entity* src) { srcPotencia_ = src; }
-	Entity* getSrcPotencia() { return srcPotencia_; }
+	Entity* getSrcPotencia() const { return srcPotencia_; }
 private:
 	bool cegado_;
 	bool potenciado_;

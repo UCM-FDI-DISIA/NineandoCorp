@@ -31,7 +31,7 @@ public:
 	}
 	
 	/// <returns> si el objeto esta siendo arrastrado</returns>
-	inline bool isDragged() { return dragging_; }
+	inline bool isDragged() const { return dragging_; }
 
 	/// <summary>
 	/// Sigue al cursor y se situa en la casilla mas cercana

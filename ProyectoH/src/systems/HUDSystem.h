@@ -16,7 +16,7 @@ public:
 
 	void update() override;
 
-	bool isOnSelector(const Vector2D& pos) {
+	bool isOnSelector(const Vector2D& pos) const {
 		return pos.getY() + cameraOffset_->y < sdlutils().height() - twrSel_.selectorHeight;
 	}
 

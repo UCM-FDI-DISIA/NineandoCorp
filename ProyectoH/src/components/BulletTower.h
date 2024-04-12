@@ -10,8 +10,8 @@ public:
 	void levelUp(int level);
 	void targetSecondEnemy(const std::list<Entity*>& targetGroup);
 
-	bool isMaxLevel() { return isMaxLevel_; }
-	Entity* getSecondTarget() { return secondTarget_; }
+	bool isMaxLevel() const{ return isMaxLevel_; }
+	Entity* getSecondTarget() const{ return secondTarget_; }
 
 private:
 	Entity* secondTarget_;//Para la mejora maxima de la torre; 2 objetivos 

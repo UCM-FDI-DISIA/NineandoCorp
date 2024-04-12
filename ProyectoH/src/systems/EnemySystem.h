@@ -35,7 +35,7 @@ public:
 
 	std::vector<Vector2D> RouteTranslate(std::vector<Vector2D> route);
 	
-	unsigned int getWave() { return wave; }
+	unsigned int getWave() const{ return wave; }
 	void setWave() { wave++; }
 protected:
 	Entity* addField(Vector2D pos);
@@ -47,8 +47,8 @@ protected:
 	bool generateEnemies_ = false;
 	bool stopGenerate = false;
 
-	int intAt(basic_string<char> s) { return sdlutils().intConst().at(s); }
-	float floatAt(basic_string<char> s) { return sdlutils().floatConst().at(s); }
+	int intAt(basic_string<char> s) const{ return sdlutils().intConst().at(s); }
+	float floatAt(basic_string<char> s) const{ return sdlutils().floatConst().at(s); }
 
 };
 

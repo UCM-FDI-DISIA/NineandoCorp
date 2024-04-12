@@ -50,8 +50,8 @@ public:
 	/// <param name="height">Elevacion de la torre; puede ser alta o baja</param>
 	void addTower(twrId type, const Vector2D& pos, Height height, int sellMoney, Cell* cell);
 
-	int intAt(basic_string<char> s) { return sdlutils().intConst().at(s); }
-	float floatAt(basic_string<char> s) { return sdlutils().floatConst().at(s); }
+	int intAt(basic_string<char> s) const { return sdlutils().intConst().at(s); }
+	float floatAt(basic_string<char> s) const { return sdlutils().floatConst().at(s); }
 
 	inline void addTowerToInteract(Entity* e) { towersToInteract.push_back(e); }
 

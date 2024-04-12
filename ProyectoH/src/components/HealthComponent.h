@@ -12,16 +12,15 @@ private:
 public:
 	static const cmpId id = cmpId::_HEALTH;
 	HealthComponent(float l);
-	float getHealth() { return currentHealth_; };
+	float getHealth() const { return currentHealth_; };
 	void addHealth(float health);
-	float getMaxHealth() { return maxHealth_; };
-	float getBaseHealth() { return baseHealth_; };
-	void setMaxHealth(float health);
+	float getMaxHealth() const { return maxHealth_; };
+	float getBaseHealth() const { return baseHealth_; };
+	void setMaxHealth(float health) { maxHealth_ = health;};
 	bool subtractHealth(float health);
 	void initComponent();
 	void resetHealth();
-	void setHealth(float health);
-	Entity* getHealthBar() { return ent_; };
-
+	void setHealth(float health) { currentHealth_ = health;}
+	Entity* getHealthBar() const { return ent_; };
 };
 
