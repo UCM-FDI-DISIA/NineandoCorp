@@ -63,6 +63,8 @@ void  EnemySystem::receive(const Message& m) {
 		if (m.entity_to_attack.targetId == _hdlr_ENEMIES && m.entity_to_attack.e != nullptr && mngr_->isAlive(m.entity_to_attack.e)) {
 			HealthComponent* h = mngr_->getComponent<HealthComponent>(m.entity_to_attack.e);
 			if (h->getHealth() - m.entity_to_attack.damage <= 0) {
+				auto enemytype = mngr_->getComponent<EnemyTypeComponent>(m.entity_to_attack.e);
+				AddMoney(enemytype->GetEnemyType(), level);
 				Message m1;
 				m1.id = _m_ENEMY_DIED;
 				m1.return_entity.ent = m.entity_to_attack.e;
@@ -70,9 +72,7 @@ void  EnemySystem::receive(const Message& m) {
 			}
 			if (h->subtractHealth(m.entity_to_attack.damage)) {
 				enemyDeathAnim(*mngr_->getComponent<Transform>(m.entity_to_attack.e)->getPosition());
-				mngr_->deleteHandler(_hdlr_ENEMIES, m.entity_to_attack.e);
-				auto enemytype = mngr_->getComponent<EnemyTypeComponent>(m.entity_to_attack.e);
-				AddMoney(enemytype->GetEnemyType(), level);			
+				mngr_->deleteHandler(_hdlr_ENEMIES, m.entity_to_attack.e);	
 			};
 		}
 		break;
@@ -245,12 +245,7 @@ void EnemySystem::AddMoney(enmId type, int level) {
 	m1.money_data.money = money;
 	m1.money_data.Hmoney = Hmoney;
 	mngr_->send(m1);
-	//Message m2;
-	//m2.id = _m_ADD_MONEY;
-	//m2.money_data.Hmoney = Hmoney;
-	//mngr_->send(m2);
 }
-
 
 void EnemySystem::update()
 {
