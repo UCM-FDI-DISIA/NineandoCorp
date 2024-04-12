@@ -9,6 +9,7 @@ PauseSystem::PauseSystem() {
 PauseSystem::~PauseSystem() {
 	for (auto en : mngr_->getHandler(_hdlr_BUTTON_PAUSE)) {
 		mngr_->setAlive(en, false);
+		mngr_->deleteHandler(_hdlr_BUTTON_PLAY, en);
 	}
 	mngr_->refresh();
 
