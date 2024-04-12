@@ -72,7 +72,7 @@ private:
 	//Auxiliares para la camara
 	double cameraX_ = 0;
 	double cameraY_ = 0;
-	double VelCam = 300;
+	double VelCam = 500;
 
 	//Limites de la camara
 	int limtop = 200;

@@ -247,22 +247,16 @@ void RenderSystem::update() {
 		}
 
 		SDL_GetMouseState(&mouseX, &mouseY);
-		int margin = 10;
-		if (mouseX < margin && offset->x < limleft) {
-			cameraX_ += VelCam * game().getDeltaTime();
+		Vector2D centre = { (float)(sdlutils().width() / 2), (float)(sdlutils().height() / 2) };
+		Vector2D dirMove = (centre - Vector2D(mouseX, mouseY)).normalize();
+		int margin = 30;
+		if (mouseX < margin && offset->x < limleft 
+			|| (mouseX > sdlutils().width() - margin && offset->x > limright)
+			|| (mouseY < margin && offset->y < limtop)
+			|| (mouseY > sdlutils().height() - margin && offset->y > limbot)) {
+			cameraX_ += VelCam * game().getDeltaTime() * dirMove.getX();
 			offset->x = cameraX_;
-		}
-		else if (mouseX > sdlutils().width() - margin && offset->x > limright) {
-			cameraX_ -= VelCam * game().getDeltaTime();
-			offset->x = cameraX_;
-		}
-
-		if (mouseY < margin && offset->y < limtop) {
-			cameraY_ += VelCam * game().getDeltaTime();
-			offset->y = cameraY_;
-		}
-		else if (mouseY > sdlutils().height() - margin && offset->y > limbot) {
-			cameraY_ -= VelCam * game().getDeltaTime();
+			cameraY_ += VelCam * game().getDeltaTime() * dirMove.getY();
 			offset->y = cameraY_;
 		}
 	}
