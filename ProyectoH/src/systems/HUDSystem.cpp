@@ -291,6 +291,11 @@ void HUDSystem::initSystem() {
 		twrSel_.buttons[_twr_POWER] = tb7;
 	#pragma endregion
 
+	//ICONO MONEDAS DEL JUGADOR
+	bS->addImage({ 175,  25 },
+		{ 60, 60 },
+		0.0, gameTextures::monedaDorada, _grp_HUD_BACKGROUND);
+
 	/** 
 	*
 	*	/ -- PAUSE BUTTON -- /
