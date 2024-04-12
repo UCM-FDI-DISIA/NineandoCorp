@@ -95,7 +95,7 @@ void ButtonSystem::manageButtons() {
 	if (ih().mouseButtonEvent()) {
 
 		if (ih().getMouseButtonState(InputHandler::MOUSEBUTTON::LEFT) == 1) {
-
+			sdlutils().soundEffects().at("button").play(0,1);
 			//Recorre lista de entities de tipo HUD_FOREGROUND
 			for (auto en : mngr_->getHandler(hdlr_but_id)) {
 				auto bC = mngr_->getComponent<ButtonComponent>(en);

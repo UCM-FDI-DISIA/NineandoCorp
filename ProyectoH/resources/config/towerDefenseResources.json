@@ -693,7 +693,10 @@
   ],
   
   "sounds" : [
-   
+    {
+      "id": "button",
+      "file": "resources/sound/HUD/button.mp3"
+    }
   ],
 
   "musics" : [
