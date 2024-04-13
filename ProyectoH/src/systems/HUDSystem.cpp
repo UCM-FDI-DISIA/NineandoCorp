@@ -441,6 +441,23 @@ void HUDSystem::showUpgradeMenu(Entity* twr, const Vector2D& pos) {
 	upM_ = UpgradeMenu();
 	auto upCmp = mngr_->getComponent<UpgradeTowerComponent>(twr);
 
+	auto bt = mngr_->getComponent<BulletTower>(twr);
+	auto ds = mngr_->getComponent<DiegoSniperTower>(twr);
+	auto st = mngr_->getComponent<SlimeTowerComponent>(twr);
+	auto ft = mngr_->getComponent<PhoenixTower>(twr);
+	auto et = mngr_->getComponent<EnhancerTower>(twr);
+	auto dt = mngr_->getComponent<DirtTower>(twr);
+	auto ct = mngr_->getComponent<CrystalTower>(twr);
+
+	float range = 100;
+
+	if (bt != nullptr) { range = bt->getRange(); }
+	else if (ds != nullptr) { range = ds->getRange(); }
+	else if (st != nullptr) { range = st->getRange(); }
+	else if (ft != nullptr) { range = ft->getRange(); }
+	else if (et != nullptr) { range = et->getRange(); }
+	else if (dt != nullptr) { range = dt->getRange(); }
+	else if (ct != nullptr) { range = ct->getRange(); }
 
 	Vector2D offset = Vector2D(0, 0);
 	/** 
@@ -459,8 +476,8 @@ void HUDSystem::showUpgradeMenu(Entity* twr, const Vector2D& pos) {
 		offset.setY(- (posA.getY() - 150));
 		std::cout << std::endl << "DIF Y: " << offset.getY() << std::endl;
 	}
-	upM_.range = bS->addImage(posA + Vector2D(-260.0, 100.0),
-		{ 400.0f, 300.0f },
+	upM_.range = bS->addImage(posA + Vector2D(-260, 100),
+		{ range * 2, range * 1.5f },
 		0.0,
 		gameTextures::rangeCircle,
 		_grp_HUD_BACKGROUND);
