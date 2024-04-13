@@ -32,7 +32,7 @@
   "Diego": [
     {
       "vida": 50,
-      "rango": 300,
+      "rango": 500,
       "precio": 500,
       "recarga": 3,
       "dano": 50,
