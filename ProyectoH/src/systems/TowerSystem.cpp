@@ -25,7 +25,10 @@ void TowerSystem::receive(const Message& m) {
 		cameraOffset_ = m.start_game_data.cameraOffset;
 		break;
 	case _m_ENTITY_TO_ATTACK://Mandado por el enemySystem al atacar una torre
-		if(m.entity_to_attack.targetId == _hdlr_LOW_TOWERS)onAttackTower(m.entity_to_attack.e, m.entity_to_attack.damage, m.entity_to_attack.src);
+
+		if (m.entity_to_attack.targetId == _hdlr_LOW_TOWERS)onAttackTower(m.entity_to_attack.e, m.entity_to_attack.damage);
+		else if (m.entity_to_attack.targetId == _hdlr_BULLETS)mngr_->setAlive(m.entity_to_attack.e, false);
+
 		break;
 	case _m_ADD_TOWER:
 		addTower(m.add_tower_data.towerId, m.add_tower_data.pos, m.add_tower_data.height, m.add_tower_data.sellMoney, m.add_tower_data.cell);
@@ -144,15 +147,18 @@ void TowerSystem::onAttackTower(Entity* e, int dmg, Entity* src) {
 			clearShieldsArea(e);
 			h->subtractHealth(dmg);		 
 		}
-		else {
-			if(s->getShield() > 0 && s->getShield() - dmg <= 0 ){ 
+		else if (s->getShield() > 0){
+			 if(s->getShield() - dmg <= 0 ){ 
 				
 				Transform* t = mngr_->getComponent<Transform>(e);				
 				if(t != nullptr){ createShieldExplosion(*(t->getPosition())); }
 				if(s->getImg() != NULL)mngr_->setAlive(s->getImg(), false);
 			}
 			s->subtractShield((float)dmg);
-		}	
+		}
+		else {
+			h->subtractHealth(dmg);
+		}
 	}
 }
 //Realiza las funcionalidades de las torres, accediendo a los atributos de los componentes y realizando la mecanica de cada torre
@@ -455,12 +461,37 @@ void TowerSystem::update() {
 					mngr_->addComponent<FramedImage>(area, 9, 1, 500, 400, 0, 4, 8);
 					mngr_->addComponent<SlimeBullet>(area, sb->getDuration(), sb->getSpeedDecrease(), sb->getDPS());
 				}
-				bc->doDamageTo(bc->getTarget(), bc->getDamage());
-				bc->onTravelEnds();
-			}
-			else {
-				bc->setDir();
-				t->translate();
+				else {
+					SlimeBullet* sb = mngr_->getComponent<SlimeBullet>(b);
+					FramedImage* fi = mngr_->getComponent<FramedImage>(bc->getTarget());
+					Transform* targetTR = mngr_->getComponent<Transform>(bc->getTarget());
+					Vector2D targetPos = *(targetTR->getPosition());
+					if (fi != nullptr) {
+						Vector2D offset = { (float)fi->getSrcRect().w / 4, (float)fi->getSrcRect().h / 4 };//Se dirige hacia el centro del rect
+						targetPos = targetPos + offset;
+					}
+					Vector2D myPos = *(t->getPosition());
+
+					if (((targetPos - myPos).magnitude() <= 5.0f)) { //Si choca con el enemigo
+						if (sb != nullptr) {
+							Entity* area = mngr_->addEntity(_grp_AREAOFATTACK);
+							Transform* tr = mngr_->addComponent<Transform>(area);
+							Vector2D scale = { 250, 200 };
+							tr->setScale(scale);
+							Vector2D pos = { t->getPosition()->getX() - scale.getX() / 2, t->getPosition()->getY() - scale.getY() / 4 };
+							tr->setPosition(pos);
+							mngr_->addComponent<RenderComponent>(area, slimeArea);
+							mngr_->addComponent<FramedImage>(area, 9, 1, 500, 400, 0, 4, 8);
+							mngr_->addComponent<SlimeBullet>(area, sb->getDuration(), sb->getSpeedDecrease(), sb->getDPS());
+						}
+						bc->doDamageTo(bc->getTarget(), bc->getDamage());
+						bc->onTravelEnds();
+					}
+					else {
+						bc->setDir();
+						t->translate();
+					}
+				}		
 			}
 		}
 	}

@@ -11,8 +11,8 @@
 #include "../components/AngelComponent.h"
 #include "../components/IconComponent.h"
 #include "../components/GolemComponent.h"
+#include "../components/LimitedTime.h"
 #include "../sdlutils/SDLUtils.h"
-
 #include "../systems/EnemyBookSystem.h"
 
 
@@ -25,11 +25,7 @@ EnemySystem::~EnemySystem() {
 
 
 void EnemySystem::initSystem() {
-	
-	// addEnemy(_enm_AELECTRICO, { 300,300 });
-	// addEnemy(_enm_AELECTRICO, { 500,300 });
 
-	// addEnemy(_enm_ANGEL, { 700,300 });
 
 }
 void  EnemySystem::receive(const Message& m) {
@@ -72,7 +68,20 @@ void  EnemySystem::receive(const Message& m) {
 			}
 			if (h->subtractHealth(m.entity_to_attack.damage)) {
 				enemyDeathAnim(*mngr_->getComponent<Transform>(m.entity_to_attack.e)->getPosition());
-				mngr_->deleteHandler(_hdlr_ENEMIES, m.entity_to_attack.e);	
+
+				mngr_->deleteHandler(_hdlr_ENEMIES, m.entity_to_attack.e);
+				auto enemytype = mngr_->getComponent<EnemyTypeComponent>(m.entity_to_attack.e);
+				if (enemytype->GetEnemyType() == _enm_DREAL) {
+					addField(*(mngr_->getComponent<Transform>(m.entity_to_attack.e)->getPosition()));
+				}
+				else if (enemytype->GetEnemyType() == _enm_CMALDITO) {
+					Entity* mal = m.entity_to_attack.e;
+					RouteComponent* rc = mngr_->getComponent<RouteComponent>(mal);
+					generateMalditos(*(mngr_->getComponent<Transform>(mal)->getPosition()), rc->getDestiny(), rc->getRoute());
+				}
+				AddMoney(enemytype->GetEnemyType());
+				if (mngr_->hasComponent<AttackComponent>(m.entity_to_attack.src))mngr_->getComponent<AttackComponent>(m.entity_to_attack.src)->setTarget(nullptr);
+
 			};
 		}
 		break;
@@ -306,6 +315,7 @@ void EnemySystem::update()
 			PrincipitoComponent* pc = mngr_->getComponent<PrincipitoComponent>(e);
 			MensajeroMuerteComponent* mm = mngr_->getComponent<MensajeroMuerteComponent>(e);
 			Transform* tr = mngr_->getComponent<Transform>(e);
+			FramedImage* fi = mngr_->getComponent<FramedImage>(e);
 
 			if (ic != nullptr) {
 				for (int i = 0; i < ic->getIcons().size(); i++) {
@@ -355,6 +365,11 @@ void EnemySystem::update()
 
 					if (ac->getTarget() != nullptr && (ac->getAttackTowers() || mngr_->getComponent<NexusComponent>(ac->getTarget()) || mngr_->getComponent<DirtTower>(ac->getTarget()))) {
 						mc->setStop(true);
+						if (!ac->getAttack()) {
+							ac->setAttack(true);
+							changeAnimation(ac->getAttack(), e);
+						}
+						
 						if (ma != nullptr) {
 							ma->CiegaTorre(ac->getTarget());
 							ac->setElapsedTime(0.0f);
@@ -373,12 +388,20 @@ void EnemySystem::update()
 					}
 					else {
 						mc->setStop(false);
+
+						if (ac->getAttack()) {
+							ac->setAttack(false);
+							changeAnimation(ac->getAttack(), e);
+						}
+						
+
 						if (mm != nullptr) {
 							if (!mm->Detect(towers)) {
 								std::cout << "invisible\n";
 								mm->changeGroup(_hdlr_GHOST_ENEMIES);
 							}
 						}
+
 					}
 				}
 			}
@@ -403,19 +426,6 @@ void EnemySystem::update()
 							}
 						}
 					}
-				}
-			}
-
-			//defensor real
-			if (etc!= nullptr) {
-				if (!mngr_->isAlive(e) && etc->GetEnemyType()==_enm_DREAL) {
-					Entity* field = addField(*(tr->getPosition()) + Vector2D(20, 0));
-					Transform* fieldTR = mngr_->getComponent<Transform>(field);
-					SDL_Rect fieldRect = fieldTR->getRect();
-					Message m;
-					m.id = _m_ADD_RECT;
-					m.rect_data.id = _FIELD;
-					m.rect_data.entity = field;
 				}
 			}
 
@@ -459,12 +469,225 @@ void EnemySystem::update()
 	}
 }
 			
-Entity* EnemySystem::addField(Vector2D pos) {
+void EnemySystem::addField(Vector2D pos) {
 	Entity* field = mngr_->addEntity(_grp_AREAOFATTACK);
 	Transform* fieldTR = mngr_->addComponent<Transform>(field);
 	mngr_->addComponent<RenderComponent>(field, shield);
-	fieldTR->setScale({ 320, 165 });
-	fieldTR->setPosition(pos + Vector2D(-120, -10));
-	return field;
+	mngr_->addComponent<FramedImage>(field, 7, 1, 626, 352, 0, 5, 6);
+	mngr_->addComponent<LimitedTime>(field, 5);
+	fieldTR->setScale({ 640, 330 });
+	fieldTR->setPosition(pos + Vector2D(-240, -20));
+	SDL_Rect fieldRect = fieldTR->getRect();
+	Message m;
+	m.id = _m_ADD_RECT;
+	m.rect_data.id = _FIELD;
+	m.rect_data.entity = field;
+	mngr_->send(m);
+}
+
+void EnemySystem::changeAnimation(bool isAttacking, Entity* e) {
+	FramedImage* fi = mngr_->getComponent<FramedImage>(e);
+	enmId enemy_type = mngr_->getComponent<EnemyTypeComponent>(e)->GetEnemyType();
+	RenderComponent* rc = mngr_->getComponent<RenderComponent>(e);
+	switch (enemy_type)
+	{
+	case _enm_MALMAS:
+		if (isAttacking) {
+			rc->setTexture(gameTextures::maestro_attack);
+			fi->setFrames(8, 1, 0, 8, 7);
+		}
+		else
+		{
+			rc->setTexture(gameTextures::maestro);
+			fi->setFrames(8, 1, 0, 8, 7);
+		}
+		break;
+	case _enm_AELECTRICO:
+		if (isAttacking) {
+			rc->setTexture(gameTextures::acechante_attack);
+			fi->setFrames(8, 1, 0, 8, 7);
+		}
+		else
+		{
+			rc->setTexture(gameTextures::acechante);
+			fi->setFrames(8, 1, 0, 8, 7);
+		}
+		break;
+	case _enm_MALDITO:
+		if (isAttacking) {
+			rc->setTexture(gameTextures::maldito_attack);
+			fi->setFrames(7, 1, 0, 8, 6);
+		}
+		else
+		{
+			rc->setTexture(gameTextures::maldito);
+			fi->setFrames(8, 1, 0, 8, 7);
+		}
+		break;
+	case _enm_GOLEM:
+		if (isAttacking) {
+			// este funciona distinto
+			/*rc->setTexture(gameTextures::golem);
+			fi->setFrames(8, 1, 0, 8, 7);*/
+		}
+		else
+		{
+			rc->setTexture(gameTextures::golem);
+			fi->setFrames(10, 10, 40, 10, 46);
+		}
+		break;
+	case _enm_DALADO:
+		if (isAttacking) {
+			rc->setTexture(gameTextures::demonioAlado_attack);
+			fi->setFrames(8, 1, 0, 8, 7);
+		}
+		else
+		{
+			rc->setTexture(gameTextures::demonioAlado);
+			fi->setFrames(8, 1, 0, 8, 7);
+		}
+		break;
+	case _enm_GOBLIN:
+		if (isAttacking) {
+			rc->setTexture(gameTextures::goblin_attack);
+			fi->setFrames(8, 1, 0, 8, 7);
+		}
+		else
+		{
+			rc->setTexture(gameTextures::goblin);
+			fi->setFrames(8, 1, 0, 8, 7);
+		}
+		break;
+	case _enm_ELFO:
+		if (isAttacking) {
+			rc->setTexture(gameTextures::elfo_attack);
+			fi->setFrames(6, 1, 0, 8, 5);
+		}
+		else
+		{
+			rc->setTexture(gameTextures::elfo);
+			fi->setFrames(8, 1, 0, 8, 7);
+		}
+		break;
+	case _enm_MMUERTE:
+		if (isAttacking) {
+			rc->setTexture(gameTextures::mensajero);
+			fi->setFrames(8, 16, 16, 8, 23);
+		}
+		else
+		{
+			rc->setTexture(gameTextures::mensajero);
+			fi->setFrames(8, 8, 8, 8, 15);
+		}
+		break;
+	case _enm_ANGEL:
+		if (isAttacking) {
+			rc->setTexture(gameTextures::angel);
+			fi->setFrames(8, 1, 0, 8, 7);
+		}
+		else
+		{
+			rc->setTexture(gameTextures::angel);
+			fi->setFrames(8, 1, 0, 8, 7);
+		}
+		break;
+	case _enm_DINFERNAL:
+		if (isAttacking) {
+			rc->setTexture(gameTextures::demonioInfernal);
+			fi->setFrames(6, 2, 6, 8, 11);
+		}
+		else
+		{
+			rc->setTexture(gameTextures::demonioInfernal);
+			fi->setFrames(8, 4, 16, 4, 19);
+		}
+		break;
+	case _enm_DREAL:
+		if (isAttacking) {
+			rc->setTexture(gameTextures::defensor_attack);
+			fi->setFrames(8, 1, 0, 8, 7);
+		}
+		else
+		{
+			rc->setTexture(gameTextures::defensor);
+			fi->setFrames(8, 1, 0, 8, 7);
+		}
+		break;
+	case _enm_CMALDITO:
+		if (isAttacking) {
+			rc->setTexture(gameTextures::maldito_attack);
+			fi->setFrames(7, 1, 0, 8, 6);
+		}
+		else
+		{
+			rc->setTexture(gameTextures::maldito);
+			fi->setFrames(8, 1, 0, 8, 7);
+		}
+		break;
+	case _enm_PRINCIPITO:
+		if (isAttacking) {
+			rc->setTexture(gameTextures::principito_attack);
+			fi->setFrames(10, 1, 0, 8, 9);
+		}
+		else
+		{
+			rc->setTexture(gameTextures::principito);
+			fi->setFrames(8, 1, 0, 8, 7);
+		}
+		break;
+	case _enm_MONJE:
+		if (isAttacking) {
+			rc->setTexture(gameTextures::monje_attack);
+			fi->setFrames(8, 1, 0, 8, 7);
+		}
+		else
+		{
+			rc->setTexture(gameTextures::defensor_attack);
+			fi->setFrames(8, 1, 0, 8, 7);
+		}
+		break;
+	case _enm_MUERTE:
+		if (isAttacking) {
+			rc->setTexture(gameTextures::muerte_attack);
+			fi->setFrames(6, 1, 0, 8, 5);
+		}
+		else
+		{
+			rc->setTexture(gameTextures::muerte);
+			fi->setFrames(1, 1, 0, 0, 1);
+		}
+		break;
+	default:
+		break;
+	}
 }
 	
+void EnemySystem::generateMalditos(Vector2D pos, int destiny, vector<Vector2D> route) {
+	auto& random = sdlutils().rand();
+	for (int i = 0; i < 10; i++) {
+		int x = random.nextInt(-40, 41);
+		int y = random.nextInt(-40, 41);
+
+		Vector2D malditoPos = pos + Vector2D(x, y);
+
+		Entity* maldito = mngr_->addEntity(_grp_TOWERS_AND_ENEMIES);
+		Transform* tr = mngr_->addComponent<Transform>(maldito);//transform
+		MovementComponent* mc = mngr_->addComponent<MovementComponent>(maldito);
+
+		tr->setSpeed(30.0f);
+		mngr_->addComponent<RenderComponent>(maldito, gameTextures::maldito);
+		mngr_->addComponent<HealthComponent>(maldito, 60);
+
+		RouteComponent* rc = mngr_->addComponent<RouteComponent>(maldito, route);
+		rc->setDestiny(destiny);
+		tr->setPosition(malditoPos);
+		rc->changevelocity(route[destiny]);
+		mngr_->addComponent<AttackComponent>(maldito, 10, 1, 20, false);
+		mngr_->addComponent<FramedImage>(maldito, 8, 1, 64, 64, 0, 8, 7);
+		mngr_->addComponent<EnemyTypeComponent>(maldito, _enm_MALDITO);
+
+		mngr_->setHandler(_hdlr_ENEMIES, maldito);
+
+	}
+	
+}

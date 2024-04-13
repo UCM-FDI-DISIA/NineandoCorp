@@ -29,6 +29,14 @@ public:
 
 	void setCurrentFrame(int newFrame) { currentFrame = newFrame; }
 	int getCurrentFrame() { return currentFrame; }
+
+	inline void setFrames(int fc, int fr, int cf, int fRate, int lFrame) {
+		frameColumns = fc;
+		frameRows = fr;
+		currentFrame = cf;
+		frameRate = fRate;
+		lastFrame = lFrame;
+	}
 };
 
 #endif

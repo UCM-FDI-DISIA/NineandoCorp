@@ -5,15 +5,15 @@
 #include "../components/HealthComponent.h"
 
 AttackComponent::AttackComponent(float range, float reloadTime, int damage, bool towers) : range_(range), reloadTime_(reloadTime), damage_(damage), baseDamage_(damage),towers_(towers), elapsedTime_(reloadTime), nexo_(true) {
-	target_ = nullptr; timeToShoot_ = reloadTime; loaded_ = false;
+	target_ = nullptr; timeToShoot_ = reloadTime; loaded_ = false; isAttacking = false;
 }
 
 void AttackComponent::initComponent() {
-	// Añadir mas cosas de init 
+	// Aï¿½adir mas cosas de init 
 }
 
 
-void AttackComponent::doDamageTo(Entity* e, float damage, hdlrId targetId) {//Causa un daño a una entidad
+void AttackComponent::doDamageTo(Entity* e, float damage, hdlrId targetId) {//Causa un daï¿½o a una entidad
 	Message m;
 	m.id = _m_ENTITY_TO_ATTACK;
 	m.entity_to_attack.e = e;
@@ -37,7 +37,7 @@ void AttackComponent::targetEnemy(const std::list<Entity*>& targetGroup) {//Busc
 			}		
 		}		
 	}	
-	else if(target_ != nullptr && mngr_->isAlive(target_)){
+	else if(!mngr_->isAlive(target_)){
 		target_ = nullptr;
 	}
 }
@@ -45,4 +45,48 @@ void AttackComponent::targetEnemy(const std::list<Entity*>& targetGroup) {//Busc
 float AttackComponent::getDistance(Vector2D targetPos) {//Distancia al target
 	Vector2D myPos = mngr_->getComponent<Transform>(ent_)->getPosition();
 	return sqrt(pow(myPos.getX() - targetPos.getX(), 2) + pow(myPos.getY() - targetPos.getY(), 2));
+}
+
+float AttackComponent::getDamage() const { return damage_; }
+
+float AttackComponent::getBaseDamage() const { return baseDamage_; }
+
+float AttackComponent::getRange() const { return range_; }
+
+bool AttackComponent::isLoaded() const { return loaded_; }
+
+Entity* AttackComponent::getTarget()const { return target_; }
+
+float AttackComponent::getTimeToShoot()const { return timeToShoot_; }
+
+float AttackComponent::getReloadTime()const { return reloadTime_; }
+
+float AttackComponent::getElapsedTime()const { return elapsedTime_; }
+
+bool AttackComponent::getAttack() const {
+	return isAttacking;
+}
+
+
+void AttackComponent::setDamage(int dmg) {
+	damage_ = dmg;
+}
+void AttackComponent::setRange(float rng) {
+	range_ = rng;
+}
+
+void AttackComponent::setLoaded(bool ld) {
+	loaded_ = ld;
+}
+
+void AttackComponent::setTimeToShoot(float t) {
+	timeToShoot_ = t;
+}
+
+void AttackComponent::setElapsedTime(float elapsed) {
+	elapsedTime_ = elapsed;
+}
+
+void AttackComponent::setReloadTime(float time) {
+	reloadTime_ = time;
 }

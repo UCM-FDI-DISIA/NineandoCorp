@@ -32,6 +32,7 @@ public:
 	float getReloadTime()const { return reloadTime_; }
 	float getElapsedTime()const { return elapsedTime_; }
 
+
 	//Setters
 	void setDamage(int dmg) { damage_ = dmg; };
 	void setRange(float rng) { range_ = rng; };
@@ -40,7 +41,11 @@ public:
 	void setTimeToShoot(float t) { timeToShoot_ = t; };
 	void setElapsedTime(float elapsed) { elapsedTime_ = elapsed; };
 	void setTarget(Entity* e) { target_ = e; };
-	void setNexo(bool n) { nexo_ = n; }
+
+	bool getNexo() { return nexo_; }
+	bool getAttackTowers() { return towers_; };
+	void setNexo(bool n) { nexo_=n; }
+	void setAttack(bool a) { isAttacking = a; };
 	float getDistance(Vector2D targetPos);
 
 
@@ -56,7 +61,7 @@ protected:
 	float elapsedTime_;
 	bool nexo_;
 	bool towers_;
-
+	bool isAttacking;
 	bool loaded_;
 };
 

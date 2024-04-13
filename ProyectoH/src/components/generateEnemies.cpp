@@ -77,6 +77,7 @@ int generateEnemies::totalEnemies() const{
 /// <param name="divWidth"></param>
 void generateEnemies::RoutesCorrection(Transform* tr, std::vector<Vector2D>& route, float divHeight, float divWidth) {
 	Vector2D v = { tr->getWidth() / divWidth, tr->getHeight() / divHeight };
+
 	for (auto& e : route) {
 		e = e - v;
 	}
@@ -92,7 +93,7 @@ void generateEnemies::addEnemy(enmId type, std::vector<Vector2D> route) {
 	Transform* tr = mngr_->addComponent<Transform>(t);//transform
 
 	//tr->setScale({ tr->getWidth() / 1.5f, tr->getHeight() / 1.5f});
-	
+
 
 	MovementComponent* mc = mngr_->addComponent<MovementComponent>(t);
 	Message M;
@@ -108,7 +109,7 @@ void generateEnemies::addEnemy(enmId type, std::vector<Vector2D> route) {
 		tr->setPosition(route[0]);
 		mngr_->addComponent<RouteComponent>(t, route);
 		mngr_->addComponent<AttackComponent>(t, 100, 1.0, 20, true);
-		mngr_->addComponent<FramedImage>(t, 1, 1, 250, 250, 0, 8, 7);
+		mngr_->addComponent<FramedImage>(t, 8, 1, 250, 250, 0, 8, 7);
 		mngr_->addComponent<EnemyTypeComponent>(t, _enm_MALMAS);
 
 		M.start_enemy_book.n = 1;
@@ -252,7 +253,7 @@ void generateEnemies::addEnemy(enmId type, std::vector<Vector2D> route) {
 	case _enm_CMALDITO:
 		tr->setSpeed(10.0f);
 		mngr_->addComponent<RenderComponent>(t, CMaldito);
-		mngr_->addComponent<HealthComponent>(t, 1000);
+		mngr_->addComponent<HealthComponent>(t, 100);		
 		RoutesCorrection(tr, route, 1.5f, 1.5f);
 		tr->setPosition(route[0]);
 		mngr_->addComponent<RouteComponent>(t, route);

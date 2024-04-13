@@ -38,7 +38,9 @@ public:
 	unsigned int getWave() const{ return wave; }
 	void setWave() { wave++; }
 protected:
-	Entity* addField(Vector2D pos);
+	void addField(Vector2D pos);
+	void generateMalditos(Vector2D pos, int destiny, vector<Vector2D> route);
+	void changeAnimation(bool animation, Entity* e);
 
 	std::vector<Transform*> enemiesTransforms;
 	std::vector<Entity*> spawnsVector;

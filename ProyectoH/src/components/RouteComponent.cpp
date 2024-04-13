@@ -1,22 +1,19 @@
 #include "RouteComponent.h"
 #include "MovementComponent.h"
-void
-RouteComponent::update() {
-	checkdestiny();
-}
+
 
 void
 RouteComponent::initComponent() {
 	transform_ = mngr_->getComponent<Transform>(ent_);
 	renderComponent_ = mngr_->getComponent<RenderComponent>(ent_);
-	changevelocity(route_[0]);
+	changevelocity(route_[destiny_]);
 }
 
 void
 RouteComponent::changeRoute(std::vector<Vector2D> route) {
 	route_ = route;
 	destiny_ = 0;
-	changevelocity(route[0]);
+	changevelocity(route[destiny_]);
 }
 
 void
