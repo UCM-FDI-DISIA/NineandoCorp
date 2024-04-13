@@ -3,7 +3,6 @@
 #include "../components/ButtonComponent.h"
 #include "ButtonSystem.h"
 #include "../components/DragAndDrop.h"
-
 class HUDSystem : public System
 {
 public:
@@ -17,8 +16,81 @@ public:
 
 	void update() override;
 
+	bool isOnSelector(const Vector2D& pos) const {
+		return pos.getY() + cameraOffset_->y < sdlutils().height() - twrSel_.selectorHeight;
+	}
+
 private: 
+	struct UpgradeMenu{
+		Entity* background;
+		Entity* upgradeButton;
+		Entity* twrName;
+		Entity* twrLvl;
+		Entity* exitButton;
+		Entity* cost;
+		Entity* lvlText;
+		Entity* sellButton;
+		Entity* range;
+		UpgradeMenu() :
+			background(nullptr), //
+			upgradeButton(nullptr), //
+			twrName(nullptr), // 
+			twrLvl(nullptr), // 
+			exitButton(nullptr), //
+			lvlText(nullptr), //
+			sellButton(nullptr), //
+			cost(nullptr),
+			range(nullptr)
+		{}
+
+		~UpgradeMenu() {}
+	};
+
+	 struct TowerButton {
+
+		Vector2D initialPos;
+		Entity* button;
+		Entity* img;
+		Entity* coinImg;
+		Entity* moneyTxt;
+
+		TowerButton() : 
+			initialPos(Vector2D()),
+			button(nullptr), //
+			coinImg(nullptr), //
+			moneyTxt(nullptr), //
+			img(nullptr) {}
+
+		TowerButton(Entity* but, Entity* im, const Vector2D& pos, Entity* coin, Entity* money) : 
+			initialPos(pos), //
+			button(but), //
+			coinImg(coin), //
+			moneyTxt(money), // 
+			img(im) {}
+	};
+
+	struct TowerSelector {
+		std::vector<TowerButton> buttons;
+		Entity* background;
+		Entity* roundButton;
+		int selectorHeight = 200;
+		TowerSelector() :
+			buttons(), //
+			background(nullptr), //
+			roundButton(nullptr) {}		
+	};
+
+
+	UpgradeMenu upM_;
+	TowerSelector twrSel_;
+
+	void exitUpgradeMenu();
+
+	void showSelector(bool active);
+
 	bool mActive;
+
+	void showUpgradeMenu(Entity* twr, const Vector2D& pos);
 
 	int intAt(basic_string<char> s) { return sdlutils().intConst().at(s); }
 	float floatAt(basic_string<char> s) { return sdlutils().floatConst().at(s); }
@@ -35,14 +107,10 @@ private:
 	// Espacio designado para los botones de compra de las torres
 	float buttonsSpace_length_; 
 	float infoSpace_length_;
-	//boton de empezar la oleada
-	Entity* play = nullptr;
+
 	bool canStartWave = false;
 
-	// Para la interaccion con el HUD, no tocar de momento
-	std::vector<Entity*> towers_imgs;
-	std::vector<Vector2D> initial_pos;
-	std::vector<Vector2D> intial_scale;
-	//std::vector<std::pair<Entity*, Entity*>> tower_selector_; 
+	//ofset de la camara al renderizar
+	SDL_Rect* cameraOffset_;
 };
 

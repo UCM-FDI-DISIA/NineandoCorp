@@ -43,12 +43,12 @@ private:
 	Vector2D tileSize_;
 	unsigned int level = 1;
 
-	std::string filename;
+	std::string filename = "../ProyectoH/resources/tileMap/nivel";
 
 public:
 	static constexpr sysId_type id = _sys_MAP;
 
-	mapSystem(std::string filename);
+	mapSystem();
 	virtual ~mapSystem() {
 		delete net;
 		net = nullptr;
@@ -60,5 +60,5 @@ public:
 	void loadMap(std::string filename);
 	void loadTile(const tmx::Map& map, const tmx::TileLayer& layer);
 	Vector2D getTileSize() const { return tileSize_; }
-	NetMap* getMalla() { return net; };
+	NetMap* getMalla() const { return net; };
 };

@@ -1,8 +1,8 @@
 #pragma once
 #include "../ecs/System.h"
-#include "..//sdlutils/VirtualTimer.h"
 #include "../game/Game.h"
 #include "../components/NexusComponent.h"
+#include "../utils/SaveGame.h"
 #include <vector>
 
 class MainControlSystem : public System
@@ -10,7 +10,7 @@ class MainControlSystem : public System
 public:
 	static constexpr sysId_type id = _sys_MAINCONTROL;
 
-	MainControlSystem();
+	MainControlSystem(int currentLevel);
 	~MainControlSystem() {};
 
 	void initSystem() override;
@@ -22,11 +22,12 @@ protected:
 	int numDoradasActuales;
 	int numDoradasIniciales;
 	int numDoradasPorSegundo;
-	int currentLevel = 0;
+	int currentLevel;
 	float tiempoEntreOleadas;
 	double elapsedTime_;
 	VirtualTimer timer_;
 	Entity* nexo;
+	SaveGame saveGame = SaveGame();
 
 	// Niveles de nexo y torres
 	int turrentLevels_ [_twr_SIZE];	// Nexo última torre

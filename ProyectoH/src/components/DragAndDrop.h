@@ -20,7 +20,7 @@ public:
 	/// </summary>
 	/// <param name="pos"> posicion</param>
 	/// <param name="h"> pradera o montaña</param>
-	void drop(const Vector2D& pos, Height h);
+	void drop(const Vector2D& pos, Height h, Cell* cell);
 
 	/// <summary>
 	/// habilita si el objeto esta siendo arrastrado o no
@@ -31,7 +31,7 @@ public:
 	}
 	
 	/// <returns> si el objeto esta siendo arrastrado</returns>
-	inline bool isDragged() { return dragging_; }
+	inline bool isDragged() const { return dragging_; }
 
 	/// <summary>
 	/// Sigue al cursor y se situa en la casilla mas cercana
@@ -73,6 +73,9 @@ public:
 		}
 		else canDrop_ = false;
 	}
+
+	inline int getCost() const { return cost; }
+
 private:
 
 	bool dragging_;

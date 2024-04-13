@@ -65,7 +65,8 @@ public:
 		exit = true;
 	}
 
-	inline GameState* currentState() {return gameStateMachine->currentState(); }
+	inline GameState* currentState() const {return gameStateMachine->currentState(); }
+
 };
 
 // Returns reference to game instance

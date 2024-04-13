@@ -16,25 +16,39 @@ public:
 
 
 	void manageButtons();
+	void managePauseButtons();
 	/// <summary>
-	/// Crea un boton como entidad y lo añade al manager con grpId = _grp_HUD_FOREGROUND y hdlrId = button_id
+	/// Crea un boton como entidad y lo aï¿½ade al manager con grpId = _grp_HUD_FOREGROUND y hdlrId = button_id
 	/// </summary>
 	/// <param name="pos">posicion del boton</param>
 	/// <param name="scale">escala del boton</param>
 	/// <param name="tex">textura base del boton</param>
 	/// <param name="hov">textura del hover</param>
 	/// <param name="type">tipo del boton</param>
-	Entity* addButton(const Vector2D& pos, const Vector2D& scale, gameTextures tex, gameTextures hov, ButtonTypes type);
+	Entity* addButton(const Vector2D& pos, const Vector2D& scale, gameTextures tex, gameTextures hov, ButtonTypes type, int level = 0, Message m = Message());
 
 	/// <summary>
-	/// Crea una imagen como entidad y lo añade al manager 
+	/// Crea una imagen como entidad y lo aï¿½ade al manager 
 	/// </summary>
 	/// <param name="pos">posicion de la imagen</param>
 	/// <param name="scale">escala de la imagen</param>
 	/// <param name="rot">rotacion de la imagen</param>
 	/// <param name="t">textura de la imagen</param>
-	/// <param name="grpId">id del grupo con el que se añade la entidad al manager</param>
+	/// <param name="grpId">id del grupo con el que se aï¿½ade la entidad al manager</param>
 	Entity* addImage(const Vector2D& pos, const Vector2D& scale, const double rot, gameTextures t, grpId_type grpId);
+	
+	
+	/// <summary>
+	/// Aï¿½ade una entitdad de tipo texto al manager
+	/// </summary>
+	/// <returns> La propia entidad </returns>
+	Entity* addText(string txt, const SDL_Color& color, const Vector2D& pos, const Vector2D& scale);
+
+	/// <summary>
+	/// Devuelve las monedas H acumuladas en la partida
+	/// </summary>
+	/// <returns>Las monedas H</returns>
+	int getHMoney() { return HMoney_; };
 private:
 	/// <summary>
 	/// Llama a las funciones correspondientes dependiendo del tipo del boton cuando este es pulsado
@@ -44,11 +58,16 @@ private:
 	void callFunction(ButtonTypes type, Entity* en);
 
 	/// <summary>
+	/// Crea el texto con las monedas H
+	/// </summary>
+	void generateHMoneyText();
+
+	/// <summary>
 	/// Desactiva todos los botones de la escena
 	/// </summary>
 	void pauseAllButtons();
 
-	void enableAllButton(bool b, hdlrId_type bType);
+	void enableAllButton(bool b, grpId bType);
 
 	/// <summary>
 	/// Mensaje de carga de estado de selector de niveles
@@ -58,12 +77,13 @@ private:
 	/// <summary>
 	/// Mensaje para la pausa
 	/// </summary>
-	void Pause();
+	void Pause(bool onPause);
 
 	/// <summary>
 	/// Mensaje de carga enemyBook para ver los enemigos encontrados
 	/// </summary>
 	void EnemyBook();
+
 
 	/// <summary>
 	/// Te devuelve al menu principal
@@ -73,7 +93,7 @@ private:
 	/// <summary>
 	/// Te carga PlayState
 	/// </summary>
-	void startGame();
+	void startGame(Entity* en);
 
 	/// <summary>
 	/// Envia mensaje para arrastrar 
@@ -81,8 +101,8 @@ private:
 	void dragTower(twrId tower);
 
 	/// <summary>
-	/// Método encargado de enviar el mensaje de mejorar una torre
-	/// con x Id pasado por parámetro
+	/// Mï¿½todo encargado de enviar el mensaje de mejorar una torre
+	/// con x Id pasado por parï¿½metro 
 	/// </summary>
 	void upgradeTower(twrId t);
 
@@ -96,12 +116,20 @@ private:
 	/// </summary>
 	void OnStartGame();
 
+	/// <summary>
+	/// Envia mensaje para salirse del menu de mejora
+	/// </summary>
+	void exitUpMenu();
+
 	void startWave();
 
 	void showTempText(string txt, const SDL_Color& color, const Vector2D& pos, const Vector2D& scale, int time);
 
+
+
 	bool mActive;
 	int money_ = 0;
+	int HMoney_ = 0;
 	int costs[_twr_SIZE];
 	Entity* moneyText_;
 };

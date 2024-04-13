@@ -14,11 +14,14 @@ private:
 public:
 	static const cmpId id = cmpId::_SHIELD;
 	ShieldComponent(float l);
-	float getShield() { return currentHealth_; };
+	virtual ~ShieldComponent() {
+		mngr_->setAlive(imgShield_, false);
+	}
+	float getShield() const{ return currentHealth_; };
 	void addShield(float health);
-	float getMaxShield() { return maxHealth_; };
-	float getBaseShield() { return baseHealth_; };
-	Entity* getImg() { return imgShield_; }
+	float getMaxShield() const { return maxHealth_; };
+	float getBaseShield() const { return baseHealth_; };
+	Entity* getImg() const { return imgShield_; }
 	void setImg(Entity* ent) { imgShield_ = ent; };
 	void setMaxShield(float health);
 	void subtractShield(float health);

@@ -11,7 +11,7 @@ private:
 public:
 	std::vector<bool> Vistos;
 	static constexpr sysId_type id = _sys_ENEMYBOOK;
-	EnemyBookSystem() : Vistos(15, false) {};
+	EnemyBookSystem() : Vistos(15, true) {};
 	virtual ~EnemyBookSystem();
 
 	void initSystem() override;

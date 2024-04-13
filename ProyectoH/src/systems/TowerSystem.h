@@ -38,7 +38,7 @@ public:
 	/// </summary>
 	/// <param name="e">Torre atacada</param>
 	/// <param name="dmg">Dano que debe recibir la torre</param>
-	void onAttackTower(Entity* e, int dmg); //Hace da�o a la torre mandada por mensaje
+	void onAttackTower(Entity* e, int dmg, Entity* src); //Hace da�o a la torre mandada por mensaje
 
 	/// <summary>
 	/// Anade una torre al sistema, con un tipo, una posicion y una elevacion. A cada torre le anade un render component, un 
@@ -48,26 +48,28 @@ public:
 	/// <param name="type">Tipo de la torre que definira sus mecanicas y su aspecto</param>
 	/// <param name="pos">Posicion en la que se coloca la torre</param>
 	/// <param name="height">Elevacion de la torre; puede ser alta o baja</param>
-	void addTower(twrId type, const Vector2D& pos, Height height);
-	
-	int intAt(basic_string<char> s) { return sdlutils().intConst().at(s); }
-	float floatAt(basic_string<char> s) { return sdlutils().floatConst().at(s); }
+	void addTower(twrId type, const Vector2D& pos, Height height, int sellMoney, Cell* cell);
+
+	int intAt(basic_string<char> s) const { return sdlutils().intConst().at(s); }
+	float floatAt(basic_string<char> s) const { return sdlutils().floatConst().at(s); }
 
 	inline void addTowerToInteract(Entity* e) { towersToInteract.push_back(e); }
 
-	Entity* getFrontTower() {
-		return towersToInteract.back();
-	}
+	Entity* getFrontTower();
+
+	void removeTower(Entity* twr);
 
 protected:
+
+	void enableAllInteractiveTowers(bool b);
 	/// <summary>
-/// Spawnea una bala con una posicion, una direccion, un dano y una velocidad
-/// </summary>
-/// <param name="target">Entidad objetivo de la bala</param>
-/// <param name="src">Entidad origen de la bala</param>
-/// <param name="damage">Dano</param>
-/// <param name="speed">Velocidad</param>
-/// <param name="spawnPos">Posicion de spawn, que deberia ser la de la posicion del canon de la torre</param>
+	/// Spawnea una bala con una posicion, una direccion, un dano y una velocidad
+	/// </summary>
+	/// <param name="target">Entidad objetivo de la bala</param>
+	/// <param name="src">Entidad origen de la bala</param>
+	/// <param name="damage">Dano</param>
+	/// <param name="speed">Velocidad</param>
+	/// <param name="spawnPos">Posicion de spawn, que deberia ser la de la posicion del canon de la torre</param>
 	Entity* shootBullet(Entity* target, Entity* src, float damage, float speed, Vector2D spawnPos, gameTextures texture,Vector2D bulletScale, twrId id);
 	Entity* addShield(Vector2D pos);	
 	void createShieldExplosion(Vector2D pos);
@@ -86,5 +88,6 @@ protected:
 
 	std::vector<Entity*> towersToInteract;
 	SDL_Rect* cameraOffset_;
+
 };
 

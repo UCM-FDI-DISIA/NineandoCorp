@@ -6,12 +6,17 @@ class MensajeroMuerteComponent : public Component
 public:
 	static const cmpId id = cmpId::_MENSAJEROMUERTE;
 	MensajeroMuerteComponent() :fantasma_(true) {};
-	void changeGroup();
+	void changeGroup(hdlrId_type h);
 
 	void setDetectable(bool d) { fantasma_ = d; }
 
-	bool getDetectable() { return fantasma_; }
+	bool getDetectable() const { return fantasma_; }
+
+	bool Detect(const std::list<Entity*>& g);
+
 private:
 	bool fantasma_;
 };
+
+
 

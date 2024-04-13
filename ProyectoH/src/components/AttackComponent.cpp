@@ -9,11 +9,11 @@ AttackComponent::AttackComponent(float range, float reloadTime, int damage, bool
 }
 
 void AttackComponent::initComponent() {
-	// Añadir mas cosas de init 
+	// Aï¿½adir mas cosas de init 
 }
 
 
-void AttackComponent::doDamageTo(Entity* e, float damage, hdlrId targetId) {//Causa un daño a una entidad
+void AttackComponent::doDamageTo(Entity* e, float damage, hdlrId targetId) {//Causa un daï¿½o a una entidad
 	Message m;
 	m.id = _m_ENTITY_TO_ATTACK;
 	m.entity_to_attack.e = e;

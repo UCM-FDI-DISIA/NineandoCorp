@@ -9,7 +9,7 @@ class LevelSelectorSystem : public System
 {
 public:
 	static constexpr sysId_type id = _sys_LEVELSELECTOR;
-	LevelSelectorSystem();
+	LevelSelectorSystem(int currentLevel);
 	virtual ~LevelSelectorSystem();
 
 	void initSystem() override;
@@ -17,5 +17,6 @@ public:
 	void update() override; 
 private:
 	bool mActive;
+	int currentLevel;
 };
 

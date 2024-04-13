@@ -8,9 +8,11 @@
 #include "..//components/RenderComponent.h"
 #include "..//components/FramedImage.h"
 #include "..//components/MaestroAlmasComponent.h"
+#include "..//components/MensajeroMuerteComponent.h"
 #include "..//components/AcechanteComponent.h"
 #include "..//components/GolemComponent.h"
 #include "..//components/AngelComponent.h"
+#include "..//components/PrincipitoComponent.h"
 #include "..//components/EnemyTypeComponent.h"
 #include "../game/Game.h"
 

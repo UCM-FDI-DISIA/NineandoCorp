@@ -7,7 +7,7 @@ BulletTower::BulletTower(float range, float reloadTime, int damage)
 
 
 void BulletTower::levelUp(int level) {
-	switch (level) {
+	/*switch (level) {
 	case 1:
 		setDamage(sdlutils().intConst().at("BalasDano1"));
 		break;
@@ -22,7 +22,7 @@ void BulletTower::levelUp(int level) {
 		break;
 	default:
 		break;
-	}
+	}*/
 }
 
 void BulletTower::targetSecondEnemy(const std::list<Entity*>& targetGroup) {

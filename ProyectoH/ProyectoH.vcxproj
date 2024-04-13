@@ -44,16 +44,19 @@
     <ClInclude Include="src\components\InteractiveTower.h" />
     <ClInclude Include="src\components\LimitedTime.h" />
     <ClInclude Include="src\components\MaestroAlmasComponent.h" />
+    <ClInclude Include="src\components\MensajeroMuerteComponent.h" />
     <ClInclude Include="src\components\MovementComponent.h" />
     <ClInclude Include="src\components\NexusComponent.h" />
     <ClInclude Include="src\components\ParticleLifeTime.h" />
     <ClInclude Include="src\components\PhoenixTower.h" />
+    <ClInclude Include="src\components\PrincipitoComponent.h" />
     <ClInclude Include="src\components\RenderComponent.h" />
     <ClInclude Include="src\components\RouteComponent.h" />
     <ClInclude Include="src\components\ShieldComponent.h" />
     <ClInclude Include="src\components\SlimeBullet.h" />
     <ClInclude Include="src\components\SlimeTowerComponent.h" />
     <ClInclude Include="src\components\TextComponent.h" />
+    <ClInclude Include="src\components\TowerComponent.h" />
     <ClInclude Include="src\components\TowerStates.h" />
     <ClInclude Include="src\components\Transform.h" />
     <ClInclude Include="src\components\UpgradeTowerComponent.h" />
@@ -99,6 +102,7 @@
     <ClInclude Include="src\utils\Collisions.h" />
     <ClInclude Include="src\utils\mpl.h" />
     <ClInclude Include="src\utils\NetMap.h" />
+    <ClInclude Include="src\utils\SaveGame.h" />
     <ClInclude Include="src\utils\Singleton.h" />
     <ClInclude Include="src\utils\Vector2D.h" />
   </ItemGroup>
@@ -128,9 +132,11 @@
     <ClCompile Include="src\components\InteractiveTower.cpp" />
     <ClCompile Include="src\components\LimitedTime.cpp" />
     <ClCompile Include="src\components\MaestroAlmasComponent.cpp" />
+    <ClCompile Include="src\components\MensajeroMuerteComponent.cpp" />
     <ClCompile Include="src\components\MovementComponent.cpp" />
     <ClCompile Include="src\components\NexusComponent.cpp" />
     <ClCompile Include="src\components\PhoenixTower.cpp" />
+    <ClCompile Include="src\components\PrincipitoComponent.cpp" />
     <ClCompile Include="src\components\RouteComponent.cpp" />
     <ClCompile Include="src\components\ShieldComponent.cpp" />
     <ClCompile Include="src\components\SlimeBullet.cpp" />
@@ -172,6 +178,7 @@
     <ClCompile Include="src\systems\TowerSystem.cpp" />
     <ClCompile Include="src\utils\Collisions.cpp" />
     <ClCompile Include="src\utils\NetMap.cpp" />
+    <ClCompile Include="src\utils\SaveGame.cpp" />
     <ClCompile Include="src\utils\Vector2D.cpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">

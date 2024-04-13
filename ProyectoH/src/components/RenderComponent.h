@@ -13,11 +13,13 @@ private:
 public:
 	static const cmpId id = cmpId::_RENDER;
 
-	RenderComponent(gameTextures texture) : texture(texture){
+	bool isActive;
+
+	RenderComponent(gameTextures texture) : texture(texture), isActive(true){
 		flip_ = SDL_FLIP_NONE;
 	};
 
-	gameTextures getTexture() { return texture; };
+	gameTextures getTexture() const { return texture; };
 	inline void setTexture(gameTextures t) {
 		texture = t;
 	}

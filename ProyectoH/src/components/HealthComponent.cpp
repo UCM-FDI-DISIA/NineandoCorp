@@ -18,7 +18,7 @@ HealthComponent::addHealth(float health) {
 bool
 HealthComponent::subtractHealth(float health) {
 	currentHealth_ -= health;
-	//std::cout << currentHealth_ << std::endl;
+	std::cout << currentHealth_ << std::endl;
 	if (currentHealth_ <= 0) {
 		//std::cout << "muerto" << std::endl;
 		mngr_->setAlive(ent_, false);
@@ -30,14 +30,4 @@ HealthComponent::subtractHealth(float health) {
 void
 HealthComponent::resetHealth() {
 	currentHealth_ = maxHealth_;
-}
-
-void 
-HealthComponent::setHealth(float health) {
-	currentHealth_ = health;
-}
-
-void 
-HealthComponent::setMaxHealth(float health) {
-	maxHealth_ = health;
 }

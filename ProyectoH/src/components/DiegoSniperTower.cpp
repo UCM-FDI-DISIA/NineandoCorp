@@ -3,16 +3,9 @@
 DiegoSniperTower::DiegoSniperTower(float range, float critProbability, float critDamagePercentage, float reloadTime, int damage) 
 	: AttackComponent::AttackComponent(range, reloadTime, damage, false), critDamageIncrease_(critDamagePercentage), critProbability_(critProbability){}
 
-float DiegoSniperTower::getCritDamage() const { return critDamageIncrease_; }
-
-float DiegoSniperTower::getCritProb() const { return critProbability_; }
-
-void DiegoSniperTower::setCritDamage(float percentage) { critDamageIncrease_ = percentage; }
-
-void DiegoSniperTower::setCritProb(float prob) { critProbability_ = prob; }
 
 void DiegoSniperTower::levelUp(int level) {
-	switch (level) {
+	/*switch (level) {
 	case 1:
 		setDamage(sdlutils().floatConst().at("DiegoSniperDano1"));
 		break;
@@ -29,5 +22,5 @@ void DiegoSniperTower::levelUp(int level) {
 		break;
 	default:
 		break;
-	}
+	}*/
 }

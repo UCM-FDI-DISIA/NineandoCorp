@@ -22,8 +22,8 @@ public:
 	void initSystem() override;
 	void receive(const Message& m) override;
 	void update();
+	void setNextEvent(int wavesToEvent, MeteorologyEvent event);
 private:
-
 	void generateMeteorites(int num);
 	void generateMeteorite();
 	void generateAnimTornado();
@@ -31,15 +31,15 @@ private:
 	void generateThunder();
 	void generateTsunami();
 	void generateNetMap();
+	void generateCloud();
 	void generateAnimEarthquake();
+	void setIcon();
 	std::vector<Vector2D> RouteTranslate(std::vector<Vector2D> route);
 	void addRectTo(Entity* t, rectId id);
+	void showWarningMessage();
 
-	float timeToNextEvent_;
-	float elapsedTime_;
+	const int wavesToNextEvent_ = 5;
 	float elapsedSpawn_;
-	float minTimeInterval_;
-	float maxTimeInterval_;
 	float meteoriteInterval_;
 	float thundersInterval_;
 	int quantity_;
@@ -52,7 +52,8 @@ private:
 	int pos = 0;
 	Vector2D tileSize_;
 	NetMap* net;
-
-
+	Entity* imgEvent_;
 	MeteorologyEvent nextEvent_;
+	int wavesToNextevent_;
+	int currentWaves_;
 };

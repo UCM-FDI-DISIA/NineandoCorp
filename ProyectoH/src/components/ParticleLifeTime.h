@@ -7,7 +7,7 @@ public:
 	static const cmpId id = cmpId::_P_TIME;
 
 	ParticleLifeTime(int iterations) : iters_(iterations){}
-	int getIters() { return iters_; }
+	int getIters() const { return iters_; }
 private:
 	int iters_;
 };

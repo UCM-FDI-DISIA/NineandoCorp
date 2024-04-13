@@ -2,20 +2,11 @@
 #include "../ecs/Manager.h"
 #include "../game/Game.h"
 
-struct cmpIsometricY {
-	cmpIsometricY(Manager* mngr_) { this->mngr_ = mngr_; }
-	bool operator ()(Entity* e1, Entity* e2) {
-		if (mngr_->getComponent<Transform>(e1)->getY() < mngr_->getComponent<Transform>(e2)->getY())
-			return true;
-		return false;
-	}
-	Manager* mngr_;
-};
-
 // Constructorss
 RenderSystem::RenderSystem() : winner_(0)
 {
 	mActive = true;
+	isOnUpMenu = false;
 	//Camera offset
 	*offset = build_sdlrect(0, 0, 0, 0);
 
@@ -73,6 +64,8 @@ RenderSystem::RenderSystem() : winner_(0)
 	//HUD
 	cursorTexture = &sdlutils().images().at("cursor");
 	cursorTexture2 = &sdlutils().images().at("cursorpress");
+	textures[monedaH] = &sdlutils().images().at("H_coin");
+	textures[monedaDorada] = &sdlutils().images().at("gold_coin");
 	textures[box] = &sdlutils().images().at("box"); 
 	textures[box_hover] = &sdlutils().images().at("box_hover");
 	textures[large_box] = &sdlutils().images().at("large_box");
@@ -94,7 +87,38 @@ RenderSystem::RenderSystem() : winner_(0)
 	textures[blindedIcon] = &sdlutils().images().at("blinded_icon");
 	textures[slimeArea] = &sdlutils().images().at("slime_area");
 	textures[fireTexture] = &sdlutils().images().at("fireball");
-
+	textures[level1] = &sdlutils().images().at("level1_button");
+	textures[level1_hover] = &sdlutils().images().at("level1_hover");
+	textures[level2] = &sdlutils().images().at("level2_button");
+	textures[level2_hover] = &sdlutils().images().at("level2_hover");
+	textures[level3] = &sdlutils().images().at("level3_button");
+	textures[level3_hover] = &sdlutils().images().at("level3_hover");
+	textures[level4] = &sdlutils().images().at("level4_button");
+	textures[level4_hover] = &sdlutils().images().at("level4_hover");
+	textures[level5] = &sdlutils().images().at("level5_button");
+	textures[level5_hover] = &sdlutils().images().at("level5_hover");
+	textures[level6] = &sdlutils().images().at("level6_button");
+	textures[level6_hover] = &sdlutils().images().at("level6_hover");
+	textures[level7] = &sdlutils().images().at("level7_button");
+	textures[level7_hover] = &sdlutils().images().at("level7_hover");
+	textures[level8] = &sdlutils().images().at("level8_button");
+	textures[level8_hover] = &sdlutils().images().at("level8_hover");
+	textures[level1_desactive] = &sdlutils().images().at("level1_desactive");
+	textures[level2_desactive] = &sdlutils().images().at("level2_desactive");
+	textures[level3_desactive] = &sdlutils().images().at("level3_desactive");
+	textures[level4_desactive] = &sdlutils().images().at("level4_desactive");
+	textures[level5_desactive] = &sdlutils().images().at("level5_desactive");
+	textures[level6_desactive] = &sdlutils().images().at("level6_desactive");
+	textures[level7_desactive] = &sdlutils().images().at("level7_desactive");
+	textures[level8_desactive] = &sdlutils().images().at("level8_desactive");
+	textures[sell] = &sdlutils().images().at("sell");
+	textures[sell_hover] = &sdlutils().images().at("sell_hover");
+	textures[resume_button] = &sdlutils().images().at("resume_button");
+	textures[resume_button_hover] = &sdlutils().images().at("resume_button_hover");
+	textures[backToMenu_button] = &sdlutils().images().at("backToMenu_button");
+	textures[backToMenu_button_hover] = &sdlutils().images().at("backToMenu_button_hover");
+	textures[exitGame_button] = &sdlutils().images().at("exitGame_button");
+	textures[exitGame_button_hover] = &sdlutils().images().at("exitGame_button_hover");
 
 	//Explosions
 	textures[shieldExp] = &sdlutils().images().at("shieldExp");
@@ -134,6 +158,7 @@ RenderSystem::RenderSystem() : winner_(0)
 	textures[maldito_attack] = &sdlutils().images().at("maldito_Attack");
 	textures[goblin_attack] = &sdlutils().images().at("goblin_Attack");
 
+
 	//Enemies Icons
 	textures[goblin_icon] = &sdlutils().images().at("goblin_icon");
 	textures[maldito_icon] = &sdlutils().images().at("maldito_icon");
@@ -159,6 +184,13 @@ RenderSystem::RenderSystem() : winner_(0)
 	textures[earthquake] = &sdlutils().images().at("earthquake");
 	textures[tornado] = &sdlutils().images().at("tornado");
 	textures[tsunami] = &sdlutils().images().at("meteorites");
+	textures[cloud] = &sdlutils().images().at("cloud");
+	textures[tsunami_icon] = &sdlutils().images().at("tsunami_icon");
+	textures[thunder_icon] = &sdlutils().images().at("storm_icon");
+	textures[earthquake_icon] = &sdlutils().images().at("earthquake_icon");
+	textures[tornado_icon] = &sdlutils().images().at("tornado_icon");
+	textures[meteorite_icon] = &sdlutils().images().at("meteorite_icon");
+	textures[rangeCircle] = &sdlutils().images().at("range_circle");
 
 }
 
@@ -173,6 +205,13 @@ void RenderSystem::receive(const Message& m) {
 	switch (m.id) {
 	case _m_PAUSE:
 		mActive = !m.start_pause.onPause;
+		break;
+	case _m_SHOW_UPGRADE_TOWER_MENU:
+		if (mngr_->getSystem<HUDSystem>()->isOnSelector(m.show_upgrade_twr_menu_data.pos + Vector2D(0, 30)))
+			isOnUpMenu = true;
+		break;
+	case _m_EXIT_UP_MENU:
+		isOnUpMenu = false;
 		break;
 	default:
 		break;
@@ -191,32 +230,32 @@ void RenderSystem::update() {
 
 	sdlutils().clearRenderer();
 
-	if(mActive) {
+	if(mActive && !isOnUpMenu) {
 
 		//Este control tiene que estar en el main control sistem
 		////Control de camara
-		if (ih().isKeyDown(SDLK_UP)) {
+		if (ih().isKeyDown(SDLK_UP) || ih().isKeyDown(SDLK_w)) {
 			k_up = true;
 		}
-		else if (ih().isKeyUp(SDLK_UP)) {
+		else if (ih().isKeyUp(SDLK_UP) || ih().isKeyUp(SDLK_w)) {
 			k_up = false;
 		}
-		if (ih().isKeyDown(SDLK_LEFT)) {
+		if (ih().isKeyDown(SDLK_LEFT) || ih().isKeyDown(SDLK_a)) {
 			k_left = true;
 		}
-		else if (ih().isKeyUp(SDLK_LEFT)) {
+		else if (ih().isKeyUp(SDLK_LEFT) || ih().isKeyUp(SDLK_a)) {
 			k_left = false;
 		}
-		if (ih().isKeyDown(SDLK_RIGHT)) {
+		if (ih().isKeyDown(SDLK_RIGHT) || ih().isKeyDown(SDLK_d)) {
 			k_right = true;
 		}
-		else if (ih().isKeyUp(SDLK_RIGHT)) {
+		else if (ih().isKeyUp(SDLK_RIGHT) || ih().isKeyUp(SDLK_d)) {
 			k_right = false;
 		}
-		if (ih().isKeyDown(SDLK_DOWN)) {
+		if (ih().isKeyDown(SDLK_DOWN) || ih().isKeyDown(SDLK_s)) {
 			k_down = true;
 		}
-		else if (ih().isKeyUp(SDLK_DOWN)) {
+		else if (ih().isKeyUp(SDLK_DOWN) || ih().isKeyUp(SDLK_s)) {
 			k_down = false;
 		}
 
@@ -234,6 +273,20 @@ void RenderSystem::update() {
 		}
 		if (k_down && offset->y > limbot) {
 			cameraY_ -= VelCam * game().getDeltaTime();
+			offset->y = cameraY_;
+		}
+
+		SDL_GetMouseState(&mouseX, &mouseY);
+		Vector2D centre = { (float)(sdlutils().width() / 2), (float)(sdlutils().height() / 2) };
+		Vector2D dirMove = (centre - Vector2D(mouseX, mouseY)).normalize();
+		int margin = 30;
+		if (mouseX < margin && offset->x < limleft 
+			|| (mouseX > sdlutils().width() - margin && offset->x > limright)
+			|| (mouseY < margin && offset->y < limtop)
+			|| (mouseY > sdlutils().height() - margin && offset->y > limbot)) {
+			cameraX_ += VelCam * game().getDeltaTime() * dirMove.getX();
+			offset->x = cameraX_;
+			cameraY_ += VelCam * game().getDeltaTime() * dirMove.getY();
 			offset->y = cameraY_;
 		}
 	}
@@ -383,7 +436,8 @@ void RenderSystem::update() {
 	for (auto& h : hudB) {
 		Transform* tr = mngr_->getComponent<Transform>(h);
 		gameTextures textureId = mngr_->getComponent<RenderComponent>(h)->getTexture();
-		textures[textureId]->render(tr->getRect(), tr->getRotation());
+		if (mngr_->getComponent<RenderComponent>(h)->isActive)
+			textures[textureId]->render(tr->getRect(), tr->getRotation());
 	}
 
 	//HUD FOREGROUND
@@ -392,13 +446,14 @@ void RenderSystem::update() {
 		auto fI = mngr_->getComponent<FramedImage>(h);
 		Transform* tr = mngr_->getComponent<Transform>(h);
 		gameTextures textureId = mngr_->getComponent<RenderComponent>(h)->getTexture();
-
-		if (fI != nullptr) {
-			SDL_Rect srcRect = fI->getSrcRect();
-			textures[textureId]->render(srcRect, tr->getRect(), tr->getRotation());
-		}
-		else {
-			textures[textureId]->render(tr->getRect(), tr->getRotation());
+		if (mngr_->getComponent<RenderComponent>(h)->isActive) {
+			if (fI != nullptr) {
+				SDL_Rect srcRect = fI->getSrcRect();
+				textures[textureId]->render(srcRect, tr->getRect(), tr->getRotation());
+			}
+			else {
+				textures[textureId]->render(tr->getRect(), tr->getRotation());
+			}
 		}
 	}
 
@@ -406,7 +461,8 @@ void RenderSystem::update() {
 	const auto& texts = mngr_->getEntities(_grp_TEXTS);
 	for (auto& t : texts) {
 		Transform* tr = mngr_->getComponent<Transform>(t);
-		mngr_->getComponent<TextComponent>(t)->getTexture()->render(tr->getRect(), tr->getRotation());
+		auto tC = mngr_->getComponent<TextComponent>(t);
+		if(tC->isActive) tC->getTexture()->render(tr->getRect(), tr->getRotation());
 	}
 
 	//DRAG AND DROP

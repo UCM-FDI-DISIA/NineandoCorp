@@ -56,6 +56,9 @@ enum cmpId : cmpId_type {
 	_ENEMYTYPE,
 	_DEFENSORREAL,
 	_FORCEFIELD,
+	_PRINCIPITO,
+	_MONJE,
+	_TOWER,
 
 
 	// do not remove this
@@ -70,6 +73,7 @@ enum hdlrId : hdlrId_type {
 	_hdlr_LOW_TOWERS,
 	_hdlr_HIGH_TOWERS,
 	_hdlr_ENEMIES,
+	_hdlr_GHOST_ENEMIES,
 	_hdlr_SPAWNS,
 	//botones de las escenas
 	_hdlr_BUTTON,
@@ -182,10 +186,12 @@ enum msgId : msgId_type {
 	_m_OVER_GAME,
 	_m_LEVEL_SELECTOR,
 	_m_ENEMY_BOOK,
+	_m_ENEMY_BOOK_BUT,
 	_m_UPGRADE_TOWER,
 	_m_BACK_TO_MAINMENU,
 	_m_TEXT_MESSAGE,
 	_m_DRAG,
+	_m_STOP_DRAG,
 	_m_LEVELS_INFO,
 	_m_ADD_TOWER,
 	_m_OFFSET_CONTEXT,
@@ -195,6 +201,7 @@ enum msgId : msgId_type {
 	_m_NETMAP_SET,
 	_m_REMOVE_RECT,
 	_m_ADD_MONEY,
+	_m_START_MENU,
 	_m_LEVEL_SELECTED,
 	_m_ANIM_CREATE,
 	_m_RETURN_ENTITY,
@@ -203,7 +210,12 @@ enum msgId : msgId_type {
 	_m_ADD_TEXT,
 	_m_ENEMYSEE,
 	_m_SHOW_UPGRADE_TOWER_MENU,
-	_m_TOWER_CLICKED
+	_m_TOWER_CLICKED,
+	_m_UPGRADE_TWR_INGAME,
+	_m_EXIT_UP_MENU,
+	_m_SAVE_GAME,
+	_m_SELL_TOWER,
+	_m_ENEMY_DIED,
 };
 
 using twrId_type = uint8_t;
@@ -249,6 +261,12 @@ enum gameTextures {
 	crystal_tower_image, bullet_tower_image, slime_tower_image,
 	sniper_tower_image, phoenix_tower_image, clay_tower_image,
 	power_tower_image, nexus_level_3_image,
+	tsunami_icon,meteorite_icon, thunder_icon, tornado_icon, earthquake_icon, 
+	level1,level1_hover,level2,level2_hover,level3,level3_hover,level4,level4_hover,level5,level5_hover,level6,level6_hover,level7,level7_hover,level8,level8_hover,
+	level1_desactive, level2_desactive, level3_desactive, level4_desactive, level5_desactive, level6_desactive, level7_desactive, level8_desactive,
+	sell, sell_hover,
+	//menu de pausa
+	resume_button, resume_button_hover, backToMenu_button, backToMenu_button_hover, exitGame_button, exitGame_button_hover,
 	// towers
 	square, bulletTowerTexture, cristalTowerTexture, phoenixTowerTexture,
 	slimeTowerTexture, boosterTowerTexture, sniperTowerTexture, clayTowerTexture, nexusTexture, fireTexture,
@@ -263,11 +281,12 @@ enum gameTextures {
 	goblin_icon, maldito_icon, elfo_icon, golem_icon, angel_icon, maestro_icon, acechante_icon, defensor_icon,
 	demonioAlado_icon, demonioInfernal_icon, mensajero_icon, CMaldito_icon, principito_icon, monje_icon, muerte_icon,
 	//texts
-	nexus_level_text,
+	nexus_level_text, 
 
 	//others
-    meteorites, earthquake,tornado,thunder, tsunami,
-	bulletTexture, sniperBulletTexture, slimeBulletTexture, slimeArea, shield, hpIcon, blindedIcon, lightningIcon, powerIcon,
+    meteorites, earthquake,tornado,thunder, tsunami,cloud,
+	bulletTexture, sniperBulletTexture, slimeBulletTexture, 
+	slimeArea, shield, hpIcon, blindedIcon, lightningIcon, powerIcon, monedaH, rangeCircle, monedaDorada,
 
 	//explosions
 	shieldExp, bulletExplosion, enemyDeath,
@@ -317,6 +336,20 @@ inline Uint8* _deserialize_(float& v, Uint8* buf) {
 }
 struct Message {
 	msgId_type id;
+	//_m_SELL_TOWER
+	struct
+	{
+		Entity* twr;
+		int money;
+
+	}sell_tower_data;
+
+	//_m_UPGRADE_TWR_INGAME
+	struct {
+		Entity* upCmp;
+	}upgrade_twr_ingame_data;
+
+
 	//_m_TOWER_CLICKED
 	struct {
 		Entity* tower;
@@ -324,10 +357,8 @@ struct Message {
 
 	//_m_SHOW_UPGRADE_TOWER_MENU
 	struct {
-		int cLevel;
-		twrId tId;
+		Entity* twr; 
 		Vector2D pos;
-
 	}show_upgrade_twr_menu_data;
 
 	//_m_ADD_TEXT
@@ -340,7 +371,7 @@ struct Message {
 	}add_text_data;
 	// _m_ABLEBUTTONS
 	struct {
-		hdlrId_type buttonId;
+		grpId buttonId;
 		bool isAble;
 	}able_buttons_data;
 
@@ -350,6 +381,8 @@ struct Message {
 		twrId towerId;
 		Vector2D pos;
 		Height height;
+		int sellMoney;
+		Cell* cell;
 
 	} add_tower_data;
 
@@ -383,7 +416,7 @@ struct Message {
 		//nivel 
 		int money;
 		//nivel
-		unsigned int level = 0;
+		unsigned int level = 1;
 		NetMap* netmap;
 		SDL_Rect* cameraOffset;
 	}start_game_data;
@@ -399,6 +432,11 @@ struct Message {
 	{
 		int n;
 	}start_enemy_book;
+	//_m_ENEMY_BOOK_BUTTON
+	struct
+	{
+		int n;
+	}start_enemy_book_but;
 	//_m_RETURN_ENTITY
 	struct {
 		Entity* ent;
@@ -479,7 +517,13 @@ struct Message {
   
 	struct {
 		int money;
+		int Hmoney;
 	}money_data;
+
+	struct {
+		int Hmoney;
+	}save_data;
+	//_m_SAVE_GAME
 
 	
 };

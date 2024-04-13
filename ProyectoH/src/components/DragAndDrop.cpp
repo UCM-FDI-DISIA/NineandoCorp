@@ -21,18 +21,21 @@ void DragAndDrop::initComponent(){
 	assert(tr_ != nullptr);
 }
 
-void DragAndDrop::drop(const Vector2D& pos, Height h){
+void DragAndDrop::drop(const Vector2D& pos, Height h, Cell* cell){
 	if (canDrop_) {
 		Message m;
 		m.id = _m_ADD_TOWER;
 		m.add_tower_data.towerId = tId_; 
 		m.add_tower_data.pos = pos; 
 		m.add_tower_data.height = height_;
+		m.add_tower_data.sellMoney = cost / 0.75;
+		m.add_tower_data.cell = cell;
 		mngr_->send(m);
 	
 		Message m2;
 		m2.id = _m_ADD_MONEY;
 		m2.money_data.money = -cost;
+		m2.money_data.Hmoney = 0;
 		mngr_->send(m2);
 
 		dragging_ = false;

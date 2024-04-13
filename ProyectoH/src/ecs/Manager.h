@@ -31,7 +31,7 @@ public:
 	inline void deleteAllHandlers(hdlrId_type hId) {
 		hdlrs_[hId].clear();
 	}
-	inline std::list<Entity*> getHandler(hdlrId_type hId) {
+	inline std::list<Entity*> getHandler(hdlrId_type hId) const {
 		return hdlrs_[hId];
 	}
 
@@ -71,6 +71,7 @@ public:
 	}
 	// Entities
 	inline void setAlive(Entity* e, bool alive) {
+		if(e != nullptr)
 		e->alive_ = alive;
 	}
 	inline bool isAlive(Entity* e) {
@@ -131,5 +132,6 @@ public:
 
 	std::vector<Entity*>& getEntities(grpId_type gId = _grp_GENERAL);
 	void addToGroupList(grpId_type gId, Entity* e);
+
 };
 

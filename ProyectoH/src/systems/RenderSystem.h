@@ -14,6 +14,16 @@
 #include "mapSystem.h"
 
 
+struct cmpIsometricY {
+	cmpIsometricY(Manager* mngr_) { this->mngr_ = mngr_; }
+	bool operator ()(Entity* e1, Entity* e2) {
+		if (mngr_->getComponent<Transform>(e1)->getY() < mngr_->getComponent<Transform>(e2)->getY())
+			return true;
+		return false;
+	}
+	Manager* mngr_;
+};
+
 class RenderSystem : public System {
 public:
 	static constexpr sysId_type id = _sys_RENDER;
@@ -36,7 +46,7 @@ public:
 	void renderFillPolygon(SDL_Renderer* renderer, int width, int height, const SDL_Point vertices[],
 		int numVertices, const SDL_Color& color);
 	
-	SDL_Rect* getOffset() { return offset; };
+	SDL_Rect* getOffset() const{ return offset; };
 
 	/// <summary>
 	/// Define un rombo en base a su centro, ancho y alto y lo renderiza
@@ -44,9 +54,11 @@ public:
 	void drawDiamond(SDL_Renderer* renderer, const SDL_Point& top, 
 					int width, int height, const SDL_Color& fillColor);
 private:
-	void onPause();
-	void onResume();
+
 	void onGameOver(Uint8 winner);
+
+	//si el juego esta en el upgrade menu de una torre
+	bool isOnUpMenu;
 
 	bool mActive;
 
@@ -60,7 +72,7 @@ private:
 	//Auxiliares para la camara
 	double cameraX_ = 0;
 	double cameraY_ = 0;
-	double VelCam = 300;
+	double VelCam = 500;
 
 	//Limites de la camara
 	int limtop = 200;
@@ -73,6 +85,9 @@ private:
 	bool k_down = false;
 	bool k_left = false;
 	bool k_right = false;
+
+	//Posicion del raton
+	int mouseX, mouseY;
 
 	// Textures
 	Texture* textures[gameTextures::gmTxtrSize];

@@ -1,6 +1,6 @@
 #include "MainControlSystem.h"
 
-MainControlSystem::MainControlSystem() :active_(false)
+MainControlSystem::MainControlSystem(int currentLevel) :active_(false), currentLevel(currentLevel)
 {
 	
 }
@@ -18,13 +18,15 @@ void MainControlSystem::receive(const Message& m) {
 		OnStartGame();
 		break;
 	case _m_ROUND_OVER:
-		game().changeState<MainMenuState>();
+		if(active_)
+			currentLevel++;
+		game().changeState<MainMenuState>(m.money_data.Hmoney, currentLevel);
 		break;
 	case _m_LEVEL_SELECTED:
-		game().changeState<PlayState>();
+		game().changeState<PlayState>(m.start_game_data.level);
 		break;
 	case _m_LEVEL_SELECTOR:
-		game().pushState<LevelSelectorState>(mngr_);
+		game().pushState<LevelSelectorState>(mngr_, currentLevel);
 		break;
 	case _m_ENEMY_BOOK:
 		game().pushState<EnemyBookState>(mngr_);
@@ -43,7 +45,11 @@ void MainControlSystem::receive(const Message& m) {
 		upgradeTower(m.upgrade_tower.towerId);
 		break;
 	case _m_SHOW_UPGRADE_TOWER_MENU:
-		std::cout << "ID de torre: " << m.show_upgrade_twr_menu_data.tId << std::endl;
+		//std::cout << "ID de torre: " << m.show_upgrade_twr_menu_data.tId << std::endl;
+		break;
+	case _m_SAVE_GAME:
+		saveGame.setHCoins(m.save_data.Hmoney);
+		saveGame.saveFile();
 		break;
 	}
 }
@@ -68,8 +74,9 @@ void MainControlSystem::update() {
 		// Si la vida del Nexo llega a cero se acaba la partida
 		if (mngr_->getComponent<HealthComponent>(nexo)->getHealth() <= 0) {
 			Message m;
-			m.id = _m_OVER_GAME;
+			m.id = _m_ROUND_OVER;
 			mngr_->send(m);
+			active_ = false;
 			// Pushear Estado Nuevo?
 		}
 	}
