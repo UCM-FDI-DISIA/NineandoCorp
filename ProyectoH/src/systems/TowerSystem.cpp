@@ -462,38 +462,15 @@ void TowerSystem::update() {
 					mngr_->addComponent<FramedImage>(area, 9, 1, 500, 400, 0, 4, 8);
 					mngr_->addComponent<SlimeBullet>(area, sb->getDuration(), sb->getSpeedDecrease(), sb->getDPS());
 				}
-				else {
-					SlimeBullet* sb = mngr_->getComponent<SlimeBullet>(b);
-					FramedImage* fi = mngr_->getComponent<FramedImage>(bc->getTarget());
-					Transform* targetTR = mngr_->getComponent<Transform>(bc->getTarget());
-					Vector2D targetPos = *(targetTR->getPosition());
-					if (fi != nullptr) {
-						Vector2D offset = { (float)fi->getSrcRect().w / 4, (float)fi->getSrcRect().h / 4 };//Se dirige hacia el centro del rect
-						targetPos = targetPos + offset;
-					}
-					Vector2D myPos = *(t->getPosition());
-
-					if (((targetPos - myPos).magnitude() <= 5.0f)) { //Si choca con el enemigo
-						if (sb != nullptr) {
-							Entity* area = mngr_->addEntity(_grp_AREAOFATTACK);
-							Transform* tr = mngr_->addComponent<Transform>(area);
-							Vector2D scale = { 250, 200 };
-							tr->setScale(scale);
-							Vector2D pos = { t->getPosition()->getX() - scale.getX() / 2, t->getPosition()->getY() - scale.getY() / 4 };
-							tr->setPosition(pos);
-							mngr_->addComponent<RenderComponent>(area, slimeArea);
-							mngr_->addComponent<FramedImage>(area, 9, 1, 500, 400, 0, 4, 8);
-							mngr_->addComponent<SlimeBullet>(area, sb->getDuration(), sb->getSpeedDecrease(), sb->getDPS());
-						}
-						bc->doDamageTo(bc->getTarget(), bc->getDamage());
-						bc->onTravelEnds();
-					}
-					else {
-						bc->setDir();
-						t->translate();
-					}
-				}		
+				bc->doDamageTo(bc->getTarget(), bc->getDamage());
+				bc->onTravelEnds();
 			}
+			else {
+				bc->setDir();
+				t->translate();
+			}
+				
+						
 		}
 	}
 }
