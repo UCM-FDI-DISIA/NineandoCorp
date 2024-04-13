@@ -441,6 +441,8 @@ void HUDSystem::showUpgradeMenu(Entity* twr, const Vector2D& pos) {
 	upM_ = UpgradeMenu();
 	auto upCmp = mngr_->getComponent<UpgradeTowerComponent>(twr);
 
+	auto hpCmp = mngr_->getComponent<HealthComponent>(twr);
+
 	auto bt = mngr_->getComponent<BulletTower>(twr);
 	auto ds = mngr_->getComponent<DiegoSniperTower>(twr);
 	auto st = mngr_->getComponent<SlimeTowerComponent>(twr);
@@ -499,14 +501,22 @@ void HUDSystem::showUpgradeMenu(Entity* twr, const Vector2D& pos) {
 		upgrade, upgrade_hover, ButtonTypes::upgrade_tower, 0,
 		m
 		);
+
 	/**
-	*	TEXTO DE NIVEL
+	*	TEXTO DE VIDA
 	*/
 	SDL_Color c1 = { 255, 255,255,255 };
+	Vector2D lvlPos3 = { pos.getX() + 150 + cameraOffset_->x , pos.getY() + 40 + cameraOffset_->y };
+	Vector2D lvlScale3 = { 90.0f, 35.0f };
+	upM_.hpText = bS->addText("HP: " + to_string((int)hpCmp->getHealth()), c1, lvlPos3 + offset, lvlScale3);
+
+	/**
+	*	TEXTO DE NIVEL
+	*/	
 	Vector2D lvlPos1 = { pos.getX() + 150 + cameraOffset_->x , pos.getY() + 70 + cameraOffset_->y};
 	Vector2D lvlScale1 = { 60.0f, 35.0f };
 	upM_.twrLvl = bS->addText("LVL: ", c1, lvlPos1 + offset, lvlScale1);
-
+	
 	/**
 	*	TEXTO DE NUMERO
 	*/
@@ -564,6 +574,7 @@ void HUDSystem::exitUpgradeMenu() {
 	mngr_->setAlive(upM_.lvlText, false);
 	mngr_->setAlive(upM_.sellButton, false);
 	mngr_->setAlive(upM_.range, false);
+	mngr_->setAlive(upM_.hpText, false);
 	mngr_->refresh();
 
 	mngr_->deleteHandler(hId, upM_.sellButton);

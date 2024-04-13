@@ -550,8 +550,9 @@ void TowerSystem::addTower(twrId type, const Vector2D& pos, Height height, int s
 	mngr_->addComponent<InteractiveTower>(t, cameraOffset_);
 	mngr_->addComponent<IconComponent>(t);
 	float health = 100.0f;
+	mngr_->addComponent<HealthComponent>(t, health);
 	if (height == LOW ||height == PATH) {
-		mngr_->addComponent<HealthComponent>(t, health);
+		
 		mngr_->setHandler(_hdlr_LOW_TOWERS, t);
 	}
 	else mngr_->setHandler(_hdlr_HIGH_TOWERS, t);
