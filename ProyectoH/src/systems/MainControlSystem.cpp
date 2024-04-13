@@ -94,18 +94,4 @@ void MainControlSystem::onRoundOver() {
 
 void MainControlSystem::subtractCoins(int num) {
 	numDoradasActuales -= num;
-<<<<<<< Updated upstream
-=======
-}
-
-void MainControlSystem::initializeNexus(gameTextures texture, int life, Vector2D pos){
-	nexusIsAlive_ = true;
-	nexo = mngr_->addEntity(_grp_TOWERS_AND_ENEMIES);
-	mngr_->addComponent<NexusComponent>(nexo);
-	mngr_->addComponent<RenderComponent>(nexo, texture);
-	mngr_->addComponent<HealthComponent>(nexo, life);
-	mngr_->addComponent<FramedImage>(nexo, 1, 1, 1011, 673, 1, 1, 1);
-	mngr_->addComponent<Transform>(nexo)->setPosition(pos);
-	cout << "Nexo: " << texture << life << pos;
->>>>>>> Stashed changes
 }
