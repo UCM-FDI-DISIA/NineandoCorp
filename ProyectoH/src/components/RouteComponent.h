@@ -12,7 +12,6 @@ public:
 	static const cmpId id = cmpId::_ROUTE;
 	RouteComponent(std::vector<Vector2D> route) :transform_(nullptr), renderComponent_(nullptr), route_(route), destiny_(0){};
 	void initComponent();
-	void update();
 	void checkdestiny();
 	void changevelocity(Vector2D destino);
 	void changeRoute(std::vector<Vector2D> route);
