@@ -272,7 +272,7 @@ enum gameTextures {
 	square, bulletTowerTexture, cristalTowerTexture, phoenixTowerTexture,
 	slimeTowerTexture, boosterTowerTexture, sniperTowerTexture, clayTowerTexture, nexusTexture, fireTexture,
 	// nexus
-	nexusLvl1, nexusLvl2, nexusLvl3, nexusLvl4,
+	nexusLvl,
 
 	//enemies
 	goblin, maldito, elfo, golem, angel, maestro, acechante, defensor, demonioAlado,
@@ -384,6 +384,7 @@ struct Message {
 		Height height;
 		int sellMoney;
 		Cell* cell;
+		int maxLvl;
 
 	} add_tower_data;
 
@@ -417,7 +418,8 @@ struct Message {
 		//nivel 
 		int money;
 		//nivel
-		unsigned int level = 1;
+		unsigned int level = 0;
+		int* turrentLevels;
 		NetMap* netmap;
 		SDL_Rect* cameraOffset;
 	}start_game_data;

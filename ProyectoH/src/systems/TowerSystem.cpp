@@ -612,6 +612,11 @@ void TowerSystem::addTower(twrId type, const Vector2D& pos, Height height, int s
 		mngr_->addComponent<FramedImage>(t, intAt("CristalColumns"), intAt("CristalRows"), intAt("CristalWidth"), intAt("CristalHeight"), 0, 0);
 		
 		break;
+	case _twr_NEXUS:
+		//tr.setScale({ floatAt(""), floatAt("") });
+		mngr_->addComponent<NexusComponent>(t);
+		mngr_->addComponent<RenderComponent>(t, nexusLvl);
+		mngr_->addComponent<FramedImage>(t, 1, 1, 1011, 673, 1, 1, 1);
 	default:
 		break;
 	}

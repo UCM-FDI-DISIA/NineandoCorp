@@ -23,7 +23,7 @@ void MainControlSystem::receive(const Message& m) {
 		game().changeState<MainMenuState>(m.money_data.Hmoney, currentLevel);
 		break;
 	case _m_LEVEL_SELECTED:
-		game().changeState<PlayState>(m.start_game_data.level);
+		game().changeState<PlayState>(m.start_game_data.level, turrentLevels_);
 		break;
 	case _m_LEVEL_SELECTOR:
 		game().pushState<LevelSelectorState>(mngr_, currentLevel);
@@ -84,10 +84,6 @@ void MainControlSystem::update() {
 
 void MainControlSystem::OnStartGame() {
 
-	// Initializaci�n del Nexo
-	string nexusTextureName = "nexusLvl" + turrentLevels_[_twr_NEXUS];
-	initializeNexus(nexusLvl1, 1000.0f, { 580.0f, 980.0f });		// Editar para usar NexusTextureName
-	cout << "ronda1 empieza";
 }
 
 void MainControlSystem::onRoundOver() {
@@ -96,15 +92,4 @@ void MainControlSystem::onRoundOver() {
 
 void MainControlSystem::subtractCoins(int num) {
 	numDoradasActuales -= num;
-}
-
-void MainControlSystem::initializeNexus(gameTextures texture, int life, Vector2D pos){
-	active_ = true;
-	nexo = mngr_->addEntity(_grp_TOWERS_AND_ENEMIES);
-	mngr_->addComponent<NexusComponent>(nexo);
-	mngr_->addComponent<RenderComponent>(nexo, texture);
-	mngr_->addComponent<HealthComponent>(nexo, life);
-	mngr_->addComponent<FramedImage>(nexo, 1, 1, 1011, 673, 1, 1, 1);
-	mngr_->addComponent<Transform>(nexo)->setPosition(pos);
-	cout << "Nexo: " << texture << life << pos;
 }

@@ -36,8 +36,6 @@ protected:
 	void OnStartGame();
 	void subtractCoins(int num);
 
-	void initializeNexus(gameTextures texture, int life, Vector2D pos);
-
 	void upgradeTower(twrId id);
 	
 	inline void resetButtons() {
