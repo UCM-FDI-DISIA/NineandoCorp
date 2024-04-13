@@ -476,7 +476,7 @@ void HUDSystem::showUpgradeMenu(Entity* twr, const Vector2D& pos) {
 		offset.setY(- (posA.getY() - 150));
 		std::cout << std::endl << "DIF Y: " << offset.getY() << std::endl;
 	}
-	upM_.range = bS->addImage(posA + Vector2D(-260, 100),
+	upM_.range = bS->addImage(posA + Vector2D(-260, 105),
 		{ range * 2, range * 1.5f },
 		0.0,
 		gameTextures::rangeCircle,

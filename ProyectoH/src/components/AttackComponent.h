@@ -41,6 +41,7 @@ public:
 	void setElapsedTime(float elapsed) { elapsedTime_ = elapsed; };
 	void setTarget(Entity* e) { target_ = e; };
 	void setNexo(bool n) { nexo_ = n; }
+	float getDistance(Vector2D targetPos);
 
 
 protected:
@@ -49,8 +50,7 @@ protected:
 	int baseDamage_;//Dano inicial
 	int damage_;//Dano actual; puede ser modificado por potenciadores o inhibidores
 	Entity* target_;//target principal
-
-	float getDistance(Vector2D targetPos);
+	
 	float range_;//Rango de deteccion
 	float timeToShoot_;//Tiempo por dispaor
 	float elapsedTime_;

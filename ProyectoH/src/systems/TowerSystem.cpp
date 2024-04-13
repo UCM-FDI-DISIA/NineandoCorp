@@ -163,22 +163,6 @@ void TowerSystem::update() {
 
 		const auto& bullets = mngr_->getEntities(_grp_BULLETS);
 
-		float health = 0;
-		Entity* targetMostHP = nullptr;
-		for (const auto& enemy : mngr_->getHandler(_hdlr_ENEMIES))
-		{
-
-			if (mngr_->isAlive(enemy)) {
-				HealthComponent* h = mngr_->getComponent<HealthComponent>(enemy);
-				if (h != nullptr) {//se guarda la referencia al enemigo con mas vida
-					if (h->getHealth() > health) {
-						targetMostHP = enemy;
-						health = h->getHealth();
-					}
-				}
-			}
-		}
-
 		if (towersToInteract.size() > 0) {
 			auto tower = getFrontTower();
 			Message m;
@@ -358,7 +342,22 @@ void TowerSystem::update() {
 					DiegoSniperTower* ds = mngr_->getComponent<DiegoSniperTower>(t);
 					if (ds != nullptr) {
 						ds->setElapsedTime(ds->getElapsedTime() + game().getDeltaTime());//Lo pasa a segundos
-						if (ds->getElapsedTime() > ds->getTimeToShoot()) {//si esta cargada busca enemigo con mas vida								
+						if (ds->getElapsedTime() > ds->getTimeToShoot()) {//si esta cargada busca enemigo con mas vida		
+							float health = 0;
+							Entity* targetMostHP = nullptr;
+							for (const auto& enemy : mngr_->getHandler(_hdlr_ENEMIES))
+							{
+								Vector2D* enemyPos = mngr_->getComponent<Transform>(enemy)->getPosition();
+								if (mngr_->isAlive(enemy) && ds->getDistance(enemyPos) <= ds->getRange()) {
+									HealthComponent* h = mngr_->getComponent<HealthComponent>(enemy);
+									if (h != nullptr) {//se guarda la referencia al enemigo con mas vida
+										if (h->getHealth() > health) {
+											targetMostHP = enemy;
+											health = h->getHealth();
+										}
+									}
+								}
+							}
 							if (targetMostHP != nullptr) {//Dispara con el critico
 								Vector2D offset{ floatAt("DiegoSniperOffset"),  floatAt("DiegoSniperOffset") };
 								int valFrame = 0;
