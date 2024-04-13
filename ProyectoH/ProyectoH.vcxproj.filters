@@ -206,6 +206,9 @@
     <ClCompile Include="src\components\PrincipitoComponent.cpp">
       <Filter>Sources Files\Components</Filter>
     </ClCompile>
+    <ClCompile Include="src\components\CaballeroMalditoComponent.cpp">
+      <Filter>Sources Files\Components</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\components\AcechanteComponent.h">
@@ -450,6 +453,9 @@
       <Filter>Headers Files\Components</Filter>
     </ClInclude>
     <ClInclude Include="src\components\TowerComponent.h">
+      <Filter>Headers Files\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="src\components\CaballeroMalditoComponent.h">
       <Filter>Headers Files\Components</Filter>
     </ClInclude>
   </ItemGroup>

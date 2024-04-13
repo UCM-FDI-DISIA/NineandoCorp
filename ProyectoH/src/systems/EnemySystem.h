@@ -39,7 +39,6 @@ public:
 	void setWave() { wave++; }
 protected:
 	void addField(Vector2D pos);
-	void generateMalditos(Vector2D pos, int destiny, vector<Vector2D> route);
 	void changeAnimation(bool animation, Entity* e);
 
 	std::vector<Transform*> enemiesTransforms;

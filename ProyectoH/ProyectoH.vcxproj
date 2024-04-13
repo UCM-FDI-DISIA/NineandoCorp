@@ -26,6 +26,7 @@
     <ClInclude Include="src\components\BulletComponent.h" />
     <ClInclude Include="src\components\BulletTower.h" />
     <ClInclude Include="src\components\ButtonComponent.h" />
+    <ClInclude Include="src\components\CaballeroMalditoComponent.h" />
     <ClInclude Include="src\components\CrystalTower.h" />
     <ClInclude Include="src\components\DefensorRealComponent.h" />
     <ClInclude Include="src\components\DiegoSniperTower.h" />
@@ -115,6 +116,7 @@
     <ClCompile Include="src\components\BulletComponent.cpp" />
     <ClCompile Include="src\components\BulletTower.cpp" />
     <ClCompile Include="src\components\ButtonComponent.cpp" />
+    <ClCompile Include="src\components\CaballeroMalditoComponent.cpp" />
     <ClCompile Include="src\components\CrystalTower.cpp" />
     <ClCompile Include="src\components\DefensorRealComponent.cpp" />
     <ClCompile Include="src\components\DiegoSniperTower.cpp" />

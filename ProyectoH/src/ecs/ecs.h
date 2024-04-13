@@ -59,6 +59,7 @@ enum cmpId : cmpId_type {
 	_PRINCIPITO,
 	_MONJE,
 	_TOWER,
+	_CMALDITO,
 
 
 	// do not remove this
