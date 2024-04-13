@@ -103,6 +103,14 @@ RenderSystem::RenderSystem() : winner_(0)
 	textures[level7_hover] = &sdlutils().images().at("level7_hover");
 	textures[level8] = &sdlutils().images().at("level8_button");
 	textures[level8_hover] = &sdlutils().images().at("level8_hover");
+	textures[level1_desactive] = &sdlutils().images().at("level1_desactive");
+	textures[level2_desactive] = &sdlutils().images().at("level2_desactive");
+	textures[level3_desactive] = &sdlutils().images().at("level3_desactive");
+	textures[level4_desactive] = &sdlutils().images().at("level4_desactive");
+	textures[level5_desactive] = &sdlutils().images().at("level5_desactive");
+	textures[level6_desactive] = &sdlutils().images().at("level6_desactive");
+	textures[level7_desactive] = &sdlutils().images().at("level7_desactive");
+	textures[level8_desactive] = &sdlutils().images().at("level8_desactive");
 	textures[sell] = &sdlutils().images().at("sell");
 	textures[sell_hover] = &sdlutils().images().at("sell_hover");
 	textures[resume_button] = &sdlutils().images().at("resume_button");

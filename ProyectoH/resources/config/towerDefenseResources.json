@@ -663,6 +663,38 @@
             "file": "resources/images/UI/level8_hover.png"
         },
         {
+            "id": "level1_desactive",
+            "file": "resources/images/UI/level1_desactive.png"
+        },
+        {
+            "id": "level2_desactive",
+            "file": "resources/images/UI/level2_desactive.png"
+        },
+        {
+            "id": "level3_desactive",
+            "file": "resources/images/UI/level3_desactive.png"
+        },
+        {
+            "id": "level4_desactive",
+            "file": "resources/images/UI/level4_desactive.png"
+        },
+        {
+            "id": "level5_desactive",
+            "file": "resources/images/UI/level5_desactive.png"
+        },
+        {
+            "id": "level6_desactive",
+            "file": "resources/images/UI/level6_desactive.png"
+        },
+        {
+            "id": "level7_desactive",
+            "file": "resources/images/UI/level7_desactive.png"
+        },
+        {
+            "id": "level8_desactive",
+            "file": "resources/images/UI/level8_desactive.png"
+        },
+        {
             "id": "meteorite_icon",
             "file": "resources/images/Meteorology/meteoritoIcon.png"
         },

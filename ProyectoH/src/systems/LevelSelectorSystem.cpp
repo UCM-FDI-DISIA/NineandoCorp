@@ -50,6 +50,14 @@ void LevelSelectorSystem::initSystem()
 		{"level6_hover", gameTextures::level6_hover},
 		{"level7_hover", gameTextures::level7_hover},
 		{"level8_hover", gameTextures::level8_hover},
+		{"level1_desactive", gameTextures::level1_desactive},
+		{"level2_desactive", gameTextures::level2_desactive},
+		{"level3_desactive", gameTextures::level3_desactive},
+		{"level4_desactive", gameTextures::level4_desactive},
+		{"level5_desactive", gameTextures::level5_desactive},
+		{"level6_desactive", gameTextures::level6_desactive},
+		{"level7_desactive", gameTextures::level7_desactive},
+		{"level8_desactive", gameTextures::level8_desactive},
 		
 	};
 	int levels = 1;
@@ -60,13 +68,19 @@ void LevelSelectorSystem::initSystem()
 			sAux = { 150, 150 };
 			std::string levelImg = "level" + to_string(levels);
 			std::string levelHovImg = "level" + to_string(levels) + "_hover";
+			std::string levelDesact = "level" + to_string(levels) + "_desactive";
+
+
 			auto it = textureMap.find(levelImg);
 			auto itHov = textureMap.find(levelHovImg);
+			auto itDes = textureMap.find(levelDesact);
 			Entity* levelBt = nullptr;
 			if (it != textureMap.end() && itHov != textureMap.end()) {
 				levelBt = bS->addButton(pAux, sAux, it->second, itHov->second, ButtonTypes::level_selected, levels);
-				if (levels > currentLevel)
+				if (levels > currentLevel) {
 					mngr_->getComponent<ButtonComponent>(levelBt)->setActive(false);
+					mngr_->getComponent<RenderComponent>(levelBt)->setTexture(itDes->second);
+				}
 			}
 			
 			levels++;
