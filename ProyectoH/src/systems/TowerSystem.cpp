@@ -262,7 +262,7 @@ void TowerSystem::update() {
 						Vector2D offset{ floatAt("DiegoSniperOffset"),  floatAt("DiegoSniperOffset") };//Offset para el punto de spawn de la bala
 						int valFrame = 0;//Valor del frame que se ha de escoger del spritesheet para renderizar la torre en la direccion correcta
 						bt->setElapsedTime(bt->getElapsedTime() + game().getDeltaTime());
-						if (bt->getElapsedTime() > 0.5) {
+						if (bt->getElapsedTime() > bt->getReloadTime()) {
 
 							bt->targetFromGroup(mngr_->getHandler(_hdlr_ENEMIES));
 							bt->setElapsedTime(0);
@@ -582,8 +582,9 @@ void TowerSystem::addTower(twrId type, const Vector2D& pos, Height height, int s
 	mngr_->addComponent<InteractiveTower>(t, cameraOffset_);
 	mngr_->addComponent<IconComponent>(t);
 	float health = 100.0f;
+	mngr_->addComponent<HealthComponent>(t, health);
 	if (height == LOW ||height == PATH) {
-		mngr_->addComponent<HealthComponent>(t, health);
+		
 		mngr_->setHandler(_hdlr_LOW_TOWERS, t);
 	}
 	else mngr_->setHandler(_hdlr_HIGH_TOWERS, t);

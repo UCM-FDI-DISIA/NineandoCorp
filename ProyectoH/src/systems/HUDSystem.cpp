@@ -441,6 +441,8 @@ void HUDSystem::showUpgradeMenu(Entity* twr, const Vector2D& pos) {
 	upM_ = UpgradeMenu();
 	auto upCmp = mngr_->getComponent<UpgradeTowerComponent>(twr);
 
+	auto hpCmp = mngr_->getComponent<HealthComponent>(twr);
+
 	auto bt = mngr_->getComponent<BulletTower>(twr);
 	auto ds = mngr_->getComponent<DiegoSniperTower>(twr);
 	auto st = mngr_->getComponent<SlimeTowerComponent>(twr);
@@ -450,14 +452,16 @@ void HUDSystem::showUpgradeMenu(Entity* twr, const Vector2D& pos) {
 	auto ct = mngr_->getComponent<CrystalTower>(twr);
 
 	float range = 100;
+	int damage = 0;
+	float reloadTime = 0.0;
 
-	if (bt != nullptr) { range = bt->getRange(); }
-	else if (ds != nullptr) { range = ds->getRange(); }
-	else if (st != nullptr) { range = st->getRange(); }
-	else if (ft != nullptr) { range = ft->getRange(); }
+	if (bt != nullptr) { range = bt->getRange(); damage = bt->getDamage(); reloadTime = bt->getReloadTime(); }
+	else if (ds != nullptr) { range = ds->getRange(); damage = ds->getDamage(); reloadTime = ds->getReloadTime(); }
+	else if (st != nullptr) { range = st->getRange(); damage = st->getDamage(); reloadTime = st->getReloadTime(); }
+	else if (ft != nullptr) { range = ft->getRange(); damage = ft->getDamage(); reloadTime = ft->getCoolingTime(); }
 	else if (et != nullptr) { range = et->getRange(); }
 	else if (dt != nullptr) { range = dt->getRange(); }
-	else if (ct != nullptr) { range = ct->getRange(); }
+	else if (ct != nullptr) { range = ct->getRange(); reloadTime = ct->getTimeToShield(); }
 
 	Vector2D offset = Vector2D(0, 0);
 	/** 
@@ -476,7 +480,7 @@ void HUDSystem::showUpgradeMenu(Entity* twr, const Vector2D& pos) {
 		offset.setY(- (posA.getY() - 150));
 		std::cout << std::endl << "DIF Y: " << offset.getY() << std::endl;
 	}
-	upM_.range = bS->addImage(posA + Vector2D(-260, 105),
+	upM_.range = bS->addImage(posA + Vector2D(-255, 105),
 		{ range * 2, range * 1.5f },
 		0.0,
 		gameTextures::rangeCircle,
@@ -499,14 +503,33 @@ void HUDSystem::showUpgradeMenu(Entity* twr, const Vector2D& pos) {
 		upgrade, upgrade_hover, ButtonTypes::upgrade_tower, 0,
 		m
 		);
+
 	/**
-	*	TEXTO DE NIVEL
+	*	TEXTO DE VIDA
 	*/
 	SDL_Color c1 = { 255, 255,255,255 };
+	Vector2D lvlPos3 = { pos.getX() + 150 + cameraOffset_->x , pos.getY() + 40 + cameraOffset_->y };
+	Vector2D lvlScale3 = { 90.0f, 35.0f };
+	upM_.hpText = bS->addText("HP: " + to_string((int)hpCmp->getHealth()), c1, lvlPos3 + offset, lvlScale3);
+	/**
+	*	TEXTO DE DANO
+	*/
+	Vector2D lvlPos4 = { pos.getX() + 150 + cameraOffset_->x , pos.getY() + 10 + cameraOffset_->y };
+	Vector2D lvlScale4 = { 100.0f, 35.0f };
+	upM_.damageText = bS->addText("DMG: " + to_string((int)damage), c1, lvlPos4 + offset, lvlScale4);
+	/**
+	*	TEXTO DE RECARGA
+	*/
+	Vector2D lvlPos5 = { pos.getX() + 150 + cameraOffset_->x , pos.getY() + -20 + cameraOffset_->y };
+	Vector2D lvlScale5 = { 130.0f, 35.0f };
+	upM_.reloadText = bS->addText("RELOAD: " + to_string((int)reloadTime), c1, lvlPos5 + offset, lvlScale5);
+	/**
+	*	TEXTO DE NIVEL
+	*/	
 	Vector2D lvlPos1 = { pos.getX() + 150 + cameraOffset_->x , pos.getY() + 70 + cameraOffset_->y};
 	Vector2D lvlScale1 = { 60.0f, 35.0f };
 	upM_.twrLvl = bS->addText("LVL: ", c1, lvlPos1 + offset, lvlScale1);
-
+	
 	/**
 	*	TEXTO DE NUMERO
 	*/
@@ -564,6 +587,9 @@ void HUDSystem::exitUpgradeMenu() {
 	mngr_->setAlive(upM_.lvlText, false);
 	mngr_->setAlive(upM_.sellButton, false);
 	mngr_->setAlive(upM_.range, false);
+	mngr_->setAlive(upM_.hpText, false);
+	mngr_->setAlive(upM_.damageText, false);
+	mngr_->setAlive(upM_.reloadText, false);
 	mngr_->refresh();
 
 	mngr_->deleteHandler(hId, upM_.sellButton);
