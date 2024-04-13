@@ -26,7 +26,7 @@ void TowerSystem::receive(const Message& m) {
 		break;
 	case _m_ENTITY_TO_ATTACK://Mandado por el enemySystem al atacar una torre
 
-		if (m.entity_to_attack.targetId == _hdlr_LOW_TOWERS)onAttackTower(m.entity_to_attack.e, m.entity_to_attack.damage);
+		if (m.entity_to_attack.targetId == _hdlr_LOW_TOWERS)onAttackTower(m.entity_to_attack.e, m.entity_to_attack.damage, m.entity_to_attack.src);
 		else if (m.entity_to_attack.targetId == _hdlr_BULLETS)mngr_->setAlive(m.entity_to_attack.e, false);
 
 		break;
@@ -202,12 +202,13 @@ void TowerSystem::update() {
 					Transform* iconTr = mngr_->getComponent<Transform>(towerIcon.ent_);
 					iconTr->setPosition(*(TR->getPosition()) + Vector2D(intAt("IconOffset") * i, 0));
 				}
-			}
-			if (tw->getPotenciado()) {
-				if (!ic->hasIcon(_POWERUP)) {//Crearlo si no lo tiene
-					ic->addIcon(_POWERUP);
+				if (tw->getPotenciado()) {
+					if (!ic->hasIcon(_POWERUP)) {//Crearlo si no lo tiene
+						ic->addIcon(_POWERUP);
+					}
 				}
 			}
+			
 
 			if (tw->getCegado()) {//si esta cegada
 				tw->setElapsed(tw->getElapsed() + game().getDeltaTime());
@@ -229,7 +230,6 @@ void TowerSystem::update() {
 					EnhancerTower* et = mngr_->getComponent<EnhancerTower>(t);
 					if (et != nullptr) {
 						Vector2D myPos = mngr_->getComponent<Transform>(t)->getPosition();
-						//std::cout << et->getRange() << std::endl;
 						for (size_t i = 0; i < towers.size(); i++)//miramos las torres de alarededor para potenciarlas
 						{
 							Vector2D towerPos = mngr_->getComponent<Transform>(towers[i])->getPosition();
@@ -244,6 +244,7 @@ void TowerSystem::update() {
 								if (bt != nullptr)bt->setDamage(bt->getBaseDamage() * (1 + et->getDamageIncreasePercentage()));			
 								if (st != nullptr)st->setDamage(st->getBaseDamage() * (1 + et->getDamageIncreasePercentage()));
 								if (h != nullptr)h->setMaxHealth(h->getBaseHealth() + et->getTowersHPboost());//incrementamos vida
+								mngr_->getComponent<TowerStates>(towers[i])->setPotenciado(true);
 							}
 							else if (ic != nullptr && tw->getPotenciado() && tw->getSrcPotencia() == t) {//Eliminarlo si no se encuentra en la distancia
 								tw->setPotenciado(false);
@@ -263,7 +264,7 @@ void TowerSystem::update() {
 						bt->setElapsedTime(bt->getElapsedTime() + game().getDeltaTime());
 						if (bt->getElapsedTime() > 0.5) {
 
-							bt->targetEnemy(mngr_->getHandler(_hdlr_ENEMIES));
+							bt->targetFromGroup(mngr_->getHandler(_hdlr_ENEMIES));
 							bt->setElapsedTime(0);
 							if (bt->getTarget() != nullptr) {
 								//Se coge el vector de la torre al objetivo, y en funcion de su direccion en los dos ejes se escoje el frame para la torre y 
@@ -321,7 +322,7 @@ void TowerSystem::update() {
 					if (st != nullptr) {
 						st->setElapsedTime(st->getElapsedTime() + game().getDeltaTime());//Lo pasa a segundos
 						if (st->getElapsedTime() > st->getTimeToShoot()) {
-							st->targetEnemy(mngr_->getHandler(_hdlr_ENEMIES));
+							st->targetFromGroup(mngr_->getHandler(_hdlr_ENEMIES));
 							if (st->getTarget() != nullptr) {
 								Vector2D offset{ floatAt("DiegoSniperOffset"),  floatAt("DiegoSniperOffset") };
 								int valFrame = 0;

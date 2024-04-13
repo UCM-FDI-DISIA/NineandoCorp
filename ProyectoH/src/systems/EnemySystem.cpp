@@ -79,7 +79,7 @@ void  EnemySystem::receive(const Message& m) {
 					RouteComponent* rc = mngr_->getComponent<RouteComponent>(mal);
 					generateMalditos(*(mngr_->getComponent<Transform>(mal)->getPosition()), rc->getDestiny(), rc->getRoute());
 				}
-				AddMoney(enemytype->GetEnemyType());
+				AddMoney(enemytype->GetEnemyType(), level);
 				if (mngr_->hasComponent<AttackComponent>(m.entity_to_attack.src))mngr_->getComponent<AttackComponent>(m.entity_to_attack.src)->setTarget(nullptr);
 
 			};
@@ -361,7 +361,7 @@ void EnemySystem::update()
 				ac->setElapsedTime(ac->getElapsedTime() + game().getDeltaTime());
 				if (ac->getElapsedTime() > ac->getReloadTime()) {
 					ac->setLoaded(true);
-					ac->targetEnemy(towers);
+					ac->targetFromGroup(towers);
 
 					if (ac->getTarget() != nullptr && (ac->getAttackTowers() || mngr_->getComponent<NexusComponent>(ac->getTarget()) || mngr_->getComponent<DirtTower>(ac->getTarget()))) {
 						mc->setStop(true);

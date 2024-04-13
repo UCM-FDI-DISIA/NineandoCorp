@@ -18,11 +18,12 @@ public:
 	
 ;
 	void doDamageTo(Entity* e, float damage, hdlrId targetId);
-	void targetEnemy(const std::list<Entity*>& targetGroup);
+	void targetFromGroup(const std::list<Entity*>& targetGroup);
 
 	//Getters
 	bool getNexo() const { return nexo_; }
 	bool getAttackTowers() const { return towers_; };
+	bool getAttack()const;
 	float getDamage() const { return damage_; }
 	float getBaseDamage() const { return baseDamage_; }
 	float getRange() const { return range_; }
@@ -42,8 +43,7 @@ public:
 	void setElapsedTime(float elapsed) { elapsedTime_ = elapsed; };
 	void setTarget(Entity* e) { target_ = e; };
 
-	bool getNexo() { return nexo_; }
-	bool getAttackTowers() { return towers_; };
+
 	void setNexo(bool n) { nexo_=n; }
 	void setAttack(bool a) { isAttacking = a; };
 	float getDistance(Vector2D targetPos);
