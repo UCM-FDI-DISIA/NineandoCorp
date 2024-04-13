@@ -1,17 +1,32 @@
 #pragma once
 #include <vector>
 #include <string>
+#include "../ecs/ecs.h"
 class SaveGame
 {	
 private:
-	int monedasH_ = 0;
-	std::vector<int>* turretsLevel_;
-	int levelsDesb;
-	std::vector<std::string>* enemiesBook_;
+	int HCoins_ = 0;
+	int levelsUnlocked_ = 1;
+
+	int turretsLevel_[_twr_SIZE] = {0};
+
+
+	bool enemiesBook_[_enm_SIZE] = {true};
 
 public:
-	int getHCoins() { return monedasH_; };
-	void setHCoins(int h) { monedasH_ = h; };
+	SaveGame() {};
+
+	int getHCoins() { return HCoins_; };
+	void setHCoins(int h) { HCoins_ = h; };
+
+	int getLevelsUnlocked() { return levelsUnlocked_; };
+	void setLevelsUnlocked(int l) { levelsUnlocked_ = l; };
+
+	int* getTurretsLevels() { return turretsLevel_; };
+	//void setTurretsLevels(int* turretsLevel, int turretsLevelSize ) { turretsLevel_ = turretsLevel; }
+
+	bool* getEnemiesBook() { return enemiesBook_; };
+	//void setTurretsLevels(int* enemiesBook, int enemiesBookSize) { enemiesBookSize_ = enemiesBookSize; enemiesBook_ = enemiesBook_; }
 
 	void saveFile();
 	void loadFile();

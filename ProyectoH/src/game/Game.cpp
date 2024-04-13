@@ -7,6 +7,7 @@ Game::~Game() {
 // Executes the game
 void Game::run() {
 	
+	save.loadFile();
 	pushState<MainMenuState>();
 
 	Uint64 currentTime = SDL_GetPerformanceCounter();

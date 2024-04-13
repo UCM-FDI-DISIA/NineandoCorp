@@ -37,15 +37,18 @@ void ButtonSystem::receive(const Message& m){
 	switch (m.id) {
 	case _m_ADD_MONEY:
 		money_ += m.money_data.money;
-		HMoney_ += m.money_data.Hmoney;
 		updateText();
+		break;
+	case _m_ADD_MONEY_H:
+		HMoney_ += m.money_data.money;
 		break;
 	case _m_SELL_TOWER:
 		money_ += m.sell_tower_data.money;
 		updateText();
 		break;
 	case _m_START_MENU:
-		HMoney_ = m.money_data.Hmoney;
+		HMoney_ = m.money_data.money;
+		game().getSaveGame()->setHCoins(HMoney_);
 		generateHMoneyText();
 		break;
 	case _m_START_GAME:

@@ -1,26 +1,25 @@
 #include "MainControlSystem.h"
 
-MainControlSystem::MainControlSystem(int currentLevel) :active_(false), currentLevel(currentLevel)
+MainControlSystem::MainControlSystem(int currentLevel) :nexusIsAlive_(false), currentLevel(currentLevel)
 {
 	
 }
 
 void MainControlSystem::initSystem() {
-	// Inicializaci�n del nivel de las torres y nexo
-	for (int i = 0; i < _twr_SIZE; i++) {
-		turrentLevels_[i] = 0;
-	}
 }
 
 void MainControlSystem::receive(const Message& m) {
 	switch (m.id) {
 	case _m_START_GAME:
+		turrentLevels_ = game().getSaveGame()->getTurretsLevels();
 		OnStartGame();
 		break;
 	case _m_ROUND_OVER:
-		if(active_)
-			currentLevel++;
-		game().changeState<MainMenuState>(m.money_data.Hmoney, currentLevel);
+		if (nexusIsAlive_ && currentLevel == game().getSaveGame()->getLevelsUnlocked()) {
+			game().getSaveGame()->setLevelsUnlocked(currentLevel++);
+			game().getSaveGame()->saveFile();
+		}
+		game().changeState<MainMenuState>(m.money_data.money);
 		break;
 	case _m_LEVEL_SELECTED:
 		game().changeState<PlayState>(m.start_game_data.level, turrentLevels_);
@@ -47,9 +46,12 @@ void MainControlSystem::receive(const Message& m) {
 	case _m_SHOW_UPGRADE_TOWER_MENU:
 		//std::cout << "ID de torre: " << m.show_upgrade_twr_menu_data.tId << std::endl;
 		break;
+	case _m_START_MENU:
+		turrentLevels_ = game().getSaveGame()->getTurretsLevels();
+		break;
 	case _m_SAVE_GAME:
-		saveGame.setHCoins(m.save_data.Hmoney);
-		saveGame.saveFile();
+		game().getSaveGame()->setHCoins(m.save_data.Hmoney);
+		game().getSaveGame()->saveFile();
 		break;
 	}
 }
@@ -66,17 +68,17 @@ void MainControlSystem::upgradeTower(twrId id) {
 
 void MainControlSystem::update() {
 	elapsedTime_ += game().getDeltaTime();
-	if (elapsedTime_ > 1.0 && active_) {
+	if (elapsedTime_ > 1.0 && nexusIsAlive_) {
 		numDoradasActuales += numDoradasPorSegundo;
 		elapsedTime_ = 0;
 	}
-	if (active_) {
+	if (nexusIsAlive_) {
 		// Si la vida del Nexo llega a cero se acaba la partida
 		if (mngr_->getComponent<HealthComponent>(nexo)->getHealth() <= 0) {
 			Message m;
 			m.id = _m_ROUND_OVER;
 			mngr_->send(m);
-			active_ = false;
+			nexusIsAlive_ = false;
 			// Pushear Estado Nuevo?
 		}
 	}
@@ -87,9 +89,23 @@ void MainControlSystem::OnStartGame() {
 }
 
 void MainControlSystem::onRoundOver() {
-	active_ = false;
+	nexusIsAlive_ = false;
 }
 
 void MainControlSystem::subtractCoins(int num) {
 	numDoradasActuales -= num;
+<<<<<<< Updated upstream
+=======
+}
+
+void MainControlSystem::initializeNexus(gameTextures texture, int life, Vector2D pos){
+	nexusIsAlive_ = true;
+	nexo = mngr_->addEntity(_grp_TOWERS_AND_ENEMIES);
+	mngr_->addComponent<NexusComponent>(nexo);
+	mngr_->addComponent<RenderComponent>(nexo, texture);
+	mngr_->addComponent<HealthComponent>(nexo, life);
+	mngr_->addComponent<FramedImage>(nexo, 1, 1, 1011, 673, 1, 1, 1);
+	mngr_->addComponent<Transform>(nexo)->setPosition(pos);
+	cout << "Nexo: " << texture << life << pos;
+>>>>>>> Stashed changes
 }

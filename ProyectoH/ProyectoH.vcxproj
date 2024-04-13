@@ -90,6 +90,7 @@
     <ClInclude Include="src\sdlutils\Texture.h" />
     <ClInclude Include="src\sdlutils\VirtualTimer.h" />
     <ClInclude Include="src\systems\CollisionSystem.h" />
+    <ClInclude Include="src\systems\EnemyBookSystem.h" />
     <ClInclude Include="src\systems\EnemySystem.h" />
     <ClInclude Include="src\systems\HUDSystem.h" />
     <ClInclude Include="src\systems\LevelSelectorSystem.h" />

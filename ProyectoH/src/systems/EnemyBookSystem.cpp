@@ -51,14 +51,13 @@ void EnemyBookSystem::initSystem() {
 
 
 	// Añadir imágenes de enemigos
-	int enemies = 15;
 	float spacingX = 120.f; // Espacio horizontal entre las imágenes de enemigos
 	int t = 0;
 	Message M;
 	M.id = _m_ENEMY_BOOK_BUT;
 
 	 auto text = gameTextures::large_box;
-	for (size_t i = 0; i < enemies; i++) {
+	for (size_t i = 0; i < _enm_SIZE; i++) {
 		// Calcular la posición de la imagen del enemigo
 		Vector2D pAux = { contentPosX + t * spacingX, contentPosY };
 		Vector2D sAux = { contentWidth, contentHeight };
@@ -86,13 +85,15 @@ void EnemyBookSystem::initSystem() {
 }
 void EnemyBookSystem::receive(const Message& m)
 {
-	EnemigoVisto(m.start_enemy_book.n, Vistos);
-}
-
-void EnemyBookSystem::update() {
-}
-void EnemyBookSystem::EnemigoVisto(int i, std::vector<bool>Vistos) {
-	if (i >= 0 && i < Vistos.size()) {
-		Vistos[i] = true;
+	switch (m.id) {
+		case _m_ENEMY_BOOK:
+			EnemigoVisto(m.start_enemy_book.n);
+			break;
+		case _m_START_MENU:
+			Vistos = game().getSaveGame()->getEnemiesBook();
+			break;
 	}
+}
+void EnemyBookSystem::EnemigoVisto(enmId_type i) {
+	Vistos[i] = true;
 }

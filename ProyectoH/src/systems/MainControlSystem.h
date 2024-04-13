@@ -18,7 +18,7 @@ public:
 	void update();
 
 protected:
-	bool active_;
+	bool nexusIsAlive_;
 	int numDoradasActuales;
 	int numDoradasIniciales;
 	int numDoradasPorSegundo;
@@ -27,10 +27,10 @@ protected:
 	double elapsedTime_;
 	VirtualTimer timer_;
 	Entity* nexo;
-	SaveGame saveGame = SaveGame();
+	SaveGame* saveGame;
 
 	// Niveles de nexo y torres
-	int turrentLevels_ [_twr_SIZE];	// Nexo última torre
+	int* turrentLevels_;	// Nexo última torre
 
 	void onRoundOver();
 	void OnStartGame();

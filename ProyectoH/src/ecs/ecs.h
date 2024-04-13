@@ -202,6 +202,7 @@ enum msgId : msgId_type {
 	_m_NETMAP_SET,
 	_m_REMOVE_RECT,
 	_m_ADD_MONEY,
+	_m_ADD_MONEY_H,
 	_m_START_MENU,
 	_m_LEVEL_SELECTED,
 	_m_ANIM_CREATE,
@@ -216,7 +217,7 @@ enum msgId : msgId_type {
 	_m_EXIT_UP_MENU,
 	_m_SAVE_GAME,
 	_m_SELL_TOWER,
-	_m_ENEMY_DIED,
+	_m_ENEMY_DIED
 };
 
 using twrId_type = uint8_t;
@@ -248,7 +249,7 @@ enum enmId : enmId_type {
 	_enm_PRINCIPITO,
 	_enm_MONJE,
 	_enm_MUERTE,
-
+	_enm_SIZE
 };
 
 // Correspondant texture to each type of entity
@@ -520,7 +521,6 @@ struct Message {
   
 	struct {
 		int money;
-		int Hmoney;
 	}money_data;
 
 	struct {

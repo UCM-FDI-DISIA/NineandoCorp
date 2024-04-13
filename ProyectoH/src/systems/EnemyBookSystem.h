@@ -7,16 +7,15 @@
 class EnemyBookSystem : public System
 {
 private:
+	bool* Vistos;
 	
 public:
-	std::vector<bool> Vistos;
 	static constexpr sysId_type id = _sys_ENEMYBOOK;
-	EnemyBookSystem() : Vistos(15, true) {};
 	virtual ~EnemyBookSystem();
 
 	void initSystem() override;
 	void receive(const Message& m) override;
-	void update() override;
-	void EnemigoVisto(int i, std::vector<bool>Vistos);
+	void update() override {};
+	void EnemigoVisto(enmId_type i);
 };
 
