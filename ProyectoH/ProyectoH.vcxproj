@@ -46,6 +46,7 @@
     <ClInclude Include="src\components\MaestroAlmasComponent.h" />
     <ClInclude Include="src\components\MensajeroMuerteComponent.h" />
     <ClInclude Include="src\components\MovementComponent.h" />
+    <ClInclude Include="src\components\MuerteComponent.h" />
     <ClInclude Include="src\components\NexusComponent.h" />
     <ClInclude Include="src\components\ParticleLifeTime.h" />
     <ClInclude Include="src\components\PhoenixTower.h" />
@@ -134,6 +135,7 @@
     <ClCompile Include="src\components\MaestroAlmasComponent.cpp" />
     <ClCompile Include="src\components\MensajeroMuerteComponent.cpp" />
     <ClCompile Include="src\components\MovementComponent.cpp" />
+    <ClCompile Include="src\components\MuerteComponent.cpp" />
     <ClCompile Include="src\components\NexusComponent.cpp" />
     <ClCompile Include="src\components\PhoenixTower.cpp" />
     <ClCompile Include="src\components\PrincipitoComponent.cpp" />
