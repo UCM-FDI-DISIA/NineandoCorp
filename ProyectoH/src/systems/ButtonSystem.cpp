@@ -7,7 +7,7 @@
 #include "../components/LimitedTime.h"
 
 ButtonSystem::ButtonSystem(hdlrId_type but_id) : 
-	hdlr_but_id(but_id){
+	hdlr_but_id(but_id), money_(0), HMoney_(0){
 	mActive = true;
 	//rellenar la lista de costes
 	costs[_twr_BULLET] = sdlutils().intConst().at("BalasPrecio");

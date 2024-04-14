@@ -1,6 +1,7 @@
 #pragma once
 #include "../ecs/System.h"
 #include "../components/ButtonComponent.h"
+#include <vector>
 
 class ButtonSystem : public System
 {
@@ -128,8 +129,8 @@ private:
 
 
 	bool mActive;
-	int money_ = 0;
-	int HMoney_ = 0;
+	int money_;
+	int HMoney_;
 	int costs[_twr_SIZE];
 	Entity* moneyText_;
 };

@@ -719,8 +719,12 @@
             "file": "resources/images/Towers/rangeCircle.png"
         },
         {
-            "id": "gold_coin",
-            "file": "resources/images/UI/gold_coin.png"
+          "id": "gold_coin",
+          "file": "resources/images/UI/gold_coin.png"
+        },
+        {
+          "id": "force_field",
+          "file": "resources/images/Enemies/defensor_real/field.png"
         }
 
     ],

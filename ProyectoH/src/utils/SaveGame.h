@@ -5,8 +5,8 @@
 class SaveGame
 {	
 private:
-	int HCoins_ = 0;
-	int levelsUnlocked_ = 1;
+	int HCoins_;
+	int levelsUnlocked_;
 
 	int turretsLevel_[_twr_SIZE] = {0};
 
@@ -14,7 +14,7 @@ private:
 	bool enemiesBook_[_enm_SIZE] = {true};
 
 public:
-	SaveGame() {};
+	SaveGame():levelsUnlocked_(1), HCoins_(0) {};
 
 	int getHCoins() { return HCoins_; };
 	void setHCoins(int h) { HCoins_ = h; };

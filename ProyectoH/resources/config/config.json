@@ -1275,7 +1275,7 @@
               "grupo1": {
                 "spawn": "1",
                 "typeEnemy": [
-                  "caballeroMaldito",
+                  "defensorReal",
                   "goblin",
                   "elfos"
                 ],
