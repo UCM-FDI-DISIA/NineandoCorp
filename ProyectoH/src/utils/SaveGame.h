@@ -6,7 +6,7 @@ class SaveGame
 {	
 private:
 	int HCoins_ = 0;
-	int levelsUnlocked_ = 1;
+	int levelsUnlocked_ = 8;
 
 	int turretsLevel_[_twr_SIZE] = {0};
 
