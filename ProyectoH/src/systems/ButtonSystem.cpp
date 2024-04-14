@@ -7,7 +7,7 @@
 #include "../components/LimitedTime.h"
 
 ButtonSystem::ButtonSystem(hdlrId_type but_id) : 
-	hdlr_but_id(but_id){
+	hdlr_but_id(but_id), money_(0), HMoney_(0){
 	mActive = true;
 	//rellenar la lista de costes
 	costs[_twr_BULLET] = sdlutils().intConst().at("BalasPrecio");
@@ -387,7 +387,7 @@ void ButtonSystem::showTempText(string txt, const SDL_Color& color, const Vector
 	mngr_->addComponent<LimitedTime>(text, time);
 }
 
-Entity* ButtonSystem::addText(string txt, const SDL_Color& color, const Vector2D& pos, const Vector2D& scale)
+Entity* ButtonSystem::addText(const string& txt, const SDL_Color& color, const Vector2D& pos, const Vector2D& scale)
 {
 	Entity* text = mngr_->addEntity(_grp_TEXTS);
 	Transform* tr = mngr_->addComponent<Transform>(text);

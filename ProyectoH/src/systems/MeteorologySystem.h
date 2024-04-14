@@ -5,7 +5,6 @@
 #include "../sdlutils/SDLUtils.h"
 #include "../sdlutils/RandomNumberGenerator.h"
 #include "../utils/Vector2D.h"
-#include "../ecs/ecs.h"
 #include <tmxlite/Map.hpp>
 #include <tmxlite/TileLayer.hpp>
 #include <tmxlite/Types.hpp>
@@ -17,7 +16,7 @@ public:
 	enum MeteorologyEvent{TSUNAMI, STORM, METEORITES, TORNADO, EARTHQUAKE};
 	static constexpr sysId_type id = _sys_METEOROLOGY;
 	MeteorologySystem();
-	~MeteorologySystem();
+	virtual ~MeteorologySystem();
 
 	void initSystem() override;
 	void receive(const Message& m) override;

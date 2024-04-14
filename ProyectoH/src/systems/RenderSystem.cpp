@@ -121,6 +121,8 @@ RenderSystem::RenderSystem() : winner_(0)
 	textures[shieldExp] = &sdlutils().images().at("shieldExp");
 	textures[bulletExplosion] = &sdlutils().images().at("bulletExp");
 	textures[enemyDeath] = &sdlutils().images().at("enemy_death");
+	textures[impact] = &sdlutils().images().at("bullet_impact");
+	textures[blood] = &sdlutils().images().at("blood");
 	//Miscelanious
 	textures[square] = &sdlutils().images().at("square");
 	textures[tileSet] = &sdlutils().images().at("map");
@@ -154,6 +156,7 @@ RenderSystem::RenderSystem() : winner_(0)
 	textures[acechante_attack] = &sdlutils().images().at("acechante_Attack");
 	textures[maldito_attack] = &sdlutils().images().at("maldito_Attack");
 	textures[goblin_attack] = &sdlutils().images().at("goblin_Attack");
+	textures[force_field] = &sdlutils().images().at("force_field");
 
 
 	//Enemies Icons
@@ -413,7 +416,7 @@ void RenderSystem::update() {
 		SDL_Rect trRect = tr->getRect();
 		trRect.x += offset->x;
 		trRect.y += offset->y;
-		SDL_RenderFillRect(sdlutils().renderer(), &trRect);
+
 		textures[textureId]->render(trRect, tr->getRotation());
 	}
 

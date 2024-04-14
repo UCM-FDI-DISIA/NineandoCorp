@@ -181,22 +181,15 @@
     <ClCompile Include="src\utils\NetMap.cpp">
       <Filter>Sources Files\utils</Filter>
     </ClCompile>
-    <ClCompile Include="src\components\generateEnemies.cpp" />
     <ClCompile Include="src\systems\MeteorologySystem.cpp">
       <Filter>Sources Files\Systems</Filter>
     </ClCompile>
-    <ClCompile Include="src\components\AngelComponent.cpp" />
-    <ClCompile Include="src\components\iconComponent.cpp" />
-    <ClCompile Include="src\components\LimitedTime.cpp" />
-    <ClCompile Include="src\components\InteractiveTower.cpp" />
-    <ClCompile Include="src\components\EnemyTypeComponent.cpp" />
     <ClCompile Include="src\systems\PauseSystem.cpp">
       <Filter>Sources Files\Systems</Filter>
     </ClCompile>
     <ClCompile Include="src\components\DefensorRealComponent.cpp">
       <Filter>Sources Files\Components</Filter>
     </ClCompile>
-    <ClCompile Include="src\components\ForceFieldComponent.cpp" />
     <ClCompile Include="src\components\MensajeroMuerteComponent.cpp">
       <Filter>Sources Files\Components</Filter>
     </ClCompile>
@@ -207,6 +200,27 @@
       <Filter>Sources Files\Components</Filter>
     </ClCompile>
     <ClCompile Include="src\components\CaballeroMalditoComponent.cpp">
+      <Filter>Sources Files\Components</Filter>
+    </ClCompile>
+    <ClCompile Include="src\components\AngelComponent.cpp">
+      <Filter>Sources Files\Components</Filter>
+    </ClCompile>
+    <ClCompile Include="src\components\EnemyTypeComponent.cpp">
+      <Filter>Sources Files\Components</Filter>
+    </ClCompile>
+    <ClCompile Include="src\components\ForceFieldComponent.cpp">
+      <Filter>Sources Files\Components</Filter>
+    </ClCompile>
+    <ClCompile Include="src\components\generateEnemies.cpp">
+      <Filter>Sources Files\Components</Filter>
+    </ClCompile>
+    <ClCompile Include="src\components\iconComponent.cpp">
+      <Filter>Sources Files\Components</Filter>
+    </ClCompile>
+    <ClCompile Include="src\components\InteractiveTower.cpp">
+      <Filter>Sources Files\Components</Filter>
+    </ClCompile>
+    <ClCompile Include="src\components\LimitedTime.cpp">
       <Filter>Sources Files\Components</Filter>
     </ClCompile>
   </ItemGroup>
@@ -430,19 +444,12 @@
     <ClInclude Include="src\utils\NetMap.h">
       <Filter>Headers Files\utils</Filter>
     </ClInclude>
-    <ClInclude Include="src\components\generateEnemies.h" />
     <ClInclude Include="src\systems\MeteorologySystem.h">
       <Filter>Headers Files\Systems</Filter>
     </ClInclude>
-    <ClInclude Include="src\components\AngelComponent.h" />
-    <ClInclude Include="src\components\iconComponent.h" />
-    <ClInclude Include="src\components\LimitedTime.h" />
-    <ClInclude Include="src\components\InteractiveTower.h" />
-    <ClInclude Include="src\components\EnemyTypeComponent.h" />
     <ClInclude Include="src\components\DefensorRealComponent.h">
       <Filter>Headers Files\Components</Filter>
     </ClInclude>
-    <ClInclude Include="src\components\ForceFieldComponent.h" />
     <ClInclude Include="src\components\MensajeroMuerteComponent.h">
       <Filter>Headers Files\Components</Filter>
     </ClInclude>
@@ -460,6 +467,27 @@
     </ClInclude>
     <ClInclude Include="src\systems\EnemyBookSystem.h">
       <Filter>Headers Files\Systems</Filter>
+    </ClInclude>
+    <ClInclude Include="src\components\AngelComponent.h">
+      <Filter>Headers Files\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="src\components\EnemyTypeComponent.h">
+      <Filter>Headers Files\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="src\components\ForceFieldComponent.h">
+      <Filter>Headers Files\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="src\components\generateEnemies.h">
+      <Filter>Headers Files\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="src\components\iconComponent.h">
+      <Filter>Headers Files\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="src\components\InteractiveTower.h">
+      <Filter>Headers Files\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="src\components\LimitedTime.h">
+      <Filter>Headers Files\Components</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

@@ -1,6 +1,7 @@
 #pragma once
 #include "../ecs/System.h"
 #include "../components/ButtonComponent.h"
+#include <vector>
 
 class ButtonSystem : public System
 {
@@ -42,7 +43,7 @@ public:
 	/// A�ade una entitdad de tipo texto al manager
 	/// </summary>
 	/// <returns> La propia entidad </returns>
-	Entity* addText(string txt, const SDL_Color& color, const Vector2D& pos, const Vector2D& scale);
+	Entity* addText(const string& txt, const SDL_Color& color, const Vector2D& pos, const Vector2D& scale);
 
 	/// <summary>
 	/// Devuelve las monedas H acumuladas en la partida
@@ -128,8 +129,8 @@ private:
 
 
 	bool mActive;
-	int money_ = 0;
-	int HMoney_ = 0;
+	int money_;
+	int HMoney_;
 	int costs[_twr_SIZE];
 	Entity* moneyText_;
 };

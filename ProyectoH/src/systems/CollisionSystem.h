@@ -12,7 +12,7 @@ private:
 public:
 	static constexpr sysId_type id = _sys_COLLISION;
 	CollisionSystem();
-	~CollisionSystem();
+	virtual ~CollisionSystem();
 
 	void initSystem()override;
 	void update()override;

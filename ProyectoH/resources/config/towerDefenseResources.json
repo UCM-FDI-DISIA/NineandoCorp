@@ -719,9 +719,23 @@
             "file": "resources/images/Towers/rangeCircle.png"
         },
         {
-            "id": "gold_coin",
-            "file": "resources/images/UI/gold_coin.png"
+          "id": "gold_coin",
+          "file": "resources/images/UI/gold_coin.png"
+        },
+        {
+          "id": "force_field",
+          "file": "resources/images/Enemies/defensor_real/field.png"
+        },
+        {
+          "id": "bullet_impact",
+          "file": "resources/images/Towers/bulletImpact.png"
+        },
+         {
+          "id": "blood",
+          "file": "resources/images/Towers/bloodHit.png"
         }
+
+
 
     ],
 
@@ -748,11 +762,71 @@
     "color": "0xffffffff"
    }
   ],
-  
-  "sounds" : [
+
+  "sounds": [
     {
       "id": "button",
       "file": "resources/sound/HUD/button.mp3"
+    },
+    {
+      "id": "DineroInsuficiente",
+      "file": "resources/sound/HUD/DineroInsuficiente.mp3"
+    },
+    {
+      "id": "MejoraComprada",
+      "file": "resources/sound/HUD/MejoraComprada.mp3"
+    },
+    {
+      "id": "TorreCristalDeEnergiaDrop",
+      "file": "resources/sound/Torres/TorreCristalDeEnergiaDrop.mp3"
+    },
+    {
+      "id": "TorreDeArcillaTerraqueaDestruccion",
+      "file": "resources/sound/Torres/TorreDeArcillaTerraqueaDestruccion.mp3"
+    },
+    {
+      "id": "TorreDeArcillaTerraqueaDrop",
+      "file": "resources/sound/Torres/TorreDeArcillaTerraqueaDrop.mp3"
+    },
+    {
+      "id": "TorreDeBalasDisparo",
+      "file": "resources/sound/Torres/TorreDeBalasDisparo.mp3"
+    },
+    {
+      "id": "TorreDeLLamaDeFenixDisparo",
+      "file": "resources/sound/Torres/TorreDeLLamaDeFenixDisparo.mp3"
+    },
+    {
+      "id": "TorreDiegoSniperDisparo",
+      "file": "resources/sound/Torres/TorreDiegoSniperDisparo.mp3"
+    },
+    {
+      "id": "TorreSlimeImpacto",
+      "file": "resources/sound/Torres/TorreSlimeImpacto.mp3"
+    },
+    {
+      "id": "TorreSlimeDisparo",
+      "file": "resources/sound/Torres/TorreSlimeDisparo.wav"
+    },
+    {
+      "id": "Meteorito",
+      "file": "resources/sound/Meteorology/Meteorito.mp3"
+    },
+    {
+      "id": "Rayo",
+      "file": "resources/sound/Meteorology/Rayo.mp3"
+    },
+    {
+      "id": "Terremoto",
+      "file": "resources/sound/Meteorology/Terremoto.mp3"
+    },
+    {
+      "id": "Tornado",
+      "file": "resources/sound/Meteorology/Tornado.mp3"
+    },
+    {
+      "id": "Tsunami",
+      "file": "resources/sound/Meteorology/Tsunami.mp3"
     }
   ],
 

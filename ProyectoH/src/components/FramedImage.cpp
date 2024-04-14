@@ -22,3 +22,7 @@ SDL_Rect FramedImage::getSrcRect() {
 		frameWidth,
 		frameHeight);
 }
+
+Vector2D FramedImage::getSize() {
+	return Vector2D(frameWidth, frameHeight);
+}

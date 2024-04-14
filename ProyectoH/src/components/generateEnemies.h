@@ -22,15 +22,15 @@ private:
 	std::vector<Vector2D> route;
 	int level, wave, grp;
 	SDLUtils::spawnGroupData* spawnGroup;
-	int nextEnemy = 0;
-	int totalEnemies_ = 0;
-	int pos = 0;
+	int nextEnemy;
+	int totalEnemies_;
+	int pos;
 	enmId type;
 
-	double elapsedTime = 0.0;
+	double elapsedTime;
 public:
 	static const cmpId id = cmpId::_GENERATENEMIES;
-	generateEnemies() :Component(), level(1), wave(1), grp(1) {};
+	generateEnemies() :Component(), level(1), wave(1), grp(1), nextEnemy(0), totalEnemies_(0), pos(0), elapsedTime(0), spawnGroup(nullptr), type(enmId()) {};
 	virtual ~generateEnemies(){}
 	virtual void initComponent();
 	void generateEnemy();

@@ -14,7 +14,7 @@ public:
 
 	static constexpr sysId_type id = _sys_PARTICLES;
 	ParticleSystem();
-	~ParticleSystem();
+	virtual ~ParticleSystem();
 
 	void initSystem() override;
 	void receive(const Message& m) override;
