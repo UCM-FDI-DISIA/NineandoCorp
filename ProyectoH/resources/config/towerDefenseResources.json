@@ -755,6 +755,14 @@
       "file": "resources/sound/HUD/button.mp3"
     },
     {
+      "id": "DineroInsuficiente",
+      "file": "resources/sound/HUD/DineroInsuficiente.mp3"
+    },
+    {
+      "id": "MejoraComprada",
+      "file": "resources/sound/HUD/MejoraComprada.mp3"
+    },
+    {
       "id": "TorreCristalDeEnergiaDrop",
       "file": "resources/sound/Torres/TorreCristalDeEnergiaDrop.mp3"
     },
@@ -781,6 +789,26 @@
     {
       "id": "TorreSlimeImpacto",
       "file": "resources/sound/Torres/TorreSlimeImpacto.mp3"
+    },
+    {
+      "id": "Meteorito",
+      "file": "resources/sound/Meteorology/Meteorito.mp3"
+    },
+    {
+      "id": "Rayo",
+      "file": "resources/sound/Meteorology/Rayo.mp3"
+    },
+    {
+      "id": "Terremoto",
+      "file": "resources/sound/Meteorology/Terremoto.mp3"
+    },
+    {
+      "id": "Tornado",
+      "file": "resources/sound/Meteorology/Tornado.mp3"
+    },
+    {
+      "id": "Tsunami",
+      "file": "resources/sound/Meteorology/Tsunami.mp3"
     }
   ],
 
