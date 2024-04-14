@@ -725,7 +725,17 @@
         {
           "id": "force_field",
           "file": "resources/images/Enemies/defensor_real/field.png"
+        },
+        {
+          "id": "bullet_impact",
+          "file": "resources/images/Towers/bulletImpact.png"
+        },
+         {
+          "id": "blood",
+          "file": "resources/images/Towers/bloodHit.png"
         }
+
+
 
     ],
 

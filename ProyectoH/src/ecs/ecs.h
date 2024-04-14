@@ -291,7 +291,7 @@ enum gameTextures {
 	slimeArea, shield, hpIcon, blindedIcon, lightningIcon, powerIcon, monedaH, rangeCircle, monedaDorada,
 
 	//explosions
-	shieldExp, bulletExplosion, enemyDeath,
+	shieldExp, bulletExplosion, enemyDeath, impact, blood,
 
 
 	gmTxtrSize

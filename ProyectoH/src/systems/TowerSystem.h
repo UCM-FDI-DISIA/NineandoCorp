@@ -74,6 +74,7 @@ protected:
 	Entity* addShield(Vector2D pos);	
 	void createShieldExplosion(Vector2D pos);
 	void createBulletExplosion(Vector2D pos);
+	void createHitAnim(Vector2D pos);
 	void clearShieldsArea(Entity* e);
 	/// <summary>
 	/// Debe spawnear una entidad con un fireComponent que tenga un rect y se detecte la colision con enemigos en un collision system

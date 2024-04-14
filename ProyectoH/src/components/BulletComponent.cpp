@@ -27,10 +27,11 @@ void BulletComponent::onTravelEnds() {
 //Utiliza el FramedImage para acceder al centro de la imagen de la entidad objetivo para que la bala se dirija ahi
 void BulletComponent::setDir() {
 	FramedImage* fi = mngr_->getComponent<FramedImage>(targetEntity_);
-	Vector2D targetPos = *(mngr_->getComponent<Transform>(targetEntity_)->getPosition());
+	auto tr = mngr_->getComponent<Transform>(targetEntity_);
+	Vector2D targetPos = *(tr->getPosition());
 	if (fi != nullptr) { 
-		Vector2D offset = { (float)fi->getSrcRect().w / 4, (float)fi->getSrcRect().h / 4};//Se dirige hacia el centro del rect
-		targetPos = targetPos + offset; 
+		Vector2D offset = { (float)fi->getSize().getX() / 5, (float)fi->getSize().getY() / 5};//Se dirige hacia el centro del rect
+		targetPos = targetPos + offset;
 	}
 	Vector2D vel = targetPos - *(t->getPosition());
 	vel = vel.normalize();

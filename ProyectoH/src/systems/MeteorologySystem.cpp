@@ -70,7 +70,7 @@ void MeteorologySystem::showWarningMessage() {
 	Vector2D txtScale = Vector2D(550.0f, 60.0f);
 	m.add_text_data.pos = Vector2D(600.0, 100.0) - (txtScale / 2);
 	m.add_text_data.scale = txtScale;
-	m.add_text_data.time = 3000;
+	m.add_text_data.time = 3;
 	mngr_->send(m);
 	gameTextures tex = gameTextures::tsunami_icon;
 	switch (nextEvent_)

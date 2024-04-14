@@ -115,14 +115,55 @@ void TowerSystem::createBulletExplosion(Vector2D pos) {
 	m.anim_create.animSpeed = 8;
 	m.anim_create.iterationsToDelete = 1;
 	m.anim_create.pos = pos;
-	m.anim_create.frameInit = 0;
-	m.anim_create.frameEnd = 7;
-	m.anim_create.cols = 4;
-	m.anim_create.rows = 2;
+	m.anim_create.frameInit = 1;
+	m.anim_create.frameEnd = 29;
+	m.anim_create.cols = 6;
+	m.anim_create.rows = 5;
 	m.anim_create.scale = { 80, 80 };
-	m.anim_create.width = 167;
-	m.anim_create.height = 180;
+	m.anim_create.width = 517;
+	m.anim_create.height = 517;
 	m.anim_create.tex = gameTextures::bulletExplosion;
+	mngr_->send(m);
+}
+
+void TowerSystem::createHitAnim(Vector2D pos) {
+	auto& rand = sdlutils().rand();
+	auto type = rand.nextInt(0, 2);
+	auto xOffset = rand.nextInt(-10, 11);
+	auto yOffset = rand.nextInt(-10, 11);
+
+	gameTextures tex;
+	int lastFrame;
+	int width;
+	int height;
+
+	if(type == 0){
+		lastFrame = 11;
+		width = 291;
+		height = 301;
+		tex = impact;
+	}
+	else{
+		lastFrame = 18;
+		width = 69;
+		height = 60;
+		tex = blood;
+	}
+
+	Message m;
+	m.id = _m_ANIM_CREATE;
+	m.anim_create.idGrp = _grp_TOWERS_AND_ENEMIES;
+	m.anim_create.animSpeed = 15;
+	m.anim_create.iterationsToDelete = 1;
+	m.anim_create.pos = pos + Vector2D(xOffset, yOffset);
+	m.anim_create.frameInit = 1;
+	m.anim_create.frameEnd = lastFrame;
+	m.anim_create.cols = 6;
+	m.anim_create.rows = 5;
+	m.anim_create.scale = { 30, 30 };
+	m.anim_create.width = width;
+	m.anim_create.height = height;
+	m.anim_create.tex = tex;
 	mngr_->send(m);
 }
 
@@ -262,7 +303,7 @@ void TowerSystem::update() {
 						Vector2D offset{ floatAt("DiegoSniperOffset"),  floatAt("DiegoSniperOffset") };//Offset para el punto de spawn de la bala
 						int valFrame = 0;//Valor del frame que se ha de escoger del spritesheet para renderizar la torre en la direccion correcta
 						bt->setElapsedTime(bt->getElapsedTime() + game().getDeltaTime());
-						if (bt->getElapsedTime() > bt->getReloadTime()) {
+						if (bt->getElapsedTime() > 0.5) {
 
 							bt->targetFromGroup(mngr_->getHandler(_hdlr_ENEMIES));
 							bt->setElapsedTime(0);
@@ -380,7 +421,7 @@ void TowerSystem::update() {
 								Vector2D spawn = { TR->getPosition()->getX() + offset.getX(),	TR->getPosition()->getY() + offset.getY() };
 								auto damage = ds->getDamage();
 								if (rand.nextInt(0, 10) <= ds->getCritProb() * 10) { damage *= ds->getCritDamage(); }
-								shootBullet(targetMostHP, t, damage, floatAt("DiegoSniperVelocidad"), spawn, sniperBulletTexture, { 25, 20 }, _twr_DIEGO);
+								shootBullet(targetMostHP, t, damage, floatAt("DiegoSniperVelocidad"), spawn, sniperBulletTexture, { 20, 15 }, _twr_DIEGO);
 								createBulletExplosion(spawn + Vector2D(-40, -15));
 							}
 							ds->setElapsedTime(0);
@@ -445,7 +486,7 @@ void TowerSystem::update() {
 			Transform* targetTR = mngr_->getComponent<Transform>(bc->getTarget());
 			Vector2D targetPos = *(targetTR->getPosition());
 			if (fi != nullptr) {
-				Vector2D offset = { (float)fi->getSrcRect().w / 4, (float)fi->getSrcRect().h / 4 };//Se dirige hacia el centro del rect
+				Vector2D offset = { (float)fi->getSize().getX() / 5, (float)fi->getSize().getY() / 5 };//Se dirige hacia el centro del rect
 				targetPos = targetPos + offset;
 			}
 			Vector2D myPos = *(t->getPosition());
@@ -463,6 +504,7 @@ void TowerSystem::update() {
 					mngr_->addComponent<SlimeBullet>(area, sb->getDuration(), sb->getSpeedDecrease(), sb->getDPS());
 				}
 				bc->doDamageTo(bc->getTarget(), bc->getDamage());
+				createHitAnim(targetPos);
 				bc->onTravelEnds();
 			}
 			else {
@@ -537,12 +579,14 @@ Entity* TowerSystem::shootFire(Vector2D spawnPos, float rot, float dmg, Entity* 
 }
 
 Entity* TowerSystem::addShield(Vector2D pos) {
+	auto& rand = sdlutils().rand();
 	auto ent = mngr_->addEntity(_grp_TOWERS_AND_ENEMIES);
 	auto t = mngr_->addComponent<Transform>(ent);
-	t->setScale({320, 165});
-	t->setPosition(pos + Vector2D(-120, -10));
+	t->setScale({150, 150});
+	t->setPosition(pos + Vector2D(-35, 10));
+	t->setRotation(rand.nextInt(0, 360));
 	mngr_->addComponent<RenderComponent>(ent, shield);
-	mngr_->addComponent<FramedImage>(ent, 7, 1, 626, 352, 0, 5, 6);
+	mngr_->addComponent<FramedImage>(ent, 6, 5, 265, 265, 0, 8, 29);
 	return ent;
 }
 
@@ -618,6 +662,7 @@ void TowerSystem::addTower(twrId type, const Vector2D& pos, Height height, int s
 		mngr_->addComponent<NexusComponent>(t);
 		mngr_->addComponent<RenderComponent>(t, nexusLvl);
 		mngr_->addComponent<FramedImage>(t, 1, 1, 1011, 673, 1, 1, 1);
+		break;
 	default:
 		break;
 	}
