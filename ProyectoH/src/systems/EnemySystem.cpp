@@ -476,11 +476,11 @@ void EnemySystem::update()
 void EnemySystem::addField(Vector2D pos) {
 	Entity* field = mngr_->addEntity(_grp_AREAOFATTACK);
 	Transform* fieldTR = mngr_->addComponent<Transform>(field);
-	mngr_->addComponent<RenderComponent>(field, shield);
-	mngr_->addComponent<FramedImage>(field, 7, 1, 626, 352, 0, 5, 6);
+	mngr_->addComponent<RenderComponent>(field, force_field);
+	mngr_->addComponent<FramedImage>(field, 1, 1, 147, 130, 1, 1, 1);
 	mngr_->addComponent<LimitedTime>(field, 5);
-	fieldTR->setScale({ 640, 330 });
-	fieldTR->setPosition(pos + Vector2D(-240, -20));
+	fieldTR->setScale({ 300, 300 });
+	fieldTR->setPosition(pos + Vector2D(-80, -80));
 	SDL_Rect fieldRect = fieldTR->getRect();
 	Message m;
 	m.id = _m_ADD_RECT;
