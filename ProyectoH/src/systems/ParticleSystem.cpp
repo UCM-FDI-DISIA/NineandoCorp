@@ -124,6 +124,12 @@ Entity* ParticleSystem::addParticle(grpId id, gameTextures tex, Vector2D pos,vec
 		}
 		t->setRotation(sdlutils().rand().nextInt(0, 360));
 		break;
+	case impact:
+		t->setRotation(sdlutils().rand().nextInt(0, 360));
+		break;
+	case blood:
+		t->setRotation(sdlutils().rand().nextInt(0, 360));
+		break;
 	default:
 		break;
 	}

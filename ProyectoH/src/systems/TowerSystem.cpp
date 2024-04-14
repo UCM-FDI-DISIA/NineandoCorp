@@ -112,7 +112,7 @@ void TowerSystem::createBulletExplosion(Vector2D pos) {
 	Message m;
 	m.id = _m_ANIM_CREATE;
 	m.anim_create.idGrp = _grp_TOWERS_AND_ENEMIES;
-	m.anim_create.animSpeed = 8;
+	m.anim_create.animSpeed = 15;
 	m.anim_create.iterationsToDelete = 1;
 	m.anim_create.pos = pos;
 	m.anim_create.frameInit = 1;
@@ -583,7 +583,7 @@ Entity* TowerSystem::addShield(Vector2D pos) {
 	auto ent = mngr_->addEntity(_grp_TOWERS_AND_ENEMIES);
 	auto t = mngr_->addComponent<Transform>(ent);
 	t->setScale({150, 150});
-	t->setPosition(pos + Vector2D(-35, 10));
+	t->setPosition(pos + Vector2D(-35, 5));
 	t->setRotation(rand.nextInt(0, 360));
 	mngr_->addComponent<RenderComponent>(ent, shield);
 	mngr_->addComponent<FramedImage>(ent, 6, 5, 265, 265, 0, 8, 29);
