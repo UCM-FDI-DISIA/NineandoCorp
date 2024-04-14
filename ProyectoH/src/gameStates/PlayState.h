@@ -18,7 +18,7 @@ class PlayState : public GameState
 private:
 	int level;
 public:
-	PlayState(int level_);
+	PlayState(int level_, int turrentLevels[]);
 	virtual ~PlayState() { delete mngr_; };
 
 	void update() override;

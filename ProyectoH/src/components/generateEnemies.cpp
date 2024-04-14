@@ -260,6 +260,7 @@ void generateEnemies::addEnemy(enmId type, std::vector<Vector2D> route) {
 		mngr_->addComponent<AttackComponent>(t, 150, 3, 150, false);
 		mngr_->addComponent<FramedImage>(t, 8, 1, 64, 64, 0, 8, 7);
 		mngr_->addComponent<EnemyTypeComponent>(t, _enm_CMALDITO);
+		mngr_->addComponent<CaballeroMalditoComponent>(t);
 		M.start_enemy_book.n = 12;
 		mngr_->send(M);
 		break;

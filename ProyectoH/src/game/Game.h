@@ -6,6 +6,7 @@
 
 #include "../sdlutils/InputHandler.h"
 #include "../utils/Singleton.h"
+#include "../utils/SaveGame.h"
 
 #include "../gameStates/PlayState.h"
 #include "../gameStates/LevelSelectorState.h"
@@ -25,6 +26,7 @@ private:
 	bool exit;
 	double deltaTime;
 	GameStateMachine* gameStateMachine;
+	SaveGame save = SaveGame();
 
 	// Constructor
 	Game() : exit(false), deltaTime(0), gameStateMachine(new GameStateMachine()) {
@@ -43,6 +45,8 @@ public:
 	void run();
 	// Returns game time between updates
 	inline double getDeltaTime() const { return deltaTime; }
+
+	inline SaveGame* getSaveGame() { return &save; };
 
 	// Launches a new GameState on top of the current one
 	template <typename T, typename ...Ts>

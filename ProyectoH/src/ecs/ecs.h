@@ -60,6 +60,8 @@ enum cmpId : cmpId_type {
 	_MONJE,
 	_TOWER,
 	_MUERTE,
+	_CMALDITO,
+
 
 
 	// do not remove this
@@ -202,6 +204,7 @@ enum msgId : msgId_type {
 	_m_NETMAP_SET,
 	_m_REMOVE_RECT,
 	_m_ADD_MONEY,
+	_m_ADD_MONEY_H,
 	_m_START_MENU,
 	_m_LEVEL_SELECTED,
 	_m_ANIM_CREATE,
@@ -216,7 +219,7 @@ enum msgId : msgId_type {
 	_m_EXIT_UP_MENU,
 	_m_SAVE_GAME,
 	_m_SELL_TOWER,
-	_m_ENEMY_DIED,
+	_m_ENEMY_DIED
 };
 
 using twrId_type = uint8_t;
@@ -248,7 +251,7 @@ enum enmId : enmId_type {
 	_enm_PRINCIPITO,
 	_enm_MONJE,
 	_enm_MUERTE,
-
+	_enm_SIZE
 };
 
 // Correspondant texture to each type of entity
@@ -272,12 +275,12 @@ enum gameTextures {
 	square, bulletTowerTexture, cristalTowerTexture, phoenixTowerTexture,
 	slimeTowerTexture, boosterTowerTexture, sniperTowerTexture, clayTowerTexture, nexusTexture, fireTexture,
 	// nexus
-	nexusLvl1, nexusLvl2, nexusLvl3, nexusLvl4,
+	nexusLvl,
 
 	//enemies
 	goblin, maldito, elfo, golem, angel, maestro, acechante, defensor, demonioAlado,
 	demonioInfernal, mensajero, CMaldito, principito, monje, muerte, elfo_attack, angel_attack, maestro_attack, defensor_attack, 
-	demonioAlado_attack, mensajero_attack, principito_attack, monje_attack, muerte_attack, acechante_attack, maldito_attack, goblin_attack,
+	demonioAlado_attack, mensajero_attack, principito_attack, monje_attack, muerte_attack, acechante_attack, maldito_attack, goblin_attack, force_field,
 	//enemies icons
 	goblin_icon, maldito_icon, elfo_icon, golem_icon, angel_icon, maestro_icon, acechante_icon, defensor_icon,
 	demonioAlado_icon, demonioInfernal_icon, mensajero_icon, CMaldito_icon, principito_icon, monje_icon, muerte_icon,
@@ -384,6 +387,7 @@ struct Message {
 		Height height;
 		int sellMoney;
 		Cell* cell;
+		int maxLvl;
 
 	} add_tower_data;
 
@@ -417,7 +421,8 @@ struct Message {
 		//nivel 
 		int money;
 		//nivel
-		unsigned int level = 1;
+		unsigned int level = 0;
+		int* turrentLevels;
 		NetMap* netmap;
 		SDL_Rect* cameraOffset;
 	}start_game_data;
@@ -518,7 +523,6 @@ struct Message {
   
 	struct {
 		int money;
-		int Hmoney;
 	}money_data;
 
 	struct {

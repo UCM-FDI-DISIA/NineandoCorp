@@ -56,10 +56,7 @@ RenderSystem::RenderSystem() : winner_(0)
 	textures[shield] = &sdlutils().images().at("shield");
 
 	//Nexus
-	textures[nexusLvl1] = &sdlutils().images().at("nexusLvl1");
-	textures[nexusLvl2] = &sdlutils().images().at("nexusLvl2");
-	textures[nexusLvl3] = &sdlutils().images().at("nexusLvl3");
-	textures[nexusLvl4] = &sdlutils().images().at("nexusLvl4");
+	textures[nexusLvl] = &sdlutils().images().at("nexus");	// Borrados nexos anteriores y cambiar este enombre
 
 	//HUD
 	cursorTexture = &sdlutils().images().at("cursor");
@@ -157,6 +154,7 @@ RenderSystem::RenderSystem() : winner_(0)
 	textures[acechante_attack] = &sdlutils().images().at("acechante_Attack");
 	textures[maldito_attack] = &sdlutils().images().at("maldito_Attack");
 	textures[goblin_attack] = &sdlutils().images().at("goblin_Attack");
+	textures[force_field] = &sdlutils().images().at("force_field");
 
 
 	//Enemies Icons
@@ -416,7 +414,7 @@ void RenderSystem::update() {
 		SDL_Rect trRect = tr->getRect();
 		trRect.x += offset->x;
 		trRect.y += offset->y;
-		SDL_RenderFillRect(sdlutils().renderer(), &trRect);
+
 		textures[textureId]->render(trRect, tr->getRotation());
 	}
 

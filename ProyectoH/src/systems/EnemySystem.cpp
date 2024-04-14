@@ -8,6 +8,7 @@
 #include "../components/MaestroAlmasComponent.h"
 #include "../components/MensajeroMuerteComponent.h"
 #include "../components/PrincipitoComponent.h"
+#include "../components/CaballeroMalditoComponent.h"
 #include "../components/AngelComponent.h"
 #include "../components/IconComponent.h"
 #include "../components/GolemComponent.h"
@@ -16,8 +17,8 @@
 #include "../systems/EnemyBookSystem.h"
 
 
-EnemySystem::EnemySystem() {
-	mActive = true;
+EnemySystem::EnemySystem() :mActive(true), generateEnemies_(false), stopGenerate(false), wave(1), level(1) {
+
 }
 EnemySystem::~EnemySystem() {
 
@@ -77,9 +78,9 @@ void  EnemySystem::receive(const Message& m) {
 				else if (enemytype->GetEnemyType() == _enm_CMALDITO) {
 					Entity* mal = m.entity_to_attack.e;
 					RouteComponent* rc = mngr_->getComponent<RouteComponent>(mal);
-					generateMalditos(*(mngr_->getComponent<Transform>(mal)->getPosition()), rc->getDestiny(), rc->getRoute());
+					mngr_->getComponent<CaballeroMalditoComponent>(mal)->generateMalditos(*(mngr_->getComponent<Transform>(mal)->getPosition()), rc->getDestiny(), rc->getRoute());
 				}
-				AddMoney(enemytype->GetEnemyType());
+				AddMoney(enemytype->GetEnemyType(), level);
 				if (mngr_->hasComponent<AttackComponent>(m.entity_to_attack.src))mngr_->getComponent<AttackComponent>(m.entity_to_attack.src)->setTarget(nullptr);
 
 			};
@@ -252,8 +253,11 @@ void EnemySystem::AddMoney(enmId type, int level) {
 	Message m1;
 	m1.id = _m_ADD_MONEY;
 	m1.money_data.money = money;
-	m1.money_data.Hmoney = Hmoney;
 	mngr_->send(m1);
+	Message m2;
+	m2.id = _m_ADD_MONEY_H;
+	m2.money_data.money = Hmoney;
+	mngr_->send(m2);
 }
 
 void EnemySystem::update()
@@ -267,7 +271,7 @@ void EnemySystem::update()
 				if (wave > sdlutils().waves().at("nivel" + std::to_string(level))) {
 					Message m;
 					m.id = _m_ROUND_OVER;
-					m.money_data.Hmoney = mngr_->getSystem<ButtonSystem>()->getHMoney();
+					m.money_data.money = mngr_->getSystem<ButtonSystem>()->getHMoney();
 					mngr_->send(m, true);
 				}
 				else {
@@ -361,7 +365,7 @@ void EnemySystem::update()
 				ac->setElapsedTime(ac->getElapsedTime() + game().getDeltaTime());
 				if (ac->getElapsedTime() > ac->getReloadTime()) {
 					ac->setLoaded(true);
-					ac->targetEnemy(towers);
+					ac->targetFromGroup(towers);
 
 					if (ac->getTarget() != nullptr && (ac->getAttackTowers() || mngr_->getComponent<NexusComponent>(ac->getTarget()) || mngr_->getComponent<DirtTower>(ac->getTarget()))) {
 						mc->setStop(true);
@@ -660,34 +664,4 @@ void EnemySystem::changeAnimation(bool isAttacking, Entity* e) {
 	default:
 		break;
 	}
-}
-	
-void EnemySystem::generateMalditos(Vector2D pos, int destiny, vector<Vector2D> route) {
-	auto& random = sdlutils().rand();
-	for (int i = 0; i < 10; i++) {
-		int x = random.nextInt(-40, 41);
-		int y = random.nextInt(-40, 41);
-
-		Vector2D malditoPos = pos + Vector2D(x, y);
-
-		Entity* maldito = mngr_->addEntity(_grp_TOWERS_AND_ENEMIES);
-		Transform* tr = mngr_->addComponent<Transform>(maldito);//transform
-		MovementComponent* mc = mngr_->addComponent<MovementComponent>(maldito);
-
-		tr->setSpeed(30.0f);
-		mngr_->addComponent<RenderComponent>(maldito, gameTextures::maldito);
-		mngr_->addComponent<HealthComponent>(maldito, 60);
-
-		RouteComponent* rc = mngr_->addComponent<RouteComponent>(maldito, route);
-		rc->setDestiny(destiny);
-		tr->setPosition(malditoPos);
-		rc->changevelocity(route[destiny]);
-		mngr_->addComponent<AttackComponent>(maldito, 10, 1, 20, false);
-		mngr_->addComponent<FramedImage>(maldito, 8, 1, 64, 64, 0, 8, 7);
-		mngr_->addComponent<EnemyTypeComponent>(maldito, _enm_MALDITO);
-
-		mngr_->setHandler(_hdlr_ENEMIES, maldito);
-
-	}
-	
 }

@@ -26,7 +26,7 @@ void TowerSystem::receive(const Message& m) {
 		break;
 	case _m_ENTITY_TO_ATTACK://Mandado por el enemySystem al atacar una torre
 
-		if (m.entity_to_attack.targetId == _hdlr_LOW_TOWERS)onAttackTower(m.entity_to_attack.e, m.entity_to_attack.damage);
+		if (m.entity_to_attack.targetId == _hdlr_LOW_TOWERS)onAttackTower(m.entity_to_attack.e, m.entity_to_attack.damage, m.entity_to_attack.src);
 		else if (m.entity_to_attack.targetId == _hdlr_BULLETS)mngr_->setAlive(m.entity_to_attack.e, false);
 
 		break;
@@ -202,12 +202,13 @@ void TowerSystem::update() {
 					Transform* iconTr = mngr_->getComponent<Transform>(towerIcon.ent_);
 					iconTr->setPosition(*(TR->getPosition()) + Vector2D(intAt("IconOffset") * i, 0));
 				}
-			}
-			if (tw->getPotenciado()) {
-				if (!ic->hasIcon(_POWERUP)) {//Crearlo si no lo tiene
-					ic->addIcon(_POWERUP);
+				if (tw->getPotenciado()) {
+					if (!ic->hasIcon(_POWERUP)) {//Crearlo si no lo tiene
+						ic->addIcon(_POWERUP);
+					}
 				}
 			}
+			
 
 			if (tw->getCegado()) {//si esta cegada
 				tw->setElapsed(tw->getElapsed() + game().getDeltaTime());
@@ -229,7 +230,6 @@ void TowerSystem::update() {
 					EnhancerTower* et = mngr_->getComponent<EnhancerTower>(t);
 					if (et != nullptr) {
 						Vector2D myPos = mngr_->getComponent<Transform>(t)->getPosition();
-						//std::cout << et->getRange() << std::endl;
 						for (size_t i = 0; i < towers.size(); i++)//miramos las torres de alarededor para potenciarlas
 						{
 							Vector2D towerPos = mngr_->getComponent<Transform>(towers[i])->getPosition();
@@ -244,6 +244,7 @@ void TowerSystem::update() {
 								if (bt != nullptr)bt->setDamage(bt->getBaseDamage() * (1 + et->getDamageIncreasePercentage()));			
 								if (st != nullptr)st->setDamage(st->getBaseDamage() * (1 + et->getDamageIncreasePercentage()));
 								if (h != nullptr)h->setMaxHealth(h->getBaseHealth() + et->getTowersHPboost());//incrementamos vida
+								mngr_->getComponent<TowerStates>(towers[i])->setPotenciado(true);
 							}
 							else if (ic != nullptr && tw->getPotenciado() && tw->getSrcPotencia() == t) {//Eliminarlo si no se encuentra en la distancia
 								tw->setPotenciado(false);
@@ -261,9 +262,9 @@ void TowerSystem::update() {
 						Vector2D offset{ floatAt("DiegoSniperOffset"),  floatAt("DiegoSniperOffset") };//Offset para el punto de spawn de la bala
 						int valFrame = 0;//Valor del frame que se ha de escoger del spritesheet para renderizar la torre en la direccion correcta
 						bt->setElapsedTime(bt->getElapsedTime() + game().getDeltaTime());
-						if (bt->getElapsedTime() > 0.5) {
+						if (bt->getElapsedTime() > bt->getReloadTime()) {
 
-							bt->targetEnemy(mngr_->getHandler(_hdlr_ENEMIES));
+							bt->targetFromGroup(mngr_->getHandler(_hdlr_ENEMIES));
 							bt->setElapsedTime(0);
 							if (bt->getTarget() != nullptr) {
 								//Se coge el vector de la torre al objetivo, y en funcion de su direccion en los dos ejes se escoje el frame para la torre y 
@@ -321,7 +322,7 @@ void TowerSystem::update() {
 					if (st != nullptr) {
 						st->setElapsedTime(st->getElapsedTime() + game().getDeltaTime());//Lo pasa a segundos
 						if (st->getElapsedTime() > st->getTimeToShoot()) {
-							st->targetEnemy(mngr_->getHandler(_hdlr_ENEMIES));
+							st->targetFromGroup(mngr_->getHandler(_hdlr_ENEMIES));
 							if (st->getTarget() != nullptr) {
 								Vector2D offset{ floatAt("DiegoSniperOffset"),  floatAt("DiegoSniperOffset") };
 								int valFrame = 0;
@@ -461,38 +462,15 @@ void TowerSystem::update() {
 					mngr_->addComponent<FramedImage>(area, 9, 1, 500, 400, 0, 4, 8);
 					mngr_->addComponent<SlimeBullet>(area, sb->getDuration(), sb->getSpeedDecrease(), sb->getDPS());
 				}
-				else {
-					SlimeBullet* sb = mngr_->getComponent<SlimeBullet>(b);
-					FramedImage* fi = mngr_->getComponent<FramedImage>(bc->getTarget());
-					Transform* targetTR = mngr_->getComponent<Transform>(bc->getTarget());
-					Vector2D targetPos = *(targetTR->getPosition());
-					if (fi != nullptr) {
-						Vector2D offset = { (float)fi->getSrcRect().w / 4, (float)fi->getSrcRect().h / 4 };//Se dirige hacia el centro del rect
-						targetPos = targetPos + offset;
-					}
-					Vector2D myPos = *(t->getPosition());
-
-					if (((targetPos - myPos).magnitude() <= 5.0f)) { //Si choca con el enemigo
-						if (sb != nullptr) {
-							Entity* area = mngr_->addEntity(_grp_AREAOFATTACK);
-							Transform* tr = mngr_->addComponent<Transform>(area);
-							Vector2D scale = { 250, 200 };
-							tr->setScale(scale);
-							Vector2D pos = { t->getPosition()->getX() - scale.getX() / 2, t->getPosition()->getY() - scale.getY() / 4 };
-							tr->setPosition(pos);
-							mngr_->addComponent<RenderComponent>(area, slimeArea);
-							mngr_->addComponent<FramedImage>(area, 9, 1, 500, 400, 0, 4, 8);
-							mngr_->addComponent<SlimeBullet>(area, sb->getDuration(), sb->getSpeedDecrease(), sb->getDPS());
-						}
-						bc->doDamageTo(bc->getTarget(), bc->getDamage());
-						bc->onTravelEnds();
-					}
-					else {
-						bc->setDir();
-						t->translate();
-					}
-				}		
+				bc->doDamageTo(bc->getTarget(), bc->getDamage());
+				bc->onTravelEnds();
 			}
+			else {
+				bc->setDir();
+				t->translate();
+			}
+				
+						
 		}
 	}
 }
@@ -581,8 +559,9 @@ void TowerSystem::addTower(twrId type, const Vector2D& pos, Height height, int s
 	mngr_->addComponent<InteractiveTower>(t, cameraOffset_);
 	mngr_->addComponent<IconComponent>(t);
 	float health = 100.0f;
+	mngr_->addComponent<HealthComponent>(t, health);
 	if (height == LOW ||height == PATH) {
-		mngr_->addComponent<HealthComponent>(t, health);
+		
 		mngr_->setHandler(_hdlr_LOW_TOWERS, t);
 	}
 	else mngr_->setHandler(_hdlr_HIGH_TOWERS, t);
@@ -606,6 +585,7 @@ void TowerSystem::addTower(twrId type, const Vector2D& pos, Height height, int s
 		mngr_->addComponent<DirtTower>(t);
 		mngr_->addComponent<RenderComponent>(t, clayTowerTexture);
 		mngr_->addComponent<FramedImage>(t, intAt("ArcillaColumns"), intAt("ArcillaRows"), intAt("ArcillaWidth"), intAt("ArcillaHeight"), 0, 0);
+		sdlutils().soundEffects().at("TorreDeArcillaTerraqueaDrop").play(0, 2);
 		break;
 	case _twr_POWER://Pasar rango, porcentaje incremento de ataque y vida extra
 		tr->setScale({ floatAt("PotenciadorScaleX"), floatAt("PotenciadorScaleY") });
@@ -631,8 +611,13 @@ void TowerSystem::addTower(twrId type, const Vector2D& pos, Height height, int s
 		mngr_->addComponent<CrystalTower>(t, intAt("CristalEscudo"), floatAt("CristalRecarga"), intAt("CristalExplosion"), floatAt("CristalRango"));
 		mngr_->addComponent<RenderComponent>(t, cristalTowerTexture);
 		mngr_->addComponent<FramedImage>(t, intAt("CristalColumns"), intAt("CristalRows"), intAt("CristalWidth"), intAt("CristalHeight"), 0, 0);
-		
+		sdlutils().soundEffects().at("TorreCristalDeEnergiaDrop").play(0, 2);
 		break;
+	case _twr_NEXUS:
+		//tr.setScale({ floatAt(""), floatAt("") });
+		mngr_->addComponent<NexusComponent>(t);
+		mngr_->addComponent<RenderComponent>(t, nexusLvl);
+		mngr_->addComponent<FramedImage>(t, 1, 1, 1011, 673, 1, 1, 1);
 	default:
 		break;
 	}

@@ -28,7 +28,7 @@ class TowerSystem : public System
 public:
 	static constexpr sysId_type id = _sys_TOWERS;
 	TowerSystem();
-	~TowerSystem();
+	virtual ~TowerSystem();
 
 	void initSystem() override;
 	void receive(const Message& m) override;
