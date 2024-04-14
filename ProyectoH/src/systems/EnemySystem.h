@@ -13,8 +13,8 @@
 class EnemySystem: public System
 {
 private:
-	unsigned int wave = 1;
-	unsigned int level = 1;
+	unsigned int wave;
+	unsigned int level;
 	int numSpawns;
 	void enemyDeathAnim(Vector2D pos);
 public:
@@ -29,7 +29,6 @@ public:
 	void onRoundOver();
 	void onRoundStart(int n_grp, unsigned int level);
 	void onWaveStart();
-	void collideswithEnemy();
 	void AddMoney(enmId type, int level);
 	
 
@@ -45,8 +44,8 @@ protected:
 	std::vector<Entity*> spawnsVector;
 	NetMap* netmap;
 	bool mActive;
-	bool generateEnemies_ = false;
-	bool stopGenerate = false;
+	bool generateEnemies_;
+	bool stopGenerate;
 
 	int intAt(basic_string<char> s) const{ return sdlutils().intConst().at(s); }
 	float floatAt(basic_string<char> s) const{ return sdlutils().floatConst().at(s); }

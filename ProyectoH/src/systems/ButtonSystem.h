@@ -42,7 +42,7 @@ public:
 	/// A�ade una entitdad de tipo texto al manager
 	/// </summary>
 	/// <returns> La propia entidad </returns>
-	Entity* addText(string txt, const SDL_Color& color, const Vector2D& pos, const Vector2D& scale);
+	Entity* addText(const string& txt, const SDL_Color& color, const Vector2D& pos, const Vector2D& scale);
 
 	/// <summary>
 	/// Devuelve las monedas H acumuladas en la partida

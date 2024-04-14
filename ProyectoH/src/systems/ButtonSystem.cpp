@@ -387,7 +387,7 @@ void ButtonSystem::showTempText(string txt, const SDL_Color& color, const Vector
 	mngr_->addComponent<LimitedTime>(text, time);
 }
 
-Entity* ButtonSystem::addText(string txt, const SDL_Color& color, const Vector2D& pos, const Vector2D& scale)
+Entity* ButtonSystem::addText(const string& txt, const SDL_Color& color, const Vector2D& pos, const Vector2D& scale)
 {
 	Entity* text = mngr_->addEntity(_grp_TEXTS);
 	Transform* tr = mngr_->addComponent<Transform>(text);

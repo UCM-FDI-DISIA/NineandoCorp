@@ -17,7 +17,7 @@ public:
 	enum MeteorologyEvent{TSUNAMI, STORM, METEORITES, TORNADO, EARTHQUAKE};
 	static constexpr sysId_type id = _sys_METEOROLOGY;
 	MeteorologySystem();
-	~MeteorologySystem();
+	virtual ~MeteorologySystem();
 
 	void initSystem() override;
 	void receive(const Message& m) override;

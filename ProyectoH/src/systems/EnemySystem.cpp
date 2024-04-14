@@ -17,8 +17,8 @@
 #include "../systems/EnemyBookSystem.h"
 
 
-EnemySystem::EnemySystem() {
-	mActive = true;
+EnemySystem::EnemySystem() :mActive(true), generateEnemies_(false), stopGenerate(false), wave(1), level(1) {
+
 }
 EnemySystem::~EnemySystem() {
 
