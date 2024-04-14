@@ -781,10 +781,6 @@
     {
       "id": "TorreSlimeImpacto",
       "file": "resources/sound/Torres/TorreSlimeImpacto.mp3"
-    },
-    {
-      "id": "TorreSlimeDisparo",
-      "file": "resources/sound/Torres/TorreSlimeDisparo.mp3"
     }
   ],
 

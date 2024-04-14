@@ -585,6 +585,7 @@ void TowerSystem::addTower(twrId type, const Vector2D& pos, Height height, int s
 		mngr_->addComponent<DirtTower>(t);
 		mngr_->addComponent<RenderComponent>(t, clayTowerTexture);
 		mngr_->addComponent<FramedImage>(t, intAt("ArcillaColumns"), intAt("ArcillaRows"), intAt("ArcillaWidth"), intAt("ArcillaHeight"), 0, 0);
+		sdlutils().soundEffects().at("TorreDeArcillaTerraqueaDrop").play(0, 2);
 		break;
 	case _twr_POWER://Pasar rango, porcentaje incremento de ataque y vida extra
 		tr->setScale({ floatAt("PotenciadorScaleX"), floatAt("PotenciadorScaleY") });
@@ -610,7 +611,7 @@ void TowerSystem::addTower(twrId type, const Vector2D& pos, Height height, int s
 		mngr_->addComponent<CrystalTower>(t, intAt("CristalEscudo"), floatAt("CristalRecarga"), intAt("CristalExplosion"), floatAt("CristalRango"));
 		mngr_->addComponent<RenderComponent>(t, cristalTowerTexture);
 		mngr_->addComponent<FramedImage>(t, intAt("CristalColumns"), intAt("CristalRows"), intAt("CristalWidth"), intAt("CristalHeight"), 0, 0);
-		
+		sdlutils().soundEffects().at("TorreCristalDeEnergiaDrop").play(0, 2);
 		break;
 	case _twr_NEXUS:
 		//tr.setScale({ floatAt(""), floatAt("") });
