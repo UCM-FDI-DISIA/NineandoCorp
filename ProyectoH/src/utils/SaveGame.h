@@ -23,10 +23,8 @@ public:
 	void setLevelsUnlocked(int l) { levelsUnlocked_ = l; };
 
 	int* getTurretsLevels() { return turretsLevel_; };
-	//void setTurretsLevels(int* turretsLevel, int turretsLevelSize ) { turretsLevel_ = turretsLevel; }
 
 	bool* getEnemiesBook() { return enemiesBook_; };
-	//void setTurretsLevels(int* enemiesBook, int enemiesBookSize) { enemiesBookSize_ = enemiesBookSize; enemiesBook_ = enemiesBook_; }
 
 	void saveFile();
 	void loadFile();
