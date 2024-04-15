@@ -17,5 +17,6 @@ public:
 	void receive(const Message& m) override;
 	void update() override {};
 	void EnemigoVisto(enmId_type i);
+	void EnemyPopUp(int i);
 };
 
