@@ -2,6 +2,7 @@
 #include "Transform.h"
 #include "../sdlutils/SDLUtils.h"
 #include "../components/RenderComponent.h"
+#include "../components/LockComponent.h"
 
 enum ButtonTypes {
 	//Others

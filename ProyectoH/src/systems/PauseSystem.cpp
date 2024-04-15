@@ -42,6 +42,13 @@ void PauseSystem::initSystem() {
 	Entity* exitGame = bS->addButton(posAux, scaleAux, 
 		gameTextures::exitGame_button, gameTextures::exitGame_button_hover, ButtonTypes::exit_button);
 	mngr_->setHandler(_hdlr_BUTTON_PAUSE, exitGame);
+
+	//icono arriba a la derecha
+	scaleAux = { 50.0f, 50.0f };
+	posAux = { (float)sdlutils().width() - 50.0f , 50.0f };
+	Entity* resumeIcon = bS->addButton(posAux, scaleAux,
+		gameTextures::resume_icon_button, gameTextures::resume_icon_button_hover, ButtonTypes::resume_main);
+	mngr_->setHandler(_hdlr_BUTTON_PAUSE, resumeIcon);
 }
 
 void PauseSystem::receive(const Message& m) {

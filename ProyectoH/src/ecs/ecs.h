@@ -61,6 +61,7 @@ enum cmpId : cmpId_type {
 	_TOWER,
 	_MUERTE,
 	_CMALDITO,
+	_LOCK,
 
 
 
@@ -226,12 +227,12 @@ enum msgId : msgId_type {
 using twrId_type = uint8_t;
 enum twrId : twrId_type {
 	_twr_BULLET,
-	_twr_CRISTAL,
-	_twr_SLIME,
-	_twr_DIEGO,
-	_twr_FENIX,
 	_twr_CLAY,
+	_twr_SLIME,
+	_twr_FENIX,
+	_twr_DIEGO,
 	_twr_POWER,
+	_twr_CRISTAL,
 	_twr_NEXUS,
 	_twr_SIZE
 };
@@ -272,6 +273,7 @@ enum gameTextures {
 	sell, sell_hover,
 	//menu de pausa
 	resume_button, resume_button_hover, backToMenu_button, backToMenu_button_hover, exitGame_button, exitGame_button_hover,
+	resume_icon_button, resume_icon_button_hover,
 	// towers
 	square, bulletTowerTexture, cristalTowerTexture, phoenixTowerTexture,
 	slimeTowerTexture, boosterTowerTexture, sniperTowerTexture, clayTowerTexture, nexusTexture, fireTexture,
@@ -426,6 +428,8 @@ struct Message {
 		int* turrentLevels;
 		NetMap* netmap;
 		SDL_Rect* cameraOffset;
+		vector<int> unlockedTwrs;
+
 	}start_game_data;
 
 	// _m_OVER_GAME
@@ -472,6 +476,7 @@ struct Message {
 		Entity* e;
 		float damage;
 		hdlrId targetId;
+		hdlrId srcId;
 	} entity_to_attack;
 	// _m_TOWER_TO_ATTACK
 	struct {

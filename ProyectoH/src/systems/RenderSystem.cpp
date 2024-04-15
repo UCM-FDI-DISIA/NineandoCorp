@@ -112,6 +112,8 @@ RenderSystem::RenderSystem() : winner_(0)
 	textures[sell_hover] = &sdlutils().images().at("sell_hover");
 	textures[resume_button] = &sdlutils().images().at("resume_button");
 	textures[resume_button_hover] = &sdlutils().images().at("resume_button_hover");
+	textures[resume_icon_button] = &sdlutils().images().at("resume_icon_button");
+	textures[resume_icon_button_hover] = &sdlutils().images().at("resume_icon_button_hover");
 	textures[backToMenu_button] = &sdlutils().images().at("backToMenu_button");
 	textures[backToMenu_button_hover] = &sdlutils().images().at("backToMenu_button_hover");
 	textures[exitGame_button] = &sdlutils().images().at("exitGame_button");
@@ -445,6 +447,7 @@ void RenderSystem::update() {
 		auto fI = mngr_->getComponent<FramedImage>(h);
 		Transform* tr = mngr_->getComponent<Transform>(h);
 		gameTextures textureId = mngr_->getComponent<RenderComponent>(h)->getTexture();
+		auto lockCmp = mngr_->getComponent<LockComponent>(h);
 		if (mngr_->getComponent<RenderComponent>(h)->isActive) {
 			if (fI != nullptr) {
 				SDL_Rect srcRect = fI->getSrcRect();
@@ -452,6 +455,16 @@ void RenderSystem::update() {
 			}
 			else {
 				textures[textureId]->render(tr->getRect(), tr->getRotation());
+			}
+			if (lockCmp != nullptr) {
+				if (lockCmp->isLocked()) {
+					SDL_Renderer* renderer = textures[textureId]->getRenderer();
+					Vector2D pos = tr->getPosition();
+					Vector2D scale = tr->getScale();
+					SDL_Point center = { pos.getX() + (scale.getX() / 2), pos.getY() + (scale.getY() / 2) };
+					SDL_Color red = { 255, 0, 0, 100 };
+					drawSquare(renderer, center, tr->getWidth(), red);
+				}
 			}
 		}
 	}
@@ -550,6 +563,25 @@ void RenderSystem::drawDiamond(SDL_Renderer* renderer, const SDL_Point& center, 
 	SDL_SetRenderDrawColor(renderer, fillColor.r, fillColor.g, fillColor.b, fillColor.a);
 	renderFillPolygon(renderer, rW, rH, diamondVertices , 4, fillColor);
 
+}
+
+void RenderSystem::drawSquare(SDL_Renderer* renderer, const SDL_Point& center, int width, const SDL_Color& color)
+{
+	SDL_Point topL = { center.x - width / 2, center.y - width / 2 };
+	SDL_Point topR = { center.x + width / 2, center.y - width / 2 };
+	SDL_Point bottomR = { center.x + width / 2, center.y + width / 2 };
+	SDL_Point bottomL = { center.x - width / 2, center.y  + width / 2};
+
+	SDL_Point squareVertices[] = { topL, topR, bottomR, bottomL};
+	int rW, rH;
+	SDL_GetRendererOutputSize(renderer, &rW, &rH);
+
+	// Establecer el modo de mezcla para permitir la transparencia
+	SDL_SetRenderDrawBlendMode(renderer, SDL_BLENDMODE_BLEND);
+
+	// Rellenar el rombo con el color de relleno con transparencia
+	SDL_SetRenderDrawColor(renderer, color.r, color.g, color.b, color.a);
+	renderFillPolygon(renderer, rW, rH, squareVertices, 4, color);
 }
 
 void RenderSystem::renderFillPolygon(SDL_Renderer* renderer, int width, int height, const SDL_Point vertices[], int numVertices, const SDL_Color& color) {

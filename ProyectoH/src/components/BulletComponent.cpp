@@ -2,7 +2,7 @@
 #include "FramedImage.h"
 
 
-BulletComponent::BulletComponent(Transform* tr, Entity* target, Entity* src, int damage, float speed):t(tr), targetEntity_(target), srcEntity(src), damage_(damage), speed_(speed) {	
+BulletComponent::BulletComponent(Transform* tr, Entity* target, Entity* src, int damage, float speed,hdlrId src_):t(tr), targetEntity_(target), srcEntity(src), damage_(damage), speed_(speed),srcId(src_) {	
 }
 
 /// <summary>
@@ -17,6 +17,7 @@ void BulletComponent::doDamageTo(Entity* e, float damage){
 	m.entity_to_attack.e = e;
 	m.entity_to_attack.damage = damage;
 	m.entity_to_attack.targetId = _hdlr_ENEMIES;
+	m.entity_to_attack.srcId = srcId;
 	mngr_->send(m);//Este mensaje lo recibe el enemy system
 	onTravelEnds();
 }

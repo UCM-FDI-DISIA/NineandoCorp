@@ -315,7 +315,7 @@ void TowerSystem::update() {
 								else if (dir.getX() < 0 && dir.getY() < 0) { valFrame = 8; offset.setX(0); offset.setY(0); }
 								mngr_->getComponent<FramedImage>(t)->setCurrentFrame(valFrame + mngr_->getComponent<UpgradeTowerComponent>(t)->getLevel() - 1);
 								Vector2D spawn = { TR->getPosition()->getX() + offset.getX(),	TR->getPosition()->getY() + offset.getY() };//Punto de spawn de la bala con el offset
-								shootBullet(bt->getTarget(), t, bt->getDamage(), floatAt("BalasVelocidad"), spawn, bulletTexture, { 35, 35 }, _twr_BULLET);//Dispara la bala
+								shootBullet(bt->getTarget(), t, bt->getDamage(), floatAt("BalasVelocidad"), spawn, bulletTexture, { 35, 35 }, _twr_BULLET, _hdlr_LOW_TOWERS);//Dispara la bala
 								createBulletExplosion(spawn + Vector2D(-10, -20));
 								sdlutils().soundEffects().at("TorreDeBalasDisparo").setChannelVolume(40);
 								sdlutils().soundEffects().at("TorreDeBalasDisparo").play(0, 3);
@@ -323,7 +323,7 @@ void TowerSystem::update() {
 							if (bt->isMaxLevel()) {//Mejora maxima de la torre de balas: targetear a un segundo enemigo. Funciona igual que el primer targeteo
 								bt->targetSecondEnemy(mngr_->getHandler(_hdlr_ENEMIES));
 								if (bt->getSecondTarget() != nullptr) {
-									shootBullet(bt->getSecondTarget(), t, bt->getDamage(), floatAt("BalasVelocidad"), TR->getPosition(), bulletTexture, { 35, 35 }, _twr_BULLET);
+									shootBullet(bt->getSecondTarget(), t, bt->getDamage(), floatAt("BalasVelocidad"), TR->getPosition(), bulletTexture, { 35, 35 }, _twr_BULLET, _hdlr_LOW_TOWERS);
 									sdlutils().soundEffects().at("TorreDeBalasDisparo").play(0, 3);
 								}
 							}
@@ -377,7 +377,7 @@ void TowerSystem::update() {
 								mngr_->getComponent<FramedImage>(t)->setCurrentFrame(valFrame + mngr_->getComponent<UpgradeTowerComponent>(t)->getLevel() - 1);
 								RenderComponent* rc = mngr_->getComponent<RenderComponent>(t);
 								Vector2D spawn = { TR->getPosition()->getX() + offset.getX(),	TR->getPosition()->getY() + offset.getY() };
-								Entity* bullet = shootBullet(st->getTarget(), t, st->getDamage(), floatAt("SlimeVelocidad"), spawn, slimeBulletTexture, { 25, 25 }, _twr_SLIME);
+								Entity* bullet = shootBullet(st->getTarget(), t, st->getDamage(), floatAt("SlimeVelocidad"), spawn, slimeBulletTexture, { 25, 25 }, _twr_SLIME, _hdlr_LOW_TOWERS);
 								sdlutils().soundEffects().at("TorreSlimeDisparo").play(0, 3);
 								mngr_->addComponent<SlimeBullet>(bullet, st->getDuration(), st->getSpeedDecrease(), st->getDPS());
 								st->setElapsedTime(0);
@@ -424,7 +424,7 @@ void TowerSystem::update() {
 								Vector2D spawn = { TR->getPosition()->getX() + offset.getX(),	TR->getPosition()->getY() + offset.getY() };
 								auto damage = ds->getDamage();
 								if (rand.nextInt(0, 10) <= ds->getCritProb() * 10) { damage *= ds->getCritDamage(); }
-								shootBullet(targetMostHP, t, damage, floatAt("DiegoSniperVelocidad"), spawn, sniperBulletTexture, { 20, 15 }, _twr_DIEGO);
+								shootBullet(targetMostHP, t, damage, floatAt("DiegoSniperVelocidad"), spawn, sniperBulletTexture, { 20, 15 }, _twr_DIEGO, _hdlr_HIGH_TOWERS);
 								createBulletExplosion(spawn + Vector2D(-40, -15));
 								sdlutils().soundEffects().at("TorreDiegoSniperDisparo").setNumberofChannels(20);
 								sdlutils().soundEffects().at("TorreDiegoSniperDisparo").setChannelVolume(20, 19);
@@ -566,12 +566,12 @@ void TowerSystem::enableAllInteractiveTowers(bool b) {
 	}
 }
 
-Entity* TowerSystem::shootBullet(Entity* target, Entity* src ,float damage, float speed, Vector2D spawnPos, gameTextures texture, Vector2D bulletScale, twrId id) {
+Entity* TowerSystem::shootBullet(Entity* target, Entity* src ,float damage, float speed, Vector2D spawnPos, gameTextures texture, Vector2D bulletScale, twrId id,hdlrId srcId) {
 	Entity* bullet = mngr_->addEntity(_grp_BULLETS);//crea bala
 	Transform* t = mngr_->addComponent<Transform>(bullet);//transform
 	t->setPosition(spawnPos);
 	t->setScale(bulletScale);
-	mngr_->addComponent<BulletComponent>(bullet, t, target, src, damage, speed);//bullet component
+	mngr_->addComponent<BulletComponent>(bullet, t, target, src, damage, speed,srcId);//bullet component
 	mngr_->addComponent<RenderComponent>(bullet, texture);//habra que hacer switch
 	return bullet;
 }

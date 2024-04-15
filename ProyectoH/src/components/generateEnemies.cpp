@@ -6,7 +6,7 @@ void generateEnemies::initComponent() {
 
 }
 /// <summary>
-/// generación de enemigos donde asigno cada etiqueta a su id
+/// generaciÃ³n de enemigos donde asigno cada etiqueta a su id
 /// </summary>
 void generateEnemies::generateEnemy() {
 	
@@ -53,7 +53,7 @@ void generateEnemies::generateEnemy() {
 
 }
 /// <summary>
-/// creación de la etiqueta del grupo
+/// creaciÃ³n de la etiqueta del grupo
 /// </summary>
 void generateEnemies::addGroupEnemies(){
 	std::string id = "nivel" + std::to_string(level) + "oleada" + std::to_string(wave) + "grupo" + std::to_string(grp);
@@ -69,7 +69,7 @@ int generateEnemies::totalEnemies() const{
 	return total;
 }
 /// <summary>
-/// Hacemos una corrección de la ruta para colocar el sprite en el medio del camino
+/// Hacemos una correcciÃ³n de la ruta para colocar el sprite en el medio del camino
 /// </summary>
 /// <param name="tr">transform del enemigo</param>
 /// <param name="route"></param>
@@ -83,7 +83,7 @@ void generateEnemies::RoutesCorrection(Transform* tr, std::vector<Vector2D>& rou
 	}
 }
 /// <summary>
-/// añadimos el enemigo con sus componentes correspondientes
+/// aÃ±adimos el enemigo con sus componentes correspondientes
 /// </summary>
 /// <param name="type">tipo de enemigo</param>
 /// <param name="route">ruta a seguir</param>
@@ -266,6 +266,7 @@ void generateEnemies::addEnemy(enmId type, std::vector<Vector2D> route) {
 		mngr_->addComponent<AttackComponent>(t, 100, 1, 75, false);
 		mngr_->addComponent<FramedImage>(t, 8, 1, 150, 150, 0, 8, 7);
 		mngr_->addComponent<EnemyTypeComponent>(t, _enm_MONJE);
+		mngr_->addComponent<MonjeComponent>(t,10.0f,2.5f);
 		break;
 	case _enm_MUERTE:
 		tr->setSpeed(10.0f);

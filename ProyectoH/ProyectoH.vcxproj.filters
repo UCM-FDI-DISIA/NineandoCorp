@@ -221,11 +221,15 @@
       <Filter>Sources Files\Components</Filter>
     </ClCompile>
     <ClCompile Include="src\components\MuerteComponent.cpp" />
+    </ClCompile>
     <ClCompile Include="src\systems\GameOverSystem.cpp">
       <Filter>Sources Files\Systems</Filter>
     </ClCompile>
     <ClCompile Include="src\gameStates\EnemyBookState.cpp">
       <Filter>Sources Files\States</Filter>
+    </ClInclude>
+    <ClCompile Include="src\components\MonjeComponent.cpp">
+      <Filter>Sources Files\Components</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -494,8 +498,12 @@
       <Filter>Headers Files\Components</Filter>
     </ClInclude>
     <ClInclude Include="src\components\MuerteComponent.h" />
+    </ClInclude>
     <ClInclude Include="src\systems\GameOverSystem.h">
       <Filter>Headers Files\Systems</Filter>
+    </ClInclude>
+    <ClInclude Include="src\components\MonjeComponent.h">
+      <Filter>Headers Files\Components</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
