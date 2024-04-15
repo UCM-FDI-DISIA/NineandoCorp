@@ -30,6 +30,8 @@ public:
 	void setFire(Entity* fire) { fire_ = fire; }
 	void setTarget(Entity* e) { target_ = e; };
 	void setRotation(float rot) { rotation_ = rot; }
+	void setDamage(float dmg) { damage_ = dmg; }
+	void setCooling(float time) { coolingTime_ = time; }
 	void removeFire();
 
 protected:

@@ -725,11 +725,15 @@
       "value": 0.2
     },
     {
+      "id": "DiegoSniperCritProb2",
+      "value": 0.5
+    },
+    {
       "id": "DiegoSniperCritDano1",
       "value": 1.5
     },
     {
-      "id": "DiegoSniperRecargaUpgrade1",
+      "id": "DiegoSniperRecargaUpdate1",
       "value": 0.5
     },
     {
@@ -786,6 +790,10 @@
     {
       "id": "CristalRecarga",
       "value": 20
+    },
+    {
+      "id": "CristalEscudo1",
+      "value": 50
     },
     {
       "id": "CristalRango",
@@ -1058,6 +1066,10 @@
     {
       "id": "DiegoSniperPrecio",
       "value": 150
+    },
+    {
+      "id": "UpgradeLife",
+      "value": 50
     },
     {
       "id": "DiegoSniperDano",
