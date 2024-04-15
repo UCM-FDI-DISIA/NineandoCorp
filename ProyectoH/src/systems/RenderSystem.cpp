@@ -383,6 +383,7 @@ void RenderSystem::update() {
 		SDL_RendererFlip flip = mngr_->getComponent<RenderComponent>(t)->getFlip();
 		if (fi != nullptr)textures[textureId]->render(srcRect, trRect, tr->getRotation(), nullptr,flip);
 		else textures[textureId]->render(trRect, tr->getRotation());
+		drawBarlife(t);
 	}
 
 
@@ -548,6 +549,19 @@ void RenderSystem::drawDiamond(SDL_Renderer* renderer, const SDL_Point& center, 
 	SDL_SetRenderDrawColor(renderer, fillColor.r, fillColor.g, fillColor.b, fillColor.a);
 	renderFillPolygon(renderer, rW, rH, diamondVertices , 4, fillColor);
 
+}
+
+void RenderSystem::drawBarlife(Entity* t) {
+	
+	HealthComponent* hc = mngr_->getComponent<HealthComponent>(t);
+	if (hc != nullptr && mngr_->isAlive(t)) {
+		Transform* tr = mngr_->getComponent<Transform>(t);
+		float health = mngr_->getComponent<HealthComponent>(t)->getHealth();
+		SDL_Rect trRect = tr->getRect();
+		trRect.x += offset->x;
+		trRect.y += offset->y - 50;
+		textures[gameTextures::box]->render(SDL_Rect{trRect.x, trRect.y, trRect.w, trRect.h * 1/3}, tr->getRotation());
+	}
 }
 
 void RenderSystem::renderFillPolygon(SDL_Renderer* renderer, int width, int height, const SDL_Point vertices[], int numVertices, const SDL_Color& color) {
