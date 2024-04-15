@@ -19,7 +19,7 @@ void MainControlSystem::receive(const Message& m) {
 			game().getSaveGame()->setLevelsUnlocked(currentLevel++);
 			game().getSaveGame()->saveFile();
 		}
-		game().changeState<MainMenuState>(m.money_data.money);
+		game().changeState<GameOverState>(currentLevel, nexusIsAlive_);
 		break;
 	case _m_LEVEL_SELECTED:
 		game().changeState<PlayState>(m.start_game_data.level, turrentLevels_);

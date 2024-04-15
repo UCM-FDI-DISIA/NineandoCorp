@@ -84,6 +84,7 @@ enum hdlrId : hdlrId_type {
 	_hdlr_BUTTON_PAUSE,
 	_hdlr_BUTTON_LVLSEL,
 	_hdlr_BUTTON_ENEMYBOOK,
+	_hdlr_BUTTON_GAMEOVER,
 	_hdlr_BUTTON_PLAY,
 	_hdlr_PARTICLES,
 	_hdlr_ICONS,

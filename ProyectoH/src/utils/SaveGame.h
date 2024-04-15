@@ -28,5 +28,6 @@ public:
 
 	void saveFile();
 	void loadFile();
+	void checkEnemies(bool* enemies);
 };
 

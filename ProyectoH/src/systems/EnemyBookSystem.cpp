@@ -84,14 +84,3 @@ void EnemyBookSystem::initSystem() {
 		}
 	}
 }
-void EnemyBookSystem::receive(const Message& m)
-{
-	switch (m.id) {
-		case _m_ENEMY_BOOK:
-			EnemigoVisto(m.start_enemy_book.n);
-			break;
-	}
-}
-void EnemyBookSystem::EnemigoVisto(enmId_type i) {
-	Vistos[i] = true;
-}

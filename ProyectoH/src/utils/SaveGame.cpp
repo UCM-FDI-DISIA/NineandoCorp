@@ -40,3 +40,10 @@ void SaveGame::saveFile() {
 			cout << "Ha ocurrido un error al escribir en el archivo de guardado.";
 	}
 }
+
+void SaveGame::checkEnemies(bool* enemies) {
+	for (int i = 0; i < _enm_SIZE; i++) {
+		if (enemies[i])
+			enemiesBook_[i] = true;
+	}
+}
