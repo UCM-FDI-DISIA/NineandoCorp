@@ -1285,7 +1285,7 @@
               "grupo1": {
                 "spawn": "1",
                 "typeEnemy": [
-                  "monje",
+                  "maldito",
                   "goblin",
                   "elfos"
                 ],
