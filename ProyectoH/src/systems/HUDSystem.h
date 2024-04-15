@@ -3,6 +3,7 @@
 #include "../components/ButtonComponent.h"
 #include "ButtonSystem.h"
 #include "../components/DragAndDrop.h"
+#include "../components/LockComponent.h"
 class HUDSystem : public System
 {
 public:
@@ -65,14 +66,16 @@ private:
 			button(nullptr), //
 			coinImg(nullptr), //
 			moneyTxt(nullptr), //
-			img(nullptr) {}
+			img(nullptr) {
+		}
 
 		TowerButton(Entity* but, Entity* im, const Vector2D& pos, Entity* coin, Entity* money) : 
 			initialPos(pos), //
 			button(but), //
 			coinImg(coin), //
 			moneyTxt(money), // 
-			img(im) {}
+			img(im) {
+		}
 	};
 
 	struct TowerSelector {
