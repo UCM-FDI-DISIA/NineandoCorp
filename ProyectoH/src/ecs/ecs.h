@@ -272,6 +272,7 @@ enum gameTextures {
 	sell, sell_hover,
 	//menu de pausa
 	resume_button, resume_button_hover, backToMenu_button, backToMenu_button_hover, exitGame_button, exitGame_button_hover,
+	resume_icon_button, resume_icon_button_hover,
 	// towers
 	square, bulletTowerTexture, cristalTowerTexture, phoenixTowerTexture,
 	slimeTowerTexture, boosterTowerTexture, sniperTowerTexture, clayTowerTexture, nexusTexture, fireTexture,

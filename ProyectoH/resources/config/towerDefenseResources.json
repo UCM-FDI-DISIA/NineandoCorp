@@ -318,6 +318,14 @@
             "file": "resources/images/UI/close_button_hover.png"
         },
         {
+            "id": "resume_icon_button",
+            "file": "resources/images/UI/resume_icon_button.png"
+        },
+        {
+            "id": "resume_icon_button_hover",
+            "file": "resources/images/UI/resume_icon_button_hover.png"
+        },
+        {
             "id": "enemies",
             "file": "resources/images/UI/enemies_button.png"
         },
