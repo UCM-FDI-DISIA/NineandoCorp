@@ -11,7 +11,6 @@ void MainControlSystem::initSystem() {
 void MainControlSystem::receive(const Message& m) {
 	switch (m.id) {
 	case _m_START_GAME:
-		turrentLevels_ = game().getSaveGame()->getTurretsLevels();
 		nexusIsAlive_ = true;
 		OnStartGame();
 		break;
@@ -67,6 +66,7 @@ void MainControlSystem::receive(const Message& m) {
 void MainControlSystem::upgradeTower(twrId id) {
 	if (turrentLevels_[id] < 4) {
 		turrentLevels_[id]++;
+		game().getSaveGame()->saveFile();
 		std::cout << turrentLevels_[id] << endl;	// QUITAR
 	}
 	else {
