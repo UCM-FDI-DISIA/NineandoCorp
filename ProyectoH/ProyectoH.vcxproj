@@ -44,7 +44,6 @@
     <ClInclude Include="src\components\iconComponent.h" />
     <ClInclude Include="src\components\InteractiveTower.h" />
     <ClInclude Include="src\components\LimitedTime.h" />
-    <ClInclude Include="src\components\LockComponent.h" />
     <ClInclude Include="src\components\MaestroAlmasComponent.h" />
     <ClInclude Include="src\components\MensajeroMuerteComponent.h" />
     <ClInclude Include="src\components\MonjeComponent.h" />
@@ -138,7 +137,6 @@
     <ClCompile Include="src\components\iconComponent.cpp" />
     <ClCompile Include="src\components\InteractiveTower.cpp" />
     <ClCompile Include="src\components\LimitedTime.cpp" />
-    <ClCompile Include="src\components\LockComponent.cpp" />
     <ClCompile Include="src\components\MaestroAlmasComponent.cpp" />
     <ClCompile Include="src\components\MensajeroMuerteComponent.cpp" />
     <ClCompile Include="src\components\MonjeComponent.cpp" />
