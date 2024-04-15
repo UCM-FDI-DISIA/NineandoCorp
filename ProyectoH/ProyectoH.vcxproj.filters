@@ -224,9 +224,13 @@
       <Filter>Sources Files\Components</Filter>
     </ClCompile>
     <ClCompile Include="src\components\MuerteComponent.cpp" />
+<<<<<<< Updated upstream
     <ClCompile Include="src\components\MonjeComponent.cpp">
       <Filter>Sources Files\Components</Filter>
     </ClCompile>
+=======
+    <ClCompile Include="src\components\LockComponent.cpp" />
+>>>>>>> Stashed changes
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\components\AcechanteComponent.h">
@@ -494,9 +498,13 @@
       <Filter>Headers Files\Components</Filter>
     </ClInclude>
     <ClInclude Include="src\components\MuerteComponent.h" />
+<<<<<<< Updated upstream
     <ClInclude Include="src\components\MonjeComponent.h">
       <Filter>Headers Files\Components</Filter>
     </ClInclude>
+=======
+    <ClInclude Include="src\components\LockComponent.h" />
+>>>>>>> Stashed changes
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\json\JSONValue.cpp">
