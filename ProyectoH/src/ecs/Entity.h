@@ -22,7 +22,7 @@ public:
 	Entity(grpId_type gId) : gId_(gId), cmps_(), alive_() {
 		currCmps_.reserve(maxComponentId);
 	}
-	Entity(const Entity&) = delete;
+	//Entity(const Entity&) = delete;
 	Entity& operator=(const Entity&) = delete;
 
 	virtual ~Entity() {

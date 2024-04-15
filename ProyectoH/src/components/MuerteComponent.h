@@ -15,8 +15,8 @@ public:
 
 	Entity* ThrowPotion(Entity* target, Entity* src, float speed, Vector2D spawnPos, gameTextures texture, Vector2D bulletScale);
 
-	float setElapsedTime(float n) { elapsedThrowTime = n; }
-	float setThrowDuration(float n) { throwDuration = n; }
+	void setElapsedTime(float n) { elapsedThrowTime = n; }
+	void setThrowDuration(float n) { throwDuration = n; }
 
 	float getElapsedTime() { return elapsedThrowTime; }
 	float getThrowDuration() { return throwDuration; }
