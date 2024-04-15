@@ -445,12 +445,12 @@ void EnemySystem::update()
 				if (ac->getTarget() != nullptr) {
 					muerte->setElapsedTime(muerte->getElapsedTime() + game().getDeltaTime());
 					if (muerte->getElapsedTime() > muerte->getThrowDuration()) {
-						muerte->ThrowPotion(ac->getTarget(), e, 1500, tr->getPosition(), slimeBulletTexture, { 25, 25});
+						Entity* potionProjectile = muerte->ThrowPotion(ac->getTarget(), e, 1500, tr->getPosition(), slimeBulletTexture, { 25, 25});
 						muerte->setElapsedTime(0);
 
 						Message m;
 						m.id = _m_ADD_RECT;
-						m.rect_data.entity = e;
+						m.rect_data.entity = potionProjectile;
 						m.rect_data.id = _DEATH;
 						mngr_->send(m, true);
 					}
@@ -495,7 +495,7 @@ void EnemySystem::update()
 			}
 		}
 
-		for (auto p : proyectiles) {
+		for (auto& p : proyectiles) {
 			Transform* t = mngr_->getComponent<Transform>(p);
 			EnemyProyectileComponent* epc = mngr_->getComponent<EnemyProyectileComponent>(p);
 			FramedImage* fi = mngr_->getComponent<FramedImage>(epc->getTarget());

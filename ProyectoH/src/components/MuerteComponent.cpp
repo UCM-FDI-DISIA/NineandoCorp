@@ -1,7 +1,5 @@
 #include "MuerteComponent.h"
-#include "Transform.h"
-#include "EnemyProyectileComponent.h"
-#include "RenderComponent.h"
+
 
 Entity* MuerteComponent::ThrowPotion(Entity* target, Entity* src, float speed, Vector2D spawnPos, gameTextures texture, Vector2D bulletScale)
 {

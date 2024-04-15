@@ -14,6 +14,7 @@ public:
 	static const cmpId id = cmpId::_ENEMYPROYECTILE;
 
 	EnemyProyectileComponent(Transform* tr, Entity* target, Entity* src, int damage, float speed);
+	EnemyProyectileComponent() {};
 	virtual	~EnemyProyectileComponent() {};
 	void doDamageTo(Entity* e, float damage);
 	void setDir();

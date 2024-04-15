@@ -6,7 +6,9 @@ class PotionComponent : public Component
 public:
 	static const cmpId id = cmpId::_POTION;
 
-	PotionComponent(float time) : potionDuration(time){};
+	PotionComponent(float time) : potionDuration(time), elapsedPotionTime(0){};
+	virtual ~PotionComponent() {};
+
 protected:
 	float potionDuration;
 	float getPotionDuration() { return potionDuration; }

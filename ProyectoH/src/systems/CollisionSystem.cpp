@@ -481,7 +481,6 @@ void CollisionSystem::update() {
 		earthquakeRects_.clear();
 		thunderRects_.clear();
 		meteoriteRects_.clear();
-		//fieldRects_.clear();
 		//if(thunderRects_.size() > 0)thunderRects_.clear();
 	}
 }

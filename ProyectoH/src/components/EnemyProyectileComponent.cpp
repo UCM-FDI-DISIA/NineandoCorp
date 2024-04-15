@@ -18,7 +18,7 @@ void EnemyProyectileComponent::doDamageTo(Entity* e, float damage) {
 	m.entity_to_attack.damage = damage;
 	m.entity_to_attack.targetId = _hdlr_LOW_TOWERS;
 	mngr_->send(m);//Este mensaje lo recibe el enemy system
-	onTravelEnds();
+	//onTravelEnds();
 }
 //Mata la bala
 void EnemyProyectileComponent::onTravelEnds() {
