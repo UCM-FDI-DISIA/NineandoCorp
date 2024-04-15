@@ -12,9 +12,11 @@
 #include "../components/AngelComponent.h"
 #include "../components/IconComponent.h"
 #include "../components/GolemComponent.h"
+#include "../components/MuerteComponent.h"
 #include "../components/LimitedTime.h"
 #include "../sdlutils/SDLUtils.h"
 #include "../systems/EnemyBookSystem.h"
+#include "..//components/EnemyProyectileComponent.h"
 
 
 EnemySystem::EnemySystem() :mActive(true), generateEnemies_(false), stopGenerate(false), wave(1), level(1) {
@@ -266,6 +268,8 @@ void EnemySystem::update()
 		const auto& enemies = mngr_->getHandler(_hdlr_ENEMIES);
 		const auto& genemies = mngr_->getHandler(_hdlr_GHOST_ENEMIES);
 		const auto& towers = mngr_->getHandler(_hdlr_LOW_TOWERS);
+		const auto& proyectiles = mngr_->getEntities(_grp_ENEMY_PROYECTILE);
+
 		if (generateEnemies_) {
 			if (enemies.empty() && stopGenerate && genemies.empty()) {
 				if (wave > sdlutils().waves().at("nivel" + std::to_string(level))) {
@@ -318,6 +322,9 @@ void EnemySystem::update()
 			EnemyTypeComponent* etc = mngr_->getComponent<EnemyTypeComponent>(e);
 			PrincipitoComponent* pc = mngr_->getComponent<PrincipitoComponent>(e);
 			MensajeroMuerteComponent* mm = mngr_->getComponent<MensajeroMuerteComponent>(e);
+			MuerteComponent* muerte = mngr_->getComponent<MuerteComponent>(e);
+
+			
 			Transform* tr = mngr_->getComponent<Transform>(e);
 			FramedImage* fi = mngr_->getComponent<FramedImage>(e);
 
@@ -433,6 +440,17 @@ void EnemySystem::update()
 				}
 			}
 
+			// Muerte
+			if (muerte != nullptr && ac != nullptr) {
+				if (ac->getTarget() != nullptr) {
+					muerte->setElapsedTime(muerte->getElapsedTime() + game().getDeltaTime());
+					if (muerte->getElapsedTime() > muerte->getThrowDuration()) {
+						muerte->ThrowPotion(ac->getTarget(), e, 1500, tr->getPosition(), slimeBulletTexture, { 25, 25});
+						muerte->setElapsedTime(0);
+					}
+				}
+			}
+
 		}
 		for (auto e : genemies) {
 			RouteComponent* rc2 = mngr_->getComponent<RouteComponent>(e);
@@ -469,6 +487,22 @@ void EnemySystem::update()
 				}
 			
 			}
+		}
+
+		for (auto p : proyectiles) {
+			Transform* t = mngr_->getComponent<Transform>(p);
+			EnemyProyectileComponent* epc = mngr_->getComponent<EnemyProyectileComponent>(p);
+			FramedImage* fi = mngr_->getComponent<FramedImage>(epc->getTarget());
+			Transform* targetTR = mngr_->getComponent<Transform>(epc->getTarget());
+			Vector2D targetPos = *(targetTR->getPosition());
+			if (fi != nullptr) {
+				Vector2D offset = { (float)fi->getSrcRect().w / 4, (float)fi->getSrcRect().h / 4 };//Se dirige hacia el centro del rect
+				targetPos = targetPos + offset;
+			}
+			Vector2D myPos = *(t->getPosition());
+
+			epc->setDir();
+			t->translate();
 		}
 	}
 }

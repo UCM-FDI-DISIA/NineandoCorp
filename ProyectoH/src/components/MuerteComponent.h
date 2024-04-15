@@ -6,9 +6,18 @@ class MuerteComponent : public Component
 {
 public:
 	static const cmpId id = cmpId::_MUERTE;
-	MuerteComponent() {};
+	MuerteComponent(float td) : throwDuration(td), elapsedThrowTime(0) {};
 
 	Entity* ThrowPotion(Entity* target, Entity* src, float speed, Vector2D spawnPos, gameTextures texture, Vector2D bulletScale);
-private:
 
+
+	float setElapsedTime(float n) { elapsedThrowTime = n; }
+	float setThrowDuration(float n) { throwDuration = n; }
+
+	float getElapsedTime() { return elapsedThrowTime; }
+	float getThrowDuration() { return throwDuration; }
+protected:
+	float throwDuration;
+
+	float elapsedThrowTime;
 };
