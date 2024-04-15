@@ -617,7 +617,7 @@ void TowerSystem::addTower(twrId type, const Vector2D& pos, Height height, int s
 	mngr_->addComponent<ShieldComponent>(t, 0);
 	tr->setPosition(pos);
 	mngr_->addComponent<TowerStates>(t);
-	mngr_->addComponent<UpgradeTowerComponent>(t, type, 4);
+	mngr_->addComponent<UpgradeTowerComponent>(t, type, game().getSaveGame()->getTurretsLevels()[type]);
 	if(type != _twr_NEXUS)
 		mngr_->addComponent<InteractiveTower>(t, cameraOffset_);
 	mngr_->addComponent<IconComponent>(t);
