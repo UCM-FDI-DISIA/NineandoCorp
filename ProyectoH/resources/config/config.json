@@ -1228,7 +1228,7 @@
   "oleadas/nivel":[
     {
         "id": "nivel1",
-        "oleadas": 1
+        "oleadas": 2
     },
     {
         "id": "nivel2",
@@ -1278,7 +1278,9 @@
                   "elfos"
                 ],
                 "numEnemies": [
-                  1
+                  1,
+                  2,
+                  2
                 ],
                 "timeSpawn": 3
               }
