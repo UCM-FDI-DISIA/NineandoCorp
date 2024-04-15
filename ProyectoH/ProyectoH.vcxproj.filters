@@ -43,9 +43,6 @@
     <ClCompile Include="src\components\DragAndDrop.cpp">
       <Filter>Sources Files\Components</Filter>
     </ClCompile>
-    <ClCompile Include="EnemyBookState.cpp">
-      <Filter>Sources Files\States</Filter>
-    </ClCompile>
     <ClCompile Include="src\systems\EnemyBookSystem.cpp">
       <Filter>Sources Files\Systems</Filter>
     </ClCompile>
@@ -224,7 +221,12 @@
       <Filter>Sources Files\Components</Filter>
     </ClCompile>
     <ClCompile Include="src\components\MuerteComponent.cpp" />
-    <ClCompile Include="src\systems\GameOverSystem.cpp" />
+    <ClCompile Include="src\systems\GameOverSystem.cpp">
+      <Filter>Sources Files\Systems</Filter>
+    </ClCompile>
+    <ClCompile Include="src\gameStates\EnemyBookState.cpp">
+      <Filter>Sources Files\States</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\components\AcechanteComponent.h">
@@ -492,7 +494,9 @@
       <Filter>Headers Files\Components</Filter>
     </ClInclude>
     <ClInclude Include="src\components\MuerteComponent.h" />
-    <ClInclude Include="src\systems\GameOverSystem.h" />
+    <ClInclude Include="src\systems\GameOverSystem.h">
+      <Filter>Headers Files\Systems</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\json\JSONValue.cpp">

@@ -65,7 +65,7 @@ void HUDSystem::initSystem() {
 		tb1.initialPos = Vector2D( xAux + 3, heightH );
 		
 		// Set tower price
-		tb1.moneyTxt = bS->addText(std::to_string(sdlutils().intConst().at("BalasPrecio")), moneyColor, { xAux - bSize.getX() / 2 , heightH + 50}, {bSize.getX() / 2 , 30});
+		tb1.moneyTxt = bS->addText(std::to_string(sdlutils().intConst().at("BalasPrecio")), moneyColor, { xAux -20, heightH + 67}, {bSize.getX() / 2 , 30});
 
 		//Icono de moneda - TEMPORAL, CAMBIAR MAS TARDE A LA MONEDA INGAME
 		tb1.coinImg = bS->addImage(
@@ -99,7 +99,7 @@ void HUDSystem::initSystem() {
 		tb2.initialPos = Vector2D(xAux * 2 + 3, heightH - 10 );
 
 		// Set tower price
-		tb2.moneyTxt = bS->addText(std::to_string(sdlutils().intConst().at("CristalPrecio")), moneyColor, { (xAux * 2)  - bSize.getX() / 2 , heightH + 50 }, { bSize.getX() / 2 , 30 });
+		tb2.moneyTxt = bS->addText(std::to_string(sdlutils().intConst().at("CristalPrecio")), moneyColor, { (xAux * 2) - 20, heightH + 67 }, { bSize.getX() / 2 , 30 });
 
 		//Icono de moneda - TEMPORAL, CAMBIAR MAS TARDE A LA MONEDA INGAME
 		tb2.coinImg = bS->addImage(
@@ -136,7 +136,7 @@ void HUDSystem::initSystem() {
 		tb3.initialPos = Vector2D(xAux * 3 + 3, heightH );
 
 		// Set tower price
-		tb3.moneyTxt = bS->addText(std::to_string(sdlutils().intConst().at("FenixPrecio")), moneyColor, { (xAux * 3) - bSize.getX() / 2 , heightH + 50 }, { bSize.getX() / 2 , 30 });
+		tb3.moneyTxt = bS->addText(std::to_string(sdlutils().intConst().at("FenixPrecio")), moneyColor, { (xAux * 3) - 20, heightH + 67 }, { bSize.getX() / 2 , 30 });
 
 		//Icono de moneda - TEMPORAL, CAMBIAR MAS TARDE A LA MONEDA INGAME
 		tb3.coinImg = bS->addImage(
@@ -171,7 +171,7 @@ void HUDSystem::initSystem() {
 		tb4.initialPos = Vector2D( xAux * 4 + 3, heightH );
 
 		// Set tower price
-		tb4.moneyTxt = bS->addText(std::to_string(sdlutils().intConst().at("ArcillaPrecio")), moneyColor, { (xAux * 4) - bSize.getX() / 2 , heightH + 50 }, { bSize.getX() / 2 , 30 });
+		tb4.moneyTxt = bS->addText(std::to_string(sdlutils().intConst().at("ArcillaPrecio")), moneyColor, { (xAux * 4) - 20, heightH + 67 }, { bSize.getX() / 2 , 30 });
 
 		//Icono de moneda - TEMPORAL, CAMBIAR MAS TARDE A LA MONEDA INGAME
 		tb4.coinImg = bS->addImage(
@@ -207,7 +207,7 @@ void HUDSystem::initSystem() {
 		tb5.initialPos = Vector2D( xAux * 5 + 3, heightH );
 
 		// Set tower price
-		tb5.moneyTxt = bS->addText(std::to_string(sdlutils().intConst().at("DiegoSniperPrecio")), moneyColor, { (xAux * 5) - bSize.getX() / 2 , heightH + 50 }, { bSize.getX() / 2 , 30 });
+		tb5.moneyTxt = bS->addText(std::to_string(sdlutils().intConst().at("DiegoSniperPrecio")), moneyColor, { (xAux * 5) - 20, heightH + 67 }, { bSize.getX() / 2 , 30 });
 
 		//Icono de moneda - TEMPORAL, CAMBIAR MAS TARDE A LA MONEDA INGAME
 		tb5.coinImg = bS->addImage(
@@ -243,7 +243,7 @@ void HUDSystem::initSystem() {
 		tb6.initialPos =  Vector2D( xAux * 6 + 3, heightH );
 
 		// Set tower price
-		tb6.moneyTxt = bS->addText(std::to_string(sdlutils().intConst().at("SlimePrecio")), moneyColor, { (xAux * 6) - bSize.getX() / 2 , heightH + 50 }, { bSize.getX() / 2 , 30 });
+		tb6.moneyTxt = bS->addText(std::to_string(sdlutils().intConst().at("SlimePrecio")), moneyColor, { (xAux * 6) - 20, heightH + 67 }, { bSize.getX() / 2 , 30 });
 
 		//Icono de moneda - TEMPORAL, CAMBIAR MAS TARDE A LA MONEDA INGAME
 		tb6.coinImg = bS->addImage(
@@ -278,7 +278,7 @@ void HUDSystem::initSystem() {
 
 		tb7.initialPos = Vector2D( xAux * 7 + 3 , heightH - 4 );
 		// Set tower price
-		tb7.moneyTxt = bS->addText(std::to_string(sdlutils().intConst().at("PotenciadoraPrecio")), moneyColor, { (xAux * 7) - bSize.getX() / 2 , heightH + 50 }, { bSize.getX() / 2 , 30 });
+		tb7.moneyTxt = bS->addText(std::to_string(sdlutils().intConst().at("PotenciadoraPrecio")), moneyColor, { (xAux * 7) - 20, heightH + 67 }, { bSize.getX() / 2 , 30 });
 
 		//Icono de moneda - TEMPORAL, CAMBIAR MAS TARDE A LA MONEDA INGAME
 		tb7.coinImg = bS->addImage(

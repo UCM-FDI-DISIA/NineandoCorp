@@ -432,7 +432,8 @@ struct Message {
 	// _m_OVER_GAME
 	struct
 	{
-		// No hab�a mensaje de game over, lo dejo, igual tenemos q quitarlo
+		int currentLvl;
+		bool winner; // false, ha perdido. true, ha ganado
 	}over_game;
 
 	//_m_ENEMY_BOOK

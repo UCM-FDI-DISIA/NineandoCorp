@@ -32,7 +32,7 @@ protected:
 	// Niveles de nexo y torres
 	int* turrentLevels_;	// Nexo última torre
 
-	void onRoundOver();
+	void onGameOver();
 	void OnStartGame();
 	void subtractCoins(int num);
 

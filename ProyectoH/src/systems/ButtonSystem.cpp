@@ -391,8 +391,9 @@ Entity* ButtonSystem::addText(const string& txt, const SDL_Color& color, const V
 {
 	Entity* text = mngr_->addEntity(_grp_TEXTS);
 	Transform* tr = mngr_->addComponent<Transform>(text);
-	tr->setPosition(pos);
 	tr->setScale(scale);
+	Vector2D aux = tr->getScale();
+	tr->setPosition(pos - aux / 2);
 	mngr_->addComponent<TextComponent>(text, txt, color);
 	return text;
 }

@@ -12,14 +12,11 @@ void MainControlSystem::receive(const Message& m) {
 	switch (m.id) {
 	case _m_START_GAME:
 		turrentLevels_ = game().getSaveGame()->getTurretsLevels();
+		nexusIsAlive_ = true;
 		OnStartGame();
 		break;
 	case _m_ROUND_OVER:
-		if (nexusIsAlive_ && currentLevel == game().getSaveGame()->getLevelsUnlocked()) {
-			game().getSaveGame()->setLevelsUnlocked(currentLevel++);
-			game().getSaveGame()->saveFile();
-		}
-		game().changeState<GameOverState>(currentLevel, nexusIsAlive_);
+		onGameOver();
 		break;
 	case _m_LEVEL_SELECTED:
 		game().changeState<PlayState>(m.start_game_data.level, turrentLevels_);
@@ -38,7 +35,10 @@ void MainControlSystem::receive(const Message& m) {
 		game().pushState<PauseState>(mngr_);
 		break;
 	case _m_ATTACK_NEXUS:		
-		mngr_->getComponent<HealthComponent>(nexo)->subtractHealth(m.nexus_attack_data.damage);
+		if (mngr_->getComponent<HealthComponent>(nexo)->subtractHealth(m.nexus_attack_data.damage)) {
+			nexusIsAlive_ = false;
+			onGameOver();
+		}
 		break;
 	case _m_UPGRADE_TOWER:
 		upgradeTower(m.upgrade_tower.towerId);
@@ -72,24 +72,18 @@ void MainControlSystem::update() {
 		numDoradasActuales += numDoradasPorSegundo;
 		elapsedTime_ = 0;
 	}
-	if (nexusIsAlive_) {
-		// Si la vida del Nexo llega a cero se acaba la partida
-		if (mngr_->getComponent<HealthComponent>(nexo)->getHealth() <= 0) {
-			Message m;
-			m.id = _m_ROUND_OVER;
-			mngr_->send(m);
-			nexusIsAlive_ = false;
-			// Pushear Estado Nuevo?
+}
+
+void MainControlSystem::onGameOver() {
+		if (nexusIsAlive_ && currentLevel == game().getSaveGame()->getLevelsUnlocked()) {
+			game().getSaveGame()->setLevelsUnlocked(currentLevel++);
+			game().getSaveGame()->saveFile();
 		}
-	}
+		game().changeState<GameOverState>(currentLevel, nexusIsAlive_);
 }
 
 void MainControlSystem::OnStartGame() {
 
-}
-
-void MainControlSystem::onRoundOver() {
-	nexusIsAlive_ = false;
 }
 
 void MainControlSystem::subtractCoins(int num) {

@@ -7,6 +7,7 @@ enum ButtonTypes {
 	//Others
 	pruebaButton, 
 	exit_button,
+	back_to_menu,
 	//MainMenu
 	selector_main, enemies_main, pause_main, resume_main,
 	//Level Selector

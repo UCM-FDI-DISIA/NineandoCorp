@@ -76,6 +76,7 @@ protected:
 	void createBulletExplosion(Vector2D pos);
 	void createHitAnim(Vector2D pos);
 	void clearShieldsArea(Entity* e);
+	void generateNexus(int lvlNexus, Cell* cell);
 	/// <summary>
 	/// Debe spawnear una entidad con un fireComponent que tenga un rect y se detecte la colision con enemigos en un collision system
 	/// </summary>
