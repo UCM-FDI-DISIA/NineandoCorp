@@ -319,11 +319,13 @@ void TowerSystem::update() {
 								Vector2D spawn = { TR->getPosition()->getX() + offset.getX(),	TR->getPosition()->getY() + offset.getY() };//Punto de spawn de la bala con el offset
 								shootBullet(bt->getTarget(), t, bt->getDamage(), floatAt("BalasVelocidad"), spawn, bulletTexture, { 35, 35 }, _twr_BULLET);//Dispara la bala
 								createBulletExplosion(spawn + Vector2D(-10, -20));
+								sdlutils().soundEffects().at("TorreDeBalasDisparo").play(0, 3);
 							}
 							if (bt->isMaxLevel()) {//Mejora maxima de la torre de balas: targetear a un segundo enemigo. Funciona igual que el primer targeteo
 								bt->targetSecondEnemy(mngr_->getHandler(_hdlr_ENEMIES));
 								if (bt->getSecondTarget() != nullptr) {
 									shootBullet(bt->getSecondTarget(), t, bt->getDamage(), floatAt("BalasVelocidad"), TR->getPosition(), bulletTexture, { 35, 35 }, _twr_BULLET);
+									sdlutils().soundEffects().at("TorreDeBalasDisparo").play(0, 3);
 								}
 							}
 
@@ -376,6 +378,7 @@ void TowerSystem::update() {
 								RenderComponent* rc = mngr_->getComponent<RenderComponent>(t);
 								Vector2D spawn = { TR->getPosition()->getX() + offset.getX(),	TR->getPosition()->getY() + offset.getY() };
 								Entity* bullet = shootBullet(st->getTarget(), t, st->getDamage(), floatAt("SlimeVelocidad"), spawn, slimeBulletTexture, { 25, 25 }, _twr_SLIME);
+								sdlutils().soundEffects().at("TorreSlimeDisparo").play(0, 3);
 								mngr_->addComponent<SlimeBullet>(bullet, st->getDuration(), st->getSpeedDecrease(), st->getDPS());
 								st->setElapsedTime(0);
 							}
@@ -423,6 +426,8 @@ void TowerSystem::update() {
 								if (rand.nextInt(0, 10) <= ds->getCritProb() * 10) { damage *= ds->getCritDamage(); }
 								shootBullet(targetMostHP, t, damage, floatAt("DiegoSniperVelocidad"), spawn, sniperBulletTexture, { 20, 15 }, _twr_DIEGO);
 								createBulletExplosion(spawn + Vector2D(-40, -15));
+								sdlutils().soundEffects().at("TorreDiegoSniperDisparo").setNumberofChannels(20);
+								sdlutils().soundEffects().at("TorreDiegoSniperDisparo").play(0, 19);
 							}
 							ds->setElapsedTime(0);
 						}
