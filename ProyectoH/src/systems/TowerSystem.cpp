@@ -329,6 +329,7 @@ void TowerSystem::update() {
 
 						}
 					}
+				}
 #pragma endregion
 
 #pragma region CRYSTAL
@@ -486,7 +487,7 @@ void TowerSystem::update() {
 					}
 #pragma endregion
 
-				}
+				
 			}
 			//Mueve y dirige las balas, y destruye las balas si su objetivo muere o si choca con el objetivo, causandole dano
 			for (auto& b : bullets) {
@@ -632,7 +633,6 @@ void TowerSystem::addTower(twrId type, const Vector2D& pos, Height height, int s
 		break;
 	case _twr_BULLET://Pasar rango, recarga, da?o y si dispara
 		tr->setScale({ floatAt("BulletScaleX"), floatAt("BulletScaleY") });
-		cout << floatAt("BalasRecarga");
 		mngr_->addComponent<BulletTower>(t, floatAt("BalasRango"), floatAt("BalasRecarga"), intAt("BalasDano"));
 		mngr_->addComponent<RenderComponent>(t, bulletTowerTexture);
 		mngr_->addComponent<FramedImage>(t, intAt("BalasColumns"), intAt("BalasRows"), intAt("BalasWidth"), intAt("BalasHeight"), 0, 0);
