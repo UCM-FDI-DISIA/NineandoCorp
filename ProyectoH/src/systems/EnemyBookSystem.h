@@ -13,10 +13,6 @@ public:
 	static constexpr sysId_type id = _sys_ENEMYBOOK;
 	virtual ~EnemyBookSystem();
 
-	void initSystem() override;
-	void receive(const Message& m) override;
-	void update() override {};
-	void EnemigoVisto(enmId_type i);
 	void EnemyPopUp(int i);
 };
 

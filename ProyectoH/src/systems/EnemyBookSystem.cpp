@@ -43,21 +43,21 @@ void EnemyBookSystem::initSystem() {
 	};
 
 
-	// Calcular la posici髇 inicial del contenido
-	float contentPosX = 350.f; // Posici髇 inicial x del contenido
-	float contentPosY = 300.f; // Posici髇 y del contenido
-	float contentPosYaux = 300.f; // Posici髇 y del contenido aux
+	// Calcular la posici贸n inicial del contenido
+	float contentPosX = 350.f; // Posici贸n inicial x del contenido
+	float contentPosY = 300.f; // Posici贸n y del contenido
+	float contentPosYaux = 300.f; // Posici贸n y del contenido aux
 	float contentWidth = 100.f; // Ancho del contenido
 	float contentHeight = 100.f; // Alto del contenido
 
 
-	// A馻dir im醙enes de enemigos
-	float spacingX = 120.f; // Espacio horizontal entre las im醙enes de enemigos
+	// A帽adir im谩genes de enemigos
+	float spacingX = 120.f; // Espacio horizontal entre las im谩genes de enemigos
 	int t = 0;
 
 	 auto text = gameTextures::large_box;
 	for (size_t i = 0; i < _enm_SIZE; i++) {
-		// Calcular la posici髇 de la imagen del enemigo
+		// Calcular la posici贸n de la imagen del enemigo
 		Vector2D pAux = { contentPosX + t * spacingX, contentPosY };
 		Vector2D sAux = { contentWidth, contentHeight };
 		Vector2D sAuxbox = { contentWidth + 15, contentHeight + 15 };
@@ -80,18 +80,5 @@ void EnemyBookSystem::initSystem() {
 			t = 0;
 		}
 	}
-}
-void EnemyBookSystem::receive(const Message& m)
-{
-	switch (m.id) {
-		case _m_ENEMY_BOOK:
-			EnemigoVisto(m.start_enemy_book.n);
-			break;
-	}
-}
-void EnemyBookSystem::EnemigoVisto(enmId_type i) {
-	Vistos[i] = true;
-}
 void EnemyBookSystem::EnemyPopUp(int i) {
-
 }

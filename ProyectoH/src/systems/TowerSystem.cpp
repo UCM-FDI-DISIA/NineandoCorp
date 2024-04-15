@@ -23,6 +23,7 @@ void TowerSystem::receive(const Message& m) {
 	switch (m.id) {
 	case _m_START_GAME:
 		cameraOffset_ = m.start_game_data.cameraOffset;
+		generateNexus(m.start_game_data.turrentLevels[_twr_NEXUS], m.start_game_data.netmap->getCell(15,15));
 		break;
 	case _m_ENTITY_TO_ATTACK://Mandado por el enemySystem al atacar una torre
 
@@ -559,7 +560,9 @@ void TowerSystem::removeTower(Entity* twr)
 
 void TowerSystem::enableAllInteractiveTowers(bool b) {
 	for (auto t : towers) {
-		mngr_->getComponent<InteractiveTower>(t)->canInteract_ = b;
+		InteractiveTower* it = mngr_->getComponent<InteractiveTower>(t);
+		if(it != nullptr)
+			it->canInteract_ = b;
 	}
 }
 
@@ -603,7 +606,9 @@ Entity* TowerSystem::addShield(Vector2D pos) {
 	return ent;
 }
 
-
+void TowerSystem::generateNexus(int lvlNexus, Cell* cell) {
+	addTower(_twr_NEXUS, { 580.0f, 980.0f }, BOTH, lvlNexus, cell);
+}
 
 void TowerSystem::addTower(twrId type, const Vector2D& pos, Height height, int sellMoney, Cell* cell) {
 	Entity* t = mngr_->addEntity(_grp_TOWERS_AND_ENEMIES);//Se a?ade al mngr
@@ -613,7 +618,8 @@ void TowerSystem::addTower(twrId type, const Vector2D& pos, Height height, int s
 	tr->setPosition(pos);
 	mngr_->addComponent<TowerStates>(t);
 	mngr_->addComponent<UpgradeTowerComponent>(t, type, 4);
-	mngr_->addComponent<InteractiveTower>(t, cameraOffset_);
+	if(type != _twr_NEXUS)
+		mngr_->addComponent<InteractiveTower>(t, cameraOffset_);
 	mngr_->addComponent<IconComponent>(t);
 	float health = 100.0f;
 	mngr_->addComponent<HealthComponent>(t, health);

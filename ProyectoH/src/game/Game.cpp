@@ -19,7 +19,7 @@ void Game::run() {
 		// Calculate Delta Time
 		startTime = currentTime;
 		currentTime = SDL_GetPerformanceCounter();
-		deltaTime = (double)((currentTime - startTime) / (double)SDL_GetPerformanceFrequency());
+		deltaTime = (double)((currentTime - startTime)/ (double)SDL_GetPerformanceFrequency());
 
 		// cleon: cuidado, falta el delta
 		gameStateMachine->update();

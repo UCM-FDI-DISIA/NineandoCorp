@@ -112,7 +112,6 @@
     <ClInclude Include="src\utils\Vector2D.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="EnemyBookState.cpp" />
     <ClCompile Include="src\components\AcechanteComponent.cpp" />
     <ClCompile Include="src\components\AngelComponent.cpp" />
     <ClCompile Include="src\components\AttackComponent.cpp" />
@@ -154,6 +153,7 @@
     <ClCompile Include="src\components\Transform.cpp" />
     <ClCompile Include="src\components\UpgradeTowerComponent.cpp" />
     <ClCompile Include="src\ecs\Manager.cpp" />
+    <ClCompile Include="src\gameStates\EnemyBookState.cpp" />
     <ClCompile Include="src\gameStates\GameOverState.cpp" />
     <ClCompile Include="src\gameStates\LevelSelectorState.cpp" />
     <ClCompile Include="src\gameStates\MainMenuState.cpp" />

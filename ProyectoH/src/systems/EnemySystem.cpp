@@ -45,7 +45,7 @@ void  EnemySystem::receive(const Message& m) {
 			wave++;
 			stopGenerate = false;
 		}
-		
+
 		break;
 	case _m_PAUSE:
 		mActive = !m.start_pause.onPause;
@@ -100,9 +100,6 @@ void  EnemySystem::receive(const Message& m) {
 			}
 		}
 		break;
-	case _m_OVER_GAME:
-		onRoundOver();
-		break;
 	case _m_DECREASE_SPEED:
 		if (m.decrease_speed.e != nullptr) {
 			MovementComponent* mc = mngr_->getComponent<MovementComponent>(m.decrease_speed.e);
@@ -119,7 +116,7 @@ void  EnemySystem::receive(const Message& m) {
 			Transform* t = mngr_->getComponent<Transform>(m.change_route.enemy);
 			auto gen = mngr_->getComponent<generateEnemies>(spawnsVector[r]);
 			auto route = gen->getRoute();
-		    gen->RoutesCorrection(t, route, 1.5f, 1.5f);
+			gen->RoutesCorrection(t, route, 1.5f, 1.5f);
 			rc->changeRoute(route);
 		}
 		break;
@@ -174,9 +171,6 @@ void EnemySystem::onWaveStart() {
 		mngr_->getComponent<generateEnemies>(spawnsVector[i])->addGroupEnemies();
 
 	}
-}
-void EnemySystem::onRoundOver() {
-	spawnsVector.clear();
 }
 /// <summary>
 /// Transforma la ruta del json en las posiciones correspondientes

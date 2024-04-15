@@ -85,6 +85,7 @@ enum hdlrId : hdlrId_type {
 	_hdlr_BUTTON_PAUSE,
 	_hdlr_BUTTON_LVLSEL,
 	_hdlr_BUTTON_ENEMYBOOK,
+	_hdlr_BUTTON_GAMEOVER,
 	_hdlr_BUTTON_PLAY,
 	_hdlr_PARTICLES,
 	_hdlr_ICONS,
@@ -219,7 +220,6 @@ enum msgId : msgId_type {
 	_m_TOWER_CLICKED,
 	_m_UPGRADE_TWR_INGAME,
 	_m_EXIT_UP_MENU,
-	_m_SAVE_GAME,
 	_m_SELL_TOWER,
 	_m_ENEMY_DIED
 };
@@ -435,7 +435,11 @@ struct Message {
 	// _m_OVER_GAME
 	struct
 	{
-		// No hab�a mensaje de game over, lo dejo, igual tenemos q quitarlo
+		int rounds;
+		int enemies;
+		int coinsH;
+		int currentLvl;
+		bool winner; // false, ha perdido. true, ha ganado
 	}over_game;
 
 	//_m_ENEMY_BOOK

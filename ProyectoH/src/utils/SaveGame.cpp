@@ -1,7 +1,8 @@
 #include "SaveGame.h"
 #include <iostream>
-#include <cstring>
-#include <fstream>
+#include <string>
+#include <fstream>  
+#include <filesystem>
 
 void SaveGame::loadFile() {
 	std::ifstream fs("saves/save.sav", std::ios::in | std::ios::binary); 
@@ -22,7 +23,13 @@ void SaveGame::loadFile() {
 	}
 }
 
+namespace fs = std::filesystem;
 void SaveGame::saveFile() {
+
+	if (!fs::is_directory("saves") || !fs::exists("saves")) { // Check if src folder exists
+		fs::create_directory("saves"); // create src folder
+	}
+
 	std::ofstream fs("saves/save.sav", std::ios::out | std::ios::binary);
 	if (!fs) {
 		cout << "No se ha podido abrir el archivo de guardado.";
@@ -38,5 +45,12 @@ void SaveGame::saveFile() {
 
 		if (!fs.good())
 			cout << "Ha ocurrido un error al escribir en el archivo de guardado.";
+	}
+}
+
+void SaveGame::checkEnemies(bool* enemies) {
+	for (int i = 0; i < _enm_SIZE; i++) {
+		if (enemies[i])
+			enemiesBook_[i] = true;
 	}
 }
