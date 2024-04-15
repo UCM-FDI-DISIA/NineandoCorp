@@ -222,17 +222,13 @@ void TowerSystem::update() {
 			towersToInteract.clear();
 		}
 
-
-		// Updates de torre interactiva / comprueba si se ha clicado la torre
 		for (auto& t : towers) {
+			// Updates de torre interactiva / comprueba si se ha clicado la torre
+
 			auto iTwr = mngr_->getComponent<InteractiveTower>(t);
 			if (iTwr != nullptr) {
 				iTwr->update();
 			}
-		}
-
-
-		for (auto& t : towers) {
 			Transform* TR = mngr_->getComponent<Transform>(t);
 			TowerStates* tw = mngr_->getComponent<TowerStates>(t);
 			IconComponent* ic = mngr_->getComponent<IconComponent>(t);
@@ -305,6 +301,8 @@ void TowerSystem::update() {
 						bt->setElapsedTime(bt->getElapsedTime() + game().getDeltaTime());
 						if (bt->getElapsedTime() > 0.5) {
 
+						if (bt->getElapsedTime() > bt->getTimeToShoot()) {
+							cout<<bt->getTimeToShoot()<<" TTS\n";
 							bt->targetFromGroup(mngr_->getHandler(_hdlr_ENEMIES));
 							bt->setElapsedTime(0);
 							if (bt->getTarget() != nullptr) {
@@ -620,6 +618,7 @@ void TowerSystem::addTower(twrId type, const Vector2D& pos, Height height, int s
 		break;
 	case _twr_BULLET://Pasar rango, recarga, da?o y si dispara
 		tr->setScale({ floatAt("BulletScaleX"), floatAt("BulletScaleY") });
+		cout << floatAt("BalasRecarga");
 		mngr_->addComponent<BulletTower>(t, floatAt("BalasRango"), floatAt("BalasRecarga"), intAt("BalasDano"));
 		mngr_->addComponent<RenderComponent>(t, bulletTowerTexture);
 		mngr_->addComponent<FramedImage>(t, intAt("BalasColumns"), intAt("BalasRows"), intAt("BalasWidth"), intAt("BalasHeight"), 0, 0);

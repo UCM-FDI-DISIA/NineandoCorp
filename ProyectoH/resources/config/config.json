@@ -642,8 +642,6 @@
       "value": 80
     },
 
-
-
     {
       "id": "FenixEnfriamiento",
       "value": 2
@@ -694,7 +692,7 @@
     },
     {
       "id": "BalasRecarga",
-      "value": 0.5
+      "value": 1
     },
     {
       "id": "BalasRango",
@@ -1275,7 +1273,7 @@
               "grupo1": {
                 "spawn": "1",
                 "typeEnemy": [
-                  "defensorReal",
+                  "defensor",
                   "goblin",
                   "elfos"
                 ],
