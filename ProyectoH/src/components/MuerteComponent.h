@@ -8,7 +8,7 @@ public:
 	static const cmpId id = cmpId::_MUERTE;
 	MuerteComponent() {};
 
-	void ThrowPotion();
+	Entity* ThrowPotion(Entity* target, Entity* src, float speed, Vector2D spawnPos, gameTextures texture, Vector2D bulletScale);
 private:
 
 };

@@ -61,6 +61,8 @@ enum cmpId : cmpId_type {
 	_TOWER,
 	_MUERTE,
 	_CMALDITO,
+	_POTION,
+	_ENEMYPROYECTILE,
 
 
 
@@ -101,6 +103,7 @@ enum grpId : grpId_type {
 	_grp_TILES_L3,
 	_grp_TOWERS_AND_ENEMIES,
 	_grp_BULLETS,
+	_grp_ENEMY_PROYECTILE,
 	_grp_HUD_BACKGROUND,
 	_grp_HUD_FOREGROUND,
 	_grp_TEXTS,
@@ -534,6 +537,7 @@ struct Message {
 	//_m_ACTIVATE_ATTACK_TOWERS
 	struct {
 		bool setActive;
+		vector<Entity> towers;
 	}attack_towers_data;
 	
 };
