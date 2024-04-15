@@ -61,7 +61,6 @@ enum cmpId : cmpId_type {
 	_TOWER,
 	_MUERTE,
 	_CMALDITO,
-	_LOCK,
 
 
 
@@ -227,12 +226,12 @@ enum msgId : msgId_type {
 using twrId_type = uint8_t;
 enum twrId : twrId_type {
 	_twr_BULLET,
-	_twr_CLAY,
-	_twr_SLIME,
-	_twr_FENIX,
-	_twr_DIEGO,
-	_twr_POWER,
 	_twr_CRISTAL,
+	_twr_SLIME,
+	_twr_DIEGO,
+	_twr_FENIX,
+	_twr_CLAY,
+	_twr_POWER,
 	_twr_NEXUS,
 	_twr_SIZE
 };
@@ -428,8 +427,6 @@ struct Message {
 		int* turrentLevels;
 		NetMap* netmap;
 		SDL_Rect* cameraOffset;
-		vector<int> unlockedTwrs;
-
 	}start_game_data;
 
 	// _m_OVER_GAME

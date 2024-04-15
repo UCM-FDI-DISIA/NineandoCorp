@@ -21,10 +21,6 @@ ButtonTypes ButtonComponent::isPressed(const Vector2D& mousePos) {
 }
 
 bool ButtonComponent::hover(const Vector2D& mousePos) {
-	auto lock = mngr_->getComponent<LockComponent>(ent_);
-	if (lock != nullptr) {
-		if (mngr_->getComponent<LockComponent>(ent_)->isLocked()) return false;
-	}
 	auto pos = tr_->getPosition();
 	auto height = tr_->getHeight();
 	auto width = tr_->getWidth();
