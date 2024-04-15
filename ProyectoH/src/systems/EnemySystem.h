@@ -17,7 +17,6 @@ private:
 	unsigned int level;
 	int numSpawns;
 	void enemyDeathAnim(Vector2D pos);
-	bool enemiesSaw[_enm_SIZE];
 public:
 
 	static constexpr sysId_type id = _sys_ENEMIES;

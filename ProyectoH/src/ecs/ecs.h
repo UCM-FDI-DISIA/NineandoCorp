@@ -219,7 +219,6 @@ enum msgId : msgId_type {
 	_m_TOWER_CLICKED,
 	_m_UPGRADE_TWR_INGAME,
 	_m_EXIT_UP_MENU,
-	_m_SAVE_GAME,
 	_m_SELL_TOWER,
 	_m_ENEMY_DIED
 };
@@ -432,6 +431,9 @@ struct Message {
 	// _m_OVER_GAME
 	struct
 	{
+		int rounds;
+		int enemies;
+		int coinsH;
 		int currentLvl;
 		bool winner; // false, ha perdido. true, ha ganado
 	}over_game;

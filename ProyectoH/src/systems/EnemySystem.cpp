@@ -106,12 +106,6 @@ void  EnemySystem::receive(const Message& m) {
 			rc->changeRoute(route);
 		}
 		break;
-	case _m_ENEMYSEE:
-		enemiesSaw[m.start_enemy_book.n] = true;
-		break;
-	case _m_ROUND_OVER:
-		game().getSaveGame()->checkEnemies(enemiesSaw);
-		break;
 	}
 }
 

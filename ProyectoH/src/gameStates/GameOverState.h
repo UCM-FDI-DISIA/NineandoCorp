@@ -4,7 +4,7 @@
 class GameOverState : public GameState
 {
 public:
-	GameOverState(int currentLvl, bool winner);
+	GameOverState(int rounds, int enemies, int coinsH, int currentLvl, bool winner);
 	virtual ~GameOverState();
 };
 

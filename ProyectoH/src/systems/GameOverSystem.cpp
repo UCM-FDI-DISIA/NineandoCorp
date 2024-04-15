@@ -23,11 +23,13 @@ void GameOverSystem::initSystem() {
 
 	header = bS->addText(" ", textColor, { xAux , heightH }, {bSize.getX() * 2, bSize.getY() });
 
-	enemies = bS->addText(" ", textColor, { xAux , heightH * 3 }, { bSize.getX(), bSize.getY()/2});
+	rounds = bS->addText(" ", textColor, { xAux , heightH * 2 + (heightH/2)}, {bSize.getX(), bSize.getY() / 2});
 
-	coins = bS->addText(" ", textColor, { xAux , heightH * 4 }, { bSize.getX(), bSize.getY()/2 });
+	enemies = bS->addText(" ", textColor, { xAux , heightH * 3 + (heightH / 2) }, { bSize.getX(), bSize.getY() / 2 });
 
-	bS->addButton({ xAux, heightH*6 },
+	coins = bS->addText(" ", textColor, { xAux , heightH * 4 + (heightH / 2) }, { bSize.getX(), bSize.getY()/2 });
+
+	bS->addButton({ xAux, heightH*6},
 		bSize,
 		gameTextures::backToMenu_button, gameTextures::backToMenu_button_hover,
 		ButtonTypes::back_to_menu);
@@ -42,8 +44,9 @@ void GameOverSystem::receive(const Message& m) {
 		case _m_OVER_GAME:
 			win = m.over_game.winner;
 			currentLvl = m.over_game.currentLvl;
-			enemiesDefeated = 100;
-			coinsObtained = 1000;
+			roundsPassed = m.over_game.rounds;
+			enemiesDefeated =  m.over_game.enemies;
+			coinsObtained = m.over_game.coinsH;
 			break;
 	}
 }
@@ -62,9 +65,17 @@ void GameOverSystem::update() {
 				textC = mngr_->getComponent<TextComponent>(header);
 				textC->setText(text);
 				textC->update();
-				currentAnim = ENEMIES_ANIM;
+				currentAnim = ROUNDS_ANIM;
 				timer = startTime;
 				break;
+			case ROUNDS_ANIM:
+					text = "Rounds complete: " + std::to_string(roundsPassed);
+					textC = mngr_->getComponent<TextComponent>(rounds);
+					textC->setText(text);
+					textC->update();
+					currentAnim = ENEMIES_ANIM;
+					timer = startTime;
+					break;
 			case ENEMIES_ANIM:
 				enemiesCont += game().getDeltaTime() * 50;
 				if (enemiesCont >= enemiesDefeated) {

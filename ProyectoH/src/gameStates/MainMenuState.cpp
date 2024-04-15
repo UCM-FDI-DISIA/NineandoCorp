@@ -1,6 +1,6 @@
 #include "MainMenuState.h"
 
-MainMenuState::MainMenuState(int moneyToAdd) : GameState(_gmStt_MAINMENU) {
+MainMenuState::MainMenuState() : GameState(_gmStt_MAINMENU) {
 
 	// Sistemas requeridos para que funcione el juego
 	mngr_->addSystem<MainControlSystem>(game().getSaveGame()->getLevelsUnlocked());
@@ -9,7 +9,7 @@ MainMenuState::MainMenuState(int moneyToAdd) : GameState(_gmStt_MAINMENU) {
 	mngr_->addSystem<MainMenuSystem>();
 	Message m;
 	m.id = _m_START_MENU;
-	m.money_data.money = moneyToAdd + game().getSaveGame()->getHCoins();
+	m.money_data.money = game().getSaveGame()->getHCoins();
 	mngr_->send(m);
 }
 

@@ -39,9 +39,6 @@ void ButtonSystem::receive(const Message& m){
 		money_ += m.money_data.money;
 		updateText();
 		break;
-	case _m_ADD_MONEY_H:
-		HMoney_ += m.money_data.money;
-		break;
 	case _m_SELL_TOWER:
 		money_ += m.sell_tower_data.money;
 		updateText();
@@ -170,6 +167,9 @@ void ButtonSystem::managePauseButtons() {
 		// Incluye la id del button para incluir 
 		switch (type)
 		{
+		case back_to_menu:
+			game().changeState<MainMenuState>();
+			break;
 		case exit_button:
 			game().exitGame();
 			break;

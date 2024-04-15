@@ -14,10 +14,11 @@ private:
 	bool enemiesBook_[_enm_SIZE];
 
 public:
-	SaveGame() :levelsUnlocked_(8), HCoins_(0) { std::fill_n(enemiesBook_, _enm_SIZE, true); std::fill_n(turretsLevel_, _twr_SIZE, 0); };
+	SaveGame() :levelsUnlocked_(8), HCoins_(0) { std::fill_n(enemiesBook_, _enm_SIZE, false); std::fill_n(turretsLevel_, _twr_SIZE, 0); };
 
 	int getHCoins() { return HCoins_; };
 	void setHCoins(int h) { HCoins_ = h; };
+	void addHCoins(int h) { HCoins_ += h; };
 
 	int getLevelsUnlocked() { return levelsUnlocked_; };
 	void setLevelsUnlocked(int l) { levelsUnlocked_ = l; };
