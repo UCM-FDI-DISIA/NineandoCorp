@@ -12,6 +12,7 @@ EnemyBookSystem::~EnemyBookSystem()
 	mngr_->deleteAllHandlers(_hdlr_BUTTON_ENEMYBOOK);
 }
 void EnemyBookSystem::initSystem() {
+	Vistos = game().getSaveGame()->getEnemiesBook();
 	ButtonSystem* bS = mngr_->getSystem<ButtonSystem>();
 	//BACKGROUND
 	Vector2D pAux = { sdlutils().width() / 2.0f, sdlutils().height() / 2.0f };
@@ -88,9 +89,6 @@ void EnemyBookSystem::receive(const Message& m)
 	switch (m.id) {
 		case _m_ENEMY_BOOK:
 			EnemigoVisto(m.start_enemy_book.n);
-			break;
-		case _m_START_MENU:
-			Vistos = game().getSaveGame()->getEnemiesBook();
 			break;
 	}
 }

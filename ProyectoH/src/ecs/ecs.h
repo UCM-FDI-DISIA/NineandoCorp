@@ -147,6 +147,7 @@ enum sysId : sysId_type {
 	_sys_COLLISION,
 	_sys_PARTICLES,
 	_sys_METEOROLOGY,
+	_sys_GAMEOVER,
 
 	// do not remove this
 	_LAST_SYS_ID
