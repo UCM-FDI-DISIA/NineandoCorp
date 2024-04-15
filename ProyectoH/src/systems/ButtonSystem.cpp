@@ -202,28 +202,44 @@ void ButtonSystem::managePauseButtons() {
 			break;
 		/*--- MEJORAS DEL MENU ---*/
 		case upgrade_nexus:
-			upgradeTower(_twr_NEXUS);
+			int lvl = game().getSaveGame()->getTurretsLevels()[_twr_NEXUS];
+			if( lvl < 4)
+				upgradeTower(_twr_NEXUS, "precioNexusLvl" + std::to_string(lvl));
 			break;
 		case upgrade_crystal_main:
-			upgradeTower(_twr_CRISTAL);
+			int lvl = game().getSaveGame()->getTurretsLevels()[_twr_CRISTAL];
+			if (lvl < 4)
+				upgradeTower(_twr_CRISTAL, "precioCristalLvl" + std::to_string(lvl));
 			break;
 		case upgrade_slime_main:
-			upgradeTower(_twr_SLIME);
+			int lvl = game().getSaveGame()->getTurretsLevels()[_twr_SLIME];
+			if (lvl < 4)
+				upgradeTower(_twr_SLIME, "precioSlimeLvl" + std::to_string(lvl));
 			break;
 		case upgrade_bullet_main:
-			upgradeTower(_twr_BULLET);
+			int lvl = game().getSaveGame()->getTurretsLevels()[_twr_BULLET];
+			if (lvl < 4)
+				upgradeTower(_twr_BULLET, "precioBalasLvl" + std::to_string(lvl));
 			break;
 		case upgrade_sniper_main:
-			upgradeTower(_twr_DIEGO);
+			int lvl = game().getSaveGame()->getTurretsLevels()[_twr_DIEGO];
+			if (lvl < 4)
+				upgradeTower(_twr_DIEGO, "precioDiegoLvl" + std::to_string(lvl));
 			break;
 		case upgrade_fenix_main:
-			upgradeTower(_twr_FENIX);
+			int lvl = game().getSaveGame()->getTurretsLevels()[_twr_FENIX];
+			if (lvl < 4)
+				upgradeTower(_twr_FENIX, "precioFenixLvl" + std::to_string(lvl));
 			break;
 		case upgrade_clay_main:
-			upgradeTower(_twr_CLAY);
+			int lvl = game().getSaveGame()->getTurretsLevels()[_twr_CLAY];
+			if (lvl < 4)
+				upgradeTower(_twr_CLAY, "precioArcillaLvl" + std::to_string(lvl));
 			break;
 		case upgrade_enhancer_main:
-			upgradeTower(_twr_POWER);
+			int lvl = game().getSaveGame()->getTurretsLevels()[_twr_POWER];
+			if (lvl < 4)
+				upgradeTower(_twr_POWER, "precioPotenciadoraLvl" + std::to_string(lvl));
 			break;
 
 
@@ -319,11 +335,16 @@ void ButtonSystem::managePauseButtons() {
 		m.start_wave.play = true;
 		mngr_->send(m);
 	}
-	void ButtonSystem::upgradeTower(twrId t) {
-		Message m;
-		m.id = _m_UPGRADE_TOWER;
-		m.upgrade_tower.towerId = t;
-		mngr_->send(m);
+	void ButtonSystem::upgradeTower(twrId t, string idPrecioJSON) {
+		if (HMoney_ - sdlutils().intConst().at(idPrecioJSON) >= 0) {
+			HMoney_ -= sdlutils().intConst().at(idPrecioJSON);
+			updateText();
+			game().getSaveGame()->setHCoins(HMoney_);
+			Message m;
+			m.id = _m_UPGRADE_TOWER;
+			m.upgrade_tower.towerId = t;
+			mngr_->send(m);
+		}
 	}
 
 	void ButtonSystem::dragTower(twrId tower) {

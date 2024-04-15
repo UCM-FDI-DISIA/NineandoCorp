@@ -105,7 +105,7 @@ private:
 	/// M�todo encargado de enviar el mensaje de mejorar una torre
 	/// con x Id pasado por par�metro 
 	/// </summary>
-	void upgradeTower(twrId t);
+	void upgradeTower(twrId t, string idPrecioJSON);
 
 	/// <summary>
 	/// Actualiza la textura con el texto de las monedas a las monedas actuales

@@ -64,14 +64,8 @@ void MainControlSystem::receive(const Message& m) {
 }
 
 void MainControlSystem::upgradeTower(twrId id) {
-	if (turrentLevels_[id] < 4) {
-		turrentLevels_[id]++;
-		game().getSaveGame()->saveFile();
-		std::cout << turrentLevels_[id] << endl;	// QUITAR
-	}
-	else {
-		std::cout << "NO SE PUEDE MEJORAR, lvl: " << turrentLevels_[id] << endl;	// QUITAR
-	}
+	turrentLevels_[id]++;
+	game().getSaveGame()->saveFile();
 }
 
 void MainControlSystem::update() {
