@@ -538,7 +538,7 @@ struct Message {
 	//_m_ACTIVATE_ATTACK_TOWERS
 	struct {
 		bool setActive;
-		vector<Entity> towers;
+		vector<Entity*> towers;
 	}attack_towers_data;
 };
 
