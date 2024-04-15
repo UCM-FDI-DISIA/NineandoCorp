@@ -6,7 +6,7 @@ class PotionComponent : public Component
 public:
 	static const cmpId id = cmpId::_POTION;
 
-	PotionComponent(Entity* target, Entity* src, float speed, Vector2D spawnPos, gameTextures texture, Vector2D bulletScale, float time);
+	PotionComponent(float time) : potionDuration(time){};
 protected:
 	float potionDuration;
 	float getPotionDuration() { return potionDuration; }

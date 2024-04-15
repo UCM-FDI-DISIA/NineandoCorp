@@ -223,6 +223,9 @@
     <ClCompile Include="src\components\LimitedTime.cpp">
       <Filter>Sources Files\Components</Filter>
     </ClCompile>
+    <ClCompile Include="src\components\MuerteComponent.cpp" />
+    <ClCompile Include="src\components\PotionComponent.cpp" />
+    <ClCompile Include="src\components\EnemyProyectileComponent.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\components\AcechanteComponent.h">
@@ -489,6 +492,9 @@
     <ClInclude Include="src\components\LimitedTime.h">
       <Filter>Headers Files\Components</Filter>
     </ClInclude>
+    <ClInclude Include="src\components\MuerteComponent.h" />
+    <ClInclude Include="src\components\PotionComponent.h" />
+    <ClInclude Include="src\components\EnemyProyectileComponent.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\json\JSONValue.cpp">

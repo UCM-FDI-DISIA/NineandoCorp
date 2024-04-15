@@ -11,7 +11,7 @@ protected:
 	float speed_;//Velocidad de la bala
 
 public:
-	static const cmpId id = cmpId::_BULLET;
+	static const cmpId id = cmpId::_ENEMYPROYECTILE;
 
 	EnemyProyectileComponent(Transform* tr, Entity* target, Entity* src, int damage, float speed);
 	virtual	~EnemyProyectileComponent() {};

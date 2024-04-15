@@ -2,6 +2,7 @@
 #include "..//components/SlimeBullet.h"
 #include "..//components/TowerStates.h"
 #include "..//components/LimitedTime.h"
+#include "..//components/PotionComponent.h"
 #include "../game/Game.h"
 
 CollisionSystem::CollisionSystem():fenixRects_(), slimeRects_(), enemyRects_() {
@@ -62,6 +63,8 @@ void CollisionSystem::addRect(Entity* rect, rectId id) {
 		case _FIELD:
 			fieldRects_.push_back(rect);
 			break;
+		case _DEATH:
+			deathRects_.push_back(rect);
 		default:
 			break;
 	}
@@ -96,6 +99,9 @@ void CollisionSystem::removeRect(Entity* rect, rectId id) {
 		break;
 	case _FIELD:
 		fieldRects_.erase(find(fieldRects_.begin(), fieldRects_.end(), rect));
+		break;
+	case _DEATH:
+		deathRects_.erase(find(deathRects_.begin(), deathRects_.end(), rect));
 		break;
 	}
 	
@@ -449,6 +455,28 @@ void CollisionSystem::update() {
 				mngr_->setAlive(f, false);
 			}
 		}
+
+		for (const auto& d : deathRects_) {
+			Transform* tr = mngr_->getComponent<Transform>(d);
+			SDL_Rect r = tr->getRect();
+
+			for (const auto& lt : lowTowers) {
+				Transform* towerTR = mngr_->getComponent<Transform>(lt);
+				SDL_Rect towerRect = towerTR->getRect();
+				if (SDL_HasIntersection(&r, &towerRect)) {
+					Entity* area = mngr_->addEntity(_grp_AREAOFATTACK);
+					Transform* ptr = mngr_->addComponent<Transform>(area);
+					Vector2D scale = { 250, 200 };
+					ptr->setScale(scale);
+					Vector2D pos = { tr->getPosition()->getX() - scale.getX() / 2, tr->getPosition()->getY() - scale.getY() / 4 };
+					ptr->setPosition(pos);
+					mngr_->addComponent<RenderComponent>(area, slimeArea);
+					mngr_->addComponent<FramedImage>(area, 9, 1, 500, 400, 0, 4, 8);
+					mngr_->addComponent<PotionComponent>(area, 5);
+				}
+			}
+		}
+
 
 		earthquakeRects_.clear();
 		thunderRects_.clear();

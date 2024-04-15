@@ -169,6 +169,7 @@ enum rectId : rectId_type {
 	_TSUNAMI,
 	_FIELD,
 	_BULLETS,
+	_DEATH,
 
 	_LAST_RECT_ID
 };
@@ -539,7 +540,6 @@ struct Message {
 		bool setActive;
 		vector<Entity> towers;
 	}attack_towers_data;
-	
 };
 
 #endif // !ECS_H_

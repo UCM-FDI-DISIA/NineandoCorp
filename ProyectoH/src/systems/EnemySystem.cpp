@@ -447,6 +447,12 @@ void EnemySystem::update()
 					if (muerte->getElapsedTime() > muerte->getThrowDuration()) {
 						muerte->ThrowPotion(ac->getTarget(), e, 1500, tr->getPosition(), slimeBulletTexture, { 25, 25});
 						muerte->setElapsedTime(0);
+
+						Message m;
+						m.id = _m_ADD_RECT;
+						m.rect_data.entity = e;
+						m.rect_data.id = _DEATH;
+						mngr_->send(m, true);
 					}
 				}
 			}
