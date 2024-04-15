@@ -126,12 +126,12 @@
             "file": "resources/images/Enemies/Maestro de las Almas/Attack.png"
         },
         {
-          "id": "maestro",
-          "file": "resources/images/Enemies/Maestro de las Almas/Run.png"
+            "id": "maestro",
+            "file": "resources/images/Enemies/Maestro de las Almas/Run.png"
         },
         {
-          "id": "monje_Attack",
-          "file": "resources/images/Enemies/monje/Attack.png"
+            "id": "monje_Attack",
+            "file": "resources/images/Enemies/monje/Attack.png"
         },
         {
             "id": "maldito_Attack",
@@ -506,6 +506,10 @@
             "file": "resources/images/Meteorology/Retro Impact Effect Pack 3 F.png"
         },
         {
+            "id": "tsunami",
+            "file": "resources/images/Meteorology/tsunami.png"
+        },
+        {
             "id": "hp_icon",
             "file": "resources/images/UI/hp_icon.png"
         },
@@ -719,20 +723,20 @@
             "file": "resources/images/Towers/rangeCircle.png"
         },
         {
-          "id": "gold_coin",
-          "file": "resources/images/UI/gold_coin.png"
+            "id": "gold_coin",
+            "file": "resources/images/UI/gold_coin.png"
         },
         {
-          "id": "force_field",
-          "file": "resources/images/Enemies/defensor_real/field1.png"
+            "id": "force_field",
+            "file": "resources/images/Enemies/defensor_real/field1.png"
         },
         {
-          "id": "bullet_impact",
-          "file": "resources/images/Towers/bulletImpact.png"
+            "id": "bullet_impact",
+            "file": "resources/images/Towers/bulletImpact.png"
         },
-         {
-          "id": "blood",
-          "file": "resources/images/Towers/bloodHit.png"
+        {
+            "id": "blood",
+            "file": "resources/images/Towers/bloodHit.png"
         }
     ],
 

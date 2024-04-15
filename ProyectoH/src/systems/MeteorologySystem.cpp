@@ -334,13 +334,13 @@ void MeteorologySystem::generateTsunami() {
 		m.anim_create.idGrp = _grp_NATURALS_EFFECTS;
 		m.anim_create.iterationsToDelete = 1;
 		m.anim_create.scale = { 200, 200 };
-		m.anim_create.cols = 4;
-		m.anim_create.rows = 5;
+		m.anim_create.cols = 5;
+		m.anim_create.rows = 1;
 		m.anim_create.tex = gameTextures::tsunami;
 		m.anim_create.frameInit = 0;
-		m.anim_create.frameEnd = 18;
-		m.anim_create.height = 96;
-		m.anim_create.width = 96;
+		m.anim_create.frameEnd = 5;
+		m.anim_create.height = 600;
+		m.anim_create.width = 660;
 		m.anim_create.route = rutaPantalla;
 		m.anim_create.pos = rutaPantalla[0];
 		mngr_->send(m);
