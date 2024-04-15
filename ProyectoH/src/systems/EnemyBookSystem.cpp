@@ -22,7 +22,7 @@ void EnemyBookSystem::initSystem() {
 	pAux = pAux + Vector2D(430.0f, -230.0f);
 	sAux = { 70.0f, 70.0f };
 	bS->addButton(pAux, sAux, gameTextures::close, gameTextures::close_hover, ButtonTypes::back_selector);
-    
+
 	//vector textura enemigo
 	vector<gameTextures> Texturas{
 		gameTextures::maestro_icon,
@@ -55,7 +55,7 @@ void EnemyBookSystem::initSystem() {
 	float spacingX = 120.f; // Espacio horizontal entre las imágenes de enemigos
 	int t = 0;
 
-	 auto text = gameTextures::large_box;
+	auto text = gameTextures::large_box;
 	for (size_t i = 0; i < _enm_SIZE; i++) {
 		// Calcular la posición de la imagen del enemigo
 		Vector2D pAux = { contentPosX + t * spacingX, contentPosY };
@@ -66,19 +66,20 @@ void EnemyBookSystem::initSystem() {
 			text = Texturas[i];
 			bS->addImage(pAux, sAuxbox, 0.0, gameTextures::large_box, _grp_HUD_FOREGROUND);
 			bS->addButton(pAux, sAux, text, text, ButtonTypes::enemybook);
-			
+
 		}
 		else {
 			text = gameTextures::large_box;
-			bS->addImage(pAux, sAuxbox, 0.0,text, _grp_HUD_FOREGROUND);
+			bS->addImage(pAux, sAuxbox, 0.0, text, _grp_HUD_FOREGROUND);
 		}
-		
+
 		t++;
-		if (t%5 ==0 && t!= 0)
+		if (t % 5 == 0 && t != 0)
 		{
 			contentPosY += contentPosYaux / 2;
 			t = 0;
 		}
 	}
+}
 void EnemyBookSystem::EnemyPopUp(int i) {
 }
