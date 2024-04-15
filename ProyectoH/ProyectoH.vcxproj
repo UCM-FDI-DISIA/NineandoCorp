@@ -94,6 +94,7 @@
     <ClInclude Include="src\systems\CollisionSystem.h" />
     <ClInclude Include="src\systems\EnemyBookSystem.h" />
     <ClInclude Include="src\systems\EnemySystem.h" />
+    <ClInclude Include="src\systems\GameOverSystem.h" />
     <ClInclude Include="src\systems\HUDSystem.h" />
     <ClInclude Include="src\systems\LevelSelectorSystem.h" />
     <ClInclude Include="src\systems\MainControlSystem.h" />
@@ -173,6 +174,7 @@
     <ClCompile Include="src\systems\EnemyBookSystem.cpp" />
     <ClCompile Include="src\systems\CollisionSystem.cpp" />
     <ClCompile Include="src\systems\EnemySystem.cpp" />
+    <ClCompile Include="src\systems\GameOverSystem.cpp" />
     <ClCompile Include="src\systems\HUDSystem.cpp" />
     <ClCompile Include="src\systems\LevelSelectorSystem.cpp" />
     <ClCompile Include="src\systems\MainControlSystem.cpp" />

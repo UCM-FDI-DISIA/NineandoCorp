@@ -112,6 +112,8 @@ RenderSystem::RenderSystem() : winner_(0)
 	textures[sell_hover] = &sdlutils().images().at("sell_hover");
 	textures[resume_button] = &sdlutils().images().at("resume_button");
 	textures[resume_button_hover] = &sdlutils().images().at("resume_button_hover");
+	textures[resume_icon_button] = &sdlutils().images().at("resume_icon_button");
+	textures[resume_icon_button_hover] = &sdlutils().images().at("resume_icon_button_hover");
 	textures[backToMenu_button] = &sdlutils().images().at("backToMenu_button");
 	textures[backToMenu_button_hover] = &sdlutils().images().at("backToMenu_button_hover");
 	textures[exitGame_button] = &sdlutils().images().at("exitGame_button");
@@ -183,7 +185,7 @@ RenderSystem::RenderSystem() : winner_(0)
 	textures[meteorites] = &sdlutils().images().at("meteorites");
 	textures[earthquake] = &sdlutils().images().at("earthquake");
 	textures[tornado] = &sdlutils().images().at("tornado");
-	textures[tsunami] = &sdlutils().images().at("meteorites");
+	textures[tsunami] = &sdlutils().images().at("tsunami");
 	textures[cloud] = &sdlutils().images().at("cloud");
 	textures[tsunami_icon] = &sdlutils().images().at("tsunami_icon");
 	textures[thunder_icon] = &sdlutils().images().at("storm_icon");

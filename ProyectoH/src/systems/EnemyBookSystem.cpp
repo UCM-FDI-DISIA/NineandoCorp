@@ -12,6 +12,7 @@ EnemyBookSystem::~EnemyBookSystem()
 	mngr_->deleteAllHandlers(_hdlr_BUTTON_ENEMYBOOK);
 }
 void EnemyBookSystem::initSystem() {
+	Vistos = game().getSaveGame()->getEnemiesBook();
 	ButtonSystem* bS = mngr_->getSystem<ButtonSystem>();
 	//BACKGROUND
 	Vector2D pAux = { sdlutils().width() / 2.0f, sdlutils().height() / 2.0f };
@@ -53,8 +54,6 @@ void EnemyBookSystem::initSystem() {
 	// Añadir imágenes de enemigos
 	float spacingX = 120.f; // Espacio horizontal entre las imágenes de enemigos
 	int t = 0;
-	Message M;
-	M.id = _m_ENEMY_BOOK_BUT;
 
 	 auto text = gameTextures::large_box;
 	for (size_t i = 0; i < _enm_SIZE; i++) {
@@ -64,10 +63,9 @@ void EnemyBookSystem::initSystem() {
 		Vector2D sAuxbox = { contentWidth + 15, contentHeight + 15 };
 		if (Vistos[i] == true)
 		{
-			M.start_enemy_book_but.n = i;
 			text = Texturas[i];
 			bS->addImage(pAux, sAuxbox, 0.0, gameTextures::large_box, _grp_HUD_FOREGROUND);
-			bS->addButton(pAux, sAux, text, text, ButtonTypes::enemybook,0 ,M);
+			bS->addButton(pAux, sAux, text, text, ButtonTypes::enemybook);
 			
 		}
 		else {
@@ -89,11 +87,11 @@ void EnemyBookSystem::receive(const Message& m)
 		case _m_ENEMY_BOOK:
 			EnemigoVisto(m.start_enemy_book.n);
 			break;
-		case _m_START_MENU:
-			Vistos = game().getSaveGame()->getEnemiesBook();
-			break;
 	}
 }
 void EnemyBookSystem::EnemigoVisto(enmId_type i) {
 	Vistos[i] = true;
+}
+void EnemyBookSystem::EnemyPopUp(int i) {
+
 }
