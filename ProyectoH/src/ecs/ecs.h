@@ -219,7 +219,8 @@ enum msgId : msgId_type {
 	_m_EXIT_UP_MENU,
 	_m_SAVE_GAME,
 	_m_SELL_TOWER,
-	_m_ENEMY_DIED
+	_m_ENEMY_DIED,
+	_m_ACTIVATE_ATTACK_TOWERS
 };
 
 using twrId_type = uint8_t;
@@ -530,6 +531,10 @@ struct Message {
 	}save_data;
 	//_m_SAVE_GAME
 
+	//_m_ACTIVATE_ATTACK_TOWERS
+	struct {
+		bool setActive;
+	}attack_towers_data;
 	
 };
 

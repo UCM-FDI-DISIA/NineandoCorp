@@ -84,6 +84,7 @@ protected:
 	void eliminateDestroyedTowers(Entity* t);
 	std::vector<Entity*> towers;
 	bool mActive;
+	bool attackTowers;
 	Entity* square;
 
 	std::vector<Entity*> towersToInteract;

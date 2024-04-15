@@ -68,6 +68,8 @@ void TowerSystem::receive(const Message& m) {
 			}
 		}
 		break;
+	case _m_ACTIVATE_ATTACK_TOWERS:
+		attackTowers = m.attack_towers_data.setActive;
 	default:
 		break;
 	}
