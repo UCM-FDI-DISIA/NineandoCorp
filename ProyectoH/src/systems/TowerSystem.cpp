@@ -316,6 +316,7 @@ void TowerSystem::update() {
 								Vector2D spawn = { TR->getPosition()->getX() + offset.getX(),	TR->getPosition()->getY() + offset.getY() };//Punto de spawn de la bala con el offset
 								shootBullet(bt->getTarget(), t, bt->getDamage(), floatAt("BalasVelocidad"), spawn, bulletTexture, { 35, 35 }, _twr_BULLET);//Dispara la bala
 								createBulletExplosion(spawn + Vector2D(-10, -20));
+								sdlutils().soundEffects().at("TorreDeBalasDisparo").setChannelVolume(40);
 								sdlutils().soundEffects().at("TorreDeBalasDisparo").play(0, 3);
 							}
 							if (bt->isMaxLevel()) {//Mejora maxima de la torre de balas: targetear a un segundo enemigo. Funciona igual que el primer targeteo
@@ -424,6 +425,7 @@ void TowerSystem::update() {
 								shootBullet(targetMostHP, t, damage, floatAt("DiegoSniperVelocidad"), spawn, sniperBulletTexture, { 20, 15 }, _twr_DIEGO);
 								createBulletExplosion(spawn + Vector2D(-40, -15));
 								sdlutils().soundEffects().at("TorreDiegoSniperDisparo").setNumberofChannels(20);
+								sdlutils().soundEffects().at("TorreDiegoSniperDisparo").setChannelVolume(20, 19);
 								sdlutils().soundEffects().at("TorreDiegoSniperDisparo").play(0, 19);
 							}
 							ds->setElapsedTime(0);
@@ -474,6 +476,13 @@ void TowerSystem::update() {
 							pt->setIsShooting(false);
 							pt->setElapsedTime(0);
 						}
+
+						/*if (pt->isShooting()) {
+							sdlutils().soundEffects().at("TorreDeLLamaDeFenixDisparo").playFromStart(4);
+						}
+						else {
+							sdlutils().soundEffects().at("TorreDeLLamaDeFenixDisparo").pauseChannel(4);
+						}*/
 					}
 #pragma endregion
 

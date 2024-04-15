@@ -794,6 +794,10 @@
       "file": "resources/sound/Torres/TorreDeLLamaDeFenixDisparo.mp3"
     },
     {
+      "id": "TorreDeLLamaDeFenixRecarga",
+      "file": "resources/sound/Torres/TorreDeLLamaDeFenixRecarga.mp3"
+    },
+    {
       "id": "TorreDiegoSniperDisparo",
       "file": "resources/sound/Torres/TorreDiegoSniperDisparo.mp3"
     },
