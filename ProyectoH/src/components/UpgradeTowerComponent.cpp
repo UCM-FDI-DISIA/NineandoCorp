@@ -36,20 +36,21 @@ void UpgradeTowerComponent::levelUp() {
 	auto pt = mngr_->getComponent<EnhancerTower>(ent_);
 	auto dt = mngr_->getComponent<DirtTower>(ent_);
 	auto h = mngr_->getComponent<HealthComponent>(ent_);
+
+	h->setMaxHealth(h->getMaxHealth() + sdlutils().intConst().at("UpgradeLife"));
+	h->resetHealth();
 	
 	switch (id_) {
 		case _twr_BULLET:			
 			switch (currentLevel_) {
-			case 1:
+			case 2:
 				bt->setDamage(sdlutils().intConst().at("BalasDano1"));
 				break;
-			case 2:
+			case 3:
 				bt->setDamage(sdlutils().intConst().at("BalasDano2"));
 				break;
-			case 3:
-				bt->setDamage(sdlutils().intConst().at("BalasDano3"));
-				break;
 			case 4:
+				bt->setDamage(sdlutils().intConst().at("BalasDano3"));
 				break;
 			default:
 				break;
@@ -61,16 +62,14 @@ void UpgradeTowerComponent::levelUp() {
 		case _twr_SLIME:
 			
 			switch (currentLevel_) {
-			case 1:
+			case 2:
 				st->setTimeToShoot(st->getTimeToShoot() - sdlutils().floatConst().at("SlimeRecargaUpdate"));
 				break;
-			case 2:
+			case 3:
 				st->setSpeedDecrease(sdlutils().floatConst().at("SlimeRalentizacion"));
 				break;
-			case 3:
-				st->setSlimeDuration(st->getDuration() - sdlutils().floatConst().at("SlimeTiempoSlime"));
-				break;
 			case 4:
+				st->setSlimeDuration(st->getDuration() - sdlutils().floatConst().at("SlimeTiempoSlime"));
 				break;
 			default:
 				break;
@@ -79,10 +78,8 @@ void UpgradeTowerComponent::levelUp() {
 		case _twr_DIEGO:
 			
 			switch (currentLevel_) {
-			case 1:
-				ds->setDamage(sdlutils().floatConst().at("DiegoSniperDano1"));
-				break;
 			case 2:
+				ds->setDamage(sdlutils().intConst().at("DiegoSniperDano1"));
 				ds->setCritDamage(sdlutils().floatConst().at("DiegoSniperCritDano1"));
 				ds->setCritProb(sdlutils().floatConst().at("DiegoSniperCritProb1"));
 				break;
@@ -100,10 +97,8 @@ void UpgradeTowerComponent::levelUp() {
 		case _twr_FENIX:
 			
 			switch (currentLevel_) {
-			case 1:
-				ft->setDamage(sdlutils().floatConst().at("FenixDPS1"));
-				break;
 			case 2:
+				ft->setDamage(sdlutils().floatConst().at("FenixDPS1"));
 				ft->setCooling(sdlutils().floatConst().at("FenixEnfriamiento1"));
 				break;
 			case 3:
@@ -126,10 +121,8 @@ void UpgradeTowerComponent::levelUp() {
 		case _twr_POWER:
 			
 			switch (currentLevel_) {
-			case 1:
-				pt->setDamageIncreasePercentage(sdlutils().floatConst().at("PotenciadoraDano1"));
-				break;
 			case 2:
+				pt->setDamageIncreasePercentage(sdlutils().floatConst().at("PotenciadoraDano1"));
 				pt->setTowersHPboost(sdlutils().floatConst().at("PotenciadoraAumentoVida"));
 				break;
 			case 3:
