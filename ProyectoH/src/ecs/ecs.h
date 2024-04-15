@@ -467,6 +467,7 @@ struct Message {
 		Entity* e;
 		float damage;
 		hdlrId targetId;
+		hdlrId srcId;
 	} entity_to_attack;
 	// _m_TOWER_TO_ATTACK
 	struct {

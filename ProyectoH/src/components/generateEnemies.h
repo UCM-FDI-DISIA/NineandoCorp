@@ -9,6 +9,7 @@
 #include "..//components/FramedImage.h"
 #include "..//components/MaestroAlmasComponent.h"
 #include "..//components/MensajeroMuerteComponent.h"
+#include "..//components/MonjeComponent.h"
 #include "..//components/CaballeroMalditoComponent.h"
 #include "..//components/AcechanteComponent.h"
 #include "..//components/GolemComponent.h"

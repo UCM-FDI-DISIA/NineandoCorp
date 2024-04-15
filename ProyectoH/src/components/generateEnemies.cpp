@@ -288,6 +288,7 @@ void generateEnemies::addEnemy(enmId type, std::vector<Vector2D> route) {
 		mngr_->addComponent<AttackComponent>(t, 100, 1, 75, false);
 		mngr_->addComponent<FramedImage>(t, 8, 1, 150, 150, 0, 8, 7);
 		mngr_->addComponent<EnemyTypeComponent>(t, _enm_MONJE);
+		mngr_->addComponent<MonjeComponent>(t,10.0f,2.5f);
 		M.start_enemy_book.n = 14;
 		mngr_->send(M);
 		break;
