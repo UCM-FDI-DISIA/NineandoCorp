@@ -462,6 +462,8 @@ void TowerSystem::update() {
 						else if (pt->getRotation() == 180.0f) offset = Vector2D(floatAt("FireOffset180X"), floatAt("FireOffset180X"));
 						else if (pt->getRotation() == 0.0f)offset = Vector2D(floatAt("FireOffset0X"), floatAt("FireOffset0Y"));
 						else if (pt->getRotation() == 270.0f) offset = Vector2D(floatAt("FireOffset270X"), floatAt("FireOffset270Y"));
+						int level = mngr_->getComponent<UpgradeTowerComponent>(t)->getLevel() - 1;
+						auto fi = mngr_->getComponent<FramedImage>(t);
 						if (pt->getFire() != nullptr) {
 							Transform* fTR = mngr_->getComponent<Transform>(pt->getFire());
 							fTR->setPosition(Vector2D(spawn.getX() + offset.getX(), spawn.getY() + offset.getY()));
@@ -471,11 +473,13 @@ void TowerSystem::update() {
 							pt->setFire(shootFire(Vector2D(spawn.getX() + offset.getX(), spawn.getY() + offset.getY()), pt->getRotation(), pt->getDamage(), t));
 							pt->setIsShooting(true);
 							pt->setElapsedTime(0);
+							fi->setCurrentFrame(level);
 						}
 						if (pt->isShooting() && pt->getElapsedTime() > pt->getShootingTime()) {
 							if (pt->getFire() != nullptr)pt->removeFire();
 							pt->setIsShooting(false);
 							pt->setElapsedTime(0);
+							fi->setCurrentFrame(level + 4);
 						}
 
 						/*if (pt->isShooting()) {
