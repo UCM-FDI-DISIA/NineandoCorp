@@ -11,7 +11,6 @@ public:
 
 	~PhoenixTower();
 
-	void levelUp(int level);
 	void targetEnemy(const std::list<Entity*>& targetGroup);
 
 	bool isMaxLevel() const { return isMaxLevel_; }

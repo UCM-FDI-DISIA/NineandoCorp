@@ -7,24 +7,6 @@ PhoenixTower::~PhoenixTower() {
 	//mngr_->setAlive(fire_, false);
 }
 
-void PhoenixTower::levelUp(int level) {
-	switch (level) {
-	case 1:
-		damage_ = sdlutils().floatConst().at("FenixDPS1");
-		break;
-	case 2:
-		coolingTime_ = sdlutils().floatConst().at("FenixEnfriamiento1");
-		break;
-	case 3:
-		damage_ = sdlutils().floatConst().at("FenixDPS2");
-		coolingTime_ = sdlutils().floatConst().at("FenixEnfriamiento2");
-		break;
-	case 4:
-		coolingTime_ = sdlutils().floatConst().at("FenixEnfriamientoCero");
-		//Falta anadir la opcion de aumentar el rango del fuego
-		break;
-	}
-}
 
 void PhoenixTower::targetEnemy(const std::list<Entity*>& targetGroup) {
 	if (target_ == nullptr) {//Si no hay enemigo targeteado se busca uno

@@ -25,23 +25,23 @@ void UpgradeTowerComponent::levelUp() {
 
 		tr->setPosition(*tr->getPosition() - adjustOffset);
 		currentLevel_++;
-	}
-	if (currentLevel_ == 0) { currentLevel_ = 1; }
 
-	auto bt = mngr_->getComponent<BulletTower>(ent_);
-	auto ct = mngr_->getComponent<CrystalTower>(ent_);
-	auto st = mngr_->getComponent<SlimeTowerComponent>(ent_);
-	auto ds = mngr_->getComponent<DiegoSniperTower>(ent_);
-	auto ft = mngr_->getComponent<PhoenixTower>(ent_);
-	auto pt = mngr_->getComponent<EnhancerTower>(ent_);
-	auto dt = mngr_->getComponent<DirtTower>(ent_);
-	auto h = mngr_->getComponent<HealthComponent>(ent_);
+		if (currentLevel_ == 0) { currentLevel_ = 1; }
 
-	h->setMaxHealth(h->getMaxHealth() + sdlutils().intConst().at("UpgradeLife"));
-	h->resetHealth();
-	
-	switch (id_) {
-		case _twr_BULLET:			
+		auto bt = mngr_->getComponent<BulletTower>(ent_);
+		auto ct = mngr_->getComponent<CrystalTower>(ent_);
+		auto st = mngr_->getComponent<SlimeTowerComponent>(ent_);
+		auto ds = mngr_->getComponent<DiegoSniperTower>(ent_);
+		auto ft = mngr_->getComponent<PhoenixTower>(ent_);
+		auto pt = mngr_->getComponent<EnhancerTower>(ent_);
+		auto dt = mngr_->getComponent<DirtTower>(ent_);
+		auto h = mngr_->getComponent<HealthComponent>(ent_);
+
+		h->setMaxHealth(h->getMaxHealth() + sdlutils().intConst().at("UpgradeLife"));
+		h->resetHealth();
+
+		switch (id_) {
+		case _twr_BULLET:
 			switch (currentLevel_) {
 			case 2:
 				bt->setDamage(sdlutils().intConst().at("BalasDano1"));
@@ -56,11 +56,11 @@ void UpgradeTowerComponent::levelUp() {
 				break;
 			}
 			break;
-		case _twr_CRISTAL:			
+		case _twr_CRISTAL:
 			ct->setShieldVal(ct->getShieldVal() + sdlutils().floatConst().at("CristalEscudo1"));
 			break;
 		case _twr_SLIME:
-			
+
 			switch (currentLevel_) {
 			case 2:
 				st->setTimeToShoot(st->getTimeToShoot() - sdlutils().floatConst().at("SlimeRecargaUpdate"));
@@ -76,7 +76,7 @@ void UpgradeTowerComponent::levelUp() {
 			}
 			break;
 		case _twr_DIEGO:
-			
+
 			switch (currentLevel_) {
 			case 2:
 				ds->setDamage(sdlutils().intConst().at("DiegoSniperDano1"));
@@ -95,7 +95,7 @@ void UpgradeTowerComponent::levelUp() {
 			}
 			break;
 		case _twr_FENIX:
-			
+
 			switch (currentLevel_) {
 			case 2:
 				ft->setDamage(sdlutils().floatConst().at("FenixDPS1"));
@@ -111,15 +111,15 @@ void UpgradeTowerComponent::levelUp() {
 				break;
 			default:
 				break;
-			}	
+			}
 			break;
 		case _twr_CLAY:
-			
+
 			h->setMaxHealth(sdlutils().floatConst().at("ArcillaVida" + to_string((int)currentLevel_)));
 			h->resetHealth();
 			break;
 		case _twr_POWER:
-			
+
 			switch (currentLevel_) {
 			case 2:
 				pt->setDamageIncreasePercentage(sdlutils().floatConst().at("PotenciadoraDano1"));
@@ -138,5 +138,6 @@ void UpgradeTowerComponent::levelUp() {
 			break;
 		default:
 			break;
+		}
 	}
 }
