@@ -8,7 +8,7 @@ SaveGame::SaveGame() : levelsUnlocked_(8), HCoins_(0) {
 	std::fill_n(enemiesBook_, _enm_SIZE, false); 
 	//std::fill_n(enemiesBook_, _twr_SIZE, 4); //Sustituir esto por lo de abajo para tener todas las torretas desbloqueadas
 	for (int i = 0; i < _twr_SIZE; i++) {
-		if (i == _twr_CLAY || i == _twr_BULLET)
+		if (i == _twr_CLAY || i == _twr_BULLET || i == _twr_NEXUS)
 			turretsLevel_[i] = 1;
 		else
 			turretsLevel_[i] = 0;

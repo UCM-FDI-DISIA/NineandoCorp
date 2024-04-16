@@ -356,7 +356,7 @@ void HUDSystem::receive(const Message& m) {
 		}
 		break;
 	case _m_UPGRADE_TWR_INGAME: 
-		if (mngr_->getComponent<UpgradeTowerComponent>(m.upgrade_twr_ingame_data.upCmp)->isMaxLeveled()) {
+		if (mngr_->getComponent<UpgradeTowerComponent>(m.upgrade_twr_ingame_data.upCmp)->isMaxLeveled() && mngr_->getComponent<UpgradeTowerComponent>(m.upgrade_twr_ingame_data.upCmp)->getLevel() == 4) {
 			mngr_->getComponent<TextComponent>(upM_.lvlText)->changeText("MAX.");
 			mngr_->getComponent<Transform>(upM_.lvlText)->getScale()->setX(60.0f);
 		}
@@ -551,7 +551,7 @@ void HUDSystem::showUpgradeMenu(Entity* twr, const Vector2D& pos) {
 
 		//Comprobacion de nivel para nivel maximo
 	std::string lvltxt;
-	if (upCmp->isMaxLeveled()) { 
+	if (upCmp->isMaxLeveled() && upCmp->getLevel() == 4) { 
 		lvlScale2 = { 60.0f, 35.0f };
 		lvltxt = "MAX."; 
 	}

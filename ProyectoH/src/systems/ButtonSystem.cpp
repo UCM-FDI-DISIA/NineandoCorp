@@ -37,11 +37,11 @@ void ButtonSystem::receive(const Message& m){
 	switch (m.id) {
 	case _m_ADD_MONEY:
 		money_ += m.money_data.money;
-		updateText();
+		updateText(money_);
 		break;
 	case _m_SELL_TOWER:
 		money_ += m.sell_tower_data.money;
-		updateText();
+		updateText(money_);
 		break;
 	case _m_START_MENU:
 		HMoney_ = m.money_data.money;
@@ -207,43 +207,43 @@ void ButtonSystem::managePauseButtons() {
 		/*--- MEJORAS DEL MENU ---*/
 		case upgrade_nexus:
 			lvl = game().getSaveGame()->getTurretsLevels()[_twr_NEXUS];
-			if( lvl < 4)
-				upgradeTower(_twr_NEXUS, "precioNexusLvl" + std::to_string(lvl));
+			if( lvl < towerLevelMax)
+				upgradeTower(_twr_NEXUS, "precioHNexoLvl" + std::to_string(lvl));
 			break;
 		case upgrade_crystal_main:
 			lvl = game().getSaveGame()->getTurretsLevels()[_twr_CRISTAL];
-			if (lvl < 4)
-				upgradeTower(_twr_CRISTAL, "precioCristalLvl" + std::to_string(lvl));
+			if (lvl < towerLevelMax)
+				upgradeTower(_twr_CRISTAL, "precioHCristalLvl" + std::to_string(lvl));
 			break;
 		case upgrade_slime_main:
 			lvl = game().getSaveGame()->getTurretsLevels()[_twr_SLIME];
-			if (lvl < 4)
-				upgradeTower(_twr_SLIME, "precioSlimeLvl" + std::to_string(lvl));
+			if (lvl < towerLevelMax)
+				upgradeTower(_twr_SLIME, "precioHSlimeLvl" + std::to_string(lvl));
 			break;
 		case upgrade_bullet_main:
 			lvl = game().getSaveGame()->getTurretsLevels()[_twr_BULLET];
-			if (lvl < 4)
-				upgradeTower(_twr_BULLET, "precioBalasLvl" + std::to_string(lvl));
+			if (lvl < towerLevelMax)
+				upgradeTower(_twr_BULLET, "precioHBalasLvl" + std::to_string(lvl));
 			break;
 		case upgrade_sniper_main:
 			lvl = game().getSaveGame()->getTurretsLevels()[_twr_DIEGO];
-			if (lvl < 4)
-				upgradeTower(_twr_DIEGO, "precioDiegoLvl" + std::to_string(lvl));
+			if (lvl < towerLevelMax)
+				upgradeTower(_twr_DIEGO, "precioHDiegoLvl" + std::to_string(lvl));
 			break;
 		case upgrade_fenix_main:
 			lvl = game().getSaveGame()->getTurretsLevels()[_twr_FENIX];
-			if (lvl < 4)
-				upgradeTower(_twr_FENIX, "precioFenixLvl" + std::to_string(lvl));
+			if (lvl < towerLevelMax)
+				upgradeTower(_twr_FENIX, "precioHFenixLvl" + std::to_string(lvl));
 			break;
 		case upgrade_clay_main:
 			lvl = game().getSaveGame()->getTurretsLevels()[_twr_CLAY];
-			if (lvl < 4)
-				upgradeTower(_twr_CLAY, "precioArcillaLvl" + std::to_string(lvl));
+			if (lvl < towerLevelMax)
+				upgradeTower(_twr_CLAY, "precioHArcillaLvl" + std::to_string(lvl));
 			break;
 		case upgrade_enhancer_main:
 			lvl = game().getSaveGame()->getTurretsLevels()[_twr_POWER];
-			if (lvl < 4)
-				upgradeTower(_twr_POWER, "precioPotenciadoraLvl" + std::to_string(lvl));
+			if (lvl < towerLevelMax)
+				upgradeTower(_twr_POWER, "precioHPotenciadoraLvl" + std::to_string(lvl));
 			break;
 
 
@@ -347,7 +347,7 @@ void ButtonSystem::managePauseButtons() {
 	void ButtonSystem::upgradeTower(twrId t, string idPrecioJSON) {
 		if (HMoney_ - sdlutils().intConst().at(idPrecioJSON) >= 0) {
 			HMoney_ -= sdlutils().intConst().at(idPrecioJSON);
-			updateText();
+			updateText(HMoney_);
 			game().getSaveGame()->setHCoins(HMoney_);
 			Message m;
 			m.id = _m_UPGRADE_TOWER;
@@ -429,8 +429,8 @@ Entity* ButtonSystem::addText(const string& txt, const SDL_Color& color, const V
 	return text;
 }
 
-void ButtonSystem::updateText() {
-	mngr_->getComponent<TextComponent>(moneyText_)->changeText(std::to_string(money_));
+void ButtonSystem::updateText(int money) {
+	mngr_->getComponent<TextComponent>(moneyText_)->changeText(std::to_string(money));
 }
 
 void ButtonSystem::generateHMoneyText() {

@@ -847,159 +847,159 @@
 
   "intConst": [
     {
-      "id": "NexoMejora1MonedasH",
+      "id": "precioHNexoLvl1",
       "value": 50
     },
     {
-      "id": "NexoMejora2MonedasH",
+      "id": "precioHNexoLvl2",
       "value": 150
     },
     {
-      "id": "NexoMejora3MonedasH",
+      "id": "precioHNexoLvl3",
       "value": 350
     },
     {
-      "id": "NexoMejora4MonedasH",
+      "id": "precioHNexoLvl4",
       "value": 1000
     },
     {
-      "id": "BalasDesbloqueoMonedasH",
+      "id": "precioHBalasLvl0",
       "value": 0
     },
     {
-      "id": "BalasMejora1MonedasH",
+      "id": "precioHBalasLvl1",
       "value": 50
     },
     {
-      "id": "BalasMejora2MonedasH",
+      "id": "precioHBalasLvl2",
       "value": 100
     },
     {
-      "id": "BalasMejora3MonedasH",
+      "id": "precioHBalasLvl3",
       "value": 250
     },
     {
-      "id": "BalasMejora4MonedasH",
+      "id": "precioHBalasLvl4",
       "value": 500
     },
     {
-      "id": "ArcillaDesbloqueoMonedasH",
+      "id": "precioHArcillaLvl0",
       "value": 0
     },
     {
-      "id": "ArcillaMejora1MonedasH",
+      "id": "precioHArcillaLvl1",
       "value": 50
     },
     {
-      "id": "ArcillaMejora2MonedasH",
+      "id": "precioHArcillaLvl2",
       "value": 100
     },
     {
-      "id": "ArcillaMejora3MonedasH",
+      "id": "precioHArcillaLvl3",
       "value": 250
     },
     {
-      "id": "ArcillaMejora4MonedasH",
+      "id": "precioHArcillaLvl4",
       "value": 500
     },
     {
-      "id": "SniperDesbloqueoMonedasH",
+      "id": "precioHDiegoLvl0",
       "value": 100
     },
     {
-      "id": "SniperMejora1MonedasH",
+      "id": "precioHDiegoLvl1",
       "value": 50
     },
     {
-      "id": "SniperMejora2MonedasH",
+      "id": "precioHDiegoLvl2",
       "value": 150
     },
     {
-      "id": "SniperMejora3MonedasH",
+      "id": "precioHDiegoLvl3",
       "value": 350
     },
     {
-      "id": "SniperMejora4MonedasH",
+      "id": "precioHDiegoLvl4",
       "value": 1000
     },
     {
-      "id": "SlimeDesbloqueoMonedasH",
+      "id": "precioHSlimeLvl0",
       "value": 300
     },
     {
-      "id": "SlimeMejora1MonedasH",
+      "id": "precioHSlimeLvl1",
       "value": 50
     },
     {
-      "id": "SlimeMejora2MonedasH",
+      "id": "precioHSlimeLvl2",
       "value": 150
     },
     {
-      "id": "SlimeMejora3MonedasH",
+      "id": "precioHSlimeLvl3",
       "value": 350
     },
     {
-      "id": "SlimeMejora4MonedasH",
+      "id": "precioHSlimeLvl4",
       "value": 1000
     },
     {
-      "id": "LLamaFenixDesbloqueoMonedasH",
+      "id": "precioHFenixLvl0",
       "value": 300
     },
     {
-      "id": "LLamaFenixMejora1MonedasH",
+      "id": "precioHFenixLvl1",
       "value": 50
     },
     {
-      "id": "LLamaFenixMejora2MonedasH",
+      "id": "precioHFenixLvl2",
       "value": 150
     },
     {
-      "id": "LLamaFenixMejora3MonedasH",
+      "id": "precioHFenixLvl3",
       "value": 350
     },
     {
-      "id": "LLamaFenixMejora4MonedasH",
+      "id": "precioHFenixLvl4",
       "value": 1000
     },
     {
-      "id": "CristalDesbloqueoMonedasH",
+      "id": "precioHCristalLvl0",
       "value": 500
     },
     {
-      "id": "CristalMejora1MonedasH",
+      "id": "precioHCristalLvl1",
       "value": 50
     },
     {
-      "id": "CristalMejora2MonedasH",
+      "id": "precioHCristalLvl2",
       "value": 150
     },
     {
-      "id": "CristalMejora3MonedasH",
+      "id": "precioHCristalLvl3",
       "value": 350
     },
     {
-      "id": "CristalMejora4MonedasH",
+      "id": "precioHCristalLvl4",
       "value": 1000
     },
     {
-      "id": "PotenciadoraDesbloqueoMonedasH",
+      "id": "precioHPotenciadoraLvl0",
       "value": 800
     },
     {
-      "id": "PotenciadoraMejora1MonedasH",
+      "id": "precioHPotenciadoraLvl1",
       "value": 50
     },
     {
-      "id": "PotenciadoraMejora2MonedasH",
+      "id": "precioHPotenciadoraLvl2",
       "value": 150
     },
     {
-      "id": "PotenciadoraMejora3MonedasH",
+      "id": "precioHPotenciadoraLvl3",
       "value": 350
     },
     {
-      "id": "PotenciadoraMejora4MonedasH",
+      "id": "precioHPotenciadoraLvl4",
       "value": 1000
     },
     {

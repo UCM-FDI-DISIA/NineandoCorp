@@ -110,7 +110,7 @@ private:
 	/// <summary>
 	/// Actualiza la textura con el texto de las monedas a las monedas actuales
 	/// </summary>
-	void updateText();
+	void updateText(int money);
 
 	/// <summary>
 	/// Funcion que realiza el mensaje START_GAME
@@ -132,6 +132,7 @@ private:
 	int money_;
 	int HMoney_;
 	int costs[_twr_SIZE];
+	int const towerLevelMax = 5;
 	Entity* moneyText_;
 };
 
