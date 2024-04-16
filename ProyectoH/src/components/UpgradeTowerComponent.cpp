@@ -115,7 +115,7 @@ void UpgradeTowerComponent::levelUp() {
 			break;
 		case _twr_CLAY:
 
-			h->setMaxHealth(sdlutils().floatConst().at("ArcillaVida" + to_string((int)currentLevel_)));
+			h->setMaxHealth(sdlutils().floatConst().at("ArcillaVida" + to_string((int)currentLevel_ - 1)));
 			h->resetHealth();
 			break;
 		case _twr_POWER:
