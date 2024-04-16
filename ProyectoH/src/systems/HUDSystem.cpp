@@ -609,6 +609,11 @@ void HUDSystem::exitUpgradeMenu() {
 	mngr_->deleteHandler(hId, upM_.upgradeButton);
 	mngr_->deleteHandler(hId, upM_.background);
 	mngr_->deleteHandler(hId, upM_.range);
+	mngr_->deleteHandler(hId, upM_.damageText);
+	mngr_->deleteHandler(hId, upM_.reloadText);
+	mngr_->deleteHandler(hId, upM_.hpText);
+	mngr_->deleteHandler(hId, upM_.twrLvl);
+	mngr_->deleteHandler(hId, upM_.lvlText);
 
 	tower_ = nullptr;
 
