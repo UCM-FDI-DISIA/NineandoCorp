@@ -420,6 +420,7 @@ void ButtonSystem::showTempText(string txt, const SDL_Color& color, const Vector
 Entity* ButtonSystem::addText(const string& txt, const SDL_Color& color, const Vector2D& pos, const Vector2D& scale)
 {
 	Entity* text = mngr_->addEntity(_grp_TEXTS);
+	mngr_->setHandler(hdlr_but_id, text);
 	Transform* tr = mngr_->addComponent<Transform>(text);
 	tr->setScale(scale);
 	Vector2D aux = tr->getScale();

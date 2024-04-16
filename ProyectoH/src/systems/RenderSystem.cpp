@@ -194,6 +194,9 @@ RenderSystem::RenderSystem() : winner_(0)
 	textures[meteorite_icon] = &sdlutils().images().at("meteorite_icon");
 	textures[rangeCircle] = &sdlutils().images().at("range_circle");
 
+	//texts
+	textures[general_text] = &sdlutils().msgs().at("general_text");
+	textures[sounds_text] = &sdlutils().msgs().at("sounds_text");
 }
 
 

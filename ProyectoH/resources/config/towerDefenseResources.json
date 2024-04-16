@@ -769,6 +769,18 @@
     "text": "Proyecto H Defense",
     "font": "ARIAL_ROUNDED",
     "color": "0xffffffff"
+   },
+   {
+    "id": "general_text",
+    "text": "GENERAL",
+    "font": "ARIAL_ROUNDED",
+    "color": "0xffffffff"
+   },
+   {
+    "id": "sounds_text",
+    "text": "SOUNDS",
+    "font": "ARIAL_ROUNDED",
+    "color": "0xffffffff"
    }
   ],
 

@@ -15,5 +15,5 @@ public:
 
 	void initSystem() override;
 	void update() override {};
-};
+	};
 
