@@ -113,8 +113,6 @@ private:
 
 	void enableAllButtons(bool t);
 
-	void updateTowerInfo();
-
 	// Espacio designado para los botones de compra de las torres
 	float buttonsSpace_length_; 
 	float infoSpace_length_;
@@ -123,7 +121,5 @@ private:
 
 	//ofset de la camara al renderizar
 	SDL_Rect* cameraOffset_;
-
-	Entity* tower_;
 };
 
