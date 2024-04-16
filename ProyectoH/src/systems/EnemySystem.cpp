@@ -74,7 +74,6 @@ void  EnemySystem::receive(const Message& m) {
 				HealthComponent* h = mngr_->getComponent<HealthComponent>(m.entity_to_attack.e);
 				if (h->getHealth() - m.entity_to_attack.damage <= 0) {
 					auto enemytype = mngr_->getComponent<EnemyTypeComponent>(m.entity_to_attack.e);
-					AddMoney(enemytype->GetEnemyType(), level);
 					Message m1;
 					m1.id = _m_ENEMY_DIED;
 					m1.return_entity.ent = m.entity_to_attack.e;
