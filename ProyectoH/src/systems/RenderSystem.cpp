@@ -347,7 +347,7 @@ void RenderSystem::update() {
 		textures[textureId]->render(srcRect, trRect, tr->getRotation());
 	}
 
-	auto& naturalEffects = mngr_->getEntities(_grp_NATURALS_EFFECTS);
+	auto& naturalEffects = mngr_->getEntities(_grp_NATURALS_EFFECTS_LOW);
 	sort(naturalEffects.begin(), naturalEffects.end(), cmpIsometricY(mngr_));
 	for (auto& t : naturalEffects) {
 		Transform* tr = mngr_->getComponent<Transform>(t);
@@ -386,6 +386,25 @@ void RenderSystem::update() {
 		trRect.y += offset->y;
 		SDL_RendererFlip flip = mngr_->getComponent<RenderComponent>(t)->getFlip();
 		if (fi != nullptr)textures[textureId]->render(srcRect, trRect, tr->getRotation(), nullptr,flip);
+		else textures[textureId]->render(trRect, tr->getRotation());
+	}
+
+	auto& naturalEffectsHigh = mngr_->getEntities(_grp_NATURALS_EFFECTS_HIGH);
+	sort(naturalEffectsHigh.begin(), naturalEffectsHigh.end(), cmpIsometricY(mngr_));
+	for (auto& t : naturalEffectsHigh) {
+		Transform* tr = mngr_->getComponent<Transform>(t);
+		gameTextures textureId = mngr_->getComponent<RenderComponent>(t)->getTexture();
+		SDL_Rect srcRect;
+		FramedImage* fi = mngr_->getComponent<FramedImage>(t);
+		if (mActive) {
+			fi->updateCurrentFrame();
+		}
+		if (fi != nullptr)srcRect = fi->getSrcRect();
+		SDL_Rect trRect = tr->getRect();
+		trRect.x += offset->x;
+		trRect.y += offset->y;
+		SDL_RendererFlip flip = mngr_->getComponent<RenderComponent>(t)->getFlip();
+		if (fi != nullptr)textures[textureId]->render(srcRect, trRect, tr->getRotation(), nullptr, flip);
 		else textures[textureId]->render(trRect, tr->getRotation());
 	}
 

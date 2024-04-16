@@ -67,6 +67,15 @@ void TowerSystem::receive(const Message& m) {
 				bc->onTravelEnds(); 
 			}
 		}
+		for (auto& t: towers)
+		{
+			auto bt = mngr_->getComponent<BulletTower>(t);
+			auto ds = mngr_->getComponent<DiegoSniperTower>(t);
+			auto st = mngr_->getComponent<SlimeTowerComponent>(t);
+			if (bt != nullptr && bt->getTarget() == m.return_entity.ent) { bt->setTarget(nullptr); }
+			else if (ds != nullptr && ds->getTarget() == m.return_entity.ent) { ds->setTarget(nullptr); }
+			else if (st != nullptr && st->getTarget() == m.return_entity.ent) { st->setTarget(nullptr); }
+		}
 		break;
 	default:
 		break;
@@ -570,14 +579,17 @@ void TowerSystem::enableAllInteractiveTowers(bool b) {
 }
 
 Entity* TowerSystem::shootBullet(Entity* target, Entity* src ,float damage, float speed, Vector2D spawnPos, gameTextures texture, Vector2D bulletScale, twrId id,hdlrId srcId) {
-	Entity* bullet = mngr_->addEntity(_grp_BULLETS);//crea bala
-	Transform* t = mngr_->addComponent<Transform>(bullet);//transform
-	t->setPosition(spawnPos);
-	t->setScale(bulletScale);
-	mngr_->addComponent<BulletComponent>(bullet, t, target, src, damage, speed,srcId);//bullet component
-	mngr_->addComponent<RenderComponent>(bullet, texture);//habra que hacer switch
-	return bullet;
-}
+	if (target != nullptr && mngr_->isAlive(target)) {
+		Entity* bullet = mngr_->addEntity(_grp_BULLETS);//crea bala
+		Transform* t = mngr_->addComponent<Transform>(bullet);//transform
+		t->setPosition(spawnPos);
+		t->setScale(bulletScale);
+		mngr_->addComponent<BulletComponent>(bullet, t, target, src, damage, speed, srcId);//bullet component
+		mngr_->addComponent<RenderComponent>(bullet, texture);//habra que hacer 
+		return bullet;
+	}
+}	
+	
 
 Entity* TowerSystem::shootFire(Vector2D spawnPos, float rot, float dmg, Entity* src) {
 	Entity* fire = mngr_->addEntity(_grp_AREAOFATTACK);

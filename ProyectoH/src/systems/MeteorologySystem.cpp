@@ -204,7 +204,7 @@ void MeteorologySystem::generateAnimEarthquake() {
 		Message m;
 		m.id = _m_ANIM_CREATE;
 		m.anim_create.animSpeed = 3;
-		m.anim_create.idGrp = _grp_NATURALS_EFFECTS;
+		m.anim_create.idGrp = _grp_NATURALS_EFFECTS_LOW;
 		m.anim_create.iterationsToDelete = 4;
 		m.anim_create.scale = { 200, 100 };
 		m.anim_create.cols = 3;
@@ -238,7 +238,7 @@ void MeteorologySystem::generateMeteorite() {
 	Message m;
 	m.id = _m_ANIM_CREATE;
 	m.anim_create.animSpeed = 9;
-	m.anim_create.idGrp = _grp_NATURALS_EFFECTS;
+	m.anim_create.idGrp = _grp_NATURALS_EFFECTS_HIGH;
 	m.anim_create.iterationsToDelete = 1;
 	m.anim_create.scale = { 200, 200 };
 	m.anim_create.cols = 4;
@@ -275,7 +275,7 @@ void MeteorologySystem::generateThunder() {
 	Message m;
 	m.id = _m_ANIM_CREATE;
 	m.anim_create.animSpeed = 4;
-	m.anim_create.idGrp = _grp_NATURALS_EFFECTS;
+	m.anim_create.idGrp = _grp_NATURALS_EFFECTS_HIGH;
 	m.anim_create.iterationsToDelete = 1;
 	m.anim_create.scale = { 200, 300 };
 	m.anim_create.cols = 1;
@@ -297,7 +297,7 @@ void MeteorologySystem::generateAnimTornado() {
 	Message m;
 	m.id = _m_ANIM_CREATE;
 	m.anim_create.animSpeed = 4;
-	m.anim_create.idGrp = _grp_NATURALS_EFFECTS;
+	m.anim_create.idGrp = _grp_NATURALS_EFFECTS_HIGH;
 	m.anim_create.iterationsToDelete = 47;
 	m.anim_create.scale = { 200, 300 };
 	m.anim_create.cols = 24;
@@ -331,7 +331,7 @@ void MeteorologySystem::generateTsunami() {
 		Message m;
 		m.id = _m_ANIM_CREATE;
 		m.anim_create.animSpeed = 9;
-		m.anim_create.idGrp = _grp_NATURALS_EFFECTS;
+		m.anim_create.idGrp = _grp_NATURALS_EFFECTS_LOW;
 		m.anim_create.iterationsToDelete = 1;
 		m.anim_create.scale = { 200, 200 };
 		m.anim_create.cols = 5;
