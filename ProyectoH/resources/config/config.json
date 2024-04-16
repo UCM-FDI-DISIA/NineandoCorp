@@ -847,6 +847,162 @@
 
   "intConst": [
     {
+      "id": "NexoMejora1MonedasH",
+      "value": 50
+    },
+    {
+      "id": "NexoMejora2MonedasH",
+      "value": 150
+    },
+    {
+      "id": "NexoMejora3MonedasH",
+      "value": 350
+    },
+    {
+      "id": "NexoMejora4MonedasH",
+      "value": 1000
+    },
+    {
+      "id": "BalasDesbloqueoMonedasH",
+      "value": 0
+    },
+    {
+      "id": "BalasMejora1MonedasH",
+      "value": 50
+    },
+    {
+      "id": "BalasMejora2MonedasH",
+      "value": 100
+    },
+    {
+      "id": "BalasMejora3MonedasH",
+      "value": 250
+    },
+    {
+      "id": "BalasMejora4MonedasH",
+      "value": 500
+    },
+    {
+      "id": "ArcillaDesbloqueoMonedasH",
+      "value": 0
+    },
+    {
+      "id": "ArcillaMejora1MonedasH",
+      "value": 50
+    },
+    {
+      "id": "ArcillaMejora2MonedasH",
+      "value": 100
+    },
+    {
+      "id": "ArcillaMejora3MonedasH",
+      "value": 250
+    },
+    {
+      "id": "ArcillaMejora4MonedasH",
+      "value": 500
+    },
+    {
+      "id": "SniperDesbloqueoMonedasH",
+      "value": 100
+    },
+    {
+      "id": "SniperMejora1MonedasH",
+      "value": 50
+    },
+    {
+      "id": "SniperMejora2MonedasH",
+      "value": 150
+    },
+    {
+      "id": "SniperMejora3MonedasH",
+      "value": 350
+    },
+    {
+      "id": "SniperMejora4MonedasH",
+      "value": 1000
+    },
+    {
+      "id": "SlimeDesbloqueoMonedasH",
+      "value": 300
+    },
+    {
+      "id": "SlimeMejora1MonedasH",
+      "value": 50
+    },
+    {
+      "id": "SlimeMejora2MonedasH",
+      "value": 150
+    },
+    {
+      "id": "SlimeMejora3MonedasH",
+      "value": 350
+    },
+    {
+      "id": "SlimeMejora4MonedasH",
+      "value": 1000
+    },
+    {
+      "id": "LLamaFenixDesbloqueoMonedasH",
+      "value": 300
+    },
+    {
+      "id": "LLamaFenixMejora1MonedasH",
+      "value": 50
+    },
+    {
+      "id": "LLamaFenixMejora2MonedasH",
+      "value": 150
+    },
+    {
+      "id": "LLamaFenixMejora3MonedasH",
+      "value": 350
+    },
+    {
+      "id": "LLamaFenixMejora4MonedasH",
+      "value": 1000
+    },
+    {
+      "id": "CristalDesbloqueoMonedasH",
+      "value": 500
+    },
+    {
+      "id": "CristalMejora1MonedasH",
+      "value": 50
+    },
+    {
+      "id": "CristalMejora2MonedasH",
+      "value": 150
+    },
+    {
+      "id": "CristalMejora3MonedasH",
+      "value": 350
+    },
+    {
+      "id": "CristalMejora4MonedasH",
+      "value": 1000
+    },
+    {
+      "id": "PotenciadoraDesbloqueoMonedasH",
+      "value": 800
+    },
+    {
+      "id": "PotenciadoraMejora1MonedasH",
+      "value": 50
+    },
+    {
+      "id": "PotenciadoraMejora2MonedasH",
+      "value": 150
+    },
+    {
+      "id": "PotenciadoraMejora3MonedasH",
+      "value": 350
+    },
+    {
+      "id": "PotenciadoraMejora4MonedasH",
+      "value": 1000
+    },
+    {
       "id": "MALMASmoney",
       "value": 30
     },
