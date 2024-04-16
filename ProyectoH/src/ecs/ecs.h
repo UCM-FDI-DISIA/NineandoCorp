@@ -86,6 +86,7 @@ enum hdlrId : hdlrId_type {
 	_hdlr_BUTTON_LVLSEL,
 	_hdlr_BUTTON_ENEMYBOOK,
 	_hdlr_BUTTON_GAMEOVER,
+	_hdlr_BUTTON_CONFIG,
 	_hdlr_BUTTON_PLAY,
 	_hdlr_PARTICLES,
 	_hdlr_ICONS,
@@ -125,7 +126,7 @@ enum gmSttId : gmSttId_type {
 	_gmStt_MAINMENU,
 	_gmStt_LEVELSELECTOR,
 	_gmStt_ENEMYBOOK,
-
+	_gmStt_CONFIG,
 	// do not remove this
 	_LAST_GMSTT_ID
 };
@@ -192,6 +193,7 @@ enum msgId : msgId_type {
 	_m_OVER_GAME,
 	_m_LEVEL_SELECTOR,
 	_m_ENEMY_BOOK,
+	_m_CONFIG,
 	_m_ENEMY_BOOK_BUT,
 	_m_UPGRADE_TOWER,
 	_m_BACK_TO_MAINMENU,

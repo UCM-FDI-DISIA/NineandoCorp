@@ -126,7 +126,7 @@ private:
 
 	void showTempText(string txt, const SDL_Color& color, const Vector2D& pos, const Vector2D& scale, int time);
 
-
+	void Config();
 
 	bool mActive;
 	int money_;

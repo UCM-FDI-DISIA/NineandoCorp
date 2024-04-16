@@ -32,6 +32,9 @@ void MainControlSystem::receive(const Message& m) {
 	case _m_ENEMYSEE:
 		enemiesSaw[m.start_enemy_book.n] = true;
 		break;
+	case _m_CONFIG:
+		game().pushState<ConfigState>(mngr_);
+		break;
 	case _m_BACK_TO_MAINMENU:
 		game().popState();
 		resetButtons();

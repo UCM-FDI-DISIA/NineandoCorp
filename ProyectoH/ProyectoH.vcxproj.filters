@@ -232,6 +232,12 @@
     <ClCompile Include="src\components\MonjeComponent.cpp">
       <Filter>Sources Files\Components</Filter>
     </ClCompile>
+    <ClCompile Include="src\systems\ConfigSystem.cpp">
+      <Filter>Sources Files\Systems</Filter>
+    </ClCompile>
+    <ClCompile Include="src\gameStates\ConfigState.cpp">
+      <Filter>Sources Files\States</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\components\AcechanteComponent.h">
@@ -506,6 +512,12 @@
     </ClInclude>
     <ClInclude Include="src\components\MonjeComponent.h">
       <Filter>Headers Files\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="src\systems\ConfigSystem.h">
+      <Filter>Headers Files\Systems</Filter>
+    </ClInclude>
+    <ClInclude Include="src\gameStates\ConfigState.h">
+      <Filter>Headers Files\States</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
