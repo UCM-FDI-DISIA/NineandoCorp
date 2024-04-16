@@ -238,6 +238,9 @@
     <ClCompile Include="src\gameStates\ConfigState.cpp">
       <Filter>Sources Files\States</Filter>
     </ClCompile>
+    <ClCompile Include="src\components\SliderComponent.cpp">
+      <Filter>Sources Files\Components</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\components\AcechanteComponent.h">
@@ -518,6 +521,9 @@
     </ClInclude>
     <ClInclude Include="src\gameStates\ConfigState.h">
       <Filter>Headers Files\States</Filter>
+    </ClInclude>
+    <ClInclude Include="src\components\SliderComponent.h">
+      <Filter>Headers Files\Components</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

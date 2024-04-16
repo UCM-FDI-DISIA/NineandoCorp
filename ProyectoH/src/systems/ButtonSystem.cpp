@@ -99,6 +99,8 @@ void ButtonSystem::manageButtons() {
 			//Recorre lista de entities de tipo HUD_FOREGROUND
 			for (auto en : mngr_->getHandler(hdlr_but_id)) {
 				auto bC = mngr_->getComponent<ButtonComponent>(en);
+				SliderComponent* slider = mngr_->getComponent<SliderComponent>(en);
+				auto tR = mngr_->getComponent<Transform>(en);
 				if (en != nullptr && bC != nullptr) {
 					//comprueba la id del button y si no es none llama a la funcion correspondiente
 					auto type = bC->isPressed(pos);
@@ -107,10 +109,34 @@ void ButtonSystem::manageButtons() {
 						break;
 					}
 				}
+				else if (en != nullptr && slider != nullptr && tR != nullptr) {
+					if (slider->isPressed(pos)) {
+						slider->setDragging(!slider->getDragging());
+						// Actualiza la posición del slider
+						float posX = pos.getX() - tR->getWidth() / 2; // Centra el slider en el mouse
+						// Asegúrate de que la nueva posición esté dentro de los límites
+						posX = std::max(slider->getMin(), std::min(posX, slider->getMax() - tR->getWidth()));
+						tR->setX(posX);
+					}
+				}
+			}
+		}
+		
+	}
+	else {
+		// Si el botón del ratón no está siendo presionado, actualiza la posición del slider
+		for (auto en : mngr_->getHandler(hdlr_but_id)) {
+			SliderComponent* slider = mngr_->getComponent<SliderComponent>(en);
+			auto tR = mngr_->getComponent<Transform>(en);
+			if (slider != nullptr && tR != nullptr && slider->getDragging()) {
+				Vector2D pos = { (float)ih().getMousePos().first, (float)ih().getMousePos().second };
+				float posX = pos.getX() - tR->getWidth() / 2; // Centra el slider en el mouse
+				posX = std::max(slider->getMin(), std::min(posX, slider->getMax() - tR->getWidth()));
+				tR->setX(posX);
 			}
 		}
 	}
-
+	
 	//update de texto con limitTime
 	auto txts = mngr_->getEntities(_grp_TEXTS);
 	for (auto txt : txts) {
@@ -385,6 +411,23 @@ Entity* ButtonSystem::addButton(const Vector2D& pos, const Vector2D& scale, game
 		bC->setLevel(level);
 	}
 	return b;
+}
+Entity* ButtonSystem::addSlider(const Vector2D& pos, const Vector2D& scale, gameTextures tex, grpId_type grpId) {
+	Entity* slider = mngr_->addEntity(grpId);
+	mngr_->setHandler(hdlr_but_id, slider);
+	Transform* tr = mngr_->addComponent<Transform>(slider);
+	tr->setScale(scale);
+	Vector2D aux = tr->getScale();
+	tr->setPosition(pos - aux / 2);
+
+	mngr_->addComponent<RenderComponent>(slider, tex);
+	auto sliderComp = mngr_->addComponent<SliderComponent>(slider);
+	sliderComp->setBounds(); // Establece los límites del slider
+	sliderComp->setOnChangeCallback([](float value) {
+		// Lógica para manejar el cambio de valor del slider
+		});
+
+	return slider;
 }
 
 Entity* ButtonSystem::addImage(const Vector2D& pos, const Vector2D& scale, const double rot, gameTextures t, grpId_type grpId) {

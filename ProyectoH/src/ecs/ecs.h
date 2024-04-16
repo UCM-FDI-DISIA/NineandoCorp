@@ -62,7 +62,7 @@ enum cmpId : cmpId_type {
 	_MUERTE,
 	_CMALDITO,
 	_LOCK,
-
+	_SLIDER,
 
 
 	// do not remove this

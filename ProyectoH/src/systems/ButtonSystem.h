@@ -1,6 +1,7 @@
 #pragma once
 #include "../ecs/System.h"
 #include "../components/ButtonComponent.h"
+#include "../components/SliderComponent.h"
 #include <vector>
 
 class ButtonSystem : public System
@@ -45,6 +46,8 @@ public:
 	/// <returns> La propia entidad </returns>
 	Entity* addText(const string& txt, const SDL_Color& color, const Vector2D& pos, const Vector2D& scale);
 
+
+	Entity* addSlider(const Vector2D& pos, const Vector2D& scale, gameTextures tex, grpId_type grpId);
 	/// <summary>
 	/// Devuelve las monedas H acumuladas en la partida
 	/// </summary>
@@ -134,6 +137,9 @@ private:
 	int costs[_twr_SIZE];
 	int const towerLevelMax = 5;
 	Entity* moneyText_;
+	SDL_Point	mouse;
+	SDL_bool 	mouse_follow = SDL_FALSE;
+	SDL_Point 	mouse_offset;
 };
 
 
