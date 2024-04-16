@@ -68,6 +68,7 @@
     <ClInclude Include="src\ecs\Entity.h" />
     <ClInclude Include="src\ecs\Manager.h" />
     <ClInclude Include="src\ecs\System.h" />
+    <ClInclude Include="src\gameStates\ConfigState.h" />
     <ClInclude Include="src\gameStates\EnemyBookState.h" />
     <ClInclude Include="src\gameStates\GameOverState.h" />
     <ClInclude Include="src\gameStates\LevelSelectorState.h" />
@@ -92,6 +93,7 @@
     <ClInclude Include="src\sdlutils\Texture.h" />
     <ClInclude Include="src\sdlutils\VirtualTimer.h" />
     <ClInclude Include="src\systems\CollisionSystem.h" />
+    <ClInclude Include="src\systems\ConfigSystem.h" />
     <ClInclude Include="src\systems\EnemyBookSystem.h" />
     <ClInclude Include="src\systems\EnemySystem.h" />
     <ClInclude Include="src\systems\GameOverSystem.h" />
@@ -154,6 +156,7 @@
     <ClCompile Include="src\components\UpgradeTowerComponent.cpp" />
     <ClCompile Include="src\ecs\Manager.cpp" />
     <ClCompile Include="src\gameStates\EnemyBookState.cpp" />
+    <ClCompile Include="src\gameStates\ConfigState.cpp" />
     <ClCompile Include="src\gameStates\GameOverState.cpp" />
     <ClCompile Include="src\gameStates\LevelSelectorState.cpp" />
     <ClCompile Include="src\gameStates\MainMenuState.cpp" />
@@ -171,6 +174,7 @@
     <ClCompile Include="src\sdlutils\SoundEffect.cpp" />
     <ClCompile Include="src\sdlutils\Texture.cpp" />
     <ClCompile Include="src\systems\ButtonSystem.cpp" />
+    <ClCompile Include="src\systems\ConfigSystem.cpp" />
     <ClCompile Include="src\systems\EnemyBookSystem.cpp" />
     <ClCompile Include="src\systems\CollisionSystem.cpp" />
     <ClCompile Include="src\systems\EnemySystem.cpp" />

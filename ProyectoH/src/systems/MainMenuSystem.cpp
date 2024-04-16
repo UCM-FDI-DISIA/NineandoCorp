@@ -70,7 +70,7 @@ void MainMenuSystem::initSystem() {
 	// CONFIGURATION BUTTON
 	bS->addButton({ sdlutils().width() / 2.0f, (sdlutils().height() / 2.0f) + 265},
 		{ 200, 200 },
-		gameTextures::close, gameTextures::close_hover, ButtonTypes::back_selector);
+		gameTextures::close, gameTextures::close_hover, ButtonTypes::config);
 
 	// EXIT BUTTON
 	bS->addButton({25.f, 25.f },

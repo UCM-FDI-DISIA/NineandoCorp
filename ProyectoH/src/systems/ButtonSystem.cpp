@@ -165,6 +165,7 @@ void ButtonSystem::managePauseButtons() {
 	//Todas las funciones de los botones del juego
 	void ButtonSystem::callFunction(ButtonTypes type, Entity* bC) {
 		// Incluye la id del button para incluir 
+		int lvl;
 		switch (type)
 		{
 		case back_to_menu:
@@ -184,6 +185,9 @@ void ButtonSystem::managePauseButtons() {
 		case back_selector:
 			backToMainMenu();
 			break;
+		case config:
+			Config();
+			break;
 		case level_selected:
 			startGame(bC);
 			break;
@@ -202,42 +206,42 @@ void ButtonSystem::managePauseButtons() {
 			break;
 		/*--- MEJORAS DEL MENU ---*/
 		case upgrade_nexus:
-			int lvl = game().getSaveGame()->getTurretsLevels()[_twr_NEXUS];
+			lvl = game().getSaveGame()->getTurretsLevels()[_twr_NEXUS];
 			if( lvl < 4)
 				upgradeTower(_twr_NEXUS, "precioNexusLvl" + std::to_string(lvl));
 			break;
 		case upgrade_crystal_main:
-			int lvl = game().getSaveGame()->getTurretsLevels()[_twr_CRISTAL];
+			lvl = game().getSaveGame()->getTurretsLevels()[_twr_CRISTAL];
 			if (lvl < 4)
 				upgradeTower(_twr_CRISTAL, "precioCristalLvl" + std::to_string(lvl));
 			break;
 		case upgrade_slime_main:
-			int lvl = game().getSaveGame()->getTurretsLevels()[_twr_SLIME];
+			lvl = game().getSaveGame()->getTurretsLevels()[_twr_SLIME];
 			if (lvl < 4)
 				upgradeTower(_twr_SLIME, "precioSlimeLvl" + std::to_string(lvl));
 			break;
 		case upgrade_bullet_main:
-			int lvl = game().getSaveGame()->getTurretsLevels()[_twr_BULLET];
+			lvl = game().getSaveGame()->getTurretsLevels()[_twr_BULLET];
 			if (lvl < 4)
 				upgradeTower(_twr_BULLET, "precioBalasLvl" + std::to_string(lvl));
 			break;
 		case upgrade_sniper_main:
-			int lvl = game().getSaveGame()->getTurretsLevels()[_twr_DIEGO];
+			lvl = game().getSaveGame()->getTurretsLevels()[_twr_DIEGO];
 			if (lvl < 4)
 				upgradeTower(_twr_DIEGO, "precioDiegoLvl" + std::to_string(lvl));
 			break;
 		case upgrade_fenix_main:
-			int lvl = game().getSaveGame()->getTurretsLevels()[_twr_FENIX];
+			lvl = game().getSaveGame()->getTurretsLevels()[_twr_FENIX];
 			if (lvl < 4)
 				upgradeTower(_twr_FENIX, "precioFenixLvl" + std::to_string(lvl));
 			break;
 		case upgrade_clay_main:
-			int lvl = game().getSaveGame()->getTurretsLevels()[_twr_CLAY];
+			lvl = game().getSaveGame()->getTurretsLevels()[_twr_CLAY];
 			if (lvl < 4)
 				upgradeTower(_twr_CLAY, "precioArcillaLvl" + std::to_string(lvl));
 			break;
 		case upgrade_enhancer_main:
-			int lvl = game().getSaveGame()->getTurretsLevels()[_twr_POWER];
+			lvl = game().getSaveGame()->getTurretsLevels()[_twr_POWER];
 			if (lvl < 4)
 				upgradeTower(_twr_POWER, "precioPotenciadoraLvl" + std::to_string(lvl));
 			break;
@@ -304,6 +308,11 @@ void ButtonSystem::managePauseButtons() {
 		Message m;
 		m.id = _m_PAUSE;
 		m.start_pause.onPause = onPause;
+		mngr_->send(m, true);
+	}
+	void ButtonSystem::Config() {
+		Message m;
+		m.id = _m_CONFIG;
 		mngr_->send(m, true);
 	}
 	void ButtonSystem::EnemyBook() {
