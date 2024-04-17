@@ -115,6 +115,12 @@ RenderSystem::RenderSystem() : winner_(0)
 	textures[resume_button_hover] = &sdlutils().images().at("resume_button_hover");
 	textures[resume_icon_button] = &sdlutils().images().at("resume_icon_button");
 	textures[resume_icon_button_hover] = &sdlutils().images().at("resume_icon_button_hover");
+	textures[acelerate_x1] = &sdlutils().images().at("acelerate_x1");
+	textures[acelerate_x1_hover] = &sdlutils().images().at("acelerate_x1_hover");
+	textures[acelerate_x1_5] = &sdlutils().images().at("acelerate_x1_5");
+	textures[acelerate_x1_5_hover] = &sdlutils().images().at("acelerate_x1_5_hover");
+	textures[acelerate_x2] = &sdlutils().images().at("acelerate_x2");
+	textures[acelerate_x2_hover] = &sdlutils().images().at("acelerate_x2_hover");
 	textures[backToMenu_button] = &sdlutils().images().at("backToMenu_button");
 	textures[backToMenu_button_hover] = &sdlutils().images().at("backToMenu_button_hover");
 	textures[exitGame_button] = &sdlutils().images().at("exitGame_button");
