@@ -578,6 +578,13 @@ void HUDSystem::showUpgradeMenu(Entity* twr, const Vector2D& pos) {
 
 	upM_.lvlText = bS->addText(lvltxt, c1, lvlPos2 + offset, lvlScale2);
 
+
+	/**
+	*	TEXTO DE COSTE DE MEJORA
+	*/
+	Vector2D posM = {};
+
+
 	/**
 	*	BOTON DE VENDER
 	*/
@@ -593,6 +600,7 @@ void HUDSystem::showUpgradeMenu(Entity* twr, const Vector2D& pos) {
 		sell, sell_hover, ButtonTypes::sell_tower, 0,
 		m1
 	);
+
 
 	/**
 	*	BOTON DE SALIR
