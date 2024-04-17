@@ -156,6 +156,8 @@ RenderSystem::RenderSystem() : winner_(0)
 	textures[goblin_attack] = &sdlutils().images().at("goblin_Attack");
 	textures[force_field] = &sdlutils().images().at("force_field");
 
+	//Lifebar
+	textures[life] = &sdlutils().images().at("life");
 
 	//Enemies Icons
 	textures[goblin_icon] = &sdlutils().images().at("goblin_icon");
@@ -560,7 +562,11 @@ void RenderSystem::drawBarlife(Entity* t) {
 		SDL_Rect trRect = tr->getRect();
 		trRect.x += offset->x;
 		trRect.y += offset->y - 50;
-		textures[gameTextures::box]->render(SDL_Rect{trRect.x, trRect.y, trRect.w, trRect.h * 1/3}, tr->getRotation());
+		float a = hc->getMaxHealth();
+		float b = hc->getHealth();
+		float c = b / a;
+		textures[gameTextures::box]->render(SDL_Rect{trRect.x, trRect.y, (int)(150.f*c), 50}, 0);
+		//textures[gameTextures::life]->render(SDL_Rect{ trRect.x, trRect.y - 10, trRect.w, trRect.h * 1/2 }, 0);
 	}
 }
 
