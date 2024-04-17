@@ -107,6 +107,19 @@ void  EnemySystem::receive(const Message& m) {
 			}
 		}
 		break;
+	case _m_TOWER_DIED:
+		for (auto& b : mngr_->getEntities(_hdlr_ENEMIES))
+		{
+			
+			auto ac = mngr_->getComponent<AttackComponent>(b);
+			if (ac != nullptr) {
+				if (ac->getTarget() == m.return_entity.ent) {
+					ac->setTarget(nullptr);
+				}
+			}
+
+		}
+		break;
 	case _m_CHANGE_ROUTE:
 		if (m.change_route.enemy != nullptr && mngr_->isAlive(m.change_route.enemy)) {
 			auto& rand = sdlutils().rand();
@@ -389,13 +402,16 @@ void EnemySystem::update()
 						}
 						else {
 							//std::cout << "atacando";
+							
 							ac->doDamageTo(ac->getTarget(), ac->getDamage(), _hdlr_LOW_TOWERS);
 							ac->setElapsedTime(0.0f);
 							ac->setLoaded(false);
 							if (pc != nullptr) {
 								pc->setAttackSpeed();
-								std::cout << ac->getReloadTime()<<"\n";
+								std::cout << ac->getReloadTime() << "\n";
 							}
+							
+
 						}
 					}
 					else {
