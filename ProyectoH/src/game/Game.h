@@ -25,11 +25,17 @@ constexpr int WIN_HEIGHT = 900;
 class Game : public Singleton<Game> {
 	friend Singleton<Game>;
 private:
+	struct Config
+	{
+		float soundGeneral_ = 50.0f;
+		float soundMusic_ = 50.0f;
+		float soundEffects_ = 50.0f;
+	};
 	bool exit;
 	double deltaTime;
 	GameStateMachine* gameStateMachine;
 	SaveGame save = SaveGame();
-
+	Config config_;
 	// Constructor
 	Game() : exit(false), deltaTime(0), gameStateMachine(new GameStateMachine()) {
 		SDLUtils::init("Proyect H", WIN_WIDTH, WIN_HEIGHT, "resources/config/towerDefenseResources.json", "resources/config/config.json");
@@ -40,7 +46,7 @@ private:
 	}
 
 public:
-
+	
 	// Destructor
 	~Game();
 	// Executes the game
@@ -73,6 +79,12 @@ public:
 
 	inline GameState* currentState() const {return gameStateMachine->currentState(); }
 
+	inline float getSoundGeneral() const { return config_.soundGeneral_; };
+	inline void setSoundGeneral(float newVolume) {  config_.soundGeneral_ = newVolume; };
+	inline float getSoundMusic() const { return config_.soundMusic_; };
+	inline void setSoundMusic(float newVolume) { config_.soundMusic_ = newVolume; };
+	inline float getSoundEffect() const { return config_.soundEffects_; };
+	inline void setSoundEffect(float newVolume) { config_.soundEffects_ = newVolume; };
 };
 
 // Returns reference to game instance
