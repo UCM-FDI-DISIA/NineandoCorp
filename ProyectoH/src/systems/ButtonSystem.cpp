@@ -342,6 +342,7 @@ void ButtonSystem::managePauseButtons() {
 		mngr_->send(m, true);
 	}
 	void ButtonSystem::Config() {
+		mngr_->getComponent<TextComponent>(moneyText_)->isActive = false;
 		Message m;
 		m.id = _m_CONFIG;
 		mngr_->send(m, true);
@@ -352,6 +353,7 @@ void ButtonSystem::managePauseButtons() {
 		mngr_->send(m, true);
 	}
 	void ButtonSystem::backToMainMenu() {
+		mngr_->getComponent<TextComponent>(moneyText_)->isActive = true;
 		Message m;
 		m.id = _m_BACK_TO_MAINMENU;
 		mngr_->send(m);
