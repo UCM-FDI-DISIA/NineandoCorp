@@ -95,7 +95,6 @@ void ButtonSystem::manageButtons() {
 	if (ih().mouseButtonEvent()) {
 
 		if (ih().getMouseButtonState(InputHandler::MOUSEBUTTON::LEFT) == 1) {
-			sdlutils().soundEffects().at("button").play(0,1);
 			//Recorre lista de entities de tipo HUD_FOREGROUND
 			for (auto en : mngr_->getHandler(hdlr_but_id)) {
 				auto bC = mngr_->getComponent<ButtonComponent>(en);
@@ -201,36 +200,46 @@ void ButtonSystem::managePauseButtons() {
 		{
 		case back_to_menu:
 			game().changeState<MainMenuState>();
+			sdlutils().soundEffects().at("button").play(0, 1);
 			break;
 		case exit_button:
 			game().exitGame();
+			sdlutils().soundEffects().at("button").play(0, 1);
 			break;
 		case selector_main:
 			loadLevelSelector();
 			pauseAllButtons();
+			sdlutils().soundEffects().at("button").play(0, 1);
 			break;
 		case enemies_main:
 			EnemyBook();
 			pauseAllButtons();
+			sdlutils().soundEffects().at("button").play(0, 1);
 			break;
 		case back_selector:
 			backToMainMenu();
+			sdlutils().soundEffects().at("button").play(0, 1);
 			break;
 		case config:
 			Config();
+			sdlutils().soundEffects().at("button").play(0, 1);
 			break;
 		case level_selected:
 			startGame(bC);
+			sdlutils().soundEffects().at("button").play(0, 1);
 			break;
 		case play_wave:
 			startWave();
+			sdlutils().soundEffects().at("button").play(0, 1);
 			break;
 		case pause_main:
 			Pause(true);
+			sdlutils().soundEffects().at("button").play(0, 1);
 			break;
 		case resume_main:
 			game().popState();
 			Pause(false);
+			sdlutils().soundEffects().at("button").play(0, 1);
 			break;
 		case enemybook:
 			mngr_->send(mngr_->getComponent<ButtonComponent>(bC)->getMessage());			
@@ -342,6 +351,7 @@ void ButtonSystem::managePauseButtons() {
 		mngr_->send(m, true);
 	}
 	void ButtonSystem::Config() {
+		mngr_->getComponent<TextComponent>(moneyText_)->isActive = false;
 		Message m;
 		m.id = _m_CONFIG;
 		mngr_->send(m, true);
@@ -352,6 +362,7 @@ void ButtonSystem::managePauseButtons() {
 		mngr_->send(m, true);
 	}
 	void ButtonSystem::backToMainMenu() {
+		mngr_->getComponent<TextComponent>(moneyText_)->isActive = true;
 		Message m;
 		m.id = _m_BACK_TO_MAINMENU;
 		mngr_->send(m);
@@ -377,6 +388,7 @@ void ButtonSystem::managePauseButtons() {
 	}
 	void ButtonSystem::upgradeTower(twrId t, string idPrecioJSON) {
 		if (HMoney_ - sdlutils().intConst().at(idPrecioJSON) >= 0) {
+			sdlutils().soundEffects().at("MejoraComprada").play(0, 1);
 			HMoney_ -= sdlutils().intConst().at(idPrecioJSON);
 			updateText(HMoney_);
 			game().getSaveGame()->setHCoins(HMoney_);
@@ -384,6 +396,9 @@ void ButtonSystem::managePauseButtons() {
 			m.id = _m_UPGRADE_TOWER;
 			m.upgrade_tower.towerId = t;
 			mngr_->send(m);
+		}
+		else {
+			sdlutils().soundEffects().at("DineroInsuficiente").play(0, 1);
 		}
 	}
 

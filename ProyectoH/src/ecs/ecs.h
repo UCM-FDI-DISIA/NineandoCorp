@@ -237,7 +237,7 @@ enum twrId : twrId_type {
 	_twr_DIEGO,
 	_twr_POWER,
 	_twr_CRISTAL,
-	_twr_NEXUS,
+	_twr_NEXUS,		// ¿?¿?¿ QUITAR
 	_twr_SIZE
 };
 using enmId_type = uint8_t;

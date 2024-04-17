@@ -9,7 +9,7 @@ class ButtonSystem : public System
 {
 public: 
 	static constexpr sysId_type id = _sys_BUTTON;
-	const hdlrId_type hdlr_but_id;
+	hdlrId_type hdlr_but_id;
 
 	ButtonSystem(hdlrId_type but_id);
 	virtual ~ButtonSystem();
@@ -49,6 +49,8 @@ public:
 
 
 	Entity* addSlider(const Vector2D& pos, const Vector2D& scale, gameTextures tex, grpId_type grpId);
+
+	void changeButtonsIdHandler(hdlrId_type id) { hdlr_but_id = id; };
 	/// <summary>
 	/// Devuelve las monedas H acumuladas en la partida
 	/// </summary>
