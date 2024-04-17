@@ -22,7 +22,7 @@ void TowerSystem::receive(const Message& m) {
 	switch (m.id) {
 	case _m_START_GAME:
 		cameraOffset_ = m.start_game_data.cameraOffset;
-		generateNexus(m.start_game_data.turrentLevels[_twr_NEXUS], m.start_game_data.netmap->getCell(15,15));
+		generateNexus(m.start_game_data.turrentLevels[_twr_NEXUS], m.start_game_data.netmap->getCell(12,13));
 		break;
 	case _m_ENTITY_TO_ATTACK://Mandado por el enemySystem al atacar una torre
 
@@ -622,7 +622,16 @@ Entity* TowerSystem::addShield(Vector2D pos) {
 }
 
 void TowerSystem::generateNexus(int lvlNexus, Cell* cell) {
-	addTower(_twr_NEXUS, { 520.0f, 940.0f }, BOTH, lvlNexus, cell);
+	Entity* n = mngr_->addEntity(_grp_TOWERS_AND_ENEMIES);	
+	mngr_->setHandler(BOTH, n);
+	mngr_->addComponent<Transform>(n);
+	mngr_->addComponent<ShieldComponent>(n, 0);
+	mngr_->addComponent<HealthComponent>(n, 1000);
+	mngr_->getComponent<Transform>(n)->setScale({ 150, 150 });
+	mngr_->getComponent<Transform>(n)->setPosition(cell->position);
+	mngr_->addComponent<NexusComponent>(n);
+	mngr_->addComponent<RenderComponent>(n, nexusLvl);
+	mngr_->addComponent<FramedImage>(n, 1, lvlNexus, 2048, 2048, 1, 1, 1);
 }
 
 void TowerSystem::addTower(twrId type, const Vector2D& pos, Height height, int sellMoney, Cell* cell) {
@@ -690,13 +699,6 @@ void TowerSystem::addTower(twrId type, const Vector2D& pos, Height height, int s
 		mngr_->addComponent<RenderComponent>(t, cristalTowerTexture);
 		mngr_->addComponent<FramedImage>(t, intAt("CristalColumns"), intAt("CristalRows"), intAt("CristalWidth"), intAt("CristalHeight"), 0, 0);
 		sdlutils().soundEffects().at("TorreCristalDeEnergiaDrop").play(0, 2);
-		break;
-	case _twr_NEXUS:
-		//tr.setScale({ floatAt(""), floatAt("") });
-		tr->setScale({ 150, 150 });
-		mngr_->addComponent<NexusComponent>(t);
-		mngr_->addComponent<RenderComponent>(t, nexusLvl);
-		mngr_->addComponent<FramedImage>(t, 1, 1, 2048, 2048, 1, 1, 1);
 		break;
 	default:
 		break;
