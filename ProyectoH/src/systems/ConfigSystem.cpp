@@ -79,15 +79,15 @@ void ConfigSystem::initSystem() {
 	//SOUNDS
 	bS->addText("GENERAL", textColor, { sdlutils().width() - sdlutils().width() / 4.0f, sdlutils().height() / 3.0f }, { 225.0f, 50.0f });
 	bS->addImage({ sdlutils().width() - sdlutils().width() / 4.0f, sdlutils().height() / 3.0f + 75 }, { 20.0f, 200.0f }, 90.0, gameTextures::large_box, _grp_HUD_FOREGROUND);
-	bS->addSlider({ sdlutils().width() - sdlutils().width() / 4.0f, sdlutils().height() / 3.0f + 75}, { 50.0f, 50.0f }, gameTextures::close, _grp_HUD_FOREGROUND);
+	bS->addSlider({ sdlutils().width() - sdlutils().width() / 4.0f, sdlutils().height() / 3.0f + 75}, { 50.0f, 50.0f }, gameTextures::close, _grp_HUD_FOREGROUND,general);
 	
 	bS->addText("EFFECTS", textColor, { sdlutils().width() - sdlutils().width() / 4.0f, sdlutils().height() / 2.0f }, { 225.0f, 50.0f });
 	bS->addImage({ sdlutils().width() - sdlutils().width() / 4.0f, sdlutils().height() / 2.0f + 75 }, { 20.0f, 200.0f }, 90.0, gameTextures::large_box, _grp_HUD_FOREGROUND);
-	bS->addSlider({ sdlutils().width() - sdlutils().width() / 4.0f, sdlutils().height() / 2.0f + 75 }, { 50.0f, 50.0f }, gameTextures::close, _grp_HUD_FOREGROUND);
+	bS->addSlider({ sdlutils().width() - sdlutils().width() / 4.0f, sdlutils().height() / 2.0f + 75 }, { 50.0f, 50.0f }, gameTextures::close, _grp_HUD_FOREGROUND, effects);
 	
 	bS->addText("MUSIC", textColor, { sdlutils().width() - sdlutils().width() / 4.0f,sdlutils().height()- sdlutils().height() / 3.0f }, { 180.0f, 50.0f });
 	bS->addImage({ sdlutils().width() - sdlutils().width() / 4.0f, sdlutils().height() - sdlutils().height() / 3.0f + 75 }, { 20.0f, 200.0f }, 90.0, gameTextures::large_box, _grp_HUD_FOREGROUND);
-	bS->addSlider({ sdlutils().width() - sdlutils().width() / 4.0f, sdlutils().height() - sdlutils().height() / 3.0f + 75 }, { 50.0f, 50.0f }, gameTextures::close, _grp_HUD_FOREGROUND);
+	bS->addSlider({ sdlutils().width() - sdlutils().width() / 4.0f, sdlutils().height() - sdlutils().height() / 3.0f + 75 }, { 50.0f, 50.0f }, gameTextures::close, _grp_HUD_FOREGROUND, music);
 	
 	////boton cerrar
 	pAux =  Vector2D(sdlutils().width() / 2.0f, sdlutils().height()/2.0f);
