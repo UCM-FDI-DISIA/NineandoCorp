@@ -273,7 +273,7 @@ enum gameTextures {
 	tsunami_icon,meteorite_icon, thunder_icon, tornado_icon, earthquake_icon, 
 	level1,level1_hover,level2,level2_hover,level3,level3_hover,level4,level4_hover,level5,level5_hover,level6,level6_hover,level7,level7_hover,level8,level8_hover,
 	level1_desactive, level2_desactive, level3_desactive, level4_desactive, level5_desactive, level6_desactive, level7_desactive, level8_desactive,
-	sell, sell_hover,
+	sell, sell_hover, column_box,
 	//menu de pausa
 	resume_button, resume_button_hover, backToMenu_button, backToMenu_button_hover, exitGame_button, exitGame_button_hover,
 	resume_icon_button, resume_icon_button_hover,

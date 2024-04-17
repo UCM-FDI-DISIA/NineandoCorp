@@ -743,8 +743,12 @@
             "file": "resources/images/Towers/bulletImpact.png"
         },
         {
-            "id": "blood",
-            "file": "resources/images/Towers/bloodHit.png"
+          "id": "blood",
+          "file": "resources/images/Towers/bloodHit.png"
+        },
+        {
+          "id": "column_box",
+          "file": "resources/images/UI/column_box.png"
         }
     ],
 

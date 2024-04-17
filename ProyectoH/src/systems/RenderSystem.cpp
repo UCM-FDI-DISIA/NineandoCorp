@@ -27,6 +27,7 @@ RenderSystem::RenderSystem() : winner_(0)
 	textures[slimeBulletTexture] = &sdlutils().images().at("slime_bullet");
 	textures[nexusTexture] = &sdlutils().images().at("nexus_tower");	// Quitar creo
 	textures[box] = &sdlutils().images().at("box");
+	textures[column_box] = &sdlutils().images().at("column_box");
 	textures[box_hover] = &sdlutils().images().at("box_hover");
 	textures[none_box] = &sdlutils().images().at("none_box");
 	textures[none_box_hover] = &sdlutils().images().at("none_box_hover");
