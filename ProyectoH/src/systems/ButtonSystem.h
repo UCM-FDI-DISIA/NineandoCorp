@@ -48,9 +48,11 @@ public:
 	Entity* addText(const string& txt, const SDL_Color& color, const Vector2D& pos, const Vector2D& scale);
 
 
-	Entity* addSlider(const Vector2D& pos, const Vector2D& scale, gameTextures tex, grpId_type grpId);
 
 	void changeButtonsIdHandler(hdlrId_type id) { hdlr_but_id = id; };
+
+	Entity* addSlider(const Vector2D& pos, const Vector2D& scale, gameTextures tex, grpId_type grpId, SliderTypes slTy);
+
 	/// <summary>
 	/// Devuelve las monedas H acumuladas en la partida
 	/// </summary>

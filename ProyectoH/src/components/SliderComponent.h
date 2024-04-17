@@ -3,11 +3,13 @@
 #include "../ecs/Component.h"
 #include <functional>
 #include "Transform.h"
-
+enum SliderTypes {
+    general, effects, music
+};
 class SliderComponent : public Component {
 public:
     static const cmpId id = cmpId::_SLIDER;
-    SliderComponent() {}
+    SliderComponent(SliderTypes id):id_(id) {}
 
     virtual ~SliderComponent() {}
 
@@ -35,12 +37,15 @@ public:
 
     bool getDragging() const { return dragging_; };
     void setDragging(bool dr) { dragging_ = dr; };
+
+    SliderTypes getSlider() const { return id_; };
 private:
     float value_ = 0.0f;
     float min_ = 0.0f;
     float max_ = 1.0f;
     float relativeMax_ = 1.0f;
     std::function<void(float)> onChange_;
+    SliderTypes id_;
 
     //Transform del boton del slider
     Transform* tr_;
