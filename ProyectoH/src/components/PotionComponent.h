@@ -9,15 +9,14 @@ public:
 	PotionComponent(float time) : potionDuration(time), elapsedPotionTime(0){};
 	virtual ~PotionComponent() {};
 
+	float getPotionDuration() { return potionDuration; }
+	void setPotionDuration(float n) { potionDuration = n; }
+
+	float getElapsedTime() { return elapsedPotionTime; }
+	void setElapsedTime(float n) { elapsedPotionTime = n; }
+
 protected:
 	float potionDuration;
-	float getPotionDuration() { return potionDuration; }
-	float setPotionDuration(float n) { potionDuration = n; }
-
 	float elapsedPotionTime;
-	float getElapsedTime() { return elapsedPotionTime; }
-	float setElapsedTime(float n) { elapsedPotionTime = n; }
-	
-	void SpawnArea();
 };
 

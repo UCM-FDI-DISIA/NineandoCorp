@@ -18,11 +18,16 @@ public:
 
 	void setPotenciadora(Entity* src) { srcPotencia_ = src; }
 	Entity* getSrcPotencia() const { return srcPotencia_; }
+
+	void setConfundido(bool c, float t) { confundido_ = c; timeConfused_ = t; }
+	bool getConfundido() const { return confundido_; }
 private:
 	bool cegado_;
 	bool potenciado_;
 	Entity* srcPotencia_;
 	float tiempoCegado_;
 	float elapsed_;
+	bool confundido_;
+	float timeConfused_;
 };
 

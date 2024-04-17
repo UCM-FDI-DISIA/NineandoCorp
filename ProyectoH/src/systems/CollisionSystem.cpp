@@ -65,6 +65,10 @@ void CollisionSystem::addRect(Entity* rect, rectId id) {
 			break;
 		case _DEATH:
 			deathRects_.push_back(rect);
+			break;
+		case _POTIONRECT:
+			potionRects_.push_back(rect);
+			break;
 		default:
 			break;
 	}
@@ -102,6 +106,9 @@ void CollisionSystem::removeRect(Entity* rect, rectId id) {
 		break;
 	case _DEATH:
 		deathRects_.erase(find(deathRects_.begin(), deathRects_.end(), rect));
+		break;
+	case _POTIONRECT:
+		potionRects_.erase(find(potionRects_.begin(), potionRects_.end(), rect));
 		break;
 	}
 	
@@ -473,7 +480,34 @@ void CollisionSystem::update() {
 					mngr_->addComponent<RenderComponent>(area, slimeArea);
 					mngr_->addComponent<FramedImage>(area, 9, 1, 500, 400, 0, 4, 8);
 					mngr_->addComponent<PotionComponent>(area, 5);
+					addRect(area, _POTIONRECT);
+					removeRect(d, _DEATH);
+					mngr_->setAlive(d, false);
 				}
+			}
+		}
+
+		for (const auto& p : potionRects_) {
+			Transform* tr = mngr_->getComponent<Transform>(p);
+			SDL_Rect r = tr->getRect();
+			PotionComponent* _potionComponent = mngr_->getComponent<PotionComponent>(p);
+
+			for (const auto& lt : lowTowers) {
+				Transform* towerTR = mngr_->getComponent<Transform>(lt);
+				SDL_Rect towerRect = towerTR->getRect();
+				if (SDL_HasIntersection(&r, &towerRect)) {
+					Message m;
+					m.id = _m_ACTIVATE_ATTACK_TOWERS;
+					m.attack_towers_data.attackingTime = mngr_->getComponent<PotionComponent>(p)->getPotionDuration();
+					m.attack_towers_data.attackTower = lt;
+					mngr_->send(m, true);
+				}
+			}
+
+			_potionComponent->setElapsedTime(_potionComponent->getElapsedTime() + game().getDeltaTime());
+			if (_potionComponent->getElapsedTime() > _potionComponent->getPotionDuration()) {
+				removeRect(p, _POTIONRECT);
+				mngr_->setAlive(p, false);
 			}
 		}
 

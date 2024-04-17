@@ -69,7 +69,8 @@ void TowerSystem::receive(const Message& m) {
 		}
 		break;
 	case _m_ACTIVATE_ATTACK_TOWERS:
-		attackTowers = m.attack_towers_data.setActive;
+		Entity* auxE = m.attack_towers_data.attackTower;
+		mngr_->getComponent<TowerStates>(auxE)->setConfundido(true, m.attack_towers_data.attackingTime);
 	default:
 		break;
 	}
@@ -133,34 +134,38 @@ void TowerSystem::onAttackTower(Entity* e, int dmg, Entity* src) {
 	if (e != nullptr && mngr_->isAlive(e)) {
 		HealthComponent* h = mngr_->getComponent<HealthComponent>(e);
 		ShieldComponent* s = mngr_->getComponent<ShieldComponent>(e);
-		
-		if (mngr_->hasComponent<DirtTower>(e) && mngr_->getComponent<UpgradeTowerComponent>(e)->getLevel() == 4) {//Reflejar daño torre de arcilla
-			Message m;
-			m.id = _m_ENTITY_TO_ATTACK;
-			m.entity_to_attack.targetId = _hdlr_ENEMIES;
-			m.entity_to_attack.src = e;
-			m.entity_to_attack.e = src;
-			mngr_->send(m);
-		}
-		if (s->getShield() <= 0 && h->getHealth() - dmg <= 0) {		
-			eliminateDestroyedTowers(e);
-			//std::cout << "Torre eliminada-TorresTotales: " << towers.size() << std::endl;
-			mngr_->deleteHandler(_hdlr_LOW_TOWERS, e);
-			clearShieldsArea(e);
-			h->subtractHealth(dmg);		 
-		}
-		else if (s->getShield() > 0){
-			 if(s->getShield() - dmg <= 0 ){ 
-				
-				Transform* t = mngr_->getComponent<Transform>(e);				
-				if(t != nullptr){ createShieldExplosion(*(t->getPosition())); }
-				if(s->getImg() != NULL)mngr_->setAlive(s->getImg(), false);
+
+		if (h != nullptr && s != nullptr) {
+			if (mngr_->hasComponent<DirtTower>(e) && mngr_->getComponent<UpgradeTowerComponent>(e)->getLevel() == 4) {//Reflejar daño torre de arcilla
+				Message m;
+				m.id = _m_ENTITY_TO_ATTACK;
+				m.entity_to_attack.targetId = _hdlr_ENEMIES;
+				m.entity_to_attack.src = e;
+				m.entity_to_attack.e = src;
+				mngr_->send(m);
 			}
-			s->subtractShield((float)dmg);
+			if (s->getShield() <= 0 && h->getHealth() - dmg <= 0) {
+				eliminateDestroyedTowers(e);
+				//std::cout << "Torre eliminada-TorresTotales: " << towers.size() << std::endl;
+				mngr_->deleteHandler(_hdlr_LOW_TOWERS, e);
+				clearShieldsArea(e);
+				h->subtractHealth(dmg);
+			}
+			else if (s->getShield() > 0) {
+				if (s->getShield() - dmg <= 0) {
+
+					Transform* t = mngr_->getComponent<Transform>(e);
+					if (t != nullptr) { createShieldExplosion(*(t->getPosition())); }
+					if (s->getImg() != NULL)mngr_->setAlive(s->getImg(), false);
+				}
+				s->subtractShield((float)dmg);
+			}
+			else {
+				h->subtractHealth(dmg);
+			}
 		}
-		else {
-			h->subtractHealth(dmg);
-		}
+		
+		
 	}
 }
 //Realiza las funcionalidades de las torres, accediendo a los atributos de los componentes y realizando la mecanica de cada torre

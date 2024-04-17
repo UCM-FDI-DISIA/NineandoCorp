@@ -1273,7 +1273,7 @@
               "grupo1": {
                 "spawn": "1",
                 "typeEnemy": [
-                  "defensor",
+                  "muerte",
                   "goblin",
                   "elfos"
                 ],

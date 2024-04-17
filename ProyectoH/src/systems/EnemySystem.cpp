@@ -444,8 +444,8 @@ void EnemySystem::update()
 
 			// Muerte
 			if (muerte != nullptr && ac != nullptr) {
+				muerte->setElapsedTime(muerte->getElapsedTime() + game().getDeltaTime());
 				if (ac->getTarget() != nullptr) {
-					muerte->setElapsedTime(muerte->getElapsedTime() + game().getDeltaTime());
 					if (muerte->getElapsedTime() > muerte->getThrowDuration()) {
 						Entity* potionProjectile = muerte->ThrowPotion(ac->getTarget(), e, 1500, tr->getPosition(), slimeBulletTexture, { 25, 25});
 						muerte->setElapsedTime(0);

@@ -170,6 +170,8 @@ enum rectId : rectId_type {
 	_FIELD,
 	_BULLETS,
 	_DEATH,
+	_POTIONRECT,
+
 
 	_LAST_RECT_ID
 };
@@ -537,8 +539,8 @@ struct Message {
 
 	//_m_ACTIVATE_ATTACK_TOWERS
 	struct {
-		bool setActive;
-		vector<Entity*> towers;
+		Entity* attackTower;
+		float attackingTime;
 	}attack_towers_data;
 };
 
