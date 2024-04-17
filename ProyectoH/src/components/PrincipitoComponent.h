@@ -5,10 +5,11 @@ class PrincipitoComponent : public Component
 {
 public:
 	static const cmpId id = cmpId::_PRINCIPITO;
-	PrincipitoComponent(){};
+	PrincipitoComponent(float a): attackvelocity(a){};
 
 	void setAttackSpeed();
+	void ResetVelocity();
 
 private:
-
+	float attackvelocity;
 };

@@ -10,3 +10,7 @@ void PrincipitoComponent::setAttackSpeed() {
 		ac->setReloadTime(0.25f);
 	}
 }
+void PrincipitoComponent::ResetVelocity() {
+	auto ac = mngr_->getComponent<AttackComponent>(ent_);
+	ac->setReloadTime(attackvelocity);
+}
