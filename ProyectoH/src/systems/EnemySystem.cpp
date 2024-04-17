@@ -401,6 +401,10 @@ void EnemySystem::update()
 					else {
 						mc->setStop(false);
 
+						if (pc != nullptr) {
+							pc->ResetVelocity();
+						}
+
 						if (ac->getAttack()) {
 							ac->setAttack(false);
 							changeAnimation(ac->getAttack(), e);
