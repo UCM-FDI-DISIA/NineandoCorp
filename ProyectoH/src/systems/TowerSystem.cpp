@@ -622,7 +622,7 @@ Entity* TowerSystem::addShield(Vector2D pos) {
 }
 
 void TowerSystem::generateNexus(int lvlNexus, Cell* cell) {
-	addTower(_twr_NEXUS, { 580.0f, 980.0f }, BOTH, lvlNexus, cell);
+	addTower(_twr_NEXUS, { 520.0f, 940.0f }, BOTH, lvlNexus, cell);
 }
 
 void TowerSystem::addTower(twrId type, const Vector2D& pos, Height height, int sellMoney, Cell* cell) {
@@ -693,9 +693,10 @@ void TowerSystem::addTower(twrId type, const Vector2D& pos, Height height, int s
 		break;
 	case _twr_NEXUS:
 		//tr.setScale({ floatAt(""), floatAt("") });
+		tr->setScale({ 150, 150 });
 		mngr_->addComponent<NexusComponent>(t);
 		mngr_->addComponent<RenderComponent>(t, nexusLvl);
-		mngr_->addComponent<FramedImage>(t, 1, 1, 1011, 673, 1, 1, 1);
+		mngr_->addComponent<FramedImage>(t, 1, 1, 2048, 2048, 1, 1, 1);
 		break;
 	default:
 		break;
