@@ -8,16 +8,34 @@
 #include "..//components/PhoenixTower.h"
 #include "..//components/DirtTower.h"
 #include "..//components/SlimeTowerComponent.h"
+#include "../components/TowerComponent.h"
 
 using namespace std;
 
-UpgradeTowerComponent::UpgradeTowerComponent(twrId id, int maxLevel) : id_(id), maxLevel_(maxLevel), currentLevel_(1) {
-	//upgradeInfo_ = JSON::ParseFromFile("tower_upgrade_info.json");
+UpgradeTowerComponent::UpgradeTowerComponent(twrId id, int maxLevel, int upCost) : 
+	id_(id), //
+	maxLevel_(maxLevel), //
+	currentLevel_(1), //
+	upgradeCost_(upCost) {
 }
 
 void UpgradeTowerComponent::levelUp() {
+	
+
 	auto fi = mngr_->getComponent<FramedImage>(ent_);
 	if (currentLevel_ < maxLevel_) {
+
+		Message m;
+		m.id = _m_ADD_MONEY;
+		m.money_data.money = upgradeCost_;
+		std::cout << "COSTE DE MEJORA: " << upgradeCost_ << std::endl;
+		mngr_->send(m);
+
+		//Aumenta un 75% el dinero que cuesta 
+		upgradeCost_ += upgradeCost_ * 0.75;
+
+		mngr_->getComponent<TowerComponent>(ent_)->increaseSellMoney();
+
 		fi->setCurrentFrame(fi->getCurrentFrame() + 1);
 		auto tr = mngr_->getComponent<Transform>(ent_);
 		//Vector de ajuste debido al desplazamiento causado por el spritesheet

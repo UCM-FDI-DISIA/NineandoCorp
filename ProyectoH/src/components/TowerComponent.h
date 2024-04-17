@@ -21,6 +21,10 @@ public:
 
 	inline Cell* getCell() const { return cell_;}
 
+	inline void increaseSellMoney() {
+		sellMoney_ += sellMoney_ * 0.75;
+	}
+
 private:
 	Height height_;
 	int sellMoney_;

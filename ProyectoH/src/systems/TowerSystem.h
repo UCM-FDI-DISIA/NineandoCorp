@@ -48,7 +48,7 @@ public:
 	/// <param name="type">Tipo de la torre que definira sus mecanicas y su aspecto</param>
 	/// <param name="pos">Posicion en la que se coloca la torre</param>
 	/// <param name="height">Elevacion de la torre; puede ser alta o baja</param>
-	void addTower(twrId type, const Vector2D& pos, Height height, int sellMoney, Cell* cell);
+	void addTower(twrId type, const Vector2D& pos, Height height, int cost, Cell* cell);
 
 	int intAt(basic_string<char> s) const { return sdlutils().intConst().at(s); }
 	float floatAt(basic_string<char> s) const { return sdlutils().floatConst().at(s); }
@@ -60,7 +60,7 @@ public:
 	void removeTower(Entity* twr);
 
 protected:
-
+	void upgradeTower(Entity* tower);
 	void enableAllInteractiveTowers(bool b);
 	/// <summary>
 	/// Spawnea una bala con una posicion, una direccion, un dano y una velocidad

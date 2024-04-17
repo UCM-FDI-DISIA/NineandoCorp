@@ -44,8 +44,7 @@ void TowerSystem::receive(const Message& m) {
 			enableAllInteractiveTowers(false);
 		break;
 	case _m_UPGRADE_TWR_INGAME:
-		mngr_->getComponent<UpgradeTowerComponent>(m.upgrade_twr_ingame_data.upCmp)->levelUp();
-		std::cout << "NIVEL DE TORRE: " << mngr_->getComponent<UpgradeTowerComponent>(m.upgrade_twr_ingame_data.upCmp)->getLevel() << std::endl;
+		upgradeTower(m.upgrade_twr_ingame_data.upCmp);
 		break;
 	case _m_EXIT_UP_MENU:
 		enableAllInteractiveTowers(true);
@@ -584,6 +583,12 @@ void TowerSystem::removeTower(Entity* twr)
 	mngr_->refresh();
 }
 
+void TowerSystem::upgradeTower(Entity* tower) {
+	auto upCmp = mngr_->getComponent<UpgradeTowerComponent>(tower);
+	upCmp->levelUp();
+	std::cout << "NIVEL DE TORRE: " << upCmp->getLevel() << std::endl;
+}
+
 void TowerSystem::enableAllInteractiveTowers(bool b) {
 	for (auto t : towers) {
 		InteractiveTower* it = mngr_->getComponent<InteractiveTower>(t);
@@ -648,14 +653,14 @@ void TowerSystem::generateNexus(int lvlNexus, Cell* cell) {
 	mngr_->addComponent<FramedImage>(n, 1, lvlNexus, 2048, 2048, 1, 1, 1);
 }
 
-void TowerSystem::addTower(twrId type, const Vector2D& pos, Height height, int sellMoney, Cell* cell) {
+void TowerSystem::addTower(twrId type, const Vector2D& pos, Height height, int cost, Cell* cell) {
 	Entity* t = mngr_->addEntity(_grp_TOWERS_AND_ENEMIES);//Se a?ade al mngr
 	Transform* tr = mngr_->addComponent<Transform>(t);//transform
-	mngr_->addComponent<TowerComponent>(t, type, height, cell, sellMoney);
+	mngr_->addComponent<TowerComponent>(t, type, height, cell, cost * 0.75);
 	mngr_->addComponent<ShieldComponent>(t, 0);
 	tr->setPosition(pos);
 	mngr_->addComponent<TowerStates>(t);
-	mngr_->addComponent<UpgradeTowerComponent>(t, type, game().getSaveGame()->getTurretsLevels()[type]);
+	mngr_->addComponent<UpgradeTowerComponent>(t, type, game().getSaveGame()->getTurretsLevels()[type], cost + cost * 0.75);
 	if(type != _twr_NEXUS)
 		mngr_->addComponent<InteractiveTower>(t, cameraOffset_);
 	mngr_->addComponent<IconComponent>(t);
