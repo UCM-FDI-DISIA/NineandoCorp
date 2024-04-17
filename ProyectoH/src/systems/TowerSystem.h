@@ -20,9 +20,6 @@
 #include <list>
 #include <algorithm>
 
-
-
-
 class TowerSystem : public System
 {
 public:

@@ -5,7 +5,8 @@
 #include "../components/InteractiveTower.h"
 #include "../sdlutils/RandomNumberGenerator.h"
 #include "../components/TowerComponent.h"
-
+#include <algorithm>
+#include <math.h>
 
 TowerSystem::TowerSystem() : mActive(true) {
 }
@@ -465,31 +466,26 @@ void TowerSystem::update() {
 						Vector2D spawn(TR->getPosition()->getX() - floatAt("FenixOffsetX"), TR->getPosition()->getY() - floatAt("FenixOffsetY"));
 						pt->setElapsedTime(pt->getElapsedTime() + game().getDeltaTime());
 						pt->targetEnemy(mngr_->getHandler(_hdlr_ENEMIES));
-						Vector2D offset(0, 0);
+						Vector2D offset(-65, 60);					
 						if (pt->getTarget() != nullptr) {
 							Vector2D targetPos = *(mngr_->getComponent<Transform>(pt->getTarget())->getPosition());
-							Vector2D dir = targetPos - spawn;
+							Vector2D dir = targetPos - (spawn + offset);
 							dir = dir.normalize();
-
-							if (dir.getY() < -0.5 && dir.getX() >= -1 && dir.getX() <= 1) { pt->setRotation(90.0f); }//Rotar el fuego en funcion de la posicion relativa del target
-							else if (dir.getX() > 0.5 && dir.getY() <= 1 && dir.getY() >= -1) { pt->setRotation(180.0f); }
-							else if (dir.getX() < -0.5 && dir.getY() >= -1 && dir.getY() <= 1) { pt->setRotation(0.0f); }
-							else if (dir.getY() > 0.5 && dir.getX() >= -1 && dir.getX() <= 1) { pt->setRotation(270.0f); }
 							if (pt->getFire() != nullptr) {
+								float displacement = 85.0;
 								Transform* fTR = mngr_->getComponent<Transform>(pt->getFire());
-								fTR->setRotation(pt->getRotation());
+								float angle = atan(-(double)dir.getY() / (double)dir.getX())  * 180 / M_PI;
+								if (dir.getX() < 0 && dir.getY() < 0) { angle = -angle; }
+								else if (dir.getX() > 0 && dir.getY() < 0) { angle = 180 - angle; }
+								else if(dir.getX() > 0 && dir.getY() > 0) { angle = -angle + 180; }
+								else { angle = 360 - angle; }
+								dir = dir * displacement;
+								fTR->setRotation(angle);
+								fTR->setPosition(Vector2D(spawn.getX() + dir.getX(), spawn.getY() + dir.getY()) + offset);
 							}
 						}
-						if (pt->getRotation() == 90.0f)offset = Vector2D(0.0f, 0.0f);//Ajuste del rect en funcion del angulo
-						else if (pt->getRotation() == 180.0f) offset = Vector2D(floatAt("FireOffset180X"), floatAt("FireOffset180X"));
-						else if (pt->getRotation() == 0.0f)offset = Vector2D(floatAt("FireOffset0X"), floatAt("FireOffset0Y"));
-						else if (pt->getRotation() == 270.0f) offset = Vector2D(floatAt("FireOffset270X"), floatAt("FireOffset270Y"));
 						int level = mngr_->getComponent<UpgradeTowerComponent>(t)->getLevel() - 1;
 						auto fi = mngr_->getComponent<FramedImage>(t);
-						if (pt->getFire() != nullptr) {
-							Transform* fTR = mngr_->getComponent<Transform>(pt->getFire());
-							fTR->setPosition(Vector2D(spawn.getX() + offset.getX(), spawn.getY() + offset.getY()));
-						}
 						if (pt->getElapsedTime() > pt->getCoolingTime() && !pt->isShooting() && pt->getTarget() != nullptr) {
 
 							pt->setFire(shootFire(Vector2D(spawn.getX() + offset.getX(), spawn.getY() + offset.getY()), pt->getRotation(), pt->getDamage(), t));
@@ -615,6 +611,7 @@ Entity* TowerSystem::shootFire(Vector2D spawnPos, float rot, float dmg, Entity* 
 	Transform* t = mngr_->addComponent<Transform>(fire);
 	t->setPosition(spawnPos);
 	t->setRotation(rot);
+	t->setScale(Vector2D(200, 200));
 	t->setHeight(floatAt("FireHeightProportion"));
 	mngr_->addComponent<RenderComponent>(fire, fireTexture);
 	mngr_->addComponent<FramedImage>(fire, intAt("FireFrames"), 1, intAt("FireWidth"), intAt("FireHeight"), 0, intAt("FireFrames"), intAt("FireFrames"));
