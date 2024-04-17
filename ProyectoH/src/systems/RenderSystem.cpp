@@ -372,7 +372,7 @@ void RenderSystem::update() {
 	
 
 	//Este grupo tiene que estar ordenado de arriba a abajo de la pantalla segun su transform (posicion y)
-	// NO CAMBIAR LECHES
+	// NO CAMBIAR 
 	//TOWERS AND ENEMIES
 	auto& towers = mngr_->getEntities(_grp_TOWERS_AND_ENEMIES);
 	sort(towers.begin(), towers.end(), cmpIsometricY(mngr_));
@@ -471,15 +471,33 @@ void RenderSystem::update() {
 		Transform* tr = mngr_->getComponent<Transform>(h);
 		gameTextures textureId = mngr_->getComponent<RenderComponent>(h)->getTexture();
 		auto lockCmp = mngr_->getComponent<LockComponent>(h);
+		auto dnd = mngr_->getComponent<DragAndDrop>(h);
 		if (mngr_->getComponent<RenderComponent>(h)->isActive) {
-			if (fI != nullptr) {
-				SDL_Rect srcRect = fI->getSrcRect();
-				textures[textureId]->render(srcRect, tr->getRect(), tr->getRotation());
+			// Si tiene drag and drop
+			if (dnd != nullptr) {
+				//Si tiene lockcomponent y esta desbloqueado se renderiza
+				if (lockCmp != nullptr && !lockCmp->isLocked()) {
+					SDL_Rect srcRect = fI->getSrcRect();
+					textures[textureId]->render(srcRect, tr->getRect(), tr->getRotation());
+				}
+				//Si no tiene lockComponent tambien se renderiza
+				else if (lockCmp == nullptr) {
+					SDL_Rect srcRect = fI->getSrcRect();
+					textures[textureId]->render(srcRect, tr->getRect(), tr->getRotation());
+				}
 			}
-			else {
-				textures[textureId]->render(tr->getRect(), tr->getRotation());
+			//Si no tiene drag and drop se renderiza si condiciones
+			else if (dnd == nullptr) {
+				if (fI != nullptr) {
+					SDL_Rect srcRect = fI->getSrcRect();
+					textures[textureId]->render(srcRect, tr->getRect(), tr->getRotation());
+				}
+				else {
+					textures[textureId]->render(tr->getRect(), tr->getRotation());
+				}
 			}
-			if (lockCmp != nullptr) {
+			//Dando por hecho que solo los botones del HUD tienen lockComponent y no tienen drag and drop
+			if (lockCmp != nullptr && dnd == nullptr) {
 				if (lockCmp->isLocked()) {
 					SDL_Renderer* renderer = textures[textureId]->getRenderer();
 					Vector2D pos = tr->getPosition();
