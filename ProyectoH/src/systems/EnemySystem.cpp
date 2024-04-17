@@ -93,6 +93,7 @@ void  EnemySystem::receive(const Message& m) {
 						mngr_->getComponent<CaballeroMalditoComponent>(mal)->generateMalditos(*(mngr_->getComponent<Transform>(mal)->getPosition()), rc->getDestiny(), rc->getRoute());
 					}
 					AddMoney(enemytype->GetEnemyType(), level);
+					CoinAnimation(mngr_->getComponent<Transform>(m.entity_to_attack.e)->getPosition());
 					if (mngr_->hasComponent<AttackComponent>(m.entity_to_attack.src))mngr_->getComponent<AttackComponent>(m.entity_to_attack.src)->setTarget(nullptr);
 
 				};
@@ -278,6 +279,24 @@ void EnemySystem::AddMoney(enmId type, int level) {
 	m2.id = _m_ADD_MONEY_H;
 	m2.money_data.money = Hmoney;
 	mngr_->send(m2);
+}
+
+void EnemySystem::CoinAnimation(Vector2D pos) {
+	Message m;
+	m.id = _m_ANIM_CREATE;
+	m.anim_create.idGrp = _grp_ICONS;
+	m.anim_create.animSpeed = 15;
+	m.anim_create.iterationsToDelete = 1;
+	m.anim_create.pos = pos;
+	m.anim_create.frameInit = 1;
+	m.anim_create.frameEnd = 1;
+	m.anim_create.cols = 1;
+	m.anim_create.rows = 1;
+	m.anim_create.scale = { 100, 100 };
+	m.anim_create.width = 100;
+	m.anim_create.height = 100;
+	m.anim_create.tex = gameTextures::monedaDorada;
+	mngr_->send(m);
 }
 
 void EnemySystem::update()
