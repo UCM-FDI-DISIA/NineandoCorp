@@ -35,7 +35,7 @@ void PauseSystem::initSystem() {
 
 	posAux = posAux + Vector2D(0.0f, 100.0f);
 	Entity* backToMenu = bS->addButton(posAux, scaleAux, 
-		gameTextures::backToMenu_button, gameTextures::backToMenu_button_hover, ButtonTypes::none);
+		gameTextures::backToMenu_button, gameTextures::backToMenu_button_hover, ButtonTypes::back_to_menu);
 	mngr_->setHandler(_hdlr_BUTTON_PAUSE, backToMenu);
 
 	posAux = posAux + Vector2D(0.0f, 100.0f);
