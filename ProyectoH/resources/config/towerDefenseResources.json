@@ -262,6 +262,10 @@
       "file": "resources/images/UI/LifeBar/vida.png"
     },
     {
+      "id": "life_background",
+      "file": "resources/images/UI/LifeBar/fondoVida.png"
+    },
+    {
       "id": "cursor",
       "file": "resources/images/pointer/finger_up.png"
     },

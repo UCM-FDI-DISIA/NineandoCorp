@@ -158,7 +158,7 @@ RenderSystem::RenderSystem() : winner_(0)
 
 	//Lifebar
 	textures[life] = &sdlutils().images().at("life");
-
+	textures[life_background] = &sdlutils().images().at("life_background");
 	//Enemies Icons
 	textures[goblin_icon] = &sdlutils().images().at("goblin_icon");
 	textures[maldito_icon] = &sdlutils().images().at("maldito_icon");
@@ -565,8 +565,8 @@ void RenderSystem::drawBarlife(Entity* t) {
 		float a = hc->getMaxHealth();
 		float b = hc->getHealth();
 		float c = b / a;
-		textures[gameTextures::box]->render(SDL_Rect{trRect.x, trRect.y, (int)(150.f*c), 50}, 0);
-		//textures[gameTextures::life]->render(SDL_Rect{ trRect.x, trRect.y - 10, trRect.w, trRect.h * 1/2 }, 0);
+		textures[gameTextures::life_background]->render(SDL_Rect{ trRect.x - 15, trRect.y - 3, 180, 51 }, 0);
+		textures[gameTextures::life]->render(SDL_Rect{trRect.x- 10, trRect.y, (int)(170.f*c), 45}, 0);
 	}
 }
 
