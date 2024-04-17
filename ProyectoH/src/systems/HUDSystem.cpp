@@ -333,6 +333,15 @@ void HUDSystem::initSystem() {
 		gameTextures::pause_button, gameTextures::pause_button_hover,
 		ButtonTypes::pause_main);
 
+	/**
+	*
+	*	/ -- PAUSE BUTTON -- /
+	*
+	*/
+	bS->addButton({ (float)sdlutils().width() - 50.0f , 120.0f },
+		{ 50.0f, 50.0f },
+		gameTextures::acelerate_x1, gameTextures::acelerate_x1_hover,
+		ButtonTypes::none);
 	
 	Vector2D pAux = { xAux * 8.6f, heightH };
 	Vector2D sAux = { 250, 90 };

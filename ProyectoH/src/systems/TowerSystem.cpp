@@ -44,8 +44,7 @@ void TowerSystem::receive(const Message& m) {
 			enableAllInteractiveTowers(false);
 		break;
 	case _m_UPGRADE_TWR_INGAME:
-		mngr_->getComponent<UpgradeTowerComponent>(m.upgrade_twr_ingame_data.upCmp)->levelUp();
-		std::cout << "NIVEL DE TORRE: " << mngr_->getComponent<UpgradeTowerComponent>(m.upgrade_twr_ingame_data.upCmp)->getLevel() << std::endl;
+		upgradeTower(m.upgrade_twr_ingame_data.upCmp);
 		break;
 	case _m_EXIT_UP_MENU:
 		enableAllInteractiveTowers(true);
@@ -181,34 +180,48 @@ void TowerSystem::onAttackTower(Entity* e, int dmg, Entity* src) {
 	if (e != nullptr && mngr_->isAlive(e)) {
 		HealthComponent* h = mngr_->getComponent<HealthComponent>(e);
 		ShieldComponent* s = mngr_->getComponent<ShieldComponent>(e);
-		
-		if (mngr_->hasComponent<DirtTower>(e) && mngr_->hasComponent<UpgradeTowerComponent>(e)&&mngr_->getComponent<UpgradeTowerComponent>(e)->getLevel() == 4) {//Reflejar daño torre de arcilla
-			Message m;
-			m.id = _m_ENTITY_TO_ATTACK;
-			m.entity_to_attack.targetId = _hdlr_ENEMIES;
-			m.entity_to_attack.src = e;
-			m.entity_to_attack.e = src;
-			mngr_->send(m);
-		}
-		if (s->getShield() <= 0 && h->getHealth() - dmg <= 0) {		
-			eliminateDestroyedTowers(e);
-			//std::cout << "Torre eliminada-TorresTotales: " << towers.size() << std::endl;
-			mngr_->deleteHandler(_hdlr_LOW_TOWERS, e);
-			clearShieldsArea(e);
-			h->subtractHealth(dmg);		 
-		}
-		else if (s->getShield() > 0){
-			 if(s->getShield() - dmg <= 0 ){ 
-				
-				Transform* t = mngr_->getComponent<Transform>(e);				
-				if(t != nullptr){ createShieldExplosion(*(t->getPosition())); }
-				if(s->getImg() != NULL)mngr_->setAlive(s->getImg(), false);
+
+		if (h != nullptr && s != nullptr) {
+			if (h->getHealth() - dmg <= 0) {
+				auto enemytype = mngr_->getComponent<EnemyTypeComponent>(e);
+				Message m1;
+				m1.id = _m_TOWER_DIED;
+				m1.return_entity.ent = e;
+				mngr_->send(m1);
 			}
-			s->subtractShield((float)dmg);
+
+			if (mngr_->hasComponent<DirtTower>(e) && mngr_->hasComponent<UpgradeTowerComponent>(e) && mngr_->getComponent<UpgradeTowerComponent>(e)->getLevel() == 4) {//Reflejar daño torre de arcilla
+				Message m;
+				m.id = _m_ENTITY_TO_ATTACK;
+				m.entity_to_attack.targetId = _hdlr_ENEMIES;
+				m.entity_to_attack.src = e;
+				m.entity_to_attack.e = src;
+				mngr_->send(m);
+			}
+			if (s->getShield() <= 0 && h->getHealth() - dmg <= 0) {
+				eliminateDestroyedTowers(e);
+				//std::cout << "Torre eliminada-TorresTotales: " << towers.size() << std::endl;
+				mngr_->deleteHandler(_hdlr_LOW_TOWERS, e);
+				clearShieldsArea(e);
+				h->subtractHealth(dmg);
+
+
+			}
+			else if (s->getShield() > 0) {
+				if (s->getShield() - dmg <= 0) {
+
+					Transform* t = mngr_->getComponent<Transform>(e);
+					if (t != nullptr) { createShieldExplosion(*(t->getPosition())); }
+					if (s->getImg() != NULL)mngr_->setAlive(s->getImg(), false);
+				}
+				s->subtractShield((float)dmg);
+			}
+			else {
+				h->subtractHealth(dmg);
+			}
 		}
-		else {
-			h->subtractHealth(dmg);
-		}
+
+
 	}
 }
 //Realiza las funcionalidades de las torres, accediendo a los atributos de los componentes y realizando la mecanica de cada torre
@@ -570,6 +583,12 @@ void TowerSystem::removeTower(Entity* twr)
 	mngr_->refresh();
 }
 
+void TowerSystem::upgradeTower(Entity* tower) {
+	auto upCmp = mngr_->getComponent<UpgradeTowerComponent>(tower);
+	upCmp->levelUp();
+	std::cout << "NIVEL DE TORRE: " << upCmp->getLevel() << std::endl;
+}
+
 void TowerSystem::enableAllInteractiveTowers(bool b) {
 	for (auto t : towers) {
 		InteractiveTower* it = mngr_->getComponent<InteractiveTower>(t);
@@ -634,14 +653,14 @@ void TowerSystem::generateNexus(int lvlNexus, Cell* cell) {
 	mngr_->addComponent<FramedImage>(n, 1, lvlNexus, 2048, 2048, 1, 1, 1);
 }
 
-void TowerSystem::addTower(twrId type, const Vector2D& pos, Height height, int sellMoney, Cell* cell) {
+void TowerSystem::addTower(twrId type, const Vector2D& pos, Height height, int cost, Cell* cell) {
 	Entity* t = mngr_->addEntity(_grp_TOWERS_AND_ENEMIES);//Se a?ade al mngr
 	Transform* tr = mngr_->addComponent<Transform>(t);//transform
-	mngr_->addComponent<TowerComponent>(t, type, height, cell, sellMoney);
+	mngr_->addComponent<TowerComponent>(t, type, height, cell, cost * 0.75);
 	mngr_->addComponent<ShieldComponent>(t, 0);
 	tr->setPosition(pos);
 	mngr_->addComponent<TowerStates>(t);
-	mngr_->addComponent<UpgradeTowerComponent>(t, type, game().getSaveGame()->getTurretsLevels()[type]);
+	mngr_->addComponent<UpgradeTowerComponent>(t, type, game().getSaveGame()->getTurretsLevels()[type], cost + cost * 0.75);
 	if(type != _twr_NEXUS)
 		mngr_->addComponent<InteractiveTower>(t, cameraOffset_);
 	mngr_->addComponent<IconComponent>(t);
