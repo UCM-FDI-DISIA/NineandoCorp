@@ -351,6 +351,8 @@ void EnemySystem::update()
 				acc->setTime(game().getDeltaTime() + acc->getElapsed());
 				if (acc->getElapsed() >= acc->getReload() - 0.5) {
 					mc->setStop(true);
+					ac->setAttack(true);
+					changeAnimation(ac->getAttack(), e);
 				}
 				if (acc->getElapsed() >= acc->getReload()) {
 					acc->inRange(enemies);
