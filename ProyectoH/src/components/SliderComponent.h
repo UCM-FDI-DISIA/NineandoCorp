@@ -18,10 +18,13 @@ public:
     void setValue(float value) { value_ = value; }
 
     void setBounds() {
-        min_ = tr_->getX() - 50.0f;
-        max_ = tr_->getX() + 100.0f;;
+        min_ = tr_->getX() - 100.0f;
+        max_ = tr_->getX() + 150.0f;;
     }
-
+    void setRelativeBounds(float newRelativeMax_) {
+        relativeMax_ = newRelativeMax_;
+    }
+    float getRelativeMax() const { return relativeMax_; };
     void setOnChangeCallback(std::function<void(float)> onChange) {
         onChange_ = onChange;
     }
@@ -36,6 +39,7 @@ private:
     float value_ = 0.0f;
     float min_ = 0.0f;
     float max_ = 1.0f;
+    float relativeMax_ = 1.0f;
     std::function<void(float)> onChange_;
 
     //Transform del boton del slider

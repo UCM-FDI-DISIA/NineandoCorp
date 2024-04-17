@@ -117,6 +117,11 @@ void ButtonSystem::manageButtons() {
 						// Asegúrate de que la nueva posición esté dentro de los límites
 						posX = std::max(slider->getMin(), std::min(posX, slider->getMax() - tR->getWidth()));
 						tR->setX(posX);
+
+						// Calcular el valor del volumen en función de la posición del slider dentro de los límites relativos
+						float relativeValue = (posX - slider->getMin()) / (slider->getMax() - tR->getScale()->getX() - slider->getMin());
+						float volume = relativeValue * slider->getRelativeMax(); // Escalamos de 0 a 100
+						cout << volume << endl;
 					}
 				}
 			}
@@ -423,9 +428,10 @@ Entity* ButtonSystem::addSlider(const Vector2D& pos, const Vector2D& scale, game
 	mngr_->addComponent<RenderComponent>(slider, tex);
 	auto sliderComp = mngr_->addComponent<SliderComponent>(slider);
 	sliderComp->setBounds(); // Establece los límites del slider
-	sliderComp->setOnChangeCallback([](float value) {
-		// Lógica para manejar el cambio de valor del slider
-		});
+	sliderComp->setRelativeBounds(100);
+	//sliderComp->setOnChangeCallback([](float value) {
+	//	// Lógica para manejar el cambio de valor del slider
+	//	});
 
 	return slider;
 }
