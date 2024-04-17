@@ -9,6 +9,8 @@
 ButtonSystem::ButtonSystem(hdlrId_type but_id) : 
 	hdlr_but_id(but_id), money_(0), HMoney_(0){
 	mActive = true;
+	numAcelButs = 3;
+	cauntAcelButs = 1;
 	//rellenar la lista de costes
 	costs[_twr_BULLET] = sdlutils().intConst().at("BalasPrecio");
 	costs[_twr_FENIX] = sdlutils().intConst().at("FenixPrecio");
@@ -250,6 +252,29 @@ void ButtonSystem::managePauseButtons() {
 			Pause(false);
 			sdlutils().soundEffects().at("button").play(0, 1);
 			break;
+		case acelerate:
+			switch (cauntAcelButs)
+			{
+			case 1:
+				Acelerate(1.5f);
+				break;
+			case 2:
+				Acelerate(2.0f);
+				break;
+			case 3:
+				Acelerate(1.0f);
+				break;
+			default:
+				break;
+			}
+
+			if (cauntAcelButs < numAcelButs) { 
+				cauntAcelButs++; 
+			}
+			else { 
+				cauntAcelButs = 1; 
+			}
+			break;
 		case enemybook:
 			mngr_->send(mngr_->getComponent<ButtonComponent>(bC)->getMessage());			
 			break;
@@ -357,6 +382,12 @@ void ButtonSystem::managePauseButtons() {
 		Message m;
 		m.id = _m_PAUSE;
 		m.start_pause.onPause = onPause;
+		mngr_->send(m, true);
+	}
+	void ButtonSystem::Acelerate(float _acel) {
+		Message m;
+		m.id = _m_ACELERATE;
+		m.acelerate_plus.acel = _acel;
 		mngr_->send(m, true);
 	}
 	void ButtonSystem::Config() {

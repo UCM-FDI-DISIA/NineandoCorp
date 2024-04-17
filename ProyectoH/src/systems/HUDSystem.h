@@ -101,6 +101,8 @@ private:
 
 	bool mActive;
 
+	void NewAcelerationButton(float acel);
+
 	void showUpgradeMenu(Entity* twr, const Vector2D& pos);
 
 	int intAt(basic_string<char> s) { return sdlutils().intConst().at(s); }

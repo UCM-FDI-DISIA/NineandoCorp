@@ -335,14 +335,15 @@ void HUDSystem::initSystem() {
 
 	/**
 	*
-	*	/ -- PAUSE BUTTON -- /
+	*	/ -- ACELERATION BUTTON -- /
 	*
 	*/
-	bS->addButton({ (float)sdlutils().width() - 50.0f , 120.0f },
+	Entity* acelerate = bS->addButton({ (float)sdlutils().width() - 50.0f , 120.0f },
 		{ 50.0f, 50.0f },
 		gameTextures::acelerate_x1, gameTextures::acelerate_x1_hover,
-		ButtonTypes::none);
-	
+		ButtonTypes::acelerate);
+	mngr_->setHandler(_hdlr_BUTTON_ACELERATE, acelerate);
+
 	Vector2D pAux = { xAux * 8.6f, heightH };
 	Vector2D sAux = { 250, 90 };
 	
@@ -367,6 +368,9 @@ void HUDSystem::receive(const Message& m) {
 		break;
 	case _m_PAUSE:
 		mActive = !m.start_pause.onPause;
+		break;
+	case _m_ACELERATE:
+		NewAcelerationButton(m.acelerate_plus.acel);
 		break;
 	case _m_OFFSET_CONTEXT:
 		cameraOffset_ = m.offset_context.offset;
@@ -618,6 +622,31 @@ void HUDSystem::showUpgradeMenu(Entity* twr, const Vector2D& pos) {
 	upM_.exitButton = bS->addButton(posD + offset,
 		{ 40.0f , 40.0f },
 		gameTextures::close, gameTextures::close_hover, ButtonTypes::exit_up_menu);
+}
+
+void HUDSystem::NewAcelerationButton(float acel) {
+	auto hId = mngr_->getHandler(_hdlr_BUTTON_ACELERATE);
+	hId.clear();
+
+	ButtonSystem* bS = mngr_->getSystem<ButtonSystem>();
+	gameTextures butText, butText_hover;
+	if (acel == 1) {
+		butText = acelerate_x1;
+		butText_hover = acelerate_x1_hover;
+	}
+	else if (acel == 1.5) {
+		butText = acelerate_x1_5;
+		butText_hover = acelerate_x1_5_hover;
+	}
+	else {
+		butText = acelerate_x2;
+		butText_hover = acelerate_x2_hover;
+	}
+	Entity* acelerate = bS->addButton({ (float)sdlutils().width() - 50.0f , 120.0f },
+		{ 50.0f, 50.0f },
+		butText, butText_hover,
+		ButtonTypes::acelerate);
+	mngr_->setHandler(_hdlr_BUTTON_ACELERATE, acelerate);
 }
 
 void HUDSystem::exitUpgradeMenu() {

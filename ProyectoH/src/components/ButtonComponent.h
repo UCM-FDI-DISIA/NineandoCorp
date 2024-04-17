@@ -13,7 +13,8 @@ enum ButtonTypes {
 	selector_main, enemies_main, pause_main, resume_main,
 	//Level Selector
 	level_selected, back_selector, play_wave,
-
+	// aceleration button
+	acelerate,
 	//Upgrades main menu
 	upgrade_nexus, 
 	upgrade_crystal_main,
