@@ -16,7 +16,7 @@ void ConfigSystem::initSystem() {
 	SDL_Color textColor = { 255, 255, 255, 255 };
 	//BACKGROUND
 	Vector2D pAux = { sdlutils().width() / 2.0f, sdlutils().height() / 2.0f };
-	Vector2D sAux = { 1100.0f , 700.0f };
+	Vector2D sAux = { sdlutils().width() - 100.0f , sdlutils().height() - 250.0f };
 	bS->addImage(pAux, sAux, 0.0, gameTextures::large_box, _grp_HUD_FOREGROUND);
 	
 	// GENERAL
