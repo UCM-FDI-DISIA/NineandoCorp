@@ -207,6 +207,7 @@ void ButtonSystem::sellTower(Entity* twr)
 //Todas las funciones de los botones del juego
 	void ButtonSystem::callFunction(ButtonTypes type, Entity* bC) {
 		// Incluye la id del button para incluir 
+		sdlutils().soundEffects().at("button").setChannelVolume(game().CalculoVolumenEfectos(), 1);
 		int lvl;
 		switch (type)
 		{

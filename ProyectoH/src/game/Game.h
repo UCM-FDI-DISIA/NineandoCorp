@@ -77,6 +77,16 @@ public:
 		exit = true;
 	}
 
+	float CalculoVolumenEfectos() {
+		float vol = config_.soundGeneral_ * config_.soundEffects_;
+		return (vol * 128) / 10000;
+	}
+
+	float CalculoVolumenMusica() {
+		float vol = config_.soundMusic_ * config_.soundEffects_;
+		return (vol * 128) / 10000;
+	}
+
 	inline GameState* currentState() const {return gameStateMachine->currentState(); }
 
 	inline float getSoundGeneral() const { return config_.soundGeneral_; };
