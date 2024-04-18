@@ -39,10 +39,6 @@ void ButtonSystem::receive(const Message& m){
 		money_ += m.money_data.money;
 		updateText(money_);
 		break;
-	case _m_SELL_TOWER:
-		money_ += m.sell_tower_data.money;
-		updateText(money_);
-		break;
 	case _m_START_MENU:
 		HMoney_ = m.money_data.money;
 		game().getSaveGame()->setHCoins(HMoney_);
@@ -201,7 +197,12 @@ void ButtonSystem::managePauseButtons() {
 
 #pragma region FUNCIONES DE BOTONES
 
-	//Todas las funciones de los botones del juego
+void ButtonSystem::sellTower(Entity* twr)
+{
+	
+}
+
+//Todas las funciones de los botones del juego
 	void ButtonSystem::callFunction(ButtonTypes type, Entity* bC) {
 		// Incluye la id del button para incluir 
 		int lvl;

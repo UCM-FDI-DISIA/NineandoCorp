@@ -60,6 +60,11 @@ public:
 	int getHMoney() { return HMoney_; };
 private:
 	/// <summary>
+	/// Añade el dinero correspondiente a la torre vendida
+	/// </summary>
+	/// <param name="twr"></param>
+	void sellTower(Entity* twr);
+	/// <summary>
 	/// Llama a las funciones correspondientes dependiendo del tipo del boton cuando este es pulsado
 	/// </summary>
 	/// <param name="type">tipo del boton</param>

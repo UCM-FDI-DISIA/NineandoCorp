@@ -56,9 +56,6 @@ void TowerSystem::receive(const Message& m) {
 	case _m_STOP_DRAG:
 		enableAllInteractiveTowers(true);
 		break;
-	case _m_SELL_TOWER:
-		removeTower(m.sell_tower_data.twr);
-		break;
 	case _m_ENEMY_DIED:
 		for (auto& b: mngr_->getEntities(_grp_BULLETS))
 		{
@@ -77,7 +74,12 @@ void TowerSystem::receive(const Message& m) {
 			else if (st != nullptr && st->getTarget() == m.return_entity.ent) { st->setTarget(nullptr); }
 		}
 		break;
-	default:
+	case _m_SELL_TOWER:
+		Message m1;
+		m1.id = _m_ADD_MONEY;
+		m1.money_data.money = mngr_->getComponent<UpgradeTowerComponent>(m.sell_tower_data.twr)->getAcumCost() * 0.75;
+		mngr_->send(m1);
+		removeTower(m.sell_tower_data.twr);
 		break;
 	}
 }
@@ -573,7 +575,6 @@ void TowerSystem::removeTower(Entity* twr)
 		mngr_->deleteHandler(_hdlr_HIGH_TOWERS, twr);
 	}
 	mngr_->getComponent<TowerComponent>(twr)->getCell()->isFree = true;
-
 	towers.erase(find(towers.begin(), towers.end(), twr));
 	mngr_->setAlive(twr, false);
 	mngr_->refresh();
@@ -657,7 +658,7 @@ void TowerSystem::addTower(twrId type, const Vector2D& pos, Height height, int c
 	mngr_->addComponent<ShieldComponent>(t, 0);
 	tr->setPosition(pos);
 	mngr_->addComponent<TowerStates>(t);
-	mngr_->addComponent<UpgradeTowerComponent>(t, type, game().getSaveGame()->getTurretsLevels()[type], cost + cost * 0.75);
+	mngr_->addComponent<UpgradeTowerComponent>(t, type, game().getSaveGame()->getTurretsLevels()[type], cost + cost * 0.75, cost);
 	if(type != _twr_NEXUS)
 		mngr_->addComponent<InteractiveTower>(t, cameraOffset_);
 	mngr_->addComponent<IconComponent>(t);

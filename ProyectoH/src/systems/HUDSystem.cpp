@@ -573,7 +573,6 @@ void HUDSystem::showUpgradeMenu(Entity* twr, const Vector2D& pos) {
 	SDL_Color c2 = { 220, 220, 220, 255 };
 	Vector2D lvlPos2 = { pos.getX() + 220 + cameraOffset_->x , pos.getY() + 70 + cameraOffset_->y };
 	Vector2D lvlScale2;
-
 		//Comprobacion de nivel para nivel maximo
 	std::string lvltxt;
 	if (upCmp->isMaxLeveled() && upCmp->getLevel() == 4) { 
@@ -591,7 +590,22 @@ void HUDSystem::showUpgradeMenu(Entity* twr, const Vector2D& pos) {
 	/**
 	*	TEXTO DE COSTE DE MEJORA
 	*/
-	Vector2D posM = {};
+	Vector2D posM = { pos.getX() + 170 + cameraOffset_->x , pos.getY() + 100 + cameraOffset_->y };
+	int upCost = upCmp->getUpgradeCost();
+	Vector2D scaleM;
+
+	basic_string cost_s = std::to_string(upCost);
+	if (cost_s.size() == 2) {
+		scaleM = {20.0f, 35.0f};
+	}
+	else if (cost_s.size() == 3) {
+		scaleM = { 45.0f, 35.0f };
+	}
+	else if (cost_s.size() == 4) {
+		scaleM = { 60.0f, 35.0f };
+	}
+
+	upM_.upCost = bS->addText(cost_s, c1, posM, scaleM);
 
 
 	/**
@@ -599,9 +613,7 @@ void HUDSystem::showUpgradeMenu(Entity* twr, const Vector2D& pos) {
 	*/
 	Message m1;
 	m1.id = _m_SELL_TOWER;
-	m1.sell_tower_data.twr = twr;
-	int cost = mngr_->getComponent<DragAndDrop>(twrSel_.buttons[upCmp->id_].img)->getCost();
-	m1.sell_tower_data.money = (cost * 75) / 100 ;
+	m1.sell_tower_data.twr = tower_;
 
 	Vector2D posC = { pos.getX() + 390 + cameraOffset_->x, pos.getY() + cameraOffset_->y };
 	upM_.sellButton = bS->addButton(posC + offset,
@@ -635,6 +647,7 @@ void HUDSystem::exitUpgradeMenu() {
 	mngr_->setAlive(upM_.hpText, false);
 	mngr_->setAlive(upM_.damageText, false);
 	mngr_->setAlive(upM_.reloadText, false);
+	mngr_->setAlive(upM_.upCost, false);
 	mngr_->refresh();
 
 	mngr_->deleteHandler(hId, upM_.sellButton);
@@ -647,6 +660,7 @@ void HUDSystem::exitUpgradeMenu() {
 	mngr_->deleteHandler(hId, upM_.hpText);
 	mngr_->deleteHandler(hId, upM_.twrLvl);
 	mngr_->deleteHandler(hId, upM_.lvlText);
+	mngr_->deleteHandler(hId, upM_.upCost);
 
 	tower_ = nullptr;
 
@@ -698,6 +712,7 @@ void HUDSystem::updateTowerInfo() {
 	auto et = mngr_->getComponent<EnhancerTower>(tower_);
 	auto dt = mngr_->getComponent<DirtTower>(tower_);
 	auto ct = mngr_->getComponent<CrystalTower>(tower_);
+	auto up = mngr_->getComponent<UpgradeTowerComponent>(tower_);
 
 	float range = 100;
 	int damage = 0;
@@ -714,6 +729,8 @@ void HUDSystem::updateTowerInfo() {
 	mngr_->getComponent<TextComponent>(upM_.hpText)->changeText("HP: " + std::to_string((int)hpCmp->getMaxHealth()));
 	mngr_->getComponent<TextComponent>(upM_.damageText)->changeText("DMG: " + std::to_string(damage));
 	mngr_->getComponent<TextComponent>(upM_.reloadText)->changeText("RELOAD: " + std::to_string((int)reloadTime));
+	mngr_->getComponent<TextComponent>(upM_.upCost)->changeText(std::to_string(up->getUpgradeCost()));
+
 }
 
 Vector2D HUDSystem::resetScale(twrId tId)

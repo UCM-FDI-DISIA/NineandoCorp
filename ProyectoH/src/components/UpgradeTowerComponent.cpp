@@ -12,10 +12,11 @@
 
 using namespace std;
 
-UpgradeTowerComponent::UpgradeTowerComponent(twrId id, int maxLevel, int upCost) : 
+UpgradeTowerComponent::UpgradeTowerComponent(twrId id, int maxLevel, int upCost,int initCost) : 
 	id_(id), //
 	maxLevel_(maxLevel), //
 	currentLevel_(1), //
+	acumCost_(initCost), //
 	upgradeCost_(upCost) {
 }
 
@@ -27,10 +28,11 @@ void UpgradeTowerComponent::levelUp() {
 
 		Message m;
 		m.id = _m_ADD_MONEY;
-		m.money_data.money = upgradeCost_;
+		m.money_data.money = -upgradeCost_;
 		std::cout << "COSTE DE MEJORA: " << upgradeCost_ << std::endl;
 		mngr_->send(m);
-
+		//Suma al contador de dinero acumulado el coste de la mejora actual
+		acumCost_ += upgradeCost_;
 		//Aumenta un 75% el dinero que cuesta 
 		upgradeCost_ += upgradeCost_ * 0.75;
 
