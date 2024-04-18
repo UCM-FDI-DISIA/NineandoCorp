@@ -298,6 +298,14 @@
             "file": "resources/images/UI/play_button_hover.png"
         },
         {
+            "id": "settings",
+            "file": "resources/images/UI/settings.png"
+        },
+        {
+            "id": "settings_hover",
+            "file": "resources/images/UI/settings_hover.png"
+        },
+        {
             "id": "box",
             "file": "resources/images/UI/box.png"
         },
@@ -771,12 +779,12 @@
             "file": "resources/images/Towers/bloodHit.png"
         },
         {
-          "id": "column_box",
-          "file": "resources/images/UI/column_box.png"
+            "id": "column_box",
+            "file": "resources/images/UI/column_box.png"
         },
         {
-          "id": "white_frame",
-          "file": "resources/images/UI/white_frame.png"
+            "id": "white_frame",
+            "file": "resources/images/UI/white_frame.png"
         }
     ],
 

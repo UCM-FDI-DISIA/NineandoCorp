@@ -61,6 +61,9 @@ void ButtonSystem::receive(const Message& m){
 				 m.add_text_data.time
 					);
 		break;
+	case _m_CONFIG:
+		mActive = true;
+		break;
 	case _m_PAUSE:
 		mActive = !m.start_pause.onPause;
 		break;

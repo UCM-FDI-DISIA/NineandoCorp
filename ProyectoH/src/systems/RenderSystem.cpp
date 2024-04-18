@@ -34,6 +34,8 @@ RenderSystem::RenderSystem() : winner_(0)
 	textures[large_box] = &sdlutils().images().at("large_box");
 	textures[pause_button] = &sdlutils().images().at("pause_button");
 	textures[pause_button_hover] = &sdlutils().images().at("pause_button_hover");
+	textures[settings] = &sdlutils().images().at("settings");
+	textures[settings_hover] = &sdlutils().images().at("settings_hover");
 	textures[close] = &sdlutils().images().at("close");
 	textures[close_hover] = &sdlutils().images().at("close_hover");
 	textures[enemies_button] = &sdlutils().images().at("enemies");
