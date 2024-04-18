@@ -77,6 +77,11 @@ public:
 		return channels_ = Mix_AllocateChannels(n);
 	}
 
+	void playFromStart(int channel = -1) const {
+		_CHECK_CHANNEL_(channel);
+		Mix_PlayChannel(channel, chunk_, 0);  
+	}
+
 private:
 
 	inline static void checkChannel(int channel) {

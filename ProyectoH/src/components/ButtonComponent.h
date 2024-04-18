@@ -2,16 +2,19 @@
 #include "Transform.h"
 #include "../sdlutils/SDLUtils.h"
 #include "../components/RenderComponent.h"
+#include "../components/LockComponent.h"
 
 enum ButtonTypes {
 	//Others
 	pruebaButton, 
 	exit_button,
+	back_to_menu,
 	//MainMenu
 	selector_main, enemies_main, pause_main, resume_main,
 	//Level Selector
 	level_selected, back_selector, play_wave,
-
+	// aceleration button
+	acelerate,
 	//Upgrades main menu
 	upgrade_nexus, 
 	upgrade_crystal_main,
@@ -20,7 +23,8 @@ enum ButtonTypes {
 	upgrade_clay_main, upgrade_enhancer_main,
 	//Enemybook
 	enemybook,
-
+	//CONFIG
+	config,
 	// ----- HUD -----//
 	crystal_drag,
 	slime_drag,

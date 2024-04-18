@@ -20,9 +20,6 @@
 #include <list>
 #include <algorithm>
 
-
-
-
 class TowerSystem : public System
 {
 public:
@@ -48,7 +45,7 @@ public:
 	/// <param name="type">Tipo de la torre que definira sus mecanicas y su aspecto</param>
 	/// <param name="pos">Posicion en la que se coloca la torre</param>
 	/// <param name="height">Elevacion de la torre; puede ser alta o baja</param>
-	void addTower(twrId type, const Vector2D& pos, Height height, int sellMoney, Cell* cell);
+	void addTower(twrId type, const Vector2D& pos, Height height, int cost, Cell* cell);
 
 	int intAt(basic_string<char> s) const { return sdlutils().intConst().at(s); }
 	float floatAt(basic_string<char> s) const { return sdlutils().floatConst().at(s); }
@@ -60,7 +57,7 @@ public:
 	void removeTower(Entity* twr);
 
 protected:
-
+	void upgradeTower(Entity* tower);
 	void enableAllInteractiveTowers(bool b);
 	/// <summary>
 	/// Spawnea una bala con una posicion, una direccion, un dano y una velocidad
@@ -70,18 +67,19 @@ protected:
 	/// <param name="damage">Dano</param>
 	/// <param name="speed">Velocidad</param>
 	/// <param name="spawnPos">Posicion de spawn, que deberia ser la de la posicion del canon de la torre</param>
-	Entity* shootBullet(Entity* target, Entity* src, float damage, float speed, Vector2D spawnPos, gameTextures texture,Vector2D bulletScale, twrId id);
+	Entity* shootBullet(Entity* target, Entity* src, float damage, float speed, Vector2D spawnPos, gameTextures texture,Vector2D bulletScale, twrId id, hdlrId srcId);
 	Entity* addShield(Vector2D pos);	
 	void createShieldExplosion(Vector2D pos);
 	void createBulletExplosion(Vector2D pos);
+	void createHitAnim(Vector2D pos);
 	void clearShieldsArea(Entity* e);
+	void generateNexus(int lvlNexus, Cell* cell);
 	/// <summary>
 	/// Debe spawnear una entidad con un fireComponent que tenga un rect y se detecte la colision con enemigos en un collision system
 	/// </summary>
 	/// <param name="shootingTime">Tiempo en el que esta disparando fuego la torre de fenix</param>
 	/// <param name="damage">Dano por segundo causado por la torre de fenix</param>
 	Entity* shootFire(Vector2D spawn, float rot, float dmg, Entity* src);
-	void eliminateDestroyedTowers(Entity* t);
 	std::vector<Entity*> towers;
 	bool mActive;
 	bool attackTowers;

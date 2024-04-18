@@ -11,11 +11,12 @@ protected:
 	Entity* srcEntity;//Entidad origen
 	int damage_;//Dano de la bala
 	float speed_;//Velocidad de la bala
+	hdlrId srcId;
 
 public:
 	static const cmpId id = cmpId::_BULLET;
 
-	BulletComponent(Transform* tr, Entity* target, Entity* src, int damage, float speed);
+	BulletComponent(Transform* tr, Entity* target, Entity* src, int damage, float speed, hdlrId src_);
 	BulletComponent() {};
 	void doDamageTo(Entity* e, float damage);
 	void setDir();

@@ -47,6 +47,7 @@
     <ClInclude Include="src\components\LimitedTime.h" />
     <ClInclude Include="src\components\MaestroAlmasComponent.h" />
     <ClInclude Include="src\components\MensajeroMuerteComponent.h" />
+    <ClInclude Include="src\components\MonjeComponent.h" />
     <ClInclude Include="src\components\MovementComponent.h" />
     <ClInclude Include="src\components\MuerteComponent.h" />
     <ClInclude Include="src\components\NexusComponent.h" />
@@ -57,6 +58,7 @@
     <ClInclude Include="src\components\RenderComponent.h" />
     <ClInclude Include="src\components\RouteComponent.h" />
     <ClInclude Include="src\components\ShieldComponent.h" />
+    <ClInclude Include="src\components\SliderComponent.h" />
     <ClInclude Include="src\components\SlimeBullet.h" />
     <ClInclude Include="src\components\SlimeTowerComponent.h" />
     <ClInclude Include="src\components\TextComponent.h" />
@@ -69,6 +71,7 @@
     <ClInclude Include="src\ecs\Entity.h" />
     <ClInclude Include="src\ecs\Manager.h" />
     <ClInclude Include="src\ecs\System.h" />
+    <ClInclude Include="src\gameStates\ConfigState.h" />
     <ClInclude Include="src\gameStates\EnemyBookState.h" />
     <ClInclude Include="src\gameStates\GameOverState.h" />
     <ClInclude Include="src\gameStates\LevelSelectorState.h" />
@@ -93,8 +96,10 @@
     <ClInclude Include="src\sdlutils\Texture.h" />
     <ClInclude Include="src\sdlutils\VirtualTimer.h" />
     <ClInclude Include="src\systems\CollisionSystem.h" />
+    <ClInclude Include="src\systems\ConfigSystem.h" />
     <ClInclude Include="src\systems\EnemyBookSystem.h" />
     <ClInclude Include="src\systems\EnemySystem.h" />
+    <ClInclude Include="src\systems\GameOverSystem.h" />
     <ClInclude Include="src\systems\HUDSystem.h" />
     <ClInclude Include="src\systems\LevelSelectorSystem.h" />
     <ClInclude Include="src\systems\MainControlSystem.h" />
@@ -112,7 +117,6 @@
     <ClInclude Include="src\utils\Vector2D.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="EnemyBookState.cpp" />
     <ClCompile Include="src\components\AcechanteComponent.cpp" />
     <ClCompile Include="src\components\AngelComponent.cpp" />
     <ClCompile Include="src\components\AttackComponent.cpp" />
@@ -140,6 +144,7 @@
     <ClCompile Include="src\components\LimitedTime.cpp" />
     <ClCompile Include="src\components\MaestroAlmasComponent.cpp" />
     <ClCompile Include="src\components\MensajeroMuerteComponent.cpp" />
+    <ClCompile Include="src\components\MonjeComponent.cpp" />
     <ClCompile Include="src\components\MovementComponent.cpp" />
     <ClCompile Include="src\components\MuerteComponent.cpp" />
     <ClCompile Include="src\components\NexusComponent.cpp" />
@@ -148,6 +153,7 @@
     <ClCompile Include="src\components\PrincipitoComponent.cpp" />
     <ClCompile Include="src\components\RouteComponent.cpp" />
     <ClCompile Include="src\components\ShieldComponent.cpp" />
+    <ClCompile Include="src\components\SliderComponent.cpp" />
     <ClCompile Include="src\components\SlimeBullet.cpp" />
     <ClCompile Include="src\components\SlimeTowerComponent.cpp" />
     <ClCompile Include="src\components\TextComponent.cpp" />
@@ -155,6 +161,8 @@
     <ClCompile Include="src\components\Transform.cpp" />
     <ClCompile Include="src\components\UpgradeTowerComponent.cpp" />
     <ClCompile Include="src\ecs\Manager.cpp" />
+    <ClCompile Include="src\gameStates\EnemyBookState.cpp" />
+    <ClCompile Include="src\gameStates\ConfigState.cpp" />
     <ClCompile Include="src\gameStates\GameOverState.cpp" />
     <ClCompile Include="src\gameStates\LevelSelectorState.cpp" />
     <ClCompile Include="src\gameStates\MainMenuState.cpp" />
@@ -172,9 +180,11 @@
     <ClCompile Include="src\sdlutils\SoundEffect.cpp" />
     <ClCompile Include="src\sdlutils\Texture.cpp" />
     <ClCompile Include="src\systems\ButtonSystem.cpp" />
+    <ClCompile Include="src\systems\ConfigSystem.cpp" />
     <ClCompile Include="src\systems\EnemyBookSystem.cpp" />
     <ClCompile Include="src\systems\CollisionSystem.cpp" />
     <ClCompile Include="src\systems\EnemySystem.cpp" />
+    <ClCompile Include="src\systems\GameOverSystem.cpp" />
     <ClCompile Include="src\systems\HUDSystem.cpp" />
     <ClCompile Include="src\systems\LevelSelectorSystem.cpp" />
     <ClCompile Include="src\systems\MainControlSystem.cpp" />

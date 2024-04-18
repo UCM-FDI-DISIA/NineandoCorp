@@ -3,6 +3,7 @@
 #include "../components/ButtonComponent.h"
 #include "ButtonSystem.h"
 #include "../components/DragAndDrop.h"
+#include "../components/LockComponent.h"
 class HUDSystem : public System
 {
 public:
@@ -34,6 +35,7 @@ private:
 		Entity* reloadText;
 		Entity* sellButton;
 		Entity* range;
+		Entity* upCost;
 		UpgradeMenu() :
 			background(nullptr), //
 			upgradeButton(nullptr), //
@@ -42,11 +44,12 @@ private:
 			exitButton(nullptr), //
 			lvlText(nullptr), //
 			sellButton(nullptr), //
-			hpText(nullptr),
-			damageText(nullptr),
-			reloadText(nullptr),
-			cost(nullptr),
-			range(nullptr)
+			hpText(nullptr), //
+			damageText(nullptr), //
+			reloadText(nullptr), //
+			cost(nullptr), //
+			range(nullptr), //
+			upCost(nullptr)
 		{}
 
 		~UpgradeMenu() {}
@@ -65,14 +68,16 @@ private:
 			button(nullptr), //
 			coinImg(nullptr), //
 			moneyTxt(nullptr), //
-			img(nullptr) {}
+			img(nullptr) {
+		}
 
 		TowerButton(Entity* but, Entity* im, const Vector2D& pos, Entity* coin, Entity* money) : 
 			initialPos(pos), //
 			button(but), //
 			coinImg(coin), //
 			moneyTxt(money), // 
-			img(im) {}
+			img(im) {
+		}
 	};
 
 	struct TowerSelector {
@@ -96,6 +101,8 @@ private:
 
 	bool mActive;
 
+	void NewAcelerationButton(float acel);
+
 	void showUpgradeMenu(Entity* twr, const Vector2D& pos);
 
 	int intAt(basic_string<char> s) { return sdlutils().intConst().at(s); }
@@ -110,6 +117,8 @@ private:
 
 	void enableAllButtons(bool t);
 
+	void updateTowerInfo();
+
 	// Espacio designado para los botones de compra de las torres
 	float buttonsSpace_length_; 
 	float infoSpace_length_;
@@ -118,5 +127,7 @@ private:
 
 	//ofset de la camara al renderizar
 	SDL_Rect* cameraOffset_;
+
+	Entity* tower_;
 };
 

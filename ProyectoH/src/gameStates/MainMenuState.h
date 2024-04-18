@@ -10,7 +10,7 @@
 class MainMenuState : public GameState
 {
 public:
-	MainMenuState(int moneyToAdd = 0);
+	MainMenuState();
 	virtual ~MainMenuState();
 };
 

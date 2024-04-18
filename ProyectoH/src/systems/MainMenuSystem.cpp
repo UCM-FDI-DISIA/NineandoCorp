@@ -20,8 +20,8 @@ void MainMenuSystem::initSystem() {
 	ButtonSystem* bS = mngr_->getSystem<ButtonSystem>();
 
 	// NEXUS LEVEL TEXT
-	addText({ 50.0f, (sdlutils().height() / 2.0f) + 50.0f}, 
-		{ 300.0f, 75.0f}, 0.0f, _grp_GENERAL);
+	addText({ 60.0f, (sdlutils().height() / 2.0f) + 50.0f}, 
+		{ 320.0f, 75.0f}, 0.0f, _grp_GENERAL);
 
 
 	// BACKGROUND
@@ -36,8 +36,8 @@ void MainMenuSystem::initSystem() {
 
 	// LEFT COLUMN
 	bS->addImage({ 200,  sdlutils().height() / 2.0f },
-		{ sdlutils().height() - 0.0f , 400 },
-		90.0, gameTextures::box, _grp_HUD_BACKGROUND);
+		{ sdlutils().height() -0.0f, 400 },
+		90.0, gameTextures::column_box, _grp_HUD_BACKGROUND);
 
 	//MONEDAS H DEL JUGADOR
 	bS->addImage({ 250,  125 },
@@ -47,7 +47,7 @@ void MainMenuSystem::initSystem() {
 	// RIGHT COLUMN
 	bS->addImage({ sdlutils().width() - 200.0f,  sdlutils().height() / 2.0f },
 		{ sdlutils().height() - 0.0f , 400 },
-		90.0, gameTextures::box, _grp_HUD_BACKGROUND);
+		90.0, gameTextures::column_box, _grp_HUD_BACKGROUND);
 
 	
 	// NEXUS IMAGE - CAMBIAR IMAGEN
@@ -64,13 +64,13 @@ void MainMenuSystem::initSystem() {
 
 	// PLAY BUTTON
 	bS->addButton({ sdlutils().width() / 2.0f, (sdlutils().height() / 2.0f) + 75},
-		{ 350, 110 },
+		{ 300, 110 },
 		gameTextures::play, gameTextures::play_hover, ButtonTypes::selector_main);
 
 	// CONFIGURATION BUTTON
 	bS->addButton({ sdlutils().width() / 2.0f, (sdlutils().height() / 2.0f) + 265},
-		{ 200, 200 },
-		gameTextures::close, gameTextures::close_hover, ButtonTypes::back_selector);
+		{ 125, 125 },
+		gameTextures::close, gameTextures::close_hover, ButtonTypes::config);
 
 	// EXIT BUTTON
 	bS->addButton({25.f, 25.f },

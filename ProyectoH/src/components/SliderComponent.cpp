@@ -1,38 +1,18 @@
 #include "SliderComponent.h"
-#include "../sdlutils/InputHandler.h"
 #include "../ecs/Manager.h"
-#include "../systems/RenderSystem.h"
 
-SliderComponent::SliderComponent(RenderSystem& renderSystem, int x, int y, int width, int height)
-    : value(0), isDragging(false) {}
-
-SliderComponent::~SliderComponent() {}
-
-void SliderComponent::handleEvent() {
-    //Posicion actual del mouse
-    Vector2D pos = { (float)ih().getMousePos().first, (float)ih().getMousePos().second };
-
-    if (ih().mouseButtonEvent()) {  // Añadir condición de posición y dragging
-
-        if (ih().getMouseButtonState(InputHandler::MOUSEBUTTON::LEFT) == 1) {
-
-            // Logica de Mover el knob
-        }
-
-    }
+void SliderComponent::initComponent() {
+	tr_ = mngr_->getComponent<Transform>(ent_);
 }
-
-void SliderComponent::updateKnobPosition() {
-    int auxKnobX = sliderX + (sliderX - knobX) * value / 100;
-    knobX = auxKnobX;
-}
-
-void SliderComponent::setValue(int value) {
-    this->value = value;
-    updateKnobPosition();
-}
-
-int SliderComponent::getValue() const {
-    return value;
+bool SliderComponent::isPressed(const Vector2D& mousePos) {
+	auto pos = tr_->getPosition();
+	auto height = tr_->getHeight();
+	auto width = tr_->getWidth();
+	//calculate the corners of zone
+	float leftX = pos->getX();
+	float rightX = pos->getX() + width;
+	float bottomY = pos->getY() + height;
+	float topY = pos->getY();
+	return (mousePos.getX() >= leftX && mousePos.getX() <= rightX) && (mousePos.getY() <= bottomY && mousePos.getY() >= topY);
 }
 

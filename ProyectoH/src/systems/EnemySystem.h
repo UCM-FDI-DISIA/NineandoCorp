@@ -30,7 +30,7 @@ public:
 	void onRoundStart(int n_grp, unsigned int level);
 	void onWaveStart();
 	void AddMoney(enmId type, int level);
-	
+	void CoinAnimation(Vector2D pos);
 
 	std::vector<Vector2D> RouteTranslate(std::vector<Vector2D> route);
 	

@@ -692,7 +692,7 @@
     },
     {
       "id": "BalasRecarga",
-      "value": 1
+      "value": 0.5
     },
     {
       "id": "BalasRango",
@@ -725,11 +725,15 @@
       "value": 0.2
     },
     {
+      "id": "DiegoSniperCritProb2",
+      "value": 0.5
+    },
+    {
       "id": "DiegoSniperCritDano1",
       "value": 1.5
     },
     {
-      "id": "DiegoSniperRecargaUpgrade1",
+      "id": "DiegoSniperRecargaUpdate1",
       "value": 0.5
     },
     {
@@ -788,6 +792,10 @@
       "value": 20
     },
     {
+      "id": "CristalEscudo1",
+      "value": 50
+    },
+    {
       "id": "CristalRango",
       "value": 200.0
     },
@@ -838,6 +846,162 @@
   ],
 
   "intConst": [
+    {
+      "id": "precioHNexoLvl1",
+      "value": 50
+    },
+    {
+      "id": "precioHNexoLvl2",
+      "value": 150
+    },
+    {
+      "id": "precioHNexoLvl3",
+      "value": 350
+    },
+    {
+      "id": "precioHNexoLvl4",
+      "value": 1000
+    },
+    {
+      "id": "precioHBalasLvl0",
+      "value": 0
+    },
+    {
+      "id": "precioHBalasLvl1",
+      "value": 50
+    },
+    {
+      "id": "precioHBalasLvl2",
+      "value": 100
+    },
+    {
+      "id": "precioHBalasLvl3",
+      "value": 250
+    },
+    {
+      "id": "precioHBalasLvl4",
+      "value": 500
+    },
+    {
+      "id": "precioHArcillaLvl0",
+      "value": 0
+    },
+    {
+      "id": "precioHArcillaLvl1",
+      "value": 50
+    },
+    {
+      "id": "precioHArcillaLvl2",
+      "value": 100
+    },
+    {
+      "id": "precioHArcillaLvl3",
+      "value": 250
+    },
+    {
+      "id": "precioHArcillaLvl4",
+      "value": 500
+    },
+    {
+      "id": "precioHDiegoLvl0",
+      "value": 100
+    },
+    {
+      "id": "precioHDiegoLvl1",
+      "value": 50
+    },
+    {
+      "id": "precioHDiegoLvl2",
+      "value": 150
+    },
+    {
+      "id": "precioHDiegoLvl3",
+      "value": 350
+    },
+    {
+      "id": "precioHDiegoLvl4",
+      "value": 1000
+    },
+    {
+      "id": "precioHSlimeLvl0",
+      "value": 300
+    },
+    {
+      "id": "precioHSlimeLvl1",
+      "value": 50
+    },
+    {
+      "id": "precioHSlimeLvl2",
+      "value": 150
+    },
+    {
+      "id": "precioHSlimeLvl3",
+      "value": 350
+    },
+    {
+      "id": "precioHSlimeLvl4",
+      "value": 1000
+    },
+    {
+      "id": "precioHFenixLvl0",
+      "value": 300
+    },
+    {
+      "id": "precioHFenixLvl1",
+      "value": 50
+    },
+    {
+      "id": "precioHFenixLvl2",
+      "value": 150
+    },
+    {
+      "id": "precioHFenixLvl3",
+      "value": 350
+    },
+    {
+      "id": "precioHFenixLvl4",
+      "value": 1000
+    },
+    {
+      "id": "precioHCristalLvl0",
+      "value": 500
+    },
+    {
+      "id": "precioHCristalLvl1",
+      "value": 50
+    },
+    {
+      "id": "precioHCristalLvl2",
+      "value": 150
+    },
+    {
+      "id": "precioHCristalLvl3",
+      "value": 350
+    },
+    {
+      "id": "precioHCristalLvl4",
+      "value": 1000
+    },
+    {
+      "id": "precioHPotenciadoraLvl0",
+      "value": 800
+    },
+    {
+      "id": "precioHPotenciadoraLvl1",
+      "value": 50
+    },
+    {
+      "id": "precioHPotenciadoraLvl2",
+      "value": 150
+    },
+    {
+      "id": "precioHPotenciadoraLvl3",
+      "value": 350
+    },
+    {
+      "id": "precioHPotenciadoraLvl4",
+      "value": 1000
+    },
     {
       "id": "MALMASmoney",
       "value": 30
@@ -1058,6 +1222,10 @@
     {
       "id": "DiegoSniperPrecio",
       "value": 150
+    },
+    {
+      "id": "UpgradeLife",
+      "value": 50
     },
     {
       "id": "DiegoSniperDano",

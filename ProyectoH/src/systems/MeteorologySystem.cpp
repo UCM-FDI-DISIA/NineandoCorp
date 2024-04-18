@@ -70,7 +70,7 @@ void MeteorologySystem::showWarningMessage() {
 	Vector2D txtScale = Vector2D(550.0f, 60.0f);
 	m.add_text_data.pos = Vector2D(600.0, 100.0) - (txtScale / 2);
 	m.add_text_data.scale = txtScale;
-	m.add_text_data.time = 3000;
+	m.add_text_data.time = 3;
 	mngr_->send(m);
 	gameTextures tex = gameTextures::tsunami_icon;
 	switch (nextEvent_)
@@ -204,7 +204,7 @@ void MeteorologySystem::generateAnimEarthquake() {
 		Message m;
 		m.id = _m_ANIM_CREATE;
 		m.anim_create.animSpeed = 3;
-		m.anim_create.idGrp = _grp_NATURALS_EFFECTS;
+		m.anim_create.idGrp = _grp_NATURALS_EFFECTS_LOW;
 		m.anim_create.iterationsToDelete = 4;
 		m.anim_create.scale = { 200, 100 };
 		m.anim_create.cols = 3;
@@ -238,7 +238,7 @@ void MeteorologySystem::generateMeteorite() {
 	Message m;
 	m.id = _m_ANIM_CREATE;
 	m.anim_create.animSpeed = 9;
-	m.anim_create.idGrp = _grp_NATURALS_EFFECTS;
+	m.anim_create.idGrp = _grp_NATURALS_EFFECTS_HIGH;
 	m.anim_create.iterationsToDelete = 1;
 	m.anim_create.scale = { 200, 200 };
 	m.anim_create.cols = 4;
@@ -275,7 +275,7 @@ void MeteorologySystem::generateThunder() {
 	Message m;
 	m.id = _m_ANIM_CREATE;
 	m.anim_create.animSpeed = 4;
-	m.anim_create.idGrp = _grp_NATURALS_EFFECTS;
+	m.anim_create.idGrp = _grp_NATURALS_EFFECTS_HIGH;
 	m.anim_create.iterationsToDelete = 1;
 	m.anim_create.scale = { 200, 300 };
 	m.anim_create.cols = 1;
@@ -297,7 +297,7 @@ void MeteorologySystem::generateAnimTornado() {
 	Message m;
 	m.id = _m_ANIM_CREATE;
 	m.anim_create.animSpeed = 4;
-	m.anim_create.idGrp = _grp_NATURALS_EFFECTS;
+	m.anim_create.idGrp = _grp_NATURALS_EFFECTS_HIGH;
 	m.anim_create.iterationsToDelete = 47;
 	m.anim_create.scale = { 200, 300 };
 	m.anim_create.cols = 24;
@@ -331,16 +331,16 @@ void MeteorologySystem::generateTsunami() {
 		Message m;
 		m.id = _m_ANIM_CREATE;
 		m.anim_create.animSpeed = 9;
-		m.anim_create.idGrp = _grp_NATURALS_EFFECTS;
+		m.anim_create.idGrp = _grp_NATURALS_EFFECTS_LOW;
 		m.anim_create.iterationsToDelete = 1;
 		m.anim_create.scale = { 200, 200 };
-		m.anim_create.cols = 4;
-		m.anim_create.rows = 5;
+		m.anim_create.cols = 5;
+		m.anim_create.rows = 1;
 		m.anim_create.tex = gameTextures::tsunami;
 		m.anim_create.frameInit = 0;
-		m.anim_create.frameEnd = 18;
-		m.anim_create.height = 96;
-		m.anim_create.width = 96;
+		m.anim_create.frameEnd = 5;
+		m.anim_create.height = 600;
+		m.anim_create.width = 660;
 		m.anim_create.route = rutaPantalla;
 		m.anim_create.pos = rutaPantalla[0];
 		mngr_->send(m);

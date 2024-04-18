@@ -1,13 +1,15 @@
 #pragma once
 #include "../ecs/System.h"
+#include "../utils/Vector2D.h"
 #include "../components/ButtonComponent.h"
+#include "../components/SliderComponent.h"
 #include <vector>
 
 class ButtonSystem : public System
 {
 public: 
 	static constexpr sysId_type id = _sys_BUTTON;
-	const hdlrId_type hdlr_but_id;
+	hdlrId_type hdlr_but_id;
 
 	ButtonSystem(hdlrId_type but_id);
 	virtual ~ButtonSystem();
@@ -45,12 +47,23 @@ public:
 	/// <returns> La propia entidad </returns>
 	Entity* addText(const string& txt, const SDL_Color& color, const Vector2D& pos, const Vector2D& scale);
 
+
+
+	void changeButtonsIdHandler(hdlrId_type id) { hdlr_but_id = id; };
+
+	Entity* addSlider(const Vector2D& pos, const Vector2D& scale, gameTextures tex, grpId_type grpId, SliderTypes slTy);
+
 	/// <summary>
 	/// Devuelve las monedas H acumuladas en la partida
 	/// </summary>
 	/// <returns>Las monedas H</returns>
 	int getHMoney() { return HMoney_; };
 private:
+	/// <summary>
+	/// Añade el dinero correspondiente a la torre vendida
+	/// </summary>
+	/// <param name="twr"></param>
+	void sellTower(Entity* twr);
 	/// <summary>
 	/// Llama a las funciones correspondientes dependiendo del tipo del boton cuando este es pulsado
 	/// </summary>
@@ -81,6 +94,11 @@ private:
 	void Pause(bool onPause);
 
 	/// <summary>
+	/// Mensaje para la pausa
+	/// </summary>
+	void Acelerate(float _acel);
+
+	/// <summary>
 	/// Mensaje de carga enemyBook para ver los enemigos encontrados
 	/// </summary>
 	void EnemyBook();
@@ -105,12 +123,12 @@ private:
 	/// M�todo encargado de enviar el mensaje de mejorar una torre
 	/// con x Id pasado por par�metro 
 	/// </summary>
-	void upgradeTower(twrId t);
+	void upgradeTower(twrId t, string idPrecioJSON);
 
 	/// <summary>
 	/// Actualiza la textura con el texto de las monedas a las monedas actuales
 	/// </summary>
-	void updateText();
+	void updateText(int money);
 
 	/// <summary>
 	/// Funcion que realiza el mensaje START_GAME
@@ -126,13 +144,19 @@ private:
 
 	void showTempText(string txt, const SDL_Color& color, const Vector2D& pos, const Vector2D& scale, int time);
 
-
+	void Config();
 
 	bool mActive;
+	int numAcelButs; // cuantos botones hay para acelerar el tiempo
+	int cauntAcelButs; // contador 
 	int money_;
 	int HMoney_;
 	int costs[_twr_SIZE];
+	int const towerLevelMax = 5;
 	Entity* moneyText_;
+	SDL_Point	mouse;
+	SDL_bool 	mouse_follow = SDL_FALSE;
+	SDL_Point 	mouse_offset;
 };
 
 

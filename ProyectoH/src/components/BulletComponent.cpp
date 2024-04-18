@@ -2,7 +2,7 @@
 #include "FramedImage.h"
 
 
-BulletComponent::BulletComponent(Transform* tr, Entity* target, Entity* src, int damage, float speed):t(tr), targetEntity_(target), srcEntity(src), damage_(damage), speed_(speed) {	
+BulletComponent::BulletComponent(Transform* tr, Entity* target, Entity* src, int damage, float speed,hdlrId src_):t(tr), targetEntity_(target), srcEntity(src), damage_(damage), speed_(speed),srcId(src_) {	
 }
 
 /// <summary>
@@ -17,6 +17,7 @@ void BulletComponent::doDamageTo(Entity* e, float damage){
 	m.entity_to_attack.e = e;
 	m.entity_to_attack.damage = damage;
 	m.entity_to_attack.targetId = _hdlr_ENEMIES;
+	m.entity_to_attack.srcId = srcId;
 	mngr_->send(m);//Este mensaje lo recibe el enemy system
 	onTravelEnds();
 }
@@ -27,10 +28,11 @@ void BulletComponent::onTravelEnds() {
 //Utiliza el FramedImage para acceder al centro de la imagen de la entidad objetivo para que la bala se dirija ahi
 void BulletComponent::setDir() {
 	FramedImage* fi = mngr_->getComponent<FramedImage>(targetEntity_);
-	Vector2D targetPos = *(mngr_->getComponent<Transform>(targetEntity_)->getPosition());
+	auto tr = mngr_->getComponent<Transform>(targetEntity_);
+	Vector2D targetPos = *(tr->getPosition());
 	if (fi != nullptr) { 
-		Vector2D offset = { (float)fi->getSrcRect().w / 4, (float)fi->getSrcRect().h / 4};//Se dirige hacia el centro del rect
-		targetPos = targetPos + offset; 
+		Vector2D offset = { (float)fi->getSize().getX() / 5, (float)fi->getSize().getY() / 5};//Se dirige hacia el centro del rect
+		targetPos = targetPos + offset;
 	}
 	Vector2D vel = targetPos - *(t->getPosition());
 	vel = vel.normalize();

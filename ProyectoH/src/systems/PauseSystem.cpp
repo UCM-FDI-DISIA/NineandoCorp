@@ -35,13 +35,20 @@ void PauseSystem::initSystem() {
 
 	posAux = posAux + Vector2D(0.0f, 100.0f);
 	Entity* backToMenu = bS->addButton(posAux, scaleAux, 
-		gameTextures::backToMenu_button, gameTextures::backToMenu_button_hover, ButtonTypes::none);
+		gameTextures::backToMenu_button, gameTextures::backToMenu_button_hover, ButtonTypes::back_to_menu);
 	mngr_->setHandler(_hdlr_BUTTON_PAUSE, backToMenu);
 
 	posAux = posAux + Vector2D(0.0f, 100.0f);
 	Entity* exitGame = bS->addButton(posAux, scaleAux, 
 		gameTextures::exitGame_button, gameTextures::exitGame_button_hover, ButtonTypes::exit_button);
 	mngr_->setHandler(_hdlr_BUTTON_PAUSE, exitGame);
+
+	//icono arriba a la derecha
+	scaleAux = { 50.0f, 50.0f };
+	posAux = { (float)sdlutils().width() - 50.0f , 50.0f };
+	Entity* resumeIcon = bS->addButton(posAux, scaleAux,
+		gameTextures::resume_icon_button, gameTextures::resume_icon_button_hover, ButtonTypes::resume_main);
+	mngr_->setHandler(_hdlr_BUTTON_PAUSE, resumeIcon);
 }
 
 void PauseSystem::receive(const Message& m) {

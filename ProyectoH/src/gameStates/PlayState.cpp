@@ -17,21 +17,12 @@ PlayState::PlayState(int level_, int turrentLevels[]) : GameState(_gmStt_PLAY), 
 
 	Message m;
 	m.id = _m_START_GAME;
-	m.start_game_data.money = 15000;
+	m.start_game_data.money = 15000; //Dinero inicial 150
 	m.start_game_data.cameraOffset = offset;
 	m.start_game_data.netmap = map->getMalla();
 	m.start_game_data.turrentLevels = turrentLevels;
 	m.start_game_data.level = level;
 	mngr_->send(m, true);
-
-	// Inicialización del Nexo
-	Message m2;
-	m2.id = _m_ADD_TOWER;
-	m2.add_tower_data.towerId = _twr_NEXUS;
-	m2.add_tower_data.pos = { 580.0f, 980.0f };
-	m2.add_tower_data.height = BOTH;
-	m2.add_tower_data.maxLvl = turrentLevels[_twr_NEXUS];
-	mngr_->send(m2, true);
 }
 
 void PlayState::update() {

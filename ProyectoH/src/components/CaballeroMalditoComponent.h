@@ -4,7 +4,7 @@
 class CaballeroMalditoComponent: public Component
 {
 public:
-	static const cmpId id = cmpId::_ANGEL;
+	static const cmpId id = cmpId::_CMALDITO;
 	CaballeroMalditoComponent() {};
 	void generateMalditos(Vector2D pos, int destiny, vector<Vector2D> route);
 };

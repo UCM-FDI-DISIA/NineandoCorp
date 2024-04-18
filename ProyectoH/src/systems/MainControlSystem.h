@@ -19,20 +19,21 @@ public:
 
 protected:
 	bool nexusIsAlive_;
-	int numDoradasActuales;
-	int numDoradasIniciales;
 	int numDoradasPorSegundo;
+	int coinsH = 0;
+	int enemiesDefeated = 0;
+	int round = 0;
+	bool enemiesSaw[_enm_SIZE];
 	int currentLevel;
 	float tiempoEntreOleadas;
 	double elapsedTime_;
-	VirtualTimer timer_;
 	Entity* nexo;
 	SaveGame* saveGame;
 
 	// Niveles de nexo y torres
 	int* turrentLevels_;	// Nexo última torre
 
-	void onRoundOver();
+	void onGameOver();
 	void OnStartGame();
 	void subtractCoins(int num);
 

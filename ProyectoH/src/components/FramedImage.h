@@ -26,6 +26,7 @@ public:
 	int getIters() const { return iterations; };
 	// Returns texture Source Rect
 	SDL_Rect getSrcRect();
+	Vector2D getSize();
 
 	void setCurrentFrame(int newFrame) { currentFrame = newFrame; }
 	int getCurrentFrame() { return currentFrame; }

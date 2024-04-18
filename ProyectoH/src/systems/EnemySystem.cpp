@@ -1,5 +1,6 @@
 #include "EnemySystem.h"
 #include "..//components/MovementComponent.h"
+#include "..//components/MonjeComponent.h"
 #include "..//components/RouteComponent.h"
 #include "..//components/HealthComponent.h"
 #include "..//components/generateEnemies.h"
@@ -46,7 +47,7 @@ void  EnemySystem::receive(const Message& m) {
 			wave++;
 			stopGenerate = false;
 		}
-		
+
 		break;
 	case _m_PAUSE:
 		mActive = !m.start_pause.onPause;
@@ -60,36 +61,46 @@ void  EnemySystem::receive(const Message& m) {
 		break;
 	case _m_ENTITY_TO_ATTACK:
 		if (m.entity_to_attack.targetId == _hdlr_ENEMIES && m.entity_to_attack.e != nullptr && mngr_->isAlive(m.entity_to_attack.e)) {
-			HealthComponent* h = mngr_->getComponent<HealthComponent>(m.entity_to_attack.e);
-			if (h->getHealth() - m.entity_to_attack.damage <= 0) {
-				auto enemytype = mngr_->getComponent<EnemyTypeComponent>(m.entity_to_attack.e);
-				AddMoney(enemytype->GetEnemyType(), level);
-				Message m1;
-				m1.id = _m_ENEMY_DIED;
-				m1.return_entity.ent = m.entity_to_attack.e;
-				mngr_->send(m1);
+			auto mj = mngr_->getComponent<MonjeComponent>(m.entity_to_attack.e);
+			if (mj != nullptr && mj->getDevuelve()) {
+				Message a;
+				a.id = _m_ENTITY_TO_ATTACK;
+				a.entity_to_attack.e = m.entity_to_attack.src;
+				a.entity_to_attack.damage = m.entity_to_attack.damage;
+				a.entity_to_attack.targetId = m.entity_to_attack.srcId;
+				a.entity_to_attack.src = m.entity_to_attack.e;
+				a.entity_to_attack.srcId = _hdlr_ENEMIES;
+				mngr_->send(a);
 			}
-			if (h->subtractHealth(m.entity_to_attack.damage)) {
-				enemyDeathAnim(*mngr_->getComponent<Transform>(m.entity_to_attack.e)->getPosition());
-
-				mngr_->deleteHandler(_hdlr_ENEMIES, m.entity_to_attack.e);
-				auto enemytype = mngr_->getComponent<EnemyTypeComponent>(m.entity_to_attack.e);
-				if (enemytype->GetEnemyType() == _enm_DREAL) {
-					addField(*(mngr_->getComponent<Transform>(m.entity_to_attack.e)->getPosition()));
+			else {
+				HealthComponent* h = mngr_->getComponent<HealthComponent>(m.entity_to_attack.e);
+				if (h->getHealth() - m.entity_to_attack.damage <= 0) {
+					auto enemytype = mngr_->getComponent<EnemyTypeComponent>(m.entity_to_attack.e);
+					Message m1;
+					m1.id = _m_ENEMY_DIED;
+					m1.return_entity.ent = m.entity_to_attack.e;
+					mngr_->send(m1);
 				}
-				else if (enemytype->GetEnemyType() == _enm_CMALDITO) {
-					Entity* mal = m.entity_to_attack.e;
-					RouteComponent* rc = mngr_->getComponent<RouteComponent>(mal);
-					mngr_->getComponent<CaballeroMalditoComponent>(mal)->generateMalditos(*(mngr_->getComponent<Transform>(mal)->getPosition()), rc->getDestiny(), rc->getRoute());
-				}
-				AddMoney(enemytype->GetEnemyType(), level);
-				if (mngr_->hasComponent<AttackComponent>(m.entity_to_attack.src))mngr_->getComponent<AttackComponent>(m.entity_to_attack.src)->setTarget(nullptr);
+				if (h->subtractHealth(m.entity_to_attack.damage)) {
+					enemyDeathAnim(*mngr_->getComponent<Transform>(m.entity_to_attack.e)->getPosition());
 
-			};
+					mngr_->deleteHandler(_hdlr_ENEMIES, m.entity_to_attack.e);
+					auto enemytype = mngr_->getComponent<EnemyTypeComponent>(m.entity_to_attack.e);
+					if (enemytype->GetEnemyType() == _enm_DREAL) {
+						addField(*(mngr_->getComponent<Transform>(m.entity_to_attack.e)->getPosition()));
+					}
+					else if (enemytype->GetEnemyType() == _enm_CMALDITO) {
+						Entity* mal = m.entity_to_attack.e;
+						RouteComponent* rc = mngr_->getComponent<RouteComponent>(mal);
+						mngr_->getComponent<CaballeroMalditoComponent>(mal)->generateMalditos(*(mngr_->getComponent<Transform>(mal)->getPosition()), rc->getDestiny(), rc->getRoute());
+					}
+					AddMoney(enemytype->GetEnemyType(), level);
+					CoinAnimation(mngr_->getComponent<Transform>(m.entity_to_attack.e)->getPosition());
+					if (mngr_->hasComponent<AttackComponent>(m.entity_to_attack.src))mngr_->getComponent<AttackComponent>(m.entity_to_attack.src)->setTarget(nullptr);
+
+				};
+			}
 		}
-		break;
-	case _m_OVER_GAME:
-		onRoundOver();
 		break;
 	case _m_DECREASE_SPEED:
 		if (m.decrease_speed.e != nullptr) {
@@ -97,6 +108,19 @@ void  EnemySystem::receive(const Message& m) {
 			if (mc != nullptr) {
 				mc->activateSlow(m.decrease_speed.slowPercentage, true);
 			}
+		}
+		break;
+	case _m_TOWER_DIED:
+		for (auto& b : mngr_->getEntities(_hdlr_ENEMIES))
+		{
+			
+			auto ac = mngr_->getComponent<AttackComponent>(b);
+			if (ac != nullptr) {
+				if (ac->getTarget() == m.return_entity.ent) {
+					ac->setTarget(nullptr);
+				}
+			}
+
 		}
 		break;
 	case _m_CHANGE_ROUTE:
@@ -107,7 +131,7 @@ void  EnemySystem::receive(const Message& m) {
 			Transform* t = mngr_->getComponent<Transform>(m.change_route.enemy);
 			auto gen = mngr_->getComponent<generateEnemies>(spawnsVector[r]);
 			auto route = gen->getRoute();
-		    gen->RoutesCorrection(t, route, 1.5f, 1.5f);
+			gen->RoutesCorrection(t, route, 1.5f, 1.5f);
 			rc->changeRoute(route);
 		}
 		break;
@@ -162,9 +186,6 @@ void EnemySystem::onWaveStart() {
 		mngr_->getComponent<generateEnemies>(spawnsVector[i])->addGroupEnemies();
 
 	}
-}
-void EnemySystem::onRoundOver() {
-	spawnsVector.clear();
 }
 /// <summary>
 /// Transforma la ruta del json en las posiciones correspondientes
@@ -262,6 +283,24 @@ void EnemySystem::AddMoney(enmId type, int level) {
 	mngr_->send(m2);
 }
 
+void EnemySystem::CoinAnimation(Vector2D pos) {
+	Message m;
+	m.id = _m_ANIM_CREATE;
+	m.anim_create.idGrp = _grp_ICONS;
+	m.anim_create.animSpeed = 15;
+	m.anim_create.iterationsToDelete = 1;
+	m.anim_create.pos = pos;
+	m.anim_create.frameInit = 1;
+	m.anim_create.frameEnd = 1;
+	m.anim_create.cols = 1;
+	m.anim_create.rows = 1;
+	m.anim_create.scale = { 100, 100 };
+	m.anim_create.width = 100;
+	m.anim_create.height = 100;
+	m.anim_create.tex = gameTextures::monedaDorada;
+	mngr_->send(m);
+}
+
 void EnemySystem::update()
 {
 	if (mActive) {
@@ -323,8 +362,7 @@ void EnemySystem::update()
 			PrincipitoComponent* pc = mngr_->getComponent<PrincipitoComponent>(e);
 			MensajeroMuerteComponent* mm = mngr_->getComponent<MensajeroMuerteComponent>(e);
 			MuerteComponent* muerte = mngr_->getComponent<MuerteComponent>(e);
-
-			
+			MonjeComponent* mj = mngr_->getComponent<MonjeComponent>(e);
 			Transform* tr = mngr_->getComponent<Transform>(e);
 			FramedImage* fi = mngr_->getComponent<FramedImage>(e);
 
@@ -390,17 +428,24 @@ void EnemySystem::update()
 						}
 						else {
 							//std::cout << "atacando";
+							
 							ac->doDamageTo(ac->getTarget(), ac->getDamage(), _hdlr_LOW_TOWERS);
 							ac->setElapsedTime(0.0f);
 							ac->setLoaded(false);
 							if (pc != nullptr) {
 								pc->setAttackSpeed();
-								std::cout << ac->getReloadTime()<<"\n";
+								std::cout << ac->getReloadTime() << "\n";
 							}
+							
+
 						}
 					}
 					else {
 						mc->setStop(false);
+
+						if (pc != nullptr) {
+							pc->ResetVelocity();
+						}
 
 						if (ac->getAttack()) {
 							ac->setAttack(false);
@@ -415,6 +460,26 @@ void EnemySystem::update()
 							}
 						}
 
+					}
+				}
+			}
+
+			// monje
+			if (mj != nullptr) {
+				mj->setElapsedTime(mj->getElapsedTime() + game().getDeltaTime());
+				if (mj->getElapsedTime() >= mj->getReloadTime()) {
+					mj->setDevuelve(true);
+					std::cout << "devuelve\n";
+					mj->setElapsedTime(0.0f);
+				}
+				if (mj->getDevuelve()) {
+					mc->setStop(true);
+					mj->setElapsedTime2(mj->getElapsedTime2() + game().getDeltaTime());
+					if (mj->getElapsedTime2() >= mj->getUltiTime()) {
+						mj->setDevuelve(false);
+						std::cout << "no devuelve\n";
+						mc->setStop(false);
+						mj->setElapsedTime2(0.0f);
 					}
 				}
 			}

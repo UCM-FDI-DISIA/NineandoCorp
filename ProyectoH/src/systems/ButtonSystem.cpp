@@ -9,6 +9,8 @@
 ButtonSystem::ButtonSystem(hdlrId_type but_id) : 
 	hdlr_but_id(but_id), money_(0), HMoney_(0){
 	mActive = true;
+	numAcelButs = 3;
+	cauntAcelButs = 1;
 	//rellenar la lista de costes
 	costs[_twr_BULLET] = sdlutils().intConst().at("BalasPrecio");
 	costs[_twr_FENIX] = sdlutils().intConst().at("FenixPrecio");
@@ -37,14 +39,7 @@ void ButtonSystem::receive(const Message& m){
 	switch (m.id) {
 	case _m_ADD_MONEY:
 		money_ += m.money_data.money;
-		updateText();
-		break;
-	case _m_ADD_MONEY_H:
-		HMoney_ += m.money_data.money;
-		break;
-	case _m_SELL_TOWER:
-		money_ += m.sell_tower_data.money;
-		updateText();
+		updateText(money_);
 		break;
 	case _m_START_MENU:
 		HMoney_ = m.money_data.money;
@@ -98,10 +93,11 @@ void ButtonSystem::manageButtons() {
 	if (ih().mouseButtonEvent()) {
 
 		if (ih().getMouseButtonState(InputHandler::MOUSEBUTTON::LEFT) == 1) {
-			sdlutils().soundEffects().at("button").play(0,1);
 			//Recorre lista de entities de tipo HUD_FOREGROUND
 			for (auto en : mngr_->getHandler(hdlr_but_id)) {
 				auto bC = mngr_->getComponent<ButtonComponent>(en);
+				SliderComponent* slider = mngr_->getComponent<SliderComponent>(en);
+				auto tR = mngr_->getComponent<Transform>(en);
 				if (en != nullptr && bC != nullptr) {
 					//comprueba la id del button y si no es none llama a la funcion correspondiente
 					auto type = bC->isPressed(pos);
@@ -110,10 +106,48 @@ void ButtonSystem::manageButtons() {
 						break;
 					}
 				}
+				else if (en != nullptr && slider != nullptr && tR != nullptr) {
+					if (slider->isPressed(pos)) {
+						slider->setDragging(!slider->getDragging());
+						// Actualiza la posición del slider
+						float posX = pos.getX() - tR->getWidth() / 2; // Centra el slider en el mouse
+						// Asegúrate de que la nueva posición esté dentro de los límites
+						posX = std::max(slider->getMin(), std::min(posX, slider->getMax() - tR->getWidth()));
+						tR->setX(posX);
+						// Calcular el valor del volumen en función de la posición del slider dentro de los límites relativos
+						float relativeValue = (posX - slider->getMin()) / (slider->getMax() - tR->getScale()->getX() - slider->getMin());
+						float volume = relativeValue * slider->getRelativeMax(); // Escalamos de 0 a 100
+						cout << volume << endl;
+						if (slider->getSlider() == general) {
+							game().instance()->setSoundGeneral(volume);
+						}
+						else if (slider->getSlider() == music) {
+							game().instance()->setSoundMusic(volume);
+						}
+						else if (slider->getSlider() == effects) {
+							game().instance()->setSoundEffect(volume);
+						}
+						
+					}
+				}
+			}
+		}
+		
+	}
+	else {
+		// Si el botón del ratón no está siendo presionado, actualiza la posición del slider
+		for (auto en : mngr_->getHandler(hdlr_but_id)) {
+			SliderComponent* slider = mngr_->getComponent<SliderComponent>(en);
+			auto tR = mngr_->getComponent<Transform>(en);
+			if (slider != nullptr && tR != nullptr && slider->getDragging()) {
+				Vector2D pos = { (float)ih().getMousePos().first, (float)ih().getMousePos().second };
+				float posX = pos.getX() - tR->getWidth() / 2; // Centra el slider en el mouse
+				posX = std::max(slider->getMin(), std::min(posX, slider->getMax() - tR->getWidth()));
+				tR->setX(posX);
 			}
 		}
 	}
-
+	
 	//update de texto con limitTime
 	auto txts = mngr_->getEntities(_grp_TEXTS);
 	for (auto txt : txts) {
@@ -165,65 +199,127 @@ void ButtonSystem::managePauseButtons() {
 
 #pragma region FUNCIONES DE BOTONES
 
-	//Todas las funciones de los botones del juego
+void ButtonSystem::sellTower(Entity* twr)
+{
+	
+}
+
+//Todas las funciones de los botones del juego
 	void ButtonSystem::callFunction(ButtonTypes type, Entity* bC) {
 		// Incluye la id del button para incluir 
+		sdlutils().soundEffects().at("button").setChannelVolume(game().CalculoVolumenEfectos(), 1);
+		int lvl;
 		switch (type)
 		{
+		case back_to_menu:
+			game().changeState<MainMenuState>();
+			sdlutils().soundEffects().at("button").play(0, 1);
+			break;
 		case exit_button:
 			game().exitGame();
+			sdlutils().soundEffects().at("button").play(0, 1);
 			break;
 		case selector_main:
 			loadLevelSelector();
 			pauseAllButtons();
+			sdlutils().soundEffects().at("button").play(0, 1);
 			break;
 		case enemies_main:
 			EnemyBook();
 			pauseAllButtons();
+			sdlutils().soundEffects().at("button").play(0, 1);
 			break;
 		case back_selector:
 			backToMainMenu();
+			sdlutils().soundEffects().at("button").play(0, 1);
+			break;
+		case config:
+			Config();
+			sdlutils().soundEffects().at("button").play(0, 1);
 			break;
 		case level_selected:
 			startGame(bC);
+			sdlutils().soundEffects().at("button").play(0, 1);
 			break;
 		case play_wave:
 			startWave();
+			sdlutils().soundEffects().at("button").play(0, 1);
 			break;
 		case pause_main:
 			Pause(true);
+			sdlutils().soundEffects().at("button").play(0, 1);
 			break;
 		case resume_main:
 			game().popState();
 			Pause(false);
+			sdlutils().soundEffects().at("button").play(0, 1);
+			break;
+		case acelerate:
+			switch (cauntAcelButs)
+			{
+			case 1:
+				Acelerate(1.5f);
+				break;
+			case 2:
+				Acelerate(2.0f);
+				break;
+			case 3:
+				Acelerate(1.0f);
+				break;
+			default:
+				break;
+			}
+
+			if (cauntAcelButs < numAcelButs) { 
+				cauntAcelButs++; 
+			}
+			else { 
+				cauntAcelButs = 1; 
+			}
 			break;
 		case enemybook:
 			mngr_->send(mngr_->getComponent<ButtonComponent>(bC)->getMessage());			
 			break;
 		/*--- MEJORAS DEL MENU ---*/
 		case upgrade_nexus:
-			upgradeTower(_twr_NEXUS);
+			lvl = game().getSaveGame()->getTurretsLevels()[_twr_NEXUS];
+			if( lvl < towerLevelMax)
+				upgradeTower(_twr_NEXUS, "precioHNexoLvl" + std::to_string(lvl));
 			break;
 		case upgrade_crystal_main:
-			upgradeTower(_twr_CRISTAL);
+			lvl = game().getSaveGame()->getTurretsLevels()[_twr_CRISTAL];
+			if (lvl < towerLevelMax)
+				upgradeTower(_twr_CRISTAL, "precioHCristalLvl" + std::to_string(lvl));
 			break;
 		case upgrade_slime_main:
-			upgradeTower(_twr_SLIME);
+			lvl = game().getSaveGame()->getTurretsLevels()[_twr_SLIME];
+			if (lvl < towerLevelMax)
+				upgradeTower(_twr_SLIME, "precioHSlimeLvl" + std::to_string(lvl));
 			break;
 		case upgrade_bullet_main:
-			upgradeTower(_twr_BULLET);
+			lvl = game().getSaveGame()->getTurretsLevels()[_twr_BULLET];
+			if (lvl < towerLevelMax)
+				upgradeTower(_twr_BULLET, "precioHBalasLvl" + std::to_string(lvl));
 			break;
 		case upgrade_sniper_main:
-			upgradeTower(_twr_DIEGO);
+			lvl = game().getSaveGame()->getTurretsLevels()[_twr_DIEGO];
+			if (lvl < towerLevelMax)
+				upgradeTower(_twr_DIEGO, "precioHDiegoLvl" + std::to_string(lvl));
 			break;
 		case upgrade_fenix_main:
-			upgradeTower(_twr_FENIX);
+			lvl = game().getSaveGame()->getTurretsLevels()[_twr_FENIX];
+			if (lvl < towerLevelMax)
+				upgradeTower(_twr_FENIX, "precioHFenixLvl" + std::to_string(lvl));
 			break;
 		case upgrade_clay_main:
-			upgradeTower(_twr_CLAY);
+			lvl = game().getSaveGame()->getTurretsLevels()[_twr_CLAY];
+			if (lvl < towerLevelMax)
+				upgradeTower(_twr_CLAY, "precioHArcillaLvl" + std::to_string(lvl));
 			break;
 		case upgrade_enhancer_main:
-			upgradeTower(_twr_POWER);
+			lvl = game().getSaveGame()->getTurretsLevels()[_twr_POWER];
+			if (lvl < towerLevelMax)
+				upgradeTower(_twr_POWER, "precioHPotenciadoraLvl" + std::to_string(lvl));
 			break;
 
 
@@ -290,12 +386,25 @@ void ButtonSystem::managePauseButtons() {
 		m.start_pause.onPause = onPause;
 		mngr_->send(m, true);
 	}
+	void ButtonSystem::Acelerate(float _acel) {
+		Message m;
+		m.id = _m_ACELERATE;
+		m.acelerate_plus.acel = _acel;
+		mngr_->send(m, true);
+	}
+	void ButtonSystem::Config() {
+		mngr_->getComponent<TextComponent>(moneyText_)->isActive = false;
+		Message m;
+		m.id = _m_CONFIG;
+		mngr_->send(m, true);
+	}
 	void ButtonSystem::EnemyBook() {
 		Message m;
 		m.id = _m_ENEMY_BOOK;
 		mngr_->send(m, true);
 	}
 	void ButtonSystem::backToMainMenu() {
+		mngr_->getComponent<TextComponent>(moneyText_)->isActive = true;
 		Message m;
 		m.id = _m_BACK_TO_MAINMENU;
 		mngr_->send(m);
@@ -319,11 +428,20 @@ void ButtonSystem::managePauseButtons() {
 		m.start_wave.play = true;
 		mngr_->send(m);
 	}
-	void ButtonSystem::upgradeTower(twrId t) {
-		Message m;
-		m.id = _m_UPGRADE_TOWER;
-		m.upgrade_tower.towerId = t;
-		mngr_->send(m);
+	void ButtonSystem::upgradeTower(twrId t, string idPrecioJSON) {
+		if (HMoney_ - sdlutils().intConst().at(idPrecioJSON) >= 0) {
+			sdlutils().soundEffects().at("MejoraComprada").play(0, 1);
+			HMoney_ -= sdlutils().intConst().at(idPrecioJSON);
+			updateText(HMoney_);
+			game().getSaveGame()->setHCoins(HMoney_);
+			Message m;
+			m.id = _m_UPGRADE_TOWER;
+			m.upgrade_tower.towerId = t;
+			mngr_->send(m);
+		}
+		else {
+			sdlutils().soundEffects().at("DineroInsuficiente").play(0, 1);
+		}
 	}
 
 	void ButtonSystem::dragTower(twrId tower) {
@@ -355,6 +473,24 @@ Entity* ButtonSystem::addButton(const Vector2D& pos, const Vector2D& scale, game
 		bC->setLevel(level);
 	}
 	return b;
+}
+Entity* ButtonSystem::addSlider(const Vector2D& pos, const Vector2D& scale, gameTextures tex, grpId_type grpId, SliderTypes slTy) {
+	Entity* slider = mngr_->addEntity(grpId);
+	mngr_->setHandler(hdlr_but_id, slider);
+	Transform* tr = mngr_->addComponent<Transform>(slider);
+	tr->setScale(scale);
+	Vector2D aux = tr->getScale();
+	tr->setPosition(pos - aux / 2);
+
+	mngr_->addComponent<RenderComponent>(slider, tex);
+	auto sliderComp = mngr_->addComponent<SliderComponent>(slider, slTy);
+	sliderComp->setBounds(); // Establece los límites del slider
+	sliderComp->setRelativeBounds(100);
+	//sliderComp->setOnChangeCallback([](float value) {
+	//	// Lógica para manejar el cambio de valor del slider
+	//	});
+
+	return slider;
 }
 
 Entity* ButtonSystem::addImage(const Vector2D& pos, const Vector2D& scale, const double rot, gameTextures t, grpId_type grpId) {
@@ -390,15 +526,17 @@ void ButtonSystem::showTempText(string txt, const SDL_Color& color, const Vector
 Entity* ButtonSystem::addText(const string& txt, const SDL_Color& color, const Vector2D& pos, const Vector2D& scale)
 {
 	Entity* text = mngr_->addEntity(_grp_TEXTS);
+	mngr_->setHandler(hdlr_but_id, text);
 	Transform* tr = mngr_->addComponent<Transform>(text);
-	tr->setPosition(pos);
 	tr->setScale(scale);
+	Vector2D aux = tr->getScale();
+	tr->setPosition(pos - aux / 2);
 	mngr_->addComponent<TextComponent>(text, txt, color);
 	return text;
 }
 
-void ButtonSystem::updateText() {
-	mngr_->getComponent<TextComponent>(moneyText_)->changeText(std::to_string(money_));
+void ButtonSystem::updateText(int money) {
+	mngr_->getComponent<TextComponent>(moneyText_)->changeText(std::to_string(money));
 }
 
 void ButtonSystem::generateHMoneyText() {

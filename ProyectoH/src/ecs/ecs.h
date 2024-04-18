@@ -63,6 +63,8 @@ enum cmpId : cmpId_type {
 	_CMALDITO,
 	_POTION,
 	_ENEMYPROYECTILE,
+	_LOCK,
+	_SLIDER,
 
 
 
@@ -84,8 +86,11 @@ enum hdlrId : hdlrId_type {
 	_hdlr_BUTTON,
 	_hdlr_BUTTON_MAIN,
 	_hdlr_BUTTON_PAUSE,
+	_hdlr_BUTTON_ACELERATE,
 	_hdlr_BUTTON_LVLSEL,
 	_hdlr_BUTTON_ENEMYBOOK,
+	_hdlr_BUTTON_GAMEOVER,
+	_hdlr_BUTTON_CONFIG,
 	_hdlr_BUTTON_PLAY,
 	_hdlr_PARTICLES,
 	_hdlr_ICONS,
@@ -110,7 +115,8 @@ enum grpId : grpId_type {
 	_grp_HUD_DRAG_AND_DROP,
 	_grp_AREAOFATTACK,
 	_grp_SPAWN,
-	_grp_NATURALS_EFFECTS,
+	_grp_NATURALS_EFFECTS_LOW,
+	_grp_NATURALS_EFFECTS_HIGH,
 	_grp_ICONS,
 	
 	// do not remove this
@@ -126,7 +132,7 @@ enum gmSttId : gmSttId_type {
 	_gmStt_MAINMENU,
 	_gmStt_LEVELSELECTOR,
 	_gmStt_ENEMYBOOK,
-
+	_gmStt_CONFIG,
 	// do not remove this
 	_LAST_GMSTT_ID
 };
@@ -150,6 +156,7 @@ enum sysId : sysId_type {
 	_sys_COLLISION,
 	_sys_PARTICLES,
 	_sys_METEOROLOGY,
+	_sys_GAMEOVER,
 
 	// do not remove this
 	_LAST_SYS_ID
@@ -190,11 +197,13 @@ enum msgId : msgId_type {
 	_m_TOWER_TO_BLIND,
 	_m_PAUSE,
 	_m_RESUME,
+	_m_ACELERATE,
 	_m_START_GAME,
 	_m_WAVE_START,
 	_m_OVER_GAME,
 	_m_LEVEL_SELECTOR,
 	_m_ENEMY_BOOK,
+	_m_CONFIG,
 	_m_ENEMY_BOOK_BUT,
 	_m_UPGRADE_TOWER,
 	_m_BACK_TO_MAINMENU,
@@ -223,22 +232,22 @@ enum msgId : msgId_type {
 	_m_TOWER_CLICKED,
 	_m_UPGRADE_TWR_INGAME,
 	_m_EXIT_UP_MENU,
-	_m_SAVE_GAME,
 	_m_SELL_TOWER,
 	_m_ENEMY_DIED,
-	_m_ACTIVATE_ATTACK_TOWERS
+	_m_ACTIVATE_ATTACK_TOWERS,
+	_m_TOWER_DIED	
 };
 
 using twrId_type = uint8_t;
 enum twrId : twrId_type {
 	_twr_BULLET,
-	_twr_CRISTAL,
-	_twr_SLIME,
-	_twr_DIEGO,
-	_twr_FENIX,
 	_twr_CLAY,
+	_twr_SLIME,
+	_twr_FENIX,
+	_twr_DIEGO,
 	_twr_POWER,
-	_twr_NEXUS,
+	_twr_CRISTAL,
+	_twr_NEXUS,		// �?�?� QUITAR
 	_twr_SIZE
 };
 using enmId_type = uint8_t;
@@ -275,9 +284,11 @@ enum gameTextures {
 	tsunami_icon,meteorite_icon, thunder_icon, tornado_icon, earthquake_icon, 
 	level1,level1_hover,level2,level2_hover,level3,level3_hover,level4,level4_hover,level5,level5_hover,level6,level6_hover,level7,level7_hover,level8,level8_hover,
 	level1_desactive, level2_desactive, level3_desactive, level4_desactive, level5_desactive, level6_desactive, level7_desactive, level8_desactive,
-	sell, sell_hover,
+	sell, sell_hover, column_box,
+	acelerate_x1, acelerate_x1_hover, acelerate_x1_5, acelerate_x1_5_hover, acelerate_x2, acelerate_x2_hover,
 	//menu de pausa
 	resume_button, resume_button_hover, backToMenu_button, backToMenu_button_hover, exitGame_button, exitGame_button_hover,
+	resume_icon_button, resume_icon_button_hover,
 	// towers
 	square, bulletTowerTexture, cristalTowerTexture, phoenixTowerTexture,
 	slimeTowerTexture, boosterTowerTexture, sniperTowerTexture, clayTowerTexture, nexusTexture, fireTexture,
@@ -292,7 +303,7 @@ enum gameTextures {
 	goblin_icon, maldito_icon, elfo_icon, golem_icon, angel_icon, maestro_icon, acechante_icon, defensor_icon,
 	demonioAlado_icon, demonioInfernal_icon, mensajero_icon, CMaldito_icon, principito_icon, monje_icon, muerte_icon,
 	//texts
-	nexus_level_text, 
+	nexus_level_text, general_text, sounds_text,
 
 	//others
     meteorites, earthquake,tornado,thunder, tsunami,cloud,
@@ -300,7 +311,7 @@ enum gameTextures {
 	slimeArea, shield, hpIcon, blindedIcon, lightningIcon, powerIcon, monedaH, rangeCircle, monedaDorada,
 	life, life_background,
 	//explosions
-	shieldExp, bulletExplosion, enemyDeath,
+	shieldExp, bulletExplosion, enemyDeath, impact, blood,
 
 
 	gmTxtrSize
@@ -432,12 +443,18 @@ struct Message {
 		int* turrentLevels;
 		NetMap* netmap;
 		SDL_Rect* cameraOffset;
+		vector<int> unlockedTwrs;
+
 	}start_game_data;
 
 	// _m_OVER_GAME
 	struct
 	{
-		// No hab�a mensaje de game over, lo dejo, igual tenemos q quitarlo
+		int rounds;
+		int enemies;
+		int coinsH;
+		int currentLvl;
+		bool winner; // false, ha perdido. true, ha ganado
 	}over_game;
 
 	//_m_ENEMY_BOOK
@@ -474,6 +491,7 @@ struct Message {
 		Entity* e;
 		float damage;
 		hdlrId targetId;
+		hdlrId srcId;
 	} entity_to_attack;
 	// _m_TOWER_TO_ATTACK
 	struct {
@@ -509,6 +527,12 @@ struct Message {
 	struct {
 		bool onPause;
 	}start_pause;
+
+	// _m_ACELERATE
+	struct {
+		float acel;
+	}acelerate_plus;
+
 	// _m_WAVE_START
 	struct {
 		bool play;
