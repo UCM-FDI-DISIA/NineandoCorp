@@ -32,7 +32,7 @@ void ConfigSystem::initSystem() {
 	bS->addText("FULL SCREEN", textColor, { sdlutils().width() / 4.0f - 35.0f, sdlutils().height() / 2.25f }, { 225.0f, 50.0f });
 	pAux = Vector2D(sdlutils().width() / 4.0f + 125.0f, sdlutils().height() / 2.25f);
 	sAux = { 50.0f, 50.0f };
-	bS->addButton(pAux, sAux, gameTextures::close, gameTextures::close_hover, ButtonTypes::back_selector);
+	bS->addButton(pAux, sAux, gameTextures::close, gameTextures::close_hover, ButtonTypes::full_screen);
 
 	//CONTROLES
 	bS->addText("CONTROLS", textColor, { sdlutils().width() / 4.0f, sdlutils().height() / 1.85f - 10 }, { 225.0f, 50.0f });
