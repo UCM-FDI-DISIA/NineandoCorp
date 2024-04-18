@@ -237,6 +237,9 @@ void ButtonSystem::sellTower(Entity* twr)
 			Config();
 			sdlutils().soundEffects().at("button").play(0, 1);
 			break;
+		case full_screen:
+			sdlutils().toggleFullScreen();
+			break;
 		case level_selected:
 			startGame(bC);
 			sdlutils().soundEffects().at("button").play(0, 1);
