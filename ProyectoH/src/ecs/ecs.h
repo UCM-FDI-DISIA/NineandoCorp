@@ -83,6 +83,7 @@ enum hdlrId : hdlrId_type {
 	_hdlr_BUTTON,
 	_hdlr_BUTTON_MAIN,
 	_hdlr_BUTTON_PAUSE,
+	_hdlr_BUTTON_ACELERATE,
 	_hdlr_BUTTON_LVLSEL,
 	_hdlr_BUTTON_ENEMYBOOK,
 	_hdlr_BUTTON_GAMEOVER,
@@ -189,6 +190,7 @@ enum msgId : msgId_type {
 	_m_TOWER_TO_BLIND,
 	_m_PAUSE,
 	_m_RESUME,
+	_m_ACELERATE,
 	_m_START_GAME,
 	_m_WAVE_START,
 	_m_OVER_GAME,
@@ -517,6 +519,12 @@ struct Message {
 	struct {
 		bool onPause;
 	}start_pause;
+
+	// _m_ACELERATE
+	struct {
+		float acel;
+	}acelerate_plus;
+
 	// _m_WAVE_START
 	struct {
 		bool play;

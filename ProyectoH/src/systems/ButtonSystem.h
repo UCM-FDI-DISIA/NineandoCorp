@@ -94,6 +94,11 @@ private:
 	void Pause(bool onPause);
 
 	/// <summary>
+	/// Mensaje para la pausa
+	/// </summary>
+	void Acelerate(float _acel);
+
+	/// <summary>
 	/// Mensaje de carga enemyBook para ver los enemigos encontrados
 	/// </summary>
 	void EnemyBook();
@@ -142,6 +147,8 @@ private:
 	void Config();
 
 	bool mActive;
+	int numAcelButs; // cuantos botones hay para acelerar el tiempo
+	int cauntAcelButs; // contador 
 	int money_;
 	int HMoney_;
 	int costs[_twr_SIZE];
