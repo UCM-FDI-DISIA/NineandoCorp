@@ -20,7 +20,7 @@ void AttackComponent::doDamageTo(Entity* e, float damage, hdlrId targetId) {//Ca
 	m.entity_to_attack.damage = damage;
 	m.entity_to_attack.targetId = targetId;
 	m.entity_to_attack.src = ent_;
-	mngr_->send(m);
+	mngr_->send(m, true);
 }
 
 void AttackComponent::targetFromGroup(const std::list<Entity*>& targetGroup) {//Busca un target

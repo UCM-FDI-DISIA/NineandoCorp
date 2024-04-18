@@ -202,11 +202,10 @@ void TowerSystem::onAttackTower(Entity* e, int dmg, Entity* src) {
 				mngr_->send(m);
 			}
 			if (s->getShield() <= 0 && h->getHealth() - dmg <= 0) {
-				eliminateDestroyedTowers(e);
-				//std::cout << "Torre eliminada-TorresTotales: " << towers.size() << std::endl;
-				mngr_->deleteHandler(_hdlr_LOW_TOWERS, e);
 				clearShieldsArea(e);
-				h->subtractHealth(dmg);
+				removeTower(e);
+				//std::cout << "Torre eliminada-TorresTotales: " << towers.size() << std::endl;
+				
 
 
 			}
@@ -456,7 +455,7 @@ void TowerSystem::update() {
 							}
 							ds->setElapsedTime(0);
 						}
-						if (!mngr_->isAlive(t)) { eliminateDestroyedTowers(t); };
+						if (!mngr_->isAlive(t)) { removeTower(t); };
 					}
 
 #pragma endregion
@@ -554,9 +553,7 @@ void TowerSystem::update() {
 	}
 }
 
-void TowerSystem::eliminateDestroyedTowers(Entity* t) {//elimina del array las torres muertas
-	towers.erase(find(towers.begin(), towers.end(), t));
-}
+
 
 
 Entity* TowerSystem::getFrontTower()

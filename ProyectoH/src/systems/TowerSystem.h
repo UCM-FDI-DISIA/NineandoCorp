@@ -80,7 +80,6 @@ protected:
 	/// <param name="shootingTime">Tiempo en el que esta disparando fuego la torre de fenix</param>
 	/// <param name="damage">Dano por segundo causado por la torre de fenix</param>
 	Entity* shootFire(Vector2D spawn, float rot, float dmg, Entity* src);
-	void eliminateDestroyedTowers(Entity* t);
 	std::vector<Entity*> towers;
 	bool mActive;
 	Entity* square;
