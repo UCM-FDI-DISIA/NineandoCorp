@@ -69,8 +69,8 @@ void TowerSystem::receive(const Message& m) {
 		}
 		break;
 	case _m_ACTIVATE_ATTACK_TOWERS:
-		Entity* auxE = m.attack_towers_data.attackTower;
-		mngr_->getComponent<TowerStates>(auxE)->setConfundido(true, m.attack_towers_data.attackingTime);
+		mngr_->getComponent<TowerStates>(m.attack_towers_data.attackTower)->setConfundido(true, m.attack_towers_data.attackingTime);
+		break;
 	default:
 		break;
 	}
@@ -212,22 +212,31 @@ void TowerSystem::update() {
 				}
 			}
 			
-
-			if (tw->getCegado()) {//si esta cegada
-				tw->setElapsed(tw->getElapsed() + game().getDeltaTime());
-				IconComponent* ic = mngr_->getComponent<IconComponent>(t);
-				if (ic!= nullptr && !ic->hasIcon(_BLINDED)) {//Crearlo si no lo tiene					
-					ic->addIcon(_BLINDED);
-				}
-				
-				if (tw->getElapsed() > tw->getCegado()) {
-					if (ic != nullptr && ic->hasIcon(_BLINDED)) {//Eliminarlo si no se encuentra en la distancia
-						ic->removeIcon(_BLINDED);
+			if (tw != nullptr) {
+				if (tw->getCegado()) {//si esta cegada
+					tw->setElapsed(tw->getElapsed() + game().getDeltaTime());
+					IconComponent* ic = mngr_->getComponent<IconComponent>(t);
+					if (ic != nullptr && !ic->hasIcon(_BLINDED)) {//Crearlo si no lo tiene					
+						ic->addIcon(_BLINDED);
 					}
-					tw->setCegado(false, 0.0);
-					tw->setElapsed(0.0);
+
+					if (tw->getElapsed() > tw->getCegado()) {
+						if (ic != nullptr && ic->hasIcon(_BLINDED)) {//Eliminarlo si no se encuentra en la distancia
+							ic->removeIcon(_BLINDED);
+						}
+						tw->setCegado(false, 0.0);
+						tw->setElapsed(0.0);
+					}
+				}
+				if (tw->getConfundido()) {
+					tw->setElapsedConfused(tw->getElapsedConfused() + game().getDeltaTime());
+					if (tw->getElapsedConfused() > tw->getTimeConfused()) {
+						tw->setConfundido(false, tw->getTimeConfused());
+						tw->setElapsedConfused(0);
+					}
 				}
 			}
+			
 			else {
 				#pragma region ENHANCER
 					EnhancerTower* et = mngr_->getComponent<EnhancerTower>(t);

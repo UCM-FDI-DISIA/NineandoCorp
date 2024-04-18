@@ -483,6 +483,7 @@ void CollisionSystem::update() {
 					addRect(area, _POTIONRECT);
 					removeRect(d, _DEATH);
 					mngr_->setAlive(d, false);
+					cout << "Collided\n";
 				}
 			}
 		}

@@ -5,7 +5,7 @@ class TowerStates: public Component
 {
 public:
 	static const cmpId id = cmpId::_TOWERSTATES;
-	TowerStates() :cegado_(false), potenciado_(false),srcPotencia_(nullptr), tiempoCegado_(0.0f), elapsed_(0.0) {};
+	TowerStates() :cegado_(false), potenciado_(false),srcPotencia_(nullptr), tiempoCegado_(0.0f), elapsed_(0.0), elapsedConfused_(0), timeConfused_(0) {};
 	void setCegado(bool e, float t) {
 		cegado_ = e; tiempoCegado_ = t;
 	}
@@ -21,6 +21,9 @@ public:
 
 	void setConfundido(bool c, float t) { confundido_ = c; timeConfused_ = t; }
 	bool getConfundido() const { return confundido_; }
+	float getTimeConfused() { return timeConfused_; }
+	void setElapsedConfused(float t) { elapsedConfused_ = t; }
+	float getElapsedConfused() { return elapsedConfused_; }
 private:
 	bool cegado_;
 	bool potenciado_;
@@ -29,5 +32,6 @@ private:
 	float elapsed_;
 	bool confundido_;
 	float timeConfused_;
+	float elapsedConfused_;
 };
 
