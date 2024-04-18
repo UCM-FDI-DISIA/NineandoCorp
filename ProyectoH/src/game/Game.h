@@ -33,6 +33,7 @@ private:
 	};
 	bool exit;
 	double deltaTime;
+	float delay;
 	GameStateMachine* gameStateMachine;
 	SaveGame save = SaveGame();
 	Config config_;
@@ -86,6 +87,8 @@ public:
 		float vol = config_.soundMusic_ * config_.soundEffects_;
 		return (vol * 128) / 10000;
 	}
+
+	void SetDelay(float _delay) { delay = _delay; };
 
 	inline GameState* currentState() const {return gameStateMachine->currentState(); }
 

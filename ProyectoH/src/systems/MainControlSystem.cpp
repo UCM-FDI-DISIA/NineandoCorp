@@ -45,6 +45,9 @@ void MainControlSystem::receive(const Message& m) {
 	case _m_PAUSE:
 		game().pushState<PauseState>(mngr_);
 		break;
+	case _m_ACELERATE:
+		game().SetDelay(m.acelerate_plus.acel);
+		break;
 	case _m_ATTACK_NEXUS:		
 		if (mngr_->getComponent<HealthComponent>(nexo)->subtractHealth(m.nexus_attack_data.damage)) {
 			nexusIsAlive_ = false;
