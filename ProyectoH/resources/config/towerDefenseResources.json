@@ -733,6 +733,10 @@
     {
       "id": "force_field",
       "file": "resources/images/Enemies/defensor_real/field1.png"
+    },
+    {
+      "id": "column_box",
+      "file": "resources/images/UI/column_box.png"
     }
 
   ],

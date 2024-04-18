@@ -116,6 +116,7 @@ RenderSystem::RenderSystem() : winner_(0)
 	textures[backToMenu_button_hover] = &sdlutils().images().at("backToMenu_button_hover");
 	textures[exitGame_button] = &sdlutils().images().at("exitGame_button");
 	textures[exitGame_button_hover] = &sdlutils().images().at("exitGame_button_hover");
+	textures[column_box] = &sdlutils().images().at("column_box");
 
 	//Explosions
 	textures[shieldExp] = &sdlutils().images().at("shieldExp");
@@ -345,7 +346,7 @@ void RenderSystem::update() {
 		textures[textureId]->render(srcRect, trRect, tr->getRotation());
 	}
 
-	auto& naturalEffects = mngr_->getEntities(_grp_NATURALS_EFFECTS);
+	auto& naturalEffects = mngr_->getEntities(_grp_NATURALS_EFFECTS_LOW);
 	sort(naturalEffects.begin(), naturalEffects.end(), cmpIsometricY(mngr_));
 	for (auto& t : naturalEffects) {
 		Transform* tr = mngr_->getComponent<Transform>(t);
