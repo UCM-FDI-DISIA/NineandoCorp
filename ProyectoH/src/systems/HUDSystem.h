@@ -36,6 +36,8 @@ private:
 		Entity* sellButton;
 		Entity* range;
 		Entity* upCost;
+		Entity* coinImg;
+		Entity* frame;
 		UpgradeMenu() :
 			background(nullptr), //
 			upgradeButton(nullptr), //
@@ -49,7 +51,9 @@ private:
 			reloadText(nullptr), //
 			cost(nullptr), //
 			range(nullptr), //
-			upCost(nullptr)
+			upCost(nullptr), //
+			frame(nullptr), //
+			coinImg(nullptr)
 		{}
 
 		~UpgradeMenu() {}
@@ -91,6 +95,37 @@ private:
 			roundButton(nullptr) {}		
 	};
 
+	inline string getTowerName(twrId tId) {
+		string name = "";
+		switch (tId)
+		{ 
+		case _twr_BULLET:
+			name = "BULLET TOWER";
+			break;
+		case _twr_CLAY:
+			name = "CLAY TOWER";
+			break;
+		case _twr_SLIME:
+			name = "SLIME TOWER";
+			break;
+		case _twr_FENIX:
+			name = "PHOENIX TOWER";
+			break;
+		case _twr_DIEGO:
+			name = "SNIPER TOWER";
+			break;
+		case _twr_POWER:
+			name = "ENHANCER TOWER";
+			break;
+		case _twr_CRISTAL:
+			name = "CRYSTAL TOWER";
+			break;
+		default:
+			break;
+		}
+		return name;
+	}
+
 
 	UpgradeMenu upM_;
 	TowerSelector twrSel_;
@@ -129,5 +164,6 @@ private:
 	SDL_Rect* cameraOffset_;
 
 	Entity* tower_;
+	
 };
 

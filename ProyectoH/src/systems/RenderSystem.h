@@ -55,6 +55,8 @@ public:
 					int width, int height, const SDL_Color& fillColor);
 
 	void drawSquare(SDL_Renderer* renderer, const SDL_Point& center, int width, const SDL_Color& color);
+
+	void drawRectangle(SDL_Renderer* renderer, const SDL_Point& center, int width, int length, const SDL_Color& color);
 private:
 
 	void onGameOver(Uint8 winner);

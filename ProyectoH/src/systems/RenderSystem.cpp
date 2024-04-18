@@ -125,7 +125,7 @@ RenderSystem::RenderSystem() : winner_(0)
 	textures[backToMenu_button_hover] = &sdlutils().images().at("backToMenu_button_hover");
 	textures[exitGame_button] = &sdlutils().images().at("exitGame_button");
 	textures[exitGame_button_hover] = &sdlutils().images().at("exitGame_button_hover");
-
+	textures[white_frame] = &sdlutils().images().at("white_frame");
 	//Explosions
 	textures[shieldExp] = &sdlutils().images().at("shieldExp");
 	textures[bulletExplosion] = &sdlutils().images().at("bulletExp");
@@ -630,6 +630,30 @@ void RenderSystem::drawSquare(SDL_Renderer* renderer, const SDL_Point& center, i
 	SDL_SetRenderDrawColor(renderer, color.r, color.g, color.b, color.a);
 	renderFillPolygon(renderer, rW, rH, squareVertices, 4, color);
 }
+
+void RenderSystem::drawRectangle(SDL_Renderer* renderer, const SDL_Point& center, int width, int height, const SDL_Color& color)
+{
+	SDL_Point topL = { center.x - width / 2, center.y - height / 2 };
+	SDL_Point topR = { center.x + width / 2, center.y - height / 2 };
+	SDL_Point bottomR = { center.x + width / 2, center.y + height / 2 };
+	SDL_Point bottomL = { center.x - width / 2, center.y + height / 2 };
+
+	// Dibujar las líneas del rectángulo sin rellenar
+	SDL_Point vertices[] = { topL, topR, bottomR, bottomL, topL };
+
+	// Establecer el color de la línea
+	SDL_SetRenderDrawColor(renderer, color.r, color.g, color.b, color.a);
+
+	// Establecer el modo de mezcla para permitir la transparencia
+	SDL_SetRenderDrawBlendMode(renderer, SDL_BLENDMODE_BLEND);
+
+	// Dibujar las líneas del rectángulo con el grosor deseado
+	for (int i = 0; i < 4; ++i) {
+		SDL_RenderDrawLine(renderer, vertices[i].x, vertices[i].y, vertices[i + 1].x, vertices[i + 1].y);
+	}
+}
+
+
 
 void RenderSystem::renderFillPolygon(SDL_Renderer* renderer, int width, int height, const SDL_Point vertices[], int numVertices, const SDL_Color& color) {
 	// Crear un array de límites verticales

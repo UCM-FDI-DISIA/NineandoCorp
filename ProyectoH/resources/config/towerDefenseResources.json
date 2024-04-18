@@ -771,8 +771,12 @@
             "file": "resources/images/Towers/bloodHit.png"
         },
         {
-            "id": "column_box",
-            "file": "resources/images/UI/column_box.png"
+          "id": "column_box",
+          "file": "resources/images/UI/column_box.png"
+        },
+        {
+          "id": "white_frame",
+          "file": "resources/images/UI/white_frame.png"
         }
     ],
 
