@@ -64,16 +64,18 @@ void MainControlSystem::receive(const Message& m) {
 		turrentLevels_ = game().getSaveGame()->getTurretsLevels();
 		break;
 	case _m_WAVE_START:
-		round++;
-		Message m1;
-		m1.id = _m_ADD_TEXT;
-		m1.add_text_data.txt = "Wave: " + to_string((int)round);
-		m1.add_text_data.color = { 255, 255 ,255, 255 };
-		Vector2D txtScale = Vector2D(200.0f, 60.0f);
-		m1.add_text_data.pos = Vector2D(sdlutils().width() / 2, 50.0) - (txtScale / 2);
-		m1.add_text_data.scale = txtScale;
-		m1.add_text_data.time = 3;
-		mngr_->send(m1);
+		if (m.start_wave.play) {
+			round++;
+			Message m1;
+			m1.id = _m_ADD_TEXT;
+			m1.add_text_data.txt = "Wave: " + to_string((int)round);
+			m1.add_text_data.color = { 255, 255 ,255, 255 };
+			Vector2D txtScale = Vector2D(200.0f, 60.0f);
+			m1.add_text_data.pos = Vector2D(sdlutils().width() / 2, 50.0) - (txtScale / 2);
+			m1.add_text_data.scale = txtScale;
+			m1.add_text_data.time = 3;
+			mngr_->send(m1);
+		}
 		break;
 	}
 }
