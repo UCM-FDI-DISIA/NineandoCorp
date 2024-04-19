@@ -95,6 +95,9 @@ private:
 			roundButton(nullptr) {}		
 	};
 
+	Entity* pauseButton;
+	Entity* acelerateButton;
+
 	inline string getTowerName(twrId tId) {
 		string name = "";
 		switch (tId)

@@ -328,7 +328,7 @@ void HUDSystem::initSystem() {
 	*	/ -- PAUSE BUTTON -- /
 	*
 	*/
-	bS->addButton({ (float)sdlutils().width() - 50.0f , 50.0f },
+	pauseButton = bS->addButton({ (float)sdlutils().width() - 50.0f , 50.0f },
 		{50.0f, 50.0f},
 		gameTextures::pause_button, gameTextures::pause_button_hover,
 		ButtonTypes::pause_main);
@@ -338,11 +338,11 @@ void HUDSystem::initSystem() {
 	*	/ -- ACELERATION BUTTON -- /
 	*
 	*/
-	Entity* acelerate = bS->addButton({ (float)sdlutils().width() - 50.0f , 120.0f },
+	acelerateButton = bS->addButton({ (float)sdlutils().width() - 50.0f , 120.0f },
 		{ 50.0f, 50.0f },
 		gameTextures::acelerate_x1, gameTextures::acelerate_x1_hover,
 		ButtonTypes::acelerate);
-	mngr_->setHandler(_hdlr_BUTTON_ACELERATE, acelerate);
+	mngr_->setHandler(_hdlr_BUTTON_ACELERATE, acelerateButton);
 
 	Vector2D pAux = { xAux * 8.6f, heightH };
 	Vector2D sAux = { 250, 90 };
@@ -650,7 +650,7 @@ void HUDSystem::showUpgradeMenu(Entity* twr, const Vector2D& pos) {
 		sell, sell_hover, ButtonTypes::sell_tower, 0,
 		m1
 	);
-
+	
 
 	/**
 	*	BOTON DE SALIR
@@ -663,8 +663,10 @@ void HUDSystem::showUpgradeMenu(Entity* twr, const Vector2D& pos) {
 
 void HUDSystem::NewAcelerationButton(float acel) {
 	auto hId = mngr_->getHandler(_hdlr_BUTTON_ACELERATE);
-	hId.clear();
-
+	for (Entity* en : hId) {
+		mngr_->getComponent<ButtonComponent>(en)->setActive(false);
+		mngr_->getComponent<RenderComponent>(en)->isActive = false;
+	}
 	ButtonSystem* bS = mngr_->getSystem<ButtonSystem>();
 	gameTextures butText, butText_hover;
 	if (acel == 1) {
@@ -679,11 +681,11 @@ void HUDSystem::NewAcelerationButton(float acel) {
 		butText = acelerate_x2;
 		butText_hover = acelerate_x2_hover;
 	}
-	Entity* acelerate = bS->addButton({ (float)sdlutils().width() - 50.0f , 120.0f },
+	acelerateButton = bS->addButton({ (float)sdlutils().width() - 50.0f , 120.0f },
 		{ 50.0f, 50.0f },
 		butText, butText_hover,
 		ButtonTypes::acelerate);
-	mngr_->setHandler(_hdlr_BUTTON_ACELERATE, acelerate);
+	mngr_->setHandler(_hdlr_BUTTON_ACELERATE, acelerateButton);
 }
 
 void HUDSystem::exitUpgradeMenu() {
@@ -751,6 +753,14 @@ void HUDSystem::showSelector(bool active) {
 	mngr_->getComponent<ButtonComponent>(twrSel_.roundButton)->setActive(active);
 	mngr_->getComponent<RenderComponent>(twrSel_.roundButton)->isActive = active;
 	
+	// Boton de pausa
+	mngr_->getComponent<ButtonComponent>(pauseButton)->setActive(active);
+	mngr_->getComponent<RenderComponent>(pauseButton)->isActive = active;
+
+	// Boton de pausa
+	mngr_->getComponent<ButtonComponent>(acelerateButton)->setActive(active);
+	mngr_->getComponent<RenderComponent>(acelerateButton)->isActive = active;
+
 	// Background
 	mngr_->getComponent<RenderComponent>(twrSel_.background)->isActive = active;
 }
