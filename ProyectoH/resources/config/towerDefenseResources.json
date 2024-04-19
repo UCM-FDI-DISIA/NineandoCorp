@@ -846,6 +846,14 @@
       "file": "resources/sound/HUD/button.mp3"
     },
     {
+      "id": "WhooshPantallaFinNivel",
+      "file": "resources/sound/HUD/WhooshPantallaFinNivel.mp3"
+    },
+    {
+      "id": "AbrirEnemiesBook",
+      "file": "resources/sound/HUD/AbrirEnemiesBook.mp3"
+    },
+    {
       "id": "DineroInsuficiente",
       "file": "resources/sound/HUD/DineroInsuficiente.mp3"
     },

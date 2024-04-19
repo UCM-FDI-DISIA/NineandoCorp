@@ -52,6 +52,7 @@ void GameOverSystem::receive(const Message& m) {
 }
 
 void GameOverSystem::update() {
+	sdlutils().soundEffects().at("WhooshPantallaFinNivel").setChannelVolume(game().CalculoVolumenEfectos(), 1);
 	if (currentAnim != NONE_ANIM) {
 		if (timer <= 0) {
 			string text;
@@ -67,6 +68,7 @@ void GameOverSystem::update() {
 				textC->update();
 				currentAnim = ROUNDS_ANIM;
 				timer = startTime;
+				sdlutils().soundEffects().at("WhooshPantallaFinNivel").play(0, 1);
 				break;
 			case ROUNDS_ANIM:
 					text = "Rounds complete: " + std::to_string(roundsPassed);
@@ -75,6 +77,7 @@ void GameOverSystem::update() {
 					textC->update();
 					currentAnim = ENEMIES_ANIM;
 					timer = startTime;
+					sdlutils().soundEffects().at("WhooshPantallaFinNivel").play(0, 1);
 					break;
 			case ENEMIES_ANIM:
 				enemiesCont += game().getDeltaTime() * 50;
@@ -88,7 +91,7 @@ void GameOverSystem::update() {
 				textC = mngr_->getComponent<TextComponent>(enemies);
 				textC->setText(text);
 				textC->update();
-
+				sdlutils().soundEffects().at("WhooshPantallaFinNivel").play(0, 1);
 				break;
 			case COINS_ANIM:
 				coinsCont += game().getDeltaTime() * 500;
@@ -101,6 +104,7 @@ void GameOverSystem::update() {
 				textC = mngr_->getComponent<TextComponent>(coins);
 				textC->setText(text);
 				textC->update();
+				sdlutils().soundEffects().at("WhooshPantallaFinNivel").play(0, 1);
 				break;
 			}
 		}

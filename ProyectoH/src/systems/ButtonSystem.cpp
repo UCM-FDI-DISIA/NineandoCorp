@@ -231,7 +231,7 @@ void ButtonSystem::sellTower(Entity* twr)
 		case enemies_main:
 			EnemyBook();
 			pauseAllButtons();
-			sdlutils().soundEffects().at("button").play(0, 1);
+			sdlutils().soundEffects().at("AbrirEnemiesBook").play(0, 1);
 			break;
 		case back_selector:
 			backToMainMenu();
@@ -272,6 +272,7 @@ void ButtonSystem::sellTower(Entity* twr)
 			sdlutils().soundEffects().at("button").play(0, 1);
 			break;
 		case acelerate:
+			sdlutils().soundEffects().at("button").play(0, 1);
 			switch (cauntAcelButs)
 			{
 			case 1:
@@ -295,6 +296,7 @@ void ButtonSystem::sellTower(Entity* twr)
 			}
 			break;
 		case enemybook:
+			sdlutils().soundEffects().at("AbrirEnemiesBook").play(0, 1);
 			mngr_->send(mngr_->getComponent<ButtonComponent>(bC)->getMessage());			
 			break;
 		/*--- MEJORAS DEL MENU ---*/
