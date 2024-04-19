@@ -668,7 +668,7 @@
     },
     {
       "id": "FenixDano",
-      "value": 10
+      "value": 5
     },
     {
       "id": "FenixTiempoDisparo",
@@ -676,11 +676,11 @@
     },
     {
       "id": "FenixDPS1",
-      "value": 4
+      "value": 8
     },
     {
       "id": "FenixDPS2",
-      "value": 5
+      "value": 15
     },
     {
       "id": "FenixOffsetY",

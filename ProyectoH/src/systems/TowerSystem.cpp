@@ -480,9 +480,9 @@ void TowerSystem::update() {
 								else if (dir.getX() > 0 && dir.getY() < 0) { angle = 180 - angle; }
 								else if(dir.getX() > 0 && dir.getY() > 0) { angle = -angle + 180; }
 								else { angle = 360 - angle; }
-								dir = dir * displacement;
-								fTR->setRotation(angle);
+								dir = dir * displacement;								
 								fTR->setPosition(Vector2D(spawn.getX() + dir.getX(), spawn.getY() + dir.getY()) + offset);
+								fTR->setRotation(angle);
 							}
 						}
 						int level = mngr_->getComponent<UpgradeTowerComponent>(t)->getLevel() - 1;
