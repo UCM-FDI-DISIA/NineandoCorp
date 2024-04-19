@@ -809,7 +809,12 @@
         {
             "id": "resolution_hover",
             "file": "resources/images/UI/resolution_hover.png"
+        },
+        {
+            "id": "spawn_enemy",
+            "file": "resources/images/Enemies/spawn_enemy.png"
         }
+
     ],
 
 

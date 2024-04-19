@@ -141,6 +141,7 @@ RenderSystem::RenderSystem() : winner_(0)
 	textures[enemyDeath] = &sdlutils().images().at("enemy_death");
 	textures[impact] = &sdlutils().images().at("bullet_impact");
 	textures[blood] = &sdlutils().images().at("blood");
+	textures[enemy_spawn] = &sdlutils().images().at("spawn_enemy");
 	//Miscelanious
 	textures[square] = &sdlutils().images().at("square");
 	textures[tileSet] = &sdlutils().images().at("map");

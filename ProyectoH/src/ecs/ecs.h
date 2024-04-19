@@ -302,7 +302,7 @@ enum gameTextures {
 	//others
     meteorites, earthquake,tornado,thunder, tsunami,cloud,
 	bulletTexture, sniperBulletTexture, slimeBulletTexture, 
-	slimeArea, shield, hpIcon, blindedIcon, lightningIcon, powerIcon, monedaH, rangeCircle, monedaDorada,
+	slimeArea, shield, hpIcon, blindedIcon, lightningIcon, powerIcon, monedaH, rangeCircle, monedaDorada,enemy_spawn,
 
 	//explosions
 	shieldExp, bulletExplosion, enemyDeath, impact, blood,
