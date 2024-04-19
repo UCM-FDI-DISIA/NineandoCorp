@@ -9,6 +9,7 @@
 ButtonSystem::ButtonSystem(hdlrId_type but_id) : 
 	hdlr_but_id(but_id), money_(0), HMoney_(0){
 	mActive = true;
+	fullScreen = false;
 	numAcelButs = 3;
 	cauntAcelButs = 1;
 	//rellenar la lista de costes
@@ -242,6 +243,16 @@ void ButtonSystem::sellTower(Entity* twr)
 			break;
 		case full_screen:
 			sdlutils().toggleFullScreen();
+			fullScreen = !fullScreen;
+			if (fullScreen) {
+				mngr_->getComponent<ButtonComponent>(bC)->setTexture(check);
+				mngr_->getComponent<ButtonComponent>(bC)->setHover(check_hover);
+			}
+			else {
+				mngr_->getComponent<ButtonComponent>(bC)->setTexture(button);
+				mngr_->getComponent<ButtonComponent>(bC)->setHover(button_hover);
+			}
+			
 			break;
 		case level_selected:
 			startGame(bC);

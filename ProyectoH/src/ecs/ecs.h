@@ -278,7 +278,7 @@ enum gameTextures {
 	level1_desactive, level2_desactive, level3_desactive, level4_desactive, level5_desactive, level6_desactive, level7_desactive, level8_desactive,
 	sell, sell_hover, column_box,
 	acelerate_x1, acelerate_x1_hover, acelerate_x1_5, acelerate_x1_5_hover, acelerate_x2, acelerate_x2_hover,
-	white_frame,
+	white_frame, button, button_hover, check, check_hover,
 	//menu de pausa
 	resume_button, resume_button_hover, backToMenu_button, backToMenu_button_hover, exitGame_button, exitGame_button_hover,
 	resume_icon_button, resume_icon_button_hover,

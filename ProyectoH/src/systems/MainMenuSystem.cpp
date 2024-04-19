@@ -59,18 +59,18 @@ void MainMenuSystem::initSystem() {
 
 	// ENEMIES BUTTON
 	bS->addButton({ sdlutils().width() / 2.0f, (sdlutils().height() / 2.0f) - 75 },
-		{ 350, 110 },
+		{ sdlutils().width() / 3.5f, sdlutils().height() / 8.0f },
 		gameTextures::enemies_button, gameTextures::enemies_button_hover, ButtonTypes::enemies_main);
 
 	// PLAY BUTTON
 	bS->addButton({ sdlutils().width() / 2.0f, (sdlutils().height() / 2.0f) + 75},
-		{ 300, 110 },
+		{ sdlutils().width() / 4.0f, sdlutils().height() / 8.0f },
 		gameTextures::play, gameTextures::play_hover, ButtonTypes::selector_main);
 
 	// CONFIGURATION BUTTON
-	bS->addButton({ sdlutils().width() / 2.0f, (sdlutils().height() / 2.0f) + 265},
-		{ 125, 125 },
-		gameTextures::close, gameTextures::close_hover, ButtonTypes::config);
+	bS->addButton({ sdlutils().width() / 2.0f, (sdlutils().height() / 2.0f) + 225},
+		{ sdlutils().width() / 3.5f, sdlutils().height() / 8.0f},
+		gameTextures::settings, gameTextures::settings_hover, ButtonTypes::config);
 
 	// EXIT BUTTON
 	bS->addButton({25.f, 25.f },

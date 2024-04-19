@@ -147,6 +147,7 @@ private:
 	void Config();
 
 	bool mActive;
+	bool fullScreen;
 	int numAcelButs; // cuantos botones hay para acelerar el tiempo
 	int cauntAcelButs; // contador 
 	int money_;

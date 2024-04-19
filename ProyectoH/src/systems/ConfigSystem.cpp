@@ -32,48 +32,48 @@ void ConfigSystem::initSystem() {
 	bS->addText("FULL SCREEN", textColor, { sdlutils().width() / 4.0f - 35.0f, sdlutils().height() / 2.25f }, { 225.0f, 50.0f });
 	pAux = Vector2D(sdlutils().width() / 4.0f + 125.0f, sdlutils().height() / 2.25f);
 	sAux = { 50.0f, 50.0f };
-	bS->addButton(pAux, sAux, gameTextures::close, gameTextures::close_hover, ButtonTypes::full_screen);
+	bS->addButton(pAux, sAux, gameTextures::button, gameTextures::button_hover, ButtonTypes::full_screen);
 
 	//CONTROLES
 	bS->addText("CONTROLS", textColor, { sdlutils().width() / 4.0f, sdlutils().height() / 1.85f - 10 }, { 225.0f, 50.0f });
 	pAux = Vector2D(sdlutils().width() / 4.0f - 180, sdlutils().height() / 1.85f + 50);
 	sAux = { 50.0f, 50.0f };
-	bS->addButton(pAux, sAux, gameTextures::none_box, gameTextures::none_box_hover, ButtonTypes::back_selector);
+	bS->addButton(pAux, sAux, gameTextures::button, gameTextures::button_hover, ButtonTypes::back_selector);
 	bS->addText("Move Left", textColor, { sdlutils().width() / 4.0f - 70, sdlutils().height() / 1.85f + 50 }, { 155.0f, 25.0f });
 
 	pAux = Vector2D(sdlutils().width() / 4.0f - 180, sdlutils().height() / 1.85f + 110);
 	sAux = { 50.0f, 50.0f };
-	bS->addButton(pAux, sAux, gameTextures::none_box, gameTextures::none_box_hover, ButtonTypes::back_selector);
+	bS->addButton(pAux, sAux, gameTextures::button, gameTextures::button_hover, ButtonTypes::back_selector);
 	bS->addText("Move Right", textColor, { sdlutils().width() / 4.0f - 70, sdlutils().height() / 1.85f + 110 }, { 165.0f, 25.0f });
 
 	pAux = Vector2D(sdlutils().width() / 4.0f - 180, sdlutils().height() / 1.85f + 170);
 	sAux = { 50.0f, 50.0f };
-	bS->addButton(pAux, sAux, gameTextures::none_box, gameTextures::none_box_hover, ButtonTypes::back_selector);
+	bS->addButton(pAux, sAux, gameTextures::button, gameTextures::button_hover, ButtonTypes::back_selector);
 	bS->addText("Move Up", textColor, { sdlutils().width() / 4.0f -70, sdlutils().height() / 1.85f + 170 }, { 145.0f, 25.0f });
 
 	pAux = Vector2D(sdlutils().width() / 4.0f - 180, sdlutils().height() / 1.85f + 230);
 	sAux = { 50.0f, 50.0f };
-	bS->addButton(pAux, sAux, gameTextures::none_box, gameTextures::none_box_hover, ButtonTypes::back_selector);
+	bS->addButton(pAux, sAux, gameTextures::button, gameTextures::button_hover, ButtonTypes::back_selector);
 	bS->addText("Move Down", textColor, { sdlutils().width() / 4.0f - 70, sdlutils().height() / 1.85f + 230 }, { 160.0f, 25.0f });
 
 	pAux = Vector2D(sdlutils().width() / 4.0f + 40, sdlutils().height() / 1.85f + 50);
 	sAux = { 50.0f, 50.0f };
-	bS->addButton(pAux, sAux, gameTextures::none_box, gameTextures::none_box_hover, ButtonTypes::back_selector);
+	bS->addButton(pAux, sAux, gameTextures::button, gameTextures::button_hover, ButtonTypes::back_selector);
 	bS->addText("Drag and drop tower", textColor, { sdlutils().width() / 4.0f + 160, sdlutils().height() / 1.85f + 50 }, { 180.0f, 25.0f });
 
 	pAux = Vector2D(sdlutils().width() / 4.0f + 40, sdlutils().height() / 1.85f + 110);
 	sAux = { 50.0f, 50.0f };
-	bS->addButton(pAux, sAux, gameTextures::none_box, gameTextures::none_box_hover, ButtonTypes::back_selector);
+	bS->addButton(pAux, sAux, gameTextures::button, gameTextures::button_hover, ButtonTypes::back_selector);
 	bS->addText("Remove Tower", textColor, { sdlutils().width() / 4.0f + 160, sdlutils().height() / 1.85f + 110 }, { 165.0f, 25.0f });
 
 	pAux = Vector2D(sdlutils().width() / 4.0f + 40, sdlutils().height() / 1.85f + 170);
 	sAux = { 50.0f, 50.0f };
-	bS->addButton(pAux, sAux, gameTextures::none_box, gameTextures::none_box_hover, ButtonTypes::back_selector);
+	bS->addButton(pAux, sAux, gameTextures::button, gameTextures::button_hover, ButtonTypes::back_selector);
 	bS->addText("Pause", textColor, { sdlutils().width() / 4.0f + 160, sdlutils().height() / 1.85f + 170 }, { 80.0f, 25.0f });
 
 	pAux = Vector2D(sdlutils().width() / 4.0f + 40, sdlutils().height() / 1.85f + 230);
 	sAux = { 50.0f, 50.0f };
-	bS->addButton(pAux, sAux, gameTextures::none_box, gameTextures::none_box_hover, ButtonTypes::back_selector);
+	bS->addButton(pAux, sAux, gameTextures::button, gameTextures::button_hover, ButtonTypes::back_selector);
 	bS->addText("Play", textColor, { sdlutils().width() / 4.0f +160, sdlutils().height() / 1.85f + 230 }, { 70.0f, 25.0f });
 
 	//SOUNDS

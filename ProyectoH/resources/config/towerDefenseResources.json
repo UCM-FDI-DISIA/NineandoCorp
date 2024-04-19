@@ -785,6 +785,22 @@
         {
             "id": "white_frame",
             "file": "resources/images/UI/white_frame.png"
+        },
+        {
+            "id": "button",
+            "file": "resources/images/UI/button.png"
+        },
+        {
+            "id": "button_hover",
+            "file": "resources/images/UI/button_hover.png"
+        },
+        {
+            "id": "check_button",
+            "file": "resources/images/UI/check_button.png"
+        },
+        {
+            "id": "check_button_hover",
+            "file": "resources/images/UI/check_button_hover.png"
         }
     ],
 
