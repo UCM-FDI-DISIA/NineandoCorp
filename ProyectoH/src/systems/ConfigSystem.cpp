@@ -26,7 +26,7 @@ void ConfigSystem::initSystem() {
 	//RESOLUCION
 	pAux = Vector2D(sdlutils().width() / 4.0f, sdlutils().height() / 3.0f);
 	sAux = { 300.0f, 70.0f };
-	bS->addButton(pAux, sAux, gameTextures::box, gameTextures::play_hover, ButtonTypes::back_selector);
+	bS->addButton(pAux, sAux, gameTextures::resolution, gameTextures::resolution_hover, ButtonTypes::back_selector);
 	
 	//PANTALLA COMPLETA
 	bS->addText("FULL SCREEN", textColor, { sdlutils().width() / 4.0f - 35.0f, sdlutils().height() / 2.25f }, { 225.0f, 50.0f });

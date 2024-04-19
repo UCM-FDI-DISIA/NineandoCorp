@@ -801,6 +801,14 @@
         {
             "id": "check_button_hover",
             "file": "resources/images/UI/check_button_hover.png"
+        },
+        {
+            "id": "resolution",
+            "file": "resources/images/UI/resolution.png"
+        },
+        {
+            "id": "resolution_hover",
+            "file": "resources/images/UI/resolution_hover.png"
         }
     ],
 
