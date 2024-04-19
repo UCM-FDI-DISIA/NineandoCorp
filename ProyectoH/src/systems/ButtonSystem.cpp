@@ -216,6 +216,7 @@ void ButtonSystem::sellTower(Entity* twr)
 		switch (type)
 		{
 		case back_to_menu:
+			game().SetDelay(1.0f);
 			game().changeState<MainMenuState>();
 			sdlutils().soundEffects().at("button").play(0, 1);
 			break;

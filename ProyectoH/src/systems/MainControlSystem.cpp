@@ -36,6 +36,7 @@ void MainControlSystem::receive(const Message& m) {
 		game().pushState<ConfigState>(mngr_);
 		break;
 	case _m_BACK_TO_MAINMENU:
+		game().SetDelay(1.0f);
 		game().popState();
 		resetButtons();
 		break;
