@@ -100,6 +100,12 @@ public:
 	inline void setLevel(int currentLevel) { level = currentLevel; };
 
 	inline int getLevel() const { return level; };
+
+	inline int getWidth() const { return width; };
+	inline void setWidth(int newWidth) { width = newWidth; };
+
+	inline int getHeight() const { return height; };
+	inline void setHeight(int newHeight) { height = newHeight; };
 private:
 	//Transform del boton
 	Transform* tr_;
@@ -114,5 +120,6 @@ private:
 	//Mensaje del boton
 	Message msg_;
 	int level = 1;
+	int width, height;
 };
 

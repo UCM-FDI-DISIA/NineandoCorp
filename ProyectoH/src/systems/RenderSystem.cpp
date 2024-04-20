@@ -134,7 +134,12 @@ RenderSystem::RenderSystem() : winner_(0)
 	textures[check_hover] = &sdlutils().images().at("check_button_hover");
 	textures[resolution] = &sdlutils().images().at("resolution");
 	textures[resolution_hover] = &sdlutils().images().at("resolution_hover");
-
+	textures[resolution1] = &sdlutils().images().at("resolution1");
+	textures[resolution1_hover] = &sdlutils().images().at("resolution1_hover");
+	textures[resolution2] = &sdlutils().images().at("resolution2");
+	textures[resolution2_hover] = &sdlutils().images().at("resolution2_hover");
+	textures[resolution3] = &sdlutils().images().at("resolution3");
+	textures[resolution3_hover] = &sdlutils().images().at("resolution3_hover");
 	//Explosions
 	textures[shieldExp] = &sdlutils().images().at("shieldExp");
 	textures[bulletExplosion] = &sdlutils().images().at("bulletExp");

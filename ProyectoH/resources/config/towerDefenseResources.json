@@ -813,6 +813,30 @@
         {
             "id": "spawn_enemy",
             "file": "resources/images/Enemies/spawn_enemy.png"
+        },
+        {
+            "id": "resolution1",
+            "file": "resources/images/UI/resolution1.png"
+        },
+        {
+            "id": "resolution1_hover",
+            "file": "resources/images/UI/resolution1_hover.png"
+        },
+        {
+            "id": "resolution2",
+            "file": "resources/images/UI/resolution2.png"
+        },
+        {
+            "id": "resolution2_hover",
+            "file": "resources/images/UI/resolution2_hover.png"
+        },
+        {
+            "id": "resolution3",
+            "file": "resources/images/UI/resolution3.png"
+        },
+        {
+            "id": "resolution3_hover",
+            "file": "resources/images/UI/resolution3_hover.png"
         }
 
     ],

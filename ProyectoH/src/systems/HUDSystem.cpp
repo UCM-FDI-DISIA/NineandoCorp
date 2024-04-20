@@ -612,7 +612,7 @@ void HUDSystem::showUpgradeMenu(Entity* twr, const Vector2D& pos) {
 	Vector2D posB = { pos.getX() + 390 + cameraOffset_->x, pos.getY() + 85 + cameraOffset_->y };
 	upM_.upgradeButton = bS->addButton(posB + offset, 
 		{ 150.0f, 60.0f },
-		upgrade, upgrade_hover, ButtonTypes::upgrade_tower, 0,
+		upgrade, upgrade_hover, ButtonTypes::upgrade_tower, 0,0,0,
 		m
 		);
 
@@ -647,7 +647,7 @@ void HUDSystem::showUpgradeMenu(Entity* twr, const Vector2D& pos) {
 	Vector2D posC = { pos.getX() + 390 + cameraOffset_->x, pos.getY() + cameraOffset_->y };
 	upM_.sellButton = bS->addButton(posC + offset,
 		{ 150.0f, 60.0f },
-		sell, sell_hover, ButtonTypes::sell_tower, 0,
+		sell, sell_hover, ButtonTypes::sell_tower, 0,0,0,
 		m1
 	);
 	

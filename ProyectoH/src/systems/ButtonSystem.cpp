@@ -257,7 +257,7 @@ void ButtonSystem::sellTower(Entity* twr)
 			
 			break;
 		case changeResolution:
-			stopConfig();
+			stopConfig(bC);
 			break;
 		case level_selected:
 			startGame(bC);
@@ -422,7 +422,7 @@ void ButtonSystem::sellTower(Entity* twr)
 		m.id = _m_CONFIG;
 		mngr_->send(m, true);
 	}
-	void ButtonSystem::stopConfig() {
+	void ButtonSystem::stopConfig( Entity* bC) {
 		resolutionActive = !resolutionActive;
 		auto settings = mngr_->getHandler(_hdlr_BUTTON_CONFIG);
 		for (auto en : settings) {
@@ -433,9 +433,12 @@ void ButtonSystem::sellTower(Entity* twr)
 		if (resolutionActive) {
 			Message m;
 			m.id = _m_CHANGE_RESOLUTION;
+			m.settings_data.resolutions = 3;
 			mngr_->send(m);
 		}
 		else {
+			ButtonComponent* btC = mngr_->getComponent<ButtonComponent>(bC);
+			SDL_SetWindowSize(sdlutils().window(), btC->getWidth(), btC->getHeight()); 
 			size_t numEntitiesToRemove = std::min<size_t>(3, settings.size());
 			for (size_t i = 0; i < numEntitiesToRemove; ++i) {
 				auto it = settings.end();
@@ -505,7 +508,7 @@ void ButtonSystem::sellTower(Entity* twr)
 #pragma endregion
 
 
-Entity* ButtonSystem::addButton(const Vector2D& pos, const Vector2D& scale, gameTextures tex, gameTextures hov, ButtonTypes type,int level, Message m) {
+Entity* ButtonSystem::addButton(const Vector2D& pos, const Vector2D& scale, gameTextures tex, gameTextures hov, ButtonTypes type,int level, int width, int height, Message m) {
 	Entity* b = mngr_->addEntity(_grp_HUD_FOREGROUND);
 	mngr_->setHandler(hdlr_but_id, b);
 
@@ -521,6 +524,10 @@ Entity* ButtonSystem::addButton(const Vector2D& pos, const Vector2D& scale, game
 	bC->setHover(hov);
 	if (level != 0) {
 		bC->setLevel(level);
+	}
+	else if (width != 0 && height != 0) {
+		bC->setHeight(height);
+		bC->setWidth(width);
 	}
 	return b;
 }

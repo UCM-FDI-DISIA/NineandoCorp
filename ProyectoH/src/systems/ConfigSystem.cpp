@@ -12,6 +12,8 @@ ConfigSystem::~ConfigSystem()
 	mngr_->deleteAllHandlers(_hdlr_BUTTON_CONFIG);
 }
 void ConfigSystem::initSystem() {
+	typesResolutions = { {1440, 1080}, {1400,1050},{1280,1024} };
+	
 	ButtonSystem* bS = mngr_->getSystem<ButtonSystem>();
 	SDL_Color textColor = { 255, 255, 255, 255 };
 	//BACKGROUND
@@ -29,11 +31,14 @@ void ConfigSystem::initSystem() {
 	bS->addButton(pAux, sAux, gameTextures::resolution, gameTextures::resolution_hover, ButtonTypes::changeResolution);
 	
 	//PANTALLA COMPLETA
+	
 	bS->addText("FULL SCREEN", textColor, { sdlutils().width() / 4.0f - 35.0f, sdlutils().height() / 2.25f }, { 225.0f, 50.0f });
 	pAux = Vector2D(sdlutils().width() / 4.0f + 125.0f, sdlutils().height() / 2.25f);
 	sAux = { 50.0f, 50.0f };
-	bS->addButton(pAux, sAux, gameTextures::button, gameTextures::button_hover, ButtonTypes::full_screen);
-
+	if(!bS->getFullScreen())
+		bS->addButton(pAux, sAux, gameTextures::button, gameTextures::button_hover, ButtonTypes::full_screen);
+	else
+		bS->addButton(pAux, sAux, gameTextures::check, gameTextures::check_hover, ButtonTypes::full_screen);
 	//CONTROLES
 	bS->addText("CONTROLS", textColor, { sdlutils().width() / 4.0f, sdlutils().height() / 1.85f - 10 }, { 225.0f, 50.0f });
 	pAux = Vector2D(sdlutils().width() / 4.0f - 180, sdlutils().height() / 1.85f + 50);
@@ -100,14 +105,28 @@ void ConfigSystem::receive(const Message& m) {
 	switch (m.id)
 	{
 	case _m_CHANGE_RESOLUTION:
-		createResolutions();
+		createResolutions(m.settings_data.resolutions);
 		break;
 	}
 }
-void ConfigSystem::createResolutions() {
+void ConfigSystem::createResolutions(int resolutions_) {
+	std::map<std::string, gameTextures> textureResolutions = {
+		{"resolution1", gameTextures::resolution1},
+		{"resolution1_hover", gameTextures::resolution1_hover},
+		{"resolution2", gameTextures::resolution2},
+		{"resolution2_hover", gameTextures::resolution2_hover},
+		{"resolution3", gameTextures::resolution3},
+		{"resolution3_hover", gameTextures::resolution3_hover},
+	};
+	
 	ButtonSystem* bS = mngr_->getSystem<ButtonSystem>();
-	bS->addButton({ sdlutils().width() / 4.0f + 250, sdlutils().height() / 3.0f - 45 }, { 150.0f, 35.0f }, gameTextures::backToMenu_button, gameTextures::backToMenu_button_hover, ButtonTypes::changeResolution);
-	bS->addButton({ sdlutils().width() / 4.0f + 250, sdlutils().height() / 3.0f }, { 150.0f, 35.0f }, gameTextures::backToMenu_button, gameTextures::backToMenu_button_hover, ButtonTypes::changeResolution);
-	bS->addButton({ sdlutils().width() / 4.0f + 250, sdlutils().height() / 3.0f + 45 }, { 150.0f, 35.0f }, gameTextures::backToMenu_button, gameTextures::backToMenu_button_hover, ButtonTypes::changeResolution);
+	for (int i = 1; i <= resolutions_; i++)
+	{
+		std::string resolImg = "resolution" + to_string(i);
+		std::string resolHovImg = "resolution" + to_string(i) + "_hover";
+		auto it = textureResolutions.find(resolImg);
+		auto itHov = textureResolutions.find(resolHovImg);
+		bS->addButton({ sdlutils().width() / 4.0f + 250, sdlutils().height() / 3.0f - 45 + (i -1) * 45 }, { 150.0f, 35.0f }, it->second, itHov->second, ButtonTypes::changeResolution,0, typesResolutions[i-1].getX(), typesResolutions[i - 1].getY());
+	}
 }
 
