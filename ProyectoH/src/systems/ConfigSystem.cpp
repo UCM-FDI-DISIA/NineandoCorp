@@ -26,7 +26,7 @@ void ConfigSystem::initSystem() {
 	//RESOLUCION
 	pAux = Vector2D(sdlutils().width() / 4.0f, sdlutils().height() / 3.0f);
 	sAux = { 300.0f, 70.0f };
-	bS->addButton(pAux, sAux, gameTextures::resolution, gameTextures::resolution_hover, ButtonTypes::back_selector);
+	bS->addButton(pAux, sAux, gameTextures::resolution, gameTextures::resolution_hover, ButtonTypes::changeResolution);
 	
 	//PANTALLA COMPLETA
 	bS->addText("FULL SCREEN", textColor, { sdlutils().width() / 4.0f - 35.0f, sdlutils().height() / 2.25f }, { 225.0f, 50.0f });
@@ -95,5 +95,19 @@ void ConfigSystem::initSystem() {
 	bS->addButton(pAux, sAux, gameTextures::close, gameTextures::close_hover, ButtonTypes::back_selector);
 	
 	
+}
+void ConfigSystem::receive(const Message& m) {
+	switch (m.id)
+	{
+	case _m_CHANGE_RESOLUTION:
+		createResolutions();
+		break;
+	}
+}
+void ConfigSystem::createResolutions() {
+	ButtonSystem* bS = mngr_->getSystem<ButtonSystem>();
+	bS->addButton({ sdlutils().width() / 4.0f + 250, sdlutils().height() / 3.0f - 45 }, { 150.0f, 35.0f }, gameTextures::backToMenu_button, gameTextures::backToMenu_button_hover, ButtonTypes::changeResolution);
+	bS->addButton({ sdlutils().width() / 4.0f + 250, sdlutils().height() / 3.0f }, { 150.0f, 35.0f }, gameTextures::backToMenu_button, gameTextures::backToMenu_button_hover, ButtonTypes::changeResolution);
+	bS->addButton({ sdlutils().width() / 4.0f + 250, sdlutils().height() / 3.0f + 45 }, { 150.0f, 35.0f }, gameTextures::backToMenu_button, gameTextures::backToMenu_button_hover, ButtonTypes::changeResolution);
 }
 

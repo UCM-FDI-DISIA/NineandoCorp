@@ -10,6 +10,7 @@ ButtonSystem::ButtonSystem(hdlrId_type but_id) :
 	hdlr_but_id(but_id), money_(0), HMoney_(0){
 	mActive = true;
 	fullScreen = false;
+	resolutionActive = false;
 	numAcelButs = 3;
 	cauntAcelButs = 1;
 	//rellenar la lista de costes
@@ -255,6 +256,9 @@ void ButtonSystem::sellTower(Entity* twr)
 			}
 			
 			break;
+		case changeResolution:
+			stopConfig();
+			break;
 		case level_selected:
 			startGame(bC);
 			sdlutils().soundEffects().at("button").play(0, 1);
@@ -417,6 +421,32 @@ void ButtonSystem::sellTower(Entity* twr)
 		Message m;
 		m.id = _m_CONFIG;
 		mngr_->send(m, true);
+	}
+	void ButtonSystem::stopConfig() {
+		resolutionActive = !resolutionActive;
+		auto settings = mngr_->getHandler(_hdlr_BUTTON_CONFIG);
+		for (auto en : settings) {
+			ButtonComponent* btC = mngr_->getComponent<ButtonComponent>(en);
+			if(btC != nullptr)
+				btC->setActive(!btC->isActive());
+		}
+		if (resolutionActive) {
+			Message m;
+			m.id = _m_CHANGE_RESOLUTION;
+			mngr_->send(m);
+		}
+		else {
+			size_t numEntitiesToRemove = std::min<size_t>(3, settings.size());
+			for (size_t i = 0; i < numEntitiesToRemove; ++i) {
+				auto it = settings.end();
+				--it; 
+				mngr_->deleteHandler(hdlr_but_id, *it);
+				mngr_->setAlive(*it, false);
+				settings.erase(find(settings.begin(), settings.end(), *it));
+			}
+			mngr_->refresh();
+		}
+		
 	}
 	void ButtonSystem::EnemyBook() {
 		Message m;

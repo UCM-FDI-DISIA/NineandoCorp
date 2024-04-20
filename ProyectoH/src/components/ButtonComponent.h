@@ -24,7 +24,7 @@ enum ButtonTypes {
 	//Enemybook
 	enemybook,
 	//CONFIG
-	config, full_screen,
+	config, full_screen, changeResolution,
 	// ----- HUD -----//
 	crystal_drag,
 	slime_drag,

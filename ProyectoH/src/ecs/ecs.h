@@ -227,7 +227,8 @@ enum msgId : msgId_type {
 	_m_EXIT_UP_MENU,
 	_m_SELL_TOWER,
 	_m_ENEMY_DIED,
-	_m_TOWER_DIED	
+	_m_TOWER_DIED,
+	_m_CHANGE_RESOLUTION
 };
 
 using twrId_type = uint8_t;
