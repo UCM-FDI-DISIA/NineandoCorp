@@ -737,6 +737,30 @@
     {
       "id": "column_box",
       "file": "resources/images/UI/column_box.png"
+    },
+    {
+      "id": "acelerate_x1",
+      "file": "resources/images/UI/acelerate_x1_button.png"
+    },
+    {
+      "id": "acelerate_x1_hover",
+      "file": "resources/images/UI/acelerate_x1_button_hover.png"
+    },
+    {
+      "id": "acelerate_x1.5",
+      "file": "resources/images/UI/acelerate_x1.5_button.png"
+    },
+    {
+      "id": "acelerate_x1.5_hover",
+      "file": "resources/images/UI/acelerate_x1.5_button_hover.png"
+    },
+    {
+      "id": "acelerate_x2",
+      "file": "resources/images/UI/acelerate_x2_button.png"
+    },
+    {
+      "id": "acelerate_x2_hover",
+      "file": "resources/images/UI/acelerate_x2_button_hover.png"
     }
 
   ],

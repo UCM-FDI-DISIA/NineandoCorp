@@ -117,7 +117,12 @@ RenderSystem::RenderSystem() : winner_(0)
 	textures[exitGame_button] = &sdlutils().images().at("exitGame_button");
 	textures[exitGame_button_hover] = &sdlutils().images().at("exitGame_button_hover");
 	textures[column_box] = &sdlutils().images().at("column_box");
-
+	textures[acelerate_x1] = &sdlutils().images().at("acelerate_x1");
+	textures[acelerate_x1_5] = &sdlutils().images().at("acelerate_x1.5");
+	textures[acelerate_x2] = &sdlutils().images().at("acelerate_x2");
+	textures[acelerate_x1_hover] = &sdlutils().images().at("acelerate_x1_hover");
+	textures[acelerate_x1_5_hover] = &sdlutils().images().at("acelerate_x1.5_hover");
+	textures[acelerate_x2_hover] = &sdlutils().images().at("acelerate_x2_hover");
 	//Explosions
 	textures[shieldExp] = &sdlutils().images().at("shieldExp");
 	textures[bulletExplosion] = &sdlutils().images().at("bulletExp");
