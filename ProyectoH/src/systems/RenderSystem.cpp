@@ -140,6 +140,7 @@ RenderSystem::RenderSystem() : winner_(0)
 	textures[resolution2_hover] = &sdlutils().images().at("resolution2_hover");
 	textures[resolution3] = &sdlutils().images().at("resolution3");
 	textures[resolution3_hover] = &sdlutils().images().at("resolution3_hover");
+	textures[life] = &sdlutils().images().at("life");
 	//Explosions
 	textures[shieldExp] = &sdlutils().images().at("shieldExp");
 	textures[bulletExplosion] = &sdlutils().images().at("bulletExp");
@@ -412,6 +413,7 @@ void RenderSystem::update() {
 		SDL_RendererFlip flip = mngr_->getComponent<RenderComponent>(t)->getFlip();
 		if (fi != nullptr)textures[textureId]->render(srcRect, trRect, tr->getRotation(), nullptr,flip);
 		else textures[textureId]->render(trRect, tr->getRotation());
+		drawBarlife(t);
 	}
 
 	auto& naturalEffectsHigh = mngr_->getEntities(_grp_NATURALS_EFFECTS_HIGH);
@@ -707,4 +709,19 @@ void RenderSystem::renderFillPolygon(SDL_Renderer* renderer, int width, int heig
 		}
 	}
 }
+void RenderSystem::drawBarlife(Entity* t) {
 
+	HealthComponent* hc = mngr_->getComponent<HealthComponent>(t);
+	if (hc != nullptr && mngr_->isAlive(t)) {
+		Transform* tr = mngr_->getComponent<Transform>(t);
+		float health = mngr_->getComponent<HealthComponent>(t)->getHealth();
+		SDL_Rect trRect = tr->getRect();
+		trRect.x += offset->x;
+		trRect.y += offset->y;
+		float a = hc->getMaxHealth();
+		float b = hc->getHealth();
+		float c = b / a;
+		//textures[gameTextures::life_background]->render(SDL_Rect{ trRect.x - 15, trRect.y - 3, 180, 51 }, 0);
+		textures[gameTextures::life]->render(SDL_Rect{ trRect.x - 10, trRect.y - 50, (int)(170.f * c), 45 }, 0.0);
+	}
+}

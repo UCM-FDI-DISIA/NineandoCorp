@@ -410,6 +410,10 @@
             "file": "resources/images/UI/acelerate_x2_button_hover.png"
         },
         {
+          "id": "life",
+          "file": "resources/images/UI/life.png"
+        },
+        {
             "id": "close",
             "file": "resources/images/UI/close_button.png"
         },
