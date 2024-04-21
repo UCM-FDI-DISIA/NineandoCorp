@@ -122,15 +122,23 @@ void ButtonSystem::manageButtons() {
 						// Calcular el valor del volumen en función de la posición del slider dentro de los límites relativos
 						float relativeValue = (posX - slider->getMin()) / (slider->getMax() - tR->getScale()->getX() - slider->getMin());
 						float volume = relativeValue * slider->getRelativeMax(); // Escalamos de 0 a 100
+
+						
 						cout << volume << endl;
 						if (slider->getSlider() == general) {
 							game().instance()->setSoundGeneral(volume);
+							game().instance()->setNewMaxGeneral(slider->getMax() - posX );
+							game().instance()->setNewMinGeneral(posX  - slider->getMin());
 						}
 						else if (slider->getSlider() == music) {
 							game().instance()->setSoundMusic(volume);
+							game().instance()->setNewMaxMusic(slider->getMax() - posX);
+							game().instance()->setNewMinMusic(posX - slider->getMin());
 						}
 						else if (slider->getSlider() == effects) {
 							game().instance()->setSoundEffect(volume);
+							game().instance()->setNewMaxEffects(slider->getMax() - posX);
+							game().instance()->setNewMinEffects(posX - slider->getMin());
 						}
 						
 					}
@@ -535,17 +543,29 @@ Entity* ButtonSystem::addSlider(const Vector2D& pos, const Vector2D& scale, game
 	Entity* slider = mngr_->addEntity(grpId);
 	mngr_->setHandler(hdlr_but_id, slider);
 	Transform* tr = mngr_->addComponent<Transform>(slider);
+	auto sliderComp = mngr_->addComponent<SliderComponent>(slider, slTy);
 	tr->setScale(scale);
 	Vector2D aux = tr->getScale();
-	tr->setPosition(pos - aux / 2);
-
-	mngr_->addComponent<RenderComponent>(slider, tex);
-	auto sliderComp = mngr_->addComponent<SliderComponent>(slider, slTy);
+	
+	sliderComp->setRelativeBounds(100,100);
+	if (slTy == general) {
+		sliderComp->setMax(game().instance()->getNewMaxGeneral());
+		sliderComp->setMin(game().instance()->getNewMinGeneral());
+	}
+	else if (slTy == music) {
+		sliderComp->setMax(game().instance()->getNewMaxMusic());
+		sliderComp->setMin(game().instance()->getNewMinMusic());
+	}
+	else if (slTy == effects) {
+		sliderComp->setMax(game().instance()->getNewMaxEffects());
+		sliderComp->setMin(game().instance()->getNewMinEffects());
+	}
+	
+	float posX = pos.getX() - sliderComp->getRelativeMax() + sliderComp->getMin();
+	
+	tr->setPosition({ posX - aux.getX() / 2, pos.getY() - aux.getY()/2});
 	sliderComp->setBounds(); // Establece los límites del slider
-	sliderComp->setRelativeBounds(100);
-	//sliderComp->setOnChangeCallback([](float value) {
-	//	// Lógica para manejar el cambio de valor del slider
-	//	});
+	mngr_->addComponent<RenderComponent>(slider, tex);
 
 	return slider;
 }

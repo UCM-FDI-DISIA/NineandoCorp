@@ -20,18 +20,19 @@ public:
     void setValue(float value) { value_ = value; }
 
     void setBounds() {
-        min_ = tr_->getX() - 100.0f;
-        max_ = tr_->getX() + 150.0f;;
+        min_ = tr_->getX() - min_;
+        max_ = tr_->getX() + max_;;
     }
-    void setRelativeBounds(float newRelativeMax_) {
+    void setRelativeBounds(float newRelativeMax_, float newRelativeMin_) {
         relativeMax_ = newRelativeMax_;
+        relativeMin_ = newRelativeMin_;
     }
     float getRelativeMax() const { return relativeMax_; };
-    void setOnChangeCallback(std::function<void(float)> onChange) {
-        onChange_ = onChange;
-    }
+    
     float getMax() const { return max_; }
     float getMin() const { return min_; }
+    void setMax(float newMax) { max_ = newMax; }
+    void setMin(float newMin) { min_ = newMin; }
 
     bool isPressed(const Vector2D& mousePos);
 
@@ -41,9 +42,10 @@ public:
     SliderTypes getSlider() const { return id_; };
 private:
     float value_ = 0.0f;
-    float min_ = 0.0f;
-    float max_ = 1.0f;
+    float min_ = 100.0f;
+    float max_ = 150.0f;
     float relativeMax_ = 1.0f;
+    float relativeMin_ = 1.0f;
     std::function<void(float)> onChange_;
     SliderTypes id_;
 

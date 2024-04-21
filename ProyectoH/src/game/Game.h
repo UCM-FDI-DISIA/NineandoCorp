@@ -30,6 +30,12 @@ private:
 		float soundGeneral_ = 50.0f;
 		float soundMusic_ = 50.0f;
 		float soundEffects_ = 50.0f;
+		float newMinGeneral_ = 100;
+		float newMaxGeneral_ = 150;
+		float newMinMusic_ = 100;
+		float newMaxMusic_ = 150;
+		float newMinEffects_ = 100;
+		float newMaxEffects_ = 150;
 	};
 	bool exit;
 	double deltaTime;
@@ -98,6 +104,18 @@ public:
 	inline void setSoundMusic(float newVolume) { config_.soundMusic_ = newVolume; };
 	inline float getSoundEffect() const { return config_.soundEffects_; };
 	inline void setSoundEffect(float newVolume) { config_.soundEffects_ = newVolume; };
+	inline float getNewMinGeneral() const { return config_.newMinGeneral_; };
+	inline void setNewMinGeneral(float newMin_) { config_.newMinGeneral_ = newMin_; };
+	inline float getNewMaxGeneral() const { return config_.newMaxGeneral_; };
+	inline void setNewMaxGeneral(float newMax_) { config_.newMaxGeneral_ = newMax_; };
+	inline float getNewMinMusic() const { return config_.newMinMusic_; };
+	inline void setNewMinMusic(float newMin_) { config_.newMinMusic_ = newMin_; };
+	inline float getNewMaxMusic() const { return config_.newMaxMusic_; };
+	inline void setNewMaxMusic(float newMax_) { config_.newMaxMusic_ = newMax_; };
+	inline float getNewMinEffects() const { return config_.newMinEffects_; };
+	inline void setNewMinEffects(float newMin_) { config_.newMinEffects_ = newMin_; };
+	inline float getNewMaxEffects() const { return config_.newMaxEffects_; };
+	inline void setNewMaxEffects(float newMax_) { config_.newMaxEffects_ = newMax_; };
 };
 
 // Returns reference to game instance
