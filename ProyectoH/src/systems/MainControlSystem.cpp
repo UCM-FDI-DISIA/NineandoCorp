@@ -36,6 +36,7 @@ void MainControlSystem::receive(const Message& m) {
 		game().pushState<ConfigState>(mngr_);
 		break;
 	case _m_BACK_TO_MAINMENU:
+		game().SetDelay(1.0f);
 		game().popState();
 		resetButtons();
 		break;
@@ -44,6 +45,9 @@ void MainControlSystem::receive(const Message& m) {
 		break;
 	case _m_PAUSE:
 		game().pushState<PauseState>(mngr_);
+		break;
+	case _m_ACELERATE:
+		game().SetDelay(m.acelerate_plus.acel);
 		break;
 	case _m_ATTACK_NEXUS:		
 		if (mngr_->getComponent<HealthComponent>(nexo)->subtractHealth(m.nexus_attack_data.damage)) {
@@ -61,16 +65,18 @@ void MainControlSystem::receive(const Message& m) {
 		turrentLevels_ = game().getSaveGame()->getTurretsLevels();
 		break;
 	case _m_WAVE_START:
-		round++;
-		Message m1;
-		m1.id = _m_ADD_TEXT;
-		m1.add_text_data.txt = "Wave: " + to_string((int)round);
-		m1.add_text_data.color = { 255, 255 ,255, 255 };
-		Vector2D txtScale = Vector2D(200.0f, 60.0f);
-		m1.add_text_data.pos = Vector2D(sdlutils().width() / 2, 50.0) - (txtScale / 2);
-		m1.add_text_data.scale = txtScale;
-		m1.add_text_data.time = 3;
-		mngr_->send(m1);
+		if (m.start_wave.play) {
+			round++;
+			Message m1;
+			m1.id = _m_ADD_TEXT;
+			m1.add_text_data.txt = "Wave: " + to_string((int)round);
+			m1.add_text_data.color = { 255, 255 ,255, 255 };
+			Vector2D txtScale = Vector2D(200.0f, 60.0f);
+			m1.add_text_data.pos = Vector2D(sdlutils().width() / 2, 50.0) - (txtScale / 2);
+			m1.add_text_data.scale = txtScale;
+			m1.add_text_data.time = 3;
+			mngr_->send(m1);
+		}
 		break;
 	}
 }

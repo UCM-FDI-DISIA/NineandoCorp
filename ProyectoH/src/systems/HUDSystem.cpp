@@ -328,7 +328,7 @@ void HUDSystem::initSystem() {
 	*	/ -- PAUSE BUTTON -- /
 	*
 	*/
-	bS->addButton({ (float)sdlutils().width() - 50.0f , 50.0f },
+	pauseButton = bS->addButton({ (float)sdlutils().width() - 50.0f , 50.0f },
 		{50.0f, 50.0f},
 		gameTextures::pause_button, gameTextures::pause_button_hover,
 		ButtonTypes::pause_main);
@@ -338,11 +338,11 @@ void HUDSystem::initSystem() {
 	*	/ -- ACELERATION BUTTON -- /
 	*
 	*/
-	Entity* acelerate = bS->addButton({ (float)sdlutils().width() - 50.0f , 120.0f },
+	acelerateButton = bS->addButton({ (float)sdlutils().width() - 50.0f , 120.0f },
 		{ 50.0f, 50.0f },
 		gameTextures::acelerate_x1, gameTextures::acelerate_x1_hover,
 		ButtonTypes::acelerate);
-	mngr_->setHandler(_hdlr_BUTTON_ACELERATE, acelerate);
+	mngr_->setHandler(_hdlr_BUTTON_ACELERATE, acelerateButton);
 
 	Vector2D pAux = { xAux * 8.6f, heightH };
 	Vector2D sAux = { 250, 90 };
@@ -527,28 +527,38 @@ void HUDSystem::showUpgradeMenu(Entity* twr, const Vector2D& pos) {
 		gameTextures::rangeCircle,
 		_grp_HUD_BACKGROUND);
 
+	//Escala del background
+	Vector2D bgScale = { 500.0f, 350.0f };
 	upM_.background = bS->addImage(posA + offset,
-		{ 400.0f, 300.0f },
-		0.0,
+		bgScale,
+		180.0,
 		gameTextures::box,
 		_grp_HUD_BACKGROUND);
 	/**
-	*	BOTON DE MEJORA
+	*	NOMBRE DE TORRE
 	*/
-	Message m;
-	m.id = _m_UPGRADE_TWR_INGAME;
-	m.upgrade_twr_ingame_data.upCmp = twr;
-	Vector2D posB = { pos.getX() + 390 + cameraOffset_->x, pos.getY() + 85 + cameraOffset_->y };
-	upM_.upgradeButton = bS->addButton(posB + offset, 
-		{ 150.0f, 60.0f },
-		upgrade, upgrade_hover, ButtonTypes::upgrade_tower, 0,
-		m
-		);
+	SDL_Color c1 = { 255, 255,255,255 };
+	basic_string tName = getTowerName(upCmp->id_);
+
+	upM_.twrName = bS->addText(tName, c1,
+		Vector2D(posA.getX() - tName.size() / 2, posA.getY() - (bgScale.getY() / 2) + 60) + offset,
+		{ 17.0f * tName.size(), 40 }
+	);
+
+	#pragma region TOWER STATS
+	Vector2D relativePos = {};
+		
+	/**
+	*	FRAME
+	*/
+	Vector2D fScale = { bgScale.getX() / 2,0 };
+	//upM_.frame = bS->addImage();
+
 
 	/**
 	*	TEXTO DE VIDA
 	*/
-	SDL_Color c1 = { 255, 255,255,255 };
+	
 	Vector2D lvlPos3 = { pos.getX() + 185 + cameraOffset_->x , pos.getY() + 40 + cameraOffset_->y };
 	Vector2D lvlScale3 = { 90.0f, 35.0f };
 	upM_.hpText = bS->addText("HP: " + to_string((int)hpCmp->getHealth()), c1, lvlPos3 + offset, lvlScale3);
@@ -591,26 +601,41 @@ void HUDSystem::showUpgradeMenu(Entity* twr, const Vector2D& pos) {
 	upM_.lvlText = bS->addText(lvltxt, c1, lvlPos2 + offset, lvlScale2);
 
 
+#pragma endregion
+
+	/**
+	*	BOTON DE MEJORA
+	*/
+	Message m;
+	m.id = _m_UPGRADE_TWR_INGAME;
+	m.upgrade_twr_ingame_data.upCmp = twr;
+	Vector2D posB = { pos.getX() + 390 + cameraOffset_->x, pos.getY() + 85 + cameraOffset_->y };
+	upM_.upgradeButton = bS->addButton(posB + offset, 
+		{ 150.0f, 60.0f },
+		upgrade, upgrade_hover, ButtonTypes::upgrade_tower, 0,0,0,
+		m
+		);
+
+
 	/**
 	*	TEXTO DE COSTE DE MEJORA
 	*/
 	Vector2D posM = { pos.getX() + 170 + cameraOffset_->x , pos.getY() + 100 + cameraOffset_->y };
 	int upCost = upCmp->getUpgradeCost();
-	Vector2D scaleM;
-
 	basic_string cost_s = std::to_string(upCost);
-	if (cost_s.size() == 2) {
-		scaleM = {20.0f, 35.0f};
-	}
-	else if (cost_s.size() == 3) {
-		scaleM = { 45.0f, 35.0f };
-	}
-	else if (cost_s.size() == 4) {
-		scaleM = { 60.0f, 35.0f };
-	}
+	Vector2D scaleM = { 20.0f * cost_s.size(), 45 };
 
-	upM_.upCost = bS->addText(cost_s, c1, posM, scaleM);
+	upM_.upCost = bS->addText(cost_s, c1, posM + offset, scaleM);
 
+	/**
+	*	IMAGEN DE MONEDA
+	*/
+	Vector2D cpos = { posM.getX() + 40.0f, posM.getY() };
+	Vector2D scaleC = { 35.0f, 35.0f };
+	upM_.coinImg = bS->addImage(
+		cpos + offset, scaleC, 0, gameTextures::monedaDorada,
+		grpId::_grp_HUD_FOREGROUND
+	);
 
 	/**
 	*	BOTON DE VENDER
@@ -622,10 +647,10 @@ void HUDSystem::showUpgradeMenu(Entity* twr, const Vector2D& pos) {
 	Vector2D posC = { pos.getX() + 390 + cameraOffset_->x, pos.getY() + cameraOffset_->y };
 	upM_.sellButton = bS->addButton(posC + offset,
 		{ 150.0f, 60.0f },
-		sell, sell_hover, ButtonTypes::sell_tower, 0,
+		sell, sell_hover, ButtonTypes::sell_tower, 0,0,0,
 		m1
 	);
-
+	
 
 	/**
 	*	BOTON DE SALIR
@@ -638,8 +663,10 @@ void HUDSystem::showUpgradeMenu(Entity* twr, const Vector2D& pos) {
 
 void HUDSystem::NewAcelerationButton(float acel) {
 	auto hId = mngr_->getHandler(_hdlr_BUTTON_ACELERATE);
-	hId.clear();
-
+	for (Entity* en : hId) {
+		mngr_->getComponent<ButtonComponent>(en)->setActive(false);
+		mngr_->getComponent<RenderComponent>(en)->isActive = false;
+	}
 	ButtonSystem* bS = mngr_->getSystem<ButtonSystem>();
 	gameTextures butText, butText_hover;
 	if (acel == 1) {
@@ -654,11 +681,11 @@ void HUDSystem::NewAcelerationButton(float acel) {
 		butText = acelerate_x2;
 		butText_hover = acelerate_x2_hover;
 	}
-	Entity* acelerate = bS->addButton({ (float)sdlutils().width() - 50.0f , 120.0f },
+	acelerateButton = bS->addButton({ (float)sdlutils().width() - 50.0f , 120.0f },
 		{ 50.0f, 50.0f },
 		butText, butText_hover,
 		ButtonTypes::acelerate);
-	mngr_->setHandler(_hdlr_BUTTON_ACELERATE, acelerate);
+	mngr_->setHandler(_hdlr_BUTTON_ACELERATE, acelerateButton);
 }
 
 void HUDSystem::exitUpgradeMenu() {
@@ -677,8 +704,12 @@ void HUDSystem::exitUpgradeMenu() {
 	mngr_->setAlive(upM_.damageText, false);
 	mngr_->setAlive(upM_.reloadText, false);
 	mngr_->setAlive(upM_.upCost, false);
+	mngr_->setAlive(upM_.coinImg, false);
+	mngr_->setAlive(upM_.frame, false);
 	mngr_->refresh();
 
+	mngr_->deleteHandler(hId, upM_.coinImg);
+	mngr_->deleteHandler(hId, upM_.frame);
 	mngr_->deleteHandler(hId, upM_.sellButton);
 	mngr_->deleteHandler(hId, upM_.exitButton);
 	mngr_->deleteHandler(hId, upM_.upgradeButton);
@@ -689,6 +720,7 @@ void HUDSystem::exitUpgradeMenu() {
 	mngr_->deleteHandler(hId, upM_.hpText);
 	mngr_->deleteHandler(hId, upM_.twrLvl);
 	mngr_->deleteHandler(hId, upM_.lvlText);
+	mngr_->deleteHandler(hId, upM_.twrName);
 	mngr_->deleteHandler(hId, upM_.upCost);
 
 	tower_ = nullptr;
@@ -721,6 +753,14 @@ void HUDSystem::showSelector(bool active) {
 	mngr_->getComponent<ButtonComponent>(twrSel_.roundButton)->setActive(active);
 	mngr_->getComponent<RenderComponent>(twrSel_.roundButton)->isActive = active;
 	
+	// Boton de pausa
+	mngr_->getComponent<ButtonComponent>(pauseButton)->setActive(active);
+	mngr_->getComponent<RenderComponent>(pauseButton)->isActive = active;
+
+	// Boton de pausa
+	mngr_->getComponent<ButtonComponent>(acelerateButton)->setActive(active);
+	mngr_->getComponent<RenderComponent>(acelerateButton)->isActive = active;
+
 	// Background
 	mngr_->getComponent<RenderComponent>(twrSel_.background)->isActive = active;
 }

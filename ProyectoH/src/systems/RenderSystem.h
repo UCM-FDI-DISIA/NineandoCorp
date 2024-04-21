@@ -53,7 +53,13 @@ public:
 	/// </summary>
 	void drawDiamond(SDL_Renderer* renderer, const SDL_Point& top, 
 					int width, int height, const SDL_Color& fillColor);
-	void drawBarlife(Entity* t);
+
+
+	void drawSquare(SDL_Renderer* renderer, const SDL_Point& center, int width, const SDL_Color& color);
+
+	void drawRectangle(SDL_Renderer* renderer, const SDL_Point& center, int width, int length, const SDL_Color& color);
+
+	void drawBarlife(Entity* e);
 private:
 
 	void onGameOver(Uint8 winner);

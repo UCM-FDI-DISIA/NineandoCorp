@@ -33,6 +33,8 @@ RenderSystem::RenderSystem() : winner_(0)
 	textures[large_box] = &sdlutils().images().at("large_box");
 	textures[pause_button] = &sdlutils().images().at("pause_button");
 	textures[pause_button_hover] = &sdlutils().images().at("pause_button_hover");
+	textures[settings] = &sdlutils().images().at("settings");
+	textures[settings_hover] = &sdlutils().images().at("settings_hover");
 	textures[close] = &sdlutils().images().at("close");
 	textures[close_hover] = &sdlutils().images().at("close_hover");
 	textures[enemies_button] = &sdlutils().images().at("enemies");
@@ -123,10 +125,28 @@ RenderSystem::RenderSystem() : winner_(0)
 	textures[acelerate_x1_hover] = &sdlutils().images().at("acelerate_x1_hover");
 	textures[acelerate_x1_5_hover] = &sdlutils().images().at("acelerate_x1.5_hover");
 	textures[acelerate_x2_hover] = &sdlutils().images().at("acelerate_x2_hover");
+	textures[white_frame] = &sdlutils().images().at("white_frame");
+	textures[button] = &sdlutils().images().at("button");
+	textures[button_hover] = &sdlutils().images().at("button_hover");
+	textures[check] = &sdlutils().images().at("check_button");
+	textures[check_hover] = &sdlutils().images().at("check_button_hover");
+	textures[resolution] = &sdlutils().images().at("resolution");
+	textures[resolution_hover] = &sdlutils().images().at("resolution_hover");
+	textures[resolution1] = &sdlutils().images().at("resolution1");
+	textures[resolution1_hover] = &sdlutils().images().at("resolution1_hover");
+	textures[resolution2] = &sdlutils().images().at("resolution2");
+	textures[resolution2_hover] = &sdlutils().images().at("resolution2_hover");
+	textures[resolution3] = &sdlutils().images().at("resolution3");
+	textures[resolution3_hover] = &sdlutils().images().at("resolution3_hover");
+	textures[life] = &sdlutils().images().at("life");
+
 	//Explosions
 	textures[shieldExp] = &sdlutils().images().at("shieldExp");
 	textures[bulletExplosion] = &sdlutils().images().at("bulletExp");
 	textures[enemyDeath] = &sdlutils().images().at("enemy_death");
+	textures[impact] = &sdlutils().images().at("bullet_impact");
+	textures[blood] = &sdlutils().images().at("blood");
+	textures[enemy_spawn] = &sdlutils().images().at("spawn_enemy");
 	//Miscelanious
 	textures[square] = &sdlutils().images().at("square");
 	textures[tileSet] = &sdlutils().images().at("map");
@@ -394,6 +414,26 @@ void RenderSystem::update() {
 		drawBarlife(t);
 	}
 
+	auto& naturalEffectsHigh = mngr_->getEntities(_grp_NATURALS_EFFECTS_HIGH);
+	sort(naturalEffectsHigh.begin(), naturalEffectsHigh.end(), cmpIsometricY(mngr_));
+	for (auto& t : naturalEffectsHigh) {
+		Transform* tr = mngr_->getComponent<Transform>(t);
+		gameTextures textureId = mngr_->getComponent<RenderComponent>(t)->getTexture();
+		SDL_Rect srcRect;
+		FramedImage* fi = mngr_->getComponent<FramedImage>(t);
+		if (mActive) {
+			fi->updateCurrentFrame();
+		}
+		if (fi != nullptr)srcRect = fi->getSrcRect();
+		SDL_Rect trRect = tr->getRect();
+		trRect.x += offset->x;
+		trRect.y += offset->y;
+		SDL_RendererFlip flip = mngr_->getComponent<RenderComponent>(t)->getFlip();
+		if (fi != nullptr)textures[textureId]->render(srcRect, trRect, tr->getRotation(), nullptr, flip);
+		else textures[textureId]->render(trRect, tr->getRotation());
+
+	}
+
 
 
 	//AREA OF ATTACK (SLIME AND FENIX)
@@ -576,6 +616,30 @@ void RenderSystem::drawBarlife(Entity* t) {
 	}
 }
 
+void RenderSystem::drawRectangle(SDL_Renderer* renderer, const SDL_Point& center, int width, int height, const SDL_Color& color)
+{
+	SDL_Point topL = { center.x - width / 2, center.y - height / 2 };
+	SDL_Point topR = { center.x + width / 2, center.y - height / 2 };
+	SDL_Point bottomR = { center.x + width / 2, center.y + height / 2 };
+	SDL_Point bottomL = { center.x - width / 2, center.y + height / 2 };
+
+	// Dibujar las líneas del rectángulo sin rellenar
+	SDL_Point vertices[] = { topL, topR, bottomR, bottomL, topL };
+
+	// Establecer el color de la línea
+	SDL_SetRenderDrawColor(renderer, color.r, color.g, color.b, color.a);
+
+	// Establecer el modo de mezcla para permitir la transparencia
+	SDL_SetRenderDrawBlendMode(renderer, SDL_BLENDMODE_BLEND);
+
+	// Dibujar las líneas del rectángulo con el grosor deseado
+	for (int i = 0; i < 4; ++i) {
+		SDL_RenderDrawLine(renderer, vertices[i].x, vertices[i].y, vertices[i + 1].x, vertices[i + 1].y);
+	}
+}
+
+
+
 void RenderSystem::renderFillPolygon(SDL_Renderer* renderer, int width, int height, const SDL_Point vertices[], int numVertices, const SDL_Color& color) {
 	// Crear un array de límites verticales
 	std::vector<int> minY(width + 1, INT_MAX);
@@ -613,4 +677,19 @@ void RenderSystem::renderFillPolygon(SDL_Renderer* renderer, int width, int heig
 		}
 	}
 }
+void RenderSystem::drawBarlife(Entity* t) {
 
+	HealthComponent* hc = mngr_->getComponent<HealthComponent>(t);
+	if (hc != nullptr && mngr_->isAlive(t)) {
+		Transform* tr = mngr_->getComponent<Transform>(t);
+		float health = mngr_->getComponent<HealthComponent>(t)->getHealth();
+		SDL_Rect trRect = tr->getRect();
+		trRect.x += offset->x;
+		trRect.y += offset->y;
+		float a = hc->getMaxHealth();
+		float b = hc->getHealth();
+		float c = b / a;
+		//textures[gameTextures::life_background]->render(SDL_Rect{ trRect.x - 15, trRect.y - 3, 180, 51 }, 0);
+		textures[gameTextures::life]->render(SDL_Rect{ trRect.x - 10, trRect.y - 50, (int)(170.f * c), 45 }, 0.0);
+	}
+}

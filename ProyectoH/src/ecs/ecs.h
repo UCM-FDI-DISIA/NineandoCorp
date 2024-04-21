@@ -236,6 +236,9 @@ enum msgId : msgId_type {
 	_m_ENEMY_DIED,
 	_m_ACTIVATE_ATTACK_TOWERS,
 	_m_TOWER_DIED	
+	_m_TOWER_DIED,
+	_m_CHANGE_RESOLUTION
+
 };
 
 using twrId_type = uint8_t;
@@ -286,9 +289,12 @@ enum gameTextures {
 	level1_desactive, level2_desactive, level3_desactive, level4_desactive, level5_desactive, level6_desactive, level7_desactive, level8_desactive,
 	sell, sell_hover, column_box,
 	acelerate_x1, acelerate_x1_hover, acelerate_x1_5, acelerate_x1_5_hover, acelerate_x2, acelerate_x2_hover,
+	white_frame, button, button_hover, check, check_hover,resolution, resolution_hover,
+	resolution1, resolution1_hover, resolution2, resolution2_hover, resolution3, resolution3_hover, life, life_background,
 	//menu de pausa
 	resume_button, resume_button_hover, backToMenu_button, backToMenu_button_hover, exitGame_button, exitGame_button_hover,
 	resume_icon_button, resume_icon_button_hover,
+	settings, settings_hover,
 	// towers
 	square, bulletTowerTexture, cristalTowerTexture, phoenixTowerTexture,
 	slimeTowerTexture, boosterTowerTexture, sniperTowerTexture, clayTowerTexture, nexusTexture, fireTexture,
@@ -307,9 +313,10 @@ enum gameTextures {
 
 	//others
     meteorites, earthquake,tornado,thunder, tsunami,cloud,
-	bulletTexture, sniperBulletTexture, slimeBulletTexture, 
+	bulletTexture, sniperBulletTexture, slimeBulletTexture,
 	slimeArea, shield, hpIcon, blindedIcon, lightningIcon, powerIcon, monedaH, rangeCircle, monedaDorada,
-	life, life_background,
+	life, life_background,enemy_spawn,
+
 	//explosions
 	shieldExp, bulletExplosion, enemyDeath, impact, blood,
 
@@ -561,11 +568,18 @@ struct Message {
 	}save_data;
 	//_m_SAVE_GAME
 
+
 	//_m_ACTIVATE_ATTACK_TOWERS
 	struct {
 		Entity* attackTower;
 		float attackingTime;
 	}attack_towers_data;
+
+	struct 
+	{
+		int resolutions;
+	}settings_data;
+
 };
 
 #endif // !ECS_H_

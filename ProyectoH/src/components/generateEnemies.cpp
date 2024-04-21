@@ -308,9 +308,28 @@ void generateEnemies::addEnemy(enmId type, std::vector<Vector2D> route) {
 
 
 	}
+
+	createSpawnAnimation(route[0]);
+
 	if (type != _enm_MMUERTE) {
 		mngr_->setHandler(_hdlr_ENEMIES, t);
 	}
+}
 
-
+void generateEnemies::createSpawnAnimation(Vector2D pos) {
+	Message m;
+	m.id = _m_ANIM_CREATE;
+	m.anim_create.idGrp = _grp_NATURALS_EFFECTS_HIGH;
+	m.anim_create.animSpeed = 15;
+	m.anim_create.iterationsToDelete = 1;
+	m.anim_create.pos = pos;
+	m.anim_create.frameInit = 1;
+	m.anim_create.frameEnd = 24;
+	m.anim_create.cols = 6;
+	m.anim_create.rows = 5;
+	m.anim_create.scale = { 100, 100 };
+	m.anim_create.width = 273;
+	m.anim_create.height = 273;
+	m.anim_create.tex = gameTextures::enemy_spawn;
+	mngr_->send(m);
 }

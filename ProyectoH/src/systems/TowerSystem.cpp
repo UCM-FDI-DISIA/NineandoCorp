@@ -419,7 +419,15 @@ void TowerSystem::update() {
 							else if (dir.getY() > 0.5 && dir.getX() >= -1 && dir.getX() <= 1) { pt->setRotation(270.0f); }
 							if (pt->getFire() != nullptr) {
 								Transform* fTR = mngr_->getComponent<Transform>(pt->getFire());
-								fTR->setRotation(pt->getRotation());
+
+								float angle = atan(-(double)dir.getY() / (double)dir.getX())  * 180 / M_PI;
+								if (dir.getX() < 0 && dir.getY() < 0) { angle = -angle; }
+								else if (dir.getX() > 0 && dir.getY() < 0) { angle = 180 - angle; }
+								else if(dir.getX() > 0 && dir.getY() > 0) { angle = -angle + 180; }
+								else { angle = 360 - angle; }
+								dir = dir * displacement;								
+								fTR->setPosition(Vector2D(spawn.getX() + dir.getX(), spawn.getY() + dir.getY()) + offset);
+								fTR->setRotation(angle);
 							}
 						}
 						if (pt->getRotation() == 90.0f)offset = Vector2D(0.0f, 0.0f);//Ajuste del rect en funcion del angulo

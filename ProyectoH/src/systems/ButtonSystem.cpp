@@ -9,6 +9,8 @@
 ButtonSystem::ButtonSystem(hdlrId_type but_id) : 
 	hdlr_but_id(but_id), money_(0), HMoney_(0){
 	mActive = true;
+	fullScreen = false;
+	resolutionActive = false;
 	numAcelButs = 3;
 	cauntAcelButs = 1;
 	//rellenar la lista de costes
@@ -60,6 +62,9 @@ void ButtonSystem::receive(const Message& m){
 			     m.add_text_data.scale,
 				 m.add_text_data.time
 					);
+		break;
+	case _m_CONFIG:
+		mActive = true;
 		break;
 	case _m_PAUSE:
 		mActive = !m.start_pause.onPause;
@@ -212,6 +217,7 @@ void ButtonSystem::sellTower(Entity* twr)
 		switch (type)
 		{
 		case back_to_menu:
+			game().SetDelay(1.0f);
 			game().changeState<MainMenuState>();
 			sdlutils().soundEffects().at("button").play(0, 1);
 			break;
@@ -227,7 +233,7 @@ void ButtonSystem::sellTower(Entity* twr)
 		case enemies_main:
 			EnemyBook();
 			pauseAllButtons();
-			sdlutils().soundEffects().at("button").play(0, 1);
+			sdlutils().soundEffects().at("AbrirEnemiesBook").play(0, 1);
 			break;
 		case back_selector:
 			backToMainMenu();
@@ -236,6 +242,22 @@ void ButtonSystem::sellTower(Entity* twr)
 		case config:
 			Config();
 			sdlutils().soundEffects().at("button").play(0, 1);
+			break;
+		case full_screen:
+			sdlutils().toggleFullScreen();
+			fullScreen = !fullScreen;
+			if (fullScreen) {
+				mngr_->getComponent<ButtonComponent>(bC)->setTexture(check);
+				mngr_->getComponent<ButtonComponent>(bC)->setHover(check_hover);
+			}
+			else {
+				mngr_->getComponent<ButtonComponent>(bC)->setTexture(button);
+				mngr_->getComponent<ButtonComponent>(bC)->setHover(button_hover);
+			}
+			
+			break;
+		case changeResolution:
+			stopConfig(bC);
 			break;
 		case level_selected:
 			startGame(bC);
@@ -255,6 +277,7 @@ void ButtonSystem::sellTower(Entity* twr)
 			sdlutils().soundEffects().at("button").play(0, 1);
 			break;
 		case acelerate:
+			sdlutils().soundEffects().at("button").play(0, 1);
 			switch (cauntAcelButs)
 			{
 			case 1:
@@ -278,6 +301,7 @@ void ButtonSystem::sellTower(Entity* twr)
 			}
 			break;
 		case enemybook:
+			sdlutils().soundEffects().at("AbrirEnemiesBook").play(0, 1);
 			mngr_->send(mngr_->getComponent<ButtonComponent>(bC)->getMessage());			
 			break;
 		/*--- MEJORAS DEL MENU ---*/
@@ -398,6 +422,35 @@ void ButtonSystem::sellTower(Entity* twr)
 		m.id = _m_CONFIG;
 		mngr_->send(m, true);
 	}
+	void ButtonSystem::stopConfig( Entity* bC) {
+		resolutionActive = !resolutionActive;
+		auto settings = mngr_->getHandler(_hdlr_BUTTON_CONFIG);
+		for (auto en : settings) {
+			ButtonComponent* btC = mngr_->getComponent<ButtonComponent>(en);
+			if(btC != nullptr)
+				btC->setActive(!btC->isActive());
+		}
+		if (resolutionActive) {
+			Message m;
+			m.id = _m_CHANGE_RESOLUTION;
+			m.settings_data.resolutions = 3;
+			mngr_->send(m);
+		}
+		else {
+			ButtonComponent* btC = mngr_->getComponent<ButtonComponent>(bC);
+			SDL_SetWindowSize(sdlutils().window(), btC->getWidth(), btC->getHeight()); 
+			size_t numEntitiesToRemove = std::min<size_t>(3, settings.size());
+			for (size_t i = 0; i < numEntitiesToRemove; ++i) {
+				auto it = settings.end();
+				--it; 
+				mngr_->deleteHandler(hdlr_but_id, *it);
+				mngr_->setAlive(*it, false);
+				settings.erase(find(settings.begin(), settings.end(), *it));
+			}
+			mngr_->refresh();
+		}
+		
+	}
 	void ButtonSystem::EnemyBook() {
 		Message m;
 		m.id = _m_ENEMY_BOOK;
@@ -455,7 +508,7 @@ void ButtonSystem::sellTower(Entity* twr)
 #pragma endregion
 
 
-Entity* ButtonSystem::addButton(const Vector2D& pos, const Vector2D& scale, gameTextures tex, gameTextures hov, ButtonTypes type,int level, Message m) {
+Entity* ButtonSystem::addButton(const Vector2D& pos, const Vector2D& scale, gameTextures tex, gameTextures hov, ButtonTypes type,int level, int width, int height, Message m) {
 	Entity* b = mngr_->addEntity(_grp_HUD_FOREGROUND);
 	mngr_->setHandler(hdlr_but_id, b);
 
@@ -471,6 +524,10 @@ Entity* ButtonSystem::addButton(const Vector2D& pos, const Vector2D& scale, game
 	bC->setHover(hov);
 	if (level != 0) {
 		bC->setLevel(level);
+	}
+	else if (width != 0 && height != 0) {
+		bC->setHeight(height);
+		bC->setWidth(width);
 	}
 	return b;
 }
