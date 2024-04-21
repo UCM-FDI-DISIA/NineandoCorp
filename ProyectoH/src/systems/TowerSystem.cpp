@@ -93,6 +93,19 @@ void TowerSystem::clearShieldsArea(Entity* e) {
 	}
 }
 
+void TowerSystem::generateNexus(int lvlNexus, Cell* cell) {
+	Entity* n = mngr_->addEntity(_grp_TOWERS_AND_ENEMIES);
+	mngr_->setHandler(BOTH, n);
+	mngr_->addComponent<Transform>(n);
+	mngr_->addComponent<ShieldComponent>(n, 0);
+	mngr_->addComponent<HealthComponent>(n, 1000);
+	mngr_->getComponent<Transform>(n)->setScale({ 150, 150 });
+	mngr_->getComponent<Transform>(n)->setPosition(cell->position);
+	mngr_->addComponent<NexusComponent>(n);
+	mngr_->addComponent<RenderComponent>(n, nexusLvl);
+	mngr_->addComponent<FramedImage>(n, 1, lvlNexus, 2048, 2048, 1, 1, 1);
+}
+
 void TowerSystem::createShieldExplosion(Vector2D pos) {
 	Message m;
 	m.id = _m_ANIM_CREATE;
@@ -149,6 +162,7 @@ void TowerSystem::onAttackTower(Entity* e, int dmg, Entity* src) {
 				mngr_->deleteHandler(_hdlr_LOW_TOWERS, e);
 				clearShieldsArea(e);
 				h->subtractHealth(dmg);
+				towers.erase(find(towers.begin(), towers.end(), e));
 			}
 			else if (s->getShield() > 0) {
 				if (s->getShield() - dmg <= 0) {
@@ -190,7 +204,7 @@ void TowerSystem::update() {
 		for (auto& t : towers) {
 			// Updates de torre interactiva / comprueba si se ha clicado la torre
 
-			auto iTwr = mngr_->getComponent<InteractiveTower>(t);
+			InteractiveTower* iTwr = mngr_->getComponent<InteractiveTower>(t);
 			if (iTwr != nullptr) {
 				iTwr->update();
 			}
@@ -272,7 +286,7 @@ void TowerSystem::update() {
 					Vector2D offset{ floatAt("DiegoSniperOffset"),  floatAt("DiegoSniperOffset") };//Offset para el punto de spawn de la bala
 					int valFrame = 0;//Valor del frame que se ha de escoger del spritesheet para renderizar la torre en la direccion correcta
 					bt->setElapsedTime(bt->getElapsedTime() + game().getDeltaTime());
-					if (bt->getElapsedTime() > bt->getTimeToShoot()) {
+					if (bt->getElapsedTime() > 0.5) {
 
 						bt->targetFromGroup(mngr_->getHandler(_hdlr_ENEMIES));
 						bt->setElapsedTime(0);
@@ -452,44 +466,41 @@ void TowerSystem::update() {
 #pragma endregion
 
 			}
-							
-		}
-		//Mueve y dirige las balas, y destruye las balas si su objetivo muere o si choca con el objetivo, causandole dano
-		for (auto& b : bullets) {		
-			Transform* t = mngr_->getComponent<Transform>(b);
-			BulletComponent* bc = mngr_->getComponent<BulletComponent>(b);
-			SlimeBullet* sb = mngr_->getComponent<SlimeBullet>(b);
-			FramedImage* fi = mngr_->getComponent<FramedImage>(bc->getTarget());
-			Transform* targetTR = mngr_->getComponent<Transform>(bc->getTarget());
-			Vector2D targetPos = *(targetTR->getPosition());
-			if (fi != nullptr) {
-				Vector2D offset = { (float)fi->getSrcRect().w / 4, (float)fi->getSrcRect().h / 4 };//Se dirige hacia el centro del rect
-				targetPos = targetPos + offset;
-			}
-			Vector2D myPos = *(t->getPosition());
-
-			if (((targetPos - myPos).magnitude() <= 5.0f)) { //Si choca con el enemigo
-				if (sb != nullptr) {
-					Entity* area = mngr_->addEntity(_grp_AREAOFATTACK);
-					Transform* tr = mngr_->addComponent<Transform>(area);
-					Vector2D scale = { 250, 200 };
-					tr->setScale(scale);
-					Vector2D pos = { t->getPosition()->getX() - scale.getX() / 2, t->getPosition()->getY() - scale.getY() / 4 };
-					tr->setPosition(pos);
-					mngr_->addComponent<RenderComponent>(area, slimeArea);
-					mngr_->addComponent<FramedImage>(area, 9, 1, 500, 400, 0, 4, 8);
-					mngr_->addComponent<SlimeBullet>(area, sb->getDuration(), sb->getSpeedDecrease(), sb->getDPS());
+			//Mueve y dirige las balas, y destruye las balas si su objetivo muere o si choca con el objetivo, causandole dano
+			for (auto& b : bullets) {
+				Transform* t = mngr_->getComponent<Transform>(b);
+				BulletComponent* bc = mngr_->getComponent<BulletComponent>(b);
+				SlimeBullet* sb = mngr_->getComponent<SlimeBullet>(b);
+				FramedImage* fi = mngr_->getComponent<FramedImage>(bc->getTarget());
+				Transform* targetTR = mngr_->getComponent<Transform>(bc->getTarget());
+				Vector2D targetPos = *(targetTR->getPosition());
+				if (fi != nullptr) {
+					Vector2D offset = { (float)fi->getSrcRect().w / 4, (float)fi->getSrcRect().h / 4 };//Se dirige hacia el centro del rect
+					targetPos = targetPos + offset;
 				}
-				bc->doDamageTo(bc->getTarget(), bc->getDamage());
-				bc->onTravelEnds();
+				Vector2D myPos = *(t->getPosition());
+
+				if (((targetPos - myPos).magnitude() <= 5.0f)) { //Si choca con el enemigo
+					if (sb != nullptr) {
+						Entity* area = mngr_->addEntity(_grp_AREAOFATTACK);
+						Transform* tr = mngr_->addComponent<Transform>(area);
+						Vector2D scale = { 250, 200 };
+						tr->setScale(scale);
+						Vector2D pos = { t->getPosition()->getX() - scale.getX() / 2, t->getPosition()->getY() - scale.getY() / 4 };
+						tr->setPosition(pos);
+						mngr_->addComponent<RenderComponent>(area, slimeArea);
+						mngr_->addComponent<FramedImage>(area, 9, 1, 500, 400, 0, 4, 8);
+						mngr_->addComponent<SlimeBullet>(area, sb->getDuration(), sb->getSpeedDecrease(), sb->getDPS());
+					}
+					bc->doDamageTo(bc->getTarget(), bc->getDamage());
+					createHitAnim(targetPos);
+				}
+				else {
+					bc->setDir();
+					t->translate();
+				}
 			}
-			else {
-				bc->setDir();
-				t->translate();
-			}
-				
-						
-		}
+		}	
 	}
 }
 
@@ -514,6 +525,12 @@ void TowerSystem::removeTower(Entity* twr)
 	towers.erase(find(towers.begin(), towers.end(), twr));
 	mngr_->setAlive(twr, false);
 	mngr_->refresh();
+}
+
+void TowerSystem::upgradeTower(Entity* tower) {
+	auto upCmp = mngr_->getComponent<UpgradeTowerComponent>(tower);
+	upCmp->levelUp();
+	std::cout << "NIVEL DE TORRE: " << upCmp->getLevel() << std::endl;
 }
 
 void TowerSystem::enableAllInteractiveTowers(bool b) {
@@ -570,7 +587,8 @@ void TowerSystem::addTower(twrId type, const Vector2D& pos, Height height, int s
 	tr->setPosition(pos);
 	mngr_->addComponent<TowerStates>(t);
 	mngr_->addComponent<UpgradeTowerComponent>(t, type);
-	mngr_->addComponent<InteractiveTower>(t, cameraOffset_);
+	if(type != _twr_NEXUS)
+		mngr_->addComponent<InteractiveTower>(t, cameraOffset_);
 	mngr_->addComponent<IconComponent>(t);
 	float health = 100.0f;
 	mngr_->addComponent<HealthComponent>(t, health);
@@ -590,7 +608,6 @@ void TowerSystem::addTower(twrId type, const Vector2D& pos, Height height, int s
 		break;
 	case _twr_BULLET://Pasar rango, recarga, da?o y si dispara
 		tr->setScale({ floatAt("BulletScaleX"), floatAt("BulletScaleY") });
-		//cout << floatAt("BalasRecarga");
 		mngr_->addComponent<BulletTower>(t, floatAt("BalasRango"), floatAt("BalasRecarga"), intAt("BalasDano"));
 		mngr_->addComponent<RenderComponent>(t, bulletTowerTexture);
 		mngr_->addComponent<FramedImage>(t, intAt("BalasColumns"), intAt("BalasRows"), intAt("BalasWidth"), intAt("BalasHeight"), 0, 0);
@@ -638,4 +655,45 @@ void TowerSystem::addTower(twrId type, const Vector2D& pos, Height height, int s
 	}
 	towers.emplace_back(t);
 	//std::cout << "Torre añadida: " << type << " TorresTotales: " << towers.size() << std::endl;
+}
+
+void TowerSystem::createHitAnim(Vector2D pos) {
+	auto& rand = sdlutils().rand();
+	auto type = rand.nextInt(0, 2);
+	auto xOffset = rand.nextInt(-10, 11);
+	auto yOffset = rand.nextInt(-10, 11);
+
+	gameTextures tex;
+	int lastFrame;
+	int width;
+	int height;
+
+	if (type == 0) {
+		lastFrame = 11;
+		width = 291;
+		height = 301;
+		tex = impact;
+	}
+	else {
+		lastFrame = 18;
+		width = 69;
+		height = 60;
+		tex = blood;
+	}
+
+	Message m;
+	m.id = _m_ANIM_CREATE;
+	m.anim_create.idGrp = _grp_TOWERS_AND_ENEMIES;
+	m.anim_create.animSpeed = 15;
+	m.anim_create.iterationsToDelete = 1;
+	m.anim_create.pos = pos + Vector2D(xOffset, yOffset);
+	m.anim_create.frameInit = 1;
+	m.anim_create.frameEnd = lastFrame;
+	m.anim_create.cols = 6;
+	m.anim_create.rows = 5;
+	m.anim_create.scale = { 30, 30 };
+	m.anim_create.width = width;
+	m.anim_create.height = height;
+	m.anim_create.tex = tex;
+	mngr_->send(m);
 }

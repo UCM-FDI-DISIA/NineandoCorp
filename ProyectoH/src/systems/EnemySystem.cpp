@@ -524,7 +524,23 @@ void EnemySystem::update()
 					}
 				}
 			}
+			//for (auto& p : proyectiles) {
+			//	Transform* t = mngr_->getComponent<Transform>(p);
+			//	EnemyProyectileComponent* epc = mngr_->getComponent<EnemyProyectileComponent>(p);
+			//	if (epc->getTarget() != nullptr && mngr_->isAlive(epc->getTarget())) {
+			//		FramedImage* fi = mngr_->getComponent<FramedImage>(epc->getTarget());
+			//		Transform* targetTR = mngr_->getComponent<Transform>(epc->getTarget());
+			//		Vector2D targetPos = *(targetTR->getPosition());
+			//		if (fi != nullptr) {
+			//			Vector2D offset = { (float)fi->getSrcRect().w / 4, (float)fi->getSrcRect().h / 4 };//Se dirige hacia el centro del rect
+			//			targetPos = targetPos + offset;
+			//		}
+			//		Vector2D myPos = *(t->getPosition());
 
+			//		epc->setDir();
+			//		t->translate();
+			//	}
+			//}
 		}
 		for (auto e : genemies) {
 			RouteComponent* rc2 = mngr_->getComponent<RouteComponent>(e);
@@ -563,23 +579,7 @@ void EnemySystem::update()
 			}
 		}
 
-		for (auto& p : proyectiles) {
-			Transform* t = mngr_->getComponent<Transform>(p);
-			EnemyProyectileComponent* epc = mngr_->getComponent<EnemyProyectileComponent>(p);
-			if (epc->getTarget() != nullptr) {
-				FramedImage* fi = mngr_->getComponent<FramedImage>(epc->getTarget());
-				Transform* targetTR = mngr_->getComponent<Transform>(epc->getTarget());
-				Vector2D targetPos = *(targetTR->getPosition());
-				if (fi != nullptr) {
-					Vector2D offset = { (float)fi->getSrcRect().w / 4, (float)fi->getSrcRect().h / 4 };//Se dirige hacia el centro del rect
-					targetPos = targetPos + offset;
-				}
-				Vector2D myPos = *(t->getPosition());
-
-				epc->setDir();
-				t->translate();
-			}		
-		}
+		
 	}
 }
 			
