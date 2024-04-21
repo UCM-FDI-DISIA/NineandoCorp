@@ -149,7 +149,15 @@ void TowerSystem::onAttackTower(Entity* e, int dmg, Entity* src) {
 		ShieldComponent* s = mngr_->getComponent<ShieldComponent>(e);
 
 		if (h != nullptr && s != nullptr) {
-			if (mngr_->hasComponent<DirtTower>(e) && mngr_->getComponent<UpgradeTowerComponent>(e)->getLevel() == 4) {//Reflejar daño torre de arcilla
+			if (h->getHealth() - dmg <= 0) {
+				auto enemytype = mngr_->getComponent<EnemyTypeComponent>(e);
+				Message m1;
+				m1.id = _m_TOWER_DIED;
+				m1.return_entity.ent = e;
+				mngr_->send(m1);
+			}
+
+			if (mngr_->hasComponent<DirtTower>(e) && mngr_->hasComponent<UpgradeTowerComponent>(e) && mngr_->getComponent<UpgradeTowerComponent>(e)->getLevel() == 4) {//Reflejar daño torre de arcilla
 				Message m;
 				m.id = _m_ENTITY_TO_ATTACK;
 				m.entity_to_attack.targetId = _hdlr_ENEMIES;
@@ -158,11 +166,9 @@ void TowerSystem::onAttackTower(Entity* e, int dmg, Entity* src) {
 				mngr_->send(m);
 			}
 			if (s->getShield() <= 0 && h->getHealth() - dmg <= 0) {
-				//std::cout << "Torre eliminada-TorresTotales: " << towers.size() << std::endl;
-				mngr_->deleteHandler(_hdlr_LOW_TOWERS, e);
 				clearShieldsArea(e);
-				h->subtractHealth(dmg);
-				towers.erase(find(towers.begin(), towers.end(), e));
+				removeTower(e);
+				//std::cout << "Torre eliminada-TorresTotales: " << towers.size() << std::endl;
 			}
 			else if (s->getShield() > 0) {
 				if (s->getShield() - dmg <= 0) {
@@ -494,6 +500,7 @@ void TowerSystem::update() {
 					}
 					bc->doDamageTo(bc->getTarget(), bc->getDamage());
 					createHitAnim(targetPos);
+					bc->onTravelEnds();
 				}
 				else {
 					bc->setDir();
@@ -535,18 +542,22 @@ void TowerSystem::upgradeTower(Entity* tower) {
 
 void TowerSystem::enableAllInteractiveTowers(bool b) {
 	for (auto t : towers) {
-		mngr_->getComponent<InteractiveTower>(t)->canInteract_ = b;
+		InteractiveTower* it = mngr_->getComponent<InteractiveTower>(t);
+		if (it != nullptr)
+			it->canInteract_ = b;
 	}
 }
 
 Entity* TowerSystem::shootBullet(Entity* target, Entity* src ,float damage, float speed, Vector2D spawnPos, gameTextures texture, Vector2D bulletScale, twrId id, hdlrId srcId) {
-	Entity* bullet = mngr_->addEntity(_grp_BULLETS);//crea bala
-	Transform* t = mngr_->addComponent<Transform>(bullet);//transform
-	t->setPosition(spawnPos);
-	t->setScale(bulletScale);
-	mngr_->addComponent<BulletComponent>(bullet, t, target, src, damage, speed, srcId);//bullet component
-	mngr_->addComponent<RenderComponent>(bullet, texture);//habra que hacer switch
-	return bullet;
+	if (target != nullptr && mngr_->isAlive(target)) {
+		Entity* bullet = mngr_->addEntity(_grp_BULLETS);//crea bala
+		Transform* t = mngr_->addComponent<Transform>(bullet);//transform
+		t->setPosition(spawnPos);
+		t->setScale(bulletScale);
+		mngr_->addComponent<BulletComponent>(bullet, t, target, src, damage, speed, srcId);//bullet component
+		mngr_->addComponent<RenderComponent>(bullet, texture);//habra que hacer 
+		return bullet;
+	}
 }
 
 Entity* TowerSystem::shootFire(Vector2D spawnPos, float rot, float dmg, Entity* src) {

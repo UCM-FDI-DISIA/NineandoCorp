@@ -463,7 +463,7 @@ void CollisionSystem::update() {
 			}
 		}
 
-		for (const auto& d : deathRects_) {
+		/*for (const auto& d : deathRects_) {
 			Transform* tr = mngr_->getComponent<Transform>(d);
 			SDL_Rect r = tr->getRect();
 
@@ -510,7 +510,7 @@ void CollisionSystem::update() {
 				removeRect(p, _POTIONRECT);
 				mngr_->setAlive(p, false);
 			}
-		}
+		}*/
 
 
 		earthquakeRects_.clear();
