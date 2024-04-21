@@ -677,19 +677,4 @@ void RenderSystem::renderFillPolygon(SDL_Renderer* renderer, int width, int heig
 		}
 	}
 }
-void RenderSystem::drawBarlife(Entity* t) {
 
-	HealthComponent* hc = mngr_->getComponent<HealthComponent>(t);
-	if (hc != nullptr && mngr_->isAlive(t)) {
-		Transform* tr = mngr_->getComponent<Transform>(t);
-		float health = mngr_->getComponent<HealthComponent>(t)->getHealth();
-		SDL_Rect trRect = tr->getRect();
-		trRect.x += offset->x;
-		trRect.y += offset->y;
-		float a = hc->getMaxHealth();
-		float b = hc->getHealth();
-		float c = b / a;
-		//textures[gameTextures::life_background]->render(SDL_Rect{ trRect.x - 15, trRect.y - 3, 180, 51 }, 0);
-		textures[gameTextures::life]->render(SDL_Rect{ trRect.x - 10, trRect.y - 50, (int)(170.f * c), 45 }, 0.0);
-	}
-}

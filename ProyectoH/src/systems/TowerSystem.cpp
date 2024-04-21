@@ -419,7 +419,7 @@ void TowerSystem::update() {
 							else if (dir.getY() > 0.5 && dir.getX() >= -1 && dir.getX() <= 1) { pt->setRotation(270.0f); }
 							if (pt->getFire() != nullptr) {
 								Transform* fTR = mngr_->getComponent<Transform>(pt->getFire());
-
+								float displacement = 85.0;
 								float angle = atan(-(double)dir.getY() / (double)dir.getX())  * 180 / M_PI;
 								if (dir.getX() < 0 && dir.getY() < 0) { angle = -angle; }
 								else if (dir.getX() > 0 && dir.getY() < 0) { angle = 180 - angle; }

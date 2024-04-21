@@ -235,7 +235,6 @@ enum msgId : msgId_type {
 	_m_SELL_TOWER,
 	_m_ENEMY_DIED,
 	_m_ACTIVATE_ATTACK_TOWERS,
-	_m_TOWER_DIED	
 	_m_TOWER_DIED,
 	_m_CHANGE_RESOLUTION
 
@@ -314,8 +313,7 @@ enum gameTextures {
 	//others
     meteorites, earthquake,tornado,thunder, tsunami,cloud,
 	bulletTexture, sniperBulletTexture, slimeBulletTexture,
-	slimeArea, shield, hpIcon, blindedIcon, lightningIcon, powerIcon, monedaH, rangeCircle, monedaDorada,
-	life, life_background,enemy_spawn,
+	slimeArea, shield, hpIcon, blindedIcon, lightningIcon, powerIcon, monedaH, rangeCircle, monedaDorada,enemy_spawn,
 
 	//explosions
 	shieldExp, bulletExplosion, enemyDeath, impact, blood,
