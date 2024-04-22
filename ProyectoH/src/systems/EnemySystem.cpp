@@ -8,6 +8,7 @@
 #include "..//components/AcechanteComponent.h"
 #include "../components/MaestroAlmasComponent.h"
 #include "../components/MensajeroMuerteComponent.h"
+#include "../components/MuerteComponent.h"
 #include "../components/PrincipitoComponent.h"
 #include "../components/CaballeroMalditoComponent.h"
 #include "../components/AngelComponent.h"
@@ -305,6 +306,8 @@ void EnemySystem::update()
 		const auto& enemies = mngr_->getHandler(_hdlr_ENEMIES);
 		const auto& genemies = mngr_->getHandler(_hdlr_GHOST_ENEMIES);
 		const auto& towers = mngr_->getHandler(_hdlr_LOW_TOWERS);
+		const auto& proyectiles = mngr_->getEntities(_grp_ENEMYPROYECTILES);
+
 		if (generateEnemies_) {
 			if (enemies.empty() && stopGenerate && genemies.empty()) {
 				if (wave > sdlutils().waves().at("nivel" + std::to_string(level))) {
@@ -357,6 +360,7 @@ void EnemySystem::update()
 			EnemyTypeComponent* etc = mngr_->getComponent<EnemyTypeComponent>(e);
 			PrincipitoComponent* pc = mngr_->getComponent<PrincipitoComponent>(e);
 			MensajeroMuerteComponent* mm = mngr_->getComponent<MensajeroMuerteComponent>(e);
+			MuerteComponent* muerte = mngr_->getComponent<MuerteComponent>(e);
 			MonjeComponent* mj = mngr_->getComponent<MonjeComponent>(e);
 			Transform* tr = mngr_->getComponent<Transform>(e);
 			FramedImage* fi = mngr_->getComponent<FramedImage>(e);

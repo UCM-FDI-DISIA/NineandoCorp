@@ -63,6 +63,8 @@ enum cmpId : cmpId_type {
 	_CMALDITO,
 	_LOCK,
 	_SLIDER,
+	_ENEMYPROYECTILE,
+	_POTION,
 
 
 	// do not remove this
@@ -114,6 +116,7 @@ enum grpId : grpId_type {
 	_grp_NATURALS_EFFECTS_LOW,
 	_grp_NATURALS_EFFECTS_HIGH,
 	_grp_ICONS,
+	_grp_ENEMYPROYECTILES,
 	
 	// do not remove this
 	_LAST_GRP_ID
@@ -172,6 +175,7 @@ enum rectId : rectId_type {
 	_TSUNAMI,
 	_FIELD,
 	_BULLETS,
+	_POTION,
 
 	_LAST_RECT_ID
 };
