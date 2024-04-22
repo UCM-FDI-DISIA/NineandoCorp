@@ -326,7 +326,7 @@ void TowerSystem::update() {
 						if(!tw->getConfundido())bt->targetFromGroup(mngr_->getHandler(_hdlr_ENEMIES));
 						else bt->targetFromGroup(mngr_->getHandler(_hdlr_LOW_TOWERS));
 						bt->setElapsedTime(0);
-						if (bt->getTarget() != nullptr) {
+						if (bt->getTarget() != nullptr && mngr_->isAlive(bt->getTarget())==1) {
 							//Se coge el vector de la torre al objetivo, y en funcion de su direccion en los dos ejes se escoje el frame para la torre y 
 							//el punto desde el que sale la bala, que debe ser el canon de la torre. Para eso se usa el offset
 							Vector2D dir = *(mngr_->getComponent<Transform>(bt->getTarget())->getPosition()) - *(TR->getPosition());
@@ -643,7 +643,7 @@ void TowerSystem::addTower(twrId type, const Vector2D& pos, Height height, int s
 	if(type != _twr_NEXUS)
 		mngr_->addComponent<InteractiveTower>(t, cameraOffset_);
 	mngr_->addComponent<IconComponent>(t);
-	float health = 10000.0f;
+	float health = 100.0f;
 	mngr_->addComponent<HealthComponent>(t, health);
 	if (height == LOW ||height == PATH) {
 		
