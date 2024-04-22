@@ -8,6 +8,7 @@ class EnemyBookSystem : public System
 {
 private:
 	bool* Vistos;
+
 	
 public:
 	static constexpr sysId_type id = _sys_ENEMYBOOK;
@@ -16,5 +17,6 @@ public:
 	void initSystem() override;
 	void EnemyPopUp(int i);
 	void receive(const Message& m) override;
+	
 };
 

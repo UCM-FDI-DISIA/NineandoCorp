@@ -44,8 +44,8 @@ void EnemyBookSystem::initSystem() {
 
 
 	// Calcular la posición inicial del contenido
-	float contentPosX = 350.f; // Posición inicial x del contenido
-	float contentPosY = 300.f; // Posición y del contenido
+	float contentPosX = 400.f; // Posición inicial x del contenido
+	float contentPosY = 350.f; // Posición y del contenido
 	float contentPosYaux = 300.f; // Posición y del contenido aux
 	float contentWidth = 100.f; // Ancho del contenido
 	float contentHeight = 100.f; // Alto del contenido
@@ -95,15 +95,79 @@ void  EnemyBookSystem::receive(const Message& m) {
 	}
 }
 void EnemyBookSystem::EnemyPopUp(int i) {
-	//desactivar otros botones(buttonsystem)
 	ButtonSystem* bS = mngr_->getSystem<ButtonSystem>();
 	//BACKGROUND
-	Vector2D pAux = { sdlutils().width() / 4.0f, sdlutils().height() / 4.0f };
-	Vector2D sAux = { 1000.0f , 600.0f };
+	Vector2D pAux = { sdlutils().width() / 2.0f, sdlutils().height() / 2.0f };
+	Vector2D sAux = { 500.0f , 300.0f };
 	bS->addImage(pAux, sAux, 0.0, gameTextures::large_box, _grp_HUD_FOREGROUND);
-
-	pAux = pAux + Vector2D(430.0f, -230.0f);
-	sAux = { 70.0f, 70.0f };
+	//BOTON CERRAR
+	pAux = pAux + Vector2D(200, -100.0f);
+	sAux = { 50.0f, 50.0f };
 	bS->addButton(pAux, sAux, gameTextures::close, gameTextures::close_hover, ButtonTypes::back_selector);
 
+	bool habilidad = false;
+	int vel = 0;
+	int vida = 0;
+	int tipo = 0;
+	int atq = 0;
+	switch (i)
+	{
+		case 1:
+			//coger datos json
+			break;
+		case 2:
+			break;
+		case 3:
+			break;
+		case 4:
+			break;
+		case 5:
+			break;
+		case 6:
+			break;
+		case 7:
+			break;
+		case 8:
+			break;
+		case 9:
+			break;
+		case 10:
+			break;
+		case 11:
+			break;
+		case 12:
+			break;
+		case 13:
+			break;
+		case 14:
+			break;
+		case 15:
+			break;
+		default:
+		break;
+	}
+	//vector textura enemigo
+	vector<gameTextures> Texturas{
+		gameTextures::maestro_icon,
+		gameTextures::acechante_icon,
+		gameTextures::maldito_icon,
+		gameTextures::golem_icon,
+		gameTextures::demonioAlado_icon,
+		gameTextures::goblin_icon,
+		gameTextures::elfo_icon,
+		gameTextures::mensajero_icon,
+		gameTextures::angel_icon,
+		gameTextures::demonioInfernal_icon,
+		gameTextures::defensor_icon,
+		gameTextures::CMaldito_icon,
+		gameTextures::principito_icon,
+		gameTextures::monje_icon,
+		gameTextures::muerte_icon
+	};
+	//AÑADIR IMG ENEMIGO
+	pAux = Vector2D{500,470};
+	sAux = Vector2D{ 100,100 };
+	bS->addImage(pAux, sAux + Vector2D{50,50}, 0.0, gameTextures::large_box, _grp_HUD_FOREGROUND);
+	bS->addImage(pAux, sAux,0.0,Texturas[i], _grp_HUD_FOREGROUND);
+	//AÑADIR NOMBRE
 }
