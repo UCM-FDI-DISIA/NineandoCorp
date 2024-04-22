@@ -102,9 +102,22 @@ void EnemyBookSystem::EnemyPopUp(int i) {
 			atq = std::to_string(sdlutils().intConst().at("MaestroAtaque"));
 			vel = std::to_string(sdlutils().intConst().at("MaestroVelocidad"));
 			Tiempo = std::to_string(sdlutils().intConst().at("Maestrotiempo"));
-			//tipo = std::to_string(sdlutils().intConst().at("MalditoVida"));
-			//rango = std::to_string(sdlutils().intConst().at("MalditoVida"));
-			//habilidad = std::to_string(sdlutils().intConst().at("MalditoVida"));
+			
+			if (sdlutils().intConst().at("MaestroTipo") == 1)
+			{
+				tipo = "Aereo";
+			}
+			else {
+				tipo = "Terrestre";
+			}
+
+			if (sdlutils().intConst().at("MaestroRango") == 1)
+			{
+				rango = "Rango";
+			}
+			else {
+				rango = "Melee";
+			}
 			break;
 		case 1:
 			nombre = "Acechante Electrico";
@@ -112,9 +125,20 @@ void EnemyBookSystem::EnemyPopUp(int i) {
 			atq = std::to_string(sdlutils().intConst().at("AcechanteAtaque"));
 			vel = std::to_string(sdlutils().intConst().at("AcechanteVelocidad"));
 			Tiempo = std::to_string(sdlutils().intConst().at("Acechantetiempo"));
-			//tipo = std::to_string(sdlutils().intConst().at("MalditoVida"));
-			//rango = std::to_string(sdlutils().intConst().at("MalditoVida"));
-			//habilidad = std::to_string(sdlutils().intConst().at("MalditoVida"));
+			if (sdlutils().intConst().at("AcechanteTipo") == 1)
+			{
+				tipo = "Aereo";
+			}
+			else {
+				tipo = "Terrestre";
+			}
+			if (sdlutils().intConst().at("AcechanteRango") == 1)
+			{
+				rango = "Rango";
+			}
+			else {
+				rango = "Melee";
+			}
 			break;
 		case 2:
 			nombre = "Maldito";
@@ -122,9 +146,20 @@ void EnemyBookSystem::EnemyPopUp(int i) {
 			atq = std::to_string(sdlutils().intConst().at("MalditoAtaque"));
 			vel = std::to_string(sdlutils().intConst().at("MalditoVelocidad"));
 			Tiempo = std::to_string(sdlutils().intConst().at("Malditotiempo"));
-			//tipo = std::to_string(sdlutils().intConst().at("MalditoVida"));
-			//rango = std::to_string(sdlutils().intConst().at("MalditoVida"));
-			//habilidad = std::to_string(sdlutils().intConst().at("MalditoVida"));
+			if (sdlutils().intConst().at("MalditoTipo") == 1)
+			{
+				tipo = "Aereo";
+			}
+			else {
+				tipo = "Terrestre";
+			}
+			if (sdlutils().intConst().at("MalditoRango") == 1)
+			{
+				rango = "Rango";
+			}
+			else {
+				rango = "Melee";
+			}
 			break;
 		case 3:
 			nombre = "Golem";
@@ -132,10 +167,20 @@ void EnemyBookSystem::EnemyPopUp(int i) {
 			atq = std::to_string(sdlutils().intConst().at("GolemAtaque"));
 			vel = std::to_string(sdlutils().intConst().at("GolemVelocidad"));
 			Tiempo = std::to_string(sdlutils().intConst().at("Golemtiempo"));
-			//tipo = std::to_string(sdlutils().intConst().at("MalditoVida"));
-			//rango = std::to_string(sdlutils().intConst().at("MalditoVida"));
-			//habilidad = std::to_string(sdlutils().intConst().at("MalditoVida"));
-			
+			if (sdlutils().intConst().at("GolemTipo") == 1)
+			{
+				tipo = "Aereo";
+			}
+			else {
+				tipo = "Terrestre";
+			}
+			if (sdlutils().intConst().at("GolemRango") == 1)
+			{
+				rango = "Rango";
+			}
+			else {
+				rango = "Melee";
+			}
 			break;
 		case 4:
 			nombre = "Demonio Alado";
@@ -143,9 +188,20 @@ void EnemyBookSystem::EnemyPopUp(int i) {
 			atq = std::to_string(sdlutils().intConst().at("DemonioAladoAtaque"));
 			vel = std::to_string(sdlutils().intConst().at("DemonioAladoVelocidad"));
 			Tiempo = std::to_string(sdlutils().intConst().at("DemonioAladotiempo"));
-			//tipo = std::to_string(sdlutils().intConst().at("MalditoVida"));
-			//rango = std::to_string(sdlutils().intConst().at("MalditoVida"));
-			//habilidad = std::to_string(sdlutils().intConst().at("MalditoVida"));
+			if (sdlutils().intConst().at("DemonioAladoTipo") == 1)
+			{
+				tipo = "Aereo";
+			}
+			else {
+				tipo = "Terrestre";
+			}
+			if (sdlutils().intConst().at("DemonioAladoRango") == 1)
+			{
+				rango = "Rango";
+			}
+			else {
+				rango = "Melee";
+			}
 			break;
 		case 5:
 			nombre = "Goblin";
@@ -153,9 +209,20 @@ void EnemyBookSystem::EnemyPopUp(int i) {
 			atq = std::to_string(sdlutils().intConst().at("GoblinAtaque"));
 			vel = std::to_string(sdlutils().intConst().at("GoblinVelocidad"));
 			Tiempo = std::to_string(sdlutils().intConst().at("Goblintiempo"));
-			//tipo = std::to_string(sdlutils().intConst().at("MalditoVida"));
-			//rango = std::to_string(sdlutils().intConst().at("MalditoVida"));
-			//habilidad = std::to_string(sdlutils().intConst().at("MalditoVida"));
+			if (sdlutils().intConst().at("GoblinTipo") == 1)
+			{
+				tipo = "Aereo";
+			}
+			else {
+				tipo = "Terrestre";
+			}
+			if (sdlutils().intConst().at("GoblinRango") == 1)
+			{
+				rango = "Rango";
+			}
+			else {
+				rango = "Melee";
+			}
 			break;
 		case 6:
 			nombre = "Elfo";
@@ -163,9 +230,20 @@ void EnemyBookSystem::EnemyPopUp(int i) {
 			atq = std::to_string(sdlutils().intConst().at("ElfoAtaque"));
 			vel = std::to_string(sdlutils().intConst().at("ElfoVelocidad"));
 			Tiempo = std::to_string(sdlutils().intConst().at("Elfotiempo"));
-			//tipo = std::to_string(sdlutils().intConst().at("MalditoVida"));
-			//rango = std::to_string(sdlutils().intConst().at("MalditoVida"));
-			//habilidad = std::to_string(sdlutils().intConst().at("MalditoVida"));
+			if (sdlutils().intConst().at("ElfoTipo") == 1)
+			{
+				tipo = "Aereo";
+			}
+			else {
+				tipo = "Terrestre";
+			}
+			if (sdlutils().intConst().at("ElfoRango") == 1)
+			{
+				rango = "Rango";
+			}
+			else {
+				rango = "Melee";
+			}
 			break;
 		case 7:
 			nombre = "Mensajero de la Muerte";
@@ -173,9 +251,20 @@ void EnemyBookSystem::EnemyPopUp(int i) {
 			atq = std::to_string(sdlutils().intConst().at("MensajeroAtaque"));
 			vel = std::to_string(sdlutils().intConst().at("MensajeroVelocidad"));
 			Tiempo = std::to_string(sdlutils().intConst().at("Mensajerotiempo"));
-			//tipo = std::to_string(sdlutils().intConst().at("MalditoVida"));
-			//rango = std::to_string(sdlutils().intConst().at("MalditoVida"));
-			//habilidad = std::to_string(sdlutils().intConst().at("MalditoVida"));
+			if (sdlutils().intConst().at("MensajeroTipo") == 1)
+			{
+				tipo = "Aereo";
+			}
+			else {
+				tipo = "Terrestre";
+			}
+			if (sdlutils().intConst().at("MensajeroRango") == 1)
+			{
+				rango = "Rango";
+			}
+			else {
+				rango = "Melee";
+			}
 			break;
 		case 8:
 			nombre = "Angel";
@@ -183,9 +272,20 @@ void EnemyBookSystem::EnemyPopUp(int i) {
 			atq = std::to_string(sdlutils().intConst().at("AngelAtaque"));
 			vel = std::to_string(sdlutils().intConst().at("AngelVelocidad"));
 			Tiempo = std::to_string(sdlutils().intConst().at("Angeltiempo"));
-			//tipo = std::to_string(sdlutils().intConst().at("MalditoVida"));
-			//rango = std::to_string(sdlutils().intConst().at("MalditoVida"));
-			//habilidad = std::to_string(sdlutils().intConst().at("MalditoVida"));
+			if (sdlutils().intConst().at("AngelTipo") == 1)
+			{
+				tipo = "Aereo";
+			}
+			else {
+				tipo = "Terrestre";
+			}
+			if (sdlutils().intConst().at("AngelRango") == 1)
+			{
+				rango = "Rango";
+			}
+			else {
+				rango = "Melee";
+			}
 			break;
 		case 9:
 			nombre = "Demonio Infernal";
@@ -193,9 +293,20 @@ void EnemyBookSystem::EnemyPopUp(int i) {
 			atq = std::to_string(sdlutils().intConst().at("DemonioInfernalAtaque"));
 			vel = std::to_string(sdlutils().intConst().at("DemonioInfernalVelocidad"));
 			Tiempo = std::to_string(sdlutils().intConst().at("DemonioInfernaltiempo"));
-			//tipo = std::to_string(sdlutils().intConst().at("MalditoVida"));
-			//rango = std::to_string(sdlutils().intConst().at("MalditoVida"));
-			//habilidad = std::to_string(sdlutils().intConst().at("MalditoVida"));
+			if (sdlutils().intConst().at("DemonioInfernalTipo") == 1)
+			{
+				tipo = "Aereo";
+			}
+			else {
+				tipo = "Terrestre";
+			}
+			if (sdlutils().intConst().at("DemonioInfernalRango") == 1)
+			{
+				rango = "Rango";
+			}
+			else {
+				rango = "Melee";
+			}
 			break;
 		case 10:
 			nombre = "Defensor";
@@ -203,9 +314,20 @@ void EnemyBookSystem::EnemyPopUp(int i) {
 			atq = std::to_string(sdlutils().intConst().at("DefensorAtaque"));
 			vel = std::to_string(sdlutils().intConst().at("DefensorVelocidad"));
 			Tiempo = std::to_string(sdlutils().intConst().at("Defensortiempo"));
-			//tipo = std::to_string(sdlutils().intConst().at("MalditoVida"));
-			//rango = std::to_string(sdlutils().intConst().at("MalditoVida"));
-			//habilidad = std::to_string(sdlutils().intConst().at("MalditoVida"));
+			if (sdlutils().intConst().at("DefensorTipo") == 1)
+			{
+				tipo = "Aereo";
+			}
+			else {
+				tipo = "Terrestre";
+			}
+			if (sdlutils().intConst().at("DefensorRango") == 1)
+			{
+				rango = "Rango";
+			}
+			else {
+				rango = "Melee";
+			}
 			break;
 		case 11:
 			nombre = "C.Maldito";
@@ -213,9 +335,20 @@ void EnemyBookSystem::EnemyPopUp(int i) {
 			atq = std::to_string(sdlutils().intConst().at("CMalditoAtaque"));
 			vel = std::to_string(sdlutils().intConst().at("CMalditoVelocidad"));
 			Tiempo = std::to_string(sdlutils().intConst().at("CMalditotiempo"));
-			//tipo = std::to_string(sdlutils().intConst().at("MalditoVida"));
-			//rango = std::to_string(sdlutils().intConst().at("MalditoVida"));
-			//habilidad = std::to_string(sdlutils().intConst().at("MalditoVida"));
+			if (sdlutils().intConst().at("CMalditoTipo") == 1)
+			{
+				tipo = "Aereo";
+			}
+			else {
+				tipo = "Terrestre";
+			}
+			if (sdlutils().intConst().at("CMalditoRango") == 1)
+			{
+				rango = "Rango";
+			}
+			else {
+				rango = "Melee";
+			}
 			break;
 		case 12:
 			nombre = "Principito";
@@ -223,9 +356,20 @@ void EnemyBookSystem::EnemyPopUp(int i) {
 			atq = std::to_string(sdlutils().intConst().at("PrincipitoAtaque"));
 			vel = std::to_string(sdlutils().intConst().at("PrincipitoVelocidad"));
 			Tiempo = std::to_string(sdlutils().intConst().at("Principitotiempo"));
-			//tipo = std::to_string(sdlutils().intConst().at("MalditoVida"));
-			//rango = std::to_string(sdlutils().intConst().at("MalditoVida"));
-			//habilidad = std::to_string(sdlutils().intConst().at("MalditoVida"));
+			if (sdlutils().intConst().at("PrincipitoTipo") == 1)
+			{
+				tipo = "Aereo";
+			}
+			else {
+				tipo = "Terrestre";
+			}
+			if (sdlutils().intConst().at("PrincipitoRango") == 1)
+			{
+				rango = "Rango";
+			}
+			else {
+				rango = "Melee";
+			}
 			break;
 		case 13:
 			nombre = "Monje";
@@ -233,9 +377,20 @@ void EnemyBookSystem::EnemyPopUp(int i) {
 			atq = std::to_string(sdlutils().intConst().at("MonjeAtaque"));
 			vel = std::to_string(sdlutils().intConst().at("MonjeVelocidad"));
 			Tiempo = std::to_string(sdlutils().intConst().at("Monjetiempo"));
-			//tipo = std::to_string(sdlutils().intConst().at("MalditoVida"));
-			//rango = std::to_string(sdlutils().intConst().at("MalditoVida"));
-			//habilidad = std::to_string(sdlutils().intConst().at("MalditoVida"));
+			if (sdlutils().intConst().at("MonjeTipo") == 1)
+			{
+				tipo = "Aereo";
+			}
+			else {
+				tipo = "Terrestre";
+			}
+			if (sdlutils().intConst().at("MonjeRango") == 1)
+			{
+				rango = "Rango";
+			}
+			else {
+				rango = "Melee";
+			}
 			break;
 		case 14:
 			nombre = "Muerte";
@@ -243,9 +398,20 @@ void EnemyBookSystem::EnemyPopUp(int i) {
 			atq = std::to_string(sdlutils().intConst().at("MuerteAtaque"));
 			vel = std::to_string(sdlutils().intConst().at("MuerteVelocidad"));
 			Tiempo = std::to_string(sdlutils().intConst().at("Muertetiempo"));
-			//tipo = std::to_string(sdlutils().intConst().at("MalditoVida"));
-			//rango = std::to_string(sdlutils().intConst().at("MalditoVida"));
-			//habilidad = std::to_string(sdlutils().intConst().at("MalditoVida"));
+			if (sdlutils().intConst().at("MuerteTipo") == 1)
+			{
+				tipo = "Aereo";
+			}
+			else {
+				tipo = "Terrestre";
+			}
+			if (sdlutils().intConst().at("MuerteRango") == 1)
+			{
+				rango = "Rango";
+			}
+			else {
+				rango = "Melee";
+			}
 			break;
 		default:
 		break;
@@ -276,10 +442,10 @@ void EnemyBookSystem::EnemyPopUp(int i) {
 	bS->addText("Vel.Ataque: " +Tiempo, NombreColor, pAux, sAux);
 
 	//AÑADIR RANGO
-	//pAux = Vector2D{ 700,420 };
-	//bS->addText(, NombreColor, pAux, sAux);
-	//AÑADIR HABILIDAD
-	//pAux = Vector2D{ 700,420 };
-	//bS->addText(nombre, NombreColor, pAux, sAux);
+	pAux = Vector2D{ 650,560 };
+	bS->addText("Rango: " + rango, NombreColor, pAux, sAux);
+	//AÑADIR TIPO
+	pAux = Vector2D{ 800,560 };
+	bS->addText("Tipo: " + tipo, NombreColor, pAux, sAux);
 
 }
