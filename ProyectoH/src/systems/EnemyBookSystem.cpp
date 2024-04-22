@@ -94,6 +94,7 @@ void EnemyBookSystem::EnemyPopUp(int i) {
 	{
 		case 1:
 			//coger datos json
+
 			break;
 		case 2:
 			break;

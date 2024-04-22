@@ -1,4 +1,5 @@
 #include "UpgradeTowerComponent.h"
+#include "../game/Game.h"
 #include "../ecs/Manager.h"
 #include "../components/BulletTower.h"
 #include "..//components/EnhancerTower.h"
@@ -28,9 +29,10 @@ void UpgradeTowerComponent::levelUp() {
 	
 
 	auto fi = mngr_->getComponent<FramedImage>(ent_);
-
+	sdlutils().soundEffects().at("button").setChannelVolume(game().CalculoVolumenEfectos(), 1);
 	if (currentLevel_ < maxLevel_) {
 
+		sdlutils().soundEffects().at("TorreUpgrade").play(0, 1);
 		Message m;
 		m.id = _m_ADD_MONEY;
 		m.money_data.money = -upgradeCost_;

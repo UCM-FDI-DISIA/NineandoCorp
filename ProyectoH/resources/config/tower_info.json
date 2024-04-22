@@ -68,7 +68,174 @@
       "dano": 0,
       "elevacion": 2
     }
+  ],
+
+  "Maestro": [
+    {
+       "vida": 150,
+      "rango": 1,
+      "velocidad": 3,
+      "ataque": 20,
+      "tiempo":1,
+      "tipo": 0,
+      "habilidad":1
+    }
+  ],
+  "Acechante": [
+    {
+       "vida": 150,
+      "rango": false,
+      "velocidad": 7,
+      "ataque": 35,
+      "tiempo":1,
+      "tipo": false,
+      "habilidad":true
+    }
+  ],
+  "Maldito": [
+    {
+       "vida": 60,
+      "rango": false,
+      "velocidad": 3,
+      "ataque": 20,
+      "tiempo":1,
+      "tipo": false,
+      "habilidad":false
+    }
+  ],
+  "Golem": [
+    {
+       "vida": 1000,
+      "rango": false,
+      "velocidad": 2,
+      "ataque": 100,
+      "tiempo":3,
+      "tipo": false,
+      "habilidad":true
+    }
+  ],
+  "DemonioAlado": [
+    {
+       "vida": 25,
+      "rango": true,
+      "velocidad": 4,
+      "ataque": 5,
+      "tiempo":1,
+      "tipo": true,
+      "habilidad":false
+    }
+  ],
+  "Goblin": [
+    {
+       "vida": 20,
+      "rango": false,
+      "velocidad": 6,
+      "ataque": 15,
+      "tiempo":1,
+      "tipo": false,
+      "habilidad":false
+    }
+  ],
+  "Elfo": [
+    {
+       "vida": 60,
+      "rango": true,
+      "velocidad": 2,
+      "ataque": 10,
+      "tiempo":1,
+      "tipo": false,
+      "habilidad":false
+    }
+  ],
+  "Mensajero": [
+    {
+       "vida": 300,
+      "rango": false,
+      "velocidad": 3,
+      "ataque": 20,
+      "tiempo":1,
+      "tipo": false,
+      "habilidad":true
+    }
+  ],
+  "Angel": [
+    {
+       "vida": 400,
+      "rango": true,
+      "velocidad": 3,
+      "ataque": 2,
+      "tiempo":0,
+      "tipo": true,
+      "habilidad":true
+    }
+  ],
+  "DemonioInfernal": [
+    {
+       "vida": 750,
+      "rango": true,
+      "velocidad": 3,
+      "ataque": 20,
+      "tiempo":2,
+      "tipo": true,
+      "habilidad":false
+    }
+  ],
+  "Defensor": [
+    {
+       "vida": 200,
+      "rango": true,
+      "velocidad": 3,
+      "ataque": 10,
+      "tiempo":1,
+      "tipo": false,
+      "habilidad":true
+    }
+  ],
+  "CMaldito": [
+    {
+       "vida": 1000,
+      "rango": false,
+      "velocidad": 1,
+      "ataque": 150,
+      "tiempo":3,
+      "tipo": false,
+      "habilidad":true
+    }
+  ],
+  "Principito": [
+    {
+       "vida": 2500,
+      "rango": true,
+      "velocidad": 3,
+      "ataque": 10,
+      "tiempo":1,
+      "tipo": false,
+      "habilidad":true
+    }
+  ],
+  "Monje": [
+    {
+       "vida": 5000,
+      "rango": false,
+      "velocidad": 3,
+      "ataque": 75,
+      "tiempo":1,
+      "tipo": false,
+      "habilidad":true
+    }
+  ],
+  "Muerte": [
+    {
+       "vida": 10000,
+      "rango": true,
+      "velocidad": 3,
+      "ataque": 75,
+      "tiempo":1,
+      "tipo": true,
+      "habilidad":true
+    }
   ]
+
 
 
 }
