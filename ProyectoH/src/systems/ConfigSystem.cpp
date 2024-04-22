@@ -35,7 +35,7 @@ void ConfigSystem::initSystem() {
 	bS->addText("FULL SCREEN", textColor, { sdlutils().width() / 4.0f - 35.0f, sdlutils().height() / 2.25f }, { 225.0f, 50.0f });
 	pAux = Vector2D(sdlutils().width() / 4.0f + 125.0f, sdlutils().height() / 2.25f);
 	sAux = { 50.0f, 50.0f };
-	if(!bS->getFullScreen())
+	if(!game().instance()->getFullScreen())
 		bS->addButton(pAux, sAux, gameTextures::button, gameTextures::button_hover, ButtonTypes::full_screen);
 	else
 		bS->addButton(pAux, sAux, gameTextures::check, gameTextures::check_hover, ButtonTypes::full_screen);
