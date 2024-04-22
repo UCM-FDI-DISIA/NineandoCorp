@@ -23,26 +23,6 @@ void EnemyBookSystem::initSystem() {
 	sAux = { 70.0f, 70.0f };
 	bS->addButton(pAux, sAux, gameTextures::close, gameTextures::close_hover, ButtonTypes::back_selector);
 
-	//vector textura enemigo
-	vector<gameTextures> Texturas{
-		gameTextures::maestro_icon,
-		gameTextures::acechante_icon,
-		gameTextures::maldito_icon,
-		gameTextures::golem_icon,
-		gameTextures::demonioAlado_icon,
-		gameTextures::goblin_icon,
-		gameTextures::elfo_icon,
-		gameTextures::mensajero_icon,
-		gameTextures::angel_icon,
-		gameTextures::demonioInfernal_icon,
-		gameTextures::defensor_icon,
-		gameTextures::CMaldito_icon,
-		gameTextures::principito_icon,
-		gameTextures::monje_icon,
-		gameTextures::muerte_icon
-	};
-
-
 	// Calcular la posición inicial del contenido
 	float contentPosX = 400.f; // Posición inicial x del contenido
 	float contentPosY = 350.f; // Posición y del contenido
@@ -146,28 +126,13 @@ void EnemyBookSystem::EnemyPopUp(int i) {
 		default:
 		break;
 	}
-	//vector textura enemigo
-	vector<gameTextures> Texturas{
-		gameTextures::maestro_icon,
-		gameTextures::acechante_icon,
-		gameTextures::maldito_icon,
-		gameTextures::golem_icon,
-		gameTextures::demonioAlado_icon,
-		gameTextures::goblin_icon,
-		gameTextures::elfo_icon,
-		gameTextures::mensajero_icon,
-		gameTextures::angel_icon,
-		gameTextures::demonioInfernal_icon,
-		gameTextures::defensor_icon,
-		gameTextures::CMaldito_icon,
-		gameTextures::principito_icon,
-		gameTextures::monje_icon,
-		gameTextures::muerte_icon
-	};
 	//AÑADIR IMG ENEMIGO
 	pAux = Vector2D{500,470};
 	sAux = Vector2D{ 100,100 };
 	bS->addImage(pAux, sAux + Vector2D{50,50}, 0.0, gameTextures::large_box, _grp_HUD_FOREGROUND);
 	bS->addImage(pAux, sAux,0.0,Texturas[i], _grp_HUD_FOREGROUND);
 	//AÑADIR NOMBRE
+	//bS->addText()
+		//bS->addText(std::to_string(sdlutils().intConst().at("BalasPrecio")), moneyColor, { xAux * ((int)_twr_BULLET + 1) - 20 , heightH + 67 }, { bSize.getX() / 2 , 30 });
+
 }
