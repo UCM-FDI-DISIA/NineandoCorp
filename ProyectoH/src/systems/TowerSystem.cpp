@@ -79,9 +79,28 @@ void TowerSystem::receive(const Message& m) {
 		m1.id = _m_ADD_MONEY;
 		m1.money_data.money = mngr_->getComponent<UpgradeTowerComponent>(m.sell_tower_data.twr)->getAcumCost() * 0.75;
 		mngr_->send(m1);
+		CoinAnimation(mngr_->getComponent<Transform>(m.sell_tower_data.twr)->getPosition());
 		removeTower(m.sell_tower_data.twr);
 		break;
 	}
+}
+
+void TowerSystem::CoinAnimation(Vector2D pos) {
+	Message m;
+	m.id = _m_ANIM_CREATE;
+	m.anim_create.idGrp = _grp_ICONS;
+	m.anim_create.animSpeed = 15;
+	m.anim_create.iterationsToDelete = 1;
+	m.anim_create.pos = pos;
+	m.anim_create.frameInit = 1;
+	m.anim_create.frameEnd = 1;
+	m.anim_create.cols = 1;
+	m.anim_create.rows = 1;
+	m.anim_create.scale = { 100, 100 };
+	m.anim_create.width = 100;
+	m.anim_create.height = 100;
+	m.anim_create.tex = gameTextures::monedaDorada;
+	mngr_->send(m);
 }
 
 void TowerSystem::clearShieldsArea(Entity* e) {

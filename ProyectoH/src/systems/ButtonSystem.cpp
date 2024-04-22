@@ -379,7 +379,7 @@ void ButtonSystem::sellTower(Entity* twr)
 			dragTower(_twr_SLIME);
 			break;
 		case sell_tower:
-			//sdlutils().soundEffects().at("TorreDeArcillaTerraqueaDrop").play(0, 1);
+			sdlutils().soundEffects().at("SellTower").play(0, 1);
 			mngr_->send(mngr_->getComponent<ButtonComponent>(bC)->getMessage());
 			break;
 
