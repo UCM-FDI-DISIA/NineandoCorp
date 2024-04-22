@@ -266,6 +266,7 @@ void ButtonSystem::sellTower(Entity* twr)
 			break;
 		case changeResolution:
 			stopConfig(bC);
+			sdlutils().soundEffects().at("button").play(0, 1);
 			break;
 		case level_selected:
 			startGame(bC);
@@ -378,6 +379,7 @@ void ButtonSystem::sellTower(Entity* twr)
 			dragTower(_twr_SLIME);
 			break;
 		case sell_tower:
+			//sdlutils().soundEffects().at("TorreDeArcillaTerraqueaDrop").play(0, 1);
 			mngr_->send(mngr_->getComponent<ButtonComponent>(bC)->getMessage());
 			break;
 
@@ -386,6 +388,7 @@ void ButtonSystem::sellTower(Entity* twr)
 			mngr_->send(mngr_->getComponent<ButtonComponent>(bC)->getMessage());
 			break;
 		case exit_up_menu:
+			sdlutils().soundEffects().at("button").play(0, 1);
 			exitUpMenu();
 			break;
 		/*----------------------------------------*/
@@ -507,6 +510,7 @@ void ButtonSystem::sellTower(Entity* twr)
 
 	void ButtonSystem::dragTower(twrId tower) {
 		if (money_ >= costs[tower]) {
+			sdlutils().soundEffects().at("button").play(0, 1);
 			Message m;
 			m.id = _m_DRAG;
 			m.drag_data.towerId = tower;
