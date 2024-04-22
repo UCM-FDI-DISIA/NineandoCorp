@@ -353,7 +353,35 @@ void CollisionSystem::update() {
 					}
 				}
 			}
+			for (const auto& p : potionRects_) {
+				if (mngr_->isAlive(p) == 1) {
+					Transform* tr = mngr_->getComponent<Transform>(p);
+					SDL_Rect r = tr->getRect();
+					PotionComponent* pc = mngr_->getComponent<PotionComponent>(p);
 
+					if (pc != nullptr) {
+						Transform* towerTR = mngr_->getComponent<Transform>(t);
+						SDL_Rect towerRect = towerTR->getRect();
+						if (SDL_HasIntersection(&r, &towerRect) && !pc->hasPotionSpawned()) {
+							Message m;
+							m.id = _m_ACTIVATE_ATTACK_TOWERS;
+							m.attack_towers_data.attackingTime = mngr_->getComponent<PotionComponent>(p)->getPotionDuration();
+							m.attack_towers_data.attackTower = t;
+							mngr_->send(m, true);
+							pc->setPotionSpawned(true);
+						}
+
+
+						pc->setElapsedTime(pc->getElapsedTime() + game().getDeltaTime());
+						if (pc->getElapsedTime() > pc->getPotionDuration()) {
+							removeRect(p, _POTIONRECT);
+							mngr_->setAlive(p, false);
+						}
+					}
+					
+				}
+
+			}
 		}
 
 		for (const auto& t : highTowers)
@@ -462,55 +490,6 @@ void CollisionSystem::update() {
 				mngr_->setAlive(f, false);
 			}
 		}
-
-		/*for (const auto& d : deathRects_) {
-			Transform* tr = mngr_->getComponent<Transform>(d);
-			SDL_Rect r = tr->getRect();
-
-			for (const auto& lt : lowTowers) {
-				Transform* towerTR = mngr_->getComponent<Transform>(lt);
-				SDL_Rect towerRect = towerTR->getRect();
-				if (SDL_HasIntersection(&r, &towerRect)) {
-					Entity* area = mngr_->addEntity(_grp_AREAOFATTACK);
-					Transform* ptr = mngr_->addComponent<Transform>(area);
-					Vector2D scale = { 250, 200 };
-					ptr->setScale(scale);
-					Vector2D pos = { tr->getPosition()->getX() - scale.getX() / 2, tr->getPosition()->getY() - scale.getY() / 4 };
-					ptr->setPosition(pos);
-					mngr_->addComponent<RenderComponent>(area, slimeArea);
-					mngr_->addComponent<FramedImage>(area, 9, 1, 500, 400, 0, 4, 8);
-					mngr_->addComponent<PotionComponent>(area, 5);
-					addRect(area, _POTIONRECT);
-					removeRect(d, _DEATH);
-					mngr_->setAlive(d, false);
-					cout << "Collided\n";
-				}
-			}
-		}
-
-		for (const auto& p : potionRects_) {
-			Transform* tr = mngr_->getComponent<Transform>(p);
-			SDL_Rect r = tr->getRect();
-			PotionComponent* _potionComponent = mngr_->getComponent<PotionComponent>(p);
-
-			for (const auto& lt : lowTowers) {
-				Transform* towerTR = mngr_->getComponent<Transform>(lt);
-				SDL_Rect towerRect = towerTR->getRect();
-				if (SDL_HasIntersection(&r, &towerRect)) {
-					Message m;
-					m.id = _m_ACTIVATE_ATTACK_TOWERS;
-					m.attack_towers_data.attackingTime = mngr_->getComponent<PotionComponent>(p)->getPotionDuration();
-					m.attack_towers_data.attackTower = lt;
-					mngr_->send(m, true);
-				}
-			}
-
-			_potionComponent->setElapsedTime(_potionComponent->getElapsedTime() + game().getDeltaTime());
-			if (_potionComponent->getElapsedTime() > _potionComponent->getPotionDuration()) {
-				removeRect(p, _POTIONRECT);
-				mngr_->setAlive(p, false);
-			}
-		}*/
 
 
 		earthquakeRects_.clear();

@@ -69,7 +69,11 @@ void TowerSystem::receive(const Message& m) {
 		}
 		break;
 	case _m_ACTIVATE_ATTACK_TOWERS:
-		mngr_->getComponent<TowerStates>(m.attack_towers_data.attackTower)->setConfundido(true, m.attack_towers_data.attackingTime);
+		if (mngr_->isAlive(m.attack_towers_data.attackTower) == 1) {
+			TowerStates* ts = mngr_->getComponent<TowerStates>(m.attack_towers_data.attackTower);
+			if(ts!=nullptr)ts->setConfundido(true, m.attack_towers_data.attackingTime);
+		}
+		
 		break;
 	default:
 		break;
@@ -294,7 +298,8 @@ void TowerSystem::update() {
 					bt->setElapsedTime(bt->getElapsedTime() + game().getDeltaTime());
 					if (bt->getElapsedTime() > 0.5) {
 
-						bt->targetFromGroup(mngr_->getHandler(_hdlr_ENEMIES));
+						if(!tw->getConfundido())bt->targetFromGroup(mngr_->getHandler(_hdlr_ENEMIES));
+						else bt->targetFromGroup(mngr_->getHandler(_hdlr_LOW_TOWERS));
 						bt->setElapsedTime(0);
 						if (bt->getTarget() != nullptr) {
 							//Se coge el vector de la torre al objetivo, y en funcion de su direccion en los dos ejes se escoje el frame para la torre y 
@@ -481,7 +486,7 @@ void TowerSystem::update() {
 				Transform* targetTR = mngr_->getComponent<Transform>(bc->getTarget());
 				Vector2D targetPos = *(targetTR->getPosition());
 				if (fi != nullptr) {
-					Vector2D offset = { (float)fi->getSrcRect().w / 4, (float)fi->getSrcRect().h / 4 };//Se dirige hacia el centro del rect
+					Vector2D offset = { (float)fi->getSize().getX() / 5, (float)fi->getSize().getY() / 5 };//Se dirige hacia el centro del rect
 					targetPos = targetPos + offset;
 				}
 				Vector2D myPos = *(t->getPosition());
@@ -601,7 +606,7 @@ void TowerSystem::addTower(twrId type, const Vector2D& pos, Height height, int s
 	if(type != _twr_NEXUS)
 		mngr_->addComponent<InteractiveTower>(t, cameraOffset_);
 	mngr_->addComponent<IconComponent>(t);
-	float health = 100.0f;
+	float health = 10000.0f;
 	mngr_->addComponent<HealthComponent>(t, health);
 	if (height == LOW ||height == PATH) {
 		

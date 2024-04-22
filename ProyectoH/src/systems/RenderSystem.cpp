@@ -354,6 +354,19 @@ void RenderSystem::update() {
 		textures[textureId]->render(srcRect, trRect);
 	}
 
+	//ENEMY PROYECTILES
+	const auto& projectiles = mngr_->getEntities(_grp_ENEMY_PROYECTILE);
+	for (auto& p : projectiles)
+	{
+		Transform* tr = mngr_->getComponent<Transform>(p);
+		gameTextures textureId = mngr_->getComponent<RenderComponent>(p)->getTexture();
+
+		SDL_Rect trRect = tr->getRect();
+		trRect.x += offset->x;
+		trRect.y += offset->y;
+		textures[textureId]->render(trRect, tr->getRotation());
+	}
+
 	//AREA OF ATTACK (SLIME AND FENIX)
 	const auto& areas = mngr_->getEntities(_grp_AREAOFATTACK);
 	for (auto& area : areas)
@@ -361,6 +374,22 @@ void RenderSystem::update() {
 		Transform* tr = mngr_->getComponent<Transform>(area);
 		gameTextures textureId = mngr_->getComponent<RenderComponent>(area)->getTexture();
 		FramedImage* img = mngr_->getComponent<FramedImage>(area);
+		SDL_Rect srcRect = img->getSrcRect();
+		if (mActive) {
+			img->updateCurrentFrame();
+		}
+		SDL_Rect trRect = tr->getRect();
+		trRect.x += offset->x;
+		trRect.y += offset->y;
+		textures[textureId]->render(srcRect, trRect, tr->getRotation());
+	}
+	//POTIONS
+	const auto& potions = mngr_->getEntities(_grp_POTIONAREA);
+	for (auto& potion : potions)
+	{
+		Transform* tr = mngr_->getComponent<Transform>(potion);
+		gameTextures textureId = mngr_->getComponent<RenderComponent>(potion)->getTexture();
+		FramedImage* img = mngr_->getComponent<FramedImage>(potion);
 		SDL_Rect srcRect = img->getSrcRect();
 		if (mActive) {
 			img->updateCurrentFrame();
@@ -412,6 +441,7 @@ void RenderSystem::update() {
 		if (fi != nullptr)textures[textureId]->render(srcRect, trRect, tr->getRotation(), nullptr,flip);
 		else textures[textureId]->render(trRect, tr->getRotation());
 		drawBarlife(t);
+		//SDL_RenderFillRect(sdlutils().renderer(), &trRect);
 	}
 
 	auto& naturalEffectsHigh = mngr_->getEntities(_grp_NATURALS_EFFECTS_HIGH);

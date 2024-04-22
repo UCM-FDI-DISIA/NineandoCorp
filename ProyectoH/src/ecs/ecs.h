@@ -114,6 +114,7 @@ enum grpId : grpId_type {
 	_grp_TEXTS,
 	_grp_HUD_DRAG_AND_DROP,
 	_grp_AREAOFATTACK,
+	_grp_POTIONAREA,
 	_grp_SPAWN,
 	_grp_NATURALS_EFFECTS_LOW,
 	_grp_NATURALS_EFFECTS_HIGH,

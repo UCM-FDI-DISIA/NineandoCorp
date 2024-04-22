@@ -14,6 +14,7 @@
 #include "../components/IconComponent.h"
 #include "../components/GolemComponent.h"
 #include "../components/MuerteComponent.h"
+#include "../components/PotionComponent.h"
 #include "../components/LimitedTime.h"
 #include "../sdlutils/SDLUtils.h"
 #include "../systems/EnemyBookSystem.h"
@@ -514,33 +515,46 @@ void EnemySystem::update()
 					if (muerte->getElapsedTime() > muerte->getThrowDuration()) {
 						Entity* potionProjectile = muerte->ThrowPotion(ac->getTarget(), e, 1500, tr->getPosition(), slimeBulletTexture, { 25, 25});
 						muerte->setElapsedTime(0);
-
-						Message m;
-						m.id = _m_ADD_RECT;
-						m.rect_data.entity = potionProjectile;
-						m.rect_data.id = _DEATH;
-						mngr_->send(m, true);
-						cout << "Throwing\n";
 					}
 				}
 			}
-			//for (auto& p : proyectiles) {
-			//	Transform* t = mngr_->getComponent<Transform>(p);
-			//	EnemyProyectileComponent* epc = mngr_->getComponent<EnemyProyectileComponent>(p);
-			//	if (epc->getTarget() != nullptr && mngr_->isAlive(epc->getTarget())) {
-			//		FramedImage* fi = mngr_->getComponent<FramedImage>(epc->getTarget());
-			//		Transform* targetTR = mngr_->getComponent<Transform>(epc->getTarget());
-			//		Vector2D targetPos = *(targetTR->getPosition());
-			//		if (fi != nullptr) {
-			//			Vector2D offset = { (float)fi->getSrcRect().w / 4, (float)fi->getSrcRect().h / 4 };//Se dirige hacia el centro del rect
-			//			targetPos = targetPos + offset;
-			//		}
-			//		Vector2D myPos = *(t->getPosition());
-
-			//		epc->setDir();
-			//		t->translate();
-			//	}
-			//}
+			for (auto& p : proyectiles) {
+				Transform* t = mngr_->getComponent<Transform>(p);
+				EnemyProyectileComponent* epc = mngr_->getComponent<EnemyProyectileComponent>(p);
+				if (epc->getTarget() != nullptr && mngr_->isAlive(epc->getTarget()) == 1) {
+					FramedImage* fi = mngr_->getComponent<FramedImage>(epc->getTarget());
+					Transform* targetTR = mngr_->getComponent<Transform>(epc->getTarget());
+					Vector2D targetPos = *(targetTR->getPosition());
+					if (fi != nullptr) {
+						Vector2D offset = { (float)fi->getSrcRect().w / 5, (float)fi->getSrcRect().h / 5 };//Se dirige hacia el centro del rect
+						targetPos = targetPos + offset;
+					}
+					Vector2D myPos = *(t->getPosition());
+					if ((targetPos - myPos).magnitude() <= 5.0f) {
+						Entity* area = mngr_->addEntity(_grp_POTIONAREA);
+						Transform* ptr = mngr_->addComponent<Transform>(area);
+						Vector2D scale = { 250, 200 };
+						ptr->setScale(scale);
+						Vector2D pos = { t->getPosition()->getX() - scale.getX() / 2, t->getPosition()->getY() - scale.getY() / 4 };
+						ptr->setPosition(pos);
+						mngr_->addComponent<RenderComponent>(area, slimeArea);
+						mngr_->addComponent<FramedImage>(area, 9, 1, 500, 400, 0, 4, 8);
+						mngr_->addComponent<PotionComponent>(area, 5);
+						Message m;
+						m.id = _m_ADD_RECT;
+						m.rect_data.entity = area;
+						m.rect_data.id = _POTIONRECT;
+						mngr_->send(m);
+						mngr_->setAlive(p, false);
+						cout << "Collided\n";
+					}
+					else {
+						epc->setDir();
+						t->translate();
+					}
+					
+				}
+			}
 		}
 		for (auto e : genemies) {
 			RouteComponent* rc2 = mngr_->getComponent<RouteComponent>(e);
