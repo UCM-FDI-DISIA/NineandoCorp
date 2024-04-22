@@ -75,6 +75,7 @@ void CollisionSystem::removeRect(Entity* rect, rectId id) {
 		break;
 	case _SLIME:
 		slimeRects_.erase(find(slimeRects_.begin(), slimeRects_.end(), rect));
+		mngr_->setAlive(rect, false);
 		break;
 	case _ENEMY:
 		enemyRects_.erase(find(enemyRects_.begin(), enemyRects_.end(), rect));
@@ -105,7 +106,6 @@ void CollisionSystem::update() {
 	if (mActive) {
 
 		const float timeInterval = 0.25f;
-		const auto& slimes = mngr_->getEntities(_grp_AREAOFATTACK);
 		const auto& enemies = mngr_->getHandler(_hdlr_ENEMIES);
 		const auto& lowTowers = mngr_->getHandler(_hdlr_LOW_TOWERS);
 		const auto& highTowers = mngr_->getHandler(_hdlr_HIGH_TOWERS);
@@ -229,7 +229,7 @@ void CollisionSystem::update() {
 			}
 
 
-			for (const auto& sr : slimes) {
+			for (const auto& sr : slimeRects_) {
 
 				SlimeBullet* sb = mngr_->getComponent<SlimeBullet>(sr);
 				if (sb != nullptr) {
@@ -244,7 +244,7 @@ void CollisionSystem::update() {
 							m.entity_to_attack.targetId = _hdlr_ENEMIES;
 							m.entity_to_attack.e = er;
 							m.entity_to_attack.src = sr;
-							m.entity_to_attack.damage = sb->getDPS() / timeInterval;
+							m.entity_to_attack.damage = sb->getDPS() * timeInterval;
 							mngr_->send(m);
 							Message m1;
 							m1.id = _m_DECREASE_SPEED;
@@ -252,15 +252,7 @@ void CollisionSystem::update() {
 							m1.decrease_speed.slowPercentage = sb->getSpeedDecrease();
 							mngr_->send(m1);
 						}
-					}
-					sb->setElapsedDuration(sb->getElapsedDuration() + game().getDeltaTime());
-					if (sb->getElapsedDuration() > sb->getDuration()) {
-						Message m;
-						m.id = _m_RESET_SPEED;
-						m.reset_speed.speed = 0.0f;
-						mngr_->send(m);
-						mngr_->setAlive(sr, false);
-					}
+					}					
 				}
 			}
 		}
@@ -447,6 +439,19 @@ void CollisionSystem::update() {
 			if (lt->getCurrTime() > lt->getLifeTime()) {
 				removeRect(f, _FIELD);
 				mngr_->setAlive(f, false);
+			}
+		}
+
+		for (auto& s: slimeRects_)
+		{
+			SlimeBullet* sb = mngr_->getComponent<SlimeBullet>(s);
+			sb->setElapsedDuration(sb->getElapsedDuration() + game().getDeltaTime());
+			if (sb->getElapsedDuration() > sb->getDuration()) {
+				Message m;
+				m.id = _m_RESET_SPEED;
+				m.reset_speed.speed = 0.0f;
+				mngr_->send(m);
+				removeRect(s, _SLIME);
 			}
 		}
 

@@ -85,7 +85,7 @@ void UpgradeTowerComponent::levelUp() {
 
 			switch (currentLevel_) {
 			case 2:
-				st->setTimeToShoot(st->getTimeToShoot() - sdlutils().floatConst().at("SlimeRecargaUpdate"));
+				st->setReloadTime(st->getReloadTime() - sdlutils().floatConst().at("SlimeRecargaUpdate"));
 				break;
 			case 3:
 				st->setSpeedDecrease(sdlutils().floatConst().at("SlimeRalentizacion"));

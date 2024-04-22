@@ -69,6 +69,7 @@ protected:
 	/// <param name="spawnPos">Posicion de spawn, que deberia ser la de la posicion del canon de la torre</param>
 	Entity* shootBullet(Entity* target, Entity* src, float damage, float speed, Vector2D spawnPos, gameTextures texture,Vector2D bulletScale, twrId id, hdlrId srcId);
 	Entity* addShield(Vector2D pos);	
+	void addSlimeArea(Entity* t);
 	void createShieldExplosion(Vector2D pos);
 	void createBulletExplosion(Vector2D pos);
 	void createHitAnim(Vector2D pos);

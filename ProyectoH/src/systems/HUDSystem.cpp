@@ -498,7 +498,7 @@ void HUDSystem::showUpgradeMenu(Entity* twr, const Vector2D& pos) {
 
 	if (bt != nullptr) { range = bt->getRange(); damage = bt->getDamage(); reloadTime = bt->getReloadTime(); }
 	else if (ds != nullptr) { range = ds->getRange(); damage = ds->getDamage(); reloadTime = ds->getReloadTime(); }
-	else if (st != nullptr) { range = st->getRange(); damage = st->getDamage(); reloadTime = st->getReloadTime(); }
+	else if (st != nullptr) { range = st->getRange(); damage = st->getDPS(); reloadTime = st->getReloadTime(); }
 	else if (ft != nullptr) { range = ft->getRange(); damage = ft->getDamage(); reloadTime = ft->getCoolingTime(); }
 	else if (et != nullptr) { range = et->getRange(); }
 	else if (dt != nullptr) { range = dt->getRange(); }

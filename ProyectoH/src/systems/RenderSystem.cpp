@@ -356,23 +356,6 @@ void RenderSystem::update() {
 		textures[textureId]->render(srcRect, trRect);
 	}
 
-	//AREA OF ATTACK (SLIME AND FENIX)
-	const auto& areas = mngr_->getEntities(_grp_AREAOFATTACK);
-	for (auto& area : areas)
-	{
-		Transform* tr = mngr_->getComponent<Transform>(area);
-		gameTextures textureId = mngr_->getComponent<RenderComponent>(area)->getTexture();
-		FramedImage* img = mngr_->getComponent<FramedImage>(area);
-		SDL_Rect srcRect = img->getSrcRect();
-		if (mActive) {
-			img->updateCurrentFrame();
-		}
-		SDL_Rect trRect = tr->getRect();
-		trRect.x += offset->x;
-		trRect.y += offset->y;
-		textures[textureId]->render(srcRect, trRect, tr->getRotation());
-	}
-
 	auto& naturalEffects = mngr_->getEntities(_grp_NATURALS_EFFECTS_LOW);
 	sort(naturalEffects.begin(), naturalEffects.end(), cmpIsometricY(mngr_));
 	for (auto& t : naturalEffects) {

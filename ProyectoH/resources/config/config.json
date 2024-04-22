@@ -705,7 +705,7 @@
 
     {
       "id": "SlimeRecargaUpdate",
-      "value": 2
+      "value": 2.0
     },
     {
       "id": "SlimeRalentizacion",
@@ -713,7 +713,7 @@
     },
     {
       "id": "SlimeTiempoSlime",
-      "value": 0.5
+      "value": 2.0
     },
     {
       "id": "SlimeVelocidad",
@@ -1194,7 +1194,7 @@
     },
     {
       "id": "SlimeDPS",
-      "value": 1
+      "value": 4
     },
 
     {

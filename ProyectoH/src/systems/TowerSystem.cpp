@@ -224,9 +224,6 @@ void TowerSystem::onAttackTower(Entity* e, int dmg, Entity* src) {
 				clearShieldsArea(e);
 				removeTower(e);
 				//std::cout << "Torre eliminada-TorresTotales: " << towers.size() << std::endl;
-				
-
-
 			}
 			else if (s->getShield() > 0) {
 				if (s->getShield() - dmg <= 0) {
@@ -406,7 +403,7 @@ void TowerSystem::update() {
 					SlimeTowerComponent* st = mngr_->getComponent<SlimeTowerComponent>(t);
 					if (st != nullptr) {
 						st->setElapsedTime(st->getElapsedTime() + game().getDeltaTime());//Lo pasa a segundos
-						if (st->getElapsedTime() > st->getTimeToShoot()) {
+						if (st->getElapsedTime() > st->getReloadTime()) {
 							st->targetFromGroup(mngr_->getHandler(_hdlr_ENEMIES));
 							if (st->getTarget() != nullptr) {
 								Vector2D offset{ floatAt("DiegoSniperOffset"),  floatAt("DiegoSniperOffset") };
@@ -535,7 +532,6 @@ void TowerSystem::update() {
 			for (auto& b : bullets) {
 				Transform* t = mngr_->getComponent<Transform>(b);
 				BulletComponent* bc = mngr_->getComponent<BulletComponent>(b);
-				SlimeBullet* sb = mngr_->getComponent<SlimeBullet>(b);
 				FramedImage* fi = mngr_->getComponent<FramedImage>(bc->getTarget());
 				Transform* targetTR = mngr_->getComponent<Transform>(bc->getTarget());
 				Vector2D targetPos = *(targetTR->getPosition());
@@ -546,17 +542,7 @@ void TowerSystem::update() {
 				Vector2D myPos = *(t->getPosition());
 
 				if (((targetPos - myPos).magnitude() <= 5.0f)) { //Si choca con el enemigo
-					if (sb != nullptr) {
-						Entity* area = mngr_->addEntity(_grp_AREAOFATTACK);
-						Transform* tr = mngr_->addComponent<Transform>(area);
-						Vector2D scale = { 250, 200 };
-						tr->setScale(scale);
-						Vector2D pos = { t->getPosition()->getX() - scale.getX() / 2, t->getPosition()->getY() - scale.getY() / 4 };
-						tr->setPosition(pos);
-						mngr_->addComponent<RenderComponent>(area, slimeArea);
-						mngr_->addComponent<FramedImage>(area, 9, 1, 500, 400, 0, 4, 8);
-						mngr_->addComponent<SlimeBullet>(area, sb->getDuration(), sb->getSpeedDecrease(), sb->getDPS());
-					}
+					addSlimeArea(b);//añade area si es bala de slime
 					bc->doDamageTo(bc->getTarget(), bc->getDamage());
 					createHitAnim(targetPos);
 					bc->onTravelEnds();
@@ -573,6 +559,25 @@ void TowerSystem::update() {
 }
 
 
+void TowerSystem::addSlimeArea(Entity* b) {
+	SlimeBullet* sb = mngr_->getComponent<SlimeBullet>(b);
+	Transform* t = mngr_->getComponent<Transform>(b);
+	if (sb != nullptr) {
+		Entity* area = mngr_->addEntity(_grp_NATURALS_EFFECTS_LOW);
+		Transform* tr = mngr_->addComponent<Transform>(area);
+		Vector2D scale = { 250, 170 };
+		tr->setScale(scale);
+		tr->setPosition(*(t->getPosition()) + Vector2D(-105, -60));
+		mngr_->addComponent<RenderComponent>(area, gameTextures::slimeArea);
+		mngr_->addComponent<FramedImage>(area, 9, 1, 500, 400, 0, 4, 8);
+		mngr_->addComponent<SlimeBullet>(area, sb->getDuration(), sb->getSpeedDecrease(), sb->getDPS());
+		Message m;
+		m.id = _m_ADD_RECT;
+		m.rect_data.entity = area;
+		m.rect_data.id = _SLIME;
+		mngr_->send(m);
+	}
+}
 
 
 Entity* TowerSystem::getFrontTower()
