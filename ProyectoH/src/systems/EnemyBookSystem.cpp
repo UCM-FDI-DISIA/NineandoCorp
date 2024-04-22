@@ -132,7 +132,11 @@ void EnemyBookSystem::EnemyPopUp(int i) {
 	bS->addImage(pAux, sAux + Vector2D{50,50}, 0.0, gameTextures::large_box, _grp_HUD_FOREGROUND);
 	bS->addImage(pAux, sAux,0.0,Texturas[i], _grp_HUD_FOREGROUND);
 	//AÑADIR NOMBRE
-	//bS->addText()
+	string nombre = "caballero";
+	pAux = Vector2D{ 700,420 };
+	sAux = Vector2D{ 120,100};
+	SDL_Color NombreColor = { 255, 255, 255, 255 };
+	bS->addText(nombre,NombreColor,pAux,sAux);
 		//bS->addText(std::to_string(sdlutils().intConst().at("BalasPrecio")), moneyColor, { xAux * ((int)_twr_BULLET + 1) - 20 , heightH + 67 }, { bSize.getX() / 2 , 30 });
 
 }
