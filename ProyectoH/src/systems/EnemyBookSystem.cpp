@@ -61,11 +61,14 @@ void EnemyBookSystem::initSystem() {
 		Vector2D pAux = { contentPosX + t * spacingX, contentPosY };
 		Vector2D sAux = { contentWidth, contentHeight };
 		Vector2D sAuxbox = { contentWidth + 15, contentHeight + 15 };
+		Message m;
+		m.id = _m_ENEMY_BOOKPOPUP;
+		m.start_enemy_book_but.n = i;
 		if (Vistos[i] == true)
 		{
 			text = Texturas[i];
 			bS->addImage(pAux, sAuxbox, 0.0, gameTextures::large_box, _grp_HUD_FOREGROUND);
-			bS->addButton(pAux, sAux, text, text, ButtonTypes::enemybook);
+			bS->addButton(pAux, sAux, text, text, ButtonTypes::enemybook,0,0,0,m);
 
 		}
 		else {
@@ -81,5 +84,26 @@ void EnemyBookSystem::initSystem() {
 		}
 	}
 }
+void  EnemyBookSystem::receive(const Message& m) {
+	switch (m.id)
+	{
+	case _m_ENEMY_BOOKPOPUP:
+		EnemyPopUp(m.start_enemy_book_but.n);
+		break;
+	default:
+		break;
+	}
+}
 void EnemyBookSystem::EnemyPopUp(int i) {
+	//desactivar otros botones(buttonsystem)
+	ButtonSystem* bS = mngr_->getSystem<ButtonSystem>();
+	//BACKGROUND
+	Vector2D pAux = { sdlutils().width() / 4.0f, sdlutils().height() / 4.0f };
+	Vector2D sAux = { 1000.0f , 600.0f };
+	bS->addImage(pAux, sAux, 0.0, gameTextures::large_box, _grp_HUD_FOREGROUND);
+
+	pAux = pAux + Vector2D(430.0f, -230.0f);
+	sAux = { 70.0f, 70.0f };
+	bS->addButton(pAux, sAux, gameTextures::close, gameTextures::close_hover, ButtonTypes::back_selector);
+
 }
