@@ -1119,7 +1119,7 @@
 
     {
       "id": "BalasVida",
-      "value": 50000
+      "value": 50
     },
     {
       "id": "BalasPrecio",
@@ -1441,7 +1441,7 @@
               "grupo1": {
                 "spawn": "1",
                 "typeEnemy": [
-                  "muerte",
+                  "maldito",
                   "goblin",
                   "elfos"
                 ],

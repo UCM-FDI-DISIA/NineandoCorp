@@ -28,7 +28,7 @@ void AttackComponent::targetFromGroup(const std::list<Entity*>& targetGroup) {//
 		double closestTarget = INT32_MAX;
 		for (const auto& target : targetGroup)
 		{
-			if (mngr_->hasComponent<Transform>(target) && target != ent_) {
+			if (mngr_->hasComponent<Transform>(target)) {
 				float distance = getDistance(mngr_->getComponent<Transform>(target)->getPosition());
 				if (distance < range_ && distance < closestTarget) {//Si esta en rango y es el enemigo mas cercano
 					target_ = target;

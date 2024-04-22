@@ -394,11 +394,11 @@
             "file": "resources/images/UI/acelerate_x1_button_hover.png"
         },
         {
-            "id": "acelerate_x1.5",
+            "id": "acelerate_x1_5",
             "file": "resources/images/UI/acelerate_x1.5_button.png"
         },
         {
-            "id": "acelerate_x1.5_hover",
+            "id": "acelerate_x1_5_hover",
             "file": "resources/images/UI/acelerate_x1.5_button_hover.png"
         },
         {
@@ -412,10 +412,6 @@
         {
           "id": "life",
           "file": "resources/images/UI/life.png"
-        },
-        {
-          "id": "life_background",
-          "file": "resources/images/UI/LifeBar/fondoVida.png"
         },
         {
             "id": "close",
@@ -843,12 +839,8 @@
             "file": "resources/images/UI/resolution3.png"
         },
         {
-          "id": "resolution3_hover",
-          "file": "resources/images/UI/resolution3_hover.png"
-        },
-        {
-          "id": "pocion",
-          "file": "resources/images/Enemies/pocion_letal.png"
+            "id": "resolution3_hover",
+            "file": "resources/images/UI/resolution3_hover.png"
         }
 
     ],
@@ -872,6 +864,18 @@
    {
     "id": "title_text",
     "text": "Proyecto H Defense",
+    "font": "ARIAL_ROUNDED",
+    "color": "0xffffffff"
+   },
+   {
+    "id": "general_text",
+    "text": "GENERAL",
+    "font": "ARIAL_ROUNDED",
+    "color": "0xffffffff"
+   },
+   {
+    "id": "sounds_text",
+    "text": "SOUNDS",
     "font": "ARIAL_ROUNDED",
     "color": "0xffffffff"
    }
@@ -939,7 +943,6 @@
       "file": "resources/sound/Torres/TorrePotenciadoraDrop.mp3"
     },
     {
-
       "id": "TorreDiegoSniperDisparo",
       "file": "resources/sound/Torres/TorreDiegoSniperDisparo.mp3"
     },

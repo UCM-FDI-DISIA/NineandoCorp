@@ -30,8 +30,6 @@ protected:
 	std::vector<Entity*> tornadoRects_;
 	std::vector<Entity*> tsunamiRects_;
 	std::vector<Entity*> fieldRects_;
-	std::vector<Entity*> deathRects_;
-	std::vector<Entity*> potionRects_;
 
 	bool mActive;
 };

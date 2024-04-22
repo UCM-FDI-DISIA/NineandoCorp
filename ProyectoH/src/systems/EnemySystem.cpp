@@ -13,12 +13,9 @@
 #include "../components/AngelComponent.h"
 #include "../components/IconComponent.h"
 #include "../components/GolemComponent.h"
-#include "../components/MuerteComponent.h"
-#include "../components/PotionComponent.h"
 #include "../components/LimitedTime.h"
 #include "../sdlutils/SDLUtils.h"
 #include "../systems/EnemyBookSystem.h"
-#include "..//components/EnemyProyectileComponent.h"
 
 
 EnemySystem::EnemySystem() :mActive(true), generateEnemies_(false), stopGenerate(false), wave(1), level(1) {
@@ -308,8 +305,6 @@ void EnemySystem::update()
 		const auto& enemies = mngr_->getHandler(_hdlr_ENEMIES);
 		const auto& genemies = mngr_->getHandler(_hdlr_GHOST_ENEMIES);
 		const auto& towers = mngr_->getHandler(_hdlr_LOW_TOWERS);
-		const auto& proyectiles = mngr_->getEntities(_grp_ENEMY_PROYECTILE);
-
 		if (generateEnemies_) {
 			if (enemies.empty() && stopGenerate && genemies.empty()) {
 				if (wave > sdlutils().waves().at("nivel" + std::to_string(level))) {
@@ -362,7 +357,6 @@ void EnemySystem::update()
 			EnemyTypeComponent* etc = mngr_->getComponent<EnemyTypeComponent>(e);
 			PrincipitoComponent* pc = mngr_->getComponent<PrincipitoComponent>(e);
 			MensajeroMuerteComponent* mm = mngr_->getComponent<MensajeroMuerteComponent>(e);
-			MuerteComponent* muerte = mngr_->getComponent<MuerteComponent>(e);
 			MonjeComponent* mj = mngr_->getComponent<MonjeComponent>(e);
 			Transform* tr = mngr_->getComponent<Transform>(e);
 			FramedImage* fi = mngr_->getComponent<FramedImage>(e);
@@ -390,8 +384,6 @@ void EnemySystem::update()
 				acc->setTime(game().getDeltaTime() + acc->getElapsed());
 				if (acc->getElapsed() >= acc->getReload() - 0.5) {
 					mc->setStop(true);
-					ac->setAttack(true);
-					changeAnimation(ac->getAttack(), e);
 				}
 				if (acc->getElapsed() >= acc->getReload()) {
 					acc->inRange(enemies);
@@ -507,7 +499,6 @@ void EnemySystem::update()
 					}
 				}
 			}
-
 			// Muerte
 			if (muerte != nullptr && ac != nullptr) {
 				muerte->setElapsedTime(muerte->getElapsedTime() + game().getDeltaTime());
@@ -517,8 +508,7 @@ void EnemySystem::update()
 						muerte->setElapsedTime(0);
 					}
 				}
-			}
-			
+			}			
 		}
 		for (auto e : genemies) {
 			RouteComponent* rc2 = mngr_->getComponent<RouteComponent>(e);

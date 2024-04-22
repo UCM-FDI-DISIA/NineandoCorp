@@ -61,11 +61,8 @@ enum cmpId : cmpId_type {
 	_TOWER,
 	_MUERTE,
 	_CMALDITO,
-	_POTION,
-	_ENEMYPROYECTILE,
 	_LOCK,
 	_SLIDER,
-
 
 
 	// do not remove this
@@ -108,13 +105,11 @@ enum grpId : grpId_type {
 	_grp_TILES_L3,
 	_grp_TOWERS_AND_ENEMIES,
 	_grp_BULLETS,
-	_grp_ENEMY_PROYECTILE,
 	_grp_HUD_BACKGROUND,
 	_grp_HUD_FOREGROUND,
 	_grp_TEXTS,
 	_grp_HUD_DRAG_AND_DROP,
 	_grp_AREAOFATTACK,
-	_grp_POTIONAREA,
 	_grp_SPAWN,
 	_grp_NATURALS_EFFECTS_LOW,
 	_grp_NATURALS_EFFECTS_HIGH,
@@ -177,9 +172,6 @@ enum rectId : rectId_type {
 	_TSUNAMI,
 	_FIELD,
 	_BULLETS,
-	_DEATH,
-	_POTIONRECT,
-
 
 	_LAST_RECT_ID
 };
@@ -236,10 +228,8 @@ enum msgId : msgId_type {
 	_m_EXIT_UP_MENU,
 	_m_SELL_TOWER,
 	_m_ENEMY_DIED,
-	_m_ACTIVATE_ATTACK_TOWERS,
 	_m_TOWER_DIED,
 	_m_CHANGE_RESOLUTION
-
 };
 
 using twrId_type = uint8_t;
@@ -251,7 +241,7 @@ enum twrId : twrId_type {
 	_twr_DIEGO,
 	_twr_POWER,
 	_twr_CRISTAL,
-	_twr_NEXUS,		// ï¿½?ï¿½?ï¿½ QUITAR
+	_twr_NEXUS,		// ¿?¿?¿ QUITAR
 	_twr_SIZE
 };
 using enmId_type = uint8_t;
@@ -305,7 +295,7 @@ enum gameTextures {
 	//enemies
 	goblin, maldito, elfo, golem, angel, maestro, acechante, defensor, demonioAlado,
 	demonioInfernal, mensajero, CMaldito, principito, monje, muerte, elfo_attack, angel_attack, maestro_attack, defensor_attack, 
-	demonioAlado_attack, mensajero_attack, principito_attack, monje_attack, muerte_attack, acechante_attack, maldito_attack, goblin_attack, force_field, pocion,
+	demonioAlado_attack, mensajero_attack, principito_attack, monje_attack, muerte_attack, acechante_attack, maldito_attack, goblin_attack, force_field,
 	//enemies icons
 	goblin_icon, maldito_icon, elfo_icon, golem_icon, angel_icon, maestro_icon, acechante_icon, defensor_icon,
 	demonioAlado_icon, demonioInfernal_icon, mensajero_icon, CMaldito_icon, principito_icon, monje_icon, muerte_icon,
@@ -314,7 +304,7 @@ enum gameTextures {
 
 	//others
     meteorites, earthquake,tornado,thunder, tsunami,cloud,
-	bulletTexture, sniperBulletTexture, slimeBulletTexture,
+	bulletTexture, sniperBulletTexture, slimeBulletTexture, 
 	slimeArea, shield, hpIcon, blindedIcon, lightningIcon, powerIcon, monedaH, rangeCircle, monedaDorada,enemy_spawn,
 
 	//explosions
@@ -567,19 +557,11 @@ struct Message {
 		int Hmoney;
 	}save_data;
 	//_m_SAVE_GAME
-
-
-	//_m_ACTIVATE_ATTACK_TOWERS
-	struct {
-		Entity* attackTower;
-		float attackingTime;
-	}attack_towers_data;
-
 	struct 
 	{
 		int resolutions;
 	}settings_data;
-
+	
 };
 
 #endif // !ECS_H_
