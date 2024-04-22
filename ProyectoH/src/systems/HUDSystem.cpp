@@ -539,66 +539,77 @@ void HUDSystem::showUpgradeMenu(Entity* twr, const Vector2D& pos) {
 	*/
 	SDL_Color c1 = { 255, 255,255,255 };
 	basic_string tName = getTowerName(upCmp->id_);
-
+	Vector2D namePos = Vector2D(posA.getX() - tName.size() / 2, posA.getY() - (bgScale.getY() / 2) + 60);
+	Vector2D nameScale = { 17.0f * tName.size(), 40 };
 	upM_.twrName = bS->addText(tName, c1,
-		Vector2D(posA.getX() - tName.size() / 2, posA.getY() - (bgScale.getY() / 2) + 60) + offset,
-		{ 17.0f * tName.size(), 40 }
+		 namePos + offset,
+		nameScale
 	);
 
 	#pragma region TOWER STATS
-	Vector2D relativePos = {};
-		
 	/**
 	*	FRAME
 	*/
-	Vector2D fScale = { bgScale.getX() / 2,0 };
-	//upM_.frame = bS->addImage();
+	Vector2D fScale = { bgScale.getX() / 2 , (bgScale.getY() - nameScale.getY() * 2) - 20};
+	Vector2D framePos = {(posA.getX() - bgScale.getX() / 4) + 20, posA.getY() + 30};
+		
+	upM_.frame = bS->addImage(framePos + offset, fScale, 0, gameTextures::white_frame, grpId::_grp_HUD_FOREGROUND);
 
+	//Offset en eje y para los textos en relacion al frame
+	float hOffset = (framePos.getY() - (framePos.getY() - fScale.getY() / 2) ) / 3;
 
-	/**
-	*	TEXTO DE VIDA
-	*/
-	
-	Vector2D lvlPos3 = { pos.getX() + 185 + cameraOffset_->x , pos.getY() + 40 + cameraOffset_->y };
-	Vector2D lvlScale3 = { 90.0f, 35.0f };
-	upM_.hpText = bS->addText("HP: " + to_string((int)hpCmp->getHealth()), c1, lvlPos3 + offset, lvlScale3);
-	/**
-	*	TEXTO DE DANO
-	*/
-	Vector2D lvlPos4 = { pos.getX() + 195 + cameraOffset_->x , pos.getY() + 10 + cameraOffset_->y };
-	Vector2D lvlScale4 = { 100.0f, 35.0f };
-	upM_.damageText = bS->addText("DMG: " + to_string((int)damage), c1, lvlPos4 + offset, lvlScale4);
-	/**
-	*	TEXTO DE RECARGA
-	*/
-	Vector2D lvlPos5 = { pos.getX() + 210 + cameraOffset_->x , pos.getY() + -20 + cameraOffset_->y };
-	Vector2D lvlScale5 = { 130.0f, 35.0f };
-	upM_.reloadText = bS->addText("RELOAD: " + to_string((int)reloadTime), c1, lvlPos5 + offset, lvlScale5);
+	//Coordenada x para que todos los textos esten alineados
+	float coord_texts_x = framePos.getX() - fScale.getX() / 2 + 60;
+
+	//tamaño de la fuente
+	Vector2D fontSize = { 20.0f, 35.0f };
+
 	/**
 	*	TEXTO DE NIVEL
 	*/	
-	Vector2D lvlPos1 = { pos.getX() + 170 + cameraOffset_->x , pos.getY() + 70 + cameraOffset_->y};
 	Vector2D lvlScale1 = { 60.0f, 35.0f };
+	Vector2D lvlPos1 = { coord_texts_x, framePos.getY() - (2 * hOffset) };
 	upM_.twrLvl = bS->addText("LVL: ", c1, lvlPos1 + offset, lvlScale1);
 	
 	/**
 	*	TEXTO DE NUMERO
 	*/
 	SDL_Color c2 = { 220, 220, 220, 255 };
-	Vector2D lvlPos2 = { pos.getX() + 220 + cameraOffset_->x , pos.getY() + 70 + cameraOffset_->y };
 	Vector2D lvlScale2;
 		//Comprobacion de nivel para nivel maximo
-	std::string lvltxt;
+	basic_string lvltxt = "";
 	if (upCmp->isMaxLeveled() && upCmp->getLevel() == 4) { 
-		lvlScale2 = { 60.0f, 35.0f };
+		
 		lvltxt = "MAX."; 
 	}
 	else {
-		lvlScale2 = { 20.0f, 35.0f };
 		lvltxt = std::to_string(upCmp->getLevel());
 	}
+	lvlScale2 = { (float)lvltxt.size() * 20, 35.0f };
+	Vector2D lvlPos2 = { lvlPos1.getX()  + lvlScale2.getX() + 30  , lvlPos1.getY()};
 
 	upM_.lvlText = bS->addText(lvltxt, c1, lvlPos2 + offset, lvlScale2);
+
+	/**
+	*	TEXTO DE VIDA
+	*/
+	Vector2D hpScale = { 90.0f, 35.0f };
+	Vector2D hpPos = { coord_texts_x + hpScale.getX() / 4 - 7, framePos.getY() - hOffset + 17};
+	upM_.hpText = bS->addText("HP: " + to_string((int)hpCmp->getHealth()), c1, hpPos + offset, hpScale);
+
+	/**
+	*	TEXTO DE DANO
+	*/
+	Vector2D dmgScale = { 100.0f, 35.0f };
+	Vector2D dmgPos = { coord_texts_x + dmgScale.getX() / 4 - 3, framePos.getY() + hOffset - 17};
+	upM_.damageText = bS->addText("DMG: " + to_string((int)damage), c1, dmgPos + offset, dmgScale);
+
+	/**
+	*	TEXTO DE RECARGA
+	*/
+	Vector2D relScale = { 130.0f, 35.0f };
+	Vector2D relPos = { coord_texts_x + relScale.getX() / 4 + 7, framePos.getY() + (2 * hOffset)};
+	upM_.reloadText = bS->addText("RELOAD: " + to_string((int)reloadTime), c1, relPos + offset, relScale);
 
 
 #pragma endregion
@@ -609,7 +620,7 @@ void HUDSystem::showUpgradeMenu(Entity* twr, const Vector2D& pos) {
 	Message m;
 	m.id = _m_UPGRADE_TWR_INGAME;
 	m.upgrade_twr_ingame_data.upCmp = twr;
-	Vector2D posB = { pos.getX() + 390 + cameraOffset_->x, pos.getY() + 85 + cameraOffset_->y };
+	Vector2D posB = { posA.getX() + bgScale.getX() / 4, pos.getY() + 85 + cameraOffset_->y};
 	upM_.upgradeButton = bS->addButton(posB + offset, 
 		{ 150.0f, 60.0f },
 		upgrade, upgrade_hover, ButtonTypes::upgrade_tower, 0,0,0,
@@ -620,11 +631,11 @@ void HUDSystem::showUpgradeMenu(Entity* twr, const Vector2D& pos) {
 	/**
 	*	TEXTO DE COSTE DE MEJORA
 	*/
-	Vector2D posM = { pos.getX() + 170 + cameraOffset_->x , pos.getY() + 100 + cameraOffset_->y };
 	int upCost = upCmp->getUpgradeCost();
 	basic_string cost_s = std::to_string(upCost);
 	Vector2D scaleM = { 20.0f * cost_s.size(), 45 };
 
+	Vector2D posM = { pos.getX() + 170 + cameraOffset_->x , pos.getY() + 100 + cameraOffset_->y };
 	upM_.upCost = bS->addText(cost_s, c1, posM + offset, scaleM);
 
 	/**
@@ -644,7 +655,7 @@ void HUDSystem::showUpgradeMenu(Entity* twr, const Vector2D& pos) {
 	m1.id = _m_SELL_TOWER;
 	m1.sell_tower_data.twr = tower_;
 
-	Vector2D posC = { pos.getX() + 390 + cameraOffset_->x, pos.getY() + cameraOffset_->y };
+	Vector2D posC = { posA.getX() + bgScale.getX() / 4, pos.getY() + cameraOffset_->y };
 	upM_.sellButton = bS->addButton(posC + offset,
 		{ 150.0f, 60.0f },
 		sell, sell_hover, ButtonTypes::sell_tower, 0,0,0,
