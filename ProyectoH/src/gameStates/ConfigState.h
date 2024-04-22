@@ -8,7 +8,9 @@
 class ConfigState : public GameState
 {
 public:
-	ConfigState(Manager* mngr);
+	ConfigState(Manager* mngr, bool isPlayState);
 	virtual ~ConfigState();
+private:
+	bool isPlayState;
 };
 

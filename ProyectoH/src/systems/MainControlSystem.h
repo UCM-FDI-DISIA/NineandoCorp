@@ -19,6 +19,7 @@ public:
 
 protected:
 	bool nexusIsAlive_;
+	bool isPlaying;
 	int numDoradasPorSegundo;
 	int coinsH = 0;
 	int enemiesDefeated = 0;

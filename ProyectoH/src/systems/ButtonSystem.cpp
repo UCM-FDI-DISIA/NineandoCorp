@@ -245,6 +245,7 @@ void ButtonSystem::sellTower(Entity* twr)
 		case back_selector:
 			backToMainMenu();
 			sdlutils().soundEffects().at("button").play(0, 1);
+			
 			break;
 		case config:
 			Config();
@@ -469,9 +470,9 @@ void ButtonSystem::sellTower(Entity* twr)
 	}
 	void ButtonSystem::backToMainMenu() {
 		mngr_->getComponent<TextComponent>(moneyText_)->isActive = true;
-		Message m;
-		m.id = _m_BACK_TO_MAINMENU;
-		mngr_->send(m);
+		Message m1;
+		m1.id = _m_BACK_TO_MAINMENU;
+		mngr_->send(m1);
 	}
 	void ButtonSystem::startGame(Entity* bC) {
 		auto butC = mngr_->getComponent<ButtonComponent>(bC);

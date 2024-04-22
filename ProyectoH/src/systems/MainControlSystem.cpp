@@ -1,6 +1,6 @@
 #include "MainControlSystem.h"
 
-MainControlSystem::MainControlSystem(int currentLevel) :nexusIsAlive_(false), currentLevel(currentLevel)
+MainControlSystem::MainControlSystem(int currentLevel) :nexusIsAlive_(false),isPlaying(false), currentLevel(currentLevel)
 {
 	std::fill_n(enemiesSaw, _enm_SIZE, false);
 }
@@ -12,6 +12,7 @@ void MainControlSystem::receive(const Message& m) {
 	switch (m.id) {
 	case _m_START_GAME:
 		nexusIsAlive_ = true;
+		isPlaying = true;
 		OnStartGame();
 		break;
 	case _m_ROUND_OVER:
@@ -33,7 +34,7 @@ void MainControlSystem::receive(const Message& m) {
 		enemiesSaw[m.start_enemy_book.n] = true;
 		break;
 	case _m_CONFIG:
-		game().pushState<ConfigState>(mngr_);
+		game().pushState<ConfigState>(mngr_, isPlaying);
 		break;
 	case _m_BACK_TO_MAINMENU:
 		game().SetDelay(1.0f);
@@ -63,6 +64,7 @@ void MainControlSystem::receive(const Message& m) {
 		break;
 	case _m_START_MENU:
 		turrentLevels_ = game().getSaveGame()->getTurretsLevels();
+		isPlaying = false;
 		break;
 	case _m_WAVE_START:
 		if (m.start_wave.play) {
