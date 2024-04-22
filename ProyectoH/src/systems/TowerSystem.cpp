@@ -74,6 +74,12 @@ void TowerSystem::receive(const Message& m) {
 			else if (st != nullptr && st->getTarget() == m.return_entity.ent) { st->setTarget(nullptr); }
 		}
 		break;
+	case _m_ACTIVATE_ATTACK_TOWERS:
+		if (mngr_->isAlive(m.attack_towers_data.attackTower) == 1) {
+			TowerStates* ts = mngr_->getComponent<TowerStates>(m.attack_towers_data.attackTower);
+			if (ts != nullptr)ts->setConfundido(true, m.attack_towers_data.attackingTime);
+		}
+		break;
 	case _m_SELL_TOWER:
 		Message m1;
 		m1.id = _m_ADD_MONEY;
@@ -285,7 +291,13 @@ void TowerSystem::update() {
 					}
 				}
 			}
-
+			if (tw->getConfundido()) {
+				tw->setElapsedConfundido(tw->getElapsedConfundido() + game().getDeltaTime());
+				if (tw->getElapsedConfundido() > tw->getTiempoConfundido()) {
+					tw->setConfundido(false, tw->getTiempoConfundido());
+					tw->setElapsedConfundido(0);
+				}
+			}
 
 			if (tw->getCegado()) {//si esta cegada
 				tw->setElapsed(tw->getElapsed() + game().getDeltaTime());

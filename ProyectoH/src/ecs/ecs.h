@@ -116,7 +116,8 @@ enum grpId : grpId_type {
 	_grp_NATURALS_EFFECTS_LOW,
 	_grp_NATURALS_EFFECTS_HIGH,
 	_grp_ICONS,
-	_grp_ENEMYPROYECTILES,
+	_grp_ENEMY_PROYECTILE,
+	_grp_POTIONAREA,
 	
 	// do not remove this
 	_LAST_GRP_ID
@@ -175,7 +176,7 @@ enum rectId : rectId_type {
 	_TSUNAMI,
 	_FIELD,
 	_BULLETS,
-	_POTION,
+	_POTIONRECT,
 
 	_LAST_RECT_ID
 };
@@ -233,7 +234,8 @@ enum msgId : msgId_type {
 	_m_SELL_TOWER,
 	_m_ENEMY_DIED,
 	_m_TOWER_DIED,
-	_m_CHANGE_RESOLUTION
+	_m_CHANGE_RESOLUTION,
+	_m_ACTIVATE_ATTACK_TOWERS
 };
 
 using twrId_type = uint8_t;
@@ -299,7 +301,7 @@ enum gameTextures {
 	//enemies
 	goblin, maldito, elfo, golem, angel, maestro, acechante, defensor, demonioAlado,
 	demonioInfernal, mensajero, CMaldito, principito, monje, muerte, elfo_attack, angel_attack, maestro_attack, defensor_attack, 
-	demonioAlado_attack, mensajero_attack, principito_attack, monje_attack, muerte_attack, acechante_attack, maldito_attack, goblin_attack, force_field,
+	demonioAlado_attack, mensajero_attack, principito_attack, monje_attack, muerte_attack, acechante_attack, maldito_attack, goblin_attack, force_field,pocion,
 	//enemies icons
 	goblin_icon, maldito_icon, elfo_icon, golem_icon, angel_icon, maestro_icon, acechante_icon, defensor_icon,
 	demonioAlado_icon, demonioInfernal_icon, mensajero_icon, CMaldito_icon, principito_icon, monje_icon, muerte_icon,
@@ -566,6 +568,11 @@ struct Message {
 		int resolutions;
 	}settings_data;
 	
+	//_m_ACTIVATE_ATTACK_TOWERS
+	struct {
+		float attackingTime;
+		Entity* attackTower;
+	}attack_towers_data;
 };
 
 #endif // !ECS_H_

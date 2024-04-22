@@ -2,6 +2,7 @@
 #include "..//components/SlimeBullet.h"
 #include "..//components/TowerStates.h"
 #include "..//components/LimitedTime.h"
+#include "..//components/PotionComponent.h"
 #include "../game/Game.h"
 
 CollisionSystem::CollisionSystem():fenixRects_(), slimeRects_(), enemyRects_() {
@@ -62,6 +63,9 @@ void CollisionSystem::addRect(Entity* rect, rectId id) {
 		case _FIELD:
 			fieldRects_.push_back(rect);
 			break;
+		case _POTIONRECT:
+			potionRects_.push_back(rect);
+			break;
 		default:
 			break;
 	}
@@ -97,6 +101,9 @@ void CollisionSystem::removeRect(Entity* rect, rectId id) {
 		break;
 	case _FIELD:
 		fieldRects_.erase(find(fieldRects_.begin(), fieldRects_.end(), rect));
+		break;
+	case _POTIONRECT:
+		potionRects_.erase(find(potionRects_.begin(), potionRects_.end(), rect));
 		break;
 	}
 	
@@ -332,7 +339,34 @@ void CollisionSystem::update() {
 					}
 				}
 			}
+			for (const auto& p : potionRects_) {
+				if (mngr_->isAlive(p) == 1) {
+					Transform* tr = mngr_->getComponent<Transform>(p);
+					SDL_Rect r = tr->getRect();
+					PotionComponent* pc = mngr_->getComponent<PotionComponent>(p);
 
+					if (pc != nullptr) {
+						Transform* towerTR = mngr_->getComponent<Transform>(t);
+						SDL_Rect towerRect = towerTR->getRect();
+						if (SDL_HasIntersection(&r, &towerRect) && !pc->hasPotionSpawned()) {
+							Message m;
+							m.id = _m_ACTIVATE_ATTACK_TOWERS;
+							m.attack_towers_data.attackingTime = mngr_->getComponent<PotionComponent>(p)->getPotionDuration();
+							m.attack_towers_data.attackTower = t;
+							mngr_->send(m, true);
+							pc->setPotionSpawned(true);
+						}
+
+
+						pc->setElapsedTime(pc->getElapsedTime() + game().getDeltaTime());
+						if (pc->getElapsedTime() > pc->getPotionDuration()) {
+							removeRect(p, _POTIONRECT);
+							mngr_->setAlive(p, false);
+						}
+					}
+
+				}
+			}
 		}
 
 		for (const auto& t : highTowers)

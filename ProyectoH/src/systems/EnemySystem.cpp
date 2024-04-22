@@ -12,6 +12,7 @@
 #include "../components/PrincipitoComponent.h"
 #include "../components/CaballeroMalditoComponent.h"
 #include "../components/AngelComponent.h"
+#include "../components/PotionComponent.h"
 #include "../components/IconComponent.h"
 #include "../components/GolemComponent.h"
 #include "../components/LimitedTime.h"
@@ -306,7 +307,7 @@ void EnemySystem::update()
 		const auto& enemies = mngr_->getHandler(_hdlr_ENEMIES);
 		const auto& genemies = mngr_->getHandler(_hdlr_GHOST_ENEMIES);
 		const auto& towers = mngr_->getHandler(_hdlr_LOW_TOWERS);
-		const auto& proyectiles = mngr_->getEntities(_grp_ENEMYPROYECTILES);
+		const auto& proyectiles = mngr_->getEntities(_grp_ENEMY_PROYECTILE);
 
 		if (generateEnemies_) {
 			if (enemies.empty() && stopGenerate && genemies.empty()) {
