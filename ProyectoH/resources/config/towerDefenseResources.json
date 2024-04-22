@@ -849,8 +849,11 @@
         {
           "id": "pocion",
           "file": "resources/images/Enemies/pocion_letal.png"
+        },
+        {
+          "id": "toxic_puddle",
+          "file": "resources/images/Enemies/Toxic_Puddle.png"
         }
-
     ],
 
 

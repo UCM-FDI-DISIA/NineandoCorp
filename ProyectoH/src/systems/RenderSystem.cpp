@@ -182,6 +182,8 @@ RenderSystem::RenderSystem() : winner_(0)
 	textures[goblin_attack] = &sdlutils().images().at("goblin_Attack");
 	textures[force_field] = &sdlutils().images().at("force_field");
 	textures[pocion] = &sdlutils().images().at("pocion");
+	textures[toxic_puddle] = &sdlutils().images().at("toxic_puddle");
+
 
 	//Lifebar
 	textures[life] = &sdlutils().images().at("life");
