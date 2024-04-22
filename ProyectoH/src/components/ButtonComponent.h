@@ -23,6 +23,7 @@ enum ButtonTypes {
 	upgrade_clay_main, upgrade_enhancer_main,
 	//Enemybook
 	enemybook,
+	enemybookPop,
 	//CONFIG
 	config, full_screen, changeResolution,
 	// ----- HUD -----//

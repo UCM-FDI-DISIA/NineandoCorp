@@ -310,6 +310,7 @@ void ButtonSystem::sellTower(Entity* twr)
 			break;
 		case enemybook:
 			sdlutils().soundEffects().at("AbrirEnemiesBook").play(0, 1);
+			pauseAllButtons();
 			mngr_->send(mngr_->getComponent<ButtonComponent>(bC)->getMessage());			
 			break;
 		/*--- MEJORAS DEL MENU ---*/

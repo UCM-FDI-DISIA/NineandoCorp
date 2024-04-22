@@ -15,5 +15,6 @@ public:
 
 	void initSystem() override;
 	void EnemyPopUp(int i);
+	void receive(const Message& m) override;
 };
 

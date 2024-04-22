@@ -196,6 +196,7 @@ enum msgId : msgId_type {
 	_m_OVER_GAME,
 	_m_LEVEL_SELECTOR,
 	_m_ENEMY_BOOK,
+	_m_ENEMY_BOOKPOPUP,
 	_m_CONFIG,
 	_m_ENEMY_BOOK_BUT,
 	_m_UPGRADE_TOWER,
