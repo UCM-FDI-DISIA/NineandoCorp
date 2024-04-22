@@ -59,7 +59,6 @@ public:
 	/// <returns>Las monedas H</returns>
 	int getHMoney() { return HMoney_; };
 
-	bool getFullScreen() const { return fullScreen; };
 private:
 	/// <summary>
 	/// Añade el dinero correspondiente a la torre vendida
@@ -151,7 +150,6 @@ private:
 	void stopConfig( Entity* bC);
 
 	bool mActive;
-	bool fullScreen;
 	bool resolutionActive;
 	int numAcelButs; // cuantos botones hay para acelerar el tiempo
 	int cauntAcelButs; // contador 

@@ -36,6 +36,7 @@ private:
 		float newMaxMusic_ = 150;
 		float newMinEffects_ = 100;
 		float newMaxEffects_ = 150;
+		bool fullScreen = false;
 	};
 	bool exit;
 	double deltaTime;
@@ -98,6 +99,8 @@ public:
 
 	inline GameState* currentState() const {return gameStateMachine->currentState(); }
 
+	inline bool getFullScreen() const { return config_.fullScreen; }
+	inline void setFullScreen()  { config_.fullScreen = !config_.fullScreen; }
 	inline float getSoundGeneral() const { return config_.soundGeneral_; };
 	inline void setSoundGeneral(float newVolume) {  config_.soundGeneral_ = newVolume; };
 	inline float getSoundMusic() const { return config_.soundMusic_; };

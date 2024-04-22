@@ -9,7 +9,6 @@
 ButtonSystem::ButtonSystem(hdlrId_type but_id) : 
 	hdlr_but_id(but_id), money_(0), HMoney_(0){
 	mActive = true;
-	fullScreen = false;
 	resolutionActive = false;
 	numAcelButs = 3;
 	cauntAcelButs = 1;
@@ -253,8 +252,8 @@ void ButtonSystem::sellTower(Entity* twr)
 			break;
 		case full_screen:
 			sdlutils().toggleFullScreen();
-			fullScreen = !fullScreen;
-			if (fullScreen) {
+			game().instance()->setFullScreen();
+			if (game().instance()->getFullScreen()) {
 				mngr_->getComponent<ButtonComponent>(bC)->setTexture(check);
 				mngr_->getComponent<ButtonComponent>(bC)->setHover(check_hover);
 			}
