@@ -8,7 +8,6 @@ class EnhancerTower : public Component
 public:
 	static const cmpId id = cmpId::_POWERTOWER;
 	EnhancerTower(float range, float damageIncrease, float healthIncrease);
-	void levelUp(int level);
 	float getTowersHPboost() const { return towersHPboost_; };
 	float getDamageIncreasePercentage()  const { return damageIncreasePercentage_; };
 	float getRange() const { return range_; };

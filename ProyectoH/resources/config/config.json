@@ -704,8 +704,8 @@
     },
 
     {
-      "id": "SlimeRecargaUpgrade",
-      "value": 0.5
+      "id": "SlimeRecargaUpdate",
+      "value": 2
     },
     {
       "id": "SlimeRalentizacion",

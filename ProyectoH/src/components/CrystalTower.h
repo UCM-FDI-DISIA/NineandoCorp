@@ -6,7 +6,6 @@ class CrystalTower : public Component
 public:
 	static const cmpId id = cmpId::_CRISTALTOWER;
 	CrystalTower(int shieldVal, float timeToShield, int explosionDmg, float range);
-	void levelUp(int level);
 
 	int getShieldVal() const { return shieldVal_; }
 	float getTimeToShield() const { return timeToShield_; }

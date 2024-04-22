@@ -7,7 +7,6 @@ class BulletTower : public AttackComponent
 {
 public:
 	BulletTower(float range, float reloadTime, int damage);
-	void levelUp(int level);
 	void targetSecondEnemy(const std::list<Entity*>& targetGroup);
 
 	bool isMaxLevel() const{ return isMaxLevel_; }

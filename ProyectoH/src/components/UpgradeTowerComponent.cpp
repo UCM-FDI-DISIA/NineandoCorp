@@ -14,7 +14,7 @@ using namespace std;
 
 UpgradeTowerComponent::UpgradeTowerComponent(twrId id, int maxLevel, int upCost,int initCost) : 
 	id_(id), //
-	maxLevel_(maxLevel), //
+	maxLevel_(4), //
 	currentLevel_(1), //
 	acumCost_(initCost), //
 	upgradeCost_(upCost) {
@@ -24,6 +24,7 @@ void UpgradeTowerComponent::levelUp() {
 	
 
 	auto fi = mngr_->getComponent<FramedImage>(ent_);
+
 	if (currentLevel_ < maxLevel_) {
 
 		Message m;
@@ -47,6 +48,7 @@ void UpgradeTowerComponent::levelUp() {
 		currentLevel_++;
 
 		if (currentLevel_ == 0) { currentLevel_ = 1; }
+		
 
 		auto bt = mngr_->getComponent<BulletTower>(ent_);
 		auto ct = mngr_->getComponent<CrystalTower>(ent_);

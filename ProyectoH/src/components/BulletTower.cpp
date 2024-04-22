@@ -5,26 +5,6 @@
 BulletTower::BulletTower(float range, float reloadTime, int damage) 
 	: AttackComponent::AttackComponent(range, reloadTime, damage, false), isMaxLevel_(false), secondTarget_(nullptr) {}
 
-
-void BulletTower::levelUp(int level) {
-	/*switch (level) {
-	case 1:
-		setDamage(sdlutils().intConst().at("BalasDano1"));
-		break;
-	case 2:
-		setDamage(sdlutils().intConst().at("BalasDano2"));
-		break;
-	case 3:
-		setDamage(sdlutils().intConst().at("BalasDano3"));
-		break;
-	case 4:
-		isMaxLevel_ = true;
-		break;
-	default:
-		break;
-	}*/
-}
-
 void BulletTower::targetSecondEnemy(const std::list<Entity*>& targetGroup) {
 	if (secondTarget_ == nullptr) {//Si no hay enemigo targeteado se busca uno
 		double closestEnemy = INT32_MAX;

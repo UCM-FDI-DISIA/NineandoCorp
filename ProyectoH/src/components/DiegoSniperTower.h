@@ -10,7 +10,6 @@ public:
 	float getCritDamage() const { return critDamageIncrease_; };
 	void setCritProb(float prob) { critProbability_ = prob; };
 	void setCritDamage(float percentage) { critDamageIncrease_ = percentage; };
-	void levelUp(int level);
 private:
 	float critProbability_;
 	float critDamageIncrease_;
