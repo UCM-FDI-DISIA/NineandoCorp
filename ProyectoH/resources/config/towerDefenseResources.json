@@ -414,6 +414,10 @@
           "file": "resources/images/UI/life.png"
         },
         {
+          "id": "life_background",
+          "file": "resources/images/UI/life_background.png"
+        },
+        {
             "id": "close",
             "file": "resources/images/UI/close_button.png"
         },

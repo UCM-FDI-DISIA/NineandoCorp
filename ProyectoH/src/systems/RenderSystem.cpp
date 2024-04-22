@@ -141,6 +141,7 @@ RenderSystem::RenderSystem() : winner_(0)
 	textures[resolution3] = &sdlutils().images().at("resolution3");
 	textures[resolution3_hover] = &sdlutils().images().at("resolution3_hover");
 	textures[life] = &sdlutils().images().at("life");
+	textures[life_background] = &sdlutils().images().at("life_background");
 	//Explosions
 	textures[shieldExp] = &sdlutils().images().at("shieldExp");
 	textures[bulletExplosion] = &sdlutils().images().at("bulletExp");
@@ -705,7 +706,11 @@ void RenderSystem::drawBarlife(Entity* t) {
 		float a = hc->getMaxHealth();
 		float b = hc->getHealth();
 		float c = b / a;
-		//textures[gameTextures::life_background]->render(SDL_Rect{ trRect.x - 15, trRect.y - 3, 180, 51 }, 0);
-		textures[gameTextures::life]->render(SDL_Rect{ trRect.x - 10, trRect.y - 50, (int)(170.f * c), 45 }, 0.0);
+		SDL_Rect healthbar = SDL_Rect{trRect.x - 10, trRect.y - 50, (int)(170.f * c), 20};
+		SDL_Rect backgroundbar = SDL_Rect{ trRect.x - 15, trRect.y - 53, 180, 26 };
+
+		//render del background
+		textures[gameTextures::life_background]->render(backgroundbar);
+		textures[gameTextures::life]->render(healthbar);
 	}
 }
