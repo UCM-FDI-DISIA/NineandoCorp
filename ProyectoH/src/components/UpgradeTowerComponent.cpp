@@ -14,10 +14,14 @@ using namespace std;
 
 UpgradeTowerComponent::UpgradeTowerComponent(twrId id, int maxLevel, int upCost,int initCost) : 
 	id_(id), //
-	maxLevel_(4), //
+	maxLevel_(maxLevel), //
 	currentLevel_(1), //
 	acumCost_(initCost), //
 	upgradeCost_(upCost) {
+}
+
+void UpgradeTowerComponent::initComponent() {
+	if (maxLevel_ > 4) { maxLevel_ = 4; }
 }
 
 void UpgradeTowerComponent::levelUp() {

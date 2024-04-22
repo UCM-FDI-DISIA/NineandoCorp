@@ -9,6 +9,7 @@ public:
 
 	UpgradeTowerComponent(int upCost) : id_(), maxLevel_(1), currentLevel_(1), upgradeCost_(upCost) {}
 	UpgradeTowerComponent(twrId id, int maxLevel, int upCost, int initialCost);
+	void initComponent() override;
 	~UpgradeTowerComponent() {};
 
 	void levelUp();
