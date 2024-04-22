@@ -883,6 +883,10 @@
       "file": "resources/sound/HUD/button.mp3"
     },
     {
+      "id": "TorreUpgrade",
+      "file": "resources/sound/HUD/TorreUpgrade.mp3"
+    },
+    {
       "id": "SellTower",
       "file": "resources/sound/HUD/SellTower.mp3"
     },

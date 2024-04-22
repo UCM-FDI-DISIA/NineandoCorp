@@ -100,13 +100,12 @@ void MainControlSystem::update() {
 
 void MainControlSystem::onGameOver() {
 		if (nexusIsAlive_ && currentLevel == game().getSaveGame()->getLevelsUnlocked()) {
-			currentLevel++;
-			game().getSaveGame()->setLevelsUnlocked(currentLevel);
+			game().getSaveGame()->setLevelsUnlocked(currentLevel+1);
 		}
 		game().getSaveGame()->addHCoins(coinsH);
 		game().getSaveGame()->checkEnemies(enemiesSaw);
 		game().getSaveGame()->saveFile();
-		game().changeState<GameOverState>(round, enemiesDefeated, coinsH, currentLevel-1, nexusIsAlive_);
+		game().changeState<GameOverState>(round, enemiesDefeated, coinsH, currentLevel, nexusIsAlive_);
 }
 
 void MainControlSystem::OnStartGame() {
