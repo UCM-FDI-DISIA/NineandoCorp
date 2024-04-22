@@ -27,7 +27,6 @@ RenderSystem::RenderSystem() : winner_(0)
 	textures[slimeBulletTexture] = &sdlutils().images().at("slime_bullet");
 	textures[nexusTexture] = &sdlutils().images().at("nexus_tower");	// Quitar creo
 	textures[box] = &sdlutils().images().at("box");
-	textures[column_box] = &sdlutils().images().at("column_box");
 	textures[box_hover] = &sdlutils().images().at("box_hover");
 	textures[none_box] = &sdlutils().images().at("none_box");
 	textures[none_box_hover] = &sdlutils().images().at("none_box_hover");
@@ -115,18 +114,17 @@ RenderSystem::RenderSystem() : winner_(0)
 	textures[sell_hover] = &sdlutils().images().at("sell_hover");
 	textures[resume_button] = &sdlutils().images().at("resume_button");
 	textures[resume_button_hover] = &sdlutils().images().at("resume_button_hover");
-	textures[resume_icon_button] = &sdlutils().images().at("resume_icon_button");
-	textures[resume_icon_button_hover] = &sdlutils().images().at("resume_icon_button_hover");
-	textures[acelerate_x1] = &sdlutils().images().at("acelerate_x1");
-	textures[acelerate_x1_hover] = &sdlutils().images().at("acelerate_x1_hover");
-	textures[acelerate_x1_5] = &sdlutils().images().at("acelerate_x1_5");
-	textures[acelerate_x1_5_hover] = &sdlutils().images().at("acelerate_x1_5_hover");
-	textures[acelerate_x2] = &sdlutils().images().at("acelerate_x2");
-	textures[acelerate_x2_hover] = &sdlutils().images().at("acelerate_x2_hover");
 	textures[backToMenu_button] = &sdlutils().images().at("backToMenu_button");
 	textures[backToMenu_button_hover] = &sdlutils().images().at("backToMenu_button_hover");
 	textures[exitGame_button] = &sdlutils().images().at("exitGame_button");
 	textures[exitGame_button_hover] = &sdlutils().images().at("exitGame_button_hover");
+	textures[column_box] = &sdlutils().images().at("column_box");
+	textures[acelerate_x1] = &sdlutils().images().at("acelerate_x1");
+	textures[acelerate_x1_5] = &sdlutils().images().at("acelerate_x1.5");
+	textures[acelerate_x2] = &sdlutils().images().at("acelerate_x2");
+	textures[acelerate_x1_hover] = &sdlutils().images().at("acelerate_x1_hover");
+	textures[acelerate_x1_5_hover] = &sdlutils().images().at("acelerate_x1.5_hover");
+	textures[acelerate_x2_hover] = &sdlutils().images().at("acelerate_x2_hover");
 	textures[white_frame] = &sdlutils().images().at("white_frame");
 	textures[button] = &sdlutils().images().at("button");
 	textures[button_hover] = &sdlutils().images().at("button_hover");
@@ -141,6 +139,7 @@ RenderSystem::RenderSystem() : winner_(0)
 	textures[resolution3] = &sdlutils().images().at("resolution3");
 	textures[resolution3_hover] = &sdlutils().images().at("resolution3_hover");
 	textures[life] = &sdlutils().images().at("life");
+
 	//Explosions
 	textures[shieldExp] = &sdlutils().images().at("shieldExp");
 	textures[bulletExplosion] = &sdlutils().images().at("bulletExp");
@@ -182,8 +181,11 @@ RenderSystem::RenderSystem() : winner_(0)
 	textures[maldito_attack] = &sdlutils().images().at("maldito_Attack");
 	textures[goblin_attack] = &sdlutils().images().at("goblin_Attack");
 	textures[force_field] = &sdlutils().images().at("force_field");
+	textures[pocion] = &sdlutils().images().at("pocion");
 
-
+	//Lifebar
+	textures[life] = &sdlutils().images().at("life");
+	textures[life_background] = &sdlutils().images().at("life_background");
 	//Enemies Icons
 	textures[goblin_icon] = &sdlutils().images().at("goblin_icon");
 	textures[maldito_icon] = &sdlutils().images().at("maldito_icon");
@@ -208,7 +210,7 @@ RenderSystem::RenderSystem() : winner_(0)
 	textures[meteorites] = &sdlutils().images().at("meteorites");
 	textures[earthquake] = &sdlutils().images().at("earthquake");
 	textures[tornado] = &sdlutils().images().at("tornado");
-	textures[tsunami] = &sdlutils().images().at("tsunami");
+	textures[tsunami] = &sdlutils().images().at("meteorites");
 	textures[cloud] = &sdlutils().images().at("cloud");
 	textures[tsunami_icon] = &sdlutils().images().at("tsunami_icon");
 	textures[thunder_icon] = &sdlutils().images().at("storm_icon");
@@ -217,9 +219,6 @@ RenderSystem::RenderSystem() : winner_(0)
 	textures[meteorite_icon] = &sdlutils().images().at("meteorite_icon");
 	textures[rangeCircle] = &sdlutils().images().at("range_circle");
 
-	//texts
-	textures[general_text] = &sdlutils().msgs().at("general_text");
-	textures[sounds_text] = &sdlutils().msgs().at("sounds_text");
 }
 
 
@@ -356,6 +355,52 @@ void RenderSystem::update() {
 		textures[textureId]->render(srcRect, trRect);
 	}
 
+	//ENEMY PROYECTILES
+	const auto& projectiles = mngr_->getEntities(_grp_ENEMY_PROYECTILE);
+	for (auto& p : projectiles)
+	{
+		Transform* tr = mngr_->getComponent<Transform>(p);
+		gameTextures textureId = mngr_->getComponent<RenderComponent>(p)->getTexture();
+
+		SDL_Rect trRect = tr->getRect();
+		trRect.x += offset->x;
+		trRect.y += offset->y;
+		textures[textureId]->render(trRect, tr->getRotation());
+	}
+
+	//AREA OF ATTACK (SLIME AND FENIX)
+	const auto& areas = mngr_->getEntities(_grp_AREAOFATTACK);
+	for (auto& area : areas)
+	{
+		Transform* tr = mngr_->getComponent<Transform>(area);
+		gameTextures textureId = mngr_->getComponent<RenderComponent>(area)->getTexture();
+		FramedImage* img = mngr_->getComponent<FramedImage>(area);
+		SDL_Rect srcRect = img->getSrcRect();
+		if (mActive) {
+			img->updateCurrentFrame();
+		}
+		SDL_Rect trRect = tr->getRect();
+		trRect.x += offset->x;
+		trRect.y += offset->y;
+		textures[textureId]->render(srcRect, trRect, tr->getRotation());
+	}
+	//POTIONS
+	const auto& potions = mngr_->getEntities(_grp_POTIONAREA);
+	for (auto& potion : potions)
+	{
+		Transform* tr = mngr_->getComponent<Transform>(potion);
+		gameTextures textureId = mngr_->getComponent<RenderComponent>(potion)->getTexture();
+		FramedImage* img = mngr_->getComponent<FramedImage>(potion);
+		SDL_Rect srcRect = img->getSrcRect();
+		if (mActive) {
+			img->updateCurrentFrame();
+		}
+		SDL_Rect trRect = tr->getRect();
+		trRect.x += offset->x;
+		trRect.y += offset->y;
+		textures[textureId]->render(srcRect, trRect, tr->getRotation());
+	}
+
 	auto& naturalEffects = mngr_->getEntities(_grp_NATURALS_EFFECTS_LOW);
 	sort(naturalEffects.begin(), naturalEffects.end(), cmpIsometricY(mngr_));
 	for (auto& t : naturalEffects) {
@@ -377,7 +422,7 @@ void RenderSystem::update() {
 	
 
 	//Este grupo tiene que estar ordenado de arriba a abajo de la pantalla segun su transform (posicion y)
-	// NO CAMBIAR 
+	// NO CAMBIAR LECHES
 	//TOWERS AND ENEMIES
 	auto& towers = mngr_->getEntities(_grp_TOWERS_AND_ENEMIES);
 	sort(towers.begin(), towers.end(), cmpIsometricY(mngr_));
@@ -397,6 +442,7 @@ void RenderSystem::update() {
 		if (fi != nullptr)textures[textureId]->render(srcRect, trRect, tr->getRotation(), nullptr,flip);
 		else textures[textureId]->render(trRect, tr->getRotation());
 		drawBarlife(t);
+		//SDL_RenderFillRect(sdlutils().renderer(), &trRect);
 	}
 
 	auto& naturalEffectsHigh = mngr_->getEntities(_grp_NATURALS_EFFECTS_HIGH);
@@ -416,6 +462,7 @@ void RenderSystem::update() {
 		SDL_RendererFlip flip = mngr_->getComponent<RenderComponent>(t)->getFlip();
 		if (fi != nullptr)textures[textureId]->render(srcRect, trRect, tr->getRotation(), nullptr, flip);
 		else textures[textureId]->render(trRect, tr->getRotation());
+
 	}
 
 
@@ -476,42 +523,13 @@ void RenderSystem::update() {
 		auto fI = mngr_->getComponent<FramedImage>(h);
 		Transform* tr = mngr_->getComponent<Transform>(h);
 		gameTextures textureId = mngr_->getComponent<RenderComponent>(h)->getTexture();
-		auto lockCmp = mngr_->getComponent<LockComponent>(h);
-		auto dnd = mngr_->getComponent<DragAndDrop>(h);
 		if (mngr_->getComponent<RenderComponent>(h)->isActive) {
-			// Si tiene drag and drop
-			if (dnd != nullptr) {
-				//Si tiene lockcomponent y esta desbloqueado se renderiza
-				if (lockCmp != nullptr && !lockCmp->isLocked()) {
-					SDL_Rect srcRect = fI->getSrcRect();
-					textures[textureId]->render(srcRect, tr->getRect(), tr->getRotation());
-				}
-				//Si no tiene lockComponent tambien se renderiza
-				else if (lockCmp == nullptr) {
-					SDL_Rect srcRect = fI->getSrcRect();
-					textures[textureId]->render(srcRect, tr->getRect(), tr->getRotation());
-				}
+			if (fI != nullptr) {
+				SDL_Rect srcRect = fI->getSrcRect();
+				textures[textureId]->render(srcRect, tr->getRect(), tr->getRotation());
 			}
-			//Si no tiene drag and drop se renderiza si condiciones
-			else if (dnd == nullptr) {
-				if (fI != nullptr) {
-					SDL_Rect srcRect = fI->getSrcRect();
-					textures[textureId]->render(srcRect, tr->getRect(), tr->getRotation());
-				}
-				else {
-					textures[textureId]->render(tr->getRect(), tr->getRotation());
-				}
-			}
-			//Dando por hecho que solo los botones del HUD tienen lockComponent y no tienen drag and drop
-			if (lockCmp != nullptr && dnd == nullptr) {
-				if (lockCmp->isLocked()) {
-					SDL_Renderer* renderer = textures[textureId]->getRenderer();
-					Vector2D pos = tr->getPosition();
-					Vector2D scale = tr->getScale();
-					SDL_Point center = { pos.getX() + (scale.getX() / 2), pos.getY() + (scale.getY() / 2) };
-					SDL_Color red = { 255, 0, 0, 100 };
-					drawSquare(renderer, center, tr->getWidth(), red);
-				}
+			else {
+				textures[textureId]->render(tr->getRect(), tr->getRotation());
 			}
 		}
 	}
@@ -612,23 +630,21 @@ void RenderSystem::drawDiamond(SDL_Renderer* renderer, const SDL_Point& center, 
 
 }
 
-void RenderSystem::drawSquare(SDL_Renderer* renderer, const SDL_Point& center, int width, const SDL_Color& color)
-{
-	SDL_Point topL = { center.x - width / 2, center.y - width / 2 };
-	SDL_Point topR = { center.x + width / 2, center.y - width / 2 };
-	SDL_Point bottomR = { center.x + width / 2, center.y + width / 2 };
-	SDL_Point bottomL = { center.x - width / 2, center.y  + width / 2};
-
-	SDL_Point squareVertices[] = { topL, topR, bottomR, bottomL};
-	int rW, rH;
-	SDL_GetRendererOutputSize(renderer, &rW, &rH);
-
-	// Establecer el modo de mezcla para permitir la transparencia
-	SDL_SetRenderDrawBlendMode(renderer, SDL_BLENDMODE_BLEND);
-
-	// Rellenar el rombo con el color de relleno con transparencia
-	SDL_SetRenderDrawColor(renderer, color.r, color.g, color.b, color.a);
-	renderFillPolygon(renderer, rW, rH, squareVertices, 4, color);
+void RenderSystem::drawBarlife(Entity* t) {
+	
+	HealthComponent* hc = mngr_->getComponent<HealthComponent>(t);
+	if (hc != nullptr && mngr_->isAlive(t)) {
+		Transform* tr = mngr_->getComponent<Transform>(t);
+		float health = mngr_->getComponent<HealthComponent>(t)->getHealth();
+		SDL_Rect trRect = tr->getRect();
+		trRect.x += offset->x;
+		trRect.y += offset->y - 50;
+		float a = hc->getMaxHealth();
+		float b = hc->getHealth();
+		float c = b / a;
+		textures[gameTextures::life_background]->render(SDL_Rect{ trRect.x - 15, trRect.y - 3, 180, 51 }, 0);
+		textures[gameTextures::life]->render(SDL_Rect{trRect.x- 10, trRect.y, (int)(170.f*c), 45}, 0);
+	}
 }
 
 void RenderSystem::drawRectangle(SDL_Renderer* renderer, const SDL_Point& center, int width, int height, const SDL_Color& color)
@@ -692,19 +708,4 @@ void RenderSystem::renderFillPolygon(SDL_Renderer* renderer, int width, int heig
 		}
 	}
 }
-void RenderSystem::drawBarlife(Entity* t) {
 
-	HealthComponent* hc = mngr_->getComponent<HealthComponent>(t);
-	if (hc != nullptr && mngr_->isAlive(t)) {
-		Transform* tr = mngr_->getComponent<Transform>(t);
-		float health = mngr_->getComponent<HealthComponent>(t)->getHealth();
-		SDL_Rect trRect = tr->getRect();
-		trRect.x += offset->x;
-		trRect.y += offset->y;
-		float a = hc->getMaxHealth();
-		float b = hc->getHealth();
-		float c = b / a;
-		//textures[gameTextures::life_background]->render(SDL_Rect{ trRect.x - 15, trRect.y - 3, 180, 51 }, 0);
-		textures[gameTextures::life]->render(SDL_Rect{ trRect.x - 10, trRect.y - 50, (int)(170.f * c), 45 }, 0.0);
-	}
-}

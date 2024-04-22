@@ -32,6 +32,7 @@
     <ClInclude Include="src\components\DiegoSniperTower.h" />
     <ClInclude Include="src\components\DirtTower.h" />
     <ClInclude Include="src\components\DragAndDrop.h" />
+    <ClInclude Include="src\components\EnemyProyectileComponent.h" />
     <ClInclude Include="src\components\EnemyStates.h" />
     <ClInclude Include="src\components\EnemyTypeComponent.h" />
     <ClInclude Include="src\components\EnhancerTower.h" />
@@ -52,6 +53,7 @@
     <ClInclude Include="src\components\NexusComponent.h" />
     <ClInclude Include="src\components\ParticleLifeTime.h" />
     <ClInclude Include="src\components\PhoenixTower.h" />
+    <ClInclude Include="src\components\PotionComponent.h" />
     <ClInclude Include="src\components\PrincipitoComponent.h" />
     <ClInclude Include="src\components\RenderComponent.h" />
     <ClInclude Include="src\components\RouteComponent.h" />
@@ -128,6 +130,7 @@
     <ClCompile Include="src\components\DiegoSniperTower.cpp" />
     <ClCompile Include="src\components\DirtTower.cpp" />
     <ClCompile Include="src\components\DragAndDrop.cpp" />
+    <ClCompile Include="src\components\EnemyProyectileComponent.cpp" />
     <ClCompile Include="src\components\EnemyTypeComponent.cpp" />
     <ClCompile Include="src\components\EnhancerTower.cpp" />
     <ClCompile Include="src\components\FireComponent.cpp" />
@@ -146,6 +149,7 @@
     <ClCompile Include="src\components\MuerteComponent.cpp" />
     <ClCompile Include="src\components\NexusComponent.cpp" />
     <ClCompile Include="src\components\PhoenixTower.cpp" />
+    <ClCompile Include="src\components\PotionComponent.cpp" />
     <ClCompile Include="src\components\PrincipitoComponent.cpp" />
     <ClCompile Include="src\components\RouteComponent.cpp" />
     <ClCompile Include="src\components\ShieldComponent.cpp" />

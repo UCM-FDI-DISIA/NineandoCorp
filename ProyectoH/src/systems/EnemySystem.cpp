@@ -13,9 +13,12 @@
 #include "../components/AngelComponent.h"
 #include "../components/IconComponent.h"
 #include "../components/GolemComponent.h"
+#include "../components/MuerteComponent.h"
+#include "../components/PotionComponent.h"
 #include "../components/LimitedTime.h"
 #include "../sdlutils/SDLUtils.h"
 #include "../systems/EnemyBookSystem.h"
+#include "..//components/EnemyProyectileComponent.h"
 
 
 EnemySystem::EnemySystem() :mActive(true), generateEnemies_(false), stopGenerate(false), wave(1), level(1) {
@@ -305,6 +308,8 @@ void EnemySystem::update()
 		const auto& enemies = mngr_->getHandler(_hdlr_ENEMIES);
 		const auto& genemies = mngr_->getHandler(_hdlr_GHOST_ENEMIES);
 		const auto& towers = mngr_->getHandler(_hdlr_LOW_TOWERS);
+		const auto& proyectiles = mngr_->getEntities(_grp_ENEMY_PROYECTILE);
+
 		if (generateEnemies_) {
 			if (enemies.empty() && stopGenerate && genemies.empty()) {
 				if (wave > sdlutils().waves().at("nivel" + std::to_string(level))) {
@@ -357,6 +362,7 @@ void EnemySystem::update()
 			EnemyTypeComponent* etc = mngr_->getComponent<EnemyTypeComponent>(e);
 			PrincipitoComponent* pc = mngr_->getComponent<PrincipitoComponent>(e);
 			MensajeroMuerteComponent* mm = mngr_->getComponent<MensajeroMuerteComponent>(e);
+			MuerteComponent* muerte = mngr_->getComponent<MuerteComponent>(e);
 			MonjeComponent* mj = mngr_->getComponent<MonjeComponent>(e);
 			Transform* tr = mngr_->getComponent<Transform>(e);
 			FramedImage* fi = mngr_->getComponent<FramedImage>(e);
@@ -384,6 +390,8 @@ void EnemySystem::update()
 				acc->setTime(game().getDeltaTime() + acc->getElapsed());
 				if (acc->getElapsed() >= acc->getReload() - 0.5) {
 					mc->setStop(true);
+					ac->setAttack(true);
+					changeAnimation(ac->getAttack(), e);
 				}
 				if (acc->getElapsed() >= acc->getReload()) {
 					acc->inRange(enemies);
@@ -500,6 +508,54 @@ void EnemySystem::update()
 				}
 			}
 
+			// Muerte
+			if (muerte != nullptr && ac != nullptr) {
+				muerte->setElapsedTime(muerte->getElapsedTime() + game().getDeltaTime());
+				if (ac->getTarget() != nullptr) {
+					if (muerte->getElapsedTime() > muerte->getThrowDuration()) {
+						Entity* potionProjectile = muerte->ThrowPotion(ac->getTarget(), e, 1500, tr->getPosition(), pocion, { 25, 50});
+						muerte->setElapsedTime(0);
+					}
+				}
+			}
+			for (auto& p : proyectiles) {
+				Transform* t = mngr_->getComponent<Transform>(p);
+				EnemyProyectileComponent* epc = mngr_->getComponent<EnemyProyectileComponent>(p);
+				if (epc->getTarget() != nullptr && mngr_->isAlive(epc->getTarget()) == 1) {
+					FramedImage* fi = mngr_->getComponent<FramedImage>(epc->getTarget());
+					Transform* targetTR = mngr_->getComponent<Transform>(epc->getTarget());
+					Vector2D targetPos = *(targetTR->getPosition());
+					if (fi != nullptr) {
+						Vector2D offset = { (float)fi->getSrcRect().w / 5, (float)fi->getSrcRect().h / 5 };//Se dirige hacia el centro del rect
+						targetPos = targetPos + offset;
+					}
+					Vector2D myPos = *(t->getPosition());
+					if ((targetPos - myPos).magnitude() <= 5.0f) {
+						Entity* area = mngr_->addEntity(_grp_POTIONAREA);
+						Transform* ptr = mngr_->addComponent<Transform>(area);
+						Vector2D scale = { 250, 200 };
+						ptr->setScale(scale);
+						Vector2D pos = { t->getPosition()->getX() - scale.getX() / 2, t->getPosition()->getY() - scale.getY() / 4 };
+						ptr->setPosition(pos);
+						mngr_->addComponent<RenderComponent>(area, slimeArea);
+						mngr_->addComponent<FramedImage>(area, 9, 1, 500, 400, 0, 4, 8);
+						mngr_->addComponent<PotionComponent>(area, 3);
+						Message m;
+						m.id = _m_ADD_RECT;
+						m.rect_data.entity = area;
+						m.rect_data.id = _POTIONRECT;
+						mngr_->send(m);
+						mngr_->setAlive(p, false);
+					}
+					else {
+						//epc->setDir();
+						t->translate();
+						t->addRotation(2);
+						//cout << t->getRotation();
+					}
+					
+				}
+			}
 		}
 		for (auto e : genemies) {
 			RouteComponent* rc2 = mngr_->getComponent<RouteComponent>(e);
@@ -537,6 +593,8 @@ void EnemySystem::update()
 			
 			}
 		}
+
+		
 	}
 }
 			
