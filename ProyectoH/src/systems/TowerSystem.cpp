@@ -693,7 +693,7 @@ void TowerSystem::addTower(twrId type, const Vector2D& pos, Height height, int c
  		mngr_->addComponent<PhoenixTower>(t, floatAt("FenixDano"), floatAt("FenixEnfriamiento"), floatAt("FenixTiempoDisparo"), floatAt("FenixRango"));
 		mngr_->addComponent<RenderComponent>(t, phoenixTowerTexture);
 		mngr_->addComponent<FramedImage>(t, intAt("FenixColumns"), intAt("FenixRows"), intAt("FenixWidth"), intAt("FenixHeight"), 0, 0);
-
+		sdlutils().soundEffects().at("TorreDeLLamaDeFenixDrop").play(0, 1);
 		break;
 	case _twr_BULLET://Pasar rango, recarga, da?o y si dispara
 		tr->setScale({ floatAt("BulletScaleX"), floatAt("BulletScaleY") });
@@ -714,6 +714,7 @@ void TowerSystem::addTower(twrId type, const Vector2D& pos, Height height, int c
 		mngr_->addComponent<EnhancerTower>(t, floatAt("PotenciadoraRango"), floatAt("PotenciadoraAumentoDano"), floatAt("PotenciadoraAumentoVida"));
 		mngr_->addComponent<RenderComponent>(t, boosterTowerTexture);
  		mngr_->addComponent<FramedImage>(t, intAt("PotenciadoraColumns"), intAt("PotenciadoraRows"), intAt("PotenciadoraWidth"), intAt("PotenciadoraHeight"), 0, 0);
+		sdlutils().soundEffects().at("TorrePotenciadoraDrop").play(0, 1);
 		break;
 	case _twr_DIEGO://Rango, Probabilidad de critico, Dano por critico, Tiempo de recarga y Dano
 		tr->setScale({ floatAt("SniperScaleX"), floatAt("SniperScaleY") });
