@@ -513,49 +513,12 @@ void EnemySystem::update()
 				muerte->setElapsedTime(muerte->getElapsedTime() + game().getDeltaTime());
 				if (ac->getTarget() != nullptr) {
 					if (muerte->getElapsedTime() > muerte->getThrowDuration()) {
-						Entity* potionProjectile = muerte->ThrowPotion(ac->getTarget(), e, 1500, tr->getPosition(), pocion, { 25, 50});
+						Entity* potionProjectile = muerte->ThrowPotion(ac->getTarget(), e, 3000, tr->getPosition(), pocion, { 25, 50});
 						muerte->setElapsedTime(0);
 					}
 				}
 			}
-			for (auto& p : proyectiles) {
-				Transform* t = mngr_->getComponent<Transform>(p);
-				EnemyProyectileComponent* epc = mngr_->getComponent<EnemyProyectileComponent>(p);
-				if (epc->getTarget() != nullptr && mngr_->isAlive(epc->getTarget()) == 1) {
-					FramedImage* fi = mngr_->getComponent<FramedImage>(epc->getTarget());
-					Transform* targetTR = mngr_->getComponent<Transform>(epc->getTarget());
-					Vector2D targetPos = *(targetTR->getPosition());
-					if (fi != nullptr) {
-						Vector2D offset = { (float)fi->getSrcRect().w / 5, (float)fi->getSrcRect().h / 5 };//Se dirige hacia el centro del rect
-						targetPos = targetPos + offset;
-					}
-					Vector2D myPos = *(t->getPosition());
-					if ((targetPos - myPos).magnitude() <= 5.0f) {
-						Entity* area = mngr_->addEntity(_grp_POTIONAREA);
-						Transform* ptr = mngr_->addComponent<Transform>(area);
-						Vector2D scale = { 250, 200 };
-						ptr->setScale(scale);
-						Vector2D pos = { t->getPosition()->getX() - scale.getX() / 2, t->getPosition()->getY() - scale.getY() / 4 };
-						ptr->setPosition(pos);
-						mngr_->addComponent<RenderComponent>(area, slimeArea);
-						mngr_->addComponent<FramedImage>(area, 9, 1, 500, 400, 0, 4, 8);
-						mngr_->addComponent<PotionComponent>(area, 3);
-						Message m;
-						m.id = _m_ADD_RECT;
-						m.rect_data.entity = area;
-						m.rect_data.id = _POTIONRECT;
-						mngr_->send(m);
-						mngr_->setAlive(p, false);
-					}
-					else {
-						//epc->setDir();
-						t->translate();
-						t->addRotation(2);
-						//cout << t->getRotation();
-					}
-					
-				}
-			}
+			
 		}
 		for (auto e : genemies) {
 			RouteComponent* rc2 = mngr_->getComponent<RouteComponent>(e);
@@ -593,7 +556,44 @@ void EnemySystem::update()
 			
 			}
 		}
+		for (auto& p : proyectiles) {
+			Transform* t = mngr_->getComponent<Transform>(p);
+			EnemyProyectileComponent* epc = mngr_->getComponent<EnemyProyectileComponent>(p);
+			if (epc->getTarget() != nullptr && mngr_->isAlive(epc->getTarget()) == 1) {
+				FramedImage* fi = mngr_->getComponent<FramedImage>(epc->getTarget());
+				Transform* targetTR = mngr_->getComponent<Transform>(epc->getTarget());
+				Vector2D targetPos = *(targetTR->getPosition());
+				if (fi != nullptr) {
+					Vector2D offset = { (float)fi->getSrcRect().w / 5, (float)fi->getSrcRect().h / 5 };//Se dirige hacia el centro del rect
+					targetPos = targetPos + offset;
+				}
+				Vector2D myPos = *(t->getPosition());
+				if ((targetPos - myPos).magnitude() <= 5.0f) {
+					Entity* area = mngr_->addEntity(_grp_POTIONAREA);
+					Transform* ptr = mngr_->addComponent<Transform>(area);
+					Vector2D scale = { 220, 200 };
+					ptr->setScale(scale);
+					Vector2D pos = { t->getPosition()->getX() - scale.getX() / 2, t->getPosition()->getY() - scale.getY() / 4 };
+					ptr->setPosition(pos);
+					mngr_->addComponent<RenderComponent>(area, toxic_puddle);
+					mngr_->addComponent<FramedImage>(area, 30, 1, 73, 114, 0, 8, 29);
+					mngr_->addComponent<PotionComponent>(area, 3);
+					Message m;
+					m.id = _m_ADD_RECT;
+					m.rect_data.entity = area;
+					m.rect_data.id = _POTIONRECT;
+					mngr_->send(m);
+					mngr_->setAlive(p, false);
+				}
+				else {
+					//epc->setDir();
+					t->translate();
+					t->addRotation(2);
+					//cout << t->getRotation();
+				}
 
+			}
+		}
 		
 	}
 }
