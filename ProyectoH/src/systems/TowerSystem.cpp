@@ -79,9 +79,28 @@ void TowerSystem::receive(const Message& m) {
 		m1.id = _m_ADD_MONEY;
 		m1.money_data.money = mngr_->getComponent<UpgradeTowerComponent>(m.sell_tower_data.twr)->getAcumCost() * 0.75;
 		mngr_->send(m1);
+		CoinAnimation(mngr_->getComponent<Transform>(m.sell_tower_data.twr)->getPosition());
 		removeTower(m.sell_tower_data.twr);
 		break;
 	}
+}
+
+void TowerSystem::CoinAnimation(Vector2D pos) {
+	Message m;
+	m.id = _m_ANIM_CREATE;
+	m.anim_create.idGrp = _grp_ICONS;
+	m.anim_create.animSpeed = 15;
+	m.anim_create.iterationsToDelete = 1;
+	m.anim_create.pos = pos;
+	m.anim_create.frameInit = 1;
+	m.anim_create.frameEnd = 1;
+	m.anim_create.cols = 1;
+	m.anim_create.rows = 1;
+	m.anim_create.scale = { 100, 100 };
+	m.anim_create.width = 100;
+	m.anim_create.height = 100;
+	m.anim_create.tex = gameTextures::monedaDorada;
+	mngr_->send(m);
 }
 
 void TowerSystem::clearShieldsArea(Entity* e) {
@@ -666,6 +685,7 @@ void TowerSystem::addTower(twrId type, const Vector2D& pos, Height height, int c
 		mngr_->setHandler(_hdlr_LOW_TOWERS, t);
 	}
 	else mngr_->setHandler(_hdlr_HIGH_TOWERS, t);
+	sdlutils().soundEffects().at("TorreDeBalasDrop").setChannelVolume(game().CalculoVolumenEfectos(), 1);
 	switch (type)
 	{
 	case _twr_FENIX://Dano, Enfriamiento, TiempoDisparo, Rango
@@ -680,13 +700,14 @@ void TowerSystem::addTower(twrId type, const Vector2D& pos, Height height, int c
 		mngr_->addComponent<BulletTower>(t, floatAt("BalasRango"), floatAt("BalasRecarga"), intAt("BalasDano"));
 		mngr_->addComponent<RenderComponent>(t, bulletTowerTexture);
 		mngr_->addComponent<FramedImage>(t, intAt("BalasColumns"), intAt("BalasRows"), intAt("BalasWidth"), intAt("BalasHeight"), 0, 0);
+		sdlutils().soundEffects().at("TorreDeBalasDrop").play(0, 1);
 		break;
 	case _twr_CLAY:
 		tr->setScale({ floatAt("ClayScaleX"), floatAt("ClayScaleY") });
 		mngr_->addComponent<DirtTower>(t);
 		mngr_->addComponent<RenderComponent>(t, clayTowerTexture);
 		mngr_->addComponent<FramedImage>(t, intAt("ArcillaColumns"), intAt("ArcillaRows"), intAt("ArcillaWidth"), intAt("ArcillaHeight"), 0, 0);
-		sdlutils().soundEffects().at("TorreDeArcillaTerraqueaDrop").play(0, 2);
+		sdlutils().soundEffects().at("TorreDeArcillaTerraqueaDrop").play(0, 1);
 		break;
 	case _twr_POWER://Pasar rango, porcentaje incremento de ataque y vida extra
 		tr->setScale({ floatAt("PotenciadorScaleX"), floatAt("PotenciadorScaleY") });
@@ -699,20 +720,21 @@ void TowerSystem::addTower(twrId type, const Vector2D& pos, Height height, int c
 		mngr_->addComponent<DiegoSniperTower>(t, floatAt("DiegoSniperRango"), floatAt("DiegoSniperCritProb1"), floatAt("DiegoSniperCritDano1"), floatAt("DiegoSniperRecarga"), intAt("DiegoSniperDano"));
 		mngr_->addComponent<RenderComponent>(t, sniperTowerTexture);
 		mngr_->addComponent<FramedImage>(t, intAt("DiegoSniperColumns"), intAt("DiegoSniperRows"), intAt("DiegoSniperWidth"), intAt("DiegoSniperHeight"), 0, 0);
+		sdlutils().soundEffects().at("TorreDeBalasDrop").play(0, 1);
 		break;
 	case _twr_SLIME:
 		tr->setScale({ floatAt("SlimeScaleX"), floatAt("SlimeScaleY") });
 		mngr_->addComponent<SlimeTowerComponent>(t, intAt("SlimeRango"), floatAt("SlimeTiempoSlime"), floatAt("SlimeRalentizacion"), intAt("SlimeDPS"), intAt("SlimeRecarga") ,intAt("SlimeDano"));
 		mngr_->addComponent<RenderComponent>(t, slimeTowerTexture);
 		mngr_->addComponent<FramedImage>(t, intAt("SlimeColumns"), intAt("SlimeRows"), intAt("SlimeWidth"), intAt("SlimeHeight"), 0, 0);
-
+		sdlutils().soundEffects().at("TorreSlimeImpacto").play(0, 1);
 		break;
 	case _twr_CRISTAL://Escudo, Tiempo de recarga y dano por explosion
 		tr->setScale({ floatAt("CristalScaleX"), floatAt("CristalScaleY") });
 		mngr_->addComponent<CrystalTower>(t, intAt("CristalEscudo"), floatAt("CristalRecarga"), intAt("CristalExplosion"), floatAt("CristalRango"));
 		mngr_->addComponent<RenderComponent>(t, cristalTowerTexture);
 		mngr_->addComponent<FramedImage>(t, intAt("CristalColumns"), intAt("CristalRows"), intAt("CristalWidth"), intAt("CristalHeight"), 0, 0);
-		sdlutils().soundEffects().at("TorreCristalDeEnergiaDrop").play(0, 2);
+		sdlutils().soundEffects().at("TorreCristalDeEnergiaDrop").play(0, 1);
 		break;
 	default:
 		break;

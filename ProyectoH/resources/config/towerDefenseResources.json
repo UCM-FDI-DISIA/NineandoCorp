@@ -887,6 +887,10 @@
       "file": "resources/sound/HUD/button.mp3"
     },
     {
+      "id": "SellTower",
+      "file": "resources/sound/HUD/SellTower.mp3"
+    },
+    {
       "id": "WhooshPantallaFinNivel",
       "file": "resources/sound/HUD/WhooshPantallaFinNivel.mp3"
     },
@@ -901,6 +905,10 @@
     {
       "id": "MejoraComprada",
       "file": "resources/sound/HUD/MejoraComprada.mp3"
+    },
+    {
+      "id": "TorreDeBalasDrop",
+      "file": "resources/sound/Torres/TorreDeBalasDrop.mp3"
     },
     {
       "id": "TorreCristalDeEnergiaDrop",
