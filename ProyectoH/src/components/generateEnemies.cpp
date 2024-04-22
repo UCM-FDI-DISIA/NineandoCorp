@@ -301,7 +301,7 @@ void generateEnemies::addEnemy(enmId type, std::vector<Vector2D> route) {
 		mngr_->addComponent<AttackComponent>(t, 500, 1, 75, true);
 		mngr_->addComponent<FramedImage>(t, 1, 1, 100, 100, 0, 0, 1);
 		mngr_->addComponent<EnemyTypeComponent>(t, _enm_MUERTE);
-		mngr_->addComponent<MuerteComponent>(t, 10);
+		mngr_->addComponent<MuerteComponent>(t, 5);
 		M.start_enemy_book.n = 15;
 		mngr_->send(M);
 		break;

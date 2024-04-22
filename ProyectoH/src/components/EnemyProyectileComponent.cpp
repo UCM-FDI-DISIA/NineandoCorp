@@ -38,6 +38,5 @@ void EnemyProyectileComponent::setDir() {
 	float dot = norm.getX() * vel.getX() + norm.getY() * vel.getY();
 	float det = norm.getX() * vel.getY() + norm.getY() * vel.getX();
 	float angle = atan2(det, dot);
-	t->setRotation(180 * angle / 3.14);
 	t->setVelocity(vel * speed_);
 }

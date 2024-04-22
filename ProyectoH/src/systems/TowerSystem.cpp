@@ -507,9 +507,9 @@ void TowerSystem::update() {
 					createHitAnim(targetPos);
 					bc->onTravelEnds();
 				}
-				else {
-					bc->setDir();
+				else {				
 					t->translate();
+					bc->setDir();
 				}
 			}
 		}	
@@ -559,7 +559,7 @@ Entity* TowerSystem::shootBullet(Entity* target, Entity* src ,float damage, floa
 		Transform* t = mngr_->addComponent<Transform>(bullet);//transform
 		t->setPosition(spawnPos);
 		t->setScale(bulletScale);
-		mngr_->addComponent<BulletComponent>(bullet, t, target, src, damage, speed, srcId);//bullet component
+		mngr_->addComponent<BulletComponent>(bullet, t, target, src, damage, speed, srcId)->setDir();//bullet component
 		mngr_->addComponent<RenderComponent>(bullet, texture);//habra que hacer 
 		return bullet;
 	}

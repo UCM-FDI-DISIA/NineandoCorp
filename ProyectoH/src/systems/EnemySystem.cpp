@@ -513,7 +513,7 @@ void EnemySystem::update()
 				muerte->setElapsedTime(muerte->getElapsedTime() + game().getDeltaTime());
 				if (ac->getTarget() != nullptr) {
 					if (muerte->getElapsedTime() > muerte->getThrowDuration()) {
-						Entity* potionProjectile = muerte->ThrowPotion(ac->getTarget(), e, 1500, tr->getPosition(), slimeBulletTexture, { 25, 25});
+						Entity* potionProjectile = muerte->ThrowPotion(ac->getTarget(), e, 1500, tr->getPosition(), pocion, { 25, 50});
 						muerte->setElapsedTime(0);
 					}
 				}
@@ -539,18 +539,19 @@ void EnemySystem::update()
 						ptr->setPosition(pos);
 						mngr_->addComponent<RenderComponent>(area, slimeArea);
 						mngr_->addComponent<FramedImage>(area, 9, 1, 500, 400, 0, 4, 8);
-						mngr_->addComponent<PotionComponent>(area, 5);
+						mngr_->addComponent<PotionComponent>(area, 3);
 						Message m;
 						m.id = _m_ADD_RECT;
 						m.rect_data.entity = area;
 						m.rect_data.id = _POTIONRECT;
 						mngr_->send(m);
 						mngr_->setAlive(p, false);
-						cout << "Collided\n";
 					}
 					else {
-						epc->setDir();
+						//epc->setDir();
 						t->translate();
+						t->addRotation(2);
+						//cout << t->getRotation();
 					}
 					
 				}

@@ -843,8 +843,12 @@
             "file": "resources/images/UI/resolution3.png"
         },
         {
-            "id": "resolution3_hover",
-            "file": "resources/images/UI/resolution3_hover.png"
+          "id": "resolution3_hover",
+          "file": "resources/images/UI/resolution3_hover.png"
+        },
+        {
+          "id": "pocion",
+          "file": "resources/images/Enemies/pocion_letal.png"
         }
 
     ],
