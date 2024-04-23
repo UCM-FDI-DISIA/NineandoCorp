@@ -7,11 +7,12 @@
 class ConfigSystem : public System
 {
 private:
-	bool* Vistos = nullptr;
 	void createResolutions(int resolutions_);
 	std::vector<Vector2D> typesResolutions;
+	bool isPlayState;
 public:
 	static constexpr sysId_type id = _sys_ENEMYBOOK;
+	ConfigSystem(bool isPlayState): isPlayState(isPlayState) {}
 	virtual ~ConfigSystem();
 
 	void initSystem() override;

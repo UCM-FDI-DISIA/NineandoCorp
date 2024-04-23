@@ -158,6 +158,7 @@ void MainMenuSystem::initSystem() {
 }
 
 void MainMenuSystem::receive(const Message& m) {
+
 }
 
 void MainMenuSystem::update() {

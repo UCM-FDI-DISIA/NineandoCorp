@@ -157,6 +157,7 @@ private:
 	int HMoney_;
 	int costs[_twr_SIZE];
 	int const towerLevelMax = 5;
+	bool isPlayState;
 	Entity* moneyText_;
 	SDL_Point	mouse;
 	SDL_bool 	mouse_follow = SDL_FALSE;

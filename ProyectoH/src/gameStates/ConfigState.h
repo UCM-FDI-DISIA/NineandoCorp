@@ -4,6 +4,7 @@
 #include "../systems/ConfigSystem.h"
 #include "../systems/MainMenuSystem.h"
 #include "../systems/ButtonSystem.h"
+#include "../systems/PauseSystem.h"
 
 class ConfigState : public GameState
 {

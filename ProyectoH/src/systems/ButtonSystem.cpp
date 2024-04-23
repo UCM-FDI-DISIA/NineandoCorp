@@ -10,6 +10,7 @@ ButtonSystem::ButtonSystem(hdlrId_type but_id) :
 	hdlr_but_id(but_id), money_(0), HMoney_(0){
 	mActive = true;
 	resolutionActive = false;
+	isPlayState = false;
 	numAcelButs = 3;
 	cauntAcelButs = 1;
 	//rellenar la lista de costes
@@ -67,6 +68,9 @@ void ButtonSystem::receive(const Message& m){
 		break;
 	case _m_PAUSE:
 		mActive = !m.start_pause.onPause;
+		break;
+	case _m_ISPLAYSTATE:
+		isPlayState = m.start_game_data.isPlayState;
 		break;
 	default:
 		break;
@@ -450,15 +454,30 @@ void ButtonSystem::sellTower(Entity* twr)
 		}
 		else {
 			ButtonComponent* btC = mngr_->getComponent<ButtonComponent>(bC);
-			SDL_SetWindowSize(sdlutils().window(), btC->getWidth(), btC->getHeight()); 
-			size_t numEntitiesToRemove = std::min<size_t>(3, settings.size());
-			for (size_t i = 0; i < numEntitiesToRemove; ++i) {
-				auto it = settings.end();
-				--it; 
-				mngr_->deleteHandler(hdlr_but_id, *it);
-				mngr_->setAlive(*it, false);
-				settings.erase(find(settings.begin(), settings.end(), *it));
+			sdlutils().setResolution(btC->getWidth(), btC->getHeight());
+			if (!isPlayState) {
+				for (auto en : mngr_->getHandler(_hdlr_BUTTON_MAIN)) {
+					mngr_->setAlive(en, false);
+				}
+				mngr_->refresh();
+				mngr_->deleteAllHandlers(_hdlr_BUTTON_MAIN);
 			}
+			else {
+				for (auto en : mngr_->getHandler(_hdlr_BUTTON_PLAY)) {
+					mngr_->setAlive(en, false);
+				}
+				mngr_->refresh();
+				mngr_->deleteAllHandlers(_hdlr_BUTTON_PLAY);
+
+				isPlayState = false;
+			}
+			for (auto en : mngr_->getHandler(_hdlr_BUTTON_CONFIG)) {
+				mngr_->setAlive(en, false);
+			}
+			mngr_->refresh();
+			mngr_->deleteAllHandlers(_hdlr_BUTTON_CONFIG);
+			
+			mngr_->getSystem<ConfigSystem>()->initSystem();
 			mngr_->refresh();
 		}
 		
