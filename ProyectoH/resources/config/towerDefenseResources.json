@@ -997,6 +997,26 @@
     {
       "id": "Tsunami",
       "file": "resources/sound/Meteorology/Tsunami.mp3"
+    },
+    {
+      "id": "AcechanteElectricoAttack",
+      "file": "resources/sound/Enemies/AcechanteElectricoAttack.mp3"
+    },
+    {
+      "id": "ArcoAttack",
+      "file": "resources/sound/Enemies/ArcoAttack.mp3"
+    },
+    {
+      "id": "GoblinAttack",
+      "file": "resources/sound/Enemies/GoblinAttack.mp3"
+    },
+    {
+      "id": "GolemAttack",
+      "file": "resources/sound/Enemies/GolemAttack.mp3"
+    },
+    {
+      "id": "MaestroDeLasAlmasAttcak",
+      "file": "resources/sound/Enemies/MaestroDeLasAlmasAttcak.mp3"
     }
   ],
 
