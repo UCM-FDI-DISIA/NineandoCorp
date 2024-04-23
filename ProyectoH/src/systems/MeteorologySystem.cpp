@@ -57,7 +57,7 @@ void MeteorologySystem::setIcon() {
 
 void MeteorologySystem::initSystem() {//Primer fenomeno
 	auto& rand = sdlutils().rand();
-	setNextEvent(rand.nextInt(1, 2),(MeteorologyEvent)rand.nextInt(4, 5));
+	setNextEvent(rand.nextInt(3, 6),(MeteorologyEvent)rand.nextInt(0, 5));
 	showWarningMessage();
 }
 
