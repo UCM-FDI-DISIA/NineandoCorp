@@ -466,8 +466,13 @@ void ButtonSystem::sellTower(Entity* twr)
 				for (auto en : mngr_->getHandler(_hdlr_BUTTON_PLAY)) {
 					mngr_->setAlive(en, false);
 				}
-				mngr_->refresh();
+				
 				mngr_->deleteAllHandlers(_hdlr_BUTTON_PLAY);
+				for (auto en : mngr_->getHandler(_hdlr_BUTTON_ACELERATE)) {
+					mngr_->setAlive(en, false);
+				}
+				mngr_->refresh();
+				mngr_->deleteAllHandlers(_hdlr_BUTTON_ACELERATE);
 
 				isPlayState = false;
 			}
