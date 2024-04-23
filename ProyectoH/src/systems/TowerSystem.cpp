@@ -268,6 +268,7 @@ void TowerSystem::update() {
 			towersToInteract.clear();
 		}
 
+		sdlutils().soundEffects().at("TorreDeBalasDisparo").setChannelVolume(game().CalculoVolumenEfectos(), 3);
 		for (auto& t : towers) {
 			// Updates de torre interactiva / comprueba si se ha clicado la torre
 
@@ -367,6 +368,7 @@ void TowerSystem::update() {
 							Vector2D spawn = { TR->getPosition()->getX() + offset.getX(),	TR->getPosition()->getY() + offset.getY() };//Punto de spawn de la bala con el offset
 							shootBullet(bt->getTarget(), t, bt->getDamage(), floatAt("BalasVelocidad"), spawn, bulletTexture, { 35, 35 }, _twr_BULLET, _hdlr_LOW_TOWERS);//Dispara la bala
 							createBulletExplosion(spawn + Vector2D(-10, -20));
+							sdlutils().soundEffects().at("TorreDeBalasDisparo").play(0, 3);
 						}
 						if (bt->isMaxLevel()) {//Mejora maxima de la torre de balas: targetear a un segundo enemigo. Funciona igual que el primer targeteo
 							bt->targetSecondEnemy(mngr_->getHandler(_hdlr_ENEMIES));
