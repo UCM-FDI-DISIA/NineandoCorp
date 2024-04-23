@@ -33,6 +33,14 @@ void GameOverSystem::initSystem() {
 		bSize,
 		gameTextures::backToMenu_button, gameTextures::backToMenu_button_hover,
 		ButtonTypes::back_to_menu);
+
+	sdlutils().soundEffects().at("Victoria").setChannelVolume(game().CalculoVolumenEfectos(), 2);
+	if (win) {
+		sdlutils().soundEffects().at("Victoria").play(0, 2);
+	}
+	else {
+		sdlutils().soundEffects().at("Derrota").play(0, 2);
+	}
 }
 
 GameOverSystem::~GameOverSystem() {
