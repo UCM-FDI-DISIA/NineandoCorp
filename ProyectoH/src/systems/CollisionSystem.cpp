@@ -320,7 +320,7 @@ void CollisionSystem::update() {
 						m.entity_to_attack.targetId = _hdlr_LOW_TOWERS;
 						m.entity_to_attack.e = t;
 						m.entity_to_attack.damage = damage;
-						mngr_->send(m);
+						mngr_->send(m, true);
 					}
 				}
 			}
