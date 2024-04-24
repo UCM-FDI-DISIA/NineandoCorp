@@ -707,7 +707,6 @@ Entity* TowerSystem::addShield(Vector2D pos) {
 
 void TowerSystem::generateNexus(int lvlNexus, Cell* cell) {
 	Entity* n = mngr_->addEntity(_grp_TOWERS_AND_ENEMIES);	
-	mngr_->setHandler(LOW, n);
 	mngr_->addComponent<Transform>(n);
 	mngr_->addComponent<ShieldComponent>(n, 0);
 	mngr_->addComponent<HealthComponent>(n, 1000);
