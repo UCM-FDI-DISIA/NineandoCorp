@@ -105,7 +105,7 @@ void generateEnemies::addEnemy(enmId type, std::vector<Vector2D> route) {
 
 	switch (type) {
 	case _enm_MALMAS:
-		tr->setSpeed(30.0f);
+		tr->setSpeed( intAt("MaestroVelocidad"));
 		mngr_->addComponent<RenderComponent>(t, maestro);
 		mngr_->addComponent<HealthComponent>(t, intAt("MaestroVida"));
 		mngr_->addComponent<MaestroAlmasComponent>(t, intAt("MaestroHabilidad"));
@@ -118,7 +118,7 @@ void generateEnemies::addEnemy(enmId type, std::vector<Vector2D> route) {
 
 		break;
 	case _enm_AELECTRICO:
-		tr->setSpeed(70.0f);
+		tr->setSpeed(intAt("AcechanteVelocidad"));
 		mngr_->addComponent<RenderComponent>(t, acechante);
 		mngr_->addComponent<HealthComponent>(t, intAt("AcechanteVida"));
 		mngr_->addComponent<AcechanteComponent>(t, floatAt("AcechanteAceleracion"), floatAt("AcechanteRango"), floatAt("AcechanteReload"));
@@ -130,7 +130,7 @@ void generateEnemies::addEnemy(enmId type, std::vector<Vector2D> route) {
 		mngr_->addComponent<EnemyTypeComponent>(t, _enm_AELECTRICO);
 		break;
 	case _enm_MALDITO:
-		tr->setSpeed(30.0f);
+		tr->setSpeed(intAt("MalditoVelocidad"));
 		mngr_->addComponent<RenderComponent>(t, maldito);
 		mngr_->addComponent<HealthComponent>(t, intAt("MalditoVida"));
 		RoutesCorrection(tr, route, 1.0f, 3.0f);
@@ -141,7 +141,7 @@ void generateEnemies::addEnemy(enmId type, std::vector<Vector2D> route) {
 		mngr_->addComponent<EnemyTypeComponent>(t, _enm_MALDITO);
 		break;
 	case _enm_GOLEM:
-		tr->setSpeed(20.0f);
+		tr->setSpeed(intAt("GolemVelocidad"));
 		mngr_->addComponent<RenderComponent>(t, golem);
 		mngr_->addComponent<HealthComponent>(t, intAt("GolemVida"));
 		mngr_->addComponent<GolemComponent>(t);
@@ -153,7 +153,7 @@ void generateEnemies::addEnemy(enmId type, std::vector<Vector2D> route) {
 		mngr_->addComponent<EnemyTypeComponent>(t, _enm_GOLEM);
 		break;
 	case _enm_DALADO:
-		tr->setSpeed(40.0f);
+		tr->setSpeed(intAt("DemonioAladoVelocidad"));
 		mngr_->addComponent<RenderComponent>(t, demonioAlado);
 		mngr_->addComponent<HealthComponent>(t, intAt("DemonioAladoVida"));
 		RoutesCorrection(tr, route, 1.5f, 1.5f);
@@ -164,7 +164,7 @@ void generateEnemies::addEnemy(enmId type, std::vector<Vector2D> route) {
 		mngr_->addComponent<EnemyTypeComponent>(t, _enm_DALADO);
 		break;
 	case _enm_GOBLIN:
-		tr->setSpeed(60.0f);
+		tr->setSpeed(intAt("GoblinVelocidad"));
 		mngr_->addComponent<RenderComponent>(t, goblin);
 		mngr_->addComponent<HealthComponent>(t, intAt("GoblinVida"));
 		RoutesCorrection(tr, route, 1.5f, 1.5f);
@@ -175,7 +175,7 @@ void generateEnemies::addEnemy(enmId type, std::vector<Vector2D> route) {
 		mngr_->addComponent<EnemyTypeComponent>(t, _enm_GOBLIN);
 		break;
 	case _enm_ELFO:
-		tr->setSpeed(20.0f);
+		tr->setSpeed(intAt("ElfoVelocidad"));
 		mngr_->addComponent<RenderComponent>(t, elfo);
 		mngr_->addComponent<HealthComponent>(t, intAt("ElfoVida"));
 		RoutesCorrection(tr, route, 1.5f, 1.5f);
@@ -186,7 +186,7 @@ void generateEnemies::addEnemy(enmId type, std::vector<Vector2D> route) {
 		mngr_->addComponent<EnemyTypeComponent>(t, _enm_ELFO);
 		break;
 	case _enm_MMUERTE:
-		tr->setSpeed(30.0f);
+		tr->setSpeed(intAt("MensajeroVelocidad"));
 		mngr_->addComponent<RenderComponent>(t, mensajero);
 		mngr_->addComponent<HealthComponent>(t, intAt("MensajeroVida"));
 		RoutesCorrection(tr, route, 1.0f, 3.0f);
@@ -199,7 +199,7 @@ void generateEnemies::addEnemy(enmId type, std::vector<Vector2D> route) {
 		mngr_->setHandler(_hdlr_GHOST_ENEMIES, t);
 		break;
 	case _enm_ANGEL:
-		tr->setSpeed(30.0f);
+		tr->setSpeed(intAt("AngelVelocidad"));
 		mngr_->addComponent<RenderComponent>(t, angel);
 		mngr_->addComponent<HealthComponent>(t, intAt("AngelVida"));
 		mngr_->addComponent<AngelComponent>(t, 100.0f);
@@ -211,7 +211,7 @@ void generateEnemies::addEnemy(enmId type, std::vector<Vector2D> route) {
 		mngr_->addComponent<EnemyTypeComponent>(t, _enm_ANGEL);
 		break;
 	case _enm_DINFERNAL:
-		tr->setSpeed(30.0f);
+		tr->setSpeed(intAt("DemonioInfernalVelocidad"));
 		mngr_->addComponent<RenderComponent>(t, demonioInfernal);
 		mngr_->addComponent<HealthComponent>(t, intAt("DemonioInfernalVida"));
 		RoutesCorrection(tr, route, 1.5f, 1.5f);
@@ -222,7 +222,7 @@ void generateEnemies::addEnemy(enmId type, std::vector<Vector2D> route) {
 		mngr_->addComponent<EnemyTypeComponent>(t, _enm_DINFERNAL);
 		break;
 	case _enm_DREAL:
-		tr->setSpeed(30.0f);
+		tr->setSpeed(intAt("DefensorVelocidad"));
 		mngr_->addComponent<RenderComponent>(t, defensor);
 		mngr_->addComponent<HealthComponent>(t, intAt("DefensorVida"));
 		RoutesCorrection(tr, route, 1.5f, 1.5f);
@@ -233,7 +233,7 @@ void generateEnemies::addEnemy(enmId type, std::vector<Vector2D> route) {
 		mngr_->addComponent<EnemyTypeComponent>(t, _enm_DREAL);
 		break;
 	case _enm_CMALDITO:
-		tr->setSpeed(10.0f);
+		tr->setSpeed(intAt("CMalditoVelocidad"));
 		mngr_->addComponent<RenderComponent>(t, CMaldito);
 		mngr_->addComponent<HealthComponent>(t, intAt("CMalditoVida"));
 		RoutesCorrection(tr, route, 1.5f, 1.5f);
@@ -245,7 +245,7 @@ void generateEnemies::addEnemy(enmId type, std::vector<Vector2D> route) {
 		mngr_->addComponent<CaballeroMalditoComponent>(t);
 		break;
 	case _enm_PRINCIPITO:
-		tr->setSpeed(30.0f);
+		tr->setSpeed(intAt("PrincipitoVelocidad"));
 		mngr_->addComponent<RenderComponent>(t, principito);
 		mngr_->addComponent<HealthComponent>(t, intAt("PrincipitoVida"));
 		RoutesCorrection(tr, route, 1.5f, 1.5f);
@@ -257,7 +257,7 @@ void generateEnemies::addEnemy(enmId type, std::vector<Vector2D> route) {
 		mngr_->addComponent<PrincipitoComponent>(t,3);
 		break;
 	case _enm_MONJE:
-		tr->setSpeed(30.0f);
+		tr->setSpeed(intAt("MonjeVelocidad"));
 		mngr_->addComponent<RenderComponent>(t, monje);
 		mngr_->addComponent<HealthComponent>(t, intAt("MonjeVida"));
 		RoutesCorrection(tr, route, 1.5f, 1.5f);
@@ -269,7 +269,7 @@ void generateEnemies::addEnemy(enmId type, std::vector<Vector2D> route) {
 		mngr_->addComponent<MonjeComponent>(t,10.0f,2.5f);
 		break;
 	case _enm_MUERTE:
-		tr->setSpeed(10.0f);
+		tr->setSpeed(intAt("MuerteVelocidad"));
 		mngr_->addComponent<RenderComponent>(t, muerte);
 		mngr_->addComponent<HealthComponent>(t, intAt("MuerteVida"));
 		RoutesCorrection(tr, route, 1.5f, 1.5f);

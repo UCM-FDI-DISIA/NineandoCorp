@@ -868,7 +868,7 @@
     },
     {
       "id": "MaestroVelocidad",
-      "value": 3
+      "value": 30
     },
     {
       "id": "MaestroAtaque",
@@ -924,7 +924,7 @@
     },
     {
       "id": "AcechanteVelocidad",
-      "value": 7
+      "value": 70
     },
     {
       "id": "AcechanteAtaque",
@@ -980,7 +980,7 @@
     },
     {
       "id": "MalditoVelocidad",
-      "value": 3
+      "value": 30
     },
     {
       "id": "MalditoAtaque",
@@ -1036,7 +1036,7 @@
     },
     {
       "id": "GolemVelocidad",
-      "value": 2
+      "value": 20
     },
     {
       "id": "GolemAtaque",
@@ -1092,7 +1092,7 @@
     },
     {
       "id": "DemonioAladoVelocidad",
-      "value": 4
+      "value": 40
     },
     {
       "id": "DemonioAladoAtaque",
@@ -1148,7 +1148,7 @@
     },
     {
       "id": "GoblinVelocidad",
-      "value": 6
+      "value": 60
     },
     {
       "id": "GoblinAtaque",
@@ -1204,7 +1204,7 @@
     },
     {
       "id": "ElfoVelocidad",
-      "value": 2
+      "value": 20
     },
     {
       "id": "ElfoAtaque",
@@ -1260,7 +1260,7 @@
     },
     {
       "id": "MensajeroVelocidad",
-      "value": 3
+      "value": 30
     },
     {
       "id": "MensajeroAtaque",
@@ -1316,7 +1316,7 @@
     },
     {
       "id": "AngelVelocidad",
-      "value": 3
+      "value": 30
     },
     {
       "id": "AngelAtaque",
@@ -1372,7 +1372,7 @@
     },
     {
       "id": "DemonioInfernalVelocidad",
-      "value": 3
+      "value": 30
     },
     {
       "id": "DemonioInfernalAtaque",
@@ -1428,7 +1428,7 @@
     },
     {
       "id": "DefensorVelocidad",
-      "value": 3
+      "value": 30
     },
     {
       "id": "DefensorAtaque",
@@ -1484,7 +1484,7 @@
     },
     {
       "id": "CMalditoVelocidad",
-      "value": 1
+      "value": 10
     },
     {
       "id": "CMalditoAtaque",
@@ -1540,7 +1540,7 @@
     },
     {
       "id": "PrincipitoVelocidad",
-      "value": 3
+      "value": 30
     },
     {
       "id": "PrincipitoAtaque",
@@ -1596,7 +1596,7 @@
     },
     {
       "id": "MonjeVelocidad",
-      "value": 3
+      "value": 30
     },
     {
       "id": "MonjeAtaque",
@@ -1652,7 +1652,7 @@
     },
     {
       "id": "MuerteVelocidad",
-      "value": 3
+      "value": 10
     },
     {
       "id": "MuerteAtaque",
