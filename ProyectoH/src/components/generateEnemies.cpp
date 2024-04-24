@@ -218,7 +218,7 @@ void generateEnemies::addEnemy(enmId type, std::vector<Vector2D> route) {
 		tr->setPosition(route[0]);
 		mngr_->addComponent<RouteComponent>(t, route);
 		mngr_->addComponent<AttackComponent>(t, intAt("DemonioInfernalRango"), intAt("DemonioInfernaltiempo"), intAt("DemonioInfernalAtaque"), true);
-		mngr_->addComponent<FramedImage>(t, intAt("DemonioInfernalRangoFI1"), intAt("DemonioInfernalRangoFI2"), intAt("DemonioInfernalRangoFI3"), intAt("DemonioInfernalRangoFI4"), intAt("DemonioInfernalRangoFI5"), intAt("DemonioInfernalRangoI6"), intAt("DemonioInfernalRangoFI7"));
+		mngr_->addComponent<FramedImage>(t, intAt("DemonioInfernalFI1"), intAt("DemonioInfernalFI2"), intAt("DemonioInfernalFI3"), intAt("DemonioInfernalFI4"), intAt("DemonioInfernalFI5"), intAt("DemonioInfernalFI6"), intAt("DemonioInfernalFI7"));
 		mngr_->addComponent<EnemyTypeComponent>(t, _enm_DINFERNAL);
 		break;
 	case _enm_DREAL:
