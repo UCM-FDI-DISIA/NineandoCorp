@@ -59,6 +59,12 @@ public:
 	/// <returns>Las monedas H</returns>
 	int getHMoney() { return HMoney_; };
 
+	/// <summary>
+	/// Devuelve las monedas doradas acumuladas en la partida
+	/// </summary>
+	/// <returns>Las monedas doradas</returns>
+	int getMoney() { return money_; }
+
 private:
 	/// <summary>
 	/// Añade el dinero correspondiente a la torre vendida

@@ -513,7 +513,7 @@ void HUDSystem::showUpgradeMenu(Entity* twr, const Vector2D& pos) {
 	* 
 	*/
 	Vector2D posA = { pos.getX() + 300 + 20 + cameraOffset_->x , pos.getY() + cameraOffset_->y };
-	if (posA.getX() + 200  > sdlutils().width()) {
+	if (posA.getX() + 250  > sdlutils().width()) {
 	
 		offset.setX(-520);
 	}
@@ -620,31 +620,42 @@ void HUDSystem::showUpgradeMenu(Entity* twr, const Vector2D& pos) {
 	Message m;
 	m.id = _m_UPGRADE_TWR_INGAME;
 	m.upgrade_twr_ingame_data.upCmp = twr;
-	Vector2D posB = { posA.getX() + bgScale.getX() / 4, pos.getY() + 85 + cameraOffset_->y};
+	Vector2D posB = { posA.getX() + bgScale.getX() / 4,pos.getY() + cameraOffset_->y };
+	
+	Vector2D upButScale = { 150.0f, 60.0f };
 	upM_.upgradeButton = bS->addButton(posB + offset, 
-		{ 150.0f, 60.0f },
+		upButScale,
 		upgrade, upgrade_hover, ButtonTypes::upgrade_tower, 0,0,0,
 		m
 		);
 
-
 	/**
-	*	TEXTO DE COSTE DE MEJORA
+	*	TEXTO COSTE & IMAGEN MONEDA
 	*/
 	int upCost = upCmp->getUpgradeCost();
 	basic_string cost_s = std::to_string(upCost);
-	Vector2D scaleM = { 20.0f * cost_s.size(), 45 };
+	//Escala texto 
+	Vector2D scaleUpText = { 20.0f * cost_s.size(), 35.0f };
+	//Escala icono moneda
+	Vector2D scaleCoin = { 35.0f, 35.0f };
 
-	Vector2D posM = { pos.getX() + 170 + cameraOffset_->x , pos.getY() + 100 + cameraOffset_->y };
-	upM_.upCost = bS->addText(cost_s, c1, posM + offset, scaleM);
+	//Separacion entre el texto y la imagen de la moneda
+	float separation = 20.0f;
+	//Longitud total de las dos entidades
+	float total_length = scaleUpText.getX() + scaleCoin.getX() + separation;
+	//Posicion central de ambas entidades
+	Vector2D centerPos = { posB.getX(), posB.getY() - upButScale.getY() / 2 - scaleUpText.getY() / 2 - 10};
 
-	/**
-	*	IMAGEN DE MONEDA
-	*/
-	Vector2D cpos = { posM.getX() + 40.0f, posM.getY() };
-	Vector2D scaleC = { 35.0f, 35.0f };
+	//Posicion texto
+	Vector2D posUpText = { centerPos.getX() - (total_length / 2) + (scaleUpText.getX() / 2) , centerPos.getY()};
+	//Instancia del texto
+	upM_.upCost = bS->addText(cost_s, c1, posUpText + offset, scaleUpText);
+
+	//Posicion del icono de la moneda
+	Vector2D cpos = { centerPos.getX() + (total_length / 2) - (scaleCoin.getX() / 2) ,centerPos.getY()};
+	//Instancia de la imagen de la moneda
 	upM_.coinImg = bS->addImage(
-		cpos + offset, scaleC, 0, gameTextures::monedaDorada,
+		cpos + offset, scaleCoin, 0, gameTextures::monedaDorada,
 		grpId::_grp_HUD_FOREGROUND
 	);
 
@@ -655,7 +666,7 @@ void HUDSystem::showUpgradeMenu(Entity* twr, const Vector2D& pos) {
 	m1.id = _m_SELL_TOWER;
 	m1.sell_tower_data.twr = tower_;
 
-	Vector2D posC = { posA.getX() + bgScale.getX() / 4, pos.getY() + cameraOffset_->y };
+	Vector2D posC = { posA.getX() + bgScale.getX() / 4, pos.getY() + 85 + cameraOffset_->y };
 	upM_.sellButton = bS->addButton(posC + offset,
 		{ 150.0f, 60.0f },
 		sell, sell_hover, ButtonTypes::sell_tower, 0,0,0,
@@ -666,7 +677,8 @@ void HUDSystem::showUpgradeMenu(Entity* twr, const Vector2D& pos) {
 	/**
 	*	BOTON DE SALIR
 	*/
-	Vector2D posD = { pos.getX() + 460.0f + cameraOffset_->x, pos.getY() - 105.0f + cameraOffset_->y };
+	Vector2D exitScale = { 40.0f, 40.0f };
+	Vector2D posD = { posA.getX() + (bgScale.getX() / 2 ) - exitScale.getX(), posA.getY() - bgScale.getY() / 2 + exitScale.getY() + 10};
 	upM_.exitButton = bS->addButton(posD + offset,
 		{ 40.0f , 40.0f },
 		gameTextures::close, gameTextures::close_hover, ButtonTypes::exit_up_menu);
