@@ -236,7 +236,8 @@ enum msgId : msgId_type {
 	_m_TOWER_DIED,
 	_m_CHANGE_RESOLUTION,
 	_m_ACTIVATE_ATTACK_TOWERS,
-	_m_ISPLAYSTATE
+	_m_ISPLAYSTATE,
+	_m_HIDE_UPGRADEBUTTON
 };
 
 using twrId_type = uint8_t;
