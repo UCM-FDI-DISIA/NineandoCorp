@@ -1568,19 +1568,19 @@
     },
     {
       "id": "BalasDano",
-      "value": 20
+      "value": 5
     },
     {
       "id": "BalasDano1",
-      "value": 30
+      "value": 10
     },
     {
       "id": "BalasDano2",
-      "value": 60
+      "value": 20
     },
     {
       "id": "BalasDano3",
-      "value": 105
+      "value": 20
     },
     {
       "id": "BalasDobleObj",
