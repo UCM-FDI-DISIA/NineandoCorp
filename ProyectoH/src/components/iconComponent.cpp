@@ -43,6 +43,14 @@ void IconComponent::removeIcon(iconId id) {
 	}
 }
 
+void IconComponent::removeAllIcons()
+{
+	removeIcon(_BLINDED);
+	removeIcon(_POWERUP);
+	removeIcon(_HEALED);
+	removeIcon(_PARALIZED);
+}
+
 bool IconComponent::hasIcon(iconId id) {
 	int i = 0;
 	while (i != icons_.size() && icons_[i].id_ != id) {

@@ -166,7 +166,7 @@ RenderSystem::RenderSystem() : winner_(0)
 	textures[demonioInfernal] = &sdlutils().images().at("demonioInfernal");
 	textures[mensajero] = &sdlutils().images().at("mensajero");
 	textures[CMaldito] = &sdlutils().images().at("maldito");
-	textures[principito] = &sdlutils().images().at("principito");
+	textures[principito] = &sdlutils().images().at("principito_Run");
 	textures[monje] = &sdlutils().images().at("monje");
 	textures[muerte] = &sdlutils().images().at("muerte");
 	textures[elfo_attack] = &sdlutils().images().at("elfo_Attack");

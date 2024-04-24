@@ -26,6 +26,7 @@ public:
 	bool hasIcon(iconId id);
 	void addIcon(iconId id);
 	void removeIcon(iconId id);
+	void removeAllIcons();
 
 	icon getIcon(iconId id);
 };
