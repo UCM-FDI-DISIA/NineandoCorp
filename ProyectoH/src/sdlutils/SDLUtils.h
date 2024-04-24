@@ -229,7 +229,7 @@ private:
 	sdl_resource_table<Texture> msgs_; // textures map (string -> texture)
 	sdl_resource_table<SoundEffect> sounds_; // sounds map (string -> sound)
 	sdl_resource_table<Music> musics_; // musics map (string -> music)
-	sdl_resource_table<int> floatConst_;
+	sdl_resource_table<float> floatConst_;
 	sdl_resource_table<int> intConst_;
 	sdl_resource_table<int> intConstNumSpaws_;
 	sdl_resource_table<int> intConstWaves_;
@@ -241,7 +241,7 @@ private:
 	map_access_wrapper<Texture> msgsAccessWrapper_;
 	map_access_wrapper<SoundEffect> soundsAccessWrapper_;
 	map_access_wrapper<Music> musicsAccessWrapper_; 
-	map_access_wrapper<int> floatConstAccessWrapper_;
+	map_access_wrapper<float> floatConstAccessWrapper_;
 	map_access_wrapper<int> intConstAccessWrapper_;
 	map_access_wrapper<int> intConstNumSpawsAccessWrapper_;
 	map_access_wrapper<int> intConstWavesAccessWrapper_;

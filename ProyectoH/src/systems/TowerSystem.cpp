@@ -330,14 +330,20 @@ void TowerSystem::update() {
 							auto ac = mngr_->getComponent<DiegoSniperTower>(towers[i]);
 							auto st = mngr_->getComponent<SlimeTowerComponent>(towers[i]);
 							auto h = mngr_->getComponent<HealthComponent>(towers[i]);
-							if (ac != nullptr)ac->setDamage(ac->getBaseDamage() * (1 + et->getDamageIncreasePercentage()));//incrementamos daño
-							if (bt != nullptr)bt->setDamage(bt->getBaseDamage() * (1 + et->getDamageIncreasePercentage()));
-							if (st != nullptr)st->setDamage(st->getBaseDamage() * (1 + et->getDamageIncreasePercentage()));
-							if (h != nullptr) {
-								h->setMaxHealth(h->getBaseHealth() + et->getTowersHPboost());//incrementamos vida
-								h->setHealth(h->getMaxHealth());
+							auto pt = mngr_->getComponent<PhoenixTower>(towers[i]);
+							
+							auto ts = mngr_->getComponent<TowerStates>(towers[i]);
+							if (!ts->getPotenciado()) {
+								if (ac != nullptr)ac->setDamage(ac->getBaseDamage() * (1 + et->getDamageIncreasePercentage()));//incrementamos daño
+								if (bt != nullptr)bt->setDamage(bt->getBaseDamage() * (1 + et->getDamageIncreasePercentage()));
+								if (st != nullptr)st->setDamage(st->getBaseDamage() * (1 + et->getDamageIncreasePercentage()));
+								if (pt != nullptr)pt->setDamage(pt->getBaseDamage() * (1 + et->getDamageIncreasePercentage()));
+								if (h != nullptr) {
+									h->setMaxHealth(h->getBaseHealth() + et->getTowersHPboost());//incrementamos vida
+									h->setHealth(h->getBaseHealth() + et->getTowersHPboost());//incrementamos vida
+								}
 							}
-							mngr_->getComponent<TowerStates>(towers[i])->setPotenciado(true);
+							ts->setPotenciado(true);
 						}
 						else if (ic != nullptr && tw->getPotenciado() && tw->getSrcPotencia() == t) {//Eliminarlo si no se encuentra en la distancia
 							tw->setPotenciado(false);
@@ -381,6 +387,7 @@ void TowerSystem::update() {
 
 						}
 					}
+					cout<<bt->getDamage() << "\n";
 				}
 #pragma endregion
 

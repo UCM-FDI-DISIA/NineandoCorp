@@ -15,6 +15,7 @@ public:
 
 	bool isMaxLevel() const { return isMaxLevel_; }
 	float getDamage() const { return damage_; }
+	float getBaseDamage() const { return baseDamage_; }
 	float getCoolingTime()const { return coolingTime_; }
 	float getShootingTime() const { return shootingTime_; }
 	float getElapsedTime() const { return elapsedTime_; }
@@ -30,6 +31,7 @@ public:
 	void setTarget(Entity* e) { target_ = e; };
 	void setRotation(float rot) { rotation_ = rot; }
 	void setDamage(float dmg) { damage_ = dmg; }
+	void setBaseDamage(float dmg) { baseDamage_ = dmg; }
 	void setCooling(float time) { coolingTime_ = time; }
 	void removeFire();
 
@@ -39,6 +41,7 @@ protected:
 	float shootingTime_;
 	float elapsedTime_;
 	float damage_;
+	float baseDamage_;
 	float range_;
 	bool shooting_;
 	float rotation_;
