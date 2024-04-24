@@ -170,7 +170,7 @@ void generateEnemies::addEnemy(enmId type, std::vector<Vector2D> route) {
 		RoutesCorrection(tr, route, 1.5f, 1.5f);
 		tr->setPosition(route[0]);
 		mngr_->addComponent<RouteComponent>(t, route);
-		mngr_->addComponent<AttackComponent>(t, 150, 1, 15, false);
+		mngr_->addComponent<AttackComponent>(t, intAt("GoblinRango"), intAt("Goblintiempo"), intAt("GoblinAtaque"), false);
 		mngr_->addComponent<FramedImage>(t, 8, 1, 150, 150, 0, 8, 7);
 		mngr_->addComponent<EnemyTypeComponent>(t, _enm_GOBLIN);
 		break;
@@ -181,7 +181,7 @@ void generateEnemies::addEnemy(enmId type, std::vector<Vector2D> route) {
 		RoutesCorrection(tr, route, 1.5f, 1.5f);
 		tr->setPosition(route[0]);
 		mngr_->addComponent<RouteComponent>(t, route);
-		mngr_->addComponent<AttackComponent>(t, 100, 1, 10, true);
+		mngr_->addComponent<AttackComponent>(t, intAt("ElfoRango"), intAt("Elfotiempo"), intAt("ElfoAtaque"), true);
 		mngr_->addComponent<FramedImage>(t, 8, 1, 100, 100, 0, 8, 7);
 		mngr_->addComponent<EnemyTypeComponent>(t, _enm_ELFO);
 		break;
@@ -192,7 +192,7 @@ void generateEnemies::addEnemy(enmId type, std::vector<Vector2D> route) {
 		RoutesCorrection(tr, route, 1.0f, 3.0f);
 		tr->setPosition(route[0]);
 		mngr_->addComponent<RouteComponent>(t, route);
-		mngr_->addComponent<AttackComponent>(t,75, 1, 20, true);
+		mngr_->addComponent<AttackComponent>(t, intAt("MensajeroRango"), intAt("Mensajerotiempo"), intAt("MensajeroAtaque"), true);
 		mngr_->addComponent<FramedImage>(t, 8, 8, 140, 93, 8, 8, 15);
 		mngr_->addComponent<EnemyTypeComponent>(t, _enm_MMUERTE);
 		mngr_->addComponent<MensajeroMuerteComponent>(t);
@@ -206,7 +206,7 @@ void generateEnemies::addEnemy(enmId type, std::vector<Vector2D> route) {
 		RoutesCorrection(tr, route, 1.5f, 1.5f);
 		tr->setPosition(route[0]);
 		mngr_->addComponent<RouteComponent>(t, route);
-		mngr_->addComponent<AttackComponent>(t, 100, 2, 2, true);
+		mngr_->addComponent<AttackComponent>(t, intAt("AngelRango"), intAt("Angeltiempo"), intAt("AngelAtaque"), true);
 		mngr_->addComponent<FramedImage>(t, 8, 1, 122, 117, 0, 8, 7);
 		mngr_->addComponent<EnemyTypeComponent>(t, _enm_ANGEL);
 		break;
@@ -217,7 +217,7 @@ void generateEnemies::addEnemy(enmId type, std::vector<Vector2D> route) {
 		RoutesCorrection(tr, route, 1.5f, 1.5f);
 		tr->setPosition(route[0]);
 		mngr_->addComponent<RouteComponent>(t, route);
-		mngr_->addComponent<AttackComponent>(t, 100, 2, 20, true);
+		mngr_->addComponent<AttackComponent>(t, intAt("DemonioInfernalRango"), intAt("DemonioInfernaltiempo"), intAt("DemonioInfernalAtaque"), true);
 		mngr_->addComponent<FramedImage>(t, 8, 4, 64, 64, 16, 4, 19);
 		mngr_->addComponent<EnemyTypeComponent>(t, _enm_DINFERNAL);
 		break;
@@ -228,7 +228,7 @@ void generateEnemies::addEnemy(enmId type, std::vector<Vector2D> route) {
 		RoutesCorrection(tr, route, 1.5f, 1.5f);
 		tr->setPosition(route[0]);
 		mngr_->addComponent<RouteComponent>(t, route);
-		mngr_->addComponent<AttackComponent>(t, 100, 1, 10, true);
+		mngr_->addComponent<AttackComponent>(t, intAt("DefensorRango"), intAt("Defensortiempo"), intAt("DefensorAtaque"), true);
 		mngr_->addComponent<FramedImage>(t, 8, 1, 231, 190, 0, 8, 7);
 		mngr_->addComponent<EnemyTypeComponent>(t, _enm_DREAL);
 		break;
@@ -239,7 +239,7 @@ void generateEnemies::addEnemy(enmId type, std::vector<Vector2D> route) {
 		RoutesCorrection(tr, route, 1.5f, 1.5f);
 		tr->setPosition(route[0]);
 		mngr_->addComponent<RouteComponent>(t, route);
-		mngr_->addComponent<AttackComponent>(t, 150, 3, 150, false);
+		mngr_->addComponent<AttackComponent>(t, intAt("CMalditoRango"), intAt("CMalditotiempo"), intAt("CMalditoAtaque"), false);
 		mngr_->addComponent<FramedImage>(t, 8, 1, 64, 64, 0, 8, 7);
 		mngr_->addComponent<EnemyTypeComponent>(t, _enm_CMALDITO);
 		mngr_->addComponent<CaballeroMalditoComponent>(t);
@@ -251,7 +251,7 @@ void generateEnemies::addEnemy(enmId type, std::vector<Vector2D> route) {
 		RoutesCorrection(tr, route, 1.5f, 1.5f);
 		tr->setPosition(route[0]);
 		mngr_->addComponent<RouteComponent>(t, route);
-		mngr_->addComponent<AttackComponent>(t, 100, 3, 10, true);
+		mngr_->addComponent<AttackComponent>(t, intAt("PrincipitoRango"), intAt("Principitotiempo"), intAt("PrincipitoAtaque"), true);
 		mngr_->addComponent<FramedImage>(t, 8, 1, 128, 128, 0, 8, 7);
 		mngr_->addComponent<EnemyTypeComponent>(t, _enm_PRINCIPITO);
 		mngr_->addComponent<PrincipitoComponent>(t,3);
@@ -263,7 +263,7 @@ void generateEnemies::addEnemy(enmId type, std::vector<Vector2D> route) {
 		RoutesCorrection(tr, route, 1.5f, 1.5f);
 		tr->setPosition(route[0]);
 		mngr_->addComponent<RouteComponent>(t, route);
-		mngr_->addComponent<AttackComponent>(t, 100, 1, 75, false);
+		mngr_->addComponent<AttackComponent>(t, intAt("MonjeRango"), intAt("Monjetiempo"), intAt("MonjeAtaque"), false);
 		mngr_->addComponent<FramedImage>(t, 8, 1, 150, 150, 0, 8, 7);
 		mngr_->addComponent<EnemyTypeComponent>(t, _enm_MONJE);
 		mngr_->addComponent<MonjeComponent>(t,10.0f,2.5f);
@@ -275,7 +275,7 @@ void generateEnemies::addEnemy(enmId type, std::vector<Vector2D> route) {
 		RoutesCorrection(tr, route, 1.5f, 1.5f);
 		tr->setPosition(route[0]);
 		mngr_->addComponent<RouteComponent>(t, route);
-		mngr_->addComponent<AttackComponent>(t, 100, 1, 75, true);
+		mngr_->addComponent<AttackComponent>(t, intAt("MuerteRango"), intAt("Muertetiempo"), intAt("MuerteAtaque"), true);
 		mngr_->addComponent<FramedImage>(t, 1, 1, 100, 100, 0, 0, 1);
 		mngr_->addComponent<EnemyTypeComponent>(t, _enm_MUERTE);
 		break;

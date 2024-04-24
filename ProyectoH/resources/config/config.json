@@ -1008,7 +1008,7 @@
     },
     {
         "id": "GoblinRango",
-        "value": 0
+        "value": 150
     },
     {
         "id": "GoblinVelocidad",
@@ -1037,7 +1037,7 @@
     },
     {
         "id": "ElfoRango",
-        "value": 1
+        "value": 100
     },
     {
         "id": "ElfoVelocidad",
@@ -1065,7 +1065,7 @@
     },
     {
         "id": "MensajeroRango",
-        "value": 0
+        "value": 75
     },
     {
         "id": "MensajeroVelocidad",
@@ -1094,7 +1094,7 @@
     },
     {
         "id": "AngelRango",
-        "value": 1
+        "value": 100
     },
     {
         "id": "AngelVelocidad",
@@ -1106,7 +1106,7 @@
     },
     {
         "id": "Angeltiempo",
-        "value":0
+        "value":2
     },
     {
         "id": "AngelTipo",
@@ -1123,7 +1123,7 @@
     },
     {
         "id": "DemonioInfernalRango",
-        "value": 1
+        "value": 100
     },
     {
         "id": "DemonioInfernalVelocidad",
@@ -1151,7 +1151,7 @@
     },
     {
         "id": "DefensorRango",
-        "value": 1
+        "value": 100
     },
     {
         "id": "DefensorVelocidad",
@@ -1180,7 +1180,7 @@
     },
     {
         "id": "CMalditoRango",
-        "value": 0
+        "value": 150
     },
     {
         "id": "CMalditoVelocidad",
@@ -1208,7 +1208,7 @@
     },
     {
         "id": "PrincipitoRango",
-        "value": true
+        "value": 100
     },
     {
         "id": "PrincipitoVelocidad",
@@ -1220,7 +1220,7 @@
     },
     {
         "id": "Principitotiempo",
-        "value":1
+        "value":3
     },
     {
         "id": "PrincipitoTipo",
@@ -1236,7 +1236,7 @@
     },
     {
         "id": "MonjeRango",
-        "value": 0
+        "value": 100
     },
     {
         "id": "MonjeVelocidad",
@@ -1265,7 +1265,7 @@
     },
     {
         "id": "MuerteRango",
-        "value": 1
+        "value": 100
     },
     {
         "id": "MuerteVelocidad",
