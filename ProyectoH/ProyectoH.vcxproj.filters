@@ -23,13 +23,13 @@
       <Filter>Sources Files\Components</Filter>
     </ClCompile>
     <ClCompile Include="src\systems\ButtonSystem.cpp">
-      <Filter>Sources Files\States\Systems</Filter>
+      <Filter>Headers Files\Components\States\Systems</Filter>
     </ClCompile>
     <ClCompile Include="src\utils\Collisions.cpp">
       <Filter>Sources Files\utils</Filter>
     </ClCompile>
     <ClCompile Include="src\systems\CollisionSystem.cpp">
-      <Filter>Sources Files\States\Systems</Filter>
+      <Filter>Headers Files\Components\States\Systems</Filter>
     </ClCompile>
     <ClCompile Include="src\components\CrystalTower.cpp">
       <Filter>Sources Files\Components</Filter>
@@ -44,10 +44,10 @@
       <Filter>Sources Files\Components</Filter>
     </ClCompile>
     <ClCompile Include="src\systems\EnemyBookSystem.cpp">
-      <Filter>Sources Files\States\Systems</Filter>
+      <Filter>Headers Files\Components\States\Systems</Filter>
     </ClCompile>
     <ClCompile Include="src\systems\EnemySystem.cpp">
-      <Filter>Sources Files\States\Systems</Filter>
+      <Filter>Headers Files\Components\States\Systems</Filter>
     </ClCompile>
     <ClCompile Include="src\components\EnhancerTower.cpp">
       <Filter>Sources Files\Components</Filter>
@@ -62,13 +62,13 @@
       <Filter>Sources Files\Game</Filter>
     </ClCompile>
     <ClCompile Include="src\gameStates\GameOverState.cpp">
-      <Filter>Sources Files\States</Filter>
+      <Filter>Headers Files\Components\States</Filter>
     </ClCompile>
     <ClCompile Include="src\game\GameState.cpp">
       <Filter>Sources Files\Game</Filter>
     </ClCompile>
     <ClCompile Include="src\game\GameStateMachine.cpp">
-      <Filter>Sources Files\States</Filter>
+      <Filter>Headers Files\Components\States</Filter>
     </ClCompile>
     <ClCompile Include="src\components\GolemComponent.cpp">
       <Filter>Sources Files\Components</Filter>
@@ -77,7 +77,7 @@
       <Filter>Sources Files\Components</Filter>
     </ClCompile>
     <ClCompile Include="src\systems\HUDSystem.cpp">
-      <Filter>Sources Files\States\Systems</Filter>
+      <Filter>Headers Files\Components\States\Systems</Filter>
     </ClCompile>
     <ClCompile Include="src\json\JSON.cpp">
       <Filter>Sources Files\json</Filter>
@@ -89,28 +89,28 @@
       <Filter>Sources Files\json</Filter>
     </ClCompile>
     <ClCompile Include="src\gameStates\LevelSelectorState.cpp">
-      <Filter>Sources Files\States</Filter>
+      <Filter>Headers Files\Components\States</Filter>
     </ClCompile>
     <ClCompile Include="src\systems\LevelSelectorSystem.cpp">
-      <Filter>Sources Files\States\Systems</Filter>
+      <Filter>Headers Files\Components\States\Systems</Filter>
     </ClCompile>
     <ClCompile Include="src\components\MaestroAlmasComponent.cpp">
       <Filter>Sources Files\Components</Filter>
     </ClCompile>
     <ClCompile Include="src\systems\MainControlSystem.cpp">
-      <Filter>Sources Files\States\Systems</Filter>
+      <Filter>Headers Files\Components\States\Systems</Filter>
     </ClCompile>
     <ClCompile Include="src\gameStates\MainMenuState.cpp">
-      <Filter>Sources Files\States</Filter>
+      <Filter>Headers Files\Components\States</Filter>
     </ClCompile>
     <ClCompile Include="src\systems\MainMenuSystem.cpp">
-      <Filter>Sources Files\States\Systems</Filter>
+      <Filter>Headers Files\Components\States\Systems</Filter>
     </ClCompile>
     <ClCompile Include="src\ecs\Manager.cpp">
       <Filter>Sources Files\ecs</Filter>
     </ClCompile>
     <ClCompile Include="src\systems\mapSystem.cpp">
-      <Filter>Sources Files\States\Systems</Filter>
+      <Filter>Headers Files\Components\States\Systems</Filter>
     </ClCompile>
     <ClCompile Include="src\components\MovementComponent.cpp">
       <Filter>Sources Files\Components</Filter>
@@ -137,13 +137,13 @@
       <Filter>Sources Files\Components</Filter>
     </ClCompile>
     <ClCompile Include="src\gameStates\PauseState.cpp">
-      <Filter>Sources Files\States</Filter>
+      <Filter>Headers Files\Components\States</Filter>
     </ClCompile>
     <ClCompile Include="src\gameStates\PlayState.cpp">
-      <Filter>Sources Files\States</Filter>
+      <Filter>Headers Files\Components\States</Filter>
     </ClCompile>
     <ClCompile Include="src\systems\RenderSystem.cpp">
-      <Filter>Sources Files\States\Systems</Filter>
+      <Filter>Headers Files\Components\States\Systems</Filter>
     </ClCompile>
     <ClCompile Include="src\sdlutils\SDLUtils.cpp">
       <Filter>Sources Files\sdlutils</Filter>
@@ -157,14 +157,17 @@
     <ClCompile Include="src\sdlutils\Texture.cpp">
       <Filter>Sources Files\sdlutils</Filter>
     </ClCompile>
+    <ClCompile Include="src\components\TowerStates.cpp">
+      <Filter>Headers Files\Components\States</Filter>
+    </ClCompile>
     <ClCompile Include="src\systems\TowerSystem.cpp">
-      <Filter>Sources Files\States\Systems</Filter>
+      <Filter>Headers Files\Components\States\Systems</Filter>
     </ClCompile>
     <ClCompile Include="src\utils\Vector2D.cpp">
       <Filter>Sources Files\utils</Filter>
     </ClCompile>
     <ClCompile Include="src\systems\ParticleSystem.cpp">
-      <Filter>Sources Files\States\Systems</Filter>
+      <Filter>Headers Files\Components\States\Systems</Filter>
     </ClCompile>
     <ClCompile Include="src\components\ShieldComponent.cpp">
       <Filter>Sources Files\Components</Filter>
@@ -176,10 +179,10 @@
       <Filter>Sources Files\utils</Filter>
     </ClCompile>
     <ClCompile Include="src\systems\MeteorologySystem.cpp">
-      <Filter>Sources Files\States\Systems</Filter>
+      <Filter>Headers Files\Components\States\Systems</Filter>
     </ClCompile>
     <ClCompile Include="src\systems\PauseSystem.cpp">
-      <Filter>Sources Files\States\Systems</Filter>
+      <Filter>Headers Files\Components\States\Systems</Filter>
     </ClCompile>
     <ClCompile Include="src\components\DefensorRealComponent.cpp">
       <Filter>Sources Files\Components</Filter>
@@ -221,32 +224,25 @@
       <Filter>Sources Files\Components</Filter>
     </ClCompile>
     <ClCompile Include="src\systems\GameOverSystem.cpp">
-      <Filter>Sources Files\States\Systems</Filter>
+      <Filter>Headers Files\Components\States\Systems</Filter>
     </ClCompile>
     <ClCompile Include="src\gameStates\EnemyBookState.cpp">
-      <Filter>Sources Files\States</Filter>
+      <Filter>Headers Files\Components\States</Filter>
     </ClCompile>
     <ClCompile Include="src\components\MonjeComponent.cpp">
       <Filter>Sources Files\Components</Filter>
     </ClCompile>
     <ClCompile Include="src\systems\ConfigSystem.cpp">
-      <Filter>Sources Files\States\Systems</Filter>
+      <Filter>Headers Files\Components\States\Systems</Filter>
     </ClCompile>
     <ClCompile Include="src\gameStates\ConfigState.cpp">
-      <Filter>Sources Files\States</Filter>
+      <Filter>Headers Files\Components\States</Filter>
     </ClCompile>
     <ClCompile Include="src\components\SliderComponent.cpp">
       <Filter>Sources Files\Components</Filter>
     </ClCompile>
-    <ClCompile Include="src\components\EnemyProyectileComponent.cpp">
-      <Filter>Sources Files\Components</Filter>
-    </ClCompile>
-    <ClCompile Include="src\components\PotionComponent.cpp">
-      <Filter>Sources Files\Components</Filter>
-    </ClCompile>
-    <ClCompile Include="src\components\TowerStates.cpp">
-      <Filter>Sources Files\Components</Filter>
-    </ClCompile>
+    <ClCompile Include="src\components\EnemyProyectileComponent.cpp" />
+    <ClCompile Include="src\components\PotionComponent.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\components\AcechanteComponent.h">
@@ -447,6 +443,9 @@
     <ClInclude Include="src\systems\TowerSystem.h">
       <Filter>Headers Files\Systems</Filter>
     </ClInclude>
+    <ClInclude Include="src\components\TowerStates.h">
+      <Filter>Headers Files\States</Filter>
+    </ClInclude>
     <ClInclude Include="src\sdlutils\Texture.h">
       <Filter>Headers Files\sdlutils</Filter>
     </ClInclude>
@@ -528,15 +527,8 @@
     <ClInclude Include="src\components\SliderComponent.h">
       <Filter>Headers Files\Components</Filter>
     </ClInclude>
-    <ClInclude Include="src\components\EnemyProyectileComponent.h">
-      <Filter>Headers Files\Components</Filter>
-    </ClInclude>
-    <ClInclude Include="src\components\PotionComponent.h">
-      <Filter>Headers Files\Components</Filter>
-    </ClInclude>
-    <ClInclude Include="src\components\TowerStates.h">
-      <Filter>Headers Files\Components</Filter>
-    </ClInclude>
+    <ClInclude Include="src\components\EnemyProyectileComponent.h" />
+    <ClInclude Include="src\components\PotionComponent.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\json\JSONValue.cpp">
@@ -724,9 +716,6 @@
     <Filter Include="Sources Files\sdlutils">
       <UniqueIdentifier>{f374f12f-a2ec-431b-9ea9-4af5557fc22b}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Sources Files\States">
-      <UniqueIdentifier>{e7b4dd79-6785-413a-8694-f559427947f5}</UniqueIdentifier>
-    </Filter>
     <ClCompile Include="src\components\SlimeTowerComponent.cpp">
       <Filter>Source Files\components</Filter>
     </ClCompile>
@@ -751,7 +740,10 @@
     <Filter Include="Sources Files\utils">
       <UniqueIdentifier>{85d81c27-45f6-4950-abb3-b9c950e15ec1}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Sources Files\States\Systems">
+    <Filter Include="Headers Files\Components\States">
+      <UniqueIdentifier>{e7b4dd79-6785-413a-8694-f559427947f5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Headers Files\Components\States\Systems">
       <UniqueIdentifier>{9b84fff3-1b27-4a36-8df4-2e57fc90315e}</UniqueIdentifier>
     </Filter>
   </ItemGroup>

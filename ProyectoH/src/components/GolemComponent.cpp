@@ -2,6 +2,10 @@
 #include "../components/HealthComponent.h"
 void
 GolemComponent::Regenera() {
-	mngr_->getComponent<HealthComponent>(ent_)->addHealth(cura_);
+	HealthComponent* hc = mngr_->getComponent<HealthComponent>(ent_);
+	if (hc->getHealth() < hc->getMaxHealth()) {
+		mngr_->getComponent<HealthComponent>(ent_)->addHealth(cura_);
+
+	}
 	//std::cout << "regenera" << " ";
 }
