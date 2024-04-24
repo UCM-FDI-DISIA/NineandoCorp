@@ -622,8 +622,9 @@ void TowerSystem::removeTower(Entity* twr)
 
 void TowerSystem::upgradeTower(Entity* tower) {
 	auto upCmp = mngr_->getComponent<UpgradeTowerComponent>(tower);
-	upCmp->levelUp();
-	std::cout << "NIVEL DE TORRE: " << upCmp->getLevel() << std::endl;
+	if (mngr_->getSystem<ButtonSystem>()->getMoney() >= upCmp->getUpgradeCost()) {
+		upCmp->levelUp();
+	}
 }
 
 void TowerSystem::enableAllInteractiveTowers(bool b) {
