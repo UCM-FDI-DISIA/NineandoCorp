@@ -1017,6 +1017,26 @@
     {
       "id": "MaestroDeLasAlmasAttcak",
       "file": "resources/sound/Enemies/MaestroDeLasAlmasAttcak.mp3"
+    },
+    {
+      "id": "DemonioAladoAttack",
+      "file": "resources/sound/Enemies/DemonioAladoAttack.mp3"
+    },
+    {
+      "id": "AngelAttack",
+      "file": "resources/sound/Enemies/AngelAttack.mp3"
+    },
+    {
+      "id": "DefensorRealAttack1",
+      "file": "resources/sound/Enemies/DefensorRealAttack1.mp3"
+    },
+    {
+      "id": "DefensorRealAttack2",
+      "file": "resources/sound/Enemies/DefensorRealAttack2.mp3"
+    },
+    {
+      "id": "MalditoAttack",
+      "file": "resources/sound/Enemies/MalditoAttack.mp3"
     }
   ],
 
