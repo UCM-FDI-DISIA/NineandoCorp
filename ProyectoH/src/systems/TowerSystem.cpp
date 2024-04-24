@@ -280,7 +280,7 @@ void TowerSystem::update() {
 			TowerStates* tw = mngr_->getComponent<TowerStates>(t);
 			IconComponent* ic = mngr_->getComponent<IconComponent>(t);
 
-			if (ic != nullptr) {
+			if (ic != nullptr && tw !=nullptr) {
 				for (int i = 0; i < ic->getIcons().size(); i++) {
 					icon towerIcon = ic->getIcons()[i];
 					Transform* iconTr = mngr_->getComponent<Transform>(towerIcon.ent_);
@@ -290,6 +290,36 @@ void TowerSystem::update() {
 					if (!ic->hasIcon(_POWERUP)) {//Crearlo si no lo tiene
 						ic->addIcon(_POWERUP);
 					}
+		
+					bool hayPotenciadora = false;
+					for (int i = 0; i < towers.size(); i++) {		
+						EnhancerTower* et = mngr_->getComponent<EnhancerTower>(towers[i]);
+						if (et != nullptr && towers[i] != t) {
+							Vector2D myPos = mngr_->getComponent<Transform>(t)->getPosition();
+							Vector2D enhancerPos = mngr_->getComponent<Transform>(towers[i])->getPosition();
+							float distance = sqrt(pow(enhancerPos.getX() - myPos.getX(), 2) + pow(enhancerPos.getY() - myPos.getY(), 2));//distancia a la torre
+							if (distance <= et->getRange())hayPotenciadora = true;
+						}						
+					}
+					if (!hayPotenciadora) {
+						tw->setPotenciado(false);
+					}
+				}
+				else {
+					AttackComponent* ac = mngr_->getComponent<AttackComponent>(t);
+					BulletTower* bt = mngr_->getComponent<BulletTower>(t);
+					SlimeTowerComponent* st = mngr_->getComponent<SlimeTowerComponent>(t);
+					PhoenixTower* pt = mngr_->getComponent<PhoenixTower>(t);
+					HealthComponent* h = mngr_->getComponent<HealthComponent>(t);
+					ic->removeIcon(_POWERUP);
+					if (ac != nullptr)ac->setDamage(ac->getBaseDamage());//incrementamos daño
+					if (bt != nullptr)bt->setDamage(bt->getBaseDamage());
+					if (st != nullptr)st->setDamage(st->getBaseDamage());
+					if (pt != nullptr)pt->setDamage(pt->getBaseDamage());
+					if (h != nullptr) {
+						h->setMaxHealth(h->getBaseHealth());//incrementamos vida
+						h->setHealth(h->getBaseHealth());//incrementamos vida
+					}					
 				}
 			}
 			if (tw->getConfundido()) {
@@ -325,14 +355,13 @@ void TowerSystem::update() {
 						Vector2D towerPos = mngr_->getComponent<Transform>(towers[i])->getPosition();
 						float distance = sqrt(pow(towerPos.getX() - myPos.getX(), 2) + pow(towerPos.getY() - myPos.getY(), 2));//distancia a la torre
 						IconComponent* ic = mngr_->getComponent<IconComponent>(towers[i]);
-						if (distance <= et->getRange() && towers[i] != t) {//enRango						
-							auto bt = mngr_->getComponent<BulletTower>(towers[i]);
-							auto ac = mngr_->getComponent<DiegoSniperTower>(towers[i]);
-							auto st = mngr_->getComponent<SlimeTowerComponent>(towers[i]);
-							auto h = mngr_->getComponent<HealthComponent>(towers[i]);
-							auto pt = mngr_->getComponent<PhoenixTower>(towers[i]);
-							
-							auto ts = mngr_->getComponent<TowerStates>(towers[i]);
+						auto bt = mngr_->getComponent<BulletTower>(towers[i]);
+						auto ac = mngr_->getComponent<DiegoSniperTower>(towers[i]);
+						auto st = mngr_->getComponent<SlimeTowerComponent>(towers[i]);
+						auto h = mngr_->getComponent<HealthComponent>(towers[i]);
+						auto pt = mngr_->getComponent<PhoenixTower>(towers[i]);
+						auto ts = mngr_->getComponent<TowerStates>(towers[i]);
+						if (distance <= et->getRange() && towers[i] != t) {//enRango																							
 							if (!ts->getPotenciado()) {
 								if (ac != nullptr)ac->setDamage(ac->getBaseDamage() * (1 + et->getDamageIncreasePercentage()));//incrementamos daño
 								if (bt != nullptr)bt->setDamage(bt->getBaseDamage() * (1 + et->getDamageIncreasePercentage()));
@@ -344,11 +373,7 @@ void TowerSystem::update() {
 								}
 							}
 							ts->setPotenciado(true);
-						}
-						else if (ic != nullptr && tw->getPotenciado() && tw->getSrcPotencia() == t) {//Eliminarlo si no se encuentra en la distancia
-							tw->setPotenciado(false);
-							ic->removeIcon(_POWERUP);
-						}
+						}						
 					}
 				}
 #pragma endregion
@@ -387,7 +412,6 @@ void TowerSystem::update() {
 
 						}
 					}
-					cout<<bt->getDamage() << "\n";
 				}
 #pragma endregion
 
@@ -608,12 +632,14 @@ Entity* TowerSystem::getFrontTower()
 void TowerSystem::removeTower(Entity* twr)
 {
 	auto h = mngr_->getComponent<TowerComponent>(twr)->getTowerHeight();
+	auto ic = mngr_->getComponent<IconComponent>(twr);
 	if (h == PATH || h == LOW) {
 		mngr_->deleteHandler(_hdlr_LOW_TOWERS, twr);
 	}
 	else {
 		mngr_->deleteHandler(_hdlr_HIGH_TOWERS, twr);
 	}
+	if (ic != nullptr)ic->removeAllIcons();
 	mngr_->getComponent<TowerComponent>(twr)->getCell()->isFree = true;
 	towers.erase(find(towers.begin(), towers.end(), twr));
 	mngr_->setAlive(twr, false);
