@@ -128,5 +128,11 @@ void ConfigSystem::createResolutions(int resolutions_) {
 		auto itHov = textureResolutions.find(resolHovImg);
 		bS->addButton({ sdlutils().width() / 4.0f + 250, sdlutils().height() / 3.0f - 45 + (i -1) * 45 }, { 150.0f, 35.0f }, it->second, itHov->second, ButtonTypes::changeResolution,0, typesResolutions[i-1].getX(), typesResolutions[i - 1].getY());
 	}
+	if (isPlayState) {
+		Message m;
+		m.id = _m_ISPLAYSTATE;
+		m.start_game_data.isPlayState = true;
+		mngr_->send(m);
+	}
 }
 

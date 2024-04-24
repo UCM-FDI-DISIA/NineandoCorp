@@ -57,4 +57,7 @@ public:
 	}
 
 	int totalEnemies() const;
+
+	int intAt(basic_string<char> s) const { return sdlutils().intConst().at(s); }
+	float floatAt(basic_string<char> s) const { return sdlutils().floatConst().at(s); }
 };

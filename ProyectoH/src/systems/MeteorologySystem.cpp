@@ -359,6 +359,8 @@ void MeteorologySystem::setNextEvent(int waves, MeteorologyEvent event) {//metod
 
 void MeteorologySystem::update() {
 
+	sdlutils().soundEffects().at("Tsunami").setChannelVolume(game().CalculoVolumenEfectos(), 5);
+
 	if (mActive) {
 
 		if (!eventActive_) {//Tiempo para el siguiente evento
@@ -377,24 +379,29 @@ void MeteorologySystem::update() {
 		if (currentWaves_ >= wavesToNextevent_ && !eventActive_) {//comienza el evento
 
 			eventActive_ = true;
-		
+
 			switch (nextEvent_)
 			{
 			case MeteorologySystem::TSUNAMI:
+				sdlutils().soundEffects().at("Tsunami").play(0, 5);
 				generateNetMap();
 				break;
 			case MeteorologySystem::STORM:
+				sdlutils().soundEffects().at("Rayo").play(0, 5);
 				generateNetMap();
 				generateStorm(250);
 				break;
 			case MeteorologySystem::METEORITES:
+				sdlutils().soundEffects().at("Meteorito").play(0, 5);
 				generateNetMap();
 				generateMeteorites(125);
 				break;
 			case MeteorologySystem::TORNADO:
+				sdlutils().soundEffects().at("Tornado").play(0, 5);
 				generateNetMap();
 				break;
 			case MeteorologySystem::EARTHQUAKE:
+				sdlutils().soundEffects().at("Terremoto").play(0, 5);
 				generateNetMap();
 				quantity_ = 50;
 				break;

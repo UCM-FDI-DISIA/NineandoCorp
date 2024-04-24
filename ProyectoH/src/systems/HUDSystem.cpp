@@ -344,7 +344,7 @@ void HUDSystem::initSystem() {
 		ButtonTypes::acelerate);
 	mngr_->setHandler(_hdlr_BUTTON_ACELERATE, acelerateButton);
 
-	Vector2D pAux = { xAux * 8.6f, heightH };
+	Vector2D pAux = { sdlutils().width() - 150.0f, heightH };
 	Vector2D sAux = { 250, 90 };
 	
 	/**

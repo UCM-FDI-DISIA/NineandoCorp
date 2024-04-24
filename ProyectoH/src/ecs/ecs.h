@@ -235,7 +235,8 @@ enum msgId : msgId_type {
 	_m_ENEMY_DIED,
 	_m_TOWER_DIED,
 	_m_CHANGE_RESOLUTION,
-	_m_ACTIVATE_ATTACK_TOWERS
+	_m_ACTIVATE_ATTACK_TOWERS,
+	_m_ISPLAYSTATE
 };
 
 using twrId_type = uint8_t;
@@ -447,6 +448,7 @@ struct Message {
 		NetMap* netmap;
 		SDL_Rect* cameraOffset;
 		vector<int> unlockedTwrs;
+		bool isPlayState;
 
 	}start_game_data;
 

@@ -895,6 +895,18 @@
       "file": "resources/sound/HUD/button.mp3"
     },
     {
+      "id": "Victoria",
+      "file": "resources/sound/HUD/Victoria.mp3"
+    },
+    {
+      "id": "Derrota",
+      "file": "resources/sound/HUD/Derrota.mp3"
+    },
+    {
+      "id": "CerrarEnemiesBook",
+      "file": "resources/sound/HUD/CerrarEnemiesBook.mp3"
+    },
+    {
       "id": "TorreUpgrade",
       "file": "resources/sound/HUD/TorreUpgrade.mp3"
     },
@@ -985,6 +997,46 @@
     {
       "id": "Tsunami",
       "file": "resources/sound/Meteorology/Tsunami.mp3"
+    },
+    {
+      "id": "AcechanteElectricoAttack",
+      "file": "resources/sound/Enemies/AcechanteElectricoAttack.mp3"
+    },
+    {
+      "id": "ArcoAttack",
+      "file": "resources/sound/Enemies/ArcoAttack.mp3"
+    },
+    {
+      "id": "GoblinAttack",
+      "file": "resources/sound/Enemies/GoblinAttack.mp3"
+    },
+    {
+      "id": "GolemAttack",
+      "file": "resources/sound/Enemies/GolemAttack.mp3"
+    },
+    {
+      "id": "MaestroDeLasAlmasAttcak",
+      "file": "resources/sound/Enemies/MaestroDeLasAlmasAttcak.mp3"
+    },
+    {
+      "id": "DemonioAladoAttack",
+      "file": "resources/sound/Enemies/DemonioAladoAttack.mp3"
+    },
+    {
+      "id": "AngelAttack",
+      "file": "resources/sound/Enemies/AngelAttack.mp3"
+    },
+    {
+      "id": "DefensorRealAttack1",
+      "file": "resources/sound/Enemies/DefensorRealAttack1.mp3"
+    },
+    {
+      "id": "DefensorRealAttack2",
+      "file": "resources/sound/Enemies/DefensorRealAttack2.mp3"
+    },
+    {
+      "id": "MalditoAttack",
+      "file": "resources/sound/Enemies/MalditoAttack.mp3"
     }
   ],
 

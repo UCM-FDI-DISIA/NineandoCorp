@@ -107,7 +107,14 @@ public:
 	inline int height() {
 		return height_;
 	}
+	inline void setResolution(int width, int height) {
+		// Actualizar la anchura y altura de la ventana
+		width_ = width;
+		height_ = height;
 
+		// Cambiar el tamaño de la ventana SDL
+		SDL_SetWindowSize(window_, width_, height_);
+	}
 // toggle to full-screen/window mode
 	inline void toggleFullScreen() {
 		auto flags = SDL_GetWindowFlags(window_);
