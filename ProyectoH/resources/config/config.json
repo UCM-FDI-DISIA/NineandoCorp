@@ -859,433 +859,844 @@
 
   "intConst": [
     {
-        "id": "MaestroVida",
-        "value": 150
+      "id": "MaestroVida",
+      "value": 150
     },
     {
-        "id": "MaestroRango",
-        "value": 100
+      "id": "MaestroRango",
+      "value": 100
     },
     {
-        "id": "MaestroVelocidad",
-        "value": 3
+      "id": "MaestroVelocidad",
+      "value": 30
     },
     {
-        "id": "MaestroAtaque",
-        "value": 20
+      "id": "MaestroAtaque",
+      "value": 20
     },
     {
-        "id": "Maestrotiempo",
-        "value":1
+      "id": "Maestrotiempo",
+      "value": 1
     },
     {
-        "id": "MaestroTipo",
-        "value": 0
+      "id": "MaestroTipo",
+      "value": 0
     },
     {
-        "id": "MaestroHabilidad",
-        "value": 2
+      "id": "MaestroHabilidad",
+      "value": 2
     },
-
     {
-        "id": "AcechanteVida",
-        "value": 150
+      "id": "MaestroFI1",
+      "value": 8
     },
     {
-        "id": "AcechanteRango",
-        "value": 50
+      "id": "MaestroFI2",
+      "value": 1
     },
     {
-        "id": "AcechanteVelocidad",
-        "value": 7
+      "id": "MaestroFI3",
+      "value": 250
     },
     {
-        "id": "AcechanteAtaque",
-        "value": 35
+      "id": "MaestroFI4",
+      "value": 250
     },
     {
-        "id": "Acechantetiempo",
-        "value":1
+      "id": "MaestroFI5",
+      "value": 0
     },
     {
-        "id": "AcechanteTipo",
-        "value": 0
+      "id": "MaestroFI6",
+      "value": 8
     },
     {
-        "id": "AcechanteHabilidad",
-        "value": 1
+      "id": "MaestroFI7",
+      "value": 7
     },
     {
-        "id": "MalditoVida",
-        "value": 60
+      "id": "AcechanteVida",
+      "value": 150
     },
     {
-        "id": "MalditoRango",
-        "value": 50
+      "id": "AcechanteRango",
+      "value": 50
     },
     {
-        "id": "MalditoVelocidad",
-        "value": 3
+      "id": "AcechanteVelocidad",
+      "value": 70
     },
     {
-        "id": "MalditoAtaque",
-        "value": 20
+      "id": "AcechanteAtaque",
+      "value": 35
     },
     {
-        "id": "Malditotiempo",
-        "value":1
+      "id": "Acechantetiempo",
+      "value": 1
     },
     {
-        "id": "MalditoTipo",
-        "value": 0
+      "id": "AcechanteTipo",
+      "value": 0
     },
     {
-        "id": "MalditoHabilidad",
-        "value": 0
+      "id": "AcechanteHabilidad",
+      "value": 1
     },
-
     {
-        "id": "GolemVida",
-        "value": 1000
+      "id": "AcechanteFI1",
+      "value": 8
     },
     {
-        "id": "GolemRango",
-        "value": 50
+      "id": "AcechanteFI2",
+      "value": 1
     },
     {
-        "id": "GolemVelocidad",
-        "value": 2
+      "id": "AcechanteFI3",
+      "value": 162
     },
     {
-        "id": "GolemAtaque",
-        "value": 100
+      "id": "AcechanteFI4",
+      "value": 162
     },
     {
-        "id": "Golemtiempo",
-        "value":3
+      "id": "AcechanteFI5",
+      "value": 0
     },
     {
-        "id": "GolemTipo",
-        "value": 0
+      "id": "AcechanteFI6",
+      "value": 8
     },
     {
-        "id": "GolemHabilidad",
-        "value": 1
+      "id": "AcechanteFI7",
+      "value": 7
     },
-
     {
-        "id": "DemonioAladoVida",
-        "value": 25
+      "id": "MalditoVida",
+      "value": 60
     },
     {
-        "id": "DemonioAladoRango",
-        "value": 100
+      "id": "MalditoRango",
+      "value": 50
     },
     {
-        "id": "DemonioAladoVelocidad",
-        "value": 4
+      "id": "MalditoVelocidad",
+      "value": 30
     },
     {
-        "id": "DemonioAladoAtaque",
-        "value": 5
+      "id": "MalditoAtaque",
+      "value": 20
     },
     {
-        "id": "DemonioAladotiempo",
-        "value":1
+      "id": "Malditotiempo",
+      "value": 1
     },
     {
-        "id": "DemonioAladoTipo",
-        "value": 1
+      "id": "MalditoTipo",
+      "value": 0
     },
     {
-        "id": "DemonioHabilidad",
-        "value": 0
+      "id": "MalditoHabilidad",
+      "value": 0
     },
-
     {
-        "id": "GoblinVida",
-        "value": 20
+      "id": "MalditoFI1",
+      "value": 8
     },
     {
-        "id": "GoblinRango",
-        "value": 150
+      "id": "MalditoFI2",
+      "value": 1
     },
     {
-        "id": "GoblinVelocidad",
-        "value": 6
+      "id": "MalditoFI3",
+      "value": 64
     },
     {
-        "id": "GoblinAtaque",
-        "value": 15
+      "id": "MalditoFI4",
+      "value": 64
     },
     {
-        "id": "Goblintiempo",
-        "value":1
+      "id": "MalditoFI5",
+      "value": 0
     },
     {
-        "id": "GoblinTipo",
-        "value": 0
+      "id": "MalditoFI6",
+      "value": 8
     },
     {
-        "id": "GoblinHabilidad",
-        "value": 0
+      "id": "MalditoFI7",
+      "value": 7
     },
-
     {
-        "id": "ElfoVida",
-        "value": 60
+      "id": "GolemVida",
+      "value": 1000
     },
     {
-        "id": "ElfoRango",
-        "value": 100
+      "id": "GolemRango",
+      "value": 50
     },
     {
-        "id": "ElfoVelocidad",
-        "value": 2
+      "id": "GolemVelocidad",
+      "value": 20
     },
     {
-        "id": "ElfoAtaque",
-        "value": 10
+      "id": "GolemAtaque",
+      "value": 100
     },
     {
-        "id": "Elfotiempo",
-        "value":1
+      "id": "Golemtiempo",
+      "value": 3
     },
     {
-        "id": "ElfoTipo",
-        "value": 0
+      "id": "GolemTipo",
+      "value": 0
     },
     {
-        "id": "ElfoHabilidad",
-        "value": 0
+      "id": "GolemHabilidad",
+      "value": 1
     },
     {
-        "id": "MensajeroVida",
-        "value": 300
+      "id": "GolemFI1",
+      "value": 10
     },
     {
-        "id": "MensajeroRango",
-        "value": 75
+      "id": "GolemFI2",
+      "value": 10
     },
     {
-        "id": "MensajeroVelocidad",
-        "value": 3
+      "id": "GolemFI3",
+      "value": 100
     },
     {
-        "id": "MensajeroAtaque",
-        "value": 20
+      "id": "GolemFI4",
+      "value": 100
     },
     {
-        "id": "Mensajerotiempo",
-        "value":1
+      "id": "GolemFI5",
+      "value": 40
     },
     {
-        "id": "MensajeroTipo",
-        "value": 0
+      "id": "GolemFI6",
+      "value": 10
     },
     {
-        "id": "MensajeroHabilidad",
-        "value": 1
+      "id": "GolemFI7",
+      "value": 46
     },
-
     {
-        "id": "AngelVida",
-        "value": 400
+      "id": "DemonioAladoVida",
+      "value": 25
     },
     {
-        "id": "AngelRango",
-        "value": 100
+      "id": "DemonioAladoRango",
+      "value": 100
     },
     {
-        "id": "AngelVelocidad",
-        "value": 3
+      "id": "DemonioAladoVelocidad",
+      "value": 40
     },
     {
-        "id": "AngelAtaque",
-        "value": 2
+      "id": "DemonioAladoAtaque",
+      "value": 5
     },
     {
-        "id": "Angeltiempo",
-        "value":2
+      "id": "DemonioAladotiempo",
+      "value": 1
     },
     {
-        "id": "AngelTipo",
-        "value": 1
+      "id": "DemonioAladoTipo",
+      "value": 1
     },
     {
-        "id": "AngelHabilidad",
-        "value": 1
+      "id": "DemonioHabilidad",
+      "value": 0
     },
-
     {
-        "id": "DemonioInfernalVida",
-        "value": 750
+      "id": "DemonioAladoFI1",
+      "value": 8
     },
     {
-        "id": "DemonioInfernalRango",
-        "value": 100
+      "id": "DemonioAladoFI2",
+      "value": 1
     },
     {
-        "id": "DemonioInfernalVelocidad",
-        "value": 3
+      "id": "DemonioAladoFI3",
+      "value": 150
     },
     {
-        "id": "DemonioInfernalAtaque",
-        "value": 20
+      "id": "DemonioAladoFI4",
+      "value": 150
     },
     {
-        "id": "DemonioInfernaltiempo",
-        "value":2
+      "id": "DemonioAladoFI5",
+      "value": 0
     },
     {
-        "id": "DemonioInfernalTipo",
-        "value": 1
+      "id": "DemonioAladoFI6",
+      "value": 8
     },
     {
-        "id": "DemonioInfernalHabilidad",
-        "value": 0
+      "id": "DemonioAladoFI7",
+      "value": 7
     },
     {
-        "id": "DefensorVida",
-        "value": 200
+      "id": "GoblinVida",
+      "value": 20
     },
     {
-        "id": "DefensorRango",
-        "value": 100
+      "id": "GoblinRango",
+      "value": 150
     },
     {
-        "id": "DefensorVelocidad",
-        "value": 3
+      "id": "GoblinVelocidad",
+      "value": 60
     },
     {
-        "id": "DefensorAtaque",
-        "value": 10
+      "id": "GoblinAtaque",
+      "value": 15
     },
     {
-        "id": "Defensortiempo",
-        "value":1
+      "id": "Goblintiempo",
+      "value": 1
     },
     {
-        "id": "DefensorTipo",
-        "value": 0
+      "id": "GoblinTipo",
+      "value": 0
     },
     {
-        "id": "DefensorHabilidad",
-        "value": 1
+      "id": "GoblinHabilidad",
+      "value": 0
     },
-
     {
-        "id": "CMalditoVida",
-        "value": 1000
+      "id": "GoblinFI1",
+      "value": 8
     },
     {
-        "id": "CMalditoRango",
-        "value": 150
+      "id": "GoblinFI2",
+      "value": 1
     },
     {
-        "id": "CMalditoVelocidad",
-        "value": 1
+      "id": "GoblinFI3",
+      "value": 150
     },
     {
-        "id": "CMalditoAtaque",
-        "value": 150
+      "id": "GoblinFI4",
+      "value": 150
     },
     {
-        "id": "CMalditotiempo",
-        "value":3
+      "id": "GoblinFI5",
+      "value": 0
     },
     {
-        "id": "CMalditoTipo",
-        "value": 0
+      "id": "GoblinFI6",
+      "value": 8
     },
     {
-        "id": "CMalditoHabilidad",
-        "value": 1
+      "id": "GoblinFI7",
+      "value": 7
     },
     {
-        "id": "PrincipitoVida",
-        "value": 2500
+      "id": "ElfoVida",
+      "value": 60
     },
     {
-        "id": "PrincipitoRango",
-        "value": 100
+      "id": "ElfoRango",
+      "value": 100
     },
     {
-        "id": "PrincipitoVelocidad",
-        "value": 3
+      "id": "ElfoVelocidad",
+      "value": 20
     },
     {
-        "id": "PrincipitoAtaque",
-        "value": 10
+      "id": "ElfoAtaque",
+      "value": 10
     },
     {
-        "id": "Principitotiempo",
-        "value":3
+      "id": "Elfotiempo",
+      "value": 1
     },
     {
-        "id": "PrincipitoTipo",
-        "value": 0
+      "id": "ElfoTipo",
+      "value": 0
     },
     {
-        "id": "PrincipitoHabilidad",
-        "value": 1
+      "id": "ElfoHabilidad",
+      "value": 0
     },
     {
-        "id": "MonjeVida",
-        "value": 5000
+      "id": "ElfoFI1",
+      "value": 8
     },
     {
-        "id": "MonjeRango",
-        "value": 100
+      "id": "ElfoFI2",
+      "value": 1
     },
     {
-        "id": "MonjeVelocidad",
-        "value": 3
+      "id": "ElfoFI3",
+      "value": 100
     },
     {
-        "id": "MonjeAtaque",
-        "value": 75
+      "id": "ElfoFI4",
+      "value": 100
     },
     {
-        "id": "Monjetiempo",
-        "value":1
+      "id": "ElfoFI5",
+      "value": 0
     },
     {
-        "id": "MonjeTipo",
-        "value": 0
+      "id": "ElfoFI6",
+      "value": 8
     },
     {
-        "id": "MonjeHabilidad",
-        "value": 1
+      "id": "ElfoFI7",
+      "value": 7
     },
-
     {
-        "id": "MuerteVida",
-        "value": 10000
+      "id": "MensajeroVida",
+      "value": 300
     },
     {
-        "id": "MuerteRango",
-        "value": 100
+      "id": "MensajeroRango",
+      "value": 75
     },
     {
-        "id": "MuerteVelocidad",
-        "value": 3
+      "id": "MensajeroVelocidad",
+      "value": 30
     },
     {
-        "id": "MuerteAtaque",
-        "value": 75
+      "id": "MensajeroAtaque",
+      "value": 20
     },
     {
-        "id": "Muertetiempo",
-        "value":1
+      "id": "Mensajerotiempo",
+      "value": 1
     },
     {
-        "id": "MuerteTipo",
-        "value": 1
+      "id": "MensajeroTipo",
+      "value": 0
     },
     {
-        "id": "MuerteHabilidad",
-        "value": 1
+      "id": "MensajeroHabilidad",
+      "value": 1
+    },
+    {
+      "id": "MensajeroFI1",
+      "value": 8
+    },
+    {
+      "id": "MensajeroFI2",
+      "value": 8
+    },
+    {
+      "id": "MensajeroFI3",
+      "value": 140
+    },
+    {
+      "id": "MensajeroFI4",
+      "value": 93
+    },
+    {
+      "id": "MensajeroFI5",
+      "value": 8
+    },
+    {
+      "id": "MensajeroFI6",
+      "value": 8
+    },
+    {
+      "id": "MensajeroFI7",
+      "value": 15
+    },
+    {
+      "id": "AngelVida",
+      "value": 400
+    },
+    {
+      "id": "AngelRango",
+      "value": 100
+    },
+    {
+      "id": "AngelVelocidad",
+      "value": 30
+    },
+    {
+      "id": "AngelAtaque",
+      "value": 2
+    },
+    {
+      "id": "Angeltiempo",
+      "value": 2
+    },
+    {
+      "id": "AngelTipo",
+      "value": 1
+    },
+    {
+      "id": "AngelHabilidad",
+      "value": 1
+    },
+    {
+      "id": "AngelFI1",
+      "value": 8
+    },
+    {
+      "id": "AngelFI2",
+      "value": 1
+    },
+    {
+      "id": "AngelFI3",
+      "value": 122
+    },
+    {
+      "id": "AngelFI4",
+      "value": 117
+    },
+    {
+      "id": "AngelFI5",
+      "value": 0
+    },
+    {
+      "id": "AngelFI6",
+      "value": 8
+    },
+    {
+      "id": "AngelFI7",
+      "value": 7
+    },
+    {
+      "id": "DemonioInfernalVida",
+      "value": 750
+    },
+    {
+      "id": "DemonioInfernalRango",
+      "value": 100
+    },
+    {
+      "id": "DemonioInfernalVelocidad",
+      "value": 30
+    },
+    {
+      "id": "DemonioInfernalAtaque",
+      "value": 20
+    },
+    {
+      "id": "DemonioInfernaltiempo",
+      "value": 2
+    },
+    {
+      "id": "DemonioInfernalTipo",
+      "value": 1
+    },
+    {
+      "id": "DemonioInfernalHabilidad",
+      "value": 0
+    },
+    {
+      "id": "DemonioInfernalFI1",
+      "value": 8
+    },
+    {
+      "id": "DemonioInfernalFI2",
+      "value": 4
+    },
+    {
+      "id": "DemonioInfernalFI3",
+      "value": 64
+    },
+    {
+      "id": "DemonioInfernalFI4",
+      "value": 64
+    },
+    {
+      "id": "DemonioInfernalFI5",
+      "value": 16
+    },
+    {
+      "id": "DemonioInfernalFI6",
+      "value": 4
+    },
+    {
+      "id": "DemonioInfernalFI7",
+      "value": 19
+    },
+    {
+      "id": "DefensorVida",
+      "value": 200
+    },
+    {
+      "id": "DefensorRango",
+      "value": 100
+    },
+    {
+      "id": "DefensorVelocidad",
+      "value": 30
+    },
+    {
+      "id": "DefensorAtaque",
+      "value": 10
+    },
+    {
+      "id": "Defensortiempo",
+      "value": 1
+    },
+    {
+      "id": "DefensorTipo",
+      "value": 0
+    },
+    {
+      "id": "DefensorHabilidad",
+      "value": 1
+    },
+    {
+      "id": "DefensorFI1",
+      "value": 8
+    },
+    {
+      "id": "DefensorFI2",
+      "value": 1
+    },
+    {
+      "id": "DefensorFI3",
+      "value": 231
+    },
+    {
+      "id": "DefensorFI4",
+      "value": 190
+    },
+    {
+      "id": "DefensorFI5",
+      "value": 0
+    },
+    {
+      "id": "DefensorFI6",
+      "value": 8
+    },
+    {
+      "id": "DefensorFI7",
+      "value": 7
+    },
+    {
+      "id": "CMalditoVida",
+      "value": 1000
+    },
+    {
+      "id": "CMalditoRango",
+      "value": 150
+    },
+    {
+      "id": "CMalditoVelocidad",
+      "value": 10
+    },
+    {
+      "id": "CMalditoAtaque",
+      "value": 150
+    },
+    {
+      "id": "CMalditotiempo",
+      "value": 3
+    },
+    {
+      "id": "CMalditoTipo",
+      "value": 0
+    },
+    {
+      "id": "CMalditoHabilidad",
+      "value": 1
+    },
+    {
+      "id": "CMalditoFI1",
+      "value": 8
+    },
+    {
+      "id": "CMalditoFI2",
+      "value": 1
+    },
+    {
+      "id": "CMalditoFI3",
+      "value": 64
+    },
+    {
+      "id": "CMalditoFI4",
+      "value": 64
+    },
+    {
+      "id": "CMalditoFI5",
+      "value": 0
+    },
+    {
+      "id": "CMalditoFI6",
+      "value": 8
+    },
+    {
+      "id": "CMalditoFI7",
+      "value": 7
+    },
+    {
+      "id": "PrincipitoVida",
+      "value": 2500
+    },
+    {
+      "id": "PrincipitoRango",
+      "value": 100
+    },
+    {
+      "id": "PrincipitoVelocidad",
+      "value": 30
+    },
+    {
+      "id": "PrincipitoAtaque",
+      "value": 10
+    },
+    {
+      "id": "Principitotiempo",
+      "value": 3
+    },
+    {
+      "id": "PrincipitoTipo",
+      "value": 0
+    },
+    {
+      "id": "PrincipitoHabilidad",
+      "value": 1
+    },
+    {
+      "id": "PrincipitoFI1",
+      "value": 8
+    },
+    {
+      "id": "PrincipitoFI2",
+      "value": 1
+    },
+    {
+      "id": "PrincipitoFI3",
+      "value": 128
+    },
+    {
+      "id": "PrincipitoFI4",
+      "value": 128
+    },
+    {
+      "id": "PrincipitoFI5",
+      "value": 0
+    },
+    {
+      "id": "PrincipitoFI6",
+      "value": 8
+    },
+    {
+      "id": "PrincipitoFI7",
+      "value": 7
+    },
+    {
+      "id": "MonjeVida",
+      "value": 5000
+    },
+    {
+      "id": "MonjeRango",
+      "value": 100
+    },
+    {
+      "id": "MonjeVelocidad",
+      "value": 30
+    },
+    {
+      "id": "MonjeAtaque",
+      "value": 75
+    },
+    {
+      "id": "Monjetiempo",
+      "value": 1
+    },
+    {
+      "id": "MonjeTipo",
+      "value": 0
+    },
+    {
+      "id": "MonjeHabilidad",
+      "value": 1
+    },
+    {
+      "id": "MonjeFI1",
+      "value": 8
+    },
+    {
+      "id": "MonjeFI2",
+      "value": 1
+    },
+    {
+      "id": "MonjeFI3",
+      "value": 150
+    },
+    {
+      "id": "MonjeFI4",
+      "value": 150
+    },
+    {
+      "id": "MonjeFI5",
+      "value": 0
+    },
+    {
+      "id": "MonjeFI6",
+      "value": 8
+    },
+    {
+      "id": "MonjeFI7",
+      "value": 7
+    },
+    {
+      "id": "MuerteVida",
+      "value": 10000
+    },
+    {
+      "id": "MuerteRango",
+      "value": 100
+    },
+    {
+      "id": "MuerteVelocidad",
+      "value": 10
+    },
+    {
+      "id": "MuerteAtaque",
+      "value": 75
+    },
+    {
+      "id": "Muertetiempo",
+      "value": 1
+    },
+    {
+      "id": "MuerteTipo",
+      "value": 1
+    },
+    {
+      "id": "MuerteHabilidad",
+      "value": 1
+    },
+    {
+      "id": "MuerteFI1",
+      "value": 1
+    },
+    {
+      "id": "MuerteFI2",
+      "value": 1
+    },
+    {
+      "id": "MuerteFI3",
+      "value": 100
+    },
+    {
+      "id": "MuerteFI4",
+      "value": 100
+    },
+    {
+      "id": "MuerteFI5",
+      "value": 0
+    },
+    {
+      "id": "MuerteFI6",
+      "value": 0
+    },
+    {
+      "id": "MuerteFI7",
+      "value": 1
     },
     {
       "id": "precioHNexoLvl1",
@@ -2941,8 +3352,7 @@
                                 "goblin"
                             ],
                             "numEnemies": [
-                                2,
-                                1
+                                2
                             ],
                             "timeSpawn": 3
                         }
