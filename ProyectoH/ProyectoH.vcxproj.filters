@@ -157,9 +157,6 @@
     <ClCompile Include="src\sdlutils\Texture.cpp">
       <Filter>Sources Files\sdlutils</Filter>
     </ClCompile>
-    <ClCompile Include="src\components\TowerStates.cpp">
-      <Filter>Sources Files\States</Filter>
-    </ClCompile>
     <ClCompile Include="src\systems\TowerSystem.cpp">
       <Filter>Sources Files\States\Systems</Filter>
     </ClCompile>
@@ -239,6 +236,15 @@
       <Filter>Sources Files\States</Filter>
     </ClCompile>
     <ClCompile Include="src\components\SliderComponent.cpp">
+      <Filter>Sources Files\Components</Filter>
+    </ClCompile>
+    <ClCompile Include="src\components\EnemyProyectileComponent.cpp">
+      <Filter>Sources Files\Components</Filter>
+    </ClCompile>
+    <ClCompile Include="src\components\PotionComponent.cpp">
+      <Filter>Sources Files\Components</Filter>
+    </ClCompile>
+    <ClCompile Include="src\components\TowerStates.cpp">
       <Filter>Sources Files\Components</Filter>
     </ClCompile>
   </ItemGroup>
@@ -441,9 +447,6 @@
     <ClInclude Include="src\systems\TowerSystem.h">
       <Filter>Headers Files\Systems</Filter>
     </ClInclude>
-    <ClInclude Include="src\components\TowerStates.h">
-      <Filter>Headers Files\States</Filter>
-    </ClInclude>
     <ClInclude Include="src\sdlutils\Texture.h">
       <Filter>Headers Files\sdlutils</Filter>
     </ClInclude>
@@ -523,6 +526,15 @@
       <Filter>Headers Files\States</Filter>
     </ClInclude>
     <ClInclude Include="src\components\SliderComponent.h">
+      <Filter>Headers Files\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="src\components\EnemyProyectileComponent.h">
+      <Filter>Headers Files\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="src\components\PotionComponent.h">
+      <Filter>Headers Files\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="src\components\TowerStates.h">
       <Filter>Headers Files\Components</Filter>
     </ClInclude>
   </ItemGroup>

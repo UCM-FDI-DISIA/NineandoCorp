@@ -42,6 +42,7 @@ public:
 	void setTimeToShoot(float t) { timeToShoot_ = t; };
 	void setElapsedTime(float elapsed) { elapsedTime_ = elapsed; };
 	void setTarget(Entity* e) { target_ = e; };
+	void setBaseDamage(float dmg) { baseDamage_ = dmg; }
 
 
 	void setNexo(bool n) { nexo_=n; }

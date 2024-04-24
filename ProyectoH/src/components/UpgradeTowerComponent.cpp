@@ -73,12 +73,15 @@ void UpgradeTowerComponent::levelUp() {
 			switch (currentLevel_) {
 			case 2:
 				bt->setDamage(sdlutils().intConst().at("BalasDano1"));
+				bt->setBaseDamage(sdlutils().intConst().at("BalasDano1"));
 				break;
 			case 3:
 				bt->setDamage(sdlutils().intConst().at("BalasDano2"));
+				bt->setBaseDamage(sdlutils().intConst().at("BalasDano2"));
 				break;
 			case 4:
 				bt->setDamage(sdlutils().intConst().at("BalasDano3"));
+				bt->setBaseDamage(sdlutils().intConst().at("BalasDano3"));
 				break;
 			default:
 				break;
@@ -108,6 +111,7 @@ void UpgradeTowerComponent::levelUp() {
 			switch (currentLevel_) {
 			case 2:
 				ds->setDamage(sdlutils().intConst().at("DiegoSniperDano1"));
+				ds->setBaseDamage(sdlutils().intConst().at("DiegoSniperDano1"));
 				ds->setCritDamage(sdlutils().floatConst().at("DiegoSniperCritDano1"));
 				ds->setCritProb(sdlutils().floatConst().at("DiegoSniperCritProb1"));
 				break;
@@ -127,10 +131,12 @@ void UpgradeTowerComponent::levelUp() {
 			switch (currentLevel_) {
 			case 2:
 				ft->setDamage(sdlutils().floatConst().at("FenixDPS1"));
+				ft->setBaseDamage(sdlutils().floatConst().at("FenixDPS1"));
 				ft->setCooling(sdlutils().floatConst().at("FenixEnfriamiento1"));
 				break;
 			case 3:
 				ft->setDamage(sdlutils().floatConst().at("FenixDPS2"));
+				ft->setBaseDamage(sdlutils().floatConst().at("FenixDPS2"));
 				ft->setCooling(sdlutils().floatConst().at("FenixEnfriamiento2"));
 				break;
 			case 4:
