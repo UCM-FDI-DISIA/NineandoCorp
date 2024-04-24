@@ -681,7 +681,7 @@ Entity* TowerSystem::addShield(Vector2D pos) {
 
 void TowerSystem::generateNexus(int lvlNexus, Cell* cell) {
 	Entity* n = mngr_->addEntity(_grp_TOWERS_AND_ENEMIES);	
-	mngr_->setHandler(BOTH, n);
+	mngr_->setHandler(LOW, n);
 	mngr_->addComponent<Transform>(n);
 	mngr_->addComponent<ShieldComponent>(n, 0);
 	mngr_->addComponent<HealthComponent>(n, 1000);
@@ -689,7 +689,29 @@ void TowerSystem::generateNexus(int lvlNexus, Cell* cell) {
 	mngr_->getComponent<Transform>(n)->setPosition(cell->position);
 	mngr_->addComponent<NexusComponent>(n);
 	mngr_->addComponent<RenderComponent>(n, nexusLvl);
-	mngr_->addComponent<FramedImage>(n, 1, lvlNexus, 2048, 2048, 1, 1, 1);
+	cout << lvlNexus;
+
+	mngr_->addComponent<TowerComponent>(n, _twr_NEXUS, LOW, cell, 0);
+	mngr_->addComponent<TowerStates>(n);
+	//FramedImage(int frameColumns = 1, int frameRows = 1, int frameWidth = 0, int frameHeight = 0, int currentFrame = 0, int frameRate = 0, int lastFrame = 1) : 
+	mngr_->addComponent<FramedImage>(n, 4, 1, 2048, 2048, lvlNexus - 1, 0, 1);
+	/*switch (lvlNexus)
+	{
+	case 1:
+		mngr_->getComponent<Transform>(n)->setScale({ 100, 100 });
+		break;
+	case 2:
+		mngr_->getComponent<Transform>(n)->setScale({ 110, 110 });
+		break;
+	case 3:
+		mngr_->getComponent<Transform>(n)->setScale({ 125, 125 });
+		break;
+	case 4:
+		mngr_->getComponent<Transform>(n)->setScale({ 150, 150 });
+		break;
+	}*/
+	mngr_->setHandler(_hdlr_LOW_TOWERS, n);
+	towers.emplace_back(n);
 }
 
 void TowerSystem::addTower(twrId type, const Vector2D& pos, Height height, int cost, Cell* cell) {
