@@ -209,7 +209,7 @@ void TowerSystem::onAttackTower(Entity* e, int dmg, Entity* src) {
 		HealthComponent* h = mngr_->getComponent<HealthComponent>(e);
 		ShieldComponent* s = mngr_->getComponent<ShieldComponent>(e);
 
-		if (h != nullptr && s != nullptr) {
+		if (h != nullptr && s != nullptr && mngr_->isAlive(e) == 1) {
 			if (h->getHealth() - dmg <= 0) {
 				auto enemytype = mngr_->getComponent<EnemyTypeComponent>(e);
 				Message m1;
@@ -333,7 +333,10 @@ void TowerSystem::update() {
 							if (ac != nullptr)ac->setDamage(ac->getBaseDamage() * (1 + et->getDamageIncreasePercentage()));//incrementamos daño
 							if (bt != nullptr)bt->setDamage(bt->getBaseDamage() * (1 + et->getDamageIncreasePercentage()));
 							if (st != nullptr)st->setDamage(st->getBaseDamage() * (1 + et->getDamageIncreasePercentage()));
-							if (h != nullptr)h->setMaxHealth(h->getBaseHealth() + et->getTowersHPboost());//incrementamos vida
+							if (h != nullptr) {
+								h->setMaxHealth(h->getBaseHealth() + et->getTowersHPboost());//incrementamos vida
+								h->setHealth(h->getMaxHealth());
+							}
 							mngr_->getComponent<TowerStates>(towers[i])->setPotenciado(true);
 						}
 						else if (ic != nullptr && tw->getPotenciado() && tw->getSrcPotencia() == t) {//Eliminarlo si no se encuentra en la distancia

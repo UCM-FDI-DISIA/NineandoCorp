@@ -842,6 +842,18 @@
     {
       "id": "FireHeightProportion",
       "value": 70
+    },
+    {
+      "id": "AcechanteAceleracion",
+      "value": 1.5
+    },
+    {
+      "id": "AcechanteRango",
+      "value": 5
+    },
+    {
+      "id": "AcechanteReload",
+      "value": 10
     }
   ],
 
@@ -852,7 +864,7 @@
     },
     {
         "id": "MaestroRango",
-        "value": 1
+        "value": 100
     },
     {
         "id": "MaestroVelocidad",
@@ -872,7 +884,7 @@
     },
     {
         "id": "MaestroHabilidad",
-        "value": 1
+        "value": 2
     },
 
     {
@@ -881,7 +893,7 @@
     },
     {
         "id": "AcechanteRango",
-        "value": 0
+        "value": 50
     },
     {
         "id": "AcechanteVelocidad",
@@ -909,7 +921,7 @@
     },
     {
         "id": "MalditoRango",
-        "value": 0
+        "value": 50
     },
     {
         "id": "MalditoVelocidad",
@@ -938,7 +950,7 @@
     },
     {
         "id": "GolemRango",
-        "value": 0
+        "value": 50
     },
     {
         "id": "GolemVelocidad",
@@ -967,7 +979,7 @@
     },
     {
         "id": "DemonioAladoRango",
-        "value": 1
+        "value": 100
     },
     {
         "id": "DemonioAladoVelocidad",
@@ -1249,7 +1261,7 @@
 
     {
         "id": "MuerteVida",
-        "value": 1000
+        "value": 10000
     },
     {
         "id": "MuerteRango",
