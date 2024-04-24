@@ -20,6 +20,12 @@ public:
 	bool isOnSelector(const Vector2D& pos) const {
 		return pos.getY() + cameraOffset_->y < sdlutils().height() - twrSel_.selectorHeight;
 	}
+	/// <summary>
+	/// Devuelve si el punto clicado esta encima del menu de mejora de la torre o no
+	/// </summary>
+	/// <param name="mPos">Clicked position</param>
+	/// <returns>True si esta dentro, false si esta fuera</returns>
+	bool isOnUpMenu(const Vector2D& mPos) const;
 
 private: 
 	struct UpgradeMenu{
@@ -161,6 +167,7 @@ private:
 	float buttonsSpace_length_; 
 	float infoSpace_length_;
 
+	bool upMenuIsOn;
 	bool canStartWave = false;
 
 	//ofset de la camara al renderizar

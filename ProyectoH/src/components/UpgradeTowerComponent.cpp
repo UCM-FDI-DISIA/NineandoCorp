@@ -52,7 +52,11 @@ void UpgradeTowerComponent::levelUp() {
 
 		tr->setPosition(*tr->getPosition() - adjustOffset);
 		currentLevel_++;
-
+		if (isMaxLeveled()) {
+			Message m;
+			m.id = _m_HIDE_UPGRADEBUTTON;
+			mngr_->send(m);
+		}
 		if (currentLevel_ == 0) { currentLevel_ = 1; }
 		
 

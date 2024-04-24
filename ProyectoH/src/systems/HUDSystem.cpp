@@ -4,7 +4,8 @@
 
 HUDSystem::HUDSystem() :
 	buttonsSpace_length_() , // 
-	infoSpace_length_()
+	infoSpace_length_(), //
+	upMenuIsOn(false)
 {
 	mActive = true;
 }
@@ -383,6 +384,7 @@ void HUDSystem::receive(const Message& m) {
 		if (isOnSelector(m.show_upgrade_twr_menu_data.pos + Vector2D(0, 30))) {
 			showUpgradeMenu(m.show_upgrade_twr_menu_data.twr, m.show_upgrade_twr_menu_data.pos);
 			showSelector(false);
+			upMenuIsOn = true;
 		}
 		break;
 	case _m_UPGRADE_TWR_INGAME: 
@@ -398,6 +400,17 @@ void HUDSystem::receive(const Message& m) {
 	case _m_EXIT_UP_MENU:
 		exitUpgradeMenu();
 		showSelector(true);
+		upMenuIsOn = false;
+		break;
+	case _m_HIDE_UPGRADEBUTTON:
+		if (upMenuIsOn) {
+			mngr_->setAlive(upM_.coinImg, false);
+			mngr_->deleteHandler(mngr_->getSystem<ButtonSystem>()->hdlr_but_id, upM_.coinImg);
+			mngr_->setAlive(upM_.upgradeButton, false);
+			mngr_->deleteHandler(mngr_->getSystem<ButtonSystem>()->hdlr_but_id, upM_.upgradeButton);
+			mngr_->setAlive(upM_.upCost, false);
+			mngr_->deleteHandler(mngr_->getSystem<ButtonSystem>()->hdlr_but_id, upM_.upCost);
+		}
 		break;
 	case _m_SELL_TOWER:
 		Message m;
@@ -416,6 +429,18 @@ void HUDSystem::update() {
 		}
 		else {
 			bC->setActive(true);
+		}
+		if (upMenuIsOn) {
+			if (ih().mouseButtonEvent()) {
+				if (ih().getMouseButtonState(InputHandler::MOUSEBUTTON::LEFT) == 1) {
+					Vector2D mousePos = { (float)ih().getMousePos().first, (float)ih().getMousePos().second };
+					if (!isOnUpMenu(mousePos)) {
+						Message m;
+						m.id = _m_EXIT_UP_MENU;
+						mngr_->send(m);
+					}
+				}
+			}
 		}
 		for (auto tb : twrSel_.buttons) {
 			auto en = tb.img;
@@ -441,6 +466,7 @@ void HUDSystem::update() {
 					}
 					//click izquierdo para colocar la torre
 					else if (ih().getMouseButtonState(InputHandler::MOUSEBUTTON::LEFT) == 1) {
+						
 						auto tr = mngr_->getComponent<Transform>(en);
 						if (cell->isFree) {
 							dC->drop(tr->getPosition(), Height::LOW, cell);
@@ -473,6 +499,20 @@ void HUDSystem::update() {
 			}
 		}
 	}
+}
+
+bool HUDSystem::isOnUpMenu(const Vector2D& mPos) const
+{
+	Vector2D menuScale = mngr_->getComponent<Transform>(upM_.background)->getScale();
+	Vector2D menuPos = mngr_->getComponent<Transform>(upM_.background)->getPosition();
+	float x = mPos.getX();
+	float y = mPos.getY();
+	float up = menuPos.getY();
+	float down = menuPos.getY() + menuScale.getY();
+	float right = menuPos.getX() + menuScale.getX();
+	float left = menuPos.getX();
+
+	return  x > left && x < right && y < down && y > up;
 }
 
 void HUDSystem::showUpgradeMenu(Entity* twr, const Vector2D& pos) {
@@ -613,8 +653,8 @@ void HUDSystem::showUpgradeMenu(Entity* twr, const Vector2D& pos) {
 
 
 #pragma endregion
-
-	/**
+	if (!upCmp->isMaxLeveled()) {
+		/**
 	*	BOTON DE MEJORA
 	*/
 	Message m;
@@ -658,6 +698,8 @@ void HUDSystem::showUpgradeMenu(Entity* twr, const Vector2D& pos) {
 		cpos + offset, scaleCoin, 0, gameTextures::monedaDorada,
 		grpId::_grp_HUD_FOREGROUND
 	);
+	}
+	
 
 	/**
 	*	BOTON DE VENDER
