@@ -1027,8 +1027,8 @@
       "file": "resources/sound/Enemies/AngelAttack.mp3"
     },
     {
-      "id": "DefensorRealAttack1",
-      "file": "resources/sound/Enemies/DefensorRealAttack1.mp3"
+      "id": "SpawnEnemy",
+      "file": "resources/sound/Enemies/SpawnEnemy.mp3"
     },
     {
       "id": "DefensorRealAttack2",

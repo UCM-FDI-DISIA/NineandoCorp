@@ -103,6 +103,9 @@ void generateEnemies::addEnemy(enmId type, std::vector<Vector2D> route) {
 
 	MovementComponent* mc = mngr_->addComponent<MovementComponent>(t);
 
+	sdlutils().soundEffects().at("SpawnEnemy").setChannelVolume(game().CalculoVolumenEfectos(), 7);
+	sdlutils().soundEffects().at("SpawnEnemy").play(0, 7);
+
 	switch (type) {
 	case _enm_MALMAS:
 		tr->setSpeed( intAt("MaestroVelocidad"));
