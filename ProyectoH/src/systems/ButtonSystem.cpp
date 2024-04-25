@@ -28,6 +28,9 @@ ButtonSystem::~ButtonSystem(){
 void ButtonSystem::update () {
 	if (mActive) {
 		manageButtons();
+		if (game().currentState()->id == gmSttId::_gmStt_PLAY) {
+			manageKeys();
+		}
 	}
 	else {
 		managePauseButtons();
@@ -77,6 +80,41 @@ void ButtonSystem::receive(const Message& m){
 	}
 }
 
+void ButtonSystem::manageKeys() {
+	sdlutils().soundEffects().at("button").setChannelVolume(game().CalculoVolumenEfectos(), 1);
+	if (ih().keyDownEvent() && ih().isKeyDown(SDL_SCANCODE_Q)) {
+		sdlutils().soundEffects().at("button").play(0, 1);
+		Pause(true);
+	}
+	if (ih().keyDownEvent() && ih().isKeyDown(SDL_SCANCODE_SPACE)) {
+		sdlutils().soundEffects().at("button").play(0, 1);
+		switch (cauntAcelButs)
+		{
+		case 1:
+			Acelerate(1.5f);
+			break;
+		case 2:
+			Acelerate(2.0f);
+			break;
+		case 3:
+			Acelerate(1.0f);
+			break;
+		default:
+			break;
+		}
+
+		if (cauntAcelButs < numAcelButs) {
+			cauntAcelButs++;
+		}
+		else {
+			cauntAcelButs = 1;
+		}
+	}
+	if (ih().keyDownEvent() && ih().isKeyDown(SDL_SCANCODE_RETURN)) {
+		startWave();
+		sdlutils().soundEffects().at("button").play(0, 1);
+	}
+}
 
 void ButtonSystem::manageButtons() {
 	//Posicion actual del mouse

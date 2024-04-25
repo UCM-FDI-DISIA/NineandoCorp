@@ -20,6 +20,7 @@ public:
 
 	void manageButtons();
 	void managePauseButtons();
+	void manageKeys();
 	/// <summary>
 	/// Crea un boton como entidad y lo a�ade al manager con grpId = _grp_HUD_FOREGROUND y hdlrId = button_id
 	/// </summary>
