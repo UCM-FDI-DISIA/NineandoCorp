@@ -102,7 +102,7 @@ void generateEnemies::addEnemy(enmId type, std::vector<Vector2D> route) {
 	mngr_->send(m);
 
 	MovementComponent* mc = mngr_->addComponent<MovementComponent>(t);
-
+	mngr_->addComponent<IconComponent> (t);
 	sdlutils().soundEffects().at("SpawnEnemy").setChannelVolume(game().CalculoVolumenEfectos(), 7);
 	sdlutils().soundEffects().at("SpawnEnemy").play(0, 7);
 
