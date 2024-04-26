@@ -3,7 +3,6 @@
 #include "../ecs/System.h"
 #include "../sdlutils/SDLUtils.h"
 #include "../utils/Vector2D.h"
-#include "../ecs/ecs.h"
 #include "../components/Transform.h"
 #include "../components/RenderComponent.h"
 

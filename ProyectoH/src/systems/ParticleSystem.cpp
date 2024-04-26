@@ -36,45 +36,47 @@ void ParticleSystem::update() {
 	if (mActive) {
 		for (auto& par : mngr_->getHandler(_hdlr_PARTICLES))
 		{
-			auto r = mngr_->getComponent<RenderComponent>(par);
-			auto p = mngr_->getComponent<ParticleLifeTime>(par);
-			auto f = mngr_->getComponent<FramedImage>(par);
-			MovementComponent* mc = mngr_->getComponent<MovementComponent>(par);
-			RouteComponent* rc = mngr_->getComponent<RouteComponent>(par);
+			if (mngr_->isAlive(par) == 1) {
+				auto r = mngr_->getComponent<RenderComponent>(par);
+				auto p = mngr_->getComponent<ParticleLifeTime>(par);
+				auto f = mngr_->getComponent<FramedImage>(par);
+				MovementComponent* mc = mngr_->getComponent<MovementComponent>(par);
+				RouteComponent* rc = mngr_->getComponent<RouteComponent>(par);
 
-			f->updateCurrentFrame();
+				f->updateCurrentFrame();
 
 
 
-			if (rc != nullptr) {
-				rc->checkdestiny();
-				if (mc != nullptr && !mc->getStop()) {
-					mc->Move();
+				if (rc != nullptr) {
+					rc->checkdestiny();
+					if (mc != nullptr && !mc->getStop()) {
+						mc->Move();
+					}
+					else {
+						if (r->getTexture() == tornado) {
+							Message m;
+							m.id = _m_REMOVE_RECT;
+							m.rect_data.entity = par;
+							m.rect_data.id = _TORNADO;
+							mngr_->send(m);
+						}
+						else if (r->getTexture() == tsunami) {
+							Message m;
+							m.id = _m_REMOVE_RECT;
+							m.rect_data.entity = par;
+							m.rect_data.id = _TSUNAMI;
+							mngr_->send(m);
+						}
+						mngr_->setAlive(par, false);
+						mngr_->deleteHandler(_hdlr_PARTICLES, par);
+					}
+
 				}
-				else {
-					if (r->getTexture() == tornado) {
-						Message m;
-						m.id = _m_REMOVE_RECT;
-						m.rect_data.entity = par;
-						m.rect_data.id = _TORNADO;
-						mngr_->send(m);						
-					}
-					else if(r->getTexture() == tsunami){
-						Message m;
-						m.id = _m_REMOVE_RECT;
-						m.rect_data.entity = par;
-						m.rect_data.id = _TSUNAMI;
-						mngr_->send(m);
-					}
+				else if (p->getIters() <= f->getIters()) {
 					mngr_->setAlive(par, false);
 					mngr_->deleteHandler(_hdlr_PARTICLES, par);
 				}
-
-			}
-			else if (p->getIters() <= f->getIters()) {
-				mngr_->setAlive(par, false);
-				mngr_->deleteHandler(_hdlr_PARTICLES, par);
-			}
+			}			
 		}
 	}
 }
