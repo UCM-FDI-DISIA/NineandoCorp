@@ -330,12 +330,14 @@ void CollisionSystem::update() {
 					SDL_Rect tsunamiRect;
 					if (tsunamieTR != nullptr) tsunamiRect = tsunamieTR->getRect();
 					if (SDL_HasIntersection(&tsunamiRect, &towerRect)) {
-						Message m;
-						m.id = _m_ENTITY_TO_ATTACK;
-						m.entity_to_attack.targetId = _hdlr_LOW_TOWERS;
-						m.entity_to_attack.e = t;
-						m.entity_to_attack.damage = 100000;
-						mngr_->send(m);
+						if (!mngr_->hasComponent<NexusComponent>(t)) {//El tsunami no afecta al nexo
+							Message m;
+							m.id = _m_ENTITY_TO_ATTACK;
+							m.entity_to_attack.targetId = _hdlr_LOW_TOWERS;
+							m.entity_to_attack.e = t;
+							m.entity_to_attack.damage = 100000;
+							mngr_->send(m);
+						}						
 					}
 				}
 			}
