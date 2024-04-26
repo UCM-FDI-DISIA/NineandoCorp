@@ -112,15 +112,22 @@ void  EnemySystem::receive(const Message& m) {
 		break;
 	case _m_TOWER_DIED:
 		for (auto& b : mngr_->getEntities(_hdlr_ENEMIES))
-		{
-			
+		{			
 			auto ac = mngr_->getComponent<AttackComponent>(b);
 			if (ac != nullptr) {
 				if (ac->getTarget() == m.return_entity.ent) {
 					ac->setTarget(nullptr);
 				}
 			}
-
+		}
+		for (auto& b : mngr_->getEntities(_hdlr_GHOST_ENEMIES))
+		{
+			auto ac = mngr_->getComponent<AttackComponent>(b);
+			if (ac != nullptr) {
+				if (ac->getTarget() == m.return_entity.ent) {
+					ac->setTarget(nullptr);
+				}
+			}
 		}
 		break;
 	case _m_CHANGE_ROUTE:

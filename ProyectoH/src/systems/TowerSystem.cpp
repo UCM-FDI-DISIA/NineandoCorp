@@ -649,6 +649,10 @@ void TowerSystem::removeTower(Entity* twr)
 		mngr_->deleteHandler(_hdlr_HIGH_TOWERS, twr);
 	}
 	if (ic != nullptr)ic->removeAllIcons();
+	Message m;
+	m.id = _m_TOWER_DIED;
+	m.return_entity.ent = twr;
+	mngr_->send(m);
 	mngr_->getComponent<TowerComponent>(twr)->getCell()->isFree = true;
 	towers.erase(find(towers.begin(), towers.end(), twr));
 	mngr_->setAlive(twr, false);
