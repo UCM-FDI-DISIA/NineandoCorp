@@ -317,8 +317,8 @@ void TowerSystem::update() {
 					if (st != nullptr)st->setDamage(st->getBaseDamage());
 					if (pt != nullptr)pt->setDamage(pt->getBaseDamage());
 					if (h != nullptr) {
-						h->setMaxHealth(h->getBaseHealth());//incrementamos vida
-						h->setHealth(h->getBaseHealth());//incrementamos vida
+						//h->setMaxHealth(h->getBaseHealth());//incrementamos vida
+						//h->setHealth(h->getBaseHealth());//incrementamos vida
 					}					
 				}
 			}

@@ -700,14 +700,15 @@ void RenderSystem::drawBarlife(Entity* t) {
 	if (hc != nullptr && mngr_->isAlive(t)) {
 		Transform* tr = mngr_->getComponent<Transform>(t);
 		float health = mngr_->getComponent<HealthComponent>(t)->getHealth();
+		Vector2D offsetExtra = { 15.0, 40.0 };
 		SDL_Rect trRect = tr->getRect();
-		trRect.x += offset->x;
-		trRect.y += offset->y;
+		trRect.x += offset->x + offsetExtra.getX();
+		trRect.y += offset->y + offsetExtra.getY();
 		float a = hc->getMaxHealth();
 		float b = hc->getHealth();
 		float c = b / a;
-		SDL_Rect healthbar = SDL_Rect{trRect.x - 10, trRect.y - 50, (int)(170.f * c), 20};
-		SDL_Rect backgroundbar = SDL_Rect{ trRect.x - 15, trRect.y - 53, 180, 26 };
+		SDL_Rect healthbar = SDL_Rect{trRect.x - 10, trRect.y - 50, (int)(112.0f * c), 20};
+		SDL_Rect backgroundbar = SDL_Rect{ trRect.x - 15, trRect.y - 53, 120, 26 };
 
 		//render del background
 		textures[gameTextures::life_background]->render(backgroundbar);
