@@ -374,6 +374,7 @@ void HUDSystem::receive(const Message& m) {
 		NewAcelerationButton(m.acelerate_plus.acel);
 		break;
 	case _m_OFFSET_CONTEXT:
+		
 		cameraOffset_ = m.offset_context.offset;
 		break;
 	case _m_WAVE_START:
