@@ -66,6 +66,8 @@ public:
 	/// <returns>Las monedas doradas</returns>
 	int getMoney() { return money_; }
 
+	void setCanstartWave(bool canstartwave) { canStartWave = canstartwave; }
+
 private:
 	/// <summary>
 	/// Añade el dinero correspondiente a la torre vendida
@@ -156,6 +158,7 @@ private:
 
 	void stopConfig( Entity* bC);
 
+	bool canStartWave = true;
 	bool mActive;
 	bool resolutionActive;
 	int numAcelButs; // cuantos botones hay para acelerar el tiempo

@@ -75,6 +75,9 @@ void ButtonSystem::receive(const Message& m){
 	case _m_ISPLAYSTATE:
 		isPlayState = m.start_game_data.isPlayState;
 		break;
+	case _m_WAVE_START:
+		canStartWave = !m.start_wave.play;
+		break;
 	default:
 		break;
 	}
@@ -110,8 +113,9 @@ void ButtonSystem::manageKeys() {
 			cauntAcelButs = 1;
 		}
 	}
-	if (ih().keyDownEvent() && ih().isKeyDown(SDL_SCANCODE_RETURN)) {
+	if (ih().keyDownEvent() && ih().isKeyDown(SDL_SCANCODE_RETURN) && canStartWave) {
 		startWave();
+		canStartWave = false;
 		sdlutils().soundEffects().at("button").play(0, 1);
 	}
 }
