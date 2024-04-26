@@ -212,10 +212,19 @@ void TowerSystem::onAttackTower(Entity* e, int dmg, Entity* src) {
 		if (h != nullptr && s != nullptr && mngr_->isAlive(e) == 1) {
 			if (h->getHealth() - dmg <= 0) {
 				auto enemytype = mngr_->getComponent<EnemyTypeComponent>(e);
-				Message m1;
-				m1.id = _m_TOWER_DIED;
-				m1.return_entity.ent = e;
-				mngr_->send(m1);
+				NexusComponent* nC = mngr_->getComponent<NexusComponent>(e);
+				if (nC != nullptr) {
+					Message m1;
+					m1.id = _m_ATTACK_NEXUS;
+					m1.return_entity.ent = e;
+					mngr_->send(m1);
+				}
+				else {
+					Message m1;
+					m1.id = _m_TOWER_DIED;
+					m1.return_entity.ent = e;
+					mngr_->send(m1);
+				}
 			}
 
 			if (mngr_->hasComponent<DirtTower>(e) && mngr_->hasComponent<UpgradeTowerComponent>(e) && mngr_->getComponent<UpgradeTowerComponent>(e)->getLevel() == 4) {//Reflejar daño torre de arcilla
