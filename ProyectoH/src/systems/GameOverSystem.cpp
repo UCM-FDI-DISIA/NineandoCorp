@@ -33,14 +33,6 @@ void GameOverSystem::initSystem() {
 		bSize,
 		gameTextures::backToMenu_button, gameTextures::backToMenu_button_hover,
 		ButtonTypes::back_to_menu);
-
-	sdlutils().soundEffects().at("Victoria").setChannelVolume(game().CalculoVolumenEfectos(), 2);
-	if (win) {
-		sdlutils().soundEffects().at("Victoria").play(0, 2);
-	}
-	else {
-		sdlutils().soundEffects().at("Derrota").play(0, 2);
-	}
 }
 
 GameOverSystem::~GameOverSystem() {
@@ -55,7 +47,18 @@ void GameOverSystem::receive(const Message& m) {
 			roundsPassed = m.over_game.rounds;
 			enemiesDefeated =  m.over_game.enemies;
 			coinsObtained = m.over_game.coinsH;
+			PlayVictory_DefeatSound();
 			break;
+	}
+}
+
+void GameOverSystem::PlayVictory_DefeatSound() {
+	sdlutils().soundEffects().at("Victoria").setChannelVolume(game().CalculoVolumenEfectos(), 2);
+	if (win) {
+		sdlutils().soundEffects().at("Victoria").play(0, 2);
+	}
+	else{
+		sdlutils().soundEffects().at("Derrota").play(0, 2);
 	}
 }
 
@@ -70,7 +73,7 @@ void GameOverSystem::update() {
 				if (win)
 					text = "LEVEL " + std::to_string(currentLvl) + " COMPLETE";
 				else
-					text = "GAMEOVER";
+					text = "GAME OVER";
 				textC = mngr_->getComponent<TextComponent>(header);
 				textC->setText(text);
 				textC->update();

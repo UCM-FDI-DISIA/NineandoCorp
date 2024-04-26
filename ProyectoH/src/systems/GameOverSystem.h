@@ -28,5 +28,6 @@ public:
 	void initSystem() override;
 	void receive(const Message& m) override; 
 	void update() override;
+	void PlayVictory_DefeatSound();
 };
 
