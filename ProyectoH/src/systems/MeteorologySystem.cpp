@@ -370,7 +370,7 @@ void MeteorologySystem::update() {
 			m.add_text_data.txt = "WAVES:  " + to_string(waves);
 			m.add_text_data.color = { 255, 255 ,255, 255 };
 			Vector2D txtScale = Vector2D(80.0f, 20.0f);
-			m.add_text_data.pos = Vector2D(100.0, 80.0) - (txtScale / 2);
+			m.add_text_data.pos = Vector2D(110.0, 80.0) - (txtScale / 2);
 			m.add_text_data.scale = txtScale;
 			m.add_text_data.time = 0.01;
 			mngr_->send(m);
