@@ -142,6 +142,9 @@ RenderSystem::RenderSystem() : winner_(0)
 	textures[resolution3_hover] = &sdlutils().images().at("resolution3_hover");
 	textures[life] = &sdlutils().images().at("life");
 	textures[life_background] = &sdlutils().images().at("life_background");
+	textures[buy] = &sdlutils().images().at("buy");
+	textures[buy_hover] = &sdlutils().images().at("buy_hover");
+	
 	//Explosions
 	textures[shieldExp] = &sdlutils().images().at("shieldExp");
 	textures[bulletExplosion] = &sdlutils().images().at("bulletExp");

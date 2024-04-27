@@ -289,7 +289,7 @@ enum gameTextures {
 	sell, sell_hover, column_box,
 	acelerate_x1, acelerate_x1_hover, acelerate_x1_5, acelerate_x1_5_hover, acelerate_x2, acelerate_x2_hover,
 	white_frame, button, button_hover, check, check_hover,resolution, resolution_hover,
-	resolution1, resolution1_hover, resolution2, resolution2_hover, resolution3, resolution3_hover, life, life_background,
+	resolution1, resolution1_hover, resolution2, resolution2_hover, resolution3, resolution3_hover, life, life_background,buy, buy_hover,
 	//menu de pausa
 	resume_button, resume_button_hover, backToMenu_button, backToMenu_button_hover, exitGame_button, exitGame_button_hover,
 	resume_icon_button, resume_icon_button_hover,

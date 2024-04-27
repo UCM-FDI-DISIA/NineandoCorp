@@ -133,7 +133,7 @@ private:
 	/// M�todo encargado de enviar el mensaje de mejorar una torre
 	/// con x Id pasado por par�metro 
 	/// </summary>
-	void upgradeTower(twrId t, string idPrecioJSON);
+	void upgradeTower(twrId t, string idPrecioJSON, Entity* bC);
 
 	/// <summary>
 	/// Actualiza la textura con el texto de las monedas a las monedas actuales
@@ -157,7 +157,7 @@ private:
 	void Config();
 
 	void stopConfig( Entity* bC);
-
+	void setUpgradeTex(Entity* bC);
 	bool canStartWave = true;
 	bool mActive;
 	bool resolutionActive;

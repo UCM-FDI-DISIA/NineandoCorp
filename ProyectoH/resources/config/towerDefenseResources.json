@@ -842,10 +842,19 @@
             "id": "resolution3",
             "file": "resources/images/UI/resolution3.png"
         },
-      {
-        "id": "resolution3_hover",
-        "file": "resources/images/UI/resolution3_hover.png"
-      },
+        {
+            "id": "resolution3_hover",
+            "file": "resources/images/UI/resolution3_hover.png"
+          },
+        {
+            "id": "buy",
+            "file": "resources/images/UI/buy.png"
+        },
+        {
+            "id": "buy_hover",
+            "file": "resources/images/UI/buy_hover.png"
+        },
+      
       {
         "id": "pocion",
         "file": "resources/images/Enemies/Toxic_Puddle.png"

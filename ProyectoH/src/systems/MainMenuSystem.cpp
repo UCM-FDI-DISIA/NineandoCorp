@@ -93,9 +93,17 @@ void MainMenuSystem::initSystem() {
 		0, gameTextures::bullet_tower_image, _grp_HUD_BACKGROUND);
 
 	// 2 TOWER BUTTON - CRISTAL
-	bS->addButton({ sdlutils().width() - 150.0f , (sdlutils().height() / 8.0f) * 2 },
-		{ 200.0f, 70.0f },
-		upgrade, upgrade_hover, ButtonTypes::upgrade_crystal_main);
+	if (game().getSaveGame()->getTurretsLevels()[_twr_CRISTAL] == 0) {
+		bS->addButton({ sdlutils().width() - 150.0f , (sdlutils().height() / 8.0f) * 2 },
+			{ 200.0f, 70.0f },
+			buy, buy_hover, ButtonTypes::upgrade_crystal_main);
+	}
+	else {
+		bS->addButton({ sdlutils().width() - 150.0f , (sdlutils().height() / 8.0f) * 2 },
+			{ 200.0f, 70.0f },
+			upgrade, upgrade_hover, ButtonTypes::upgrade_crystal_main);
+	}
+	
 
 	// 2 TOWER CRISTAL IMAGE
 	bS->addImage({ sdlutils().width() - 310.0f , (sdlutils().height() / 8.0f) * 2 },
@@ -103,50 +111,75 @@ void MainMenuSystem::initSystem() {
 		0, gameTextures::crystal_tower_image, _grp_HUD_BACKGROUND);
 
 	// 3 TOWER BUTTON - SLIME
-	bS->addButton({ sdlutils().width() - 150.0f , (sdlutils().height() / 8.0f) * 3 },
-		{ 200.0f, 70.0f },
-		upgrade, upgrade_hover, ButtonTypes::upgrade_slime_main);
-
+	if (game().getSaveGame()->getTurretsLevels()[_twr_SLIME] == 0) {
+		bS->addButton({ sdlutils().width() - 150.0f , (sdlutils().height() / 8.0f) * 3 },
+			{ 200.0f, 70.0f },
+			buy, buy_hover, ButtonTypes::upgrade_slime_main);
+	}
+	else {
+		bS->addButton({ sdlutils().width() - 150.0f , (sdlutils().height() / 8.0f) * 3 },
+			{ 200.0f, 70.0f },
+			upgrade, upgrade_hover, ButtonTypes::upgrade_slime_main);
+	}
 	// 3 TOWER SLIME IMAGE
 	bS->addImage({ sdlutils().width() - 310.0f , (sdlutils().height() / 8.0f) * 3 },
 		{ towerImagesSize },
 		0, gameTextures::slime_tower_image, _grp_HUD_BACKGROUND);
 
 	// 4 TOWER BUTTON - SNIPER
-	bS->addButton({ sdlutils().width() - 150.0f , (sdlutils().height() / 8.0f) * 4 },
-		{ 200.0f, 70.0f },
-		upgrade, upgrade_hover, ButtonTypes::upgrade_sniper_main);
-
+	if (game().getSaveGame()->getTurretsLevels()[_twr_DIEGO] == 0) {
+		bS->addButton({ sdlutils().width() - 150.0f , (sdlutils().height() / 8.0f) * 4 },
+			{ 200.0f, 70.0f },
+			buy, buy_hover, ButtonTypes::upgrade_sniper_main);
+	}
+	else {
+		bS->addButton({ sdlutils().width() - 150.0f , (sdlutils().height() / 8.0f) * 4 },
+			{ 200.0f, 70.0f },
+			upgrade, upgrade_hover, ButtonTypes::upgrade_sniper_main);
+	}
 	// 4 TOWER SNIPER IMAGE
 	bS->addImage({ sdlutils().width() - 310.0f , (sdlutils().height() / 8.0f) * 4 },
 		{ towerImagesSize },
 		0, gameTextures::sniper_tower_image, _grp_HUD_BACKGROUND);
 
 	// 5 TOWER BUTTON - FENIX
-	bS->addButton({ sdlutils().width() - 150.0f , (sdlutils().height() / 8.0f) * 5 },
-		{ 200.0f, 70.0f },
-		upgrade, upgrade_hover, ButtonTypes::upgrade_fenix_main);
-
+	if (game().getSaveGame()->getTurretsLevels()[_twr_FENIX] == 0) {
+		bS->addButton({ sdlutils().width() - 150.0f , (sdlutils().height() / 8.0f) * 5 },
+			{ 200.0f, 70.0f },
+			buy, buy_hover, ButtonTypes::upgrade_fenix_main);
+	}
+	else {
+		bS->addButton({ sdlutils().width() - 150.0f , (sdlutils().height() / 8.0f) * 5 },
+			{ 200.0f, 70.0f },
+			upgrade, upgrade_hover, ButtonTypes::upgrade_fenix_main);
+	}
 	// 5 TOWER FENIX IMAGE
 	bS->addImage({ sdlutils().width() - 310.0f , (sdlutils().height() / 8.0f) * 5 },
 		{ towerImagesSize },
 		0, gameTextures::phoenix_tower_image, _grp_HUD_BACKGROUND);
 
 	// 6 TOWER BUTTON - DIRT
+	
 	bS->addButton({ sdlutils().width() - 150.0f , (sdlutils().height() / 8.0f) * 6 },
 		{ 200.0f, 70.0f },
 		upgrade, upgrade_hover, ButtonTypes::upgrade_clay_main);
-
+	
 	// 6 TOWER DIRT IMAGE
 	bS->addImage({ sdlutils().width() - 310.0f , (sdlutils().height() / 8.0f) * 6 },
 		{ towerImagesSize },
 		0, gameTextures::clay_tower_image, _grp_HUD_BACKGROUND);
 
 	// 7 TOWER BUTTON - ENHANCER
-	bS->addButton({ sdlutils().width() - 150.0f , (sdlutils().height() / 8.0f) * 7 },
-		{ 200.0f, 70.0f },
-		upgrade, upgrade_hover, ButtonTypes::upgrade_enhancer_main);
-
+	if (game().getSaveGame()->getTurretsLevels()[_twr_POWER] == 0) {
+		bS->addButton({ sdlutils().width() - 150.0f , (sdlutils().height() / 8.0f) * 7 },
+			{ 200.0f, 70.0f },
+			buy, buy_hover, ButtonTypes::upgrade_enhancer_main);
+	}
+	else {
+		bS->addButton({ sdlutils().width() - 150.0f , (sdlutils().height() / 8.0f) * 7 },
+			{ 200.0f, 70.0f },
+			upgrade, upgrade_hover, ButtonTypes::upgrade_enhancer_main);
+	}
 	// 7 TOWER POWER IMAGE
 	bS->addImage({ sdlutils().width() - 310.0f , (sdlutils().height() / 8.0f) * 7 },
 		{ towerImagesSize },

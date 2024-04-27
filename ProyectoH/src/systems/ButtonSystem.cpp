@@ -364,42 +364,42 @@ void ButtonSystem::sellTower(Entity* twr)
 		case upgrade_nexus:
 			lvl = game().getSaveGame()->getTurretsLevels()[_twr_NEXUS];
 			if( lvl < towerLevelMax)
-				upgradeTower(_twr_NEXUS, "precioHNexoLvl" + std::to_string(lvl));
+				upgradeTower(_twr_NEXUS, "precioHNexoLvl" + std::to_string(lvl), bC);
 			break;
 		case upgrade_crystal_main:
 			lvl = game().getSaveGame()->getTurretsLevels()[_twr_CRISTAL];
 			if (lvl < towerLevelMax)
-				upgradeTower(_twr_CRISTAL, "precioHCristalLvl" + std::to_string(lvl));
+				upgradeTower(_twr_CRISTAL, "precioHCristalLvl" + std::to_string(lvl), bC);
 			break;
 		case upgrade_slime_main:
 			lvl = game().getSaveGame()->getTurretsLevels()[_twr_SLIME];
 			if (lvl < towerLevelMax)
-				upgradeTower(_twr_SLIME, "precioHSlimeLvl" + std::to_string(lvl));
+				upgradeTower(_twr_SLIME, "precioHSlimeLvl" + std::to_string(lvl), bC);
 			break;
 		case upgrade_bullet_main:
 			lvl = game().getSaveGame()->getTurretsLevels()[_twr_BULLET];
 			if (lvl < towerLevelMax)
-				upgradeTower(_twr_BULLET, "precioHBalasLvl" + std::to_string(lvl));
+				upgradeTower(_twr_BULLET, "precioHBalasLvl" + std::to_string(lvl), bC);
 			break;
 		case upgrade_sniper_main:
 			lvl = game().getSaveGame()->getTurretsLevels()[_twr_DIEGO];
 			if (lvl < towerLevelMax)
-				upgradeTower(_twr_DIEGO, "precioHDiegoLvl" + std::to_string(lvl));
+				upgradeTower(_twr_DIEGO, "precioHDiegoLvl" + std::to_string(lvl), bC);
 			break;
 		case upgrade_fenix_main:
 			lvl = game().getSaveGame()->getTurretsLevels()[_twr_FENIX];
 			if (lvl < towerLevelMax)
-				upgradeTower(_twr_FENIX, "precioHFenixLvl" + std::to_string(lvl));
+				upgradeTower(_twr_FENIX, "precioHFenixLvl" + std::to_string(lvl), bC);
 			break;
 		case upgrade_clay_main:
 			lvl = game().getSaveGame()->getTurretsLevels()[_twr_CLAY];
 			if (lvl < towerLevelMax)
-				upgradeTower(_twr_CLAY, "precioHArcillaLvl" + std::to_string(lvl));
+				upgradeTower(_twr_CLAY, "precioHArcillaLvl" + std::to_string(lvl), bC);
 			break;
 		case upgrade_enhancer_main:
 			lvl = game().getSaveGame()->getTurretsLevels()[_twr_POWER];
 			if (lvl < towerLevelMax)
-				upgradeTower(_twr_POWER, "precioHPotenciadoraLvl" + std::to_string(lvl));
+				upgradeTower(_twr_POWER, "precioHPotenciadoraLvl" + std::to_string(lvl), bC);
 			break;
 
 
@@ -439,6 +439,13 @@ void ButtonSystem::sellTower(Entity* twr)
 			exitUpMenu();
 			break;
 		/*----------------------------------------*/
+		}
+	}
+	void ButtonSystem::setUpgradeTex(Entity* bC) {
+		ButtonComponent* btComp = mngr_->getComponent<ButtonComponent>(bC);
+		if (btComp->getTexture() == buy) {
+			btComp->setTexture(upgrade);
+			btComp->setHover(upgrade_hover);
 		}
 	}
 	void ButtonSystem::pauseAllButtons() {
@@ -559,9 +566,10 @@ void ButtonSystem::sellTower(Entity* twr)
 		m.start_wave.play = true;
 		mngr_->send(m);
 	}
-	void ButtonSystem::upgradeTower(twrId t, string idPrecioJSON) {
+	void ButtonSystem::upgradeTower(twrId t, string idPrecioJSON, Entity* bC) {
 		if (HMoney_ - sdlutils().intConst().at(idPrecioJSON) >= 0) {
 			sdlutils().soundEffects().at("MejoraComprada").play(0, 1);
+			setUpgradeTex(bC);
 			HMoney_ -= sdlutils().intConst().at(idPrecioJSON);
 			updateText(HMoney_);
 			game().getSaveGame()->setHCoins(HMoney_);
