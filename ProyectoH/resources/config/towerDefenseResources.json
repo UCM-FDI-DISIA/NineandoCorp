@@ -543,7 +543,7 @@
         },
         {
             "id": "meteorites",
-            "file": "resources/images/Meteorology/Fire+Sparks-SpriteSheet.png"
+            "file": "resources/images/Meteorology/meteorite.png"
         },
         {
             "id": "earthquake",

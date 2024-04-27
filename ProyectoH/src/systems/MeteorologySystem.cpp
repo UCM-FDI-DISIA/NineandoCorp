@@ -57,7 +57,7 @@ void MeteorologySystem::setIcon() {
 
 void MeteorologySystem::initSystem() {//Primer fenomeno
 	auto& rand = sdlutils().rand();
-	setNextEvent(rand.nextInt(3, 6),(MeteorologyEvent)rand.nextInt(0, 5));
+	setNextEvent(rand.nextInt(2, 6),(MeteorologyEvent)rand.nextInt(0, 5));
 	showWarningMessage();
 }
 
@@ -239,16 +239,16 @@ void MeteorologySystem::generateMeteorite() {
 
 	Message m;
 	m.id = _m_ANIM_CREATE;
-	m.anim_create.animSpeed = 9;
+	m.anim_create.animSpeed = 4;
 	m.anim_create.idGrp = _grp_NATURALS_EFFECTS_HIGH;
 	m.anim_create.iterationsToDelete = 1;
-	m.anim_create.scale = { 200, 200 };
-	m.anim_create.cols = 4;
-	m.anim_create.rows = 5;
+	m.anim_create.scale = { 150, 400 };
+	m.anim_create.cols = 1;
+	m.anim_create.rows = 11;
 	m.anim_create.tex = gameTextures::meteorites;
 	m.anim_create.frameInit = 0;
 	m.anim_create.frameEnd = 18;
-	m.anim_create.height = 96;
+	m.anim_create.height = 256;
 	m.anim_create.width = 96;
 	m.anim_create.pos = Vector2D(x,y);
 	mngr_->send(m);
