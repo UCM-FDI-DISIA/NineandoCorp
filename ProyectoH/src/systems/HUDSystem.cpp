@@ -403,6 +403,13 @@ void HUDSystem::receive(const Message& m) {
 		showSelector(true);
 		upMenuIsOn = false;
 		break;
+	case _m_TOWER_DIED:
+		if (m.return_entity.ent == tower_) {
+			Message m1;
+			m1.id = _m_EXIT_UP_MENU;
+			mngr_->send(m1);
+		}
+		break;
 	case _m_HIDE_UPGRADEBUTTON:
 		if (upMenuIsOn) {
 			mngr_->setAlive(upM_.coinImg, false);
