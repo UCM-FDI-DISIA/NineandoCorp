@@ -18,6 +18,7 @@
 #include "../components/LimitedTime.h"
 #include "../sdlutils/SDLUtils.h"
 #include "../systems/EnemyBookSystem.h"
+#include "../components/EnemyStates.h"
 
 
 EnemySystem::EnemySystem() :mActive(true), generateEnemies_(false), stopGenerate(false), wave(1), level(1) {
@@ -372,6 +373,8 @@ void EnemySystem::update()
 			MonjeComponent* mj = mngr_->getComponent<MonjeComponent>(e);
 			Transform* tr = mngr_->getComponent<Transform>(e);
 			FramedImage* fi = mngr_->getComponent<FramedImage>(e);
+			EnemyStates* esc = mngr_->getComponent<EnemyStates>(e);
+			HealthComponent* health = mngr_->getComponent<HealthComponent>(e);
 
 			if (ic != nullptr) {
 				for (int i = 0; i < ic->getIcons().size(); i++) {
@@ -379,7 +382,30 @@ void EnemySystem::update()
 					Transform* iconTr = mngr_->getComponent<Transform>(enemyIcon.ent_);
 					iconTr->setPosition(*(tr->getPosition()) + Vector2D(intAt("IconOffset") * i, 0));
 				}
+
+				if (esc != nullptr) {
+					bool thereIsAngel = false;
+					auto it = enemies.begin();
+					while (it!=enemies.end()&&!thereIsAngel) {
+						AngelComponent* angel = mngr_->getComponent<AngelComponent>(*it);
+						if (angel != nullptr && angel->getDistance(tr->getPosition()) < angel->getRange() && *it != e) {
+							thereIsAngel = true;
+						}
+						it++;
+					}
+					if (!thereIsAngel) {
+						esc->setIsHealing(false);
+					}
+
+					if (esc->isHealing()) {
+						if (health != nullptr && health->getHealth() == health->getMaxHealth())ic->removeIcon(_HEALED);
+						else if (!ic->hasIcon(_HEALED))ic->addIcon(_HEALED);						
+					}
+					else if (!esc->isHealing() && ic->hasIcon(_HEALED))ic->removeIcon(_HEALED);
+				}
 			}
+
+			
 
 
 			// golem
@@ -495,19 +521,18 @@ void EnemySystem::update()
 				if (anc->getElapsed() > 1.0f) {
 					for (const auto& enemy : enemies) {
 						IconComponent* icOther = mngr_->getComponent<IconComponent>(enemy);
+						EnemyStates* es = mngr_->getComponent<EnemyStates>(enemy);
 						if (anc->getDistance(mngr_->getComponent<Transform>(enemy)->getPosition()) < anc->getRange() && enemy != e) {
-							if (!icOther->hasIcon(_HEALED)) {//Crearlo si no lo tiene
-								icOther->addIcon(_HEALED);
+							
+							HealthComponent* hc = mngr_->getComponent<HealthComponent>(enemy);
+							if (hc->getHealth() < hc->getMaxHealth()) {
+								hc->addHealth(hc->getBaseHealth() / 100.0f);
+								if(es!=nullptr)es->setIsHealing(true);
 							}
 							
-							mngr_->getComponent<HealthComponent>(enemy)->addHealth(mngr_->getComponent<HealthComponent>(enemy)->getBaseHealth() / 100.0f);
 							anc->setElapsed(0);
 						}
-						else {
-							if (icOther != nullptr && icOther->hasIcon(_HEALED)) {//Eliminarlo si no se encuentra en la distancia
-								icOther->removeIcon(_HEALED);
-							}
-						}
+						
 					}
 				}
 			}

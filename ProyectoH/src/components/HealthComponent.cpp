@@ -12,6 +12,7 @@ HealthComponent::initComponent() {
 void
 HealthComponent::addHealth(float health) {
 	currentHealth_ += health;
+	if (currentHealth_ > maxHealth_)currentHealth_ = maxHealth_;
 }
 
 //Devuelve si muere o no;

@@ -21,6 +21,8 @@ public:
 
 	IconComponent() : icons_() {};
 
+	virtual ~IconComponent() { removeAllIcons(); }
+
 	vector<icon> getIcons() { return icons_; }
 
 	bool hasIcon(iconId id);
