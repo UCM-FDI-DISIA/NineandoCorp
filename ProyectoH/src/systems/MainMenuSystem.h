@@ -16,6 +16,9 @@ public:
 	void receive(const Message& m) override;
 	void update() override ;
 
+	// Niveles de nexo y torres
+	int* turrentLevels_;	// Nexo última torre
+
 private: 
 	bool mActive;
 
