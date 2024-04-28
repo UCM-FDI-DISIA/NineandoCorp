@@ -10,6 +10,13 @@ MainMenuSystem::~MainMenuSystem() {
 	
 }
 
+void MainMenuSystem::receive(const Message& m) {
+	switch (m.id)
+	{
+	case _m_START_MENU:
+		turrentLevels_ = game().getSaveGame()->getTurretsLevels();
+	}
+}
 void MainMenuSystem::initSystem() {
 
 	// cleon: creais mucho reuido con las variables locales.
@@ -46,9 +53,15 @@ void MainMenuSystem::initSystem() {
 
 	
 	// NEXUS IMAGE - CAMBIAR IMAGEN
-	bS->addImage({ 200,  (sdlutils().height() / 2.0f) - 150.0f },
+	/*bS->addImage({ 200,  (sdlutils().height() / 2.0f) - 150.0f },
 		{ 200 , 200 },
-		0.0, gameTextures::nexus_level_3_image, _grp_HUD_BACKGROUND);
+		0.0, gameTextures::nexus_level_3_image, _grp_HUD_BACKGROUND);*/
+
+	Entity* nexusImage = mngr_->addEntity(_grp_HUD_BACKGROUND);;
+	Transform* tr = mngr_->addComponent<Transform>(nexusImage);
+	tr->setPosition({ 200,  (sdlutils().height() / 2.0f) - 150.0f });
+	mngr_->addComponent<RenderComponent>(nexusImage, nexusLvl);
+	mngr_->addComponent<FramedImage>(nexusImage, 4, 1, 2048, 2048, turrentLevels_[_twr_NEXUS] - 1, 0, 1);
 
 	//-------------------------------------------//
 
@@ -152,9 +165,12 @@ void MainMenuSystem::initSystem() {
 		{ 300.0f, 75.0f }, 0.0f, _grp_HUD_BACKGROUND);
 }
 
+<<<<<<< Updated upstream
 void MainMenuSystem::receive(const Message& m) {
 }
 
+=======
+>>>>>>> Stashed changes
 void MainMenuSystem::update() {
 }
 
