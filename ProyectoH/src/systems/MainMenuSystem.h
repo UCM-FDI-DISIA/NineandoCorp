@@ -15,9 +15,10 @@ public:
 	void initSystem() override;
 	void receive(const Message& m) override;
 	void update() override ;
+	void createNexusImage();
 
 	// Niveles de nexo y torres
-	int* turrentLevels_;	// Nexo última torre
+	int* turrentLevels;	// Nexo última torre
 
 private: 
 	bool mActive;
