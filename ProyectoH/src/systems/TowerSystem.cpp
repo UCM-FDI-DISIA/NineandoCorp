@@ -395,7 +395,7 @@ void TowerSystem::update() {
 					Vector2D offset{ floatAt("DiegoSniperOffset"),  floatAt("DiegoSniperOffset") };//Offset para el punto de spawn de la bala
 					int valFrame = 0;//Valor del frame que se ha de escoger del spritesheet para renderizar la torre en la direccion correcta
 					bt->setElapsedTime(bt->getElapsedTime() + game().getDeltaTime());
-					if (bt->getElapsedTime() > 0.5) {
+					if (bt->getElapsedTime() > bt->getReloadTime()) {
 						if(!tw->getConfundido())bt->targetFromGroup(mngr_->getHandler(_hdlr_ENEMIES));
 						else bt->targetFromGroup(mngr_->getHandler(_hdlr_LOW_TOWERS));
 						bt->setElapsedTime(0);

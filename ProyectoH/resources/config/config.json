@@ -692,7 +692,7 @@
     },
     {
       "id": "BalasRecarga",
-      "value": 0.5
+      "value": 2.0
     },
     {
       "id": "BalasRango",
@@ -746,7 +746,7 @@
     },
     {
       "id": "DiegoSniperRecarga",
-      "value": 3.0
+      "value": 4.0
     },
     {
       "id": "DiegoSniperVelocidad",
@@ -1208,11 +1208,11 @@
     },
     {
       "id": "ElfoAtaque",
-      "value": 10
+      "value": 5
     },
     {
       "id": "Elfotiempo",
-      "value": 1
+      "value": 1.5
     },
     {
       "id": "ElfoTipo",
