@@ -5,7 +5,7 @@ PlayState::PlayState(int level_, int turrentLevels[]) : GameState(_gmStt_PLAY), 
 
 	// Sistemas requeridos para que funcione el juego
 	mngr_->addSystem<MainControlSystem>(level);
-	SDL_Rect* offset = mngr_->addSystem<RenderSystem>()->getOffset();
+	
 	auto map = mngr_->addSystem<mapSystem>();
 	mngr_->addSystem<ButtonSystem>(_hdlr_BUTTON_PLAY);
 	mngr_->addSystem<HUDSystem>();
@@ -14,6 +14,7 @@ PlayState::PlayState(int level_, int turrentLevels[]) : GameState(_gmStt_PLAY), 
 	mngr_->addSystem<CollisionSystem>();
 	mngr_->addSystem<ParticleSystem>();
 	mngr_->addSystem<MeteorologySystem>();
+	SDL_Rect* offset = mngr_->addSystem<RenderSystem>()->getOffset();
 
 	Message m;
 	m.id = _m_START_GAME;
