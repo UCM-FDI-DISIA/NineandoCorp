@@ -54,7 +54,6 @@ void MainMenuSystem::initSystem() {
 	/*bS->addImage({ 200,  (sdlutils().height() / 2.0f) - 150.0f },
 		{ 200 , 200 },
 		0.0, gameTextures::nexus_level_3_image, _grp_HUD_BACKGROUND);*/
-
 	
 
 	//-------------------------------------------//
@@ -198,6 +197,10 @@ void MainMenuSystem::receive(const Message& m) {
 	case _m_START_MENU:
 		turrentLevels = game().getSaveGame()->getTurretsLevels();
 		createNexusImage();
+		break;
+	case _m_UPGRADE_TOWER:
+		turrentLevels = game().getSaveGame()->getTurretsLevels();
+		updateNexusImage();
 	}
 }
 
@@ -206,7 +209,7 @@ void MainMenuSystem::update() {
 
 void MainMenuSystem::createNexusImage()
 {
-	Entity* nexusImage = mngr_->addEntity(_grp_HUD_FOREGROUND);
+	nexusImage = mngr_->addEntity(_grp_HUD_FOREGROUND);
 	Transform* tr = mngr_->addComponent<Transform>(nexusImage);
 	tr->setPosition({ 200,  (sdlutils().height() / 2.0f) - 150.0f });
 	Vector2D pos = tr->getPosition();
@@ -216,6 +219,10 @@ void MainMenuSystem::createNexusImage()
 	tr->setPosition(pos - aux / 2);
 	//FramedImage(int frameColumns = 1, int frameRows = 1, int frameWidth = 0, int frameHeight = 0, int currentFrame = 0, int frameRate = 0, int lastFrame = 1) : 
 	mngr_->addComponent<FramedImage>(nexusImage, 4, 1, 2048, 2048, turrentLevels[_twr_NEXUS] - 1, 0, 1);
+}
+
+void MainMenuSystem::updateNexusImage() {
+	mngr_->getComponent<FramedImage>(nexusImage)->setCurrentFrame(turrentLevels[_twr_NEXUS] - 1);
 }
 
 void MainMenuSystem::addText(const Vector2D& pos, const Vector2D& scale, const double rot, grpId_type grpId) {
