@@ -518,8 +518,8 @@ void TowerSystem::update() {
 								if (rand.nextInt(0, 10) <= ds->getCritProb() * 10) { damage *= ds->getCritDamage(); }
 								shootBullet(targetMostHP, t, damage, floatAt("DiegoSniperVelocidad"), spawn, sniperBulletTexture, { 20, 15 }, _twr_DIEGO, _hdlr_HIGH_TOWERS);
 								createBulletExplosion(spawn + Vector2D(-40, -15));
-								sdlutils().soundEffects().at("TorreDiegoSniperDisparo").setNumberofChannels(20);
-								sdlutils().soundEffects().at("TorreDiegoSniperDisparo").setChannelVolume(20, 19);
+								sdlutils().soundEffects().at("TorreDiegoSniperDisparo").setNumberofChannels(30);
+								sdlutils().soundEffects().at("TorreDiegoSniperDisparo").setChannelVolume(game().CalculoVolumenEfectos(), 19);
 								sdlutils().soundEffects().at("TorreDiegoSniperDisparo").play(0, 19);
 							}
 							ds->setElapsedTime(0);
