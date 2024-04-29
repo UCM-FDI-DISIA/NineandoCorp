@@ -764,7 +764,7 @@
     },
     {
       "id": "PotenciadoraAumentoDano",
-      "value": 0.05
+      "value": 0.2
     },
     {
       "id": "PotenciadoraAumentoVida",

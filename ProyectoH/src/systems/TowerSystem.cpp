@@ -288,6 +288,12 @@ void TowerSystem::update() {
 			Transform* TR = mngr_->getComponent<Transform>(t);
 			TowerStates* tw = mngr_->getComponent<TowerStates>(t);
 			IconComponent* ic = mngr_->getComponent<IconComponent>(t);
+			AttackComponent* ac = mngr_->getComponent<AttackComponent>(t);
+			BulletTower* bt = mngr_->getComponent<BulletTower>(t);
+			SlimeTowerComponent* st = mngr_->getComponent<SlimeTowerComponent>(t);
+			PhoenixTower* pt = mngr_->getComponent<PhoenixTower>(t);
+			HealthComponent* h = mngr_->getComponent<HealthComponent>(t);
+			DiegoSniperTower* ds = mngr_->getComponent<DiegoSniperTower>(t);
 
 			if (ic != nullptr && tw !=nullptr) {
 				for (int i = 0; i < ic->getIcons().size(); i++) {
@@ -299,7 +305,7 @@ void TowerSystem::update() {
 					if (!ic->hasIcon(_POWERUP)) {//Crearlo si no lo tiene
 						ic->addIcon(_POWERUP);
 					}
-		
+
 					bool hayPotenciadora = false;
 					for (int i = 0; i < towers.size(); i++) {		
 						EnhancerTower* et = mngr_->getComponent<EnhancerTower>(towers[i]);
@@ -307,28 +313,32 @@ void TowerSystem::update() {
 							Vector2D myPos = mngr_->getComponent<Transform>(t)->getPosition();
 							Vector2D enhancerPos = mngr_->getComponent<Transform>(towers[i])->getPosition();
 							float distance = sqrt(pow(enhancerPos.getX() - myPos.getX(), 2) + pow(enhancerPos.getY() - myPos.getY(), 2));//distancia a la torre
-							if (distance <= et->getRange())hayPotenciadora = true;
+							if (distance <= et->getRange()) {
+								hayPotenciadora = true;
+								if (ac != nullptr)ac->setDamage(ac->getBaseDamage() * (1 + et->getDamageIncreasePercentage()));//incrementamos daño
+								if (bt != nullptr)bt->setDamage(bt->getBaseDamage() * (1 + et->getDamageIncreasePercentage()));
+								if (st != nullptr)st->setDPS(st->getBaseDPS() * (1 + et->getDamageIncreasePercentage()));
+								if (pt != nullptr)pt->setDamage(pt->getBaseDamage() * (1 + et->getDamageIncreasePercentage()));
+								if (ds != nullptr)ds->setDamage(ds->getBaseDamage() * (1 + et->getDamageIncreasePercentage()));
+							}
 						}						
 					}
 					if (!hayPotenciadora) {
 						tw->setPotenciado(false);
+						if (h != nullptr) {
+							h->setMaxHealth(h->getBaseHealth());//incrementamos vida
+							h->setHealth(h->getBaseHealth());//incrementamos vida
+						}
 					}
 				}
 				else {
-					AttackComponent* ac = mngr_->getComponent<AttackComponent>(t);
-					BulletTower* bt = mngr_->getComponent<BulletTower>(t);
-					SlimeTowerComponent* st = mngr_->getComponent<SlimeTowerComponent>(t);
-					PhoenixTower* pt = mngr_->getComponent<PhoenixTower>(t);
-					HealthComponent* h = mngr_->getComponent<HealthComponent>(t);
+					
 					ic->removeIcon(_POWERUP);
 					if (ac != nullptr)ac->setDamage(ac->getBaseDamage());//incrementamos daño
 					if (bt != nullptr)bt->setDamage(bt->getBaseDamage());
-					if (st != nullptr)st->setDamage(st->getBaseDamage());
-					if (pt != nullptr)pt->setDamage(pt->getBaseDamage());
-					if (h != nullptr) {
-						//h->setMaxHealth(h->getBaseHealth());//incrementamos vida
-						//h->setHealth(h->getBaseHealth());//incrementamos vida
-					}					
+					if (st != nullptr)st->setDPS(st->getBaseDPS());
+					if (pt != nullptr)pt->setDamage(pt->getBaseDamage());				
+					if (ds != nullptr)ds->setDamage(ds->getBaseDamage());				
 				}
 			}
 			if (tw->getConfundido()) {
@@ -372,10 +382,6 @@ void TowerSystem::update() {
 						auto ts = mngr_->getComponent<TowerStates>(towers[i]);
 						if (distance <= et->getRange() && towers[i] != t) {//enRango																							
 							if (!ts->getPotenciado()) {
-								if (ac != nullptr)ac->setDamage(ac->getBaseDamage() * (1 + et->getDamageIncreasePercentage()));//incrementamos daño
-								if (bt != nullptr)bt->setDamage(bt->getBaseDamage() * (1 + et->getDamageIncreasePercentage()));
-								if (st != nullptr)st->setDamage(st->getBaseDamage() * (1 + et->getDamageIncreasePercentage()));
-								if (pt != nullptr)pt->setDamage(pt->getBaseDamage() * (1 + et->getDamageIncreasePercentage()));
 								if (h != nullptr) {
 									h->setMaxHealth(h->getBaseHealth() + et->getTowersHPboost());//incrementamos vida
 									h->setHealth(h->getBaseHealth() + et->getTowersHPboost());//incrementamos vida
@@ -422,7 +428,7 @@ void TowerSystem::update() {
 							}
 
 						}
-					}
+					}					
 				}
 #pragma endregion
 
@@ -528,6 +534,7 @@ void TowerSystem::update() {
 							ds->setElapsedTime(0);
 						}
 						if (!mngr_->isAlive(t)) { removeTower(t); };
+
 					}
 
 #pragma endregion

@@ -1,7 +1,7 @@
 #include "SlimeTowerComponent.h"
 
 SlimeTowerComponent::SlimeTowerComponent(float range, float slimeDuration, float speedDecreasePer, float slimeDPS, float reloadTime, float damage)
-	: AttackComponent::AttackComponent(range, reloadTime, damage, false), isMaxLevel_(false), slimeDuration_(slimeDuration), speedDecreasePer_(speedDecreasePer), slimeDPS_(slimeDPS) {}
+	: AttackComponent::AttackComponent(range, reloadTime, damage, false), baseDPS_(slimeDPS), isMaxLevel_(false), slimeDuration_(slimeDuration), speedDecreasePer_(speedDecreasePer), slimeDPS_(slimeDPS) {}
 
 
 float SlimeTowerComponent::getSpeedDecrease() const { return speedDecreasePer_; }
@@ -9,6 +9,8 @@ float SlimeTowerComponent::getSpeedDecrease() const { return speedDecreasePer_; 
 float SlimeTowerComponent::getDuration() const { return slimeDuration_; }
 
 float SlimeTowerComponent::getDPS() const { return slimeDPS_; }
+
+float SlimeTowerComponent::getBaseDPS() const { return baseDPS_; }
 
 void SlimeTowerComponent::setDPS(float dps) { slimeDPS_ = dps; }
 

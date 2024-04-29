@@ -15,7 +15,7 @@ void MainMenuSystem::initSystem() {
 	// cleon: creais mucho reuido con las variables locales.
 	// al menos, redefinid cada una por pseparado (no reutiliceis "pAux")
 
-	Vector2D towerImagesSize{ 62.5f, 100.0f };
+	Vector2D towerImagesSize{ 70.5f, 100.0f };
 
 	ButtonSystem* bS = mngr_->getSystem<ButtonSystem>();
 
@@ -51,11 +51,11 @@ void MainMenuSystem::initSystem() {
 
 	
 	// NEXUS IMAGE - CAMBIAR IMAGEN
+
 	/*bS->addImage({ 200,  (sdlutils().height() / 2.0f) - 150.0f },
 		{ 200 , 200 },
 		0.0, gameTextures::nexus_level_3_image, _grp_HUD_BACKGROUND);*/
 	
-
 	//-------------------------------------------//
 
 	// ENEMIES BUTTON
