@@ -24,6 +24,10 @@ PlayState::PlayState(int level_, int turrentLevels[]) : GameState(_gmStt_PLAY), 
 	m.start_game_data.turrentLevels = turrentLevels;
 	m.start_game_data.level = level;
 	mngr_->send(m, true);
+
+	// MUSICA
+	sdlutils().musics().at("Soundtrack").setMusicVolume(game().CalculoVolumenMusica());
+	sdlutils().musics().at("Soundtrack").play();
 }
 
 void PlayState::update() {

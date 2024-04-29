@@ -33,8 +33,9 @@ private:
 	/// <param name="grpId">id del grupo con el que se añade la entidad al manager</param>
 	void addText(const Vector2D& pos, const Vector2D& scale, const double rot, grpId_type grpId);
 
-#pragma region NexusImage
+#pragma region Nexus
 	Entity* nexusImage;
+	Entity* nexusLvl; 
 #pragma endregion
 
 };

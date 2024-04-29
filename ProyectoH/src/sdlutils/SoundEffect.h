@@ -49,6 +49,14 @@ public:
 		return Mix_VolumeChunk(chunk_, volume);
 	}
 
+	void pauseAllChannels() {
+		Mix_Pause(-1); // -1 pausa todos los canales
+	}
+
+	void resumeAllChannels() {
+		Mix_Resume(-1); // -1 reanuda todos los canales
+	}
+
 	// static methods for sound effects
 	//
 	inline static void pauseChannel(int channel = -1) {

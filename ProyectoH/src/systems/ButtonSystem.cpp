@@ -28,9 +28,7 @@ ButtonSystem::~ButtonSystem(){
 void ButtonSystem::update () {
 	if (mActive) {
 		manageButtons();
-		if (game().currentState()->id == gmSttId::_gmStt_PLAY) {
-			manageKeys();
-		}
+		manageKeys();
 	}
 	else {
 		managePauseButtons();
@@ -85,11 +83,12 @@ void ButtonSystem::receive(const Message& m){
 
 void ButtonSystem::manageKeys() {
 	sdlutils().soundEffects().at("button").setChannelVolume(game().CalculoVolumenEfectos(), 1);
-	if (ih().keyDownEvent() && ih().isKeyDown(SDL_SCANCODE_Q)) {
+	if (ih().keyDownEvent() && ih().isKeyDown(SDL_SCANCODE_Q) && hdlr_but_id == hdlrId::_hdlr_BUTTON_PLAY) {
 		sdlutils().soundEffects().at("button").play(0, 1);
+		sdlutils().soundEffects().at("button").pauseAllChannels();
 		Pause(true);
 	}
-	if (ih().keyDownEvent() && ih().isKeyDown(SDL_SCANCODE_SPACE)) {
+	if (ih().keyDownEvent() && ih().isKeyDown(SDL_SCANCODE_SPACE) && hdlr_but_id == hdlrId::_hdlr_BUTTON_PLAY) {
 		sdlutils().soundEffects().at("button").play(0, 1);
 		switch (cauntAcelButs)
 		{
@@ -113,7 +112,7 @@ void ButtonSystem::manageKeys() {
 			cauntAcelButs = 1;
 		}
 	}
-	if (ih().keyDownEvent() && ih().isKeyDown(SDL_SCANCODE_RETURN) && canStartWave) {
+	if (ih().keyDownEvent() && ih().isKeyDown(SDL_SCANCODE_RETURN) && canStartWave && hdlr_but_id == hdlrId::_hdlr_BUTTON_PLAY) {
 		startWave();
 		canStartWave = false;
 		sdlutils().soundEffects().at("button").play(0, 1);
@@ -174,11 +173,13 @@ void ButtonSystem::manageButtons() {
 							game().instance()->setSoundGeneral(volume);
 							game().instance()->setNewMaxGeneral(slider->getMax() - posX );
 							game().instance()->setNewMinGeneral(posX  - slider->getMin());
+							sdlutils().musics().at("Soundtrack").setMusicVolume(game().CalculoVolumenMusica());
 						}
 						else if (slider->getSlider() == music) {
 							game().instance()->setSoundMusic(volume);
 							game().instance()->setNewMaxMusic(slider->getMax() - posX);
 							game().instance()->setNewMinMusic(posX - slider->getMin());
+							sdlutils().musics().at("Soundtrack").setMusicVolume(game().CalculoVolumenMusica());
 						}
 						else if (slider->getSlider() == effects) {
 							game().instance()->setSoundEffect(volume);
@@ -323,10 +324,12 @@ void ButtonSystem::sellTower(Entity* twr)
 			sdlutils().soundEffects().at("button").play(0, 1);
 			break;
 		case pause_main:
+			sdlutils().soundEffects().at("button").pauseAllChannels();
 			Pause(true);
 			sdlutils().soundEffects().at("button").play(0, 1);
 			break;
 		case resume_main:
+			sdlutils().soundEffects().at("button").resumeAllChannels();
 			game().popState();
 			Pause(false);
 			sdlutils().soundEffects().at("button").play(0, 1);

@@ -6,6 +6,7 @@ MainControlSystem::MainControlSystem(int currentLevel) :nexusIsAlive_(false),isP
 }
 
 void MainControlSystem::initSystem() {
+
 }
 
 void MainControlSystem::receive(const Message& m) {
