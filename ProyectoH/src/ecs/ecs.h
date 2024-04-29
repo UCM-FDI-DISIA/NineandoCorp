@@ -314,6 +314,8 @@ enum ButtonTypes {
 	// --- SELL --- //
 	sell_tower,
 
+	show_info,
+
 	none
 };
 // Correspondant texture to each type of entity

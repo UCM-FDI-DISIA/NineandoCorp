@@ -8,6 +8,7 @@ GameOverSystem::GameOverSystem() {
 }
 
 void GameOverSystem::initSystem() {
+	sdlutils().soundEffects().at("button").haltAllChannels();
 	float xAux = (float)sdlutils().width() / 2;
 	float heightH = ((float)sdlutils().height() / 8);
 	Vector2D bSize = { (float)sdlutils().width() / 4, (float)sdlutils().height() / 8 };

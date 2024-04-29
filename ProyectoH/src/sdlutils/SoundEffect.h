@@ -57,6 +57,10 @@ public:
 		Mix_Resume(-1); // -1 reanuda todos los canales
 	}
 
+	void haltAllChannels() {
+		Mix_HaltChannel(-1); // -1 hace halt en todos los canales
+	}
+
 	// static methods for sound effects
 	//
 	inline static void pauseChannel(int channel = -1) {
