@@ -410,12 +410,12 @@
             "file": "resources/images/UI/acelerate_x2_button_hover.png"
         },
         {
-          "id": "life",
-          "file": "resources/images/UI/life.png"
+            "id": "life",
+            "file": "resources/images/UI/life.png"
         },
         {
-          "id": "life_background",
-          "file": "resources/images/UI/life_background.png"
+            "id": "life_background",
+            "file": "resources/images/UI/life_background.png"
         },
         {
             "id": "close",
@@ -775,6 +775,10 @@
             "file": "resources/images/UI/gold_coin.png"
         },
         {
+            "id": "coin_animation",
+            "file": "resources/images/UI/coin_animation.png"
+        },
+        {
             "id": "force_field",
             "file": "resources/images/Enemies/defensor_real/field1.png"
         },
@@ -845,7 +849,7 @@
         {
             "id": "resolution3_hover",
             "file": "resources/images/UI/resolution3_hover.png"
-          },
+        },
         {
             "id": "buy",
             "file": "resources/images/UI/buy.png"
@@ -854,11 +858,11 @@
             "id": "buy_hover",
             "file": "resources/images/UI/buy_hover.png"
         },
-      
-      {
-        "id": "pocion",
-        "file": "resources/images/Enemies/Toxic_Puddle.png"
-      }
+
+        {
+            "id": "pocion",
+            "file": "resources/images/Enemies/Toxic_Puddle.png"
+        }
 
     ],
 

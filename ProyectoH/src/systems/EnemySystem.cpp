@@ -298,14 +298,14 @@ void EnemySystem::CoinAnimation(Vector2D pos) {
 	m.anim_create.animSpeed = 15;
 	m.anim_create.iterationsToDelete = 1;
 	m.anim_create.pos = pos;
-	m.anim_create.frameInit = 1;
-	m.anim_create.frameEnd = 1;
-	m.anim_create.cols = 1;
-	m.anim_create.rows = 1;
+	m.anim_create.frameInit = 0;
+	m.anim_create.frameEnd = 7;
+	m.anim_create.cols = 4;
+	m.anim_create.rows = 2;
 	m.anim_create.scale = { 100, 100 };
 	m.anim_create.width = 100;
 	m.anim_create.height = 100;
-	m.anim_create.tex = gameTextures::monedaDorada;
+	m.anim_create.tex = gameTextures::monedaAnimacion;
 	mngr_->send(m);
 }
 
