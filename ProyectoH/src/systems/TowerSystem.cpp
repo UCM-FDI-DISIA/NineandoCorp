@@ -278,7 +278,6 @@ void TowerSystem::update() {
 			towersToInteract.clear();
 		}
 
-		sdlutils().soundEffects().at("TorreDeBalasDisparo").setChannelVolume(game().CalculoVolumenEfectos(), 3);
 		for (auto& t : towers) {
 			// Updates de torre interactiva / comprueba si se ha clicado la torre
 
@@ -412,7 +411,9 @@ void TowerSystem::update() {
 							Vector2D spawn = { TR->getPosition()->getX() + offset.getX(),	TR->getPosition()->getY() + offset.getY() };//Punto de spawn de la bala con el offset
 							shootBullet(bt->getTarget(), t, bt->getDamage(), floatAt("BalasVelocidad"), spawn, bulletTexture, { 35, 35 }, _twr_BULLET, _hdlr_LOW_TOWERS);//Dispara la bala
 							createBulletExplosion(spawn + Vector2D(-10, -20));
-							sdlutils().soundEffects().at("TorreDeBalasDisparo").play(0, 3);
+							sdlutils().soundEffects().at("TorreDeBalasDisparo").setNumberofChannels(30);
+							sdlutils().soundEffects().at("TorreDeBalasDisparo").setChannelVolume(game().CalculoVolumenEfectos(), 21);
+							sdlutils().soundEffects().at("TorreDeBalasDisparo").play(0, 21);
 						}
 						if (bt->isMaxLevel()) {//Mejora maxima de la torre de balas: targetear a un segundo enemigo. Funciona igual que el primer targeteo
 							bt->targetSecondEnemy(mngr_->getHandler(_hdlr_ENEMIES));
@@ -470,7 +471,9 @@ void TowerSystem::update() {
 								RenderComponent* rc = mngr_->getComponent<RenderComponent>(t);
 								Vector2D spawn = { TR->getPosition()->getX() + offset.getX(),	TR->getPosition()->getY() + offset.getY() };
 								Entity* bullet = shootBullet(st->getTarget(), t, st->getDamage(), floatAt("SlimeVelocidad"), spawn, slimeBulletTexture, { 25, 25 }, _twr_SLIME, _hdlr_LOW_TOWERS);
-								sdlutils().soundEffects().at("TorreSlimeDisparo").play(0, 3);
+								sdlutils().soundEffects().at("TorreSlimeDisparo").setNumberofChannels(30);
+								sdlutils().soundEffects().at("TorreSlimeDisparo").setChannelVolume(game().CalculoVolumenEfectos(), 22);
+								sdlutils().soundEffects().at("TorreSlimeDisparo").play(0, 22);
 								mngr_->addComponent<SlimeBullet>(bullet, st->getDuration(), st->getSpeedDecrease(), st->getDPS());
 								st->setElapsedTime(0);
 							}
@@ -519,8 +522,8 @@ void TowerSystem::update() {
 								shootBullet(targetMostHP, t, damage, floatAt("DiegoSniperVelocidad"), spawn, sniperBulletTexture, { 20, 15 }, _twr_DIEGO, _hdlr_HIGH_TOWERS);
 								createBulletExplosion(spawn + Vector2D(-40, -15));
 								sdlutils().soundEffects().at("TorreDiegoSniperDisparo").setNumberofChannels(30);
-								sdlutils().soundEffects().at("TorreDiegoSniperDisparo").setChannelVolume(game().CalculoVolumenEfectos(), 19);
-								sdlutils().soundEffects().at("TorreDiegoSniperDisparo").play(0, 19);
+								sdlutils().soundEffects().at("TorreDiegoSniperDisparo").setChannelVolume(game().CalculoVolumenEfectos(), 23);
+								sdlutils().soundEffects().at("TorreDiegoSniperDisparo").play(0, 23);
 							}
 							ds->setElapsedTime(0);
 						}
@@ -569,17 +572,16 @@ void TowerSystem::update() {
 							pt->setElapsedTime(0);
 							fi->setCurrentFrame(level + 4);
 							sdlutils().soundEffects().at("TorreDeLLamaDeFenixRecarga").setNumberofChannels(30);
-							sdlutils().soundEffects().at("TorreDeLLamaDeFenixRecarga").setChannelVolume(game().CalculoVolumenEfectos(), 29);
-							sdlutils().soundEffects().at("TorreDeLLamaDeFenixRecarga").play(0, 29);
-							sdlutils().soundEffects().at("TorreDeLLamaDeFenixDisparo").pauseChannel(28);
+							sdlutils().soundEffects().at("TorreDeLLamaDeFenixRecarga").setChannelVolume(game().CalculoVolumenEfectos(), 25);
+							sdlutils().soundEffects().at("TorreDeLLamaDeFenixRecarga").play(0, 25);
+							sdlutils().soundEffects().at("TorreDeLLamaDeFenixDisparo").pauseChannel(24);
 							Playsound = true;
 						}
 
 						if (pt->isShooting() && Playsound) {
 							sdlutils().soundEffects().at("TorreDeLLamaDeFenixRecarga").setNumberofChannels(30);
-							sdlutils().soundEffects().at("TorreDeLLamaDeFenixRecarga").setChannelVolume(game().CalculoVolumenEfectos(), 28);
-							sdlutils().soundEffects().at("TorreDeLLamaDeFenixRecarga").play(0, 28);
-							sdlutils().soundEffects().at("TorreDeLLamaDeFenixDisparo").play(0,28);
+							sdlutils().soundEffects().at("TorreDeLLamaDeFenixRecarga").setChannelVolume(game().CalculoVolumenEfectos(), 24);
+							sdlutils().soundEffects().at("TorreDeLLamaDeFenixDisparo").play(0, 24);
 							Playsound = false;
 						}
 					}
