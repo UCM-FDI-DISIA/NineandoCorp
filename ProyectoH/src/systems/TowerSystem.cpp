@@ -568,14 +568,20 @@ void TowerSystem::update() {
 							pt->setIsShooting(false);
 							pt->setElapsedTime(0);
 							fi->setCurrentFrame(level + 4);
+							sdlutils().soundEffects().at("TorreDeLLamaDeFenixRecarga").setNumberofChannels(30);
+							sdlutils().soundEffects().at("TorreDeLLamaDeFenixRecarga").setChannelVolume(game().CalculoVolumenEfectos(), 29);
+							sdlutils().soundEffects().at("TorreDeLLamaDeFenixRecarga").play(0, 29);
+							sdlutils().soundEffects().at("TorreDeLLamaDeFenixDisparo").pauseChannel(28);
+							Playsound = true;
 						}
 
-						/*if (pt->isShooting()) {
-							sdlutils().soundEffects().at("TorreDeLLamaDeFenixDisparo").playFromStart(4);
+						if (pt->isShooting() && Playsound) {
+							sdlutils().soundEffects().at("TorreDeLLamaDeFenixRecarga").setNumberofChannels(30);
+							sdlutils().soundEffects().at("TorreDeLLamaDeFenixRecarga").setChannelVolume(game().CalculoVolumenEfectos(), 28);
+							sdlutils().soundEffects().at("TorreDeLLamaDeFenixRecarga").play(0, 28);
+							sdlutils().soundEffects().at("TorreDeLLamaDeFenixDisparo").play(0,28);
+							Playsound = false;
 						}
-						else {
-							sdlutils().soundEffects().at("TorreDeLLamaDeFenixDisparo").pauseChannel(4);
-						}*/
 					}
 #pragma endregion
 

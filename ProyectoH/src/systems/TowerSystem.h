@@ -89,5 +89,7 @@ protected:
 	std::vector<Entity*> towersToInteract;
 	SDL_Rect* cameraOffset_;
 
+
+	bool Playsound = true;
 };
 
