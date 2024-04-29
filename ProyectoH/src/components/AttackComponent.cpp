@@ -2,6 +2,7 @@
 #include "SDL.h"
 #include "algorithm"
 #include "../components/Transform.h"
+#include "../components/DirtTower.h"
 #include "../components/HealthComponent.h"
 
 AttackComponent::AttackComponent(float range, float reloadTime, int damage, bool towers) : range_(range), reloadTime_(reloadTime), damage_(damage), baseDamage_(damage),towers_(towers), elapsedTime_(reloadTime), nexo_(true) {

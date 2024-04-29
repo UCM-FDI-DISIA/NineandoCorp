@@ -18,6 +18,7 @@ public:
 	void update() override;
 
 private:
+	void WarningPanel(string text, ButtonTypes butTyp);
 	void addText(const Vector2D& pos, const Vector2D& scale, const double rot, grpId_type grpId);
 };
 

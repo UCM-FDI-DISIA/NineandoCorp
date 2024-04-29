@@ -445,7 +445,9 @@ void EnemySystem::update()
 				if (ac->getElapsedTime() > ac->getReloadTime()) {
 					ac->setLoaded(true);
 					ac->targetFromGroup(towers);
-
+					if (!ac->getAttackTowers() && rc->destinoFinal()) {
+						ac->setTarget(*mngr_->getHandler(_hdlr_NEXO).begin());
+					}
 					if (ac->getTarget() != nullptr && (ac->getAttackTowers() || mngr_->getComponent<NexusComponent>(ac->getTarget()) || mngr_->getComponent<DirtTower>(ac->getTarget()))) {
 						mc->setStop(true);
 						if (!ac->getAttack()) {
@@ -474,7 +476,7 @@ void EnemySystem::update()
 					}
 					else {
 						mc->setStop(false);
-
+						if (ac->getTarget() != nullptr && (!ac->getAttackTowers() && (!mngr_->getComponent<DirtTower>(ac->getTarget()) && !mngr_->getComponent<NexusComponent>(ac->getTarget()))))ac->setTarget(nullptr);
 						if (pc != nullptr) {
 							pc->ResetVelocity();
 						}
