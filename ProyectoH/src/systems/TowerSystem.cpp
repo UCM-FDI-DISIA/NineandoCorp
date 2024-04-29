@@ -94,18 +94,19 @@ void TowerSystem::receive(const Message& m) {
 void TowerSystem::CoinAnimation(Vector2D pos) {
 	Message m;
 	m.id = _m_ANIM_CREATE;
-	m.anim_create.idGrp = _grp_ICONS;
-	m.anim_create.animSpeed = 15;
+	m.anim_create.idGrp = _grp_TOWERS_AND_ENEMIES;
+	m.anim_create.animSpeed = 6;
 	m.anim_create.iterationsToDelete = 1;
-	m.anim_create.pos = pos;
-	m.anim_create.frameInit = 1;
-	m.anim_create.frameEnd = 1;
-	m.anim_create.cols = 1;
-	m.anim_create.rows = 1;
-	m.anim_create.scale = { 100, 100 };
-	m.anim_create.width = 100;
-	m.anim_create.height = 100;
-	m.anim_create.tex = gameTextures::monedaDorada;
+	Vector2D aux = Vector2D(0, -20);//para subirlo un poco 
+	m.anim_create.pos = pos + aux;
+	m.anim_create.frameInit = 0;
+	m.anim_create.frameEnd = 15;
+	m.anim_create.cols = 4;
+	m.anim_create.rows = 4;
+	m.anim_create.scale = { 120, 120 };
+	m.anim_create.width = 221;
+	m.anim_create.height = 200;
+	m.anim_create.tex = gameTextures::monedaAnimacion;
 	mngr_->send(m);
 }
 
