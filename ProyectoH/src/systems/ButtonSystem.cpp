@@ -85,6 +85,7 @@ void ButtonSystem::manageKeys() {
 	sdlutils().soundEffects().at("button").setChannelVolume(game().CalculoVolumenEfectos(), 1);
 	if (ih().keyDownEvent() && ih().isKeyDown(SDL_SCANCODE_Q) && hdlr_but_id == hdlrId::_hdlr_BUTTON_PLAY) {
 		sdlutils().soundEffects().at("button").play(0, 1);
+		sdlutils().soundEffects().at("button").pauseAllChannels();
 		Pause(true);
 	}
 	if (ih().keyDownEvent() && ih().isKeyDown(SDL_SCANCODE_SPACE) && hdlr_but_id == hdlrId::_hdlr_BUTTON_PLAY) {
@@ -323,10 +324,12 @@ void ButtonSystem::sellTower(Entity* twr)
 			sdlutils().soundEffects().at("button").play(0, 1);
 			break;
 		case pause_main:
+			sdlutils().soundEffects().at("button").pauseAllChannels();
 			Pause(true);
 			sdlutils().soundEffects().at("button").play(0, 1);
 			break;
 		case resume_main:
+			sdlutils().soundEffects().at("button").resumeAllChannels();
 			game().popState();
 			Pause(false);
 			sdlutils().soundEffects().at("button").play(0, 1);
