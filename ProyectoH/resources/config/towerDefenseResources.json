@@ -1057,6 +1057,10 @@
     {
         "id": "Soundtrack",
         "file": "resources/sound/Soundtrack/Proyecto H v1.mp3"
+    },
+    {
+        "id": "MenuSoundtrack",
+        "file": "resources/sound/Soundtrack/Cacaolat 3.mp3"
     }
   ]
 

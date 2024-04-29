@@ -18,7 +18,7 @@ PlayState::PlayState(int level_, int turrentLevels[]) : GameState(_gmStt_PLAY), 
 
 	Message m;
 	m.id = _m_START_GAME;
-	m.start_game_data.money = 150; //Dinero inicial 150
+	m.start_game_data.money = 15000; //Dinero inicial 150
 	m.start_game_data.cameraOffset = offset;
 	m.start_game_data.netmap = map->getMalla();
 	m.start_game_data.turrentLevels = turrentLevels;

@@ -79,6 +79,7 @@ enum hdlrId : hdlrId_type {
 	_hdlr_LOW_TOWERS,
 	_hdlr_HIGH_TOWERS,
 	_hdlr_ENEMIES,
+	_hdlr_NEXO,
 	_hdlr_GHOST_ENEMIES,
 	_hdlr_SPAWNS,
 	//botones de las escenas
@@ -196,6 +197,7 @@ enum msgId : msgId_type {
 	_m_PAUSE,
 	_m_RESUME,
 	_m_ACELERATE,
+	_m_WARNING,
 	_m_START_GAME,
 	_m_WAVE_START,
 	_m_OVER_GAME,
@@ -273,6 +275,46 @@ enum enmId : enmId_type {
 	_enm_SIZE
 };
 
+enum ButtonTypes {
+	//Others
+	pruebaButton,
+	exit_button, exit_warning_button,
+	back_to_menu, backToMenu_warning_button,
+	//MainMenu
+	selector_main, enemies_main, pause_main, resume_main,
+	//Level Selector
+	level_selected, back_selector, play_wave,
+	// aceleration button
+	acelerate,
+	//Upgrades main menu
+	upgrade_nexus,
+	upgrade_crystal_main,
+	upgrade_slime_main, upgrade_bullet_main,
+	upgrade_sniper_main, upgrade_fenix_main,
+	upgrade_clay_main, upgrade_enhancer_main,
+	//Enemybook
+	enemybook,
+	enemybookPop,
+	//CONFIG
+	config, full_screen, changeResolution,
+	// ----- HUD -----//
+	crystal_drag,
+	slime_drag,
+	sniper_drag,
+	clay_drag,
+	bullet_drag,
+	fenix_drag,
+	enhancer_drag,
+
+	// --- UPGRADE IN-GAME --- //
+	upgrade_tower,
+	exit_up_menu,
+
+	// --- SELL --- //
+	sell_tower,
+
+	none
+};
 // Correspondant texture to each type of entity
 enum gameTextures {
 	//map
@@ -540,6 +582,12 @@ struct Message {
 	struct {
 		float acel;
 	}acelerate_plus;
+
+	// _m_WARNING
+	struct {
+		ButtonTypes butTyp;
+		string text;
+	}warning_info;
 
 	// _m_WAVE_START
 	struct {

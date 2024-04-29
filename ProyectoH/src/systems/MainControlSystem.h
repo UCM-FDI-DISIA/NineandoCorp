@@ -45,5 +45,6 @@ protected:
 			mngr_->getComponent<ButtonComponent>(b)->setActive(true);
 		}
 	}
+
 };
 
