@@ -750,6 +750,8 @@ void TowerSystem::generateNexus(int lvlNexus, Cell* cell) {
 	//FramedImage(int frameColumns = 1, int frameRows = 1, int frameWidth = 0, int frameHeight = 0, int currentFrame = 0, int frameRate = 0, int lastFrame = 1) : 
 	mngr_->addComponent<FramedImage>(n, 4, 1, 2048, 2048, lvlNexus - 1, 0, 1);
 	mngr_->setHandler(_hdlr_LOW_TOWERS, n);
+	mngr_->setHandler(_hdlr_NEXO, n);
+
 	towers.emplace_back(n);
 }
 

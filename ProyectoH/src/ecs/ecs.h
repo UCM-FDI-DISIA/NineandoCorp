@@ -79,6 +79,7 @@ enum hdlrId : hdlrId_type {
 	_hdlr_LOW_TOWERS,
 	_hdlr_HIGH_TOWERS,
 	_hdlr_ENEMIES,
+	_hdlr_NEXO,
 	_hdlr_GHOST_ENEMIES,
 	_hdlr_SPAWNS,
 	//botones de las escenas
