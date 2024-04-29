@@ -77,7 +77,7 @@ void mapSystem::loadTile(const tmx::Map& map, const tmx::TileLayer& layer) {
 				((layer.getOffset().y + (i + j) / 2)) / sep);
 			
 			 if (tile.ID > 102 && tile.ID < 129) {//elementos decoracion
-				entityTile = mngr_->addEntity(_grp_TOWERS_AND_ENEMIES);
+				entityTile = mngr_->addEntity(_grp_NATURALS_EFFECTS_LOW);
 				Cell* c = new Cell();
 				c->position = { tilePosition.getX() + 48, tilePosition.getY() + 24 };
 				c->isFree = false;
