@@ -85,6 +85,7 @@ void MainMenuSystem::initSystem() {
 		{ 200.0f, 70.0f },
 		upgrade, upgrade_hover, ButtonTypes::upgrade_bullet_main);
 
+
 	// 1 TOWER BULLET IMAGE
 	bS->addImage({ sdlutils().width() - 310.0f , (sdlutils().height() / 8.0f) * 1 },
 		{ towerImagesSize },
@@ -102,7 +103,6 @@ void MainMenuSystem::initSystem() {
 			upgrade, upgrade_hover, ButtonTypes::upgrade_crystal_main);
 	}
 	
-
 	// 2 TOWER CRISTAL IMAGE
 	bS->addImage({ sdlutils().width() - 310.0f , (sdlutils().height() / 8.0f) * 2 },
 		{ towerImagesSize },
@@ -119,6 +119,8 @@ void MainMenuSystem::initSystem() {
 			{ 200.0f, 70.0f },
 			upgrade, upgrade_hover, ButtonTypes::upgrade_slime_main);
 	}
+
+	
 	// 3 TOWER SLIME IMAGE
 	bS->addImage({ sdlutils().width() - 310.0f , (sdlutils().height() / 8.0f) * 3 },
 		{ towerImagesSize },
@@ -135,6 +137,8 @@ void MainMenuSystem::initSystem() {
 			{ 200.0f, 70.0f },
 			upgrade, upgrade_hover, ButtonTypes::upgrade_sniper_main);
 	}
+
+	
 	// 4 TOWER SNIPER IMAGE
 	bS->addImage({ sdlutils().width() - 310.0f , (sdlutils().height() / 8.0f) * 4 },
 		{ towerImagesSize },
@@ -151,6 +155,8 @@ void MainMenuSystem::initSystem() {
 			{ 200.0f, 70.0f },
 			upgrade, upgrade_hover, ButtonTypes::upgrade_fenix_main);
 	}
+
+	
 	// 5 TOWER FENIX IMAGE
 	bS->addImage({ sdlutils().width() - 310.0f , (sdlutils().height() / 8.0f) * 5 },
 		{ towerImagesSize },
@@ -162,6 +168,7 @@ void MainMenuSystem::initSystem() {
 		{ 200.0f, 70.0f },
 		upgrade, upgrade_hover, ButtonTypes::upgrade_clay_main);
 	
+
 	// 6 TOWER DIRT IMAGE
 	bS->addImage({ sdlutils().width() - 310.0f , (sdlutils().height() / 8.0f) * 6 },
 		{ towerImagesSize },
@@ -178,6 +185,8 @@ void MainMenuSystem::initSystem() {
 			{ 200.0f, 70.0f },
 			upgrade, upgrade_hover, ButtonTypes::upgrade_enhancer_main);
 	}
+
+	
 	// 7 TOWER POWER IMAGE
 	bS->addImage({ sdlutils().width() - 310.0f , (sdlutils().height() / 8.0f) * 7 },
 		{ towerImagesSize },

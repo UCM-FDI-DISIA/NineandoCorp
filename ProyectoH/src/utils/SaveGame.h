@@ -10,7 +10,6 @@ private:
 
 	int turretsLevel_[_twr_SIZE];
 
-
 	bool enemiesBook_[_enm_SIZE];
 
 public:

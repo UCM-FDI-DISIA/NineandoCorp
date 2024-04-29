@@ -86,6 +86,8 @@ private:
 	/// </summary>
 	void generateHMoneyText();
 
+	void generateUpgradeMoneyTexts();
+
 	/// <summary>
 	/// Desactiva todos los botones de la escena
 	/// </summary>
@@ -172,6 +174,19 @@ private:
 	SDL_Point	mouse;
 	SDL_bool 	mouse_follow = SDL_FALSE;
 	SDL_Point 	mouse_offset;
+
+	Entity* bulletMoneyText_;
+	Entity* cristalMoneyText_;
+	Entity* slimeMoneyText_;
+	Entity* diegoMoneyText_;
+	Entity* enhancerMoneyText_;
+	Entity* fenixMoneyText_;
+	Entity* dirtMoneyText_;
+	
+
+	int intAt(basic_string<char> s) { return sdlutils().intConst().at(s); }
+	float floatAt(basic_string<char> s) { return sdlutils().floatConst().at(s); }
+
 };
 
 
