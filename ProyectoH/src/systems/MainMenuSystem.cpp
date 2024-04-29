@@ -19,10 +19,7 @@ void MainMenuSystem::initSystem() {
 
 	ButtonSystem* bS = mngr_->getSystem<ButtonSystem>();
 
-	// NEXUS LEVEL TEXT
-	addText({ 60.0f, (sdlutils().height() / 2.0f) + 50.0f}, 
-		{ 320.0f, 75.0f}, 0.0f, _grp_GENERAL);
-
+	
 
 	// BACKGROUND
 	bS->addImage({ sdlutils().width() / 2.0f, (sdlutils().height() / 2.0f) },
@@ -186,9 +183,9 @@ void MainMenuSystem::initSystem() {
 		{ towerImagesSize },
 		0, gameTextures::power_tower_image, _grp_HUD_BACKGROUND);
 
-	// NEXUS LEVEL TEXT
-	addText({ 50.0f, (sdlutils().height() / 2.0f) + 50.0f },
-		{ 300.0f, 75.0f }, 0.0f, _grp_HUD_BACKGROUND);
+	//// NEXUS LEVEL TEXT
+	//addText({ 50.0f, (sdlutils().height() / 2.0f) + 50.0f },
+	//	{ 300.0f, 75.0f }, 0.0f, _grp_HUD_BACKGROUND);
 }
 
 void MainMenuSystem::receive(const Message& m) {
@@ -209,11 +206,25 @@ void MainMenuSystem::update() {
 
 void MainMenuSystem::createNexusImage()
 {
+	ButtonSystem* bS = mngr_->getSystem<ButtonSystem>();
+	// NEXUS LEVEL TEXT
+	Vector2D pAux = Vector2D{ 207,600 };
+	Vector2D sAux = Vector2D{ 300,100 };
+	SDL_Color NombreColor = { 255, 255, 255, 255 };
+	string lvl = std::to_string(turrentLevels[twrId::_twr_NEXUS]);
+	nexusLvl = bS->addText("Nexus Level: " + lvl, NombreColor, pAux, sAux);
+
+	//Nexus life image
+	pAux = Vector2D{ 207,500 };
+	sAux = Vector2D{ 300,100 };
+	bS->addImage(pAux,sAux,0, gameTextures::life,_grp_HUD_BACKGROUND);
+	bS->addImage(pAux, sAux, 0, gameTextures::life_background, _grp_HUD_BACKGROUND);
+
 	nexusImage = mngr_->addEntity(_grp_HUD_FOREGROUND);
 	Transform* tr = mngr_->addComponent<Transform>(nexusImage);
-	tr->setPosition({ 200,  (sdlutils().height() / 2.0f) - 150.0f });
+	tr->setPosition({ 200,  (sdlutils().height() / 2.0f) - 220.0f });
 	Vector2D pos = tr->getPosition();
-	mngr_->addComponent<RenderComponent>(nexusImage, nexusLvl); 
+	mngr_->addComponent<RenderComponent>(nexusImage, gameTextures::nexusLvl); 
 	tr->setScale({ 350.0f, 350.0f });
 	Vector2D aux = tr->getScale();
 	tr->setPosition(pos - aux / 2);
@@ -223,6 +234,8 @@ void MainMenuSystem::createNexusImage()
 
 void MainMenuSystem::updateNexusImage() {
 	mngr_->getComponent<FramedImage>(nexusImage)->setCurrentFrame(turrentLevels[_twr_NEXUS] - 1);
+	string lvl = std::to_string(turrentLevels[twrId::_twr_NEXUS]);
+	mngr_->getComponent<TextComponent>(nexusLvl)->changeText("Nexus Level: " + lvl);
 }
 
 void MainMenuSystem::addText(const Vector2D& pos, const Vector2D& scale, const double rot, grpId_type grpId) {
