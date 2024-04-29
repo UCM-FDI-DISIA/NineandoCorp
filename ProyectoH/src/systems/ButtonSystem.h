@@ -163,6 +163,7 @@ private:
 
 	void Config();
 
+
 	void stopConfig( Entity* bC);
 	void setUpgradeTex(Entity* bC);
 	bool canStartWave = true;

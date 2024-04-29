@@ -49,9 +49,6 @@ void MainMenuSystem::initSystem() {
 	
 	// NEXUS IMAGE - CAMBIAR IMAGEN
 
-	/*bS->addImage({ 200,  (sdlutils().height() / 2.0f) - 150.0f },
-		{ 200 , 200 },
-		0.0, gameTextures::nexus_level_3_image, _grp_HUD_BACKGROUND);*/
 	
 	//-------------------------------------------//
 
@@ -80,121 +77,138 @@ void MainMenuSystem::initSystem() {
 		{ 250.0f, 87.5f },
 		gameTextures::upgrade, gameTextures::upgrade_hover, ButtonTypes::upgrade_nexus);
 
+#pragma region TOWER BUTTONS
+	float but_separation = 175.0f;
+	float twr_img_separation = 325.0f;
+	float info_separation = 45.0f;
+	Vector2D info_size = { 35.0f, 35.0f };
+
 	// 1 TOWER BUTTON - BULLET
-	bS->addButton({ sdlutils().width() - 150.0f , (sdlutils().height() /8.0f) * 1 },
+	bS->addButton({ sdlutils().width() - but_separation , (sdlutils().height() /8.0f) * 1 },
 		{ 200.0f, 70.0f },
 		upgrade, upgrade_hover, ButtonTypes::upgrade_bullet_main);
 
 
 	// 1 TOWER BULLET IMAGE
-	bS->addImage({ sdlutils().width() - 310.0f , (sdlutils().height() / 8.0f) * 1 },
+	bS->addImage({ sdlutils().width() - twr_img_separation , (sdlutils().height() / 8.0f) * 1 },
 		{ towerImagesSize },
 		0, gameTextures::bullet_tower_image, _grp_HUD_BACKGROUND);
+	// 1 INFO IMAGE
+	Message m1;
+	m1.id = _m_SHOW_TOWER_INFO;
+	m1.show_info.tId = twrId::_twr_BULLET;
+
+	bS->addButton({sdlutils().width() - info_separation, (sdlutils().height() / 8.0f) * 1 }, 
+		info_size, 
+		gameTextures::info_icon, gameTextures::info_icon, ButtonTypes::show_info, 
+		0 ,0 ,0, m1);
 
 	// 2 TOWER BUTTON - CRISTAL
 	if (game().getSaveGame()->getTurretsLevels()[_twr_CRISTAL] == 0) {
-		bS->addButton({ sdlutils().width() - 150.0f , (sdlutils().height() / 8.0f) * 2 },
+		bS->addButton({ sdlutils().width() - but_separation , (sdlutils().height() / 8.0f) * 2 },
 			{ 200.0f, 70.0f },
 			buy, buy_hover, ButtonTypes::upgrade_crystal_main);
 	}
 	else {
-		bS->addButton({ sdlutils().width() - 150.0f , (sdlutils().height() / 8.0f) * 2 },
+		bS->addButton({ sdlutils().width() - but_separation , (sdlutils().height() / 8.0f) * 2 },
 			{ 200.0f, 70.0f },
 			upgrade, upgrade_hover, ButtonTypes::upgrade_crystal_main);
 	}
 	
 	// 2 TOWER CRISTAL IMAGE
-	bS->addImage({ sdlutils().width() - 310.0f , (sdlutils().height() / 8.0f) * 2 },
+	bS->addImage({ sdlutils().width() - twr_img_separation , (sdlutils().height() / 8.0f) * 2 },
 		{ towerImagesSize },
 		0, gameTextures::crystal_tower_image, _grp_HUD_BACKGROUND);
 
 	// 3 TOWER BUTTON - SLIME
 	if (game().getSaveGame()->getTurretsLevels()[_twr_SLIME] == 0) {
-		bS->addButton({ sdlutils().width() - 150.0f , (sdlutils().height() / 8.0f) * 3 },
+		bS->addButton({ sdlutils().width() - but_separation , (sdlutils().height() / 8.0f) * 3 },
 			{ 200.0f, 70.0f },
 			buy, buy_hover, ButtonTypes::upgrade_slime_main);
 	}
 	else {
-		bS->addButton({ sdlutils().width() - 150.0f , (sdlutils().height() / 8.0f) * 3 },
+		bS->addButton({ sdlutils().width() - but_separation , (sdlutils().height() / 8.0f) * 3 },
 			{ 200.0f, 70.0f },
 			upgrade, upgrade_hover, ButtonTypes::upgrade_slime_main);
 	}
 
 	
 	// 3 TOWER SLIME IMAGE
-	bS->addImage({ sdlutils().width() - 310.0f , (sdlutils().height() / 8.0f) * 3 },
+	bS->addImage({ sdlutils().width() - twr_img_separation , (sdlutils().height() / 8.0f) * 3 },
 		{ towerImagesSize },
 		0, gameTextures::slime_tower_image, _grp_HUD_BACKGROUND);
 
 	// 4 TOWER BUTTON - SNIPER
 	if (game().getSaveGame()->getTurretsLevels()[_twr_DIEGO] == 0) {
-		bS->addButton({ sdlutils().width() - 150.0f , (sdlutils().height() / 8.0f) * 4 },
+		bS->addButton({ sdlutils().width() - but_separation , (sdlutils().height() / 8.0f) * 4 },
 			{ 200.0f, 70.0f },
 			buy, buy_hover, ButtonTypes::upgrade_sniper_main);
 	}
 	else {
-		bS->addButton({ sdlutils().width() - 150.0f , (sdlutils().height() / 8.0f) * 4 },
+		bS->addButton({ sdlutils().width() - but_separation , (sdlutils().height() / 8.0f) * 4 },
 			{ 200.0f, 70.0f },
 			upgrade, upgrade_hover, ButtonTypes::upgrade_sniper_main);
 	}
 
 	
 	// 4 TOWER SNIPER IMAGE
-	bS->addImage({ sdlutils().width() - 310.0f , (sdlutils().height() / 8.0f) * 4 },
+	bS->addImage({ sdlutils().width() - twr_img_separation , (sdlutils().height() / 8.0f) * 4 },
 		{ towerImagesSize },
 		0, gameTextures::sniper_tower_image, _grp_HUD_BACKGROUND);
 
 	// 5 TOWER BUTTON - FENIX
 	if (game().getSaveGame()->getTurretsLevels()[_twr_FENIX] == 0) {
-		bS->addButton({ sdlutils().width() - 150.0f , (sdlutils().height() / 8.0f) * 5 },
+		bS->addButton({ sdlutils().width() - but_separation , (sdlutils().height() / 8.0f) * 5 },
 			{ 200.0f, 70.0f },
 			buy, buy_hover, ButtonTypes::upgrade_fenix_main);
 	}
 	else {
-		bS->addButton({ sdlutils().width() - 150.0f , (sdlutils().height() / 8.0f) * 5 },
+		bS->addButton({ sdlutils().width() - but_separation , (sdlutils().height() / 8.0f) * 5 },
 			{ 200.0f, 70.0f },
 			upgrade, upgrade_hover, ButtonTypes::upgrade_fenix_main);
 	}
 
 	
 	// 5 TOWER FENIX IMAGE
-	bS->addImage({ sdlutils().width() - 310.0f , (sdlutils().height() / 8.0f) * 5 },
+	bS->addImage({ sdlutils().width() - twr_img_separation , (sdlutils().height() / 8.0f) * 5 },
 		{ towerImagesSize },
 		0, gameTextures::phoenix_tower_image, _grp_HUD_BACKGROUND);
 
 	// 6 TOWER BUTTON - DIRT
 	
-	bS->addButton({ sdlutils().width() - 150.0f , (sdlutils().height() / 8.0f) * 6 },
+	bS->addButton({ sdlutils().width() - but_separation , (sdlutils().height() / 8.0f) * 6 },
 		{ 200.0f, 70.0f },
 		upgrade, upgrade_hover, ButtonTypes::upgrade_clay_main);
 	
 
 	// 6 TOWER DIRT IMAGE
-	bS->addImage({ sdlutils().width() - 310.0f , (sdlutils().height() / 8.0f) * 6 },
+	bS->addImage({ sdlutils().width() - twr_img_separation , (sdlutils().height() / 8.0f) * 6 },
 		{ towerImagesSize },
 		0, gameTextures::clay_tower_image, _grp_HUD_BACKGROUND);
 
 	// 7 TOWER BUTTON - ENHANCER
 	if (game().getSaveGame()->getTurretsLevels()[_twr_POWER] == 0) {
-		bS->addButton({ sdlutils().width() - 150.0f , (sdlutils().height() / 8.0f) * 7 },
+		bS->addButton({ sdlutils().width() - but_separation , (sdlutils().height() / 8.0f) * 7 },
 			{ 200.0f, 70.0f },
 			buy, buy_hover, ButtonTypes::upgrade_enhancer_main);
 	}
 	else {
-		bS->addButton({ sdlutils().width() - 150.0f , (sdlutils().height() / 8.0f) * 7 },
+		bS->addButton({ sdlutils().width() - but_separation , (sdlutils().height() / 8.0f) * 7 },
 			{ 200.0f, 70.0f },
 			upgrade, upgrade_hover, ButtonTypes::upgrade_enhancer_main);
 	}
 
 	
 	// 7 TOWER POWER IMAGE
-	bS->addImage({ sdlutils().width() - 310.0f , (sdlutils().height() / 8.0f) * 7 },
+	bS->addImage({ sdlutils().width() - twr_img_separation , (sdlutils().height() / 8.0f) * 7 },
 		{ towerImagesSize },
 		0, gameTextures::power_tower_image, _grp_HUD_BACKGROUND);
 
-	//// NEXUS LEVEL TEXT
-	//addText({ 50.0f, (sdlutils().height() / 2.0f) + 50.0f },
-	//	{ 300.0f, 75.0f }, 0.0f, _grp_HUD_BACKGROUND);
+#pragma endregion
+
+	// NEXUS LEVEL TEXT
+	addText({ 50.0f, (sdlutils().height() / 2.0f) + 50.0f },
+		{ 300.0f, 75.0f }, 0.0f, _grp_HUD_BACKGROUND);
 }
 
 void MainMenuSystem::receive(const Message& m) {

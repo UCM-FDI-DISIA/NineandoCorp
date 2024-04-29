@@ -413,7 +413,9 @@ void ButtonSystem::sellTower(Entity* twr)
 			if (lvl < towerLevelMax)
 				upgradeTower(_twr_POWER, "precioHPotenciadoraLvl" + std::to_string(lvl), bC);
 			break;
-
+		case show_info:
+			mngr_->send(mngr_->getComponent<ButtonComponent>(bC)->getMessage());
+			break;
 
 		/*--- SELECCIÓN DE TORRES PARA DRAG ---*/
 		case crystal_drag:

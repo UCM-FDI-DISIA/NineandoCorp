@@ -145,6 +145,8 @@ RenderSystem::RenderSystem() : winner_(0)
 	textures[life_background] = &sdlutils().images().at("life_background");
 	textures[buy] = &sdlutils().images().at("buy");
 	textures[buy_hover] = &sdlutils().images().at("buy_hover");
+	textures[white_arrow] = &sdlutils().images().at("white_arrow");
+	textures[info_icon] = &sdlutils().images().at("info_icon");
 	
 	//Explosions
 	textures[shieldExp] = &sdlutils().images().at("shieldExp");

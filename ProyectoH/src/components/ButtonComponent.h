@@ -4,6 +4,46 @@
 #include "../components/RenderComponent.h"
 #include "../components/LockComponent.h"
 
+enum ButtonTypes {
+	//Others
+	pruebaButton, 
+	exit_button,
+	back_to_menu,
+	// --- MAIN MENU --- //
+	selector_main, enemies_main, pause_main, resume_main,show_up_menu_main, show_info, 
+		//Upgrades main menu
+	upgrade_nexus, 
+	upgrade_crystal_main,
+	upgrade_slime_main, upgrade_bullet_main, 
+	upgrade_sniper_main, upgrade_fenix_main,
+	upgrade_clay_main, upgrade_enhancer_main,
+	//Level Selector
+	level_selected, back_selector, play_wave,
+	// aceleration button
+	acelerate,
+	//Enemybook
+	enemybook,
+	enemybookPop,
+	//CONFIG
+	config, full_screen, changeResolution,
+	// ----- HUD -----//
+	crystal_drag,
+	slime_drag,
+	sniper_drag,
+	clay_drag,
+	bullet_drag,
+	fenix_drag,
+	enhancer_drag,
+
+	// --- UPGRADE IN-GAME --- //
+	upgrade_tower,
+	exit_up_menu,
+
+	// --- SELL --- //
+	sell_tower,
+
+	none
+};
  
 class ButtonComponent : public Component
 {
@@ -52,7 +92,7 @@ public:
 	/// <param name="b">booleano si activo o no</param>
 	inline void setActive(bool b) { isActive_ = b; }
 
-	/// <returns>Si el boton está activo o no</returns>
+	/// <returns>Si el boton estï¿½ activo o no</returns>
 	inline bool isActive() const { return isActive_; }
  
 
