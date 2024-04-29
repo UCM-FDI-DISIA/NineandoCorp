@@ -32,7 +32,7 @@ void SaveGame::loadFile() {
 		if (!fs.good())
 			cout << "Ha ocurrido un error al leer el archivo de guardado.";
 	}
-	/*HCoins_ = 0;*/
+	HCoins_ = 1000;
 }
 
 namespace fs = std::filesystem;

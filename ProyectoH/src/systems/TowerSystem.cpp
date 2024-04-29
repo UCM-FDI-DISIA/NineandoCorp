@@ -742,21 +742,6 @@ void TowerSystem::generateNexus(int lvlNexus, Cell* cell) {
 	mngr_->addComponent<TowerStates>(n);
 	//FramedImage(int frameColumns = 1, int frameRows = 1, int frameWidth = 0, int frameHeight = 0, int currentFrame = 0, int frameRate = 0, int lastFrame = 1) : 
 	mngr_->addComponent<FramedImage>(n, 4, 1, 2048, 2048, lvlNexus - 1, 0, 1);
-	/*switch (lvlNexus)
-	{
-	case 1:
-		mngr_->getComponent<Transform>(n)->setScale({ 100, 100 });
-		break;
-	case 2:
-		mngr_->getComponent<Transform>(n)->setScale({ 110, 110 });
-		break;
-	case 3:
-		mngr_->getComponent<Transform>(n)->setScale({ 125, 125 });
-		break;
-	case 4:
-		mngr_->getComponent<Transform>(n)->setScale({ 150, 150 });
-		break;
-	}*/
 	mngr_->setHandler(_hdlr_LOW_TOWERS, n);
 	towers.emplace_back(n);
 }

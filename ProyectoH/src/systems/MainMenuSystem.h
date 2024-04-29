@@ -15,6 +15,11 @@ public:
 	void initSystem() override;
 	void receive(const Message& m) override;
 	void update() override ;
+	void createNexusImage();
+	void updateNexusImage();
+
+	// Niveles de nexo y torres
+	int* turrentLevels;	// Nexo última torre
 
 private: 
 	bool mActive;
@@ -28,6 +33,9 @@ private:
 	/// <param name="grpId">id del grupo con el que se añade la entidad al manager</param>
 	void addText(const Vector2D& pos, const Vector2D& scale, const double rot, grpId_type grpId);
 
+#pragma region NexusImage
+	Entity* nexusImage;
+#pragma endregion
 
 };
 

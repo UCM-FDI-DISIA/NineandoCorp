@@ -97,6 +97,10 @@ void MainControlSystem::receive(const Message& m) {
 void MainControlSystem::upgradeTower(twrId id) {
 	turrentLevels_[id]++;
 	game().getSaveGame()->saveFile();
+
+	Message m2;
+	m2.id = _m_UPDATE_MENU;
+	mngr_->send(m2);
 }
 
 void MainControlSystem::update() {
@@ -106,6 +110,7 @@ void MainControlSystem::update() {
 		m.id = _m_ADD_MONEY;
 		m.money_data.money = numDoradasPorSegundo;
 		elapsedTime_ = 0;
+		mngr_->send(m);		// Faltaba enviar el mensaje
 	}
 }
 
