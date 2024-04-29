@@ -11,6 +11,10 @@ MainMenuState::MainMenuState() : GameState(_gmStt_MAINMENU) {
 	m.id = _m_START_MENU;
 	m.money_data.money = game().getSaveGame()->getHCoins();
 	mngr_->send(m);
+
+	// MUSICA
+	sdlutils().musics().at("MenuSoundtrack").setMusicVolume(game().CalculoVolumenMusica());
+	sdlutils().musics().at("MenuSoundtrack").play();
 }
 
 MainMenuState::~MainMenuState() {
