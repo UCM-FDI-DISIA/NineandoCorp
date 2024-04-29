@@ -111,6 +111,7 @@ enum grpId : grpId_type {
 	_grp_HUD_BACKGROUND,
 	_grp_HUD_FOREGROUND,
 	_grp_TEXTS,
+	_grp_BACKGROUND_TEXTS,
 	_grp_HUD_DRAG_AND_DROP,
 	_grp_AREAOFATTACK,
 	_grp_SPAWN,

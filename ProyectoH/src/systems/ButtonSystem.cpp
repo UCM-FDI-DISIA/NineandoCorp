@@ -602,6 +602,73 @@ void ButtonSystem::sellTower(Entity* twr)
 		else {
 			sdlutils().soundEffects().at("DineroInsuficiente").play(0, 1);
 		}
+		string towerPriceString;
+		int towerLvl = game().getSaveGame()->getTurretsLevels()[t];
+		int price;
+		if (towerLvl < 5) {
+			switch (t) {
+			case _twr_BULLET:
+				towerPriceString = "precioHBalasLvl" + std::to_string(towerLvl);
+				price = intAt(towerPriceString);
+				mngr_->getComponent<TextComponent>(bulletMoneyText_)->changeText(std::to_string(price));
+				break;
+			case _twr_CLAY:
+				towerPriceString = "precioHArcillaLvl" + std::to_string(towerLvl);
+				price = intAt(towerPriceString);
+				mngr_->getComponent<TextComponent>(dirtMoneyText_)->changeText(std::to_string(price));
+				break;
+			case _twr_CRISTAL:
+				towerPriceString = "precioHCristalLvl" + std::to_string(towerLvl);
+				price = intAt(towerPriceString);
+				mngr_->getComponent<TextComponent>(cristalMoneyText_)->changeText(std::to_string(price));
+				break;
+			case _twr_POWER:
+				towerPriceString = "precioHPotenciadoraLvl" + std::to_string(towerLvl);
+				price = intAt(towerPriceString);
+				mngr_->getComponent<TextComponent>(enhancerMoneyText_)->changeText(std::to_string(price));
+				break;
+			case _twr_DIEGO:
+				towerPriceString = "precioHDiegoLvl" + std::to_string(towerLvl);
+				price = intAt(towerPriceString);
+				mngr_->getComponent<TextComponent>(diegoMoneyText_)->changeText(std::to_string(price));
+				break;
+			case _twr_FENIX:
+				towerPriceString = "precioHFenixLvl" + std::to_string(towerLvl);
+				price = intAt(towerPriceString);
+				mngr_->getComponent<TextComponent>(fenixMoneyText_)->changeText(std::to_string(price));
+				break;
+			case _twr_SLIME:
+				towerPriceString = "precioHSlimeLvl" + std::to_string(towerLvl);
+				price = intAt(towerPriceString);
+				mngr_->getComponent<TextComponent>(slimeMoneyText_)->changeText(std::to_string(price));
+				break;
+			}
+		}
+		else {
+			switch (t) {
+			case _twr_BULLET:
+				mngr_->getComponent<TextComponent>(bulletMoneyText_)->changeText("MAX");
+				break;
+			case _twr_CLAY:
+				mngr_->getComponent<TextComponent>(dirtMoneyText_)->changeText("MAX");
+				break;
+			case _twr_CRISTAL:
+				mngr_->getComponent<TextComponent>(cristalMoneyText_)->changeText("MAX");
+				break;
+			case _twr_POWER:
+				mngr_->getComponent<TextComponent>(enhancerMoneyText_)->changeText("MAX");
+				break;
+			case _twr_DIEGO:
+				mngr_->getComponent<TextComponent>(diegoMoneyText_)->changeText("MAX");
+				break;
+			case _twr_FENIX:
+				mngr_->getComponent<TextComponent>(fenixMoneyText_)->changeText("MAX");
+				break;
+			case _twr_SLIME:
+				mngr_->getComponent<TextComponent>(slimeMoneyText_)->changeText("MAX");
+				break;
+			}
+		}
 	}
 
 	void ButtonSystem::dragTower(twrId tower) {
@@ -731,156 +798,217 @@ void ButtonSystem::generateUpgradeMoneyTexts() {
 	int bulletPrice = game().getSaveGame()->getTurretsLevels()[_twr_BULLET];
 
 	switch (bulletPrice) {
-	case 1:
-		bulletPrice = intAt("precioHBalasLvl1");
-		break;
-	case 2:
-		bulletPrice = intAt("precioHBalasLvl2");
-		break;
-	case 3:
-		bulletPrice = intAt("precioHBalasLvl3");
-		break;
-	case 4:
-		bulletPrice = intAt("precioHBalasLvl4");
-		break;
+		case 0:
+			bulletPrice = intAt("precioHBalasLvl0");
+			break;
+		case 1:
+			bulletPrice = intAt("precioHBalasLvl1");
+			break;
+		case 2:
+			bulletPrice = intAt("precioHBalasLvl2");
+			break;
+		case 3:
+			bulletPrice = intAt("precioHBalasLvl3");
+			break;
+		case 4:
+			bulletPrice = intAt("precioHBalasLvl4");
+			break;
 	}
 	string bulletText = std::to_string(bulletPrice);
 	if (bulletPrice == 5)bulletText = "MAX";
 
-	bulletMoneyText_ = addText(bulletText, { 255,255,255 }, { sdlutils().width() - 200.0f , (sdlutils().height() / 5.5f) * 1 }, { 30.0f, 45.0f });
-	addImage({ sdlutils().width() - 160.0f , (sdlutils().height() / 5.5f) * 1 }, { 30.0f, 40.0f }, 0.0f, monedaH, _grp_HUD_BACKGROUND);
+	addImage({ sdlutils().width() - 160.0f , (sdlutils().height() / 5.5f) * 1 }, { 30.0f, 40.0f }, 0.0f, monedaH, _grp_HUD_FOREGROUND);
+	bulletMoneyText_ = mngr_->addEntity(_grp_BACKGROUND_TEXTS);
+	mngr_->setHandler(hdlr_but_id, bulletMoneyText_);
+	Transform* trbt = mngr_->addComponent<Transform>(bulletMoneyText_);
+	trbt->setScale({ 30.0f, 45.0f });
+	Vector2D auxbt = trbt->getScale();
+	trbt->setPosition(Vector2D(sdlutils().width() - 200.0f , (sdlutils().height() / 5.5f)) - auxbt / 2);
+	mngr_->addComponent<TextComponent>(bulletMoneyText_, bulletText);;
 
 	//CRISTAL PRICE TEXT
 	int cristalPrice = game().getSaveGame()->getTurretsLevels()[_twr_CRISTAL];
 	switch (cristalPrice) {
-	case 1:
-		cristalPrice = intAt("precioHCristalLvl1");
-		break;
-	case 2:
-		cristalPrice = intAt("precioHCristalLvl2");
-		break;
-	case 3:
-		cristalPrice = intAt("precioHCristalLvl3");
-		break;
-	case 4:
-		cristalPrice = intAt("precioHCristalLvl4");
-		break;
+		case 0:
+			cristalPrice = intAt("precioHCristalLvl0");
+			break;
+		case 1:
+			cristalPrice = intAt("precioHCristalLvl1");
+			break;
+		case 2:
+			cristalPrice = intAt("precioHCristalLvl2");
+			break;
+		case 3:
+			cristalPrice = intAt("precioHCristalLvl3");
+			break;
+		case 4:
+			cristalPrice = intAt("precioHCristalLvl4");
+			break;
 	}
 	string cristalText = std::to_string(cristalPrice);
 	if (cristalPrice == 5)cristalText = "MAX";
 
-
-	cristalMoneyText_ = addText(cristalText, { 255,255,255 }, { sdlutils().width() - 190.0f , (sdlutils().height() / 5.5f) + (sdlutils().height() / 8.0f) }, { 30.0f, 45.0f });
-	addImage({ sdlutils().width() - 160.0f , (sdlutils().height() / 5.5f) + (sdlutils().height() / 8.0f) }, { 30.0f, 40.0f }, 0.0f, monedaH, _grp_HUD_BACKGROUND);
+	addImage({ sdlutils().width() - 160.0f , (sdlutils().height() / 5.5f) + (sdlutils().height() / 8.0f) }, { 30.0f, 40.0f }, 0.0f, monedaH, _grp_HUD_FOREGROUND);
+	cristalMoneyText_ = mngr_->addEntity(_grp_BACKGROUND_TEXTS);
+	mngr_->setHandler(hdlr_but_id, cristalMoneyText_);
+	Transform* trc = mngr_->addComponent<Transform>(cristalMoneyText_);
+	trc->setScale({ 30.0f, 45.0f });
+	Vector2D auxc = trc->getScale();
+	trc->setPosition(Vector2D(sdlutils().width() - 190.0f, (sdlutils().height() / 5.5f) + (sdlutils().height() / 8.0f)) - auxc / 2);
+	mngr_->addComponent<TextComponent>(cristalMoneyText_, cristalText);
 
 	//SLIME PRICE TEXT
 	int slimePrice = game().getSaveGame()->getTurretsLevels()[_twr_SLIME];
 	switch (slimePrice) {
-	case 1:
-		slimePrice = intAt("precioHSlimeLvl1");
-		break;
-	case 2:
-		slimePrice = intAt("precioHSlimeLvl2");
-		break;
-	case 3:
-		slimePrice = intAt("precioHSlimeLvl3");
-		break;
-	case 4:
-		slimePrice = intAt("precioHSlimeLvl4");
-		break;
+		case 0:
+			slimePrice = intAt("precioHSlimeLvl0");
+			break;
+		case 1:
+			slimePrice = intAt("precioHSlimeLvl1");
+			break;
+		case 2:
+			slimePrice = intAt("precioHSlimeLvl2");
+			break;
+		case 3:
+			slimePrice = intAt("precioHSlimeLvl3");
+			break;
+		case 4:
+			slimePrice = intAt("precioHSlimeLvl4");
+			break;
 	}
 	string slimeText = std::to_string(slimePrice);
 	if (slimePrice == 5)slimeText = "MAX";
 
-	slimeMoneyText_ = addText(slimeText, { 255,255,255 }, { sdlutils().width() - 180.0f , (sdlutils().height() / 5.5f) + (sdlutils().height() / 8.0f) * 2 }, { 50.0f, 45.0f });
-	addImage({ sdlutils().width() - 140.0f , (sdlutils().height() / 5.5f) + (sdlutils().height() / 8.0f) * 2 }, { 30.0f, 40.0f }, 0.0f, monedaH, _grp_HUD_BACKGROUND);
-
+	addImage({ sdlutils().width() - 140.0f , (sdlutils().height() / 5.5f) + (sdlutils().height() / 8.0f) * 2 }, { 30.0f, 40.0f }, 0.0f, monedaH, _grp_HUD_FOREGROUND);
+	slimeMoneyText_ = mngr_->addEntity(_grp_BACKGROUND_TEXTS);
+	mngr_->setHandler(hdlr_but_id, slimeMoneyText_);
+	Transform* trs = mngr_->addComponent<Transform>(slimeMoneyText_);
+	trs->setScale({ 30.0f, 45.0f });
+	Vector2D auxs = trs->getScale();
+	trs->setPosition(Vector2D(sdlutils().width() - 180.0f, (sdlutils().height() / 5.5f) + (sdlutils().height() / 8.0f) * 2) - auxs / 2);
+	mngr_->addComponent<TextComponent>(slimeMoneyText_, slimeText);
 
 	//DIEGO PRICE TEXT
 	int diegoPrice = game().getSaveGame()->getTurretsLevels()[_twr_DIEGO];
 	switch (diegoPrice) {
-	case 1:
-		diegoPrice = intAt("precioHDiegoLvl1");
-		break;
-	case 2:
-		diegoPrice = intAt("precioHDiegoLvl2");
-		break;
-	case 3:
-		diegoPrice = intAt("precioHDiegoLvl3");
-		break;
-	case 4:
-		diegoPrice = intAt("precioHDiegoLvl4");
-		break;
+		case 0:
+			diegoPrice = intAt("precioHDiegoLvl0");
+			break;
+		case 1:
+			diegoPrice = intAt("precioHDiegoLvl1");
+			break;
+		case 2:
+			diegoPrice = intAt("precioHDiegoLvl2");
+			break;
+		case 3:
+			diegoPrice = intAt("precioHDiegoLvl3");
+			break;
+		case 4:
+			diegoPrice = intAt("precioHDiegoLvl4");
+			break;
 	}
 	string diegoText = std::to_string(diegoPrice);
 	if (diegoPrice == 5)diegoText = "MAX";
 
-	diegoMoneyText_ = addText(diegoText, { 255,255,255 }, { sdlutils().width() - 180.0f , (sdlutils().height() / 5.5f) + (sdlutils().height() / 8.0f) * 3 }, { 50.0f, 45.0f });
-	addImage({ sdlutils().width() - 140.0f , (sdlutils().height() / 5.5f) + (sdlutils().height() / 8.0f) * 3 }, { 30.0f, 40.0f }, 0.0f, monedaH, _grp_HUD_BACKGROUND);
+	addImage({ sdlutils().width() - 140.0f , (sdlutils().height() / 5.5f) + (sdlutils().height() / 8.0f) * 3 }, { 30.0f, 40.0f }, 0.0f, monedaH, _grp_HUD_FOREGROUND);
+	diegoMoneyText_ = mngr_->addEntity(_grp_BACKGROUND_TEXTS);
+	mngr_->setHandler(hdlr_but_id, diegoMoneyText_);
+	Transform* trd = mngr_->addComponent<Transform>(diegoMoneyText_);
+	trd->setScale({ 30.0f, 45.0f });
+	Vector2D auxd = trd->getScale();
+	trd->setPosition(Vector2D(sdlutils().width() - 180.0f, (sdlutils().height() / 5.5f) + (sdlutils().height() / 8.0f) * 3) - auxd / 2);
+	mngr_->addComponent<TextComponent>(diegoMoneyText_, diegoText);
+	
 	//PHOENIX PRICE TEXT
 	int fenixPrice = game().getSaveGame()->getTurretsLevels()[_twr_FENIX];
 	switch (fenixPrice) {
-	case 1:
-		fenixPrice = intAt("precioHFenixLvl1");
-		break;
-	case 2:
-		fenixPrice = intAt("precioHFenixLvl2");
-		break;
-	case 3:
-		fenixPrice = intAt("precioHFenixLvl3");
-		break;
-	case 4:
-		fenixPrice = intAt("precioHFenixLvl4");
-		break;
+		case 0:
+			fenixPrice = intAt("precioHFenixLvl0");
+			break;
+		case 1:
+			fenixPrice = intAt("precioHFenixLvl1");
+			break;
+		case 2:
+			fenixPrice = intAt("precioHFenixLvl2");
+			break;
+		case 3:
+			fenixPrice = intAt("precioHFenixLvl3");
+			break;
+		case 4:
+			fenixPrice = intAt("precioHFenixLvl4");
+			break;
 	}
 	string fenixText = std::to_string(fenixPrice);
 	if (fenixPrice == 5)fenixText = "MAX";
 
-	fenixMoneyText_ = addText(fenixText, { 255,255,255 }, { sdlutils().width() - 180.0f , (sdlutils().height() / 5.5f) + (sdlutils().height() / 8.0f) * 4 }, { 50.0f, 45.0f });
-	addImage({ sdlutils().width() - 140.0f , (sdlutils().height() / 5.5f) + (sdlutils().height() / 8.0f) * 4 }, { 30.0f, 40.0f }, 0.0f, monedaH, _grp_HUD_BACKGROUND);
+	addImage({ sdlutils().width() - 140.0f , (sdlutils().height() / 5.5f) + (sdlutils().height() / 8.0f) * 4 }, { 30.0f, 40.0f }, 0.0f, monedaH, _grp_HUD_FOREGROUND);
+	fenixMoneyText_ = mngr_->addEntity(_grp_BACKGROUND_TEXTS);
+	mngr_->setHandler(hdlr_but_id, fenixMoneyText_);
+	Transform* trf = mngr_->addComponent<Transform>(fenixMoneyText_);
+	trf->setScale({ 30.0f, 45.0f });
+	Vector2D auxf = trf->getScale();
+	trf->setPosition(Vector2D(sdlutils().width() - 180.0f, (sdlutils().height() / 5.5f) + (sdlutils().height() / 8.0f) * 4) - auxf / 2);
+	mngr_->addComponent<TextComponent>(fenixMoneyText_, fenixText);
 
 	//DIRT PRICE TEXT
 	int dirtPrice = game().getSaveGame()->getTurretsLevels()[_twr_CLAY];
 	switch (dirtPrice) {
-	case 1:
-		dirtPrice = intAt("precioHArcillaLvl1");
-		break;
-	case 2:
-		dirtPrice = intAt("precioHArcillaLvl2");
-		break;
-	case 3:
-		dirtPrice = intAt("precioHArcillaLvl3");
-		break;
-	case 4:
-		dirtPrice = intAt("precioHArcillaLvl4");
-		break;
+		case 0:
+			dirtPrice = intAt("precioHArcillaLvl0");
+			break;
+		case 1:
+			dirtPrice = intAt("precioHArcillaLvl1");
+			break;
+		case 2:
+			dirtPrice = intAt("precioHArcillaLvl2");
+			break;
+		case 3:
+			dirtPrice = intAt("precioHArcillaLvl3");
+			break;
+		case 4:
+			dirtPrice = intAt("precioHArcillaLvl4");
+			break;
+
 	}
 	string dirtText = std::to_string(dirtPrice);
 	if (dirtPrice == 5)dirtText = "MAX";
 
-	dirtMoneyText_ = addText(dirtText, { 255,255,255 }, { sdlutils().width() - 180.0f , (sdlutils().height() / 5.5f) + (sdlutils().height() / 8.0f) * 5 }, { 50.0f, 45.0f });
-	addImage({ sdlutils().width() - 140.0f , (sdlutils().height() / 5.5f) + (sdlutils().height() / 8.0f) * 5 }, { 30.0f, 40.0f }, 0.0f, monedaH, _grp_HUD_BACKGROUND);
+	addImage({ sdlutils().width() - 140.0f , (sdlutils().height() / 5.5f) + (sdlutils().height() / 8.0f) * 5 }, { 30.0f, 40.0f }, 0.0f, monedaH, _grp_HUD_FOREGROUND);
+	dirtMoneyText_ = mngr_->addEntity(_grp_BACKGROUND_TEXTS);
+	mngr_->setHandler(hdlr_but_id, dirtMoneyText_);
+	Transform* trdrt = mngr_->addComponent<Transform>(dirtMoneyText_);
+	trdrt->setScale({ 30.0f, 45.0f });
+	Vector2D auxdrt = trdrt->getScale();
+	trdrt->setPosition(Vector2D(sdlutils().width() - 180.0f, (sdlutils().height() / 5.5f) + (sdlutils().height() / 8.0f) * 5) - auxdrt / 2);
+	mngr_->addComponent<TextComponent>(dirtMoneyText_, dirtText);
+
+
 
 	//ENHANCER PRICE TEXT
 	int enhancerPrice = game().getSaveGame()->getTurretsLevels()[_twr_POWER];
 	switch (enhancerPrice) {
-	case 1:
+	case 0:
 		enhancerPrice = intAt("precioHPotenciadoraLvl1");
 		break;
-	case 2:
+	case 1:
 		enhancerPrice = intAt("precioHPotenciadoraLvl2");
 		break;
-	case 3:
+	case 2:
 		enhancerPrice = intAt("precioHPotenciadoraLvl3");
 		break;
-	case 4:
+	case 3:
 		enhancerPrice = intAt("precioHPotenciadoraLvl4");
 		break;
 	}
 	string enhancerText = std::to_string(enhancerPrice);
 	if (enhancerPrice == 5)enhancerText = "MAX";
 
-	enhancerMoneyText_ = addText(enhancerText, { 255,255,255 }, { sdlutils().width() - 180.0f , (sdlutils().height() / 5.5f) + (sdlutils().height() / 8.0f) * 6 }, { 50.0f, 45.0f });
-	addImage({ sdlutils().width() - 140.0f , (sdlutils().height() / 5.5f) + (sdlutils().height() / 8.0f) * 6 }, { 30.0f, 40.0f }, 0.0f, monedaH, _grp_HUD_BACKGROUND);
-
+	addImage({ sdlutils().width() - 140.0f , (sdlutils().height() / 5.5f) + (sdlutils().height() / 8.0f) * 6 }, { 30.0f, 40.0f }, 0.0f, monedaH, _grp_HUD_FOREGROUND);
+	enhancerMoneyText_ = mngr_->addEntity(_grp_BACKGROUND_TEXTS);
+	mngr_->setHandler(hdlr_but_id, enhancerMoneyText_);
+	Transform* tren = mngr_->addComponent<Transform>(enhancerMoneyText_);
+	tren->setScale({ 30.0f, 45.0f });
+	Vector2D auxen = tren->getScale();
+	tren->setPosition(Vector2D(sdlutils().width() - 180.0f, (sdlutils().height() / 5.5f) + (sdlutils().height() / 8.0f) * 6) - auxen / 2);
+	mngr_->addComponent<TextComponent>(enhancerMoneyText_, enhancerText);
 }

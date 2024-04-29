@@ -477,7 +477,13 @@ void RenderSystem::update() {
 		if (mngr_->getComponent<RenderComponent>(h)->isActive)
 			textures[textureId]->render(tr->getRect(), tr->getRotation());
 	}
-
+	//Background Texts HUD
+	const auto& bgTexts = mngr_->getEntities(_grp_BACKGROUND_TEXTS);
+	for (auto& t : bgTexts) {
+		Transform* tr = mngr_->getComponent<Transform>(t);
+		auto tC = mngr_->getComponent<TextComponent>(t);
+		if (tC->isActive) tC->getTexture()->render(tr->getRect(), tr->getRotation());
+	}
 	//HUD FOREGROUND
 	const auto& hudF = mngr_->getEntities(_grp_HUD_FOREGROUND);
 	for (auto& h : hudF) {
