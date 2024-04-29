@@ -198,7 +198,7 @@ void MainMenuSystem::receive(const Message& m) {
 		turrentLevels = game().getSaveGame()->getTurretsLevels();
 		createNexusImage();
 		break;
-	case _m_UPGRADE_TOWER:
+	case _m_UPDATE_MENU:
 		turrentLevels = game().getSaveGame()->getTurretsLevels();
 		updateNexusImage();
 	}
@@ -214,7 +214,7 @@ void MainMenuSystem::createNexusImage()
 	tr->setPosition({ 200,  (sdlutils().height() / 2.0f) - 150.0f });
 	Vector2D pos = tr->getPosition();
 	mngr_->addComponent<RenderComponent>(nexusImage, nexusLvl); 
-	tr->setScale({ 300.0f, 300.0f });
+	tr->setScale({ 350.0f, 350.0f });
 	Vector2D aux = tr->getScale();
 	tr->setPosition(pos - aux / 2);
 	//FramedImage(int frameColumns = 1, int frameRows = 1, int frameWidth = 0, int frameHeight = 0, int currentFrame = 0, int frameRate = 0, int lastFrame = 1) : 

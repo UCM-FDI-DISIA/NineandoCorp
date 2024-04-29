@@ -220,6 +220,7 @@ enum msgId : msgId_type {
 	_m_ADD_MONEY,
 	_m_ADD_MONEY_H,
 	_m_START_MENU,
+	_m_UPDATE_MENU,
 	_m_LEVEL_SELECTED,
 	_m_ANIM_CREATE,
 	_m_RETURN_ENTITY,
