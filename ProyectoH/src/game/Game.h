@@ -97,6 +97,8 @@ public:
 
 	void SetDelay(float _delay) { delay = _delay; };
 
+	float GetDelay() { return delay; };
+
 	inline GameState* currentState() const {return gameStateMachine->currentState(); }
 
 	inline bool getFullScreen() const { return config_.fullScreen; }

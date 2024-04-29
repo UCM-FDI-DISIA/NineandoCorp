@@ -294,19 +294,19 @@ void RenderSystem::update() {
 		}
 
 		if (k_up && offset->y < limtop) {
-			cameraY_ += VelCam * game().getDeltaTime();
+			cameraY_ += VelCam * game().getDeltaTime() / game().GetDelay();
 			offset->y = cameraY_;
 		}
 		if (k_left && offset->x < limleft) {
-			cameraX_ += VelCam * game().getDeltaTime();
+			cameraX_ += VelCam * game().getDeltaTime() / game().GetDelay();
 			offset->x = cameraX_;
 		}
 		if (k_right && offset->x > limright) {
-			cameraX_ -= VelCam * game().getDeltaTime();
+			cameraX_ -= VelCam * game().getDeltaTime() / game().GetDelay();
 			offset->x = cameraX_;
 		}
 		if (k_down && offset->y > limbot) {
-			cameraY_ -= VelCam * game().getDeltaTime();
+			cameraY_ -= VelCam * game().getDeltaTime() / game().GetDelay();
 			offset->y = cameraY_;
 		}
 
@@ -318,9 +318,9 @@ void RenderSystem::update() {
 			|| (mouseX > sdlutils().width() - margin && offset->x > limright)
 			|| (mouseY < margin && offset->y < limtop)
 			|| (mouseY > sdlutils().height() - margin && offset->y > limbot)) {
-			cameraX_ += VelCam * game().getDeltaTime() * dirMove.getX();
+			cameraX_ += VelCam * game().getDeltaTime() * dirMove.getX() / game().GetDelay();
 			offset->x = cameraX_;
-			cameraY_ += VelCam * game().getDeltaTime() * dirMove.getY();
+			cameraY_ += VelCam * game().getDeltaTime() * dirMove.getY() / game().GetDelay();
 			offset->y = cameraY_;
 		}
 	}
