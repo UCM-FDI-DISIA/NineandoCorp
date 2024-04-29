@@ -275,8 +275,16 @@ void ButtonSystem::sellTower(Entity* twr)
 			game().changeState<MainMenuState>();
 			sdlutils().soundEffects().at("button").play(0, 1);
 			break;
+		case backToMenu_warning_button:
+			Warning("Level progress will be lost. Do you wanto to go back to menu?", back_to_menu);
+			sdlutils().soundEffects().at("button").play(0, 1);
+			break;
 		case exit_button:
 			game().exitGame();
+			sdlutils().soundEffects().at("button").play(0, 1);
+			break;
+		case exit_warning_button:
+			Warning("Level progress will be lost. Exit?", exit_button);
 			sdlutils().soundEffects().at("button").play(0, 1);
 			break;
 		case selector_main:
@@ -482,6 +490,13 @@ void ButtonSystem::sellTower(Entity* twr)
 		Message m;
 		m.id = _m_ACELERATE;
 		m.acelerate_plus.acel = _acel;
+		mngr_->send(m, true);
+	}
+	void ButtonSystem::Warning(string text, ButtonTypes butTyp) {
+		Message m;
+		m.id = _m_WARNING;
+		m.warning_info.text = text;
+		m.warning_info.butTyp = butTyp;
 		mngr_->send(m, true);
 	}
 	void ButtonSystem::Config() {

@@ -109,6 +109,11 @@ private:
 	void Acelerate(float _acel);
 
 	/// <summary>
+	/// Mensaje para la pausa
+	/// </summary>
+	void Warning(string text, ButtonTypes butTyp);
+
+	/// <summary>
 	/// Mensaje de carga enemyBook para ver los enemigos encontrados
 	/// </summary>
 	void EnemyBook();
