@@ -16,6 +16,9 @@ GameOverState::GameOverState(int rounds, int enemies, int coinsH ,int currentLvl
 	m.over_game.rounds = rounds;
 	m.over_game.enemies = enemies;
 	mngr_->send(m);
+
+	// MUSICA
+	sdlutils().musics().at("Soundtrack").haltMusic();
 }
 
 GameOverState::~GameOverState() {

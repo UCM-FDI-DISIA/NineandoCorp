@@ -5,6 +5,7 @@ mapSystem::mapSystem() : winner_(0) {
 }
 
 void mapSystem::initSystem() {
+	
 }
 
 void mapSystem::receive(const Message& m) {

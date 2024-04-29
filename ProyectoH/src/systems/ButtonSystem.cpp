@@ -174,11 +174,13 @@ void ButtonSystem::manageButtons() {
 							game().instance()->setSoundGeneral(volume);
 							game().instance()->setNewMaxGeneral(slider->getMax() - posX );
 							game().instance()->setNewMinGeneral(posX  - slider->getMin());
+							sdlutils().musics().at("Soundtrack").setMusicVolume(game().CalculoVolumenMusica());
 						}
 						else if (slider->getSlider() == music) {
 							game().instance()->setSoundMusic(volume);
 							game().instance()->setNewMaxMusic(slider->getMax() - posX);
 							game().instance()->setNewMinMusic(posX - slider->getMin());
+							sdlutils().musics().at("Soundtrack").setMusicVolume(game().CalculoVolumenMusica());
 						}
 						else if (slider->getSlider() == effects) {
 							game().instance()->setSoundEffect(volume);

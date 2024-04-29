@@ -91,7 +91,7 @@ public:
 	}
 
 	float CalculoVolumenMusica() {
-		float vol = config_.soundMusic_ * config_.soundEffects_;
+		float vol = config_.soundMusic_ * config_.soundGeneral_;
 		return (vol * 128) / 10000;
 	}
 
