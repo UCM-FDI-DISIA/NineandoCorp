@@ -308,13 +308,13 @@ void CollisionSystem::update() {
 				}
 			}
 			for (const auto& eq : earthquakeRects_) {//terremoto-torres
-				if (mngr_->isAlive(t)) {
+				DirtTower* drTw = mngr_->getComponent<DirtTower>(t);
+				if (mngr_->isAlive(t) && drTw != nullptr){
 					Transform* earthquakeTR = mngr_->getComponent<Transform>(eq);
 					SDL_Rect earthquakeRect;
 					if (earthquakeTR != nullptr) earthquakeRect = earthquakeTR->getRect();
 					if (SDL_HasIntersection(&earthquakeRect, &towerRect)) {
 						int damage = 5;
-						if (mngr_->hasComponent<DirtTower>(t)) { damage = 300; }
 						Message m;
 						m.id = _m_ENTITY_TO_ATTACK;
 						m.entity_to_attack.targetId = _hdlr_LOW_TOWERS;
@@ -413,21 +413,22 @@ void CollisionSystem::update() {
 					}
 				}
 			}
-			for (const auto& eq : earthquakeRects_) {//terremoto-torres
-				if (mngr_->isAlive(t)) {
-					Transform* earthquakeTR = mngr_->getComponent<Transform>(eq);
-					SDL_Rect earthquakeRect;
-					if (earthquakeTR != nullptr) earthquakeRect = earthquakeTR->getRect();
-					if (SDL_HasIntersection(&earthquakeRect, &towerRect)) {
-						Message m;
-						m.id = _m_ENTITY_TO_ATTACK;
-						m.entity_to_attack.targetId = _hdlr_HIGH_TOWERS;
-						m.entity_to_attack.e = t;
-						m.entity_to_attack.damage = 5;
-						mngr_->send(m);
-					}
-				}
-			}
+			//for (const auto& eq : earthquakeRects_) {//terremoto-torres
+			//	DirtTower* drTw = mngr_->getComponent<DirtTower>(t);
+			//	if (mngr_->isAlive(t) && drTw == nullptr) {
+			//		Transform* earthquakeTR = mngr_->getComponent<Transform>(eq);
+			//		SDL_Rect earthquakeRect;
+			//		if (earthquakeTR != nullptr) earthquakeRect = earthquakeTR->getRect();
+			//		if (SDL_HasIntersection(&earthquakeRect, &towerRect)) {
+			//			Message m;
+			//			m.id = _m_ENTITY_TO_ATTACK;
+			//			m.entity_to_attack.targetId = _hdlr_HIGH_TOWERS;
+			//			m.entity_to_attack.e = t;
+			//			m.entity_to_attack.damage = 5;
+			//			mngr_->send(m);
+			//		}
+			//	}
+			//}
 			for (const auto& ts : tsunamiRects_) {//tsunami-torres
 				if (mngr_->isAlive(t)) {
 					Transform* tsunamieTR = mngr_->getComponent<Transform>(ts);

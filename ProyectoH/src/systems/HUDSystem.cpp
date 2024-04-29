@@ -489,7 +489,7 @@ void HUDSystem::update() {
 							Vector2D txtScale = Vector2D(800.0f, 75.0f);
 							m.add_text_data.pos = Vector2D(sdlutils().width() / 2, sdlutils().height() / 2) - (txtScale / 2);
 							m.add_text_data.scale = txtScale;
-							m.add_text_data.time = 1000;
+							m.add_text_data.time = 1;
 							mngr_->send(m);
 						}
 						//resetea el icono de la torre
