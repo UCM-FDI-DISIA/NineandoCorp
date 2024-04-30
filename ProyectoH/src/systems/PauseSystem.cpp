@@ -75,20 +75,40 @@ void  PauseSystem::WarningPanel(string text, ButtonTypes butTyp) {
 	ButtonSystem* bS = mngr_->getSystem<ButtonSystem>();
 
 	Vector2D posAux = { sdlutils().width() / 2.0f, sdlutils().height() / 2.0f };
-	Vector2D scaleAux = { 400.0f , 250.0f };
+	Vector2D scaleAux = { 500.0f , 250.0f };
 
 	Entity* background = bS->addImage(posAux, scaleAux,
 		0.0, gameTextures::large_box, _grp_HUD_FOREGROUND);
 	mngr_->setHandler(_hdlr_BUTTON_PAUSE, background);
 
-	scaleAux = { 150.0f, 75.0f };
-	posAux = posAux + Vector2D(-100.0f, 50.0f);
-	Entity* exitGame = bS->addButton(posAux, scaleAux,
-		gameTextures::exitGame_button, gameTextures::exitGame_button_hover, butTyp);
-	mngr_->setHandler(_hdlr_BUTTON_PAUSE, exitGame);
+	gameTextures texture, texture_hover;
+	float textWidth;
+	if (butTyp == ButtonTypes::exit_button)
+	{
+		texture = gameTextures::exitGame_button;
+		texture_hover = gameTextures::exitGame_button_hover;
+		textWidth = 400.0f;
+	}
+	else if(butTyp == ButtonTypes::back_to_menu)
+	{
+		texture = gameTextures::backToMenu_button;
+		texture_hover = gameTextures::backToMenu_button_hover;
+		textWidth = 420.0f;
+	}
 
-	scaleAux = { 250.0f, 50.0f };
-	posAux = { sdlutils().width() / 2.0f - 20.0f, sdlutils().height() / 2.0f - 40.0f };
+	scaleAux = { 210.0f, 70.0f };
+	posAux = posAux + Vector2D(-120.0f, 60.0f);
+	Entity* warning = bS->addButton(posAux, scaleAux,
+		texture, texture_hover, butTyp);
+	mngr_->setHandler(_hdlr_BUTTON_PAUSE, warning);
+
+	posAux = posAux + Vector2D(240.0f, 0.0f);
+	Entity* returnbutton = bS->addButton(posAux, scaleAux,
+		return_button, return_button_hover, ButtonTypes::warning_return_button);
+	mngr_->setHandler(_hdlr_BUTTON_PAUSE, returnbutton);
+
+	scaleAux = { textWidth, 50.0f };
+	posAux = { sdlutils().width() / 2.0f - 10.0f, sdlutils().height() / 2.0f - 40.0f };
 	SDL_Color color = { 255, 255, 255, 255 };
 	bS->addText(text, color, posAux, scaleAux);
 }

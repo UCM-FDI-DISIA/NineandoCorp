@@ -470,6 +470,14 @@
             "file": "resources/images/UI/exitGame_button_hover.png"
         },
         {
+            "id": "return_button",
+            "file": "resources/images/UI/return_button.png"
+        },
+        {
+            "id": "return_button_hover",
+            "file": "resources/images/UI/return_button_hover.png"
+        },
+        {
             "id": "logo",
             "file": "resources/images/UI/LogodeHDefense.png"
         },
@@ -864,12 +872,12 @@
             "file": "resources/images/Enemies/Toxic_Puddle.png"
         },
         {
-          "id": "white_arrow",
-          "file": "resources/images/UI/white_arrow.png"
+            "id": "white_arrow",
+            "file": "resources/images/UI/white_arrow.png"
         },
         {
-          "id": "info_icon",
-          "file": "resources/images/UI/info_icon.png"
+            "id": "info_icon",
+            "file": "resources/images/UI/info_icon.png"
         }
     ],
 

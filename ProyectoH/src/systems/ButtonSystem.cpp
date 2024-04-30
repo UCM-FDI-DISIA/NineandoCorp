@@ -277,7 +277,7 @@ void ButtonSystem::sellTower(Entity* twr)
 			sdlutils().soundEffects().at("button").play(0, 1);
 			break;
 		case backToMenu_warning_button:
-			Warning("Level progress will be lost. Do you wanto to go back to menu?", back_to_menu);
+			Warning("Level progress will be lost. Back to menu?", back_to_menu);
 			sdlutils().soundEffects().at("button").play(0, 1);
 			break;
 		case exit_button:
@@ -286,6 +286,10 @@ void ButtonSystem::sellTower(Entity* twr)
 			break;
 		case exit_warning_button:
 			Warning("Level progress will be lost. Exit?", exit_button);
+			sdlutils().soundEffects().at("button").play(0, 1);
+			break;
+		case warning_return_button:
+
 			sdlutils().soundEffects().at("button").play(0, 1);
 			break;
 		case selector_main:

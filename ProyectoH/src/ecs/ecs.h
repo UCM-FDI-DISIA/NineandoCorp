@@ -282,6 +282,7 @@ enum ButtonTypes {
 	pruebaButton,
 	exit_button, exit_warning_button,
 	back_to_menu, backToMenu_warning_button,
+	warning_return_button,
 	//MainMenu
 	selector_main, enemies_main, pause_main, resume_main,
 	//Level Selector
@@ -342,6 +343,7 @@ enum gameTextures {
 	resume_button, resume_button_hover, backToMenu_button, backToMenu_button_hover, exitGame_button, exitGame_button_hover,
 	resume_icon_button, resume_icon_button_hover,
 	settings, settings_hover,
+	return_button, return_button_hover,
 	// towers
 	square, bulletTowerTexture, cristalTowerTexture, phoenixTowerTexture,
 	slimeTowerTexture, boosterTowerTexture, sniperTowerTexture, clayTowerTexture, nexusTexture, fireTexture,
