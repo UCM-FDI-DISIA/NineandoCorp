@@ -22,36 +22,36 @@ void PauseSystem::initSystem() {
 	Vector2D posAux = { sdlutils().width() / 2.0f, sdlutils().height() / 2.0f };
 	Vector2D scaleAux = { 450.0f , 300.0f };
 
-	Entity* background = bS->addImage(posAux, scaleAux,
+	background = bS->addImage(posAux, scaleAux,
 		90.0, gameTextures::large_box, _grp_HUD_FOREGROUND);
 	mngr_->setHandler(_hdlr_BUTTON_PAUSE, background);
 
 	scaleAux = { 210.0f, 70.0f };//escala de los botones
 
 	posAux = posAux + Vector2D( 0.0f, -150.0f);
-	Entity* resume = bS->addButton(posAux, scaleAux, 
+	resume = bS->addButton(posAux, scaleAux, 
 		gameTextures::resume_button, gameTextures::resume_button_hover, ButtonTypes::resume_main);
 	mngr_->setHandler(_hdlr_BUTTON_PAUSE, resume);
 
 	posAux = posAux + Vector2D(0.0f, 100.0f);
-	Entity* backToMenu = bS->addButton(posAux, scaleAux, 
+	backToMenu = bS->addButton(posAux, scaleAux, 
 		gameTextures::backToMenu_button, gameTextures::backToMenu_button_hover, ButtonTypes::backToMenu_warning_button);
 	mngr_->setHandler(_hdlr_BUTTON_PAUSE, backToMenu);
 
 	posAux = posAux + Vector2D(0.0f, 100.0f);
-	Entity* settings = bS->addButton(posAux, scaleAux,
+	settings = bS->addButton(posAux, scaleAux,
 		gameTextures::settings, gameTextures::settings_hover, ButtonTypes::config);
 	mngr_->setHandler(_hdlr_BUTTON_PAUSE, settings);
 
 	posAux = posAux + Vector2D(0.0f, 100.0f);
-	Entity* exitGame = bS->addButton(posAux, scaleAux, 
+	exitGame = bS->addButton(posAux, scaleAux, 
 		gameTextures::exitGame_button, gameTextures::exitGame_button_hover, ButtonTypes::exit_warning_button);
 	mngr_->setHandler(_hdlr_BUTTON_PAUSE, exitGame);
 
 	//icono arriba a la derecha
 	scaleAux = { 50.0f, 50.0f };
 	posAux = { (float)sdlutils().width() - 50.0f , 50.0f };
-	Entity* resumeIcon = bS->addButton(posAux, scaleAux,
+	resumeIcon = bS->addButton(posAux, scaleAux,
 		gameTextures::resume_icon_button, gameTextures::resume_icon_button_hover, ButtonTypes::resume_main);
 	mngr_->setHandler(_hdlr_BUTTON_PAUSE, resumeIcon);
 }
@@ -71,6 +71,7 @@ void PauseSystem::update() {
 }
 
 void  PauseSystem::WarningPanel(string text, ButtonTypes butTyp) {
+	SetActivePauseButons(false);
 	ButtonSystem* bS = mngr_->getSystem<ButtonSystem>();
 
 	Vector2D posAux = { sdlutils().width() / 2.0f, sdlutils().height() / 2.0f };
@@ -90,6 +91,14 @@ void  PauseSystem::WarningPanel(string text, ButtonTypes butTyp) {
 	posAux = { sdlutils().width() / 2.0f - 20.0f, sdlutils().height() / 2.0f - 40.0f };
 	SDL_Color color = { 255, 255, 255, 255 };
 	bS->addText(text, color, posAux, scaleAux);
+}
+
+void  PauseSystem::SetActivePauseButons(bool mActive) {
+	mngr_->getComponent<ButtonComponent>(resume)->setActive(mActive);
+	mngr_->getComponent<ButtonComponent>(settings)->setActive(mActive);
+	mngr_->getComponent<ButtonComponent>(resumeIcon)->setActive(mActive);
+	mngr_->getComponent<ButtonComponent>(exitGame)->setActive(mActive);
+	mngr_->getComponent<ButtonComponent>(backToMenu)->setActive(mActive);
 }
 
 void PauseSystem::addText(const Vector2D& pos, const Vector2D& scale, const double rot, grpId_type grpId) {
