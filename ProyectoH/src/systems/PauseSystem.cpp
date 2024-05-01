@@ -60,7 +60,12 @@ void PauseSystem::receive(const Message& m) {
 	switch (m.id)
 	{
 	case _m_WARNING:
-		WarningPanel(m.warning_info.text, m.warning_info.butTyp);
+		if (m.warning_info.butTyp != warning_return_button) {
+			showWarningPanel(m.warning_info.text, m.warning_info.butTyp);
+		}
+		else {
+			exitWarningPanel();
+		}
 		break;
 	default:
 		break;
@@ -70,14 +75,14 @@ void PauseSystem::receive(const Message& m) {
 void PauseSystem::update() {
 }
 
-void  PauseSystem::WarningPanel(string text, ButtonTypes butTyp) {
+void  PauseSystem::showWarningPanel(string text, ButtonTypes butTyp) {
 	SetActivePauseButons(false);
 	ButtonSystem* bS = mngr_->getSystem<ButtonSystem>();
 
 	Vector2D posAux = { sdlutils().width() / 2.0f, sdlutils().height() / 2.0f };
 	Vector2D scaleAux = { 500.0f , 250.0f };
 
-	Entity* background = bS->addImage(posAux, scaleAux,
+	warbackground = bS->addImage(posAux, scaleAux,
 		0.0, gameTextures::large_box, _grp_HUD_FOREGROUND);
 	mngr_->setHandler(_hdlr_BUTTON_PAUSE, background);
 
@@ -98,22 +103,37 @@ void  PauseSystem::WarningPanel(string text, ButtonTypes butTyp) {
 
 	scaleAux = { 210.0f, 70.0f };
 	posAux = posAux + Vector2D(-120.0f, 60.0f);
-	Entity* warning = bS->addButton(posAux, scaleAux,
+	warning = bS->addButton(posAux, scaleAux,
 		texture, texture_hover, butTyp);
 	mngr_->setHandler(_hdlr_BUTTON_PAUSE, warning);
 
 	posAux = posAux + Vector2D(240.0f, 0.0f);
-	Entity* returnbutton = bS->addButton(posAux, scaleAux,
+	returnbutton = bS->addButton(posAux, scaleAux,
 		return_button, return_button_hover, ButtonTypes::warning_return_button);
 	mngr_->setHandler(_hdlr_BUTTON_PAUSE, returnbutton);
 
 	scaleAux = { textWidth, 50.0f };
 	posAux = { sdlutils().width() / 2.0f - 10.0f, sdlutils().height() / 2.0f - 40.0f };
 	SDL_Color color = { 255, 255, 255, 255 };
-	bS->addText(text, color, posAux, scaleAux);
+	txt = bS->addText(text, color, posAux, scaleAux);
+	mngr_->setHandler(_hdlr_BUTTON_PAUSE, txt);
 }
 
-void  PauseSystem::SetActivePauseButons(bool mActive) {
+void PauseSystem::exitWarningPanel() {
+	mngr_->setAlive(warbackground, false);
+	mngr_->setAlive(warning, false);
+	mngr_->setAlive(returnbutton, false);
+	mngr_->setAlive(txt, false);
+
+	mngr_->deleteHandler(_hdlr_BUTTON_PAUSE, warbackground);
+	mngr_->deleteHandler(_hdlr_BUTTON_PAUSE, warning);
+	mngr_->deleteHandler(_hdlr_BUTTON_PAUSE, returnbutton);
+	mngr_->deleteHandler(_hdlr_BUTTON_PAUSE, txt);
+
+	SetActivePauseButons(true);
+}
+
+void PauseSystem::SetActivePauseButons(bool mActive) {
 	mngr_->getComponent<ButtonComponent>(resume)->setActive(mActive);
 	mngr_->getComponent<ButtonComponent>(settings)->setActive(mActive);
 	mngr_->getComponent<ButtonComponent>(resumeIcon)->setActive(mActive);

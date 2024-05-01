@@ -25,7 +25,13 @@ private:
 	Entity* exitGame;
 	Entity* resumeIcon;
 
-	void WarningPanel(string text, ButtonTypes butTyp);
+	Entity* warbackground;
+	Entity* warning;
+	Entity* returnbutton;
+	Entity* txt;
+
+	void showWarningPanel(string text, ButtonTypes butTyp);
+	void exitWarningPanel();
 	void SetActivePauseButons(bool mActive);
 	void addText(const Vector2D& pos, const Vector2D& scale, const double rot, grpId_type grpId);
 };

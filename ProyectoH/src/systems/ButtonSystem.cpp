@@ -289,7 +289,7 @@ void ButtonSystem::sellTower(Entity* twr)
 			sdlutils().soundEffects().at("button").play(0, 1);
 			break;
 		case warning_return_button:
-
+			Warning("", warning_return_button);
 			sdlutils().soundEffects().at("button").play(0, 1);
 			break;
 		case selector_main:
