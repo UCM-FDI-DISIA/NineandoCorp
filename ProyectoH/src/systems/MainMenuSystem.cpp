@@ -230,18 +230,12 @@ void MainMenuSystem::update() {
 void MainMenuSystem::createNexusImage()
 {
 	ButtonSystem* bS = mngr_->getSystem<ButtonSystem>();
-	// NEXUS LEVEL TEXT
-	Vector2D pAux = Vector2D{ 207,600 };
-	Vector2D sAux = Vector2D{ 300,100 };
-	SDL_Color NombreColor = { 255, 255, 255, 255 };
-	string lvl = std::to_string(turrentLevels[twrId::_twr_NEXUS]);
-	nexusLvl = bS->addText("Nexus Level: " + lvl, NombreColor, pAux, sAux);
 
 	//Nexus life image
-	pAux = Vector2D{ 207,500 };
-	sAux = Vector2D{ 300,100 };
-	bS->addImage(pAux,sAux,0, gameTextures::life,_grp_HUD_BACKGROUND);
-	bS->addImage(pAux, sAux, 0, gameTextures::life_background, _grp_HUD_BACKGROUND);
+	Vector2D pAux = Vector2D{ 207,500 };
+	Vector2D sAux = Vector2D{ 300,100 };
+	bS->addImage(pAux,sAux,0, gameTextures::life,_grp_HUD_FOREGROUND);
+	bS->addImage(pAux, sAux, 0, gameTextures::life_background, _grp_HUD_FOREGROUND);
 
 	nexusImage = mngr_->addEntity(_grp_HUD_FOREGROUND);
 	Transform* tr = mngr_->addComponent<Transform>(nexusImage);
