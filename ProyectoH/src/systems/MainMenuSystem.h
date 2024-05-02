@@ -31,7 +31,7 @@ private:
 	/// <param name="scale">escala del texto</param>
 	/// <param name="rot">rotacion del texto</param>
 	/// <param name="grpId">id del grupo con el que se añade la entidad al manager</param>
-	void addText(const Vector2D& pos, const Vector2D& scale, const double rot, grpId_type grpId);
+	Entity* addText(const Vector2D& pos, const Vector2D& scale, const double rot, grpId_type grpId);
 
 	int intAt(basic_string<char> s) { return sdlutils().intConst().at(s); }
 	float floatAt(basic_string<char> s) { return sdlutils().floatConst().at(s); }
