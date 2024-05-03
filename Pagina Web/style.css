@@ -154,3 +154,25 @@ footer img {
     margin-left: 5px; /* Agregar un pequeño espacio entre el texto y la imagen */
     vertical-align: middle;
 }
+
+.social-container {
+    display: flex;
+    justify-content: flex-start; /* Alinear elementos a la izquierda */
+    margin-top: 10px; /* Ajusta el margen superior según sea necesario */
+}
+
+.social-container div {
+    display: flex;
+    flex-direction: column; /* Alinear elementos en columnas */
+    align-items: flex-start; /* Alinear elementos a la izquierda */
+    margin-right: 20px; /* Ajusta el margen derecho entre las columnas */
+}
+
+.social-container div img {
+    margin-right: 10px; /* Ajusta el margen derecho de las imágenes */
+}
+
+
+.social-text {
+    text-align: left; /* Alinear texto a la izquierda dentro de su contenedor */
+}
