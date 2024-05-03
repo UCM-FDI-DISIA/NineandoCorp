@@ -31,17 +31,9 @@ private:
 	/// <param name="scale">escala del texto</param>
 	/// <param name="rot">rotacion del texto</param>
 	/// <param name="grpId">id del grupo con el que se añade la entidad al manager</param>
-	Entity* addText(const Vector2D& pos, const Vector2D& scale, const double rot, grpId_type grpId);
+	void addNexusText();
 
 	int intAt(basic_string<char> s) { return sdlutils().intConst().at(s); }
 	float floatAt(basic_string<char> s) { return sdlutils().floatConst().at(s); }
-
-#pragma region Nexus
-	Entity* nexusImage;
-	Entity* nexusLvl; 
-#pragma endregion
-
-
-
 };
 

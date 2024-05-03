@@ -68,6 +68,11 @@ public:
 
 	void setCanstartWave(bool canstartwave) { canStartWave = canstartwave; }
 
+	void generateNexusImage(int level);
+
+	void generateNexusText(int level);
+
+	void updateNexusImage(int level);
 private:
 	/// <summary>
 	/// Añade el dinero correspondiente a la torre vendida
@@ -189,6 +194,10 @@ private:
 	Entity* fenixMoneyText_;
 	Entity* dirtMoneyText_;
 	
+	Entity* nexusImage_;
+	Entity* nexusLvl_;
+	Entity* nexusLifebar_;
+	Entity* nexusLifebarBg_;
 
 	int intAt(basic_string<char> s) { return sdlutils().intConst().at(s); }
 	float floatAt(basic_string<char> s) { return sdlutils().floatConst().at(s); }

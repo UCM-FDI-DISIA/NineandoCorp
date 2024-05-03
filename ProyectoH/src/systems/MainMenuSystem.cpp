@@ -16,10 +16,11 @@ void MainMenuSystem::receive(const Message& m) {
 	case _m_START_MENU:
 		turrentLevels = game().getSaveGame()->getTurretsLevels();
 		createNexusImage();
+		addNexusText();
 		break;
 	case _m_UPDATE_MENU:
 		turrentLevels = game().getSaveGame()->getTurretsLevels();
-		//updateNexusImage();
+		updateNexusImage();
 	}
 }
 
@@ -217,9 +218,6 @@ void MainMenuSystem::initSystem() {
 
 #pragma endregion
 
-	// NEXUS LEVEL TEXT
-	nexusLvl = addText({ 50.0f, (sdlutils().height() / 2.0f) + 50.0f },
-		{ 300.0f, 75.0f }, 0.0f, _grp_HUD_BACKGROUND);
 }
 
 void MainMenuSystem::update() {
@@ -229,47 +227,19 @@ void MainMenuSystem::createNexusImage()
 {
 	ButtonSystem* bS = mngr_->getSystem<ButtonSystem>();
 
-	//Nexus life image
-	Vector2D pAux = Vector2D{ 207,500 };
-	Vector2D sAux = Vector2D{ 300,100 };
-	bS->addImage(pAux,sAux,0, gameTextures::life,_grp_HUD_FOREGROUND);
-	bS->addImage(pAux, sAux, 0, gameTextures::life_background, _grp_HUD_FOREGROUND);
-
-	nexusImage = mngr_->addEntity(_grp_HUD_FOREGROUND);
-	Transform* tr = mngr_->addComponent<Transform>(nexusImage);
-	tr->setPosition({ 200,  (sdlutils().height() / 2.0f) - 220.0f });
-	Vector2D pos = tr->getPosition();
-	mngr_->addComponent<RenderComponent>(nexusImage, gameTextures::nexusLvl); 
-	tr->setScale({ 350.0f, 350.0f });
-	Vector2D aux = tr->getScale();
-	tr->setPosition(pos - aux / 2);
-	//FramedImage(int frameColumns = 1, int frameRows = 1, int frameWidth = 0, int frameHeight = 0, int currentFrame = 0, int frameRate = 0, int lastFrame = 1) : 
-	mngr_->addComponent<FramedImage>(nexusImage, 4, 1, 2048, 2048, turrentLevels[_twr_NEXUS] - 1, 0, 1);
-
+	bS->generateNexusImage(turrentLevels[_twr_NEXUS]);
 }
 
 void MainMenuSystem::updateNexusImage() {
-	FramedImage* framedImage = mngr_->getComponent<FramedImage>(nexusImage);
-	TextComponent* textComponent = mngr_->getComponent<TextComponent>(nexusLvl);
-	if (framedImage != nullptr && textComponent != nullptr) {
-		framedImage->setCurrentFrame(turrentLevels[_twr_NEXUS] - 1);
-		string lvl = "Nexus Level: " + std::to_string(turrentLevels[twrId::_twr_NEXUS]);
-		textComponent->changeText(lvl);
-	}	
+	ButtonSystem* bS = mngr_->getSystem<ButtonSystem>();
+
+	bS->updateNexusImage(turrentLevels[_twr_NEXUS]);
 }
 
-Entity* MainMenuSystem::addText(const Vector2D& pos, const Vector2D& scale, const double rot, grpId_type grpId) {
+void MainMenuSystem::addNexusText() {
 	
-	Entity* textEntity = mngr_->addEntity(grpId);
+	ButtonSystem* bS = mngr_->getSystem<ButtonSystem>();
 
-	Transform* textTransform = mngr_->addComponent<Transform>(textEntity);
-	textTransform->setPosition(pos);
-	textTransform->setScale(scale);
-	textTransform->setRotation(rot);
-
-	mngr_->addComponent<RenderComponent>(textEntity, nexus_level_text);
-
-
-	return textEntity;
+	bS->generateNexusText(turrentLevels[_twr_NEXUS]);
 }
 

@@ -6,8 +6,9 @@
 #include "../components/FramedImage.h"
 #include "../components/LimitedTime.h"
 
-ButtonSystem::ButtonSystem(hdlrId_type but_id) : 
-	hdlr_but_id(but_id), money_(0), HMoney_(0){
+ButtonSystem::ButtonSystem(hdlrId_type but_id) :
+	hdlr_but_id(but_id), money_(0), HMoney_(0), moneyText_(nullptr), bulletMoneyText_(nullptr), diegoMoneyText_(nullptr), slimeMoneyText_(nullptr), cristalMoneyText_(nullptr),
+	fenixMoneyText_(nullptr), enhancerMoneyText_(nullptr), dirtMoneyText_(nullptr), nexusImage_(nullptr), nexusLvl_(nullptr){
 	mActive = true;
 	resolutionActive = false;
 	isPlayState = false;
@@ -795,6 +796,48 @@ void ButtonSystem::generateHMoneyText() {
 	tr->setPosition({ 100,75 });
 	tr->setScale({ 75, 100 });
 	mngr_->addComponent<TextComponent>(moneyText_, std::to_string(HMoney_));
+}
+
+void ButtonSystem::generateNexusImage(int level) {
+
+	//Nexus life image
+	Vector2D pAux = Vector2D{ 207,500 };
+	Vector2D sAux = Vector2D{ 300,100 };
+	addImage(pAux, sAux, 0, gameTextures::life, _grp_HUD_FOREGROUND);
+	addImage(pAux, sAux, 0, gameTextures::life_background, _grp_HUD_FOREGROUND);
+
+	nexusImage_ = mngr_->addEntity(_grp_HUD_FOREGROUND);
+	Transform* tr = mngr_->addComponent<Transform>(nexusImage_);
+	tr->setPosition({ 200,  (sdlutils().height() / 2.0f) - 220.0f });
+	Vector2D pos = tr->getPosition();
+	mngr_->addComponent<RenderComponent>(nexusImage_, gameTextures::nexusLvl);
+	FramedImage* framedImage = mngr_->addComponent<FramedImage>(nexusImage_, 4, 1, 2048, 2048, level - 1, 0, 1);
+	tr->setScale({ 350.0f, 350.0f });
+	Vector2D aux = tr->getScale();
+	tr->setPosition(pos - aux / 2);
+
+}
+
+void ButtonSystem::generateNexusText(int level) {
+	nexusLvl_ = mngr_->addEntity(_grp_BACKGROUND_TEXTS);
+
+	Transform* textTransform = mngr_->addComponent<Transform>(nexusLvl_);
+	textTransform->setPosition({ 50.0f, (sdlutils().height() / 2.0f) + 50.0f });
+	textTransform->setScale({ 300.0f, 75.0f });
+	textTransform->setRotation(0.0f);
+
+	mngr_->addComponent<TextComponent>(nexusLvl_, "Nexus Level: " + std::to_string(level));
+}
+
+void ButtonSystem::updateNexusImage(int level)
+{
+	FramedImage* framedImage = mngr_->getComponent<FramedImage>(nexusImage_);
+	TextComponent* textComponent = mngr_->getComponent<TextComponent>(nexusLvl_);
+	if (framedImage != nullptr && textComponent != nullptr) {
+		framedImage->setCurrentFrame(level - 1);
+		string lvl = "Nexus Level: " + std::to_string(level);
+		textComponent->changeText(lvl);
+	}
 }
 
 void ButtonSystem::generateUpgradeMoneyTexts() {
