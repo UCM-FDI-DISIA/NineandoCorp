@@ -16,7 +16,7 @@ void GameOverSystem::initSystem() {
 
 	ButtonSystem* bS = mngr_->getSystem<ButtonSystem>();
 
-	bS->addImage({ (float)sdlutils().width()/2 , (float)sdlutils().height()/2 },
+	background = bS->addImage({ (float)sdlutils().width()/2 , (float)sdlutils().height()/2 },
 		{ (float)sdlutils().width() + 500, (float)sdlutils().height() + 500},
 		0.0,
 		gameTextures::box,
@@ -30,14 +30,25 @@ void GameOverSystem::initSystem() {
 
 	coins = bS->addText(" ", textColor, { xAux , heightH * 4 + (heightH / 2) }, { bSize.getX(), bSize.getY()/2 });
 
-	bS->addButton({ xAux, heightH*6},
+	button = bS->addButton({ xAux, heightH*6},
 		bSize,
 		gameTextures::backToMenu_button, gameTextures::backToMenu_button_hover,
 		ButtonTypes::back_to_menu);
 }
 
 GameOverSystem::~GameOverSystem() {
-
+	mngr_->setAlive(background, false);
+	background = nullptr;
+	mngr_->setAlive(header, false);
+	header = nullptr;
+	mngr_->setAlive(rounds, false);
+	rounds = nullptr;
+	mngr_->setAlive(enemies, false);
+	enemies = nullptr;
+	mngr_->setAlive(coins, false);
+	coins = nullptr;
+	mngr_->setAlive(button, false);
+	button = nullptr;
 }
 
 void GameOverSystem::receive(const Message& m) {

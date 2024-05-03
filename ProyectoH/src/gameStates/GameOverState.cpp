@@ -22,7 +22,5 @@ GameOverState::GameOverState(int rounds, int enemies, int coinsH ,int currentLvl
 }
 
 GameOverState::~GameOverState() {
-	mngr_->removeSystem<RenderSystem>();
-	mngr_->removeSystem<ButtonSystem>();
-	mngr_->removeSystem<GameOverSystem>();
+	delete mngr_;
 }

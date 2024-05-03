@@ -12,10 +12,12 @@ private:
 	float startTime = 1;
 	float timer = startTime;
 	GameOverAnim currentAnim = HEADER_ANIM;
+	Entity* background;
 	Entity* header;
 	Entity* rounds;
 	Entity* enemies;
 	Entity* coins;
+	Entity* button;
 	float enemiesCont = 0;
 	float coinsCont = 0;
 	int enemiesDefeated;
