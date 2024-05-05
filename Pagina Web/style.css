@@ -94,6 +94,7 @@ nav ul li a:hover{
 .section {
     display: none; /* Ocultar las secciones por defecto */
     padding: 20px;
+    margin-bottom: 20px;
 }
 
 .section h2 {
@@ -128,19 +129,21 @@ nav ul li a:hover{
 }
 
 .content-container {
-    min-height: calc(100vh - 70px); /* Calculamos la altura como el 100% del alto de la ventana menos la altura del footer */
+    min-height: calc(100vh - 120px); /* Altura mínima igual a la altura de la ventana menos la altura del footer */
     padding-bottom: 70px; /* Asegura que el footer no se superponga al contenido */
-    overflow-y: auto; /* Agregamos desplazamiento vertical si el contenido es más largo que la altura */
+    overflow-y: auto; /* Agrega desplazamiento vertical si el contenido es más largo que la altura */
 }
 
 footer {
-    background: linear-gradient(to top, #441698 0%,  #7d4cdb 50%); 
+    position: fixed;
+    background: linear-gradient(to top, #441698 0%, #7d4cdb 50%);
     color: #fff;
     text-align: center;
     padding: 10px;
     width: 100%;
     position: fixed;
     bottom: 0;
+    left: 0;
 }
 
 footer p {
@@ -176,3 +179,15 @@ footer img {
 .social-text {
     text-align: left; /* Alinear texto a la izquierda dentro de su contenedor */
 }
+
+.video-container {
+    text-align: center; /* Centrar el contenido del video */
+    margin-top: 20px; /* Espacio superior */
+    margin-bottom: 20px; /* Espacio inferior */
+}
+
+    .video-container video {
+        display: inline-block; /* Mostrar el video como bloque en línea */
+        vertical-align: middle; /* Alinear verticalmente al centro */
+    }
+
