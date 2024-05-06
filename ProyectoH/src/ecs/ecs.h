@@ -77,6 +77,7 @@ enum hdlrId : hdlrId_type {
 	_hdlr_DRAG_AND_DROP,
 	_hdlr_SUBMENU,
 	_hdlr_LOW_TOWERS,
+	_hdlr_NEXO_ARCILLA,
 	_hdlr_HIGH_TOWERS,
 	_hdlr_ENEMIES,
 	_hdlr_NEXO,

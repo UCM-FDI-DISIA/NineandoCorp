@@ -751,6 +751,8 @@ void TowerSystem::generateNexus(int lvlNexus, Cell* cell) {
 	mngr_->addComponent<FramedImage>(n, 4, 1, 2048, 2048, lvlNexus - 1, 0, 1);
 	mngr_->setHandler(_hdlr_LOW_TOWERS, n);
 	mngr_->setHandler(_hdlr_NEXO, n);
+	mngr_->setHandler(_hdlr_NEXO_ARCILLA, n);
+
 
 	towers.emplace_back(n);
 }
@@ -795,6 +797,7 @@ void TowerSystem::addTower(twrId type, const Vector2D& pos, Height height, int c
 		mngr_->addComponent<DirtTower>(t);
 		mngr_->addComponent<RenderComponent>(t, clayTowerTexture);
 		mngr_->addComponent<FramedImage>(t, intAt("ArcillaColumns"), intAt("ArcillaRows"), intAt("ArcillaWidth"), intAt("ArcillaHeight"), 0, 0);
+		mngr_->setHandler(_hdlr_NEXO_ARCILLA, t);
 		sdlutils().soundEffects().at("TorreDeArcillaTerraqueaDrop").play(0, 1);
 		break;
 	case _twr_POWER://Pasar rango, porcentaje incremento de ataque y vida extra
