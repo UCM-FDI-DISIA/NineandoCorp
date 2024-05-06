@@ -184,6 +184,11 @@ public:
 		return intConstWavesAccessWrapper_;
 	}
 
+	// description map
+	inline auto& descriptions() {
+		return descriptionsAccessWrapper_;
+	}
+
 // Access to the random number generator. It is important to always
 // use this generator, this way you can regenerate the same sequence
 // if you start from the same seed
@@ -235,6 +240,7 @@ private:
 	sdl_resource_table<int> intConstWaves_;
 	sdl_resource_table<RuteData> rutes_;
 	sdl_resource_table<spawnGroupData> spawn_;
+	sdl_resource_table<std::string> descriptions_;
 
 	map_access_wrapper<Font> fontsAccessWrapper_;
 	map_access_wrapper<Texture> imagesAccessWrapper_;
@@ -247,6 +253,7 @@ private:
 	map_access_wrapper<int> intConstWavesAccessWrapper_;
 	map_access_wrapper<RuteData> rutesAccessWrapper_;
 	map_access_wrapper<spawnGroupData> spawnAccessWrapper_;
+	map_access_wrapper<std::string> descriptionsAccessWrapper_;
 
 	RandomNumberGenerator random_; // (pseudo) random numbers generator
 	VirtualTimer timer_; // virtual timer

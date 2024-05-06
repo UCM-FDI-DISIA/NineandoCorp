@@ -1,4 +1,5 @@
 #include "UpgradeTowerComponent.h"
+#include "UpgradeTowerComponent.h"
 #include "../game/Game.h"
 #include "../ecs/Manager.h"
 #include "../components/BulletTower.h"

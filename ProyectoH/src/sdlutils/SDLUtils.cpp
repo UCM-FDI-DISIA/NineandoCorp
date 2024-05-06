@@ -25,7 +25,8 @@ SDLUtils::SDLUtils(std::string windowTitle, int width, int height) :
 	rutesAccessWrapper_(rutes_, "Rutes Table"),
 	spawnAccessWrapper_(spawn_, "Enemies Spawn Table"),
 	intConstNumSpawsAccessWrapper_(intConstNumSpaws_, "Numero Spawns Table"),
-	intConstWavesAccessWrapper_(intConstWaves_, "Waves Table")
+	intConstWavesAccessWrapper_(intConstWaves_, "Waves Table"),
+	descriptionsAccessWrapper_(descriptions_, "Descriptions")
 {
 
 	initWindow();
@@ -406,6 +407,31 @@ void SDLUtils::loadConstants(std::string filename) {
 					}
 				}
 			}
+		}
+	}
+	// DESCRIPCIONES DE LAS TORRES
+	jValue = root["descriptions"];
+	if (jValue != nullptr) {
+		if (jValue->IsArray()) {
+			descriptions_.reserve(jValue->AsArray().size()); // reserve enough space to avoid resizing
+			for (auto& v : jValue->AsArray()) {
+				if (v->IsObject()) {
+					JSONObject vObj = v->AsObject();
+					std::string key = vObj["id"]->AsString();
+					std::string val = vObj["value"]->AsString();
+#ifdef _DEBUG
+					std::cout << "Loading float with id: " << key << std::endl;
+#endif
+					descriptions_.emplace(key, val);
+				}
+				else {
+					throw "'descriptions' array in '" + filename
+						+ "' includes and invalid value";
+				}
+			}
+		}
+		else {
+			throw "'descriptions' is not an array in '" + filename + "'";
 		}
 	}
 	// TODO improve syntax error checks below, now we do not check
