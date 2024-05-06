@@ -34,6 +34,7 @@ void EnemySystem::initSystem() {
 
 }
 void  EnemySystem::receive(const Message& m) {
+	//const auto& e;
 	switch (m.id) {
 	case _m_START_GAME:
 		netmap = m.start_game_data.netmap;
@@ -112,8 +113,9 @@ void  EnemySystem::receive(const Message& m) {
 		}
 		break;
 	case _m_TOWER_DIED:
-		for (auto& b : mngr_->getEntities(_hdlr_ENEMIES))
-		{			
+		
+		for (const auto& b : mngr_->getHandler(_hdlr_ENEMIES))
+		{		
 			auto ac = mngr_->getComponent<AttackComponent>(b);
 			if (ac != nullptr) {
 				if (ac->getTarget() == m.return_entity.ent) {
@@ -450,9 +452,6 @@ void EnemySystem::update()
 					}
 					else {
 						ac->targetFromGroup(towers);
-					}
-					if (!ac->getAttackTowers() && rc->destinoFinal()) {
-						ac->setTarget(*mngr_->getHandler(_hdlr_NEXO).begin());
 					}
 					if (ac->getTarget() != nullptr && (ac->getAttackTowers() || mngr_->getComponent<NexusComponent>(ac->getTarget()) || mngr_->getComponent<DirtTower>(ac->getTarget()))) {
 						mc->setStop(true);
