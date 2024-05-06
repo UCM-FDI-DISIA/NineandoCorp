@@ -380,7 +380,7 @@ void ButtonSystem::sellTower(Entity* twr)
 		/*--- MEJORAS DEL MENU ---*/
 		case upgrade_nexus:
 			lvl = game().getSaveGame()->getTurretsLevels()[_twr_NEXUS];
-			if( lvl < towerLevelMax)
+			if( lvl < 4)
 				upgradeTower(_twr_NEXUS, "precioHNexoLvl" + std::to_string(lvl), bC);
 			break;
 		case upgrade_crystal_main:
@@ -647,6 +647,12 @@ void ButtonSystem::sellTower(Entity* twr)
 				price = intAt(towerPriceString);
 				mngr_->getComponent<TextComponent>(slimeMoneyText_)->changeText(std::to_string(price));
 				break;
+			case _twr_NEXUS:
+				if (towerLvl < 4) {
+					towerPriceString = "precioHNexoLvl" + std::to_string(towerLvl);
+					price = intAt(towerPriceString);
+					mngr_->getComponent<TextComponent>(nexusPriceText_)->changeText(std::to_string(price));
+				}else mngr_->getComponent<TextComponent>(nexusPriceText_)->changeText("MAX");
 			}
 		}
 		else {
@@ -672,6 +678,7 @@ void ButtonSystem::sellTower(Entity* twr)
 			case _twr_SLIME:
 				mngr_->getComponent<TextComponent>(slimeMoneyText_)->changeText("MAX");
 				break;
+
 			}
 		}
 	}
@@ -841,6 +848,33 @@ void ButtonSystem::updateNexusImage(int level)
 }
 
 void ButtonSystem::generateUpgradeMoneyTexts() {
+	//NEXUS PRICE TEXT
+	int nexusPrice = game().getSaveGame()->getTurretsLevels()[_twr_NEXUS];
+
+	switch (nexusPrice) {
+	case 1:
+		nexusPrice = intAt("precioHNexoLvl1");
+		break;
+	case 2:
+		nexusPrice = intAt("precioHNexoLvl2");
+		break;
+	case 3:
+		nexusPrice = intAt("precioHNexoLvl3");
+		break;
+
+	}
+	string nexusText = std::to_string(nexusPrice);
+	if (nexusPrice == 4)nexusText = "MAX";
+
+	addImage({ sdlutils().width() - 1040.0f , (sdlutils().height() / 5.5f) * 4.3f }, { 50.0f, 65.0f }, 0.0f, monedaH, _grp_HUD_FOREGROUND);
+	nexusPriceText_ = mngr_->addEntity(_grp_BACKGROUND_TEXTS);
+	mngr_->setHandler(hdlr_but_id, nexusPriceText_);
+	Transform* trnx = mngr_->addComponent<Transform>(nexusPriceText_);
+	trnx->setScale({ 50.0f, 65.0f });
+	Vector2D auxnx = trnx->getScale();
+	trnx->setPosition(Vector2D(sdlutils().width() - 1100.0f, (sdlutils().height() / 1.3f)) - auxnx / 2);
+	mngr_->addComponent<TextComponent>(nexusPriceText_, nexusText);
+
 	//BULLET PRICE TEXT
 	int bulletPrice = game().getSaveGame()->getTurretsLevels()[_twr_BULLET];
 
@@ -1035,15 +1069,18 @@ void ButtonSystem::generateUpgradeMoneyTexts() {
 	int enhancerPrice = game().getSaveGame()->getTurretsLevels()[_twr_POWER];
 	switch (enhancerPrice) {
 	case 0:
-		enhancerPrice = intAt("precioHPotenciadoraLvl1");
+		enhancerPrice = intAt("precioHPotenciadoraLvl0");
 		break;
 	case 1:
-		enhancerPrice = intAt("precioHPotenciadoraLvl2");
+		enhancerPrice = intAt("precioHPotenciadoraLvl1");
 		break;
 	case 2:
-		enhancerPrice = intAt("precioHPotenciadoraLvl3");
+		enhancerPrice = intAt("precioHPotenciadoraLvl2");
 		break;
 	case 3:
+		enhancerPrice = intAt("precioHPotenciadoraLvl3");
+		break;
+	case 4:
 		enhancerPrice = intAt("precioHPotenciadoraLvl4");
 		break;
 	}

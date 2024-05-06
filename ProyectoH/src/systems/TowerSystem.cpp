@@ -547,7 +547,7 @@ void TowerSystem::update() {
 						pt->setElapsedTime(pt->getElapsedTime() + game().getDeltaTime());
 						pt->targetEnemy(mngr_->getHandler(_hdlr_ENEMIES));
 						Vector2D offset(-65, 60);					
-						if (pt->getTarget() != nullptr) {
+						if (pt->getTarget() != nullptr && mngr_->isAlive(pt->getTarget())) {
 							Vector2D targetPos = *(mngr_->getComponent<Transform>(pt->getTarget())->getPosition());
 							Vector2D dir = targetPos - (spawn + offset);
 							dir = dir.normalize();
@@ -775,6 +775,12 @@ void TowerSystem::addTower(twrId type, const Vector2D& pos, Height height, int c
 		mngr_->setHandler(_hdlr_LOW_TOWERS, t);
 	}
 	else mngr_->setHandler(_hdlr_HIGH_TOWERS, t);
+
+	if (height == BOTH) {
+		mngr_->setHandler(_hdlr_LOW_TOWERS, t);
+		mngr_->setHandler(_hdlr_HIGH_TOWERS, t);
+	}
+
 	sdlutils().soundEffects().at("TorreDeBalasDrop").setChannelVolume(game().CalculoVolumenEfectos(), 1);
 	switch (type)
 	{
