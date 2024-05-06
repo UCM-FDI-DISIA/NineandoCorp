@@ -418,6 +418,14 @@
       "file": "resources/images/UI/life_background.png"
     },
     {
+      "id": "shield_life",
+      "file": "resources/images/UI/shield_life.png"
+    },
+    {
+      "id": "shield_background",
+      "file": "resources/images/UI/shield_background.png"
+    },
+    {
       "id": "life_enemy",
       "file": "resources/images/UI/life2.png"
     },
