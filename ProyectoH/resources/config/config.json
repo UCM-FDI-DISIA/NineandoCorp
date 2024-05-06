@@ -30,7 +30,8 @@
         [ 7, 21 ],
         [ 17, 21 ],
         [ 17, 15 ],
-        [ 15, 15 ]
+        [ 14, 15 ],
+        [14,14]
       ]
     },
     {
@@ -920,7 +921,7 @@
     },
     {
       "id": "AcechanteRango",
-      "value": 50
+      "value": 100
     },
     {
       "id": "AcechanteVelocidad",
@@ -976,7 +977,7 @@
     },
     {
       "id": "MalditoRango",
-      "value": 50
+      "value": 100
     },
     {
       "id": "MalditoVelocidad",
@@ -1032,7 +1033,7 @@
     },
     {
       "id": "GolemRango",
-      "value": 50
+      "value": 100
     },
     {
       "id": "GolemVelocidad",
@@ -1144,7 +1145,7 @@
     },
     {
       "id": "GoblinRango",
-      "value": 150
+      "value": 100
     },
     {
       "id": "GoblinVelocidad",
@@ -1256,7 +1257,7 @@
     },
     {
       "id": "MensajeroRango",
-      "value": 75
+      "value": 100
     },
     {
       "id": "MensajeroVelocidad",
@@ -1480,7 +1481,7 @@
     },
     {
       "id": "CMalditoRango",
-      "value": 150
+      "value": 100
     },
     {
       "id": "CMalditoVelocidad",
