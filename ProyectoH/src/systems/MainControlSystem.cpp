@@ -129,7 +129,6 @@ void MainControlSystem::update() {
 			mngr_->send(m);
 		}
 	}
-	cout << elapsedTime_ << "\n";
 }
 
 void MainControlSystem::onGameOver() {
