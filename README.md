@@ -21,7 +21,7 @@
 
 [UML](UML.jpg)
 
-[QA]()
+[QA](https://docs.google.com/spreadsheets/d/1-hL-Qp4hK3z9xW_LWDS397594ty98PtB/edit#gid=1201438310)
 
 [GRÁFICA DE DATOS](https://docs.google.com/spreadsheets/d/17VJqKdXs5HxnRE7XhKgaJPYE78I2Osd8cGOCqmh4Tbk/edit?usp=drive_link)
 
