@@ -1,5 +1,6 @@
 #include "RenderSystem.h"
 #include "../ecs/Manager.h"
+#include "../components/ShieldComponent.h"
 #include "../game/Game.h"
 
 // Constructorss
@@ -143,6 +144,10 @@ RenderSystem::RenderSystem() : winner_(0)
 	textures[resolution3_hover] = &sdlutils().images().at("resolution3_hover");
 	textures[life] = &sdlutils().images().at("life");
 	textures[life_background] = &sdlutils().images().at("life_background");
+	textures[shield_life] = &sdlutils().images().at("shield_life");
+	textures[shield_background] = &sdlutils().images().at("shield_background");
+	textures[life_enemy] = &sdlutils().images().at("life_enemy");
+	textures[life_background_enemy] = &sdlutils().images().at("life_background_enemy");
 	textures[buy] = &sdlutils().images().at("buy");
 	textures[buy_hover] = &sdlutils().images().at("buy_hover");
 	textures[white_arrow] = &sdlutils().images().at("white_arrow");
@@ -725,7 +730,30 @@ void RenderSystem::drawBarlife(Entity* t) {
 		SDL_Rect backgroundbar = SDL_Rect{ trRect.x - 15, trRect.y - 53, 120, 26 };
 
 		//render del background
-		textures[gameTextures::life_background]->render(backgroundbar);
-		textures[gameTextures::life]->render(healthbar);
+		if (mngr_->hasComponent<UpgradeTowerComponent>(t) || mngr_->hasComponent<NexusComponent>(t)) {
+			textures[gameTextures::life_background]->render(backgroundbar);
+			textures[gameTextures::life]->render(healthbar);
+		}
+		else {
+			textures[gameTextures::life_background_enemy]->render(backgroundbar);
+			textures[gameTextures::life_enemy]->render(healthbar);
+		}
+
+
+		auto s = mngr_->getComponent<ShieldComponent>(t);// barra de escudo
+		if (s != nullptr) {
+			if (s->getShield() > 0) {
+				float a = s->getMaxShield();
+				float b = s->getShield();
+				float c = b / a;
+
+				SDL_Rect healthbar = SDL_Rect{ trRect.x - 10, trRect.y - 63, (int)(112.0f * c), 20 };
+				SDL_Rect backgroundbar = SDL_Rect{ trRect.x - 15, trRect.y - 66, 120, 26 };
+
+				textures[gameTextures::shield_background]->render(backgroundbar);
+				textures[gameTextures::shield_life]->render(healthbar);
+			}
+		}
+		
 	}
 }
