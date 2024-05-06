@@ -59,7 +59,8 @@ void MainMenuSystem::initSystem() {
 		90.0, gameTextures::column_box, _grp_HUD_BACKGROUND);
 
 	
-	// NEXUS IMAGE - CAMBIAR IMAGEN
+	// 
+	//  IMAGE - CAMBIAR IMAGEN
 
 	
 	//-------------------------------------------//

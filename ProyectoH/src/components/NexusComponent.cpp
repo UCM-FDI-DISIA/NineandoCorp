@@ -22,3 +22,5 @@ void NexusComponent::levelUp(int level) {
 		break;
 	}
 }
+
+

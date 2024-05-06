@@ -39,10 +39,14 @@ void AttackComponent::targetFromGroup(const std::list<Entity*>& targetGroup) {//
 		}		
 	}	
 	else {
-		if (mngr_->hasComponent<Transform>(target_) && mngr_->isAlive(target_)) {//Pierde target si se sale de su rango
-			float distance = getDistance(mngr_->getComponent<Transform>(target_)->getPosition());
-			if (distance > range_){ target_ = nullptr; }
-		}		
+		
+		if (mngr_->hasComponent<Transform>(target_)) {//Pierde target si se sale de su rango
+			auto tr = mngr_->getComponent<Transform>(target_);
+			if (tr != nullptr) {
+				float distance = getDistance(mngr_->getComponent<Transform>(target_)->getPosition());
+				if (distance > range_) { target_ = nullptr; }
+			}
+		}			
 	}
 }
 
