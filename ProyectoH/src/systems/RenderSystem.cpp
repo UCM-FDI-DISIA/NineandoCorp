@@ -143,6 +143,8 @@ RenderSystem::RenderSystem() : winner_(0)
 	textures[resolution3_hover] = &sdlutils().images().at("resolution3_hover");
 	textures[life] = &sdlutils().images().at("life");
 	textures[life_background] = &sdlutils().images().at("life_background");
+	textures[life_enemy] = &sdlutils().images().at("life_enemy");
+	textures[life_background_enemy] = &sdlutils().images().at("life_background_enemy");
 	textures[buy] = &sdlutils().images().at("buy");
 	textures[buy_hover] = &sdlutils().images().at("buy_hover");
 	textures[white_arrow] = &sdlutils().images().at("white_arrow");
@@ -725,7 +727,14 @@ void RenderSystem::drawBarlife(Entity* t) {
 		SDL_Rect backgroundbar = SDL_Rect{ trRect.x - 15, trRect.y - 53, 120, 26 };
 
 		//render del background
-		textures[gameTextures::life_background]->render(backgroundbar);
-		textures[gameTextures::life]->render(healthbar);
+		if (mngr_->hasComponent<UpgradeTowerComponent>(t)) {
+			textures[gameTextures::life_background]->render(backgroundbar);
+			textures[gameTextures::life]->render(healthbar);
+		}
+		else {
+			textures[gameTextures::life_background_enemy]->render(backgroundbar);
+			textures[gameTextures::life_enemy]->render(healthbar);
+		}
+		
 	}
 }
