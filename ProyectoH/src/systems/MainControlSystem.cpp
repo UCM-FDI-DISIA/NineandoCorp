@@ -46,6 +46,14 @@ void MainControlSystem::receive(const Message& m) {
 		coinsH += m.money_data.money;
 		break;
 	case _m_PAUSE:
+		if (m.start_pause.onPause) {
+			waveActive = false;
+			pauseAuxElapsedTime_ = elapsedTime_;
+		}
+		else {
+			waveActive = true;
+			elapsedTime_ = pauseAuxElapsedTime_;
+		}
 		game().pushState<PauseState>(mngr_);
 		break;
 	case _m_ACELERATE:
@@ -69,6 +77,8 @@ void MainControlSystem::receive(const Message& m) {
 		break;
 	case _m_WAVE_START:
 		if (m.start_wave.play) {
+			waveActive = m.start_wave.play;
+
 			round++;
 			Message m1;
 			m1.id = _m_ADD_TEXT;
@@ -81,6 +91,8 @@ void MainControlSystem::receive(const Message& m) {
 			mngr_->send(m1);
 		}
 		else {
+			waveActive = m.start_wave.play;
+
 			Message m1;
 			m1.id = _m_ADD_TEXT;
 			m1.add_text_data.txt = "Wave " + to_string((int)round) + " Completed";
@@ -106,13 +118,18 @@ void MainControlSystem::upgradeTower(twrId id) {
 
 void MainControlSystem::update() {
 	elapsedTime_ += game().getDeltaTime();
-	if (elapsedTime_ > 1.0 && nexusIsAlive_) {
-		Message m;
-		m.id = _m_ADD_MONEY;
-		m.money_data.money = numDoradasPorSegundo;
-		elapsedTime_ = 0;
-		mngr_->send(m);		// Faltaba enviar el mensaje
+	if (isPlaying && waveActive) {
+		if (nexusIsAlive_ && elapsedTime_ > generateNexusCoinsTime_) 
+		{
+			elapsedTime_ = 0;
+
+			Message m;
+			m.id = _m_ADD_MONEY;
+			m.money_data.money = numDoradasPorSegundo;
+			mngr_->send(m);
+		}
 	}
+	cout << elapsedTime_ << "\n";
 }
 
 void MainControlSystem::onGameOver() {

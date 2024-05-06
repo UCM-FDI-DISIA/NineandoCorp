@@ -20,14 +20,17 @@ public:
 protected:
 	bool nexusIsAlive_;
 	bool isPlaying;
-	int numDoradasPorSegundo;
+	bool waveActive = false;
+	int numDoradasPorSegundo = 5;
 	int coinsH = 0;
 	int enemiesDefeated = 0;
 	int round = 0;
 	bool enemiesSaw[_enm_SIZE];
 	int currentLevel;
 	float tiempoEntreOleadas;
-	double elapsedTime_;
+	double elapsedTime_ = 0;
+	double pauseAuxElapsedTime_ = 0;
+	double generateNexusCoinsTime_ = 5;
 	Entity* nexo;
 	SaveGame* saveGame;
 
