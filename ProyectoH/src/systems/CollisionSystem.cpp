@@ -481,15 +481,18 @@ void CollisionSystem::update() {
 
 		for (auto& s: slimeRects_)
 		{
-			SlimeBullet* sb = mngr_->getComponent<SlimeBullet>(s);
-			sb->setElapsedDuration(sb->getElapsedDuration() + game().getDeltaTime());
-			if (sb->getElapsedDuration() > sb->getDuration()) {
-				Message m;
-				m.id = _m_RESET_SPEED;
-				m.reset_speed.speed = 0.0f;
-				mngr_->send(m);
-				removeRect(s, _SLIME);
+			if (mngr_->isAlive(s)) {
+				SlimeBullet* sb = mngr_->getComponent<SlimeBullet>(s);
+				sb->setElapsedDuration(sb->getElapsedDuration() + game().getDeltaTime());
+				if (sb->getElapsedDuration() > sb->getDuration()) {
+					Message m;
+					m.id = _m_RESET_SPEED;
+					m.reset_speed.speed = 0.0f;
+					mngr_->send(m);
+					removeRect(s, _SLIME);
+				}
 			}
+			
 		}
 
 		earthquakeRects_.clear();

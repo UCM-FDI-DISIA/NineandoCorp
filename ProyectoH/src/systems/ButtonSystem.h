@@ -198,6 +198,7 @@ private:
 	Entity* nexusLvl_;
 	Entity* nexusLifebar_;
 	Entity* nexusLifebarBg_;
+	Entity* nexusPriceText_;
 
 	int intAt(basic_string<char> s) { return sdlutils().intConst().at(s); }
 	float floatAt(basic_string<char> s) { return sdlutils().floatConst().at(s); }
