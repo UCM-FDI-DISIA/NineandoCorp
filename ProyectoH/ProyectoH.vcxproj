@@ -78,6 +78,7 @@
     <ClInclude Include="src\gameStates\MainMenuState.h" />
     <ClInclude Include="src\gameStates\PauseState.h" />
     <ClInclude Include="src\gameStates\PlayState.h" />
+    <ClInclude Include="src\gameStates\TowerInfoState.h" />
     <ClInclude Include="src\game\Game.h" />
     <ClInclude Include="src\game\GameState.h" />
     <ClInclude Include="src\game\GameStateMachine.h" />
@@ -108,6 +109,7 @@
     <ClInclude Include="src\systems\MeteorologySystem.h" />
     <ClInclude Include="src\systems\ParticleSystem.h" />
     <ClInclude Include="src\systems\RenderSystem.h" />
+    <ClInclude Include="src\systems\TowerInfoSystem.h" />
     <ClInclude Include="src\systems\TowerSystem.h" />
     <ClInclude Include="src\utils\Collisions.h" />
     <ClInclude Include="src\utils\mpl.h" />
@@ -168,6 +170,7 @@
     <ClCompile Include="src\gameStates\MainMenuState.cpp" />
     <ClCompile Include="src\gameStates\PauseState.cpp" />
     <ClCompile Include="src\gameStates\PlayState.cpp" />
+    <ClCompile Include="src\gameStates\TowerInfoState.cpp" />
     <ClCompile Include="src\game\Game.cpp" />
     <ClCompile Include="src\game\GameState.cpp" />
     <ClCompile Include="src\game\GameStateMachine.cpp" />
@@ -194,6 +197,7 @@
     <ClCompile Include="src\systems\ParticleSystem.cpp" />
     <ClCompile Include="src\systems\PauseSystem.cpp" />
     <ClCompile Include="src\systems\RenderSystem.cpp" />
+    <ClCompile Include="src\systems\TowerInfoSystem.cpp" />
     <ClCompile Include="src\systems\TowerSystem.cpp" />
     <ClCompile Include="src\utils\Collisions.cpp" />
     <ClCompile Include="src\utils\NetMap.cpp" />

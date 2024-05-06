@@ -28,6 +28,9 @@ void MainControlSystem::receive(const Message& m) {
 	case _m_ENEMY_BOOK:
 		game().pushState<EnemyBookState>(mngr_);
 		break;
+	case _m_SHOW_TOWER_INFO:
+		game().pushState<TowerInfoState>(mngr_);
+		break;
 	case _m_ENEMY_DIED:
 		enemiesDefeated++;
 		break;

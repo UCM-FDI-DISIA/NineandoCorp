@@ -4,6 +4,7 @@
 #include "../components/RenderComponent.h"
 #include "../components/Transform.h"
 #include "../components/ButtonComponent.h"
+#include "../systems/ButtonSystem.h" 
 
 class MainMenuSystem : public System
 {
@@ -23,6 +24,17 @@ public:
 
 private: 
 	bool mActive;
+
+
+	/// <summary>
+	/// Añade el boton de informacion en base a la torre correspondiente
+	/// </summary>
+	/// /// <param name="bS">: puntero al ButtonSystem</param>
+	/// <param name="info_size">: escala del boton</param>
+	/// <param name="tId">: id de la torre</param>
+	/// <param name="yOffset">: offset del boton en el eje y para posicion de boton</param>
+	/// <param name="info_separation">: separacion del borde de la pantalla</param>
+	void addInfoButton(ButtonSystem* bS, const Vector2D& info_size, twrId tId, int yOffset, float info_separation);
 
 	/// <summary>
 	/// Crea un texto a partir de una textura como entidad y lo añade al manager

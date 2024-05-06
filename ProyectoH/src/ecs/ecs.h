@@ -90,6 +90,7 @@ enum hdlrId : hdlrId_type {
 	_hdlr_BUTTON_ACELERATE,
 	_hdlr_BUTTON_LVLSEL,
 	_hdlr_BUTTON_ENEMYBOOK,
+	_hdlr_BUTTON_INFO,
 	_hdlr_BUTTON_GAMEOVER,
 	_hdlr_BUTTON_CONFIG,
 	_hdlr_BUTTON_PLAY,
@@ -136,6 +137,7 @@ enum gmSttId : gmSttId_type {
 	_gmStt_LEVELSELECTOR,
 	_gmStt_ENEMYBOOK,
 	_gmStt_CONFIG,
+	_gmStt_INFO,
 	// do not remove this
 	_LAST_GMSTT_ID
 };
@@ -160,6 +162,7 @@ enum sysId : sysId_type {
 	_sys_PARTICLES,
 	_sys_METEOROLOGY,
 	_sys_GAMEOVER,
+	_sys_INFO,
 
 	// do not remove this
 	_LAST_SYS_ID

@@ -15,6 +15,7 @@
 #include "../gameStates/MainMenuState.h"
 #include "../gameStates/GameOverState.h"
 #include "../gameStates/ConfigState.h"
+#include "../gameStates/TowerInfoState.h"
 constexpr int WIN_WIDTH = 1280;
 constexpr int WIN_HEIGHT = 1024;
 #include "../systems/RenderSystem.h"

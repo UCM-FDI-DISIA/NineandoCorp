@@ -107,14 +107,7 @@ void MainMenuSystem::initSystem() {
 		{ towerImagesSize },
 		0, gameTextures::bullet_tower_image, _grp_HUD_BACKGROUND);
 	// 1 INFO IMAGE
-	Message m1;
-	m1.id = _m_SHOW_TOWER_INFO;
-	m1.show_info.tId = twrId::_twr_BULLET;
-
-	bS->addButton({sdlutils().width() - info_separation, (sdlutils().height() / 8.0f) * 1 }, 
-		info_size, 
-		gameTextures::info_icon, gameTextures::info_icon, ButtonTypes::show_info, 
-		0 ,0 ,0, m1);
+	addInfoButton(bS, info_size, _twr_BULLET, 1, info_separation);
 
 	// 2 TOWER BUTTON - CRISTAL
 	if (game().getSaveGame()->getTurretsLevels()[_twr_CRISTAL] == 0) {
@@ -132,6 +125,8 @@ void MainMenuSystem::initSystem() {
 	bS->addImage({ sdlutils().width() - twr_img_separation , (sdlutils().height() / 8.0f) * 2 },
 		{ towerImagesSize },
 		0, gameTextures::crystal_tower_image, _grp_HUD_BACKGROUND);
+	// 2 INFO BUTTON
+	addInfoButton(bS, info_size, _twr_CRISTAL, 2, info_separation);
 
 	// 3 TOWER BUTTON - SLIME
 	if (game().getSaveGame()->getTurretsLevels()[_twr_SLIME] == 0) {
@@ -150,6 +145,9 @@ void MainMenuSystem::initSystem() {
 	bS->addImage({ sdlutils().width() - twr_img_separation , (sdlutils().height() / 8.0f) * 3 },
 		{ towerImagesSize },
 		0, gameTextures::slime_tower_image, _grp_HUD_BACKGROUND);
+	// 3 INFO BUTTON
+	addInfoButton(bS, info_size, _twr_SLIME, 3, info_separation);
+
 
 	// 4 TOWER BUTTON - SNIPER
 	if (game().getSaveGame()->getTurretsLevels()[_twr_DIEGO] == 0) {
@@ -168,6 +166,8 @@ void MainMenuSystem::initSystem() {
 	bS->addImage({ sdlutils().width() - twr_img_separation , (sdlutils().height() / 8.0f) * 4 },
 		{ towerImagesSize },
 		0, gameTextures::sniper_tower_image, _grp_HUD_BACKGROUND);
+	// 4 INFO BUTTON
+	addInfoButton(bS, info_size, _twr_DIEGO, 4, info_separation);
 
 	// 5 TOWER BUTTON - FENIX
 	if (game().getSaveGame()->getTurretsLevels()[_twr_FENIX] == 0) {
@@ -186,18 +186,23 @@ void MainMenuSystem::initSystem() {
 	bS->addImage({ sdlutils().width() - twr_img_separation , (sdlutils().height() / 8.0f) * 5 },
 		{ towerImagesSize },
 		0, gameTextures::phoenix_tower_image, _grp_HUD_BACKGROUND);
+	// INFO BUTTON
+	addInfoButton(bS, info_size, _twr_FENIX, 5, info_separation);
 
-	// 6 TOWER BUTTON - DIRT
+	// 6 TOWER BUTTON - CLAY
 	
 	bS->addButton({ sdlutils().width() - but_separation , (sdlutils().height() / 8.0f) * 6 },
 		{ 200.0f, 70.0f },
 		upgrade, upgrade_hover, ButtonTypes::upgrade_clay_main);
 	
 
-	// 6 TOWER DIRT IMAGE
+	// 6 TOWER CLAY IMAGE
 	bS->addImage({ sdlutils().width() - twr_img_separation , (sdlutils().height() / 8.0f) * 6 },
 		{ towerImagesSize },
 		0, gameTextures::clay_tower_image, _grp_HUD_BACKGROUND);
+	// 6 INFO BUTTON
+	addInfoButton(bS, info_size, _twr_CLAY, 6, info_separation);
+
 
 	// 7 TOWER BUTTON - ENHANCER
 	if (game().getSaveGame()->getTurretsLevels()[_twr_POWER] == 0) {
@@ -217,6 +222,8 @@ void MainMenuSystem::initSystem() {
 		{ towerImagesSize },
 		0, gameTextures::power_tower_image, _grp_HUD_BACKGROUND);
 
+	// 7 INFO BUTTON
+	addInfoButton(bS, info_size, _twr_POWER, 7, info_separation);
 #pragma endregion
 
 }
@@ -235,6 +242,18 @@ void MainMenuSystem::updateNexusImage() {
 	ButtonSystem* bS = mngr_->getSystem<ButtonSystem>();
 
 	bS->updateNexusImage(turrentLevels[_twr_NEXUS]);
+}
+
+void MainMenuSystem::addInfoButton(ButtonSystem* bS, const Vector2D& info_size, twrId tId, int yOffset, float info_separation)
+{
+	Message m1;
+	m1.id = _m_SHOW_TOWER_INFO;
+	m1.show_info.tId = tId;
+
+	bS->addButton({ sdlutils().width() - info_separation, (sdlutils().height() / 8.0f) * yOffset },
+		info_size,
+		gameTextures::info_icon, gameTextures::info_icon, ButtonTypes::show_info,
+		0, 0, 0, m1);
 }
 
 void MainMenuSystem::addNexusText() {
