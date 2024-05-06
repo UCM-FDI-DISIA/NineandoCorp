@@ -95,8 +95,8 @@ void ConfigSystem::initSystem() {
 	bS->addSlider({ sdlutils().width() - sdlutils().width() / 4.0f, sdlutils().height() - sdlutils().height() / 3.0f + 75 }, { 50.0f, 50.0f }, gameTextures::close, _grp_HUD_FOREGROUND, music);
 	
 	////boton cerrar
-	pAux =  Vector2D(sdlutils().width() / 2.0f, sdlutils().height()/2.0f);
-	sAux = { 70.0f, 70.0f };
+	pAux =  Vector2D(sdlutils().width() / 2.0f + 550.0, sdlutils().height() / 2.0f - 350.0);
+	sAux = { 100.0f, 100.0f };
 	bS->addButton(pAux, sAux, gameTextures::close, gameTextures::close_hover, ButtonTypes::back_selector);
 	
 	
