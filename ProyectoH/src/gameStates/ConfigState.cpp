@@ -14,7 +14,7 @@ ConfigState::ConfigState(Manager* mngr, bool isPlayState) : GameState(_gmStt_CON
 ConfigState::~ConfigState() {
 	mngr_->removeSystem<ConfigSystem>();
 	if (isPlayState) {
-		mngr_->getSystem<ButtonSystem>()->changeButtonsIdHandler(_hdlr_BUTTON_PLAY);
+		mngr_->getSystem<ButtonSystem>()->changeButtonsIdHandler(_hdlr_BUTTON_PAUSE);
 		mngr_->addSystem<PauseSystem>();
 	}
 	else {
