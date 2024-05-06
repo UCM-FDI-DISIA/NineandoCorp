@@ -316,6 +316,7 @@ void EnemySystem::update()
 		const auto& enemies = mngr_->getHandler(_hdlr_ENEMIES);
 		const auto& genemies = mngr_->getHandler(_hdlr_GHOST_ENEMIES);
 		const auto& towers = mngr_->getHandler(_hdlr_LOW_TOWERS);
+		const auto& clay = mngr_->getHandler(_hdlr_NEXO_ARCILLA);
 		const auto& proyectiles = mngr_->getEntities(_grp_ENEMY_PROYECTILE);
 
 		if (generateEnemies_) {
@@ -444,7 +445,12 @@ void EnemySystem::update()
 				ac->setElapsedTime(ac->getElapsedTime() + game().getDeltaTime());
 				if (ac->getElapsedTime() > ac->getReloadTime()) {
 					ac->setLoaded(true);
-					ac->targetFromGroup(towers);
+					if (!ac->getAttackTowers()) {
+						ac->targetFromGroup(clay);
+					}
+					else {
+						ac->targetFromGroup(towers);
+					}
 					if (!ac->getAttackTowers() && rc->destinoFinal()) {
 						ac->setTarget(*mngr_->getHandler(_hdlr_NEXO).begin());
 					}
