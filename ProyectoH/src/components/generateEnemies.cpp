@@ -240,9 +240,9 @@ void generateEnemies::addEnemy(enmId type, std::vector<Vector2D> route) {
 		tr->setSpeed(intAt("CMalditoVelocidad"));
 		mngr_->addComponent<RenderComponent>(t, CMaldito);
 		mngr_->addComponent<HealthComponent>(t, intAt("CMalditoVida"));
-		RoutesCorrection(tr, route, 1.2f, 1.2f);
+		RoutesCorrection(tr, route, 0.8f, 1.5f);
 		tr->setPosition(route[0]);
-		tr->setScale({ 110.0f, 110.0f });
+		tr->setScale({ 150.0f, 150.0f });
 		mngr_->addComponent<RouteComponent>(t, route);
 		mngr_->addComponent<AttackComponent>(t, intAt("CMalditoRango"), intAt("CMalditotiempo"), intAt("CMalditoAtaque"), false);
 		mngr_->addComponent<FramedImage>(t, intAt("CMalditoFI1"), intAt("CMalditoFI2"), intAt("CMalditoFI3"), intAt("CMalditoFI4"), intAt("CMalditoFI5"), intAt("CMalditoFI6"), intAt("CMalditoFI7"));

@@ -664,6 +664,14 @@ void TowerSystem::removeTower(Entity* twr)
 	else {
 		mngr_->deleteHandler(_hdlr_HIGH_TOWERS, twr);
 	}
+	if (h == BOTH) {
+		mngr_->deleteHandler(_hdlr_LOW_TOWERS, twr);
+		mngr_->deleteHandler(_hdlr_HIGH_TOWERS, twr);
+	}
+	if (mngr_->getComponent<DirtTower>(twr) != nullptr || mngr_->getComponent<NexusComponent>(twr) != nullptr) {
+		mngr_->deleteHandler(_hdlr_NEXO_ARCILLA, twr);
+	}
+	
 	if (ic != nullptr)ic->removeAllIcons();
 	Message m;
 	m.id = _m_TOWER_DIED;

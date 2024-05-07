@@ -866,7 +866,7 @@ void ButtonSystem::generateUpgradeMoneyTexts() {
 	string nexusText = std::to_string(nexusPrice);
 	if (nexusPrice == 4)nexusText = "MAX";
 
-	addImage({ sdlutils().width() - 1040.0f , (sdlutils().height() / 5.5f) * 4.3f }, { 50.0f, 65.0f }, 0.0f, monedaH, _grp_HUD_FOREGROUND);
+	addImage({ sdlutils().width() - 1040.0f , (sdlutils().height() / 5.5f) * 4.2f }, { 50.0f, 65.0f }, 0.0f, monedaH, _grp_HUD_FOREGROUND);
 	nexusPriceText_ = mngr_->addEntity(_grp_BACKGROUND_TEXTS);
 	mngr_->setHandler(hdlr_but_id, nexusPriceText_);
 	Transform* trnx = mngr_->addComponent<Transform>(nexusPriceText_);
