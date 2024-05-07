@@ -239,7 +239,7 @@ void TowerSystem::onAttackTower(Entity* e, int dmg, Entity* src) {
 			if (s->getShield() <= 0 && h->getHealth() - dmg <= 0) {
 				clearShieldsArea(e);
 				removeTower(e);
-				//std::cout << "Torre eliminada-TorresTotales: " << towers.size() << std::endl;
+
 			}
 			else if (s->getShield() > 0) {
 				if (s->getShield() - dmg <= 0) {
@@ -751,11 +751,9 @@ void TowerSystem::generateNexus(int lvlNexus, Cell* cell) {
 	mngr_->getComponent<Transform>(n)->setPosition(cell->position);
 	mngr_->addComponent<NexusComponent>(n);
 	mngr_->addComponent<RenderComponent>(n, nexusLvl);
-	cout << lvlNexus;
 
 	mngr_->addComponent<TowerComponent>(n, _twr_NEXUS, LOW, cell, 0);
 	mngr_->addComponent<TowerStates>(n);
-	//FramedImage(int frameColumns = 1, int frameRows = 1, int frameWidth = 0, int frameHeight = 0, int currentFrame = 0, int frameRate = 0, int lastFrame = 1) : 
 	mngr_->addComponent<FramedImage>(n, 4, 1, 2048, 2048, lvlNexus - 1, 0, 1);
 	mngr_->setHandler(_hdlr_LOW_TOWERS, n);
 	mngr_->setHandler(_hdlr_NEXO, n);
@@ -813,6 +811,8 @@ void TowerSystem::addTower(twrId type, const Vector2D& pos, Height height, int c
 		mngr_->addComponent<FramedImage>(t, intAt("ArcillaColumns"), intAt("ArcillaRows"), intAt("ArcillaWidth"), intAt("ArcillaHeight"), 0, 0);
 		mngr_->setHandler(_hdlr_NEXO_ARCILLA, t);
 		sdlutils().soundEffects().at("TorreDeArcillaTerraqueaDrop").play(0, 1);
+		mngr_->getComponent<HealthComponent>(t)->setHealth(intAt("ArcillaVida"));
+		mngr_->getComponent<HealthComponent>(t)->setMaxHealth(intAt("ArcillaVida"));
 		break;
 	case _twr_POWER://Pasar rango, porcentaje incremento de ataque y vida extra
 		tr->setScale({ floatAt("PotenciadorScaleX"), floatAt("PotenciadorScaleY") });
@@ -846,5 +846,4 @@ void TowerSystem::addTower(twrId type, const Vector2D& pos, Height height, int c
 		break;
 	}
 	towers.emplace_back(t);
-	//std::cout << "Torre añadida: " << type << " TorresTotales: " << towers.size() << std::endl;
 }

@@ -466,14 +466,13 @@ void EnemySystem::update()
 							ac->setLoaded(false);
 						}
 						else {
-							//std::cout << "atacando";
 							
 							ac->doDamageTo(ac->getTarget(), ac->getDamage(), _hdlr_LOW_TOWERS);
 							ac->setElapsedTime(0.0f);
 							ac->setLoaded(false);
 							if (pc != nullptr) {
 								pc->setAttackSpeed();
-								std::cout << ac->getReloadTime() << "\n";
+
 							}
 							
 
@@ -494,7 +493,6 @@ void EnemySystem::update()
 
 						if (mm != nullptr) {
 							if (!mm->Detect(towers)) {
-								std::cout << "invisible\n";
 								mm->changeGroup(_hdlr_GHOST_ENEMIES);
 							}
 						}
@@ -508,7 +506,6 @@ void EnemySystem::update()
 				mj->setElapsedTime(mj->getElapsedTime() + game().getDeltaTime());
 				if (mj->getElapsedTime() >= mj->getReloadTime()) {
 					mj->setDevuelve(true);
-					std::cout << "devuelve\n";
 					mj->setElapsedTime(0.0f);
 				}
 				if (mj->getDevuelve()) {
@@ -516,7 +513,7 @@ void EnemySystem::update()
 					mj->setElapsedTime2(mj->getElapsedTime2() + game().getDeltaTime());
 					if (mj->getElapsedTime2() >= mj->getUltiTime()) {
 						mj->setDevuelve(false);
-						std::cout << "no devuelve\n";
+
 						mc->setStop(false);
 						mj->setElapsedTime2(0.0f);
 					}
@@ -585,7 +582,6 @@ void EnemySystem::update()
 			if (mm2 != nullptr) {
 				
 				if (mm2->Detect(towers)) {
-					std::cout << "visible\n";
 					mm2->changeGroup(_hdlr_ENEMIES);
 				}
 			
@@ -621,10 +617,8 @@ void EnemySystem::update()
 					mngr_->setAlive(p, false);
 				}
 				else {
-					//epc->setDir();
 					t->translate();
 					t->addRotation(2);
-					//cout << t->getRotation();
 				}
 
 			}

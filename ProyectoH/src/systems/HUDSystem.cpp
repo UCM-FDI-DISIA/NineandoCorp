@@ -567,7 +567,7 @@ void HUDSystem::showUpgradeMenu(Entity* twr, const Vector2D& pos) {
 	}
 	if (posA.getY() - 150.0f < 0) {
 		offset.setY(- (posA.getY() - 150));
-		std::cout << std::endl << "DIF Y: " << offset.getY() << std::endl;
+		//std::cout << std::endl << "DIF Y: " << offset.getY() << std::endl;
 	}
 	upM_.range = bS->addImage(posA + Vector2D(-255, 105),
 		{ range * 2, range * 1.5f },

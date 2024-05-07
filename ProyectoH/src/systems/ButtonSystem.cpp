@@ -170,7 +170,7 @@ void ButtonSystem::manageButtons() {
 						float volume = relativeValue * slider->getRelativeMax(); // Escalamos de 0 a 100
 
 						
-						cout << volume << endl;
+						//cout << volume << endl;
 						if (slider->getSlider() == general) {
 							game().instance()->setSoundGeneral(volume);
 							game().instance()->setNewMaxGeneral(slider->getMax() - posX );
