@@ -812,7 +812,7 @@ void TowerSystem::addTower(twrId type, const Vector2D& pos, Height height, int c
 		mngr_->addComponent<FramedImage>(t, intAt("ArcillaColumns"), intAt("ArcillaRows"), intAt("ArcillaWidth"), intAt("ArcillaHeight"), 0, 0);
 		mngr_->setHandler(_hdlr_NEXO_ARCILLA, t);
 		sdlutils().soundEffects().at("TorreDeArcillaTerraqueaDrop").play(0, 1);
-		mngr_->getComponent<HealthComponent>(t)->setHealth(intAt("ArcillaVida"));
+		mngr_->addComponent<HealthComponent>(t, intAt("ArcillaVida"));
 		break;
 	case _twr_POWER://Pasar rango, porcentaje incremento de ataque y vida extra
 		tr->setScale({ floatAt("PotenciadorScaleX"), floatAt("PotenciadorScaleY") });
