@@ -222,6 +222,7 @@ Nos encontramos con los siguientes tipos de torretas:
     - Mejora Nivel 2: Aumenta el daño a 20 puntos de daño por impacto.
     - Mejora Nivel 3: Aumenta el daño a 35 puntos de daño por impacto.
     - Mejora Nivel 4:  Disparará al segundo enemigo más avanzado también.
+    - - Puntos de vida: 50.
 
 - **Torre Diego Sniper**:
     - Mecánica especial:  Cada 3 segundos realizan un impacto unitario realizando un daño de 50 puntos al objetivo.Tiene un alcance superior al del resto de torres. Esta torre atacará primero al enemigo con más vida dentro del alcance.
