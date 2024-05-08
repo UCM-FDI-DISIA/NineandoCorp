@@ -334,7 +334,17 @@ enum gameTextures {
 	menu_background, upgrade, upgrade_hover, logo,
 	crystal_tower_image, bullet_tower_image, slime_tower_image,
 	sniper_tower_image, phoenix_tower_image, clay_tower_image,
-	power_tower_image, nexus_level_3_image,
+	power_tower_image,
+					// Siluetas
+	booster_tower_silueta, cristal_tower_silueta, phoenix_tower_silueta,
+	slime_tower_silueta, sniper_tower_silueta,
+	acechante_electrico_silueta, angel_silueta, boss2_silueta,
+	boss3_silueta, caballero_maldito_silueta,
+	defensor_real_silueta, demonio_alado_silueta, demonio_infernal_silueta,
+	elfo_silueta, goblin_silueta, golem_silueta, muerte_silueta,
+	maestro_de_almas_silueta, mensajero_silueta,
+
+	nexus_level_3_image,
 	tsunami_icon,meteorite_icon, thunder_icon, tornado_icon, earthquake_icon, 
 	level1,level1_hover,level2,level2_hover,level3,level3_hover,level4,level4_hover,level5,level5_hover,level6,level6_hover,level7,level7_hover,level8,level8_hover,
 	level1_desactive, level2_desactive, level3_desactive, level4_desactive, level5_desactive, level6_desactive, level7_desactive, level8_desactive,
