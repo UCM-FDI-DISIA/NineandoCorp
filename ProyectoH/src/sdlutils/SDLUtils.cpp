@@ -417,12 +417,17 @@ void SDLUtils::loadConstants(std::string filename) {
 			for (auto& v : jValue->AsArray()) {
 				if (v->IsObject()) {
 					JSONObject vObj = v->AsObject();
+					std::vector<std::string> parrafos;
 					std::string key = vObj["id"]->AsString();
-					std::string val = vObj["value"]->AsString();
+					auto val = vObj["value"]->AsArray();
+					parrafos.reserve(val.size());
+					for (auto& p : val) {
+						parrafos.emplace_back(p->AsString());
+					}
 #ifdef _DEBUG
-					std::cout << "Loading float with id: " << key << std::endl;
+					std::cout << "Loading string with id: " << key << std::endl;
 #endif
-					descriptions_.emplace(key, val);
+					descriptions_.emplace(key, parrafos);
 				}
 				else {
 					throw "'descriptions' array in '" + filename

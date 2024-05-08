@@ -51,7 +51,7 @@ void MainControlSystem::receive(const Message& m) {
 		game().pushState<EnemyBookState>(mngr_);
 		break;
 	case _m_SHOW_TOWER_INFO:
-		game().pushState<TowerInfoState>(mngr_);
+		game().pushState<TowerInfoState>(mngr_, m.show_info.tId);
 		break;
 	case _m_ENEMY_DIED:
 		enemiesDefeated++;

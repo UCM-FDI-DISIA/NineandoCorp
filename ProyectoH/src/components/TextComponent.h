@@ -1,5 +1,6 @@
 #pragma once
 #include "../ecs/Component.h"
+#include <SDL_ttf.h>
 
 class TextComponent : public Component
 {

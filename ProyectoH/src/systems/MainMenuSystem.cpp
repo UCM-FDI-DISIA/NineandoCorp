@@ -233,4 +233,3 @@ void MainMenuSystem::addNexusText() {
 
 	bS->generateNexusText(turrentLevels[_twr_NEXUS]);
 }
-

@@ -437,7 +437,6 @@ struct Message {
 	//_m_SHOW_TOWER_INFO
 	struct {
 		twrId tId;
-		Vector2D pos;
 	}show_info;
 	//_m_SELL_TOWER
 	struct
