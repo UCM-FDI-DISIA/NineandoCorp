@@ -122,6 +122,7 @@ enum grpId : grpId_type {
 	_grp_ICONS,
 	_grp_ENEMY_PROYECTILE,
 	_grp_POTIONAREA,
+	_grp_TOWER_ICONS,
 	
 	// do not remove this
 	_LAST_GRP_ID
@@ -246,6 +247,7 @@ enum msgId : msgId_type {
 	_m_ACTIVATE_ATTACK_TOWERS,
 	_m_ISPLAYSTATE,
 	_m_HIDE_UPGRADEBUTTON,
+	_m_CHANGE_CONTROLS,
 	_m_SHOW_TOWER_INFO
 };
 
@@ -503,7 +505,7 @@ struct Message {
 		int iterationsToDelete;
 	}anim_create;
 
-
+	
 
 	// _m_DRAG
 	struct {

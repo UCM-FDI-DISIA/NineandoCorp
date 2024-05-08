@@ -258,6 +258,9 @@ void RenderSystem::receive(const Message& m) {
 	case _m_EXIT_UP_MENU:
 		isOnUpMenu = false;
 		break;
+	case _m_CHANGE_CONTROLS:
+		changeControls();
+		break;
 	default:
 		break;
 	}
@@ -486,6 +489,20 @@ void RenderSystem::update() {
 		if (mngr_->getComponent<RenderComponent>(h)->isActive)
 			textures[textureId]->render(tr->getRect(), tr->getRotation());
 	}
+	//TOWER ICONS	
+	const auto& twrIcons = mngr_->getEntities(_grp_TOWER_ICONS);
+	for (auto& twr : twrIcons) {
+		Transform* tr = mngr_->getComponent<Transform>(twr);
+		auto fI = mngr_->getComponent<FramedImage>(twr);
+		SDL_Rect trRect = tr->getRect();
+		gameTextures textureId = mngr_->getComponent<RenderComponent>(twr)->getTexture();
+		if (mngr_->getComponent<RenderComponent>(twr)->isActive) {
+			if (fI != nullptr) {
+				SDL_Rect srcRect = fI->getSrcRect();
+				textures[textureId]->render(srcRect, trRect, tr->getRotation());
+			}
+		}
+	}
 	//Background Texts HUD
 	const auto& bgTexts = mngr_->getEntities(_grp_BACKGROUND_TEXTS);
 	for (auto& t : bgTexts) {
@@ -613,6 +630,10 @@ void RenderSystem::update() {
 	sdlutils().presentRenderer();
 }
 void RenderSystem::onGameOver(Uint8 winner) {
+}
+
+void RenderSystem::changeControls() {
+
 }
 
 void RenderSystem::drawDiamond(SDL_Renderer* renderer, const SDL_Point& center, int width, int height, const SDL_Color& fillColor)

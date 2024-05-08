@@ -92,20 +92,17 @@ void MainMenuSystem::initSystem() {
 
 #pragma region TOWER BUTTONS
 	float but_separation = 175.0f;
-	float twr_img_separation = 325.0f;
 	float info_separation = 45.0f;
 	Vector2D info_size = { 35.0f, 35.0f };
+
+	//TOWER IMAGES
+	bS->generateUpgradeImages();
 
 	// 1 TOWER BUTTON - BULLET
 	bS->addButton({ sdlutils().width() - but_separation , (sdlutils().height() /8.0f) * 1 },
 		{ 200.0f, 70.0f },
 		upgrade, upgrade_hover, ButtonTypes::upgrade_bullet_main);
 
-
-	// 1 TOWER BULLET IMAGE
-	bS->addImage({ sdlutils().width() - twr_img_separation , (sdlutils().height() / 8.0f) * 1 },
-		{ towerImagesSize },
-		0, gameTextures::bullet_tower_image, _grp_HUD_BACKGROUND);
 	// 1 INFO IMAGE
 	addInfoButton(bS, info_size, _twr_BULLET, 1, info_separation);
 
@@ -120,11 +117,7 @@ void MainMenuSystem::initSystem() {
 			{ 200.0f, 70.0f },
 			upgrade, upgrade_hover, ButtonTypes::upgrade_crystal_main);
 	}
-	
-	// 2 TOWER CRISTAL IMAGE
-	bS->addImage({ sdlutils().width() - twr_img_separation , (sdlutils().height() / 8.0f) * 2 },
-		{ towerImagesSize },
-		0, gameTextures::crystal_tower_image, _grp_HUD_BACKGROUND);
+
 	// 2 INFO BUTTON
 	addInfoButton(bS, info_size, _twr_CRISTAL, 2, info_separation);
 
@@ -141,10 +134,6 @@ void MainMenuSystem::initSystem() {
 	}
 
 	
-	// 3 TOWER SLIME IMAGE
-	bS->addImage({ sdlutils().width() - twr_img_separation , (sdlutils().height() / 8.0f) * 3 },
-		{ towerImagesSize },
-		0, gameTextures::slime_tower_image, _grp_HUD_BACKGROUND);
 	// 3 INFO BUTTON
 	addInfoButton(bS, info_size, _twr_SLIME, 3, info_separation);
 
@@ -162,10 +151,6 @@ void MainMenuSystem::initSystem() {
 	}
 
 	
-	// 4 TOWER SNIPER IMAGE
-	bS->addImage({ sdlutils().width() - twr_img_separation , (sdlutils().height() / 8.0f) * 4 },
-		{ towerImagesSize },
-		0, gameTextures::sniper_tower_image, _grp_HUD_BACKGROUND);
 	// 4 INFO BUTTON
 	addInfoButton(bS, info_size, _twr_DIEGO, 4, info_separation);
 
@@ -182,24 +167,16 @@ void MainMenuSystem::initSystem() {
 	}
 
 	
-	// 5 TOWER FENIX IMAGE
-	bS->addImage({ sdlutils().width() - twr_img_separation , (sdlutils().height() / 8.0f) * 5 },
-		{ towerImagesSize },
-		0, gameTextures::phoenix_tower_image, _grp_HUD_BACKGROUND);
+
 	// INFO BUTTON
 	addInfoButton(bS, info_size, _twr_FENIX, 5, info_separation);
 
-	// 6 TOWER BUTTON - CLAY
-	
+	// 6 TOWER BUTTON - CLAY	
 	bS->addButton({ sdlutils().width() - but_separation , (sdlutils().height() / 8.0f) * 6 },
 		{ 200.0f, 70.0f },
 		upgrade, upgrade_hover, ButtonTypes::upgrade_clay_main);
 	
 
-	// 6 TOWER CLAY IMAGE
-	bS->addImage({ sdlutils().width() - twr_img_separation , (sdlutils().height() / 8.0f) * 6 },
-		{ towerImagesSize },
-		0, gameTextures::clay_tower_image, _grp_HUD_BACKGROUND);
 	// 6 INFO BUTTON
 	addInfoButton(bS, info_size, _twr_CLAY, 6, info_separation);
 
@@ -215,12 +192,6 @@ void MainMenuSystem::initSystem() {
 			{ 200.0f, 70.0f },
 			upgrade, upgrade_hover, ButtonTypes::upgrade_enhancer_main);
 	}
-
-	
-	// 7 TOWER POWER IMAGE
-	bS->addImage({ sdlutils().width() - twr_img_separation , (sdlutils().height() / 8.0f) * 7 },
-		{ towerImagesSize },
-		0, gameTextures::power_tower_image, _grp_HUD_BACKGROUND);
 
 	// 7 INFO BUTTON
 	addInfoButton(bS, info_size, _twr_POWER, 7, info_separation);

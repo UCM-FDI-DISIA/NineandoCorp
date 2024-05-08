@@ -797,6 +797,10 @@
       "value": 5
     },
     {
+      "id": "FenixVida",
+      "value": 100
+    },
+    {
       "id": "FenixTiempoDisparo",
       "value": 5
     },
@@ -828,6 +832,10 @@
       "id": "BalasVelocidad",
       "value": 3000
     },
+    {
+      "id": "BalasVida",
+      "value": 100
+    },
 
     {
       "id": "SlimeRecargaUpdate",
@@ -844,6 +852,10 @@
     {
       "id": "SlimeVelocidad",
       "value": 1500
+    },
+    {
+      "id": "SlimeVida",
+      "value": 100
     },
 
     {
@@ -880,6 +892,11 @@
 
     },
     {
+      "id": "DiegoSniperVida",
+      "value": 100
+
+    },
+    {
       "id": "DiegoSniperOffset",
       "value": 25
     },
@@ -895,6 +912,10 @@
     {
       "id": "PotenciadoraAumentoVida",
       "value": 30
+    },
+    {
+      "id": "PotenciadoraVida",
+      "value": 75
     },
     {
       "id": "PotenciadoraDano1",
@@ -924,6 +945,10 @@
     {
       "id": "CristalRango",
       "value": 200.0
+    },
+    {
+      "id": "CristalVida",
+      "value": 100
     },
     {
       "id": "ArcillaVida1",
@@ -1154,7 +1179,7 @@
     },
     {
       "id": "GolemVida",
-      "value": 1000
+      "value": 5000
     },
     {
       "id": "GolemRango",
