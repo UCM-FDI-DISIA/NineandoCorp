@@ -553,7 +553,8 @@
       "id": "cristal_des_4",
       "value": [
         "Shield strength: +50.",
-        "Adds an energy explosion upon breaking that damages nearby enemies."
+        "Adds an energy explosion upon",
+        "breaking that damages nearby enemies."
       ]
     },
 
@@ -577,8 +578,8 @@
     {
       "id": "slime_des_4",
       "value": [
-        "Any enemy within the area receives damage at ",
-        "a rate of 1 point per second."
+        "Any enemy within the area receives damage",
+        "at a rate of 1 point per second."
       ]
     },
 

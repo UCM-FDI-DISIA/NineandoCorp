@@ -33,6 +33,10 @@ private:
 	Vector2D font_size_subtitle;
 	//Tamaño de la fuente del texto de titulo
 	Vector2D font_size_title;
+	//Posicion de la imagen de la torre
+	Vector2D twr_img_pos;
+	//Escala de la imagen de la torre
+	Vector2D twr_img_size;
 	//Posicion inicial en el eje y de las stats
 	float stats_initial_pos_y;
 	//Separacion del cuerpo respecto el titulo
@@ -61,6 +65,10 @@ private:
 	/// Crea los textos de las estadisticas que se mejoran en cada nivel
 	/// </summary>
 	void setUpStats();
+	/// <summary>
+	/// Crea la imagen de la torre correspondiente
+	/// </summary>
+	void setTowerImg();
 	/// <summary>
 	/// Devuelve el string correspondiente del mapa de strings "descriptions"
 	/// </summary>

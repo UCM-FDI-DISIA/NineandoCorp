@@ -18,11 +18,15 @@ void TowerInfoSystem::initSystem()
 
 	bs_ = mngr_->getSystem<ButtonSystem>();
 
+	bPos = Vector2D((float)sdlutils().width() / 2, (float)sdlutils().height() / 2);
+
+	bSize = Vector2D(sdlutils().width() / 1.5f, sdlutils().height() / 1.5f);
+
 	font_size_body = { 10.0f, 24.0f };
 
 	font_size_title = { 30.0f, 70.0f };
 
-	font_size_subtitle = { 15.0f, 36.0f };
+	font_size_subtitle = { 13.0f, 30.0f };
 
 	body_separation = 130.0f;
 
@@ -36,6 +40,10 @@ void TowerInfoSystem::initSystem()
 
 	stats_separation = 60.0f;
 
+	twr_img_pos = { bPos.getX() + bSize.getX() / 4, bPos.getY() + bSize.getY() / 4 };
+
+	twr_img_size = Vector2D(80.5f, 112.0f ) * 2;
+
 #pragma endregion
 
 
@@ -43,8 +51,6 @@ void TowerInfoSystem::initSystem()
 	/**
 	*   -- BACKGROUND
 	*/
-	bPos = Vector2D((float)sdlutils().width() / 2, (float)sdlutils().height() / 2);
-	bSize = Vector2D(sdlutils().width() / 1.5f, sdlutils().height() / 1.5f);
 	bs_->addImage(bPos, bSize, 180, gameTextures::large_box, grpId::_grp_HUD_FOREGROUND);
 
 	/**
@@ -80,6 +86,11 @@ void TowerInfoSystem::initSystem()
 	*	-- UPGRADE STATS
 	*/
 	setUpStats();
+
+	/**
+	*	-- TOWER IMAGE
+	*/
+	setTowerImg();
 
 #pragma endregion
 
@@ -214,15 +225,88 @@ void TowerInfoSystem::setUpStats() {
 	bs_->addText(subtitle_2, title_c, 
 		{ bPos.getX() - bSize.getX() / 2 + subtitle_2.size() * font_size_subtitle.getX() / 2 + right_separation, aux_pos_y }, 
 		{subtitle_2.size() * font_size_subtitle.getX(), font_size_subtitle.getY()});
+	aux_pos_y += between_line_offset;
+
+	for (int i = 0; i < des_2.size(); ++i) {
+		Vector2D namePos = Vector2D(bPos.getX() - bSize.getX() / 2 + des_2[i].size() * font_size_body.getX() / 2 + right_separation, aux_pos_y);
+		Vector2D nameScale = { font_size_body.getX() * des_2[i].size(), font_size_body.getY() };
+		bs_->addText(des_2[i], body_c,
+			namePos,
+			nameScale
+		);
+		aux_pos_y += between_line_offset;
+	}
+
 	/**
 	*	-- LEVEL 3
 	*/
 	auto des_3 = getDescription(prefix + "_des_3");
 	basic_string subtitle_3 = "LEVEL 3:";
+	bs_->addText(subtitle_3, title_c,
+		{ bPos.getX() - bSize.getX() / 2 + subtitle_3.size() * font_size_subtitle.getX() / 2 + right_separation, aux_pos_y },
+		{ subtitle_3.size() * font_size_subtitle.getX(), font_size_subtitle.getY() });
+	aux_pos_y += between_line_offset;
+
+	for (int i = 0; i < des_3.size(); ++i) {
+		Vector2D namePos = Vector2D(bPos.getX() - bSize.getX() / 2 + des_3[i].size() * font_size_body.getX() / 2 + right_separation, aux_pos_y);
+		Vector2D nameScale = { font_size_body.getX() * des_3[i].size(), font_size_body.getY() };
+		bs_->addText(des_3[i], body_c,
+			namePos,
+			nameScale
+		);
+		aux_pos_y += between_line_offset;
+	}
 	/**
 	*	-- LEVEL 4
 	*/
 	auto des_4 = getDescription(prefix + "_des_4");
 	basic_string subtitle_4 = "LEVEL 4:";
+	bs_->addText(subtitle_4, title_c,
+		{ bPos.getX() - bSize.getX() / 2 + subtitle_4.size() * font_size_subtitle.getX() / 2 + right_separation, aux_pos_y },
+		{ subtitle_4.size() * font_size_subtitle.getX(), font_size_subtitle.getY() });
+	aux_pos_y += between_line_offset;
+
+	for (int i = 0; i < des_4.size(); ++i) {
+		Vector2D namePos = Vector2D(bPos.getX() - bSize.getX() / 2 + des_4[i].size() * font_size_body.getX() / 2 + right_separation, aux_pos_y);
+		Vector2D nameScale = { font_size_body.getX() * des_4[i].size(), font_size_body.getY() };
+		bs_->addText(des_4[i], body_c,
+			namePos,
+			nameScale
+		);
+		aux_pos_y += between_line_offset;
+	}
+
+}
+
+void TowerInfoSystem::setTowerImg()
+{
+	gameTextures tex;
+	switch (tower_id)
+	{
+	case _twr_BULLET:
+		tex = gameTextures::bullet_tower_image;
+		break;
+	case _twr_CLAY:
+		tex = gameTextures::clay_tower_image;
+		break;
+	case _twr_SLIME:
+		tex = gameTextures::slime_tower_image;
+		break;
+	case _twr_FENIX:
+		tex = gameTextures::phoenix_tower_image;
+		break;
+	case _twr_DIEGO:
+		tex = gameTextures::sniper_tower_image;
+		break;
+	case _twr_POWER:
+		tex = gameTextures::power_tower_image;
+		break;
+	case _twr_CRISTAL:
+		tex = gameTextures::crystal_tower_image;
+		break;
+	default:
+		break;
+	}
+	bs_->addImage(twr_img_pos - twr_img_size / 4 - Vector2D(0, 70.0f), twr_img_size, 0, tex, _grp_HUD_FOREGROUND);
 }
 
