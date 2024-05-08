@@ -27,6 +27,26 @@ private:
 		gameTextures::monje_icon,
 		gameTextures::muerte_icon
 	};
+	vector<gameTextures> TexturasSilueta{
+		gameTextures::maestro_de_almas_silueta,
+		gameTextures::acechante_electrico_silueta,
+		gameTextures::caballero_maldito_silueta,
+		gameTextures::demonio_alado_silueta,
+		gameTextures::golem_silueta,
+		gameTextures::goblin_silueta,
+		gameTextures::elfo_silueta,
+		gameTextures::mensajero_silueta,
+		gameTextures::angel_silueta,
+		gameTextures::demonio_infernal_silueta,
+		gameTextures::defensor_real_silueta,
+		gameTextures::caballero_maldito_silueta,
+		gameTextures::boss2_silueta,
+		gameTextures::boss3_silueta,
+		gameTextures::muerte_silueta,
+		
+	};
+	//vector de textos
+	vector<Entity*> texto;
 	
 public:
 	static constexpr sysId_type id = _sys_ENEMYBOOK;
@@ -34,6 +54,7 @@ public:
 
 	void initSystem() override;
 	void EnemyPopUp(int i);
+	void EnemyPopUpABILITY(int i);
 	void receive(const Message& m) override;
 	
 };
