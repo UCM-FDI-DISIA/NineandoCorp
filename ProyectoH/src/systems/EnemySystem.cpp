@@ -98,7 +98,7 @@ void  EnemySystem::receive(const Message& m) {
 					}
 					AddMoney(enemytype->GetEnemyType(), level);
 					CoinAnimation(mngr_->getComponent<Transform>(m.entity_to_attack.e)->getPosition());
-					if (mngr_->hasComponent<AttackComponent>(m.entity_to_attack.src))mngr_->getComponent<AttackComponent>(m.entity_to_attack.src)->setTarget(nullptr);
+					//if (mngr_->hasComponent<AttackComponent>(m.entity_to_attack.src))mngr_->getComponent<AttackComponent>(m.entity_to_attack.src)->setTarget(nullptr);
 
 				};
 			}
@@ -531,7 +531,7 @@ void EnemySystem::update()
 							
 							HealthComponent* hc = mngr_->getComponent<HealthComponent>(enemy);
 							if (hc->getHealth() < hc->getMaxHealth()) {
-								hc->addHealth(hc->getBaseHealth() / 100.0f);
+								hc->addHealth(hc->getBaseHealth() * 0.20f);
 								if(es!=nullptr)es->setIsHealing(true);
 							}
 							
