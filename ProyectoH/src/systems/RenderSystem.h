@@ -63,6 +63,7 @@ private:
 
 	void onGameOver(Uint8 winner);
 
+	void changeControls();
 	//si el juego esta en el upgrade menu de una torre
 	bool isOnUpMenu;
 

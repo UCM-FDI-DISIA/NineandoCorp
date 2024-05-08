@@ -460,7 +460,7 @@ void ButtonSystem::sellTower(Entity* twr)
 
 		/*--- ChangeControls ---*/
 		case changeControls:
-			// change the controls as unity
+			mngr_->send(mngr_->getComponent<ButtonComponent>(bC)->getMessage());
 			break;
 		/*----------------------------------------*/
 		}
