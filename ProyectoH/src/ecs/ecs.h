@@ -122,6 +122,7 @@ enum grpId : grpId_type {
 	_grp_ICONS,
 	_grp_ENEMY_PROYECTILE,
 	_grp_POTIONAREA,
+	_grp_TOWER_ICONS,
 	
 	// do not remove this
 	_LAST_GRP_ID

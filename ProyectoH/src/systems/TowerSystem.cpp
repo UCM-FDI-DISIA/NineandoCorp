@@ -774,8 +774,7 @@ void TowerSystem::addTower(twrId type, const Vector2D& pos, Height height, int c
 	if(type != _twr_NEXUS)
 		mngr_->addComponent<InteractiveTower>(t, cameraOffset_);
 	mngr_->addComponent<IconComponent>(t);
-	float health = 100.0f;
-	mngr_->addComponent<HealthComponent>(t, health);
+
 	if (height == LOW ||height == PATH) {
 		
 		mngr_->setHandler(_hdlr_LOW_TOWERS, t);
@@ -796,6 +795,7 @@ void TowerSystem::addTower(twrId type, const Vector2D& pos, Height height, int c
 		mngr_->addComponent<RenderComponent>(t, phoenixTowerTexture);
 		mngr_->addComponent<FramedImage>(t, intAt("FenixColumns"), intAt("FenixRows"), intAt("FenixWidth"), intAt("FenixHeight"), 0, 0);
 		sdlutils().soundEffects().at("TorreDeLLamaDeFenixDrop").play(0, 1);
+		mngr_->addComponent<HealthComponent>(t, floatAt("FenixVida"));
 		break;
 	case _twr_BULLET://Pasar rango, recarga, da?o y si dispara
 		tr->setScale({ floatAt("BulletScaleX"), floatAt("BulletScaleY") });
@@ -803,6 +803,7 @@ void TowerSystem::addTower(twrId type, const Vector2D& pos, Height height, int c
 		mngr_->addComponent<RenderComponent>(t, bulletTowerTexture);
 		mngr_->addComponent<FramedImage>(t, intAt("BalasColumns"), intAt("BalasRows"), intAt("BalasWidth"), intAt("BalasHeight"), 0, 0);
 		sdlutils().soundEffects().at("TorreDeBalasDrop").play(0, 1);
+		mngr_->addComponent<HealthComponent>(t, floatAt("BalasVida"));
 		break;
 	case _twr_CLAY:
 		tr->setScale({ floatAt("ClayScaleX"), floatAt("ClayScaleY") });
@@ -812,7 +813,6 @@ void TowerSystem::addTower(twrId type, const Vector2D& pos, Height height, int c
 		mngr_->setHandler(_hdlr_NEXO_ARCILLA, t);
 		sdlutils().soundEffects().at("TorreDeArcillaTerraqueaDrop").play(0, 1);
 		mngr_->getComponent<HealthComponent>(t)->setHealth(intAt("ArcillaVida"));
-		mngr_->getComponent<HealthComponent>(t)->setMaxHealth(intAt("ArcillaVida"));
 		break;
 	case _twr_POWER://Pasar rango, porcentaje incremento de ataque y vida extra
 		tr->setScale({ floatAt("PotenciadorScaleX"), floatAt("PotenciadorScaleY") });
@@ -820,6 +820,8 @@ void TowerSystem::addTower(twrId type, const Vector2D& pos, Height height, int c
 		mngr_->addComponent<RenderComponent>(t, boosterTowerTexture);
  		mngr_->addComponent<FramedImage>(t, intAt("PotenciadoraColumns"), intAt("PotenciadoraRows"), intAt("PotenciadoraWidth"), intAt("PotenciadoraHeight"), 0, 0);
 		sdlutils().soundEffects().at("TorrePotenciadoraDrop").play(0, 1);
+		mngr_->addComponent<HealthComponent>(t, floatAt("PotenciadoraVida"));
+
 		break;
 	case _twr_DIEGO://Rango, Probabilidad de critico, Dano por critico, Tiempo de recarga y Dano
 		tr->setScale({ floatAt("SniperScaleX"), floatAt("SniperScaleY") });
@@ -827,6 +829,8 @@ void TowerSystem::addTower(twrId type, const Vector2D& pos, Height height, int c
 		mngr_->addComponent<RenderComponent>(t, sniperTowerTexture);
 		mngr_->addComponent<FramedImage>(t, intAt("DiegoSniperColumns"), intAt("DiegoSniperRows"), intAt("DiegoSniperWidth"), intAt("DiegoSniperHeight"), 0, 0);
 		sdlutils().soundEffects().at("TorreDeBalasDrop").play(0, 1);
+		mngr_->addComponent<HealthComponent>(t, floatAt("DiegoSniperVida"));
+
 		break;
 	case _twr_SLIME:
 		tr->setScale({ floatAt("SlimeScaleX"), floatAt("SlimeScaleY") });
@@ -834,6 +838,8 @@ void TowerSystem::addTower(twrId type, const Vector2D& pos, Height height, int c
 		mngr_->addComponent<RenderComponent>(t, slimeTowerTexture);
 		mngr_->addComponent<FramedImage>(t, intAt("SlimeColumns"), intAt("SlimeRows"), intAt("SlimeWidth"), intAt("SlimeHeight"), 0, 0);
 		sdlutils().soundEffects().at("TorreSlimeImpacto").play(0, 1);
+		mngr_->addComponent<HealthComponent>(t, floatAt("SlimeVida"));
+
 		break;
 	case _twr_CRISTAL://Escudo, Tiempo de recarga y dano por explosion
 		tr->setScale({ floatAt("CristalScaleX"), floatAt("CristalScaleY") });
@@ -841,9 +847,12 @@ void TowerSystem::addTower(twrId type, const Vector2D& pos, Height height, int c
 		mngr_->addComponent<RenderComponent>(t, cristalTowerTexture);
 		mngr_->addComponent<FramedImage>(t, intAt("CristalColumns"), intAt("CristalRows"), intAt("CristalWidth"), intAt("CristalHeight"), 0, 0);
 		sdlutils().soundEffects().at("TorreCristalDeEnergiaDrop").play(0, 1);
+		mngr_->addComponent<HealthComponent>(t, floatAt("CristalVida"));
+
 		break;
 	default:
 		break;
 	}
+	mngr_->getComponent<HealthComponent>(t)->resetHealth();
 	towers.emplace_back(t);
 }

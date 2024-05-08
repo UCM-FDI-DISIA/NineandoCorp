@@ -484,6 +484,20 @@ void RenderSystem::update() {
 		if (mngr_->getComponent<RenderComponent>(h)->isActive)
 			textures[textureId]->render(tr->getRect(), tr->getRotation());
 	}
+	//TOWER ICONS	
+	const auto& twrIcons = mngr_->getEntities(_grp_TOWER_ICONS);
+	for (auto& twr : twrIcons) {
+		Transform* tr = mngr_->getComponent<Transform>(twr);
+		auto fI = mngr_->getComponent<FramedImage>(twr);
+		SDL_Rect trRect = tr->getRect();
+		gameTextures textureId = mngr_->getComponent<RenderComponent>(twr)->getTexture();
+		if (mngr_->getComponent<RenderComponent>(twr)->isActive) {
+			if (fI != nullptr) {
+				SDL_Rect srcRect = fI->getSrcRect();
+				textures[textureId]->render(srcRect, trRect, tr->getRotation());
+			}
+		}
+	}
 	//Background Texts HUD
 	const auto& bgTexts = mngr_->getEntities(_grp_BACKGROUND_TEXTS);
 	for (auto& t : bgTexts) {
