@@ -59,7 +59,8 @@ RenderSystem::RenderSystem() : winner_(0)
 	textures[slimeArea] = &sdlutils().images().at("slime_area");
 	textures[shield] = &sdlutils().images().at("shield");
 
-	textures[shield] = &sdlutils().images().at("shield");
+	textures[ability] = &sdlutils().images().at("ability");
+	textures[ability_hover] = &sdlutils().images().at("ability_hover");
 
 	//Nexus
 	textures[nexusLvl] = &sdlutils().images().at("nexus");	// Borrados nexos anteriores y cambiar este enombre

@@ -970,6 +970,14 @@
     {
       "id": "mensajero_silueta",
       "file": "resources/images/Enemies/mensajero_silueta.png"
+    },
+    {
+      "id": "ability",
+      "file": "resources/images/UI/ability.png"
+    },
+    {
+      "id": "ability_hover",
+      "file": "resources/images/UI/ability_hover.png"
     }
   ],
 

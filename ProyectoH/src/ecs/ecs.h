@@ -355,7 +355,7 @@ enum gameTextures {
 	white_frame, button, button_hover, check, check_hover,resolution, resolution_hover,
 	resolution1, resolution1_hover, resolution2, resolution2_hover, resolution3, resolution3_hover, 
 	shield_life, shield_background, life, life_background, life_enemy, life_background_enemy,buy, buy_hover,
-	white_arrow, info_icon,
+	white_arrow, info_icon, ability, ability_hover,
 	//menu de pausa
 	resume_button, resume_button_hover, backToMenu_button, backToMenu_button_hover, exitGame_button, exitGame_button_hover,
 	resume_icon_button, resume_icon_button_hover,
