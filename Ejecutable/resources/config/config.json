@@ -30,7 +30,8 @@
         [ 7, 21 ],
         [ 17, 21 ],
         [ 17, 15 ],
-        [ 15, 15 ]
+        [ 14, 15 ],
+        [ 14, 14 ]
       ]
     },
     {
@@ -382,7 +383,7 @@
       "puntos": [
         [ 30, 12 ],
         [ 27, 12 ],
-        [ 27, 5],
+        [ 27, 5 ],
         [ 22, 5 ],
         [ 22, 14 ],
         [ 15, 14 ]
@@ -525,6 +526,127 @@
         [ 1, 2 ],
         [ 5, 2 ]
       ]
+    }
+  ],
+  "descriptions": [
+    {
+      "id": "cristal_des_general",
+      "value": "Generates a protection shield around nearby towers every 20 seconds, absorbing damage.\nElevation: LOW"
+    },
+
+    {
+      "id": "cristal_des_2",
+      "value": "Shield strength: +50"
+    },
+    {
+      "id": "cristal_des_3",
+      "value": "Shield strength: +50"
+    },
+    {
+      "id": "cristal_des_4",
+      "value": "Shield strength: +50. \nAdds an energy explosion upon breaking that damages nearby enemies."
+    },
+
+    {
+      "id": "slime_des_general",
+      "value": "Fires a slime every 5 seconds in an area, slowing down all troops 20% of their speed within the impact zone for 2 seconds. \nTargets the most advanced enemy within its attack range. \nElevation: LOW"
+    },
+
+    {
+      "id": "slime_des_2",
+      "value": "Slowing effect: +30%"
+    },
+    {
+      "id": "slime_des_3",
+      "value": "Slime duration: +0.5s"
+    },
+    {
+      "id": "slime_des_4",
+      "value": "Any enemy within the area receives damage at a rate of 1 point per second."
+    },
+
+    {
+      "id": "bullet_des_general",
+      "value": "Fires bullets every 3 seconds at the first target entering its range. DMG: 20.\nElevation: LOW"
+    },
+    {
+      "id": "bullet_des_2",
+      "value": "DMG: +10"
+    },
+    {
+      "id": "bullet_des_3",
+      "value": "DMG: +30"
+    },
+    {
+      "id": "bullet_des_4",
+      "value": "DMG: +45"
+    },
+
+    {
+        "id": "sniper_des_general",
+        "value": "Every 4 seconds, performs a single impact. Prioritizes targeting the enemy with the most health within its range.\nDMG: 60\nElevation: HIGH"
+    },
+    {
+        "id": "sniper_des_2",
+        "value": "DMG: +10\n Crit: 150%. Prob: 20%"
+    },
+    {
+        "id": "sniper_des_3",
+        "value": "Cooldown: 3.5s"
+    },
+    {
+        "id": "sniper_des_4",
+        "value": "Cooldown: 2.5s. \nCrit prob: +10%"
+    },
+
+    {
+        "id": "fenix_des_general",
+        "value": "Throw fire in area. Can be firing for 5 seconds. Then 2 seconds of cooldown\nDPS: 5.\nElevation: LOW / HIGH"
+    },
+    {
+        "id": "fenix_des_2",
+        "value": "DPS: +3\nCooldown: 1.5s"
+    },
+    {
+        "id": "fenix_des_3",
+        "value": "DPS: +7\nCooldown: 1.0s"
+    },
+    {
+        "id": "fenix_des_4",
+        "value": "No cooldown."
+    },
+
+    {
+        "id": "clay_des_general",
+        "value": "Blocks enemy route until it is broken. Only can be placed on the path.\nHP: 750"
+    },
+    {
+        "id": "clay_des_2",
+        "value": "HP: +250"
+    },
+    {
+        "id": "clay_des_3",
+        "value": "HP: +250"
+    },
+    {
+        "id": "clay_des_4",
+        "value": "HP: +250"
+    },
+    {
+        "id": "power_des_general",
+        "value": "In a circular area near the tower, increases damage stats by 5%."
+    },
+    {
+        "id": "power_des_2",
+        "value": "DMG boost: +5%\n HP: +30"
+    },
+    {
+        "id": "power_des_3",
+        "value": "DMG boost: +5%"
+    },
+    {
+        "id": "power_des_4",
+        "value": "DMG boost: +15%\nHP boost: 30%"
     }
   ],
   "floatConst": [
@@ -742,7 +864,7 @@
     },
     {
       "id": "DiegoSniperRango",
-      "value": 450
+      "value": 350
     },
     {
       "id": "DiegoSniperRecarga",
@@ -920,7 +1042,7 @@
     },
     {
       "id": "AcechanteRango",
-      "value": 50
+      "value": 100
     },
     {
       "id": "AcechanteVelocidad",
@@ -976,7 +1098,7 @@
     },
     {
       "id": "MalditoRango",
-      "value": 50
+      "value": 100
     },
     {
       "id": "MalditoVelocidad",
@@ -1032,7 +1154,7 @@
     },
     {
       "id": "GolemRango",
-      "value": 50
+      "value": 100
     },
     {
       "id": "GolemVelocidad",
@@ -1144,7 +1266,7 @@
     },
     {
       "id": "GoblinRango",
-      "value": 150
+      "value": 100
     },
     {
       "id": "GoblinVelocidad",
@@ -1204,7 +1326,7 @@
     },
     {
       "id": "ElfoVelocidad",
-      "value": 20
+      "value": 40
     },
     {
       "id": "ElfoAtaque",
@@ -1256,7 +1378,7 @@
     },
     {
       "id": "MensajeroRango",
-      "value": 75
+      "value": 100
     },
     {
       "id": "MensajeroVelocidad",
@@ -1480,7 +1602,7 @@
     },
     {
       "id": "CMalditoRango",
-      "value": 150
+      "value": 100
     },
     {
       "id": "CMalditoVelocidad",
@@ -1942,7 +2064,7 @@
 
     {
       "id": "FenixPrecio",
-      "value": 75
+      "value": 250
     },
 
     {
@@ -1975,7 +2097,7 @@
     },
     {
       "id": "BalasPrecio",
-      "value": 50
+      "value": 75
     },
     {
       "id": "BalasDano",
@@ -2030,7 +2152,7 @@
     },
     {
       "id": "SlimePrecio",
-      "value": 75
+      "value": 250
     },
     {
       "id": "SlimeRecarga",
@@ -2073,7 +2195,7 @@
 
     {
       "id": "DiegoSniperPrecio",
-      "value": 150
+      "value": 200
     },
     {
       "id": "UpgradeLife",
@@ -2160,7 +2282,7 @@
     },
     {
       "id": "CristalPrecio",
-      "value": 350
+      "value": 300
     },
     {
       "id": "CristalEscudo",
@@ -2202,7 +2324,7 @@
     },
     {
       "id": "ArcillaPrecio",
-      "value": 200
+      "value": 100
     },
     {
       "id": "ArcillaElevacion",

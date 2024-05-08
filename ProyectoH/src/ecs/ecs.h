@@ -303,7 +303,7 @@ enum ButtonTypes {
 	enemybook,
 	enemybookPop,
 	//CONFIG
-	config, full_screen, changeResolution,
+	config, full_screen, changeResolution, changeControls,
 	// ----- HUD -----//
 	crystal_drag,
 	slime_drag,
