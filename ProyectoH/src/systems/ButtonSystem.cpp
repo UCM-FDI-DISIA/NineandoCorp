@@ -457,6 +457,11 @@ void ButtonSystem::sellTower(Entity* twr)
 			sdlutils().soundEffects().at("button").play(0, 1);
 			exitUpMenu();
 			break;
+
+		/*--- ChangeControls ---*/
+		case changeControls:
+			// change the controls as unity
+			break;
 		/*----------------------------------------*/
 		}
 	}
