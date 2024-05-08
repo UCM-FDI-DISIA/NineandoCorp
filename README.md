@@ -205,7 +205,7 @@ Nos encontramos con los siguientes tipos de torretas:
     - Mejoras Nivel 1 a 3: Aumenta en 50 puntos el escudo máximo.
     - Mejora Nivel 4: Aumenta en 50 puntos el escudo máximo, y agrega una explosión de energía al romperse que daña con 30 puntos a los enemigos cercanos.
     - Elevación: ALTA.
-    - Puntos de vida: 50.
+    - Puntos de vida: 100.
 
 - **Torre de Slime Escape**:
     - Mecánica especial:  Dispara cada 5 segundos un slime en área que ralentiza a todas las tropas dentro del área que se mantiene en la zona del impacto durante 2 segundos. Dispara al enemigo más avanzado dentro de su rango de ataque. El efecto de ralentización dentro del área disminuye la velocidad de movimiento del enemigo en un 20%.
@@ -222,7 +222,7 @@ Nos encontramos con los siguientes tipos de torretas:
     - Mejora Nivel 2: Aumenta el daño a 20 puntos de daño por impacto.
     - Mejora Nivel 3: Aumenta el daño a 35 puntos de daño por impacto.
     - Mejora Nivel 4:  Disparará al segundo enemigo más avanzado también.
-    - - Puntos de vida: 50.
+    - - Puntos de vida: 100.
 
 - **Torre Diego Sniper**:
     - Mecánica especial:  Cada 3 segundos realizan un impacto unitario realizando un daño de 50 puntos al objetivo.Tiene un alcance superior al del resto de torres. Esta torre atacará primero al enemigo con más vida dentro del alcance.
@@ -232,7 +232,7 @@ Nos encontramos con los siguientes tipos de torretas:
     - Mejora Nivel 3: Los tres segundos de espera para disparo se reducen a 2,5 segundos.
     - Mejora Nivel 4:  Los tres segundos de espera para disparo se reducen a 2 segundos, Probabilidad del 30% de realizar un impacto crítico.
     - Elevación: ALTA.
-    - Puntos de vida: 50.
+    - Puntos de vida: 100.
 
 
 - **Torre de Llama de Fénix**:
@@ -245,7 +245,7 @@ Nos encontramos con los siguientes tipos de torretas:
         - Aumento del ángulo del cono de ataque (+15 grados).
         - Reducción completa del enfriamiento (ataque continuo).
     - Elevación: ALTA.
-    - Puntos de vida: 50.
+    - Puntos de vida: 100.
 
 - **Torre de Arcilla Terráquea**:
     - Mecánica especial:  Crea una barrera de tierra que bloquea el avance de los enemigos hasta  que es destruida.
