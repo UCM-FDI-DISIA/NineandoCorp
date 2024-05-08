@@ -21,6 +21,7 @@ protected:
 	bool nexusIsAlive_;
 	bool isPlaying;
 	bool waveActive = false;
+	bool generateCoins = true;
 	int numDoradasCada5Segs = 5;
 	int coinsH = 0;
 	int enemiesDefeated = 0;

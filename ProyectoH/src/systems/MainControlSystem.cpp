@@ -72,11 +72,13 @@ void MainControlSystem::receive(const Message& m) {
 		break;
 	case _m_PAUSE:
 		if (m.start_pause.onPause) {
-			waveActive = false;
+			generateCoins = false;
 			pauseAuxElapsedTime_ = elapsedTime_;
 		}
 		else {
-			waveActive = true;
+			if (waveActive) {
+				generateCoins = true;
+			}
 			elapsedTime_ = pauseAuxElapsedTime_;
 		}
 		game().pushState<PauseState>(mngr_);
@@ -103,7 +105,7 @@ void MainControlSystem::receive(const Message& m) {
 	case _m_WAVE_START:
 		if (m.start_wave.play) {
 			waveActive = m.start_wave.play;
-
+			
 			round++;
 			Message m1;
 			m1.id = _m_ADD_TEXT;
@@ -143,7 +145,7 @@ void MainControlSystem::upgradeTower(twrId id) {
 
 void MainControlSystem::update() {
 	elapsedTime_ += game().getDeltaTime();
-	if (isPlaying && waveActive) {
+	if (generateCoins && waveActive) {
 		if (nexusIsAlive_ && elapsedTime_ > generateNexusCoinsTime_) 
 		{
 			elapsedTime_ = 0;
