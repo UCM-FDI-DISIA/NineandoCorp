@@ -256,6 +256,9 @@ void RenderSystem::receive(const Message& m) {
 	case _m_EXIT_UP_MENU:
 		isOnUpMenu = false;
 		break;
+	case _m_CHANGE_CONTROLS:
+		changeControls();
+		break;
 	default:
 		break;
 	}
@@ -611,6 +614,10 @@ void RenderSystem::update() {
 	sdlutils().presentRenderer();
 }
 void RenderSystem::onGameOver(Uint8 winner) {
+}
+
+void RenderSystem::changeControls() {
+
 }
 
 void RenderSystem::drawDiamond(SDL_Renderer* renderer, const SDL_Point& center, int width, int height, const SDL_Color& fillColor)
