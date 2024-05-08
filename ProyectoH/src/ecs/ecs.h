@@ -247,6 +247,7 @@ enum msgId : msgId_type {
 	_m_ACTIVATE_ATTACK_TOWERS,
 	_m_ISPLAYSTATE,
 	_m_HIDE_UPGRADEBUTTON,
+	_m_CHANGE_CONTROLS,
 	_m_SHOW_TOWER_INFO
 };
 
@@ -494,7 +495,7 @@ struct Message {
 		int iterationsToDelete;
 	}anim_create;
 
-
+	
 
 	// _m_DRAG
 	struct {
