@@ -14,29 +14,26 @@ void MainControlSystem::receive(const Message& m) {
 	case _m_START_GAME:
 		nexusIsAlive_ = true;
 		isPlaying = true;
-
-		//if (turrentLevels_ != nullptr) {
-		//	// Asignación de monedas generadas cada 5 segundos por el nexo
-		//	switch (turrentLevels_[_twr_NEXUS])
-		//	{
-		//	case 1:
-		//		numDoradasCada5Segs = 2;
-		//		break;
-		//	case 2:
-		//		numDoradasCada5Segs = 4;
-		//		break;
-		//	case 3:
-		//		numDoradasCada5Segs = 7;
-		//		break;
-		//	case 4:
-		//		numDoradasCada5Segs = 10;
-		//		break;
-		//	default:
-		//		// Caso default por si hay algun error
-		//		numDoradasCada5Segs = 5;
-		//		break;
-		//	}
-		//}
+		// Asignación de monedas generadas cada 5 segundos por el nexo
+		switch (m.start_game_data.turrentLevels[_twr_NEXUS])
+		{
+		case 1:
+			numDoradasCada5Segs = 2;
+			break;
+		case 2:
+			numDoradasCada5Segs = 4;
+			break;
+		case 3:
+			numDoradasCada5Segs = 7;
+			break;
+		case 4:
+			numDoradasCada5Segs = 10;
+			break;
+		default:
+			// Caso default por si hay algun error
+			numDoradasCada5Segs = 5;
+			break;
+		}
 		
 		OnStartGame();
 		break;
