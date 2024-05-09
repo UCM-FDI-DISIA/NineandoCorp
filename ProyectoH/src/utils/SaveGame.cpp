@@ -4,7 +4,7 @@
 #include <fstream>  
 #include <filesystem>
 
-SaveGame::SaveGame() : levelsUnlocked_(1), HCoins_(0) {
+SaveGame::SaveGame() : levelsUnlocked_(1), HCoins_(10000) {
 	std::fill_n(enemiesBook_, _enm_SIZE, false); 
 	//std::fill_n(enemiesBook_, _twr_SIZE, 4); //Sustituir esto por lo de abajo para tener todas las torretas desbloqueadas
 	for (int i = 0; i < _twr_SIZE; i++) {
@@ -28,7 +28,7 @@ void SaveGame::loadFile() {
 		for (int i = 0; i < _enm_SIZE; i++)
 			fs.read(reinterpret_cast<char*>(&enemiesBook_[i]), sizeof enemiesBook_[i]);
 		fs.close();
-
+		HCoins_ = 10000;
 		if (!fs.good())
 			cout << "Ha ocurrido un error al leer el archivo de guardado.";
 	}

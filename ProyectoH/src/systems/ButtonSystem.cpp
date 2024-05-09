@@ -781,8 +781,10 @@ Entity* ButtonSystem::addImage(const Vector2D& pos, const Vector2D& scale, const
 void ButtonSystem::OnStartGame() {
 	moneyText_ = mngr_->addEntity(_grp_TEXTS);
 	Transform* tr = mngr_->addComponent<Transform>(moneyText_);
-	tr->setPosition({ 0,0 });
-	tr->setScale({ 150, 50 });
+	std::basic_string m_txt = std::to_string(money_);
+	Vector2D font_size = { 24.0f, 50.0f };
+	tr->setPosition({ 70, 6});
+	tr->setScale({ font_size.getX() * m_txt.size(), font_size.getY()});
 	mngr_->addComponent<TextComponent>(moneyText_, std::to_string(money_));
 
 	
@@ -812,6 +814,9 @@ Entity* ButtonSystem::addText(const string& txt, const SDL_Color& color, const V
 
 void ButtonSystem::updateText(int money) {
 	mngr_->getComponent<TextComponent>(moneyText_)->changeText(std::to_string(money));
+	Vector2D font_size = { 24.0f, 50.0f };
+	auto tr = mngr_->getComponent<Transform>(moneyText_);
+	tr->setScale({std::to_string(money).size() * font_size.getX(), font_size.getY()});
 }
 
 void ButtonSystem::generateUpgradeImages()
@@ -875,9 +880,11 @@ void ButtonSystem::generateUpgradeImages()
 void ButtonSystem::generateHMoneyText() {
 	moneyText_ = mngr_->addEntity(_grp_TEXTS);
 	Transform* tr = mngr_->addComponent<Transform>(moneyText_);
-	tr->setPosition({ 100,75 });
-	tr->setScale({ 75, 100 });
-	mngr_->addComponent<TextComponent>(moneyText_, std::to_string(HMoney_));
+	basic_string h_money = std::to_string(HMoney_);
+	Vector2D font_size = { 40, 80 };
+	tr->setPosition({ 140,75 });
+	tr->setScale({ h_money.size() * font_size.getX(), font_size.getY()});
+	mngr_->addComponent<TextComponent>(moneyText_, h_money);
 }
 
 void ButtonSystem::generateNexusImage(int level, int life) {

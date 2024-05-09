@@ -346,7 +346,7 @@ void HUDSystem::initSystem() {
 
 
 	//ICONO MONEDAS DEL JUGADOR
-	bS->addImage({ 175,  25 },
+	bS->addImage({0 + 30,0 + 30},
 		{ 60, 60 },
 		0.0, gameTextures::monedaDorada, _grp_HUD_BACKGROUND);
 

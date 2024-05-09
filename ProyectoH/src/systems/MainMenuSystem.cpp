@@ -49,8 +49,8 @@ void MainMenuSystem::initSystem() {
 		90.0, gameTextures::column_box, _grp_HUD_BACKGROUND);
 
 	//MONEDAS H DEL JUGADOR
-	bS->addImage({ 250,  125 },
-		{ 100, 100 },
+	bS->addImage({ 90,  115 },
+		{ 80, 80},
 		0.0, gameTextures::monedaH, _grp_HUD_BACKGROUND);
 
 	// RIGHT COLUMN
