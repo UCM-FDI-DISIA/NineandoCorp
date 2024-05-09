@@ -894,6 +894,90 @@
     {
       "id": "info_icon",
       "file": "resources/images/UI/info_icon.png"
+    },
+    {
+      "id": "booster_tower_silueta",
+      "file": "resources/images/Towers/1_booster_tower_silueta.png"
+    },
+    {
+      "id": "cristal_tower_silueta",
+      "file": "resources/images/Towers/1_cristal_tower_silueta.png"
+    },
+    {
+      "id": "phoenix_tower_silueta",
+      "file": "resources/images/Towers/1_phoenix_tower_silueta.png"
+    },
+    {
+      "id": "slime_tower_silueta",
+      "file": "resources/images/Towers/1_slime_tower_silueta.png"
+    },
+    {
+      "id": "sniper_tower_silueta",
+      "file": "resources/images/Towers/1_sniper_tower_silueta.png"
+    },
+    {
+      "id": "acechante_electrico_silueta",
+      "file": "resources/images/Enemies/acechante_electrico_silueta.png"
+    },
+    {
+      "id": "angel_silueta",
+      "file": "resources/images/Enemies/angel_silueta.png"
+    },
+    {
+      "id": "boss2_silueta",
+      "file": "resources/images/Enemies/boss2_silueta.png"
+    },
+    {
+      "id": "boss3_silueta",
+      "file": "resources/images/Enemies/boss3_silueta.png"
+    },
+    {
+      "id": "caballero_maldito_silueta",
+      "file": "resources/images/Enemies/caballero_maldito_silueta.png"
+    },
+    {
+      "id": "defensor_real_silueta",
+      "file": "resources/images/Enemies/defensor_real1_silueta.png"
+    },
+    {
+      "id": "demonio_alado_silueta",
+      "file": "resources/images/Enemies/demonio_alado_silueta.png"
+    },
+    {
+      "id": "demonio_infernal_silueta",
+      "file": "resources/images/Enemies/demonio_infernal_silueta.png"
+    },
+    {
+      "id": "elfo_silueta",
+      "file": "resources/images/Enemies/elfoo_silueta.png"
+    },
+    {
+      "id": "goblin_silueta",
+      "file": "resources/images/Enemies/goblin_silueta.png"
+    },
+    {
+      "id": "golem_silueta",
+      "file": "resources/images/Enemies/golem_silueta.png"
+    },
+    {
+      "id": "muerte_silueta",
+      "file": "resources/images/Enemies/la_muerte_silueta.png"
+    },
+    {
+      "id": "maestro_de_almas_silueta",
+      "file": "resources/images/Enemies/maestro_de_almas_silueta.png"
+    },
+    {
+      "id": "mensajero_silueta",
+      "file": "resources/images/Enemies/mensajero_silueta.png"
+    },
+    {
+      "id": "ability",
+      "file": "resources/images/UI/ability.png"
+    },
+    {
+      "id": "ability_hover",
+      "file": "resources/images/UI/ability_hover.png"
     }
   ],
 

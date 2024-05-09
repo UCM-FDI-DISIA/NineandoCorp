@@ -52,7 +52,8 @@ void EnemyBookSystem::initSystem() {
 
 		}
 		else {
-			text = gameTextures::large_box;
+			text = TexturasSilueta[i];
+			bS->addImage(pAux, sAuxbox, 0.0, gameTextures::large_box, _grp_HUD_FOREGROUND);
 			bS->addImage(pAux, sAuxbox, 0.0, text, _grp_HUD_FOREGROUND);
 		}
 
@@ -70,8 +71,10 @@ void  EnemyBookSystem::receive(const Message& m) {
 	case _m_ENEMY_BOOKPOPUP:
 		EnemyPopUp(m.start_enemy_book_but.n);
 		break;
-
-		default:
+	case _m_ENEMY_BOOKPOPUPABILITY:
+		EnemyPopUpABILITY(m.start_enemy_book_but.n);
+		break;
+	default:
 		break;
 	}
 }
@@ -86,7 +89,7 @@ void EnemyBookSystem::EnemyPopUp(int i) {
 	sAux = { 50.0f, 50.0f };
 	bS->addButton(pAux, sAux, gameTextures::close, gameTextures::close_hover, ButtonTypes::back_selector);
 
-	string habilidad = "";
+	string hab = "";
 	string vel = "";
 	string vida = "";
 	string tipo = "";
@@ -94,6 +97,7 @@ void EnemyBookSystem::EnemyPopUp(int i) {
 	string nombre = "";
 	string rango = "";
 	string Tiempo = "";
+	bool habilidad = false;
 	switch (i)
 	{
 		case 0:
@@ -118,6 +122,7 @@ void EnemyBookSystem::EnemyPopUp(int i) {
 			else {
 				rango = "Melee";
 			}
+			habilidad = true;
 			break;
 		case 1:
 			nombre = "Acechante Electrico";
@@ -139,6 +144,7 @@ void EnemyBookSystem::EnemyPopUp(int i) {
 			else {
 				rango = "Melee";
 			}
+			habilidad = true;
 			break;
 		case 2:
 			nombre = "Maldito";
@@ -181,6 +187,7 @@ void EnemyBookSystem::EnemyPopUp(int i) {
 			else {
 				rango = "Melee";
 			}
+			habilidad = true;
 			break;
 		case 4:
 			nombre = "Demonio Alado";
@@ -265,6 +272,7 @@ void EnemyBookSystem::EnemyPopUp(int i) {
 			else {
 				rango = "Melee";
 			}
+			habilidad = true;
 			break;
 		case 8:
 			nombre = "Angel";
@@ -286,6 +294,7 @@ void EnemyBookSystem::EnemyPopUp(int i) {
 			else {
 				rango = "Melee";
 			}
+			habilidad = true;
 			break;
 		case 9:
 			nombre = "Demonio Infernal";
@@ -328,6 +337,7 @@ void EnemyBookSystem::EnemyPopUp(int i) {
 			else {
 				rango = "Melee";
 			}
+			habilidad = true;
 			break;
 		case 11:
 			nombre = "C.Maldito";
@@ -349,6 +359,7 @@ void EnemyBookSystem::EnemyPopUp(int i) {
 			else {
 				rango = "Melee";
 			}
+			habilidad = true;
 			break;
 		case 12:
 			nombre = "Principito";
@@ -370,6 +381,7 @@ void EnemyBookSystem::EnemyPopUp(int i) {
 			else {
 				rango = "Melee";
 			}
+			habilidad = true;
 			break;
 		case 13:
 			nombre = "Monje";
@@ -391,6 +403,7 @@ void EnemyBookSystem::EnemyPopUp(int i) {
 			else {
 				rango = "Melee";
 			}
+			habilidad = true;
 			break;
 		case 14:
 			nombre = "Muerte";
@@ -412,6 +425,7 @@ void EnemyBookSystem::EnemyPopUp(int i) {
 			else {
 				rango = "Melee";
 			}
+			habilidad = true;
 			break;
 		default:
 		break;
@@ -425,27 +439,58 @@ void EnemyBookSystem::EnemyPopUp(int i) {
 	pAux = Vector2D{ 700,420 };
 	sAux = Vector2D{ 210,70};
 	SDL_Color NombreColor = { 255, 255, 255, 255 };
-	bS->addText(nombre, NombreColor, pAux, sAux);
+	Entity* nombreT = bS->addText(nombre, NombreColor, pAux, sAux);
+	texto.push_back(nombreT);
 	//AÑADIR ATAQUE
 	pAux = Vector2D{ 650,470 };
 	sAux = Vector2D{ 90,30 };
-	bS->addText("Ataque: " + atq, NombreColor, pAux, sAux);
+	Entity* ataqueT = bS->addText("Ataque: " + atq, NombreColor, pAux, sAux);
+	texto.push_back(ataqueT);
 	//AÑADIR VIDA
 	pAux = Vector2D{ 800,470 };
-	bS->addText("Vida: " +vida, NombreColor, pAux, sAux);
+	Entity* vidaT = bS->addText("Vida: " +vida, NombreColor, pAux, sAux);
+	texto.push_back(vidaT);
 	//AÑADIR VELOCIDAD
 	pAux = Vector2D{ 650,510 };
-	bS->addText("Velocidad: " +vel, NombreColor, pAux, sAux);
+	Entity* velocidadT = bS->addText("Velocidad: " +vel, NombreColor, pAux, sAux);
+	texto.push_back(velocidadT);
 	//AÑADIR TIEMPO ATAQUE
 	sAux = Vector2D{ 100,34 };
 	pAux = Vector2D{ 800,510};
-	bS->addText("Vel.Ataque: " +Tiempo, NombreColor, pAux, sAux);
-
+	Entity* tiempoT = bS->addText("Vel.Ataque: " +Tiempo, NombreColor, pAux, sAux);
+	texto.push_back(tiempoT);
 	//AÑADIR RANGO
 	pAux = Vector2D{ 650,560 };
-	bS->addText("Rango: " + rango, NombreColor, pAux, sAux);
+	Entity* rangoT = bS->addText("Rango: " + rango, NombreColor, pAux, sAux);
+	texto.push_back(rangoT);
 	//AÑADIR TIPO
 	pAux = Vector2D{ 800,560 };
-	bS->addText("Tipo: " + tipo, NombreColor, pAux, sAux);
+	Entity* tipoT = bS->addText("Tipo: " + tipo, NombreColor, pAux, sAux);
+	texto.push_back(tipoT);
+	//AÑADIR HABILIDAD
+	if (habilidad)
+	{
+		Message m;
+		m.id = _m_ENEMY_BOOKPOPUPABILITY;
+		m.start_enemy_book_but.n = i;
+		pAux = Vector2D{ 500,595 };
+		sAux = Vector2D{ 140,50 };
+		bS->addButton(pAux, sAux, gameTextures::ability, gameTextures::ability_hover, ButtonTypes::enemybookPopAbility,0, 0, 0,m);
+	}
 
+}
+void EnemyBookSystem::EnemyPopUpABILITY(int i) {
+	for (size_t i = 0; i < texto.size(); i++)
+	{
+		mngr_->getComponent<TextComponent>(texto[i])->isActive = false;
+	}
+	ButtonSystem* bS = mngr_->getSystem<ButtonSystem>();
+	//BACKGROUND
+	Vector2D pAux = { sdlutils().width() / 2.0f, sdlutils().height() / 2.0f };
+	Vector2D sAux = { 500.0f , 300.0f };
+	bS->addImage(pAux, sAux, 0.0, gameTextures::large_box, _grp_HUD_FOREGROUND);
+	//BOTON CERRAR
+	pAux = pAux + Vector2D(200, -100.0f);
+	sAux = { 50.0f, 50.0f };
+	bS->addButton(pAux, sAux, gameTextures::close, gameTextures::close_hover, ButtonTypes::back_selector);
 }

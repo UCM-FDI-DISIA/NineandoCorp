@@ -59,6 +59,30 @@ RenderSystem::RenderSystem() : winner_(0)
 	textures[slimeArea] = &sdlutils().images().at("slime_area");
 	textures[shield] = &sdlutils().images().at("shield");
 
+	textures[ability] = &sdlutils().images().at("ability");
+	textures[ability_hover] = &sdlutils().images().at("ability_hover");
+
+	textures[booster_tower_silueta] = &sdlutils().images().at("booster_tower_silueta");
+	textures[cristal_tower_silueta] = &sdlutils().images().at("cristal_tower_silueta");
+	textures[phoenix_tower_silueta] = &sdlutils().images().at("phoenix_tower_silueta");
+	textures[slime_tower_silueta] = &sdlutils().images().at("slime_tower_silueta");
+	textures[sniper_tower_silueta] = &sdlutils().images().at("sniper_tower_silueta");
+	textures[acechante_electrico_silueta] = &sdlutils().images().at("acechante_electrico_silueta");
+	textures[angel_silueta] = &sdlutils().images().at("angel_silueta");
+	textures[boss2_silueta] = &sdlutils().images().at("boss2_silueta");
+	textures[boss3_silueta] = &sdlutils().images().at("boss3_silueta");
+	textures[caballero_maldito_silueta] = &sdlutils().images().at("caballero_maldito_silueta");
+	textures[defensor_real_silueta] = &sdlutils().images().at("defensor_real_silueta");
+	textures[demonio_alado_silueta] = &sdlutils().images().at("demonio_alado_silueta");
+	textures[demonio_infernal_silueta] = &sdlutils().images().at("demonio_infernal_silueta");
+	textures[elfo_silueta] = &sdlutils().images().at("elfo_silueta");
+	textures[goblin_silueta] = &sdlutils().images().at("goblin_silueta");
+	textures[golem_silueta] = &sdlutils().images().at("golem_silueta");
+	textures[muerte_silueta] = &sdlutils().images().at("muerte_silueta");
+	textures[maestro_de_almas_silueta] = &sdlutils().images().at("maestro_de_almas_silueta");
+	textures[mensajero_silueta] = &sdlutils().images().at("mensajero_silueta");
+
+
 	//Nexus
 	textures[nexusLvl] = &sdlutils().images().at("nexus");	// Borrados nexos anteriores y cambiar este enombre
 
@@ -255,6 +279,9 @@ void RenderSystem::receive(const Message& m) {
 		break;
 	case _m_EXIT_UP_MENU:
 		isOnUpMenu = false;
+		break;
+	case _m_CHANGE_CONTROLS:
+		changeControls();
 		break;
 	default:
 		break;
@@ -484,6 +511,20 @@ void RenderSystem::update() {
 		if (mngr_->getComponent<RenderComponent>(h)->isActive)
 			textures[textureId]->render(tr->getRect(), tr->getRotation());
 	}
+	//TOWER ICONS	
+	const auto& twrIcons = mngr_->getEntities(_grp_TOWER_ICONS);
+	for (auto& twr : twrIcons) {
+		Transform* tr = mngr_->getComponent<Transform>(twr);
+		auto fI = mngr_->getComponent<FramedImage>(twr);
+		SDL_Rect trRect = tr->getRect();
+		gameTextures textureId = mngr_->getComponent<RenderComponent>(twr)->getTexture();
+		if (mngr_->getComponent<RenderComponent>(twr)->isActive) {
+			if (fI != nullptr) {
+				SDL_Rect srcRect = fI->getSrcRect();
+				textures[textureId]->render(srcRect, trRect, tr->getRotation());
+			}
+		}
+	}
 	//Background Texts HUD
 	const auto& bgTexts = mngr_->getEntities(_grp_BACKGROUND_TEXTS);
 	for (auto& t : bgTexts) {
@@ -611,6 +652,10 @@ void RenderSystem::update() {
 	sdlutils().presentRenderer();
 }
 void RenderSystem::onGameOver(Uint8 winner) {
+}
+
+void RenderSystem::changeControls() {
+
 }
 
 void RenderSystem::drawDiamond(SDL_Renderer* renderer, const SDL_Point& center, int width, int height, const SDL_Color& fillColor)

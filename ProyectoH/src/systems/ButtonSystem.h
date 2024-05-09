@@ -68,6 +68,8 @@ public:
 
 	void setCanstartWave(bool canstartwave) { canStartWave = canstartwave; }
 
+	void generateUpgradeImages();
+
 	void generateNexusImage(int level);
 
 	void generateNexusText(int level);
@@ -152,6 +154,7 @@ private:
 	/// </summary>
 	void updateText(int money);
 
+
 	/// <summary>
 	/// Funcion que realiza el mensaje START_GAME
 	/// </summary>
@@ -193,6 +196,14 @@ private:
 	Entity* enhancerMoneyText_;
 	Entity* fenixMoneyText_;
 	Entity* dirtMoneyText_;
+
+	Entity* bulletImage_;
+	Entity* cristalImage_;
+	Entity* slimeImage_;
+	Entity* diegoImage_;
+	Entity* enhancerImage_;
+	Entity* fenixImage_;
+	Entity* dirtImage_;
 	
 	Entity* nexusImage_;
 	Entity* nexusLvl_;

@@ -122,6 +122,7 @@ enum grpId : grpId_type {
 	_grp_ICONS,
 	_grp_ENEMY_PROYECTILE,
 	_grp_POTIONAREA,
+	_grp_TOWER_ICONS,
 	
 	// do not remove this
 	_LAST_GRP_ID
@@ -209,6 +210,7 @@ enum msgId : msgId_type {
 	_m_LEVEL_SELECTOR,
 	_m_ENEMY_BOOK,
 	_m_ENEMY_BOOKPOPUP,
+	_m_ENEMY_BOOKPOPUPABILITY,
 	_m_CONFIG,
 	_m_ENEMY_BOOK_BUT,
 	_m_UPGRADE_TOWER,
@@ -246,6 +248,7 @@ enum msgId : msgId_type {
 	_m_ACTIVATE_ATTACK_TOWERS,
 	_m_ISPLAYSTATE,
 	_m_HIDE_UPGRADEBUTTON,
+	_m_CHANGE_CONTROLS,
 	_m_SHOW_TOWER_INFO
 };
 
@@ -302,6 +305,7 @@ enum ButtonTypes {
 	//Enemybook
 	enemybook,
 	enemybookPop,
+	enemybookPopAbility,
 	//CONFIG
 	config, full_screen, changeResolution, changeControls,
 	// ----- HUD -----//
@@ -334,7 +338,17 @@ enum gameTextures {
 	menu_background, upgrade, upgrade_hover, logo,
 	crystal_tower_image, bullet_tower_image, slime_tower_image,
 	sniper_tower_image, phoenix_tower_image, clay_tower_image,
-	power_tower_image, nexus_level_3_image,
+	power_tower_image,
+					// Siluetas
+	booster_tower_silueta, cristal_tower_silueta, phoenix_tower_silueta,
+	slime_tower_silueta, sniper_tower_silueta,
+	acechante_electrico_silueta, angel_silueta, boss2_silueta,
+	boss3_silueta, caballero_maldito_silueta,
+	defensor_real_silueta, demonio_alado_silueta, demonio_infernal_silueta,
+	elfo_silueta, goblin_silueta, golem_silueta, muerte_silueta,
+	maestro_de_almas_silueta, mensajero_silueta,
+
+	nexus_level_3_image,
 	tsunami_icon,meteorite_icon, thunder_icon, tornado_icon, earthquake_icon, 
 	level1,level1_hover,level2,level2_hover,level3,level3_hover,level4,level4_hover,level5,level5_hover,level6,level6_hover,level7,level7_hover,level8,level8_hover,
 	level1_desactive, level2_desactive, level3_desactive, level4_desactive, level5_desactive, level6_desactive, level7_desactive, level8_desactive,
@@ -343,7 +357,7 @@ enum gameTextures {
 	white_frame, button, button_hover, check, check_hover,resolution, resolution_hover,
 	resolution1, resolution1_hover, resolution2, resolution2_hover, resolution3, resolution3_hover, 
 	shield_life, shield_background, life, life_background, life_enemy, life_background_enemy,buy, buy_hover,
-	white_arrow, info_icon,
+	white_arrow, info_icon,ability, ability_hover,
 	//menu de pausa
 	resume_button, resume_button_hover, backToMenu_button, backToMenu_button_hover, exitGame_button, exitGame_button_hover,
 	resume_icon_button, resume_icon_button_hover,
@@ -423,7 +437,6 @@ struct Message {
 	//_m_SHOW_TOWER_INFO
 	struct {
 		twrId tId;
-		Vector2D pos;
 	}show_info;
 	//_m_SELL_TOWER
 	struct
@@ -493,7 +506,7 @@ struct Message {
 		int iterationsToDelete;
 	}anim_create;
 
-
+	
 
 	// _m_DRAG
 	struct {

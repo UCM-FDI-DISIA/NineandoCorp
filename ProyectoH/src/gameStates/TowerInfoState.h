@@ -7,7 +7,9 @@
 class TowerInfoState : public GameState
 {
 public:
-	TowerInfoState(Manager* mngr);
+	TowerInfoState(Manager* mngr, twrId tId);
 	virtual ~TowerInfoState();
+private:
+	twrId tId_;
 };
 

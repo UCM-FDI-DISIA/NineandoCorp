@@ -43,7 +43,10 @@ void ConfigSystem::initSystem() {
 	bS->addText("CONTROLS", textColor, { sdlutils().width() / 4.0f, sdlutils().height() / 1.85f - 10 }, { 225.0f, 50.0f });
 	pAux = Vector2D(sdlutils().width() / 4.0f - 180, sdlutils().height() / 1.85f + 50);
 	sAux = { 50.0f, 50.0f };
-	bS->addButton(pAux, sAux, gameTextures::button, gameTextures::button_hover, ButtonTypes::changeControls);
+
+	Message m;
+	m.id = _m_CHANGE_CONTROLS;
+	bS->addButton(pAux, sAux, gameTextures::button, gameTextures::button_hover, ButtonTypes::changeControls,0,0,0,m);
 	bS->addText("Move Left", textColor, { sdlutils().width() / 4.0f - 70, sdlutils().height() / 1.85f + 50 }, { 155.0f, 25.0f });
 
 	pAux = Vector2D(sdlutils().width() / 4.0f - 180, sdlutils().height() / 1.85f + 110);
