@@ -541,21 +541,6 @@ void RenderSystem::update() {
 		auto lockCmp = mngr_->getComponent<LockComponent>(h);
 		auto dnd = mngr_->getComponent<DragAndDrop>(h);
 		if (mngr_->getComponent<RenderComponent>(h)->isActive) {
-			// Si tiene drag and drop
-			if (dnd != nullptr) {
-				//Si tiene lockcomponent y esta desbloqueado se renderiza
-				if (lockCmp != nullptr && !lockCmp->isLocked()) {
-					SDL_Rect srcRect = fI->getSrcRect();
-					textures[textureId]->render(srcRect, tr->getRect(), tr->getRotation());
-				}
-				//Si no tiene lockComponent tambien se renderiza
-				else if (lockCmp == nullptr) {
-					SDL_Rect srcRect = fI->getSrcRect();
-					textures[textureId]->render(srcRect, tr->getRect(), tr->getRotation());
-				}
-			}
-			//Si no tiene drag and drop se renderiza si condiciones
-			else if (dnd == nullptr) {
 				if (fI != nullptr) {
 					SDL_Rect srcRect = fI->getSrcRect();
 					textures[textureId]->render(srcRect, tr->getRect(), tr->getRotation());
@@ -563,18 +548,6 @@ void RenderSystem::update() {
 				else {
 					textures[textureId]->render(tr->getRect(), tr->getRotation());
 				}
-			}
-			//Dando por hecho que solo los botones del HUD tienen lockComponent y no tienen drag and drop
-			if (lockCmp != nullptr && dnd == nullptr) {
-				if (lockCmp->isLocked()) {
-					SDL_Renderer* renderer = textures[textureId]->getRenderer();
-					Vector2D pos = tr->getPosition();
-					Vector2D scale = tr->getScale();
-					SDL_Point center = { pos.getX() + (scale.getX() / 2), pos.getY() + (scale.getY() / 2) };
-					SDL_Color red = { 255, 0, 0, 100 };
-					drawSquare(renderer, center, tr->getWidth(), red);
-				}
-			}
 		}
 	}
 

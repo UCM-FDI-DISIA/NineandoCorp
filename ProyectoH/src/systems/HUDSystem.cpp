@@ -85,15 +85,12 @@ void HUDSystem::initSystem() {
 			bSize,
 			gameTextures::none_box, gameTextures::none_box_hover,
 			ButtonTypes::clay_drag);
-		mngr_->addComponent<LockComponent>(tb4.button, game().getSaveGame()->getTurretsLevels()[_twr_CLAY] == 0);
-
 		tb4.img = bS->addImage(
 			{ xAux * ((int)_twr_CLAY + 1) + 3, heightH },
 			{ floatAt("IconClayScaleX"), floatAt("IconClayScaleY") },
 			0.0,
 			clayTowerTexture,
 			_grp_HUD_FOREGROUND);
-		mngr_->addComponent<LockComponent>(tb1.img, game().getSaveGame()->getTurretsLevels()[_twr_CLAY] == 0);
 		mngr_->addComponent<DragAndDrop>(tb4.img, _twr_CLAY, sdlutils().intConst().at("ArcillaPrecio"), Height::PATH);
 		mngr_->addComponent<FramedImage>(tb4.img,
 			intAt("ArcillaColumns"), intAt("ArcillaRows"),
@@ -124,25 +121,22 @@ void HUDSystem::initSystem() {
 			bSize,
 			gameTextures::none_box, gameTextures::none_box_hover,
 			ButtonTypes::slime_drag);
-		mngr_->addComponent<LockComponent>(tb6.button, game().getSaveGame()->getTurretsLevels()[_twr_SLIME] == 0); 
-
-		tb6.img = bS->addImage(
-			{ xAux * ((int)_twr_SLIME + 1) + 3, heightH },
-			{ floatAt("IconSlimeScaleX"), floatAt("IconSlimeScaleY") },
-			0.0,
-			slimeTowerTexture,
-			_grp_HUD_FOREGROUND);
-		
-		mngr_->addComponent<LockComponent>(tb6.img, game().getSaveGame()->getTurretsLevels()[_twr_SLIME] == 0); 
-		mngr_->addComponent<DragAndDrop>(tb6.img, _twr_SLIME, sdlutils().intConst().at("SlimePrecio"), Height::LOW);
-		mngr_->addComponent<FramedImage>(tb6.img,
-			intAt("SlimeColumns"), intAt("SlimeRows"),
-			intAt("SlimeWidth"), intAt("SlimeHeight"),
-			0, 0);
 
 		tb6.initialPos =  Vector2D( xAux * ((int)_twr_SLIME + 1) + 3, heightH );
-
+		mngr_->addComponent<LockComponent>(tb6.button, game().getSaveGame()->getTurretsLevels()[_twr_SLIME] == 0);
 		if (!game().getSaveGame()->getTurretsLevels()[_twr_SLIME] == 0) {
+			tb6.img = bS->addImage(
+				{ xAux * ((int)_twr_SLIME + 1) + 3, heightH },
+				{ floatAt("IconSlimeScaleX"), floatAt("IconSlimeScaleY") },
+				0.0,
+				slimeTowerTexture,
+				_grp_HUD_FOREGROUND);
+
+			mngr_->addComponent<DragAndDrop>(tb6.img, _twr_SLIME, sdlutils().intConst().at("SlimePrecio"), Height::LOW);
+			mngr_->addComponent<FramedImage>(tb6.img,
+				intAt("SlimeColumns"), intAt("SlimeRows"),
+				intAt("SlimeWidth"), intAt("SlimeHeight"),
+				0, 0);
 			tb6.moneyTxt = bS->addText(std::to_string(sdlutils().intConst().at("SlimePrecio")), moneyColor, { (xAux * ((int)_twr_SLIME + 1)) - 20, heightH + 67 }, { bSize.getX() / 2 , 30 });
 
 			//Icono de moneda - TEMPORAL, CAMBIAR MAS TARDE A LA MONEDA INGAME
@@ -151,6 +145,14 @@ void HUDSystem::initSystem() {
 				{ 30.0f, 30.0f },
 				0.0f,
 				gameTextures::monedaDorada,
+				_grp_HUD_FOREGROUND);
+		}
+		else {
+			tb6.img = bS->addImage(
+				{ xAux * ((int)_twr_SLIME + 1) + 3, heightH },
+				{ floatAt("IconSlimeScaleX"), floatAt("IconSlimeScaleY") },
+				0.0,
+				slime_tower_silueta,
 				_grp_HUD_FOREGROUND);
 		}
 		// Set tower price
@@ -164,25 +166,24 @@ void HUDSystem::initSystem() {
 			bSize,
 			gameTextures::none_box, gameTextures::none_box_hover,
 			ButtonTypes::fenix_drag);
-		mngr_->addComponent<LockComponent>(tb3.button, game().getSaveGame()->getTurretsLevels()[_twr_FENIX] == 0);
 
-		tb3.img = bS->addImage(
-			{ xAux * ((int)_twr_FENIX + 1) + 3, heightH },
-			{ floatAt("IconFenixScaleX"), floatAt("IconFenixScaleY") },
-			0.0,
-			phoenixTowerTexture,
-			_grp_HUD_FOREGROUND);
-
-		mngr_->addComponent<LockComponent>(tb3.img, game().getSaveGame()->getTurretsLevels()[_twr_FENIX] == 0);
-		mngr_->addComponent<DragAndDrop>(tb3.img, _twr_FENIX, sdlutils().intConst().at("FenixPrecio"), Height::BOTH);
-		mngr_->addComponent<FramedImage>(tb3.img,
-			intAt("FenixColumns"), intAt("FenixRows"),
-			intAt("FenixWidth"), intAt("FenixHeight"),
-			0, 0);
+		
 
 		tb3.initialPos = Vector2D(xAux * ((int)_twr_FENIX + 1) + 3, heightH );
+		mngr_->addComponent<LockComponent>(tb3.button, game().getSaveGame()->getTurretsLevels()[_twr_FENIX] == 0);
 		if (!game().getSaveGame()->getTurretsLevels()[_twr_FENIX] == 0) {
+			tb3.img = bS->addImage(
+				{ xAux * ((int)_twr_FENIX + 1) + 3, heightH },
+				{ floatAt("IconFenixScaleX"), floatAt("IconFenixScaleY") },
+				0.0,
+				phoenixTowerTexture,
+				_grp_HUD_FOREGROUND);
 
+			mngr_->addComponent<DragAndDrop>(tb3.img, _twr_FENIX, sdlutils().intConst().at("FenixPrecio"), Height::BOTH);
+			mngr_->addComponent<FramedImage>(tb3.img,
+				intAt("FenixColumns"), intAt("FenixRows"),
+				intAt("FenixWidth"), intAt("FenixHeight"),
+				0, 0);
 			// Set tower price
 			tb3.moneyTxt = bS->addText(std::to_string(sdlutils().intConst().at("FenixPrecio")), moneyColor, { (xAux * ((int)_twr_FENIX + 1)) - 20, heightH + 67 }, { bSize.getX() / 2 , 30 });
 
@@ -194,7 +195,14 @@ void HUDSystem::initSystem() {
 				gameTextures::monedaDorada,
 				_grp_HUD_FOREGROUND);
 		}
-
+		else {
+			tb3.img = bS->addImage(
+				{ xAux * ((int)_twr_FENIX + 1) + 3, heightH },
+				{ floatAt("IconFenixScaleX"), floatAt("IconFenixScaleY") },
+				0.0,
+				phoenix_tower_silueta,
+				_grp_HUD_FOREGROUND);
+		}
 		twrSel_.buttons[_twr_FENIX] = tb3;
 	#pragma endregion
 
@@ -204,24 +212,24 @@ void HUDSystem::initSystem() {
 			bSize,
 			gameTextures::none_box, gameTextures::none_box_hover,
 			ButtonTypes::sniper_drag);
-		mngr_->addComponent<LockComponent>(tb5.button, game().getSaveGame()->getTurretsLevels()[_twr_DIEGO] == 0);
-		tb5.img = bS->addImage(
-			{ xAux * ((int)_twr_DIEGO + 1) + 3, heightH },
-			{ floatAt("IconSniperScaleX"), floatAt("IconSniperScaleY") },
-			0.0,
-			sniperTowerTexture,
-			_grp_HUD_FOREGROUND);
-
-		mngr_->addComponent<LockComponent>(tb5.img, game().getSaveGame()->getTurretsLevels()[_twr_DIEGO] == 0);
-		mngr_->addComponent<DragAndDrop>(tb5.img, _twr_DIEGO, sdlutils().intConst().at("DiegoSniperPrecio"), Height::HIGH);
-		mngr_->addComponent<FramedImage>(tb5.img,
-			intAt("DiegoSniperColumns"), intAt("DiegoSniperRows"),
-			intAt("DiegoSniperWidth"), intAt("DiegoSniperHeight"),
-			0, 0);
+		
 
 		tb5.initialPos = Vector2D( xAux * ((int)_twr_DIEGO + 1) + 3, heightH );
-		if (!game().getSaveGame()->getTurretsLevels()[_twr_DIEGO] == 0) {
+		mngr_->addComponent<LockComponent>(tb5.button, game().getSaveGame()->getTurretsLevels()[_twr_DIEGO] == 0);
 
+		if (!game().getSaveGame()->getTurretsLevels()[_twr_DIEGO] == 0) {
+			tb5.img = bS->addImage(
+				{ xAux * ((int)_twr_DIEGO + 1) + 3, heightH },
+				{ floatAt("IconSniperScaleX"), floatAt("IconSniperScaleY") },
+				0.0,
+				sniperTowerTexture,
+				_grp_HUD_FOREGROUND);
+
+			mngr_->addComponent<DragAndDrop>(tb5.img, _twr_DIEGO, sdlutils().intConst().at("DiegoSniperPrecio"), Height::HIGH);
+			mngr_->addComponent<FramedImage>(tb5.img,
+				intAt("DiegoSniperColumns"), intAt("DiegoSniperRows"),
+				intAt("DiegoSniperWidth"), intAt("DiegoSniperHeight"),
+				0, 0);
 			// Set tower price
 			tb5.moneyTxt = bS->addText(std::to_string(sdlutils().intConst().at("DiegoSniperPrecio")), moneyColor, { (xAux * ((int)_twr_DIEGO + 1)) - 20, heightH + 67 }, { bSize.getX() / 2 , 30 });
 
@@ -233,6 +241,14 @@ void HUDSystem::initSystem() {
 				gameTextures::monedaDorada,
 				_grp_HUD_FOREGROUND);
 		}
+		else {
+			tb5.img = bS->addImage(
+				{ xAux * ((int)_twr_DIEGO + 1) + 3, heightH },
+				{ floatAt("IconSniperScaleX"), floatAt("IconSniperScaleY") },
+				0.0,
+				sniper_tower_silueta,
+				_grp_HUD_FOREGROUND);
+		}
 		twrSel_.buttons[_twr_DIEGO] = tb5;
 	#pragma endregion
 
@@ -242,26 +258,24 @@ void HUDSystem::initSystem() {
 			bSize,
 			gameTextures::none_box, gameTextures::none_box_hover,
 			ButtonTypes::enhancer_drag);
-		mngr_->addComponent<LockComponent>(tb7.button, game().getSaveGame()->getTurretsLevels()[_twr_POWER] == 0);
-
-		tb7.img = bS->addImage(
-			{ xAux * ((int)_twr_POWER + 1) + 3, heightH - 4},
-			{ floatAt("IconPotenciadorScaleX"), floatAt("IconPotenciadorScaleY") },
-			0.0,
-			boosterTowerTexture,
-			_grp_HUD_FOREGROUND);
-
-		mngr_->addComponent<LockComponent>(tb7.img, game().getSaveGame()->getTurretsLevels()[_twr_POWER] == 0);
-		mngr_->addComponent<DragAndDrop>(tb7.img, _twr_POWER, sdlutils().intConst().at("PotenciadoraPrecio"), Height::BOTH);
-		mngr_->addComponent<FramedImage>(tb7.img,
-			intAt("PotenciadoraColumns"), intAt("PotenciadoraRows"),
-			intAt("PotenciadoraWidth"), intAt("PotenciadoraHeight"),
-			0, 0);
 
 		tb7.initialPos = Vector2D( xAux * ((int)_twr_POWER + 1) + 3, heightH - 4 );
-
+		mngr_->addComponent<LockComponent>(tb7.button, game().getSaveGame()->getTurretsLevels()[_twr_POWER] == 0);
 		if (!game().getSaveGame()->getTurretsLevels()[_twr_POWER] == 0) {
+			
 
+			tb7.img = bS->addImage(
+				{ xAux * ((int)_twr_POWER + 1) + 3, heightH - 4 },
+				{ floatAt("IconPotenciadorScaleX"), floatAt("IconPotenciadorScaleY") },
+				0.0,
+				boosterTowerTexture,
+				_grp_HUD_FOREGROUND);
+
+			mngr_->addComponent<DragAndDrop>(tb7.img, _twr_POWER, sdlutils().intConst().at("PotenciadoraPrecio"), Height::BOTH);
+			mngr_->addComponent<FramedImage>(tb7.img,
+				intAt("PotenciadoraColumns"), intAt("PotenciadoraRows"),
+				intAt("PotenciadoraWidth"), intAt("PotenciadoraHeight"),
+				0, 0);
 			// Set tower price
 			tb7.moneyTxt = bS->addText(std::to_string(sdlutils().intConst().at("PotenciadoraPrecio")), moneyColor, { (xAux * ((int)_twr_POWER + 1)) - 20, heightH + 67 }, { bSize.getX() / 2 , 30 });
 
@@ -273,35 +287,40 @@ void HUDSystem::initSystem() {
 				gameTextures::monedaDorada,
 				_grp_HUD_FOREGROUND);
 		}
+		else {
+			tb7.img = bS->addImage(
+				{ xAux * ((int)_twr_POWER + 1) + 3, heightH - 4 },
+				{ floatAt("IconPotenciadorScaleX"), floatAt("IconPotenciadorScaleY") },
+				0.0,
+				booster_tower_silueta,
+				_grp_HUD_FOREGROUND);
+		}
 
 		twrSel_.buttons[_twr_POWER] = tb7;
 	#pragma endregion
 
 	#pragma region CRISTAL TOWER
 		TowerButton tb2;
-		tb2.button = bS->addButton({ xAux * ((int)_twr_CRISTAL + 1), heightH},
+		tb2.button = bS->addButton({ xAux * ((int)_twr_CRISTAL + 1), heightH },
 			bSize,
 			gameTextures::none_box, gameTextures::none_box_hover,
 			ButtonTypes::crystal_drag);
-		mngr_->addComponent<LockComponent>(tb2.button, game().getSaveGame()->getTurretsLevels()[_twr_CRISTAL] == 0);
-
-		tb2.img = bS->addImage(
-			{ xAux * ((int)_twr_CRISTAL + 1) + 3, heightH - 10 },
-			{ floatAt("IconCristalScaleX"), floatAt("IconCristalScaleY") },
-			0.0,
-			cristalTowerTexture,
-			_grp_HUD_FOREGROUND);
-
-		mngr_->addComponent<LockComponent>(tb2.img, game().getSaveGame()->getTurretsLevels()[_twr_CRISTAL] == 0);
-		mngr_->addComponent<DragAndDrop>(tb2.img, _twr_CRISTAL, sdlutils().intConst().at("CristalPrecio"), Height::HIGH);
-		mngr_->addComponent<FramedImage>(tb2.img,
-			intAt("CristalColumns"), intAt("CristalRows"),
-			intAt("CristalWidth"), intAt("CristalHeight"),
-			0, 0);
 		tb2.initialPos = Vector2D(xAux * ((int)_twr_CRISTAL + 1) + 3, heightH - 10 );
-
+		mngr_->addComponent<LockComponent>(tb2.button, game().getSaveGame()->getTurretsLevels()[_twr_CRISTAL] == 0);
 		if (!game().getSaveGame()->getTurretsLevels()[_twr_CRISTAL] == 0) {
+			
 
+			tb2.img = bS->addImage(
+				{ xAux * ((int)_twr_CRISTAL + 1) + 3, heightH - 10 },
+				{ floatAt("IconCristalScaleX"), floatAt("IconCristalScaleY") },
+				0.0,
+				cristalTowerTexture,
+				_grp_HUD_FOREGROUND);
+			mngr_->addComponent<DragAndDrop>(tb2.img, _twr_CRISTAL, sdlutils().intConst().at("CristalPrecio"), Height::HIGH);
+			mngr_->addComponent<FramedImage>(tb2.img,
+				intAt("CristalColumns"), intAt("CristalRows"),
+				intAt("CristalWidth"), intAt("CristalHeight"),
+				0, 0);
 			// Set tower price
 			tb2.moneyTxt = bS->addText(std::to_string(sdlutils().intConst().at("CristalPrecio")), moneyColor, { (xAux * ((int)_twr_CRISTAL + 1)) - 20, heightH + 67 }, { bSize.getX() / 2 , 30 });
 
@@ -313,7 +332,14 @@ void HUDSystem::initSystem() {
 				gameTextures::monedaDorada,
 				_grp_HUD_FOREGROUND);
 		}
-
+		else {
+			tb2.img = bS->addImage(
+				{ xAux * ((int)_twr_CRISTAL + 1) + 3, heightH },
+				{ floatAt("IconCristalScaleX"), floatAt("IconCristalScaleY") },
+				0.0,
+				cristal_tower_silueta,
+				_grp_HUD_FOREGROUND);
+		}
 		twrSel_.buttons[_twr_CRISTAL] = tb2;
 
 	#pragma endregion
