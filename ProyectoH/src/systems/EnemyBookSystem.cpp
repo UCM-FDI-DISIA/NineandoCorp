@@ -109,15 +109,15 @@ void EnemyBookSystem::EnemyPopUp(int i) {
 			
 			if (sdlutils().intConst().at("MaestroTipo") == 1)
 			{
-				tipo = "Aereo";
+				tipo = "Aerial";
 			}
 			else {
-				tipo = "Terrestre";
+				tipo = "ground";
 			}
 
 			if (sdlutils().intConst().at("MaestroRango") == 1)
 			{
-				rango = "Rango";
+				rango = "Range";
 			}
 			else {
 				rango = "Melee";
@@ -132,14 +132,14 @@ void EnemyBookSystem::EnemyPopUp(int i) {
 			Tiempo = std::to_string(sdlutils().intConst().at("Acechantetiempo"));
 			if (sdlutils().intConst().at("AcechanteTipo") == 1)
 			{
-				tipo = "Aereo";
+				tipo = "Aerial";
 			}
 			else {
-				tipo = "Terrestre";
+				tipo = "ground";
 			}
 			if (sdlutils().intConst().at("AcechanteRango") == 1)
 			{
-				rango = "Rango";
+				rango = "Range";
 			}
 			else {
 				rango = "Melee";
@@ -154,14 +154,14 @@ void EnemyBookSystem::EnemyPopUp(int i) {
 			Tiempo = std::to_string(sdlutils().intConst().at("Malditotiempo"));
 			if (sdlutils().intConst().at("MalditoTipo") == 1)
 			{
-				tipo = "Aereo";
+				tipo = "Aerial";
 			}
 			else {
-				tipo = "Terrestre";
+				tipo = "ground";
 			}
 			if (sdlutils().intConst().at("MalditoRango") == 1)
 			{
-				rango = "Rango";
+				rango = "Range";
 			}
 			else {
 				rango = "Melee";
@@ -175,14 +175,14 @@ void EnemyBookSystem::EnemyPopUp(int i) {
 			Tiempo = std::to_string(sdlutils().intConst().at("Golemtiempo"));
 			if (sdlutils().intConst().at("GolemTipo") == 1)
 			{
-				tipo = "Aereo";
+				tipo = "Aerial";
 			}
 			else {
-				tipo = "Terrestre";
+				tipo = "ground";
 			}
 			if (sdlutils().intConst().at("GolemRango") == 1)
 			{
-				rango = "Rango";
+				rango = "Range";
 			}
 			else {
 				rango = "Melee";
@@ -197,14 +197,14 @@ void EnemyBookSystem::EnemyPopUp(int i) {
 			Tiempo = std::to_string(sdlutils().intConst().at("DemonioAladotiempo"));
 			if (sdlutils().intConst().at("DemonioAladoTipo") == 1)
 			{
-				tipo = "Aereo";
+				tipo = "Aerial";
 			}
 			else {
-				tipo = "Terrestre";
+				tipo = "ground";
 			}
 			if (sdlutils().intConst().at("DemonioAladoRango") == 1)
 			{
-				rango = "Rango";
+				rango = "Range";
 			}
 			else {
 				rango = "Melee";
@@ -218,14 +218,14 @@ void EnemyBookSystem::EnemyPopUp(int i) {
 			Tiempo = std::to_string(sdlutils().intConst().at("Goblintiempo"));
 			if (sdlutils().intConst().at("GoblinTipo") == 1)
 			{
-				tipo = "Aereo";
+				tipo = "Aerial";
 			}
 			else {
-				tipo = "Terrestre";
+				tipo = "ground";
 			}
 			if (sdlutils().intConst().at("GoblinRango") == 1)
 			{
-				rango = "Rango";
+				rango = "Range";
 			}
 			else {
 				rango = "Melee";
@@ -239,14 +239,14 @@ void EnemyBookSystem::EnemyPopUp(int i) {
 			Tiempo = std::to_string(sdlutils().intConst().at("Elfotiempo"));
 			if (sdlutils().intConst().at("ElfoTipo") == 1)
 			{
-				tipo = "Aereo";
+				tipo = "Aerial";
 			}
 			else {
-				tipo = "Terrestre";
+				tipo = "ground";
 			}
 			if (sdlutils().intConst().at("ElfoRango") == 1)
 			{
-				rango = "Rango";
+				rango = "Range";
 			}
 			else {
 				rango = "Melee";
@@ -260,14 +260,14 @@ void EnemyBookSystem::EnemyPopUp(int i) {
 			Tiempo = std::to_string(sdlutils().intConst().at("Mensajerotiempo"));
 			if (sdlutils().intConst().at("MensajeroTipo") == 1)
 			{
-				tipo = "Aereo";
+				tipo = "Aerial";
 			}
 			else {
-				tipo = "Terrestre";
+				tipo = "ground";
 			}
 			if (sdlutils().intConst().at("MensajeroRango") == 1)
 			{
-				rango = "Rango";
+				rango = "Range";
 			}
 			else {
 				rango = "Melee";
@@ -282,14 +282,14 @@ void EnemyBookSystem::EnemyPopUp(int i) {
 			Tiempo = std::to_string(sdlutils().intConst().at("Angeltiempo"));
 			if (sdlutils().intConst().at("AngelTipo") == 1)
 			{
-				tipo = "Aereo";
+				tipo = "Aerial";
 			}
 			else {
-				tipo = "Terrestre";
+				tipo = "ground";
 			}
 			if (sdlutils().intConst().at("AngelRango") == 1)
 			{
-				rango = "Rango";
+				rango = "Range";
 			}
 			else {
 				rango = "Melee";
@@ -304,14 +304,14 @@ void EnemyBookSystem::EnemyPopUp(int i) {
 			Tiempo = std::to_string(sdlutils().intConst().at("DemonioInfernaltiempo"));
 			if (sdlutils().intConst().at("DemonioInfernalTipo") == 1)
 			{
-				tipo = "Aereo";
+				tipo = "Aerial";
 			}
 			else {
-				tipo = "Terrestre";
+				tipo = "ground";
 			}
 			if (sdlutils().intConst().at("DemonioInfernalRango") == 1)
 			{
-				rango = "Rango";
+				rango = "Range";
 			}
 			else {
 				rango = "Melee";
@@ -325,14 +325,14 @@ void EnemyBookSystem::EnemyPopUp(int i) {
 			Tiempo = std::to_string(sdlutils().intConst().at("Defensortiempo"));
 			if (sdlutils().intConst().at("DefensorTipo") == 1)
 			{
-				tipo = "Aereo";
+				tipo = "Aerial";
 			}
 			else {
-				tipo = "Terrestre";
+				tipo = "ground";
 			}
 			if (sdlutils().intConst().at("DefensorRango") == 1)
 			{
-				rango = "Rango";
+				rango = "Range";
 			}
 			else {
 				rango = "Melee";
@@ -347,14 +347,14 @@ void EnemyBookSystem::EnemyPopUp(int i) {
 			Tiempo = std::to_string(sdlutils().intConst().at("CMalditotiempo"));
 			if (sdlutils().intConst().at("CMalditoTipo") == 1)
 			{
-				tipo = "Aereo";
+				tipo = "Aerial";
 			}
 			else {
-				tipo = "Terrestre";
+				tipo = "ground";
 			}
 			if (sdlutils().intConst().at("CMalditoRango") == 1)
 			{
-				rango = "Rango";
+				rango = "Range";
 			}
 			else {
 				rango = "Melee";
@@ -369,14 +369,14 @@ void EnemyBookSystem::EnemyPopUp(int i) {
 			Tiempo = std::to_string(sdlutils().intConst().at("Principitotiempo"));
 			if (sdlutils().intConst().at("PrincipitoTipo") == 1)
 			{
-				tipo = "Aereo";
+				tipo = "Aerial";
 			}
 			else {
-				tipo = "Terrestre";
+				tipo = "ground";
 			}
 			if (sdlutils().intConst().at("PrincipitoRango") == 1)
 			{
-				rango = "Rango";
+				rango = "Range";
 			}
 			else {
 				rango = "Melee";
@@ -391,14 +391,14 @@ void EnemyBookSystem::EnemyPopUp(int i) {
 			Tiempo = std::to_string(sdlutils().intConst().at("Monjetiempo"));
 			if (sdlutils().intConst().at("MonjeTipo") == 1)
 			{
-				tipo = "Aereo";
+				tipo = "Aerial";
 			}
 			else {
-				tipo = "Terrestre";
+				tipo = "ground";
 			}
 			if (sdlutils().intConst().at("MonjeRango") == 1)
 			{
-				rango = "Rango";
+				rango = "Range";
 			}
 			else {
 				rango = "Melee";
@@ -413,14 +413,14 @@ void EnemyBookSystem::EnemyPopUp(int i) {
 			Tiempo = std::to_string(sdlutils().intConst().at("Muertetiempo"));
 			if (sdlutils().intConst().at("MuerteTipo") == 1)
 			{
-				tipo = "Aereo";
+				tipo = "Aerial";
 			}
 			else {
-				tipo = "Terrestre";
+				tipo =  "ground";
 			}
 			if (sdlutils().intConst().at("MuerteRango") == 1)
 			{
-				rango = "Rango";
+				rango = "Range";
 			}
 			else {
 				rango = "Melee";
@@ -444,28 +444,28 @@ void EnemyBookSystem::EnemyPopUp(int i) {
 	//AÑADIR ATAQUE
 	pAux = Vector2D{ 650,470 };
 	sAux = Vector2D{ 90,30 };
-	Entity* ataqueT = bS->addText("Ataque: " + atq, NombreColor, pAux, sAux);
+	Entity* ataqueT = bS->addText("Attack: " + atq, NombreColor, pAux, sAux);
 	texto.push_back(ataqueT);
 	//AÑADIR VIDA
 	pAux = Vector2D{ 800,470 };
-	Entity* vidaT = bS->addText("Vida: " +vida, NombreColor, pAux, sAux);
+	Entity* vidaT = bS->addText("Health: " +vida, NombreColor, pAux, sAux);
 	texto.push_back(vidaT);
 	//AÑADIR VELOCIDAD
 	pAux = Vector2D{ 650,510 };
-	Entity* velocidadT = bS->addText("Velocidad: " +vel, NombreColor, pAux, sAux);
+	Entity* velocidadT = bS->addText("Velocity: " +vel, NombreColor, pAux, sAux);
 	texto.push_back(velocidadT);
 	//AÑADIR TIEMPO ATAQUE
 	sAux = Vector2D{ 100,34 };
 	pAux = Vector2D{ 800,510};
-	Entity* tiempoT = bS->addText("Vel.Ataque: " +Tiempo, NombreColor, pAux, sAux);
+	Entity* tiempoT = bS->addText("Attck.Vel: " +Tiempo, NombreColor, pAux, sAux);
 	texto.push_back(tiempoT);
 	//AÑADIR RANGO
 	pAux = Vector2D{ 650,560 };
-	Entity* rangoT = bS->addText("Rango: " + rango, NombreColor, pAux, sAux);
+	Entity* rangoT = bS->addText("Range: " + rango, NombreColor, pAux, sAux);
 	texto.push_back(rangoT);
 	//AÑADIR TIPO
 	pAux = Vector2D{ 800,560 };
-	Entity* tipoT = bS->addText("Tipo: " + tipo, NombreColor, pAux, sAux);
+	Entity* tipoT = bS->addText("Type: " + tipo, NombreColor, pAux, sAux);
 	texto.push_back(tipoT);
 	//AÑADIR HABILIDAD
 	if (habilidad)

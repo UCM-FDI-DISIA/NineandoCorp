@@ -4,7 +4,7 @@
 #include <fstream>  
 #include <filesystem>
 
-SaveGame::SaveGame() : levelsUnlocked_(1), HCoins_(0) {
+SaveGame::SaveGame() : levelsUnlocked_(1), HCoins_(1000) {
 	std::fill_n(enemiesBook_, _enm_SIZE, false); 
 	//std::fill_n(enemiesBook_, _twr_SIZE, 4); //Sustituir esto por lo de abajo para tener todas las torretas desbloqueadas
 	for (int i = 0; i < _twr_SIZE; i++) {

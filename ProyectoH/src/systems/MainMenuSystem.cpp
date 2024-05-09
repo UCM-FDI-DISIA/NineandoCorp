@@ -205,14 +205,16 @@ void MainMenuSystem::update() {
 void MainMenuSystem::createNexusImage()
 {
 	ButtonSystem* bS = mngr_->getSystem<ButtonSystem>();
-
-	bS->generateNexusImage(turrentLevels[_twr_NEXUS]);
+	std::string lifeText = "Life" + to_string(turrentLevels[_twr_NEXUS]);
+	int health = sdlutils().intConst().at(lifeText);
+	bS->generateNexusImage(turrentLevels[_twr_NEXUS], health);
 }
 
 void MainMenuSystem::updateNexusImage() {
 	ButtonSystem* bS = mngr_->getSystem<ButtonSystem>();
-
-	bS->updateNexusImage(turrentLevels[_twr_NEXUS]);
+	std::string lifeText = "Life" + to_string(turrentLevels[_twr_NEXUS]);
+	int health = sdlutils().intConst().at(lifeText);
+	bS->updateNexusImage(turrentLevels[_twr_NEXUS],health);
 }
 
 void MainMenuSystem::addInfoButton(ButtonSystem* bS, const Vector2D& info_size, twrId tId, int yOffset, float info_separation)

@@ -70,11 +70,11 @@ public:
 
 	void generateUpgradeImages();
 
-	void generateNexusImage(int level);
+	void generateNexusImage(int level, int health);
 
 	void generateNexusText(int level);
 
-	void updateNexusImage(int level);
+	void updateNexusImage(int level, int health);
 private:
 	/// <summary>
 	/// Añade el dinero correspondiente a la torre vendida
@@ -207,6 +207,7 @@ private:
 	
 	Entity* nexusImage_;
 	Entity* nexusLvl_;
+	Entity* nexushealth_;
 	Entity* nexusLifebar_;
 	Entity* nexusLifebarBg_;
 	Entity* nexusPriceText_;

@@ -880,17 +880,25 @@ void ButtonSystem::generateHMoneyText() {
 	mngr_->addComponent<TextComponent>(moneyText_, std::to_string(HMoney_));
 }
 
-void ButtonSystem::generateNexusImage(int level) {
+void ButtonSystem::generateNexusImage(int level, int life) {
+	//nexus life text
+	nexushealth_ = mngr_->addEntity(_grp_BACKGROUND_TEXTS);
+	Transform* textTransform = mngr_->addComponent<Transform>(nexushealth_);
+	textTransform->setPosition({ 100.0f, (sdlutils().height() / 2.0f) - 85.0f });
+	textTransform->setScale({ 200.0f, 50.0f });
+	textTransform->setRotation(0.0f);
 
+	mngr_->addComponent<TextComponent>(nexushealth_, "HEALTH: " + std::to_string(life));
 	//Nexus life image
 	Vector2D pAux = Vector2D{ 207,500 };
 	Vector2D sAux = Vector2D{ 300,100 };
 	addImage(pAux, sAux, 0, gameTextures::life, _grp_HUD_FOREGROUND);
 	addImage(pAux, sAux, 0, gameTextures::life_background, _grp_HUD_FOREGROUND);
-
+	
+	//Nexus image
 	nexusImage_ = mngr_->addEntity(_grp_HUD_FOREGROUND);
 	Transform* tr = mngr_->addComponent<Transform>(nexusImage_);
-	tr->setPosition({ 200,  (sdlutils().height() / 2.0f) - 220.0f });
+	tr->setPosition({ 200,  (sdlutils().height() / 2.0f) - 250.0f });
 	Vector2D pos = tr->getPosition();
 	mngr_->addComponent<RenderComponent>(nexusImage_, gameTextures::nexusLvl);
 	FramedImage* framedImage = mngr_->addComponent<FramedImage>(nexusImage_, 4, 1, 2048, 2048, level - 1, 0, 1);
@@ -911,14 +919,18 @@ void ButtonSystem::generateNexusText(int level) {
 	mngr_->addComponent<TextComponent>(nexusLvl_, "Nexus Level: " + std::to_string(level));
 }
 
-void ButtonSystem::updateNexusImage(int level)
+void ButtonSystem::updateNexusImage(int level, int health)
 {
 	FramedImage* framedImage = mngr_->getComponent<FramedImage>(nexusImage_);
 	TextComponent* textComponent = mngr_->getComponent<TextComponent>(nexusLvl_);
+	TextComponent* textHealthComponent = mngr_->getComponent<TextComponent>(nexushealth_);
 	if (framedImage != nullptr && textComponent != nullptr) {
 		framedImage->setCurrentFrame(level - 1);
 		string lvl = "Nexus Level: " + std::to_string(level);
 		textComponent->changeText(lvl);
+		//update nexus life text
+		string hlth = "HEALTH: " + std::to_string(health);
+		textHealthComponent->changeText(hlth);
 	}
 }
 
