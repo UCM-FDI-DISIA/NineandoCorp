@@ -978,6 +978,10 @@
     {
       "id": "ability_hover",
       "file": "resources/images/UI/ability_hover.png"
+    },
+    {
+      "id": "level_up",
+      "file": "resources/images/Towers/level_up.png"
     }
   ],
 

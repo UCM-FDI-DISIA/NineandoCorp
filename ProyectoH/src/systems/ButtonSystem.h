@@ -152,7 +152,7 @@ private:
 	/// <summary>
 	/// Actualiza la textura con el texto de las monedas a las monedas actuales
 	/// </summary>
-	void updateText(int money);
+	void updateText(int money, const Vector2D& font_size);
 
 
 	/// <summary>
@@ -211,6 +211,19 @@ private:
 	Entity* nexusLifebar_;
 	Entity* nexusLifebarBg_;
 	Entity* nexusPriceText_;
+
+	//Tamaño de texto de las monedas "in-game"
+	Vector2D font_size_coin_HUD;
+	//Tamaño de texto de las monedas H del nexo
+	Vector2D font_size_Hcoin_nexus;
+	//Separacion entre la imagen de la torre y el borde derecho de la pantalla
+	float twr_img_separation;
+	//Separacion entre el dinero y el borde derecho de la pantalla
+	float info_separation = 45.0f;
+	//Tamaño de las imagenes de las torres
+	Vector2D towerImagesSize;
+
+	void throwUpgradeAnim(const Vector2D& pos); 
 
 	int intAt(basic_string<char> s) { return sdlutils().intConst().at(s); }
 	float floatAt(basic_string<char> s) { return sdlutils().floatConst().at(s); }

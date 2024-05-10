@@ -132,6 +132,9 @@ Entity* ParticleSystem::addParticle(grpId id, gameTextures tex, Vector2D pos,vec
 	case blood:
 		t->setRotation(sdlutils().rand().nextInt(0, 360));
 		break;
+	/*case level_up:
+		t->setRotation(sdlutils().rand().nextInt(0, 360));
+		break;*/
 	default:
 		break;
 	}

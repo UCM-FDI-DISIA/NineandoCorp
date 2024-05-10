@@ -6,6 +6,7 @@ MainMenuState::MainMenuState() : GameState(_gmStt_MAINMENU) {
 	mngr_->addSystem<MainControlSystem>(game().getSaveGame()->getLevelsUnlocked());
 	mngr_->addSystem<RenderSystem>();
 	mngr_->addSystem<ButtonSystem>(_hdlr_BUTTON_MAIN);
+	mngr_->addSystem<ParticleSystem>();
 	mngr_->addSystem<MainMenuSystem>();
 	Message m;
 	m.id = _m_START_MENU;

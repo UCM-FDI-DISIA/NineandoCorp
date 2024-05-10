@@ -6,6 +6,7 @@
 #include "../systems/HUDSystem.h"
 #include "../systems/MainControlSystem.h"
 #include "../systems/ButtonSystem.h"
+#include "../systems/ParticleSystem.h"
 
 class MainMenuState : public GameState
 {

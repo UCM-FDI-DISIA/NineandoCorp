@@ -15,6 +15,12 @@ ButtonSystem::ButtonSystem(hdlrId_type but_id) :
 	isPlayState = false;
 	numAcelButs = 3;
 	cauntAcelButs = 1;
+	font_size_coin_HUD = { 24.0f, 50.0f };
+	font_size_Hcoin_nexus = { 40.0f, 80.0f };
+	twr_img_separation = 325.0f;
+	info_separation = 45.0f;
+	towerImagesSize = { 80.5f, 112.0f };
+
 	//rellenar la lista de costes
 	costs[_twr_BULLET] = sdlutils().intConst().at("BalasPrecio");
 	costs[_twr_FENIX] = sdlutils().intConst().at("FenixPrecio");
@@ -44,7 +50,7 @@ void ButtonSystem::receive(const Message& m){
 	switch (m.id) {
 	case _m_ADD_MONEY:
 		money_ += m.money_data.money;
-		updateText(money_);
+		updateText(money_, font_size_coin_HUD);
 		break;
 	case _m_START_MENU:
 		HMoney_ = m.money_data.money;
@@ -129,14 +135,15 @@ void ButtonSystem::manageButtons() {
 	//hover 
 	for (auto en : buts) {
 		if (en != nullptr) {
-
-			ButtonComponent* bC = mngr_->getComponent<ButtonComponent>(en);
-			RenderComponent* rC = mngr_->getComponent<RenderComponent>(en);
-			if (bC != nullptr) {
-				if (bC->isActive()) {
-					if (bC->hover(pos)) rC->setTexture(bC->getHover());
-					else rC->setTexture(bC->getTexture());
-				}
+			if (mngr_->isAlive(en)) {
+				RenderComponent* rC = mngr_->getComponent<RenderComponent>(en);
+				if (mngr_->hasComponent<ButtonComponent>(en)) {
+					ButtonComponent* bC = mngr_->getComponent<ButtonComponent>(en);
+					if (bC->isActive()) {
+						if (bC->hover(pos)) rC->setTexture(bC->getHover());
+						else rC->setTexture(bC->getTexture());
+					}
+			}
 			}
 		}
 	}
@@ -390,37 +397,37 @@ void ButtonSystem::sellTower(Entity* twr)
 			break;
 		case upgrade_crystal_main:
 			lvl = game().getSaveGame()->getTurretsLevels()[_twr_CRISTAL];
-			if (lvl < towerLevelMax)
+			if (lvl < towerLevelMax - 1)
 				upgradeTower(_twr_CRISTAL, "precioHCristalLvl" + std::to_string(lvl), bC);
 			break;
 		case upgrade_slime_main:
 			lvl = game().getSaveGame()->getTurretsLevels()[_twr_SLIME];
-			if (lvl < towerLevelMax)
+			if (lvl < towerLevelMax - 1)
 				upgradeTower(_twr_SLIME, "precioHSlimeLvl" + std::to_string(lvl), bC);
 			break;
 		case upgrade_bullet_main:
 			lvl = game().getSaveGame()->getTurretsLevels()[_twr_BULLET];
-			if (lvl < towerLevelMax)
+			if (lvl < towerLevelMax - 1)
 				upgradeTower(_twr_BULLET, "precioHBalasLvl" + std::to_string(lvl), bC);
 			break;
 		case upgrade_sniper_main:
 			lvl = game().getSaveGame()->getTurretsLevels()[_twr_DIEGO];
-			if (lvl < towerLevelMax)
+			if (lvl < towerLevelMax - 1)
 				upgradeTower(_twr_DIEGO, "precioHDiegoLvl" + std::to_string(lvl), bC);
 			break;
 		case upgrade_fenix_main:
 			lvl = game().getSaveGame()->getTurretsLevels()[_twr_FENIX];
-			if (lvl < towerLevelMax)
+			if (lvl < towerLevelMax - 1)
 				upgradeTower(_twr_FENIX, "precioHFenixLvl" + std::to_string(lvl), bC);
 			break;
 		case upgrade_clay_main:
 			lvl = game().getSaveGame()->getTurretsLevels()[_twr_CLAY];
-			if (lvl < towerLevelMax)
+			if (lvl < towerLevelMax - 1)
 				upgradeTower(_twr_CLAY, "precioHArcillaLvl" + std::to_string(lvl), bC);
 			break;
 		case upgrade_enhancer_main:
 			lvl = game().getSaveGame()->getTurretsLevels()[_twr_POWER];
-			if (lvl < towerLevelMax)
+			if (lvl < towerLevelMax - 1)
 				upgradeTower(_twr_POWER, "precioHPotenciadoraLvl" + std::to_string(lvl), bC);
 			break;
 		case show_info:
@@ -604,10 +611,11 @@ void ButtonSystem::sellTower(Entity* twr)
 	}
 	void ButtonSystem::upgradeTower(twrId t, string idPrecioJSON, Entity* bC) {
 		if (HMoney_ - sdlutils().intConst().at(idPrecioJSON) >= 0) {
+			throwUpgradeAnim(mngr_->getComponent<Transform>(bC)->getPosition());
 			sdlutils().soundEffects().at("MejoraComprada").play(0, 1);
 			setUpgradeTex(bC);
 			HMoney_ -= sdlutils().intConst().at(idPrecioJSON);
-			updateText(HMoney_);
+			updateText(HMoney_, font_size_Hcoin_nexus);
 			game().getSaveGame()->setHCoins(HMoney_);
 			Message m;
 			m.id = _m_UPGRADE_TOWER;
@@ -620,83 +628,97 @@ void ButtonSystem::sellTower(Entity* twr)
 		string towerPriceString;
 		int towerLvl = game().getSaveGame()->getTurretsLevels()[t];
 		int price;
-		if (towerLvl < 5) {
-			switch (t) {
-			case _twr_BULLET:
+		switch (t) {
+		case _twr_BULLET:
+			if (towerLvl < 5) {
 				towerPriceString = "precioHBalasLvl" + std::to_string(towerLvl);
 				price = intAt(towerPriceString);
-				mngr_->getComponent<TextComponent>(bulletMoneyText_)->changeText(std::to_string(price));
 				mngr_->getComponent<FramedImage>(bulletImage_)->setCurrentFrame(towerLvl - 1);
-				break;
-			case _twr_CLAY:
+				mngr_->getComponent<TextComponent>(bulletMoneyText_)->changeText(std::to_string(price));
+				if (towerLvl == 4)mngr_->getComponent<TextComponent>(bulletMoneyText_)->changeText("MAX");
+			}
+			break;
+		case _twr_CLAY:
+			if (towerLvl < 5) {
 				towerPriceString = "precioHArcillaLvl" + std::to_string(towerLvl);
 				price = intAt(towerPriceString);
-				mngr_->getComponent<TextComponent>(dirtMoneyText_)->changeText(std::to_string(price));
 				mngr_->getComponent<FramedImage>(dirtImage_)->setCurrentFrame(towerLvl - 1);
-				break;
-			case _twr_CRISTAL:
+				mngr_->getComponent<TextComponent>(dirtMoneyText_)->changeText(std::to_string(price));
+				if (towerLvl == 4)mngr_->getComponent<TextComponent>(dirtMoneyText_)->changeText("MAX");
+			}
+			break;
+		case _twr_CRISTAL:
+			if (towerLvl == 1) {
+				if (!mngr_->hasComponent<FramedImage>(cristalImage_))mngr_->addComponent<FramedImage>(cristalImage_, intAt("CristalColumns"), intAt("CristalRows"), intAt("CristalWidth"), intAt("CristalHeight"), 0, 0);
+				mngr_->getComponent<RenderComponent>(cristalImage_)->setTexture(cristalTowerTexture);
+			}
+			if (towerLvl < 5) {
 				towerPriceString = "precioHCristalLvl" + std::to_string(towerLvl);
 				price = intAt(towerPriceString);
-				mngr_->getComponent<TextComponent>(cristalMoneyText_)->changeText(std::to_string(price));
 				mngr_->getComponent<FramedImage>(cristalImage_)->setCurrentFrame(towerLvl - 1);
-				break;
-			case _twr_POWER:
+				mngr_->getComponent<TextComponent>(cristalMoneyText_)->changeText(std::to_string(price));
+				if (towerLvl == 4)mngr_->getComponent<TextComponent>(cristalMoneyText_)->changeText("MAX");
+			}
+			break;
+		case _twr_POWER:
+			if (towerLvl == 1) {
+				if (!mngr_->hasComponent<FramedImage>(enhancerImage_))mngr_->addComponent<FramedImage>(enhancerImage_, intAt("PotenciadoraColumns"), intAt("PotenciadoraRows"), intAt("PotenciadoraWidth"), intAt("PotenciadoraHeight"), 0, 0);
+				mngr_->getComponent<RenderComponent>(enhancerImage_)->setTexture(boosterTowerTexture);
+			}
+			if (towerLvl < 5) {
 				towerPriceString = "precioHPotenciadoraLvl" + std::to_string(towerLvl);
 				price = intAt(towerPriceString);
-				mngr_->getComponent<TextComponent>(enhancerMoneyText_)->changeText(std::to_string(price));
 				mngr_->getComponent<FramedImage>(enhancerImage_)->setCurrentFrame(towerLvl - 1);
-				break;
-			case _twr_DIEGO:
+				mngr_->getComponent<TextComponent>(enhancerMoneyText_)->changeText(std::to_string(price));
+				if (towerLvl == 4)mngr_->getComponent<TextComponent>(enhancerMoneyText_)->changeText("MAX");
+			}
+			break;
+		case _twr_DIEGO:
+			if (towerLvl == 1) {
+				if (!mngr_->hasComponent<FramedImage>(diegoImage_))mngr_->addComponent<FramedImage>(diegoImage_, intAt("DiegoSniperColumns"), intAt("DiegoSniperRows"), intAt("DiegoSniperWidth"), intAt("DiegoSniperHeight"), 0, 0);
+				mngr_->getComponent<RenderComponent>(diegoImage_)->setTexture(sniperTowerTexture);
+			}
+			if (towerLvl < 5) {
 				towerPriceString = "precioHDiegoLvl" + std::to_string(towerLvl);
 				price = intAt(towerPriceString);
-				mngr_->getComponent<TextComponent>(diegoMoneyText_)->changeText(std::to_string(price));
 				mngr_->getComponent<FramedImage>(diegoImage_)->setCurrentFrame(towerLvl - 1);
-				break;
-			case _twr_FENIX:
+				mngr_->getComponent<TextComponent>(diegoMoneyText_)->changeText(std::to_string(price));
+				if (towerLvl == 4)mngr_->getComponent<TextComponent>(diegoMoneyText_)->changeText("MAX");
+			}
+			break;
+		case _twr_FENIX:
+			if (towerLvl == 1) {
+				if (!mngr_->hasComponent<FramedImage>(fenixImage_))mngr_->addComponent<FramedImage>(fenixImage_, intAt("FenixColumns"), intAt("FenixRows"), intAt("FenixWidth"), intAt("FenixHeight"), 0, 0);
+				mngr_->getComponent<RenderComponent>(fenixImage_)->setTexture(phoenixTowerTexture);
+			}
+			if (towerLvl < 5) {
 				towerPriceString = "precioHFenixLvl" + std::to_string(towerLvl);
 				price = intAt(towerPriceString);
-				mngr_->getComponent<TextComponent>(fenixMoneyText_)->changeText(std::to_string(price));
 				mngr_->getComponent<FramedImage>(fenixImage_)->setCurrentFrame(towerLvl - 1);
-				break;
-			case _twr_SLIME:
+				mngr_->getComponent<TextComponent>(fenixMoneyText_)->changeText(std::to_string(price));
+				if(towerLvl == 4)mngr_->getComponent<TextComponent>(fenixMoneyText_)->changeText("MAX");
+			}
+			break;
+		case _twr_SLIME:
+			if (towerLvl == 1) {
+				if (!mngr_->hasComponent<FramedImage>(slimeImage_))mngr_->addComponent<FramedImage>(slimeImage_, intAt("SlimeColumns"), intAt("SlimeRows"), intAt("SlimeWidth"), intAt("SlimeHeight"), 0, 0);
+				mngr_->getComponent<RenderComponent>(slimeImage_)->setTexture(gameTextures::slimeTowerTexture);
+			}
+			if (towerLvl < 5) {
 				towerPriceString = "precioHSlimeLvl" + std::to_string(towerLvl);
 				price = intAt(towerPriceString);
-				mngr_->getComponent<TextComponent>(slimeMoneyText_)->changeText(std::to_string(price));
 				mngr_->getComponent<FramedImage>(slimeImage_)->setCurrentFrame(towerLvl - 1);
-				break;
-			case _twr_NEXUS:
-				if (towerLvl < 4) {
-					towerPriceString = "precioHNexoLvl" + std::to_string(towerLvl);
-					price = intAt(towerPriceString);
-					mngr_->getComponent<TextComponent>(nexusPriceText_)->changeText(std::to_string(price));
-				}else mngr_->getComponent<TextComponent>(nexusPriceText_)->changeText("MAX");
+				mngr_->getComponent<TextComponent>(slimeMoneyText_)->changeText(std::to_string(price));
+				if(towerLvl == 4)mngr_->getComponent<TextComponent>(slimeMoneyText_)->changeText("MAX");
 			}
-		}
-		else {
-			switch (t) {
-			case _twr_BULLET:
-				mngr_->getComponent<TextComponent>(bulletMoneyText_)->changeText("MAX");
-				break;
-			case _twr_CLAY:
-				mngr_->getComponent<TextComponent>(dirtMoneyText_)->changeText("MAX");
-				break;
-			case _twr_CRISTAL:
-				mngr_->getComponent<TextComponent>(cristalMoneyText_)->changeText("MAX");
-				break;
-			case _twr_POWER:
-				mngr_->getComponent<TextComponent>(enhancerMoneyText_)->changeText("MAX");
-				break;
-			case _twr_DIEGO:
-				mngr_->getComponent<TextComponent>(diegoMoneyText_)->changeText("MAX");
-				break;
-			case _twr_FENIX:
-				mngr_->getComponent<TextComponent>(fenixMoneyText_)->changeText("MAX");
-				break;
-			case _twr_SLIME:
-				mngr_->getComponent<TextComponent>(slimeMoneyText_)->changeText("MAX");
-				break;
-
-			}
+			break;
+		case _twr_NEXUS:
+			if (towerLvl < 4) {
+				towerPriceString = "precioHNexoLvl" + std::to_string(towerLvl);
+				price = intAt(towerPriceString);
+				mngr_->getComponent<TextComponent>(nexusPriceText_)->changeText(std::to_string(price));
+			}else mngr_->getComponent<TextComponent>(nexusPriceText_)->changeText("MAX");
+		
 		}
 	}
 
@@ -812,78 +834,120 @@ Entity* ButtonSystem::addText(const string& txt, const SDL_Color& color, const V
 	return text;
 }
 
-void ButtonSystem::updateText(int money) {
+void ButtonSystem::updateText(int money, const Vector2D& font_size) {
 	mngr_->getComponent<TextComponent>(moneyText_)->changeText(std::to_string(money));
-	Vector2D font_size = { 24.0f, 50.0f };
+	
 	auto tr = mngr_->getComponent<Transform>(moneyText_);
 	tr->setScale({std::to_string(money).size() * font_size.getX(), font_size.getY()});
 }
 
 void ButtonSystem::generateUpgradeImages()
 {
-	float twr_img_separation = 325.0f;
-	float info_separation = 45.0f;
-	Vector2D towerImagesSize{ 80.5f, 112.0f };
 
+	/** --------------------
+	*	-- BULLET
+	*/
 	bulletImage_ = addImage({ sdlutils().width() - twr_img_separation , (sdlutils().height() / 8.0f) * 1 },
 		{ towerImagesSize },
 		0, gameTextures::bulletTowerTexture, _grp_TOWER_ICONS);
 	if(!mngr_->hasComponent<FramedImage>(bulletImage_))mngr_->addComponent<FramedImage>(bulletImage_, intAt("BalasColumns"), intAt("BalasRows"), intAt("BalasWidth"), intAt("BalasHeight"), 0, 0);
 	mngr_->getComponent<FramedImage>(bulletImage_)->setCurrentFrame(game().getSaveGame()->getTurretsLevels()[_twr_BULLET]-1);
-	if(game().getSaveGame()->getTurretsLevels()[_twr_BULLET] == 5)mngr_->getComponent<FramedImage>(bulletImage_)->setCurrentFrame(game().getSaveGame()->getTurretsLevels()[_twr_BULLET] - 2);
+	
+	/** --------------------
+	*	-- CRISTAL
+	*/
+	if (game().getSaveGame()->getTurretsLevels()[_twr_CRISTAL] == 0) {
+		cristalImage_ = addImage({ sdlutils().width() - twr_img_separation , (sdlutils().height() / 8.0f) * 2},
+			{ towerImagesSize },
+			0, gameTextures::cristal_tower_silueta, _grp_TOWER_ICONS);
+	}
+	else {
+		cristalImage_ = addImage({ sdlutils().width() - twr_img_separation , (sdlutils().height() / 8.0f) * 2 },
+			{ towerImagesSize },
+			0, gameTextures::cristalTowerTexture, _grp_TOWER_ICONS);
+		if (!mngr_->hasComponent<FramedImage>(cristalImage_))mngr_->addComponent<FramedImage>(cristalImage_, intAt("CristalColumns"), intAt("CristalRows"), intAt("CristalWidth"), intAt("CristalHeight"), 0, 0);
+		mngr_->getComponent<FramedImage>(cristalImage_)->setCurrentFrame(game().getSaveGame()->getTurretsLevels()[_twr_CRISTAL]-1);
+	}
+	
+	/** --------------------
+	*	-- SLIME
+	*/
+	if (game().getSaveGame()->getTurretsLevels()[_twr_SLIME] == 0) {
+		slimeImage_ = addImage({ sdlutils().width() - twr_img_separation , (sdlutils().height() / 8.0f) * 3 },
+			{ towerImagesSize },
+			0, gameTextures::slime_tower_silueta, _grp_TOWER_ICONS);
+	}
+	else {
+		slimeImage_ = addImage({ sdlutils().width() - twr_img_separation , (sdlutils().height() / 8.0f) * 3 },
+			{ towerImagesSize },
+			0, gameTextures::slimeTowerTexture, _grp_TOWER_ICONS);
+		if (!mngr_->hasComponent<FramedImage>(slimeImage_))mngr_->addComponent<FramedImage>(slimeImage_, intAt("SlimeColumns"), intAt("SlimeRows"), intAt("SlimeWidth"), intAt("SlimeHeight"), 0, 0);
+		mngr_->getComponent<FramedImage>(slimeImage_)->setCurrentFrame(game().getSaveGame()->getTurretsLevels()[_twr_SLIME]- 2);
+	}
 
+	/** --------------------
+	*	-- SNIPER
+	*/
+	if (game().getSaveGame()->getTurretsLevels()[_twr_DIEGO] == 0) {
+		diegoImage_ = addImage({ sdlutils().width() - twr_img_separation , (sdlutils().height() / 8.0f) * 4 },
+			{ towerImagesSize },
+			0, gameTextures::sniper_tower_silueta, _grp_TOWER_ICONS);
+	}
+	else {
+		diegoImage_ = addImage({ sdlutils().width() - twr_img_separation , (sdlutils().height() / 8.0f) * 4 },
+			{ towerImagesSize },
+			0, gameTextures::sniperTowerTexture, _grp_TOWER_ICONS);
+		if (!mngr_->hasComponent<FramedImage>(diegoImage_))mngr_->addComponent<FramedImage>(diegoImage_, intAt("DiegoSniperColumns"), intAt("DiegoSniperRows"), intAt("DiegoSniperWidth"), intAt("DiegoSniperHeight"), 0, 0);
+		mngr_->getComponent<FramedImage>(diegoImage_)->setCurrentFrame(game().getSaveGame()->getTurretsLevels()[_twr_DIEGO]-1);
+	}
 
-	cristalImage_ = addImage({ sdlutils().width() - twr_img_separation , (sdlutils().height() / 8.0f) * 2 },
-		{ towerImagesSize },
-		0, gameTextures::cristalTowerTexture, _grp_TOWER_ICONS);
-	if (!mngr_->hasComponent<FramedImage>(cristalImage_))mngr_->addComponent<FramedImage>(cristalImage_, intAt("CristalColumns"), intAt("CristalRows"), intAt("CristalWidth"), intAt("CristalHeight"), 0, 0);
-	mngr_->getComponent<FramedImage>(cristalImage_)->setCurrentFrame(game().getSaveGame()->getTurretsLevels()[_twr_CRISTAL]);
-	if (game().getSaveGame()->getTurretsLevels()[_twr_CRISTAL] == 5)mngr_->getComponent<FramedImage>(cristalImage_)->setCurrentFrame(game().getSaveGame()->getTurretsLevels()[_twr_CRISTAL] - 2);
-
-	slimeImage_ = addImage({ sdlutils().width() - twr_img_separation , (sdlutils().height() / 8.0f) * 3 },
-		{ towerImagesSize },
-		0, gameTextures::slimeTowerTexture, _grp_TOWER_ICONS);
-	if (!mngr_->hasComponent<FramedImage>(slimeImage_))mngr_->addComponent<FramedImage>(slimeImage_, intAt("SlimeColumns"), intAt("SlimeRows"), intAt("SlimeWidth"), intAt("SlimeHeight"), 0, 0);
-	mngr_->getComponent<FramedImage>(slimeImage_)->setCurrentFrame(game().getSaveGame()->getTurretsLevels()[_twr_SLIME]);
-	if (game().getSaveGame()->getTurretsLevels()[_twr_SLIME] == 5)mngr_->getComponent<FramedImage>(slimeImage_)->setCurrentFrame(game().getSaveGame()->getTurretsLevels()[_twr_SLIME] - 2);
-
-	diegoImage_ = addImage({ sdlutils().width() - twr_img_separation , (sdlutils().height() / 8.0f) * 4 },
-		{ towerImagesSize },
-		0, gameTextures::sniperTowerTexture, _grp_TOWER_ICONS);
-	if (!mngr_->hasComponent<FramedImage>(diegoImage_))mngr_->addComponent<FramedImage>(diegoImage_, intAt("DiegoSniperColumns"), intAt("DiegoSniperRows"), intAt("DiegoSniperWidth"), intAt("DiegoSniperHeight"), 0, 0);
-	mngr_->getComponent<FramedImage>(diegoImage_)->setCurrentFrame(game().getSaveGame()->getTurretsLevels()[_twr_DIEGO]);
-	if (game().getSaveGame()->getTurretsLevels()[_twr_DIEGO] == 5)mngr_->getComponent<FramedImage>(diegoImage_)->setCurrentFrame(game().getSaveGame()->getTurretsLevels()[_twr_DIEGO] - 2);
-
+	/** --------------------
+	*	-- CLAY
+	*/
 	dirtImage_ = addImage({ sdlutils().width() - twr_img_separation , (sdlutils().height() / 8.0f) * 6 },
 		{ towerImagesSize },
 		0, gameTextures::clayTowerTexture, _grp_TOWER_ICONS);
 	if (!mngr_->hasComponent<FramedImage>(dirtImage_))mngr_->addComponent<FramedImage>(dirtImage_, intAt("ArcillaColumns"), intAt("ArcillaRows"), intAt("ArcillaWidth"), intAt("ArcillaHeight"), 0, 0);
-	mngr_->getComponent<FramedImage>(diegoImage_)->setCurrentFrame(game().getSaveGame()->getTurretsLevels()[_twr_CLAY]);
-	if (game().getSaveGame()->getTurretsLevels()[_twr_CLAY] == 5)mngr_->getComponent<FramedImage>(dirtImage_)->setCurrentFrame(game().getSaveGame()->getTurretsLevels()[_twr_CLAY] - 2);
+	mngr_->getComponent<FramedImage>(dirtImage_)->setCurrentFrame(game().getSaveGame()->getTurretsLevels()[_twr_CLAY] - 1);
 
-	enhancerImage_ = addImage({ sdlutils().width() - twr_img_separation , (sdlutils().height() / 8.0f) * 7 },
-		{ towerImagesSize },
-		0, gameTextures::boosterTowerTexture, _grp_TOWER_ICONS);
-	if (!mngr_->hasComponent<FramedImage>(enhancerImage_))mngr_->addComponent<FramedImage>(enhancerImage_, intAt("PotenciadoraColumns"), intAt("PotenciadoraRows"), intAt("PotenciadoraWidth"), intAt("PotenciadoraHeight"), 0, 0);
-	mngr_->getComponent<FramedImage>(enhancerImage_)->setCurrentFrame(game().getSaveGame()->getTurretsLevels()[_twr_POWER]);
-	if (game().getSaveGame()->getTurretsLevels()[_twr_POWER] == 5)mngr_->getComponent<FramedImage>(enhancerImage_)->setCurrentFrame(game().getSaveGame()->getTurretsLevels()[_twr_POWER] - 2);
-
-	fenixImage_ = addImage({ sdlutils().width() - twr_img_separation , (sdlutils().height() / 8.0f) * 5 },
-		{ towerImagesSize },
-		0, gameTextures::phoenixTowerTexture, _grp_TOWER_ICONS);
-	if (!mngr_->hasComponent<FramedImage>(fenixImage_))mngr_->addComponent<FramedImage>(fenixImage_, intAt("FenixColumns"), intAt("FenixRows"), intAt("FenixWidth"), intAt("FenixHeight"), 0, 0);
-	mngr_->getComponent<FramedImage>(fenixImage_)->setCurrentFrame(game().getSaveGame()->getTurretsLevels()[_twr_FENIX]);
-	if (game().getSaveGame()->getTurretsLevels()[_twr_FENIX] == 5)mngr_->getComponent<FramedImage>(fenixImage_)->setCurrentFrame(game().getSaveGame()->getTurretsLevels()[_twr_FENIX] - 2);
-
+	/** --------------------
+	*	-- ENHANCER
+	*/
+	if (game().getSaveGame()->getTurretsLevels()[_twr_POWER] == 0) {
+		enhancerImage_ = addImage({ sdlutils().width() - twr_img_separation , (sdlutils().height() / 8.0f) * 7 },
+			{ towerImagesSize },
+			0, gameTextures::booster_tower_silueta, _grp_TOWER_ICONS);
+	}
+	else {
+		enhancerImage_ = addImage({ sdlutils().width() - twr_img_separation , (sdlutils().height() / 8.0f) * 7 },
+			{ towerImagesSize },
+			0, gameTextures::boosterTowerTexture, _grp_TOWER_ICONS);
+		if (!mngr_->hasComponent<FramedImage>(enhancerImage_))mngr_->addComponent<FramedImage>(enhancerImage_, intAt("PotenciadoraColumns"), intAt("PotenciadoraRows"), intAt("PotenciadoraWidth"), intAt("PotenciadoraHeight"), 0, 0);
+		mngr_->getComponent<FramedImage>(enhancerImage_)->setCurrentFrame(game().getSaveGame()->getTurretsLevels()[_twr_POWER] - 1);
+	}
+	/** --------------------
+	*	-- FENIX
+	*/
+	if (game().getSaveGame()->getTurretsLevels()[_twr_FENIX] == 0) {
+		fenixImage_ = addImage({ sdlutils().width() - twr_img_separation , (sdlutils().height() / 8.0f) *  5},
+			{ towerImagesSize },
+			0, gameTextures::phoenix_tower_silueta, _grp_TOWER_ICONS);
+	}
+	else {
+		fenixImage_ = addImage({ sdlutils().width() - twr_img_separation , (sdlutils().height() / 8.0f) * 5 },
+			{ towerImagesSize },
+			0, gameTextures::phoenixTowerTexture, _grp_TOWER_ICONS);
+		if (!mngr_->hasComponent<FramedImage>(fenixImage_))mngr_->addComponent<FramedImage>(fenixImage_, intAt("FenixColumns"), intAt("FenixRows"), intAt("FenixWidth"), intAt("FenixHeight"), 0, 0);
+		mngr_->getComponent<FramedImage>(fenixImage_)->setCurrentFrame(game().getSaveGame()->getTurretsLevels()[_twr_FENIX] - 1);
+	}
 }
 
 void ButtonSystem::generateHMoneyText() {
 	moneyText_ = mngr_->addEntity(_grp_TEXTS);
 	Transform* tr = mngr_->addComponent<Transform>(moneyText_);
 	basic_string h_money = std::to_string(HMoney_);
-	Vector2D font_size = { 40, 80 };
 	tr->setPosition({ 140,75 });
-	tr->setScale({ h_money.size() * font_size.getX(), font_size.getY()});
+	tr->setScale({ h_money.size() * font_size_Hcoin_nexus.getX(), font_size_Hcoin_nexus.getY()});
 	mngr_->addComponent<TextComponent>(moneyText_, h_money);
 }
 
@@ -970,9 +1034,10 @@ void ButtonSystem::generateUpgradeMoneyTexts() {
 	mngr_->addComponent<TextComponent>(nexusPriceText_, nexusText);
 
 	//BULLET PRICE TEXT
-	int bulletPrice = game().getSaveGame()->getTurretsLevels()[_twr_BULLET];
+	int bullet_lvl = game().getSaveGame()->getTurretsLevels()[_twr_BULLET];
+		int bulletPrice;
 
-	switch (bulletPrice) {
+	switch (bullet_lvl) {
 		case 0:
 			bulletPrice = intAt("precioHBalasLvl0");
 			break;
@@ -990,7 +1055,8 @@ void ButtonSystem::generateUpgradeMoneyTexts() {
 			break;
 	}
 	string bulletText = std::to_string(bulletPrice);
-	if (bulletPrice == 5)bulletText = "MAX";
+ 	if (bullet_lvl == 4)
+		bulletText = "MAX";
 
 	addImage({ sdlutils().width() - 160.0f , (sdlutils().height() / 5.5f) * 1 }, { 30.0f, 40.0f }, 0.0f, monedaH, _grp_HUD_FOREGROUND);
 	bulletMoneyText_ = mngr_->addEntity(_grp_BACKGROUND_TEXTS);
@@ -1002,8 +1068,9 @@ void ButtonSystem::generateUpgradeMoneyTexts() {
 	mngr_->addComponent<TextComponent>(bulletMoneyText_, bulletText);;
 
 	//CRISTAL PRICE TEXT
-	int cristalPrice = game().getSaveGame()->getTurretsLevels()[_twr_CRISTAL];
-	switch (cristalPrice) {
+	int cristalPrice;
+	int cristal_lvl = game().getSaveGame()->getTurretsLevels()[_twr_CRISTAL];
+	switch (cristal_lvl) {
 		case 0:
 			cristalPrice = intAt("precioHCristalLvl0");
 			break;
@@ -1021,7 +1088,7 @@ void ButtonSystem::generateUpgradeMoneyTexts() {
 			break;
 	}
 	string cristalText = std::to_string(cristalPrice);
-	if (cristalPrice == 5)cristalText = "MAX";
+	if (cristal_lvl == 4)cristalText = "MAX";
 
 	addImage({ sdlutils().width() - 160.0f , (sdlutils().height() / 5.5f) + (sdlutils().height() / 8.0f) }, { 30.0f, 40.0f }, 0.0f, monedaH, _grp_HUD_FOREGROUND);
 	cristalMoneyText_ = mngr_->addEntity(_grp_BACKGROUND_TEXTS);
@@ -1033,8 +1100,9 @@ void ButtonSystem::generateUpgradeMoneyTexts() {
 	mngr_->addComponent<TextComponent>(cristalMoneyText_, cristalText);
 
 	//SLIME PRICE TEXT
-	int slimePrice = game().getSaveGame()->getTurretsLevels()[_twr_SLIME];
-	switch (slimePrice) {
+	int slimePrice;
+	int slime_lvl = game().getSaveGame()->getTurretsLevels()[_twr_SLIME];
+	switch (slime_lvl) {
 		case 0:
 			slimePrice = intAt("precioHSlimeLvl0");
 			break;
@@ -1052,7 +1120,7 @@ void ButtonSystem::generateUpgradeMoneyTexts() {
 			break;
 	}
 	string slimeText = std::to_string(slimePrice);
-	if (slimePrice == 5)slimeText = "MAX";
+	if (slime_lvl == 4)slimeText = "MAX";
 
 	addImage({ sdlutils().width() - 140.0f , (sdlutils().height() / 5.5f) + (sdlutils().height() / 8.0f) * 2 }, { 30.0f, 40.0f }, 0.0f, monedaH, _grp_HUD_FOREGROUND);
 	slimeMoneyText_ = mngr_->addEntity(_grp_BACKGROUND_TEXTS);
@@ -1064,8 +1132,9 @@ void ButtonSystem::generateUpgradeMoneyTexts() {
 	mngr_->addComponent<TextComponent>(slimeMoneyText_, slimeText);
 
 	//DIEGO PRICE TEXT
-	int diegoPrice = game().getSaveGame()->getTurretsLevels()[_twr_DIEGO];
-	switch (diegoPrice) {
+	int diegoPrice;
+	int diego_lvl = game().getSaveGame()->getTurretsLevels()[_twr_DIEGO];
+	switch (diego_lvl) {
 		case 0:
 			diegoPrice = intAt("precioHDiegoLvl0");
 			break;
@@ -1083,7 +1152,7 @@ void ButtonSystem::generateUpgradeMoneyTexts() {
 			break;
 	}
 	string diegoText = std::to_string(diegoPrice);
-	if (diegoPrice == 5)diegoText = "MAX";
+	if (diego_lvl == 4)diegoText = "MAX";
 
 	addImage({ sdlutils().width() - 140.0f , (sdlutils().height() / 5.5f) + (sdlutils().height() / 8.0f) * 3 }, { 30.0f, 40.0f }, 0.0f, monedaH, _grp_HUD_FOREGROUND);
 	diegoMoneyText_ = mngr_->addEntity(_grp_BACKGROUND_TEXTS);
@@ -1095,8 +1164,9 @@ void ButtonSystem::generateUpgradeMoneyTexts() {
 	mngr_->addComponent<TextComponent>(diegoMoneyText_, diegoText);
 	
 	//PHOENIX PRICE TEXT
-	int fenixPrice = game().getSaveGame()->getTurretsLevels()[_twr_FENIX];
-	switch (fenixPrice) {
+	int fenixPrice;
+	int fenix_lvl = game().getSaveGame()->getTurretsLevels()[_twr_FENIX];
+	switch (fenix_lvl) {
 		case 0:
 			fenixPrice = intAt("precioHFenixLvl0");
 			break;
@@ -1114,7 +1184,7 @@ void ButtonSystem::generateUpgradeMoneyTexts() {
 			break;
 	}
 	string fenixText = std::to_string(fenixPrice);
-	if (fenixPrice == 5)fenixText = "MAX";
+	if (fenix_lvl == 4)fenixText = "MAX";
 
 	addImage({ sdlutils().width() - 140.0f , (sdlutils().height() / 5.5f) + (sdlutils().height() / 8.0f) * 4 }, { 30.0f, 40.0f }, 0.0f, monedaH, _grp_HUD_FOREGROUND);
 	fenixMoneyText_ = mngr_->addEntity(_grp_BACKGROUND_TEXTS);
@@ -1126,8 +1196,9 @@ void ButtonSystem::generateUpgradeMoneyTexts() {
 	mngr_->addComponent<TextComponent>(fenixMoneyText_, fenixText);
 
 	//DIRT PRICE TEXT
-	int dirtPrice = game().getSaveGame()->getTurretsLevels()[_twr_CLAY];
-	switch (dirtPrice) {
+	int dirtPrice;
+	int dirt_lvl = game().getSaveGame()->getTurretsLevels()[_twr_CLAY];
+	switch (dirt_lvl) {
 		case 0:
 			dirtPrice = intAt("precioHArcillaLvl0");
 			break;
@@ -1146,7 +1217,7 @@ void ButtonSystem::generateUpgradeMoneyTexts() {
 
 	}
 	string dirtText = std::to_string(dirtPrice);
-	if (dirtPrice == 5)dirtText = "MAX";
+	if (dirt_lvl == 4)dirtText = "MAX";
 
 	addImage({ sdlutils().width() - 140.0f , (sdlutils().height() / 5.5f) + (sdlutils().height() / 8.0f) * 5 }, { 30.0f, 40.0f }, 0.0f, monedaH, _grp_HUD_FOREGROUND);
 	dirtMoneyText_ = mngr_->addEntity(_grp_BACKGROUND_TEXTS);
@@ -1160,8 +1231,9 @@ void ButtonSystem::generateUpgradeMoneyTexts() {
 
 
 	//ENHANCER PRICE TEXT
-	int enhancerPrice = game().getSaveGame()->getTurretsLevels()[_twr_POWER];
-	switch (enhancerPrice) {
+	int enhancerPrice;
+	int enhancer_lvl = game().getSaveGame()->getTurretsLevels()[_twr_POWER];
+	switch (enhancer_lvl) {
 	case 0:
 		enhancerPrice = intAt("precioHPotenciadoraLvl0");
 		break;
@@ -1179,7 +1251,8 @@ void ButtonSystem::generateUpgradeMoneyTexts() {
 		break;
 	}
 	string enhancerText = std::to_string(enhancerPrice);
-	if (enhancerPrice == 5)enhancerText = "MAX";
+	if (enhancer_lvl == 4)
+		enhancerText = "MAX";
 
 	addImage({ sdlutils().width() - 140.0f , (sdlutils().height() / 5.5f) + (sdlutils().height() / 8.0f) * 6 }, { 30.0f, 40.0f }, 0.0f, monedaH, _grp_HUD_FOREGROUND);
 	enhancerMoneyText_ = mngr_->addEntity(_grp_BACKGROUND_TEXTS);
@@ -1189,4 +1262,22 @@ void ButtonSystem::generateUpgradeMoneyTexts() {
 	Vector2D auxen = tren->getScale();
 	tren->setPosition(Vector2D(sdlutils().width() - 180.0f, (sdlutils().height() / 5.5f) + (sdlutils().height() / 8.0f) * 6) - auxen / 2);
 	mngr_->addComponent<TextComponent>(enhancerMoneyText_, enhancerText);
+}
+
+void ButtonSystem::throwUpgradeAnim(const Vector2D& pos) {
+		Message m;
+		m.id = _m_ANIM_CREATE;
+		m.anim_create.idGrp = _grp_HUD_FOREGROUND;
+		m.anim_create.animSpeed = 70;
+		m.anim_create.iterationsToDelete = 1;
+		m.anim_create.pos = pos - Vector2D(130, 30);
+		m.anim_create.frameInit = 1;
+		m.anim_create.frameEnd = 24;
+		m.anim_create.cols = 6;
+		m.anim_create.rows = 5;
+		m.anim_create.scale = { 160, 160 };
+		m.anim_create.width = 273;
+		m.anim_create.height = 273;
+		m.anim_create.tex = gameTextures::enemy_spawn;
+		mngr_->send(m);
 }

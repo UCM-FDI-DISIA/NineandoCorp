@@ -186,6 +186,7 @@ RenderSystem::RenderSystem() : winner_(0)
 	textures[impact] = &sdlutils().images().at("bullet_impact");
 	textures[blood] = &sdlutils().images().at("blood");
 	textures[enemy_spawn] = &sdlutils().images().at("spawn_enemy");
+	textures[level_up] = &sdlutils().images().at("level_up");
 	//Miscelanious
 	textures[square] = &sdlutils().images().at("square");
 	textures[tileSet] = &sdlutils().images().at("map");
@@ -522,6 +523,9 @@ void RenderSystem::update() {
 			if (fI != nullptr) {
 				SDL_Rect srcRect = fI->getSrcRect();
 				textures[textureId]->render(srcRect, trRect, tr->getRotation());
+			}
+			else {
+				textures[textureId]->render(tr->getRect(), tr->getRotation());
 			}
 		}
 	}

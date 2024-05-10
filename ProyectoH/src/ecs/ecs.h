@@ -386,7 +386,7 @@ enum gameTextures {
 	monedaAnimacion,
 
 	//explosions
-	shieldExp, bulletExplosion, enemyDeath, impact, blood,
+	shieldExp, bulletExplosion, enemyDeath, impact, blood, level_up,
 
 
 	gmTxtrSize
