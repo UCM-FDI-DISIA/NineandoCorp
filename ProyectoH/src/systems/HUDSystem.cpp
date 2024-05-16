@@ -29,7 +29,7 @@ void HUDSystem::initSystem() {
 	* 
 	*/
 	twrSel_.background = bS->addImage({ (float)sdlutils().width() / 2 , heightH },
-		{ (float)sdlutils().width() + 30.0f, 200.0f },
+		{ (float)sdlutils().width(), 200.0f },
 
 		0.0,
 		gameTextures::box,

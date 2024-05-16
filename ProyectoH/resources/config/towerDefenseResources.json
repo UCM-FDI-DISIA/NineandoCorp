@@ -463,35 +463,35 @@
     },
     {
       "id": "resume_button",
-      "file": "resources/images/UI/resume_button.png"
+      "file": "resources/images/UI/resume_button1.png"
     },
     {
       "id": "resume_button_hover",
-      "file": "resources/images/UI/resume_button_hover.png"
+      "file": "resources/images/UI/resume_button_hover1.png"
     },
     {
       "id": "backToMenu_button",
-      "file": "resources/images/UI/backToMenu_button.png"
+      "file": "resources/images/UI/backToMenu_button1.png"
     },
     {
       "id": "backToMenu_button_hover",
-      "file": "resources/images/UI/backToMenu_button_hover.png"
+      "file": "resources/images/UI/backToMenu_button_hover1.png"
     },
     {
       "id": "exitGame_button",
-      "file": "resources/images/UI/exitGame_button.png"
+      "file": "resources/images/UI/exitGame_button1.png"
     },
     {
       "id": "exitGame_button_hover",
-      "file": "resources/images/UI/exitGame_button_hover.png"
+      "file": "resources/images/UI/exitGame_button_hover1.png"
     },
     {
       "id": "return_button",
-      "file": "resources/images/UI/return_button.png"
+      "file": "resources/images/UI/return_button1.png"
     },
     {
       "id": "return_button_hover",
-      "file": "resources/images/UI/return_button_hover.png"
+      "file": "resources/images/UI/return_button_hover1.png"
     },
     {
       "id": "logo",
