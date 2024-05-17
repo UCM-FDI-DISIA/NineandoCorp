@@ -49,10 +49,12 @@ private:
 	std::vector<std::vector<Vector2D>> routesToEarthquake;
 	int spawn = 0;
 	int pos = 0;
+	int level = 0;
 	Vector2D tileSize_;
 	NetMap* net;
 	Entity* imgEvent_;
 	MeteorologyEvent nextEvent_;
 	int wavesToNextevent_;
 	int currentWaves_;
+	int levelActive_ = 2;
 };
