@@ -18,7 +18,7 @@ objectsSpawned_(0),
 currentWaves_(0),
 wavesToNextevent_(0)
 {
-	mActive = true;
+	mActive = false;
 	imgEvent_ = nullptr;
 }
 
@@ -56,16 +56,20 @@ void MeteorologySystem::setIcon() {
 
 
 void MeteorologySystem::initSystem() {//Primer fenomeno
-	auto& rand = sdlutils().rand();
-	setNextEvent(rand.nextInt(4, 5),(MeteorologyEvent)rand.nextInt(0, 5));
-	showWarningMessage();
+
+	if (level > levelActive_) {//nivel al partir el cual se activan
+		auto& rand = sdlutils().rand();
+		setNextEvent(rand.nextInt(2, 4), (MeteorologyEvent)rand.nextInt(0, 5));
+		showWarningMessage();
+		mActive = true;
+	}
 }
 
 void MeteorologySystem::showWarningMessage() {
 	int waves = (int)(wavesToNextevent_ - currentWaves_);
 	Message m;
 	m.id = _m_ADD_TEXT;
-	m.add_text_data.txt = "WARNING " + to_string(waves) + " WAVES";
+	m.add_text_data.txt = "WARNING " + to_string(waves) + " ROUNDS";
 	m.add_text_data.color = { 255, 255 ,255, 255 };
 	Vector2D txtScale = Vector2D(550.0f, 60.0f);
 	m.add_text_data.pos = Vector2D(600.0, 100.0) - (txtScale / 2);
@@ -140,6 +144,11 @@ void  MeteorologySystem::receive(const Message& m) {
 		if (m.start_wave.play) {
 			currentWaves_++;
 		}	
+		break;
+	case _m_START_GAME:
+		level = m.start_game_data.level;
+		initSystem();
+		level = 0;
 		break;
 	default:
 		break;
@@ -367,7 +376,7 @@ void MeteorologySystem::update() {
 			int waves = (int)(wavesToNextevent_ - currentWaves_);
 			Message m;
 			m.id = _m_ADD_TEXT;
-			m.add_text_data.txt = "WAVES:  " + to_string(waves);
+			m.add_text_data.txt = "ROUNDS:  " + to_string(waves);
 			m.add_text_data.color = { 255, 255 ,255, 255 };
 			Vector2D txtScale = Vector2D(80.0f, 20.0f);
 			m.add_text_data.pos = Vector2D(110.0, 80.0) - (txtScale / 2);

@@ -46,7 +46,7 @@ public:
 	/// A�ade una entitdad de tipo texto al manager
 	/// </summary>
 	/// <returns> La propia entidad </returns>
-	Entity* addText(const string& txt, const SDL_Color& color, const Vector2D& pos, const Vector2D& scale);
+	Entity* addText(const string& txt, const SDL_Color& color, const Vector2D& pos, const Vector2D& scale, grpId gId = _grp_TEXTS);
 
 
 
@@ -189,6 +189,7 @@ private:
 	SDL_bool 	mouse_follow = SDL_FALSE;
 	SDL_Point 	mouse_offset;
 
+	//Texto del coste de las torres
 	Entity* bulletMoneyText_;
 	Entity* cristalMoneyText_;
 	Entity* slimeMoneyText_;
@@ -197,6 +198,16 @@ private:
 	Entity* fenixMoneyText_;
 	Entity* dirtMoneyText_;
 
+	//Texto del nivel de la torre
+	Entity* bulletLvlText_;
+	Entity* cristalLvlText_;
+	Entity* slimeLvlText_;
+	Entity* diegoLvlText_;
+	Entity* enhancerLvlText_;
+	Entity* fenixLvlText_;
+	Entity* dirtLvlText_;
+
+	//Imagenes de las torres
 	Entity* bulletImage_;
 	Entity* cristalImage_;
 	Entity* slimeImage_;
@@ -205,6 +216,7 @@ private:
 	Entity* fenixImage_;
 	Entity* dirtImage_;
 	
+	//Textos e imagendes del nexo
 	Entity* nexusImage_;
 	Entity* nexusLvl_;
 	Entity* nexushealth_;
@@ -222,6 +234,10 @@ private:
 	float info_separation = 45.0f;
 	//Tamaño de las imagenes de las torres
 	Vector2D towerImagesSize;
+	//Separacion del texto de nivel
+	const float lvl_separation = 220.0f;
+	//Tamaño de fuente para los textos de nivel y coste
+	const Vector2D font_size = { 12.0f, 30.0f };
 
 	void throwUpgradeAnim(const Vector2D& pos); 
 
