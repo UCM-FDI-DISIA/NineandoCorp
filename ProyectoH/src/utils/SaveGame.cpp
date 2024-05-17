@@ -13,6 +13,7 @@ SaveGame::SaveGame() : levelsUnlocked_(1), HCoins_(0) {
 		else
 			turretsLevel_[i] = 0;
 	}
+	HCoins_ = 700;
 }
 
 void SaveGame::loadFile() {
@@ -28,6 +29,7 @@ void SaveGame::loadFile() {
 		for (int i = 0; i < _enm_SIZE; i++)
 			fs.read(reinterpret_cast<char*>(&enemiesBook_[i]), sizeof enemiesBook_[i]);
 		fs.close();
+		HCoins_ = 700;
 		if (!fs.good())
 			cout << "Ha ocurrido un error al leer el archivo de guardado.";
 	}
