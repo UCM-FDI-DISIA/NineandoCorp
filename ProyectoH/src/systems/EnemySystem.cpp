@@ -785,7 +785,7 @@ void EnemySystem::changeAnimation(bool isAttacking, Entity* e) {
 	case _enm_PRINCIPITO:
 		if (isAttacking) {
 			rc->setTexture(gameTextures::principito_attack);
-			fi->setFrames(14, 1, 0, 8, 13);
+			fi->setFrames(6, 1, 0, 8, 5);
 		}
 		else
 		{
