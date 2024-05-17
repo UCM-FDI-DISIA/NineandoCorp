@@ -55,20 +55,20 @@
 - **Target**: Público joven con interés en juegos de estrategia
 - **Rating**: +7
 - **Plataforma**: PC
-- **Modos de juego**: Campaña / Infinito
+- **Modos de juego**: Campaña
 
 ### 2. Descripción
 "H Defense” es un videojuego de estrategia del género tower defense que te sumerge en un mundo fantástico que es asediado por hordas de diversas criaturas fantásticas y hostiles. Tu misión es defender la última fortaleza del Planeta H utilizando una variedad de torres defensivas y estrategias de diferente tipo.
 
 ### 3. Estética
-El juego cuenta con una estética *Pixelart* no muy pronunciada. 
-Asimismo, se cuenta con un estilo de fantasía, por tanto, habrá ciertas zonas con elementos oscuros y otras con elementos más llamativos. 
-Además, puesto que el elemento principal del juego es la magia, esta se representa con el color morado.
+El juego cuenta con una estética *Pixelart*. 
+Asimismo, se cuenta con un estilo de fantasía, por tanto, habrá una temática en cada mapa con elementos únicos y ambientes de novela. 
+Además, el color principal del juego es el morado, que aparece en gran parte de la interfaz.
 
 La perspectiva del juego es isométrica. Sin embargo, algunos de los assets, principalmente enemigos y torres están en 2D, por tanto, se puede considerar un juego 2.5D. 
 
 #### 3.1 Estética del escenario
-    El escenario está ambientado en un prado mágico  entre montañas. Así, el escenario cuenta con zonas donde predomina el color verde (prado) y zonas donde predomina el color gris (montaña). 
+    El escenario está ambientado en un prado mágico entre montañas. Así, el escenario cuenta con zonas donde predomina el color verde (prado) y zonas donde predomina el color gris (montaña). 
 
 #### 3.2 Estética de enemigos
     En los enemigos, en contraste al escenario, destacan colores más oscuros, con un aspecto más tenebroso.
@@ -76,10 +76,8 @@ La perspectiva del juego es isométrica. Sin embargo, algunos de los assets, pri
 #### 3.3 Estética de torres
     Puesto que el juego está ambientado en  un mundo de fantasía, las torres cuentan con ciertos artefactos mágicos, y, por lo tanto, cada cual tiene los colores de los elementos que empleen. Por ejemplo, la torre Llama de Fénix cuenta, en su mayoría, con elementos de tono rojizo y naranja. 
 
-    Por otra parte, el resto de torres que no cuentan con un elemento en específico  contarán con diversos elementos con aspecto morado, puesto que es el color principal que representa a la magia.
-
 #### 3.4 Estética de UI y menús
-    Al  igual que las torres, la estética de las distintas interfaces cuentan con el morado como color principal. 
+    La estética de las distintas interfaces cuentan con el morado como color principal. 
 
     No obstante, en contraste con la estética del escenario, estas interfaces van a tender a tonos más oscuros, puesto que así será más sencillo para el jugador reconocerlas durante la partida. 
 
@@ -87,8 +85,8 @@ La perspectiva del juego es isométrica. Sin embargo, algunos de los assets, pri
 En este apartado definiremos las mecánicas del juego, las cuales podemos dividir en 5 apartados principales: cámara, las mecánicas únicas del jugador y las mecánicas del escenario, enemigos y torres. Con todo esto englobamos las propiedades que harán jugable nuestro juego. 
 
 #### 4.1 Cámara
-La cámara se colocará en la parte superior de la pantalla y mostrará todos los puntos de spawn.
-Asimismo, la cámara se puede desplazar en el eje x e y para explorar el mapa.
+La cámara se colocará de forma cenital respecto al mapa, y mostrará todos los puntos de spawn.
+Asimismo, la cámara se puede desplazar en el eje x e y para explorar el mapa. Tendrá límites en el borde del mapa.
 
 ![Isometría](ProyectoH/resources/images/Miscelanious/jugabilidad_camara.png)
 
@@ -96,14 +94,14 @@ Asimismo, la cámara se puede desplazar en el eje x e y para explorar el mapa.
 El jugador será capaz de realizar diferentes acciones, desde interactuar con el mapa hasta gestionar toda la partida (pausar, acelerar…). Dichas acciones se podrán manejar con el ratón, excepto algunas que tendrán atajos de teclado. A continuación, se explican más detalladamente:
 
 ##### 4.2.1 Interacción con el mapa
-- Manteniendo el click izquierdo sobre el icono de la torre deseada en la barra inferior, arrastrar hasta la posición en la que se quiere colocar. Dicha torre no se puede mover una vez haya sido colocada.
-- Las torres se podrán quitar sin recuperar ni perder dinero o cambiar de posición a cambio de dinero.
+- Manteniendo el click izquierdo sobre el icono de la torre deseada en la barra inferior, arrastrar hasta la posición en la que se quiere colocar. Dicha torre no se puede mover una vez haya sido colocada. Se podrá colocar en ciertas zonas definidas del mapa según su tipo.
+- Las torres se podrán vender, devolviendo parte del dinero.
 - Haciendo click sobre las torres colocadas, aparecerá un pop-up con información de la torre y tendremos la opción de mejorarla.
 - Si has arrastrado una torreta y no la has colocado puedes cancelar la selección con click derecho.
 
 ##### 4.2.2 Gestión de la partida
 - Pause: se podrá hacer click en un botón (parte superior derecha de la pantalla) o pulsar la tecla “ESCAPE” para pausar la partida. 
-- Multiplicador de velocidad: se podrá hacer click en un botón en la parte superior derecha de la pantalla (>>) o pulsar la tecla “SPACE” para reproducir más rápido el transcurso de la partida (X2), si volvemos a darle al botón o presionar la tecla, la velocidad del transcurso del tiempo volverá a la normalidad (X1).
+- Multiplicador de velocidad: se podrá hacer click en un botón en la parte superior derecha de la pantalla (x1/x1.5/x2) o pulsar la tecla “SPACE” para reproducir más rápido el transcurso de la partida. Si volvemos a darle al botón o presionar la tecla, la velocidad del transcurso del tiempo irá rotando.
 - Empezar: para empezar la ronda se podrá hacer click en dicho botón (parte inferior derecha de la pantalla) o pulsar la tecla “ENTER”.
 
 #### 4.3 Mécanicas del escenario
@@ -131,7 +129,7 @@ La evolución del escenario va en base a esta tabla:
 | 8| 8 | 4 |
 
 ##### 4.3.2 Zonas del escenario
-Una de las mecánicas más características del escenario son las zonas del mismo, 	puesto que estas limitan el tipo de torre que se pueden situar sobre ellas.
+Una de las mecánicas más características del escenario son las zonas del mismo, puesto que estas limitan el tipo de torre que se pueden situar sobre ellas.
 
 Estas zonas son: 
 
@@ -141,13 +139,15 @@ Estas zonas son:
 |Montaña| Son zonas más alejadas de los caminos. En ella solo se pueden poner torres de gran alcance o torres que ataque a enemigos aéreos|
 |Lagos|Estas zonas imposibilitan poner todo tipo de torres.|
 
+Algunas torres se pueden colocar tanto en zonas de pradera como en de montaña.
+
 ##### 4.3.3 Fenómenos Naturales
-Cada vez que se inicia un nivel, aparecerá el rango posible de oleadas en las que aparecerá el fenómeno natural que será elegido de forma aleatoria. Por lo tanto, una vez ocurra dicho fenómeno los siguientes aparecen cada 5 oleadas hasta el fin del nivel. Pueden  ser:
-- Tornados: estos reubicarán a los enemigos cambiandolos a otros caminos.
+Cada vez que se inicia un nivel, aparecerá un aviso con el número de oleadas restantes (entre 1 y 5) para que ocurra el fenómeno natural que es elegido de forma aleatoria, y de cúal se trata. A lo largo del nivel se podrá revisar el número de oleadas restantes en la parte superior izquierda de la pantalla. Una vez ocurra dicho fenómeno los siguientes aparecen cada 5 oleadas hasta el fin del nivel. Pueden  ser:
+- Tornados: estos reubicarán a los enemigos moviendolos a otros caminos.
 - Terremoto: destruirán las torres de arcilla que se ubiquen en los caminos y baja la velocidad de los enemigos durante el periodo que dure el fenómeno meteorológico.
-- Tormenta: caerán rayos que paralicen las torretas y enemigos según donde caiga. Además, se desactivan las torres Fénix durante el periodo de tormenta impidiendo que lanzan fuego. Las torres paralizadas tendrán un icono encima que lo indique.
-- Meteoritos:  caerán meteoritos que destruye las torretas y enemigos haciendo daño en área según donde caiga, se potencia las torres Fénix, ya que absorben el calor de los meteoritos.
-- Tsunami: cuando este fenómeno meteorológico suceda, el tsunami limpiará el mapa de torres y enemigos. Además, crea nuevas zonas de agua dando menos opciones de zonas para poner torres.
+- Tormenta: caerán rayos que paralicen las torretas y enemigos según donde caiga. Además, se desactivan las torres Fénix durante el periodo de tormenta impidiendo que lancen fuego. Las torres paralizadas tendrán un icono encima que lo indique.
+- Meteoritos:  caerán meteoritos que destruyen las torretas y enemigos haciendo daño en área según donde caigan, y se potencian las torres Fénix, ya que absorben el calor de los meteoritos.
+- Tsunami: cuando este fenómeno meteorológico suceda, el tsunami limpiará el mapa de torres y enemigos. Además, crea nuevas zonas de agua dando menos opciones de zonas para poner torres. Los enemigos eliminados por el tsunami proporcionarán el dinero correspondiente para no quedar a merced de las oleadas entrantes.
 
 ### 4.4 Enemigos
 
@@ -172,25 +172,25 @@ Nos encontraremos con los siguientes tipos de tropas:
 
 | ENEMIGO | FOTO | Habilidades | Estadísticas |
 | :---: | :---: | :---: | :---: |
-| **Maestro de las Almas**| ![MaestroAlmas](ProyectoH/resources/images/Enemies/maestro_de_almas.png) | Habilidad especial: <br/>Provoca ceguera a la torre que golpea<br/>(impide a la torre atacar durante un tiempo específico). Las torres cegadas tendrán un icono encima que lo indique. | <ul><li>Tipo de tropa: terrestre de rango<li>Vida: 200<li>Daño: 10 <li>Tiempo de ataque: 1s<li> Tipo de ataque: cercano <li>Velocidad: 3<li>Objetivo: torres pradera / nexo<ul/>
-| **Acechante Eléctrico** | ![AcechanteElectrico](ProyectoH/resources/images/Enemies/acechante_electrico.png) | Habilidad especial: En un tiempo específico la tropa ejecuta una descarga que potencia la velocidad de los aliados cercanos(Se queda quieto para hacerlo y luego sigue corriendo). Si golpea el escudo del nexo lo inhabilita. | <ul><li>Tipo de tropa: terrestre melé<li>Vida: 150<li>Daño: 20 <li>Tiempo de ataque: 1s<li> Tipo de ataque: cercano <li>Velocidad: 7<li>Objetivo: nexo<ul/>
-| **Maldito** | ![CaballeroMaldito](ProyectoH/resources/images/Enemies/caballero_maldito.png) | Ninguna | <ul><li>Tipo de tropa: terrestre melé<li>Vida: 100<li>Daño: 10 <li>Tiempo de ataque: 1s<li> Tipo de ataque: cercano <li>Velocidad: 3<li>Objetivo: nexo<ul/>
-| **Golem** | ![Golem](ProyectoH/resources/images/Enemies/golem.png) | Habilidad especial: Regenera 10  de vida por segundo. | <ul><li>Tipo de tropa: terrestre melé<li>Vida: 2500<li>Daño: 60 <li>Tiempo de ataque: 3s<li> Tipo de ataque: cercano <li>Velocidad: 2<li>Objetivo: nexo<ul/>
-| **Demonio alado** | ![DemonioAlado](ProyectoH/resources/images/Enemies/demonio_alado.png) | Ninguna | <ul><li>Tipo de tropa: Aérea<li>Vida: 25<li>Daño: 5 <li>Tiempo de ataque: 1s<li> Tipo de ataque: muy cercano <li>Velocidad: 4<li>Objetivo: torres pradera y montaña / nexo<ul/>
-| **Goblin** | ![Goblin](ProyectoH/resources/images/Enemies/goblin.png) | Ninguna | <ul><li>Tipo de tropa: terrestre melé<li>Vida: 40<li>Daño: 15 <li>Tiempo de ataque: 1s<li> Tipo de ataque: cercano <li>Velocidad: 6<li>Objetivo: nexo<ul/>
-| **Elfo** | ![Elfo](ProyectoH/resources/images/Enemies/elfoo.png) | Ninguna | <ul><li>Tipo de tropa: terrestre de rango<li>Vida: 100<li>Daño: 10 <li>Tiempo de ataque: 2s<li> Tipo de ataque: cercano <li>Velocidad: 2<li>Objetivo: torres pradera / nexo<ul/>
-| **Mensajero de la Muerte** | ![MensajeroDeLaMuerte](ProyectoH/resources/images/Enemies/mensajero.png) | Habilidad especial: Se desplaza en forma fantasmal siendo invisible a las torres, cuando llega a una torre aparece y la golpea. El muro y el nexo también lo hacen aparecer | <ul><li>Tipo de tropa: Terrestre<li>Vida: 100<li>Daño: 15 <li>Tiempo de ataque: 1s<li> Tipo de ataque: cercano <li>Velocidad: 3<li>Objetivo: nexo<ul/>
-| **Angel** | ![Angel](ProyectoH/resources/images/Enemies/angel.png) | En un área alrededor de ella cura a sus aliados 1% de vida por segundo. No ataca, cuando llega al nexo se desvanece. | <ul><li>Tipo de tropa: Aérea<li>Vida: 400<li>Daño: 0 <li>Tiempo de ataque: <li> Tipo de ataque: cercano <li>Velocidad: 3<li>Objetivo: torres pradera y montaña / nexo<ul/>
-| **Demonio Infernal**| ![DemonioInfernal](ProyectoH/resources/images/Enemies/demonio_infernal.png) | Ninguna | <ul><li>Tipo de tropa: Aérea<li>Vida: 1500<li>Daño: 40 <li>Tiempo de ataque: 2s <li> Tipo de ataque: cercano <li>Velocidad: 3<li>Objetivo: torres pradera y montaña / nexo<ul/>
-| **Defensor Real** | ![DefensorReal](ProyectoH/resources/images/Enemies/defensor_real1.png) | Habilidad especial: al morir invoca un campo de fuerza que se queda donde a muerto de forma que no se puede dañar a los enemigos en su interior durante 5 segundos | <ul><li>Tipo de tropa: terrestre de rango<li>Vida: 200<li>Daño: 10 <li>Tiempo de ataque: 1s <li> Tipo de ataque: cercano <li>Velocidad: 3<li>Objetivo: torres pradera / nexo<ul/>
-| **Caballero Maldito**|  ![CaballeroMaldito](ProyectoH/resources/images/Enemies/caballero_maldito.png) | Habilidad especial: Al morir genera 10 malditos. | <ul><li>Tipo de tropa: jefe final melé<li>Vida: 2000<li>Daño: 150 <li>Tiempo de ataque: 3s<li> Tipo de ataque: cercano <li>Velocidad: 1<li>Objetivo: nexo<ul/>
-| **Principito**|  ![Principito](ProyectoH/resources/images/Enemies/boss2.png) | Habilidad especial: este jefe una vez que tiene como objetivo dispara disminuyendo el tiempo entre disparo hasta un límite. Este se reseteara cuando se destruya la torre. | <ul><li>Tipo de tropa: jefe final de rango<li>Vida: 2000<li>Daño: 150 <li>Tiempo de ataque: 3s<li> Tipo de ataque: cercano <li>Velocidad: 1<li>Objetivo: torres pradera / nexo<ul/>
-| **Monje**|  ![Monje](ProyectoH/resources/images/Enemies/boss3.png) | Habilidad especial: esta habilidad consiste en que una vez que lo active se parará y todo daño que está recibiendo lo va devolviendo, y por lo tanto no recibe daño. Sin embargo esta habilidad la activará cada x tiempo. | <ul><li>Tipo de tropa: jefe final melé-de rango<li>Vida: 2000<li>Daño: 150 <li>Tiempo de ataque: 3s<li> Tipo de ataque: cercano <li>Velocidad: 1<li>Objetivo: torres pradera / nexo<ul/>
-| **La Muerte**|  ![La Muerte](ProyectoH/resources/images/Enemies/boss4.png) | Habilidad especial: este enemigo aparte de tener su ataque normal que daña a torres, podrá lanzar pociones a las torres haciendo que estas se ataquen entre sí. | <ul><li>Tipo de tropa: jefe final aéreo<li>Vida: 2000<li>Daño: 150 <li>Tiempo de ataque: 3s<li> Tipo de ataque: cercano <li>Velocidad: 1<li>Objetivo: torres pradera y montaña / nexo<ul/>
+| **Maestro de las Almas**| ![MaestroAlmas](ProyectoH/resources/images/Enemies/maestro_de_almas.png) | Habilidad especial: <br/>Provoca ceguera a la torre que golpea<br/>(impide a la torre atacar durante un tiempo específico). Las torres cegadas tendrán un icono encima que lo indique. | <ul><li>Tipo de tropa: terrestre de rango<li>Vida: 150<li>Daño: 20 <li>Tiempo de ataque: 1s<li> Tipo de ataque: cercano <li>Velocidad: 30<li>Objetivo: torres pradera / nexo<li> Monedas: 30<ul/>
+| **Acechante Eléctrico** | ![AcechanteElectrico](ProyectoH/resources/images/Enemies/acechante_electrico.png) | Habilidad especial: En un tiempo específico la tropa ejecuta una descarga que potencia la velocidad de los aliados cercanos(Se queda quieto para hacerlo y luego sigue corriendo). Si golpea el escudo del nexo lo inhabilita. | <ul><li>Tipo de tropa: terrestre melé<li>Vida: 150<li>Daño: 35 <li>Tiempo de ataque: 1s<li> Tipo de ataque: cercano <li>Velocidad: 70<li>Objetivo: nexo<li> Monedas: 30<ul/>
+| **Maldito** | ![CaballeroMaldito](ProyectoH/resources/images/Enemies/caballero_maldito.png) | Ninguna | <ul><li>Tipo de tropa: terrestre melé<li>Vida: 60<li>Daño: 20 <li>Tiempo de ataque: 1s<li> Tipo de ataque: cercano <li>Velocidad: 30<li>Objetivo: nexo<li> Monedas: 15<ul/>
+| **Golem** | ![Golem](ProyectoH/resources/images/Enemies/golem.png) | Habilidad especial: Regenera 10  de vida por segundo. | <ul><li>Tipo de tropa: terrestre melé<li>Vida: 5000<li>Daño: 100 <li>Tiempo de ataque: 3s<li> Tipo de ataque: cercano <li>Velocidad: 20<li>Objetivo: nexo<li> Monedas: 100<ul/>
+| **Demonio alado** | ![DemonioAlado](ProyectoH/resources/images/Enemies/demonio_alado.png) | Ninguna | <ul><li>Tipo de tropa: Aérea<li>Vida: 25<li>Daño: 5 <li>Tiempo de ataque: 1s<li> Tipo de ataque: muy cercano <li>Velocidad: 40<li>Objetivo: torres pradera y montaña / nexo<li> Monedas: 5<ul/>
+| **Goblin** | ![Goblin](ProyectoH/resources/images/Enemies/goblin.png) | Ninguna | <ul><li>Tipo de tropa: terrestre melé<li>Vida: 20<li>Daño: 15 <li>Tiempo de ataque: 1s<li> Tipo de ataque: cercano <li>Velocidad: 60<li>Objetivo: nexo<li> Monedas: 5<ul/>
+| **Elfo** | ![Elfo](ProyectoH/resources/images/Enemies/elfoo.png) | Ninguna | <ul><li>Tipo de tropa: terrestre de rango<li>Vida: 60<li>Daño: 5 <li>Tiempo de ataque: 1.5s<li> Tipo de ataque: cercano <li>Velocidad: 40<li>Objetivo: torres pradera / nexo<li> Monedas: 15<ul/>
+| **Mensajero de la Muerte** | ![MensajeroDeLaMuerte](ProyectoH/resources/images/Enemies/mensajero.png) | Habilidad especial: Se desplaza en forma fantasmal siendo invisible a las torres, cuando llega a una torre aparece y la golpea. El muro y el nexo también lo hacen aparecer | <ul><li>Tipo de tropa: Terrestre<li>Vida: 300<li>Daño: 20 <li>Tiempo de ataque: 1s<li> Tipo de ataque: cercano <li>Velocidad: 30<li>Objetivo: nexo<li> Monedas: 50<ul/>
+| **Angel** | ![Angel](ProyectoH/resources/images/Enemies/angel.png) | En un área alrededor de ella cura a sus aliados 1% de vida por segundo. No ataca, cuando llega al nexo se desvanece. | <ul><li>Tipo de tropa: Aérea<li>Vida: 400<li>Daño: 2 <li>Tiempo de ataque: <li> Tipo de ataque: cercano <li>Velocidad: 30<li>Objetivo: torres pradera y montaña / nexo<li> Monedas: 25<ul/>
+| **Demonio Infernal**| ![DemonioInfernal](ProyectoH/resources/images/Enemies/demonio_infernal.png) | Ninguna | <ul><li>Tipo de tropa: Aérea<li>Vida: 750<li>Daño: 20 <li>Tiempo de ataque: 2s <li> Tipo de ataque: cercano <li>Velocidad: 30<li>Objetivo: torres pradera y montaña / nexo<li> Monedas: 75<ul/>
+| **Defensor Real** | ![DefensorReal](ProyectoH/resources/images/Enemies/defensor_real1.png) | Habilidad especial: al morir invoca un campo de fuerza que se queda donde a muerto de forma que no se puede dañar a los enemigos en su interior durante 5 segundos | <ul><li>Tipo de tropa: terrestre de rango<li>Vida: 200<li>Daño: 10 <li>Tiempo de ataque: 1s <li> Tipo de ataque: cercano <li>Velocidad: 30<li>Objetivo: torres pradera / nexo<li> Monedas: 3030<ul/>
+| **Caballero Maldito**|  ![CaballeroMaldito](ProyectoH/resources/images/Enemies/caballero_maldito.png) | Habilidad especial: Al morir genera 10 malditos. | <ul><li>Tipo de tropa: jefe final melé<li>Vida: 1000<li>Daño: 150 <li>Tiempo de ataque: 3s<li> Tipo de ataque: cercano <li>Velocidad: 10<li>Objetivo: nexo<ul/>
+| **Principito**|  ![Principito](ProyectoH/resources/images/Enemies/boss2.png) | Habilidad especial: este jefe una vez que tiene como objetivo dispara disminuyendo el tiempo entre disparo, hasta un límite. Este se reseteara cuando se destruya la torre. | <ul><li>Tipo de tropa: jefe final de rango<li>Vida: 2500<li>Daño: 10 <li>Tiempo de ataque: 3s<li> Tipo de ataque: cercano <li>Velocidad: 30<li>Objetivo: torres pradera / nexo<ul/>
+| **Monje**|  ![Monje](ProyectoH/resources/images/Enemies/boss3.png) | Habilidad especial: esta habilidad consiste en que una vez que lo active se parará y todo daño que está recibiendo lo va devolviendo, y por lo tanto no recibe daño. Sin embargo esta habilidad la activará cada x tiempo. | <ul><li>Tipo de tropa: jefe final melé-de rango<li>Vida: 5000<li>Daño: 75 <li>Tiempo de ataque: 1s<li> Tipo de ataque: cercano <li>Velocidad: 30<li>Objetivo: torres pradera / nexo<ul/>
+| **La Muerte**|  ![La Muerte](ProyectoH/resources/images/Enemies/la_muerte.png) | Habilidad especial: este enemigo aparte de tener su ataque normal que daña a torres, podrá lanzar pociones a las torres haciendo que estas se ataquen entre sí. | <ul><li>Tipo de tropa: jefe final aéreo<li>Vida: 10000<li>Daño: 75 <li>Tiempo de ataque: 1s<li> Tipo de ataque: cercano <li>Velocidad: 10<li>Objetivo: torres pradera y montaña / nexo<ul/>
 
 ### 4.5 Torretas
 
-Contamos con 2 tipos de torretas básicas (Torre de balas y Torre de arcilla terráquea), el resto se tendrán que comprar fuera del nivel para desbloquearlas, y 5 torretas adicionales con distintos efectos explicados a continuación. El alcance de las torretas es de 360º a menos que se especifique lo contrario en el apartado de la torreta correspondiente. Al colocar cada torreta empezará siendo de nivel 1, y se podrá mejorar con monedas en función de la cantidad de mejoras que se hayan desbloqueado en el menú principal. Es decir, si has desbloqueado 3 mejoras de ese tipo de torreta podrás mejorarla 3 veces durante la partida. Todas las torretas tendrán un máximo de 4 mejoras, pudiendo alcanzar un nivel máximo de 4. Cada torreta ocupará unos tiles del mapa, y no se podrán colocar torretas en los tiles ocupados.
+Contamos con 2 tipos de torretas básicas (Torre de balas y Torre de arcilla terráquea), y 5 torretas adicionales con distintos efectos explicados a continuación.  Estas se tendrán que comprar fuera del nivel para desbloquearlas. El alcance de las torretas es de 360º a menos que se especifique lo contrario en el apartado de la torreta correspondiente. Al colocar cada torreta empezará siendo de nivel 1, y se podrá mejorar con monedas en función de la cantidad de mejoras que se hayan desbloqueado en el menú principal. Es decir, si has desbloqueado 3 mejoras de ese tipo de torreta podrás mejorarla 3 veces durante la partida. Todas las torretas tendrán un máximo de 4 mejoras, pudiendo alcanzar un nivel máximo de 4. Cada torreta ocupará unos tiles del mapa, y no se podrán colocar torretas en los tiles ocupados.
 
 Las torretas pueden estar en dos elevaciones diferentes:
 
@@ -201,11 +201,11 @@ Las torretas pueden estar en dos elevaciones diferentes:
 Nos encontramos con los siguientes tipos de torretas:
 
 - **Torre de Cristal de Energía**:
-    - Mecánica especial: Genera un escudo protector alrededor del nexo cada 20 segundos, absorbiendo 200 puntos de vida. Si no se ha agotado el escudo y han pasado 20 segundos, se vuelve a restablecer a su valor máximo. Tan solo se puede colocar una torre de este tipo.
+    - Mecánica especial: Genera un escudo protector a las torres de alrededor, absorbiendo 200 puntos de vida. Si no se ha agotado el escudo y han pasado 20 segundos, se vuelve a restablecer a su valor máximo.
     - Mejoras Nivel 1 a 3: Aumenta en 50 puntos el escudo máximo.
     - Mejora Nivel 4: Aumenta en 50 puntos el escudo máximo, y agrega una explosión de energía al romperse que daña con 30 puntos a los enemigos cercanos.
     - Elevación: ALTA.
-    - Puntos de vida: 100.
+    - Puntos de vida: 50.
 
 - **Torre de Slime Escape**:
     - Mecánica especial:  Dispara cada 5 segundos un slime en área que ralentiza a todas las tropas dentro del área que se mantiene en la zona del impacto durante 2 segundos. Dispara al enemigo más avanzado dentro de su rango de ataque. El efecto de ralentización dentro del área disminuye la velocidad de movimiento del enemigo en un 20%.
@@ -241,9 +241,7 @@ Nos encontramos con los siguientes tipos de torretas:
     - Mejora Nivel 1: Aumento del daño a 4 puntos/medio segundo. 
     - Mejora Nivel 2:  Se reducirá el enfriamiento a 1.5 segundos.
     - Mejora Nivel 3: Aumento del daño a 5 puntos/medio segundo y reducción del enfriamiento a 1 segundo.
-    - Mejora Nivel 4:  Se permitirá al jugador elegir entre dos mejoras finales, tan solo podrá jugar una de ellas:
-        - Aumento del ángulo del cono de ataque (+15 grados).
-        - Reducción completa del enfriamiento (ataque continuo).
+    - Mejora Nivel 4: Reducción completa del enfriamiento (ataque continuo).
     - Elevación: ALTA.
     - Puntos de vida: 100.
 
@@ -277,22 +275,22 @@ En el juego existen dos tipos de moneda: las monedas doradas y las monedas plate
 
 Por lo tanto, existen dos tiendas diferentes, una interna y una externa.
 
-- **Tienda interna**: En el transcurso de cada partida el jugador debe ir comprando torretas y colocándolas en el mapa. En la parte inferior de la pantalla habrá una barra con los iconos de las distintas torres, y algunas estarán bloqueadas (con un filtro gris y sin el precio) y otras desbloqueadas (con color y mostrando el precio). El jugador irá desbloqueando las torretas para poder comprarlas en la tienda interna desde la tienda externa. Durante la partida también tendrá la opción de mejorar las torres.
+- **Tienda interna**: En el transcurso de cada partida el jugador debe ir comprando torretas y colocándolas en el mapa. En la parte inferior de la pantalla habrá una barra con los iconos de las distintas torres, y algunas estarán bloqueadas (con un filtro rojo y sin el precio) y otras desbloqueadas (con color y mostrando el precio). El jugador irá desbloqueando las torretas para poder comprarlas en la tienda interna desde la tienda externa. Durante la partida también tendrá la opción de mejorar las torres.
 
-- **Tienda externa**:En el menú principal, habrá una sección en la que estarán los iconos de todas las torres y se indicará si está desbloqueada y cuantas mejoras han sido desbloqueadas. Las bloqueadas mostrarán el precio de desbloqueo, y las desbloqueadas mostrarán las estadísticas base de las torres y la opción de desbloquear sus mejoras por un precio.
+- **Tienda externa**:En el menú principal, habrá una sección en la que estarán los iconos de todas las torres y se indicará si está desbloqueada y cuantas mejoras han sido desbloqueadas. Las bloqueadas mostrarán el precio de desbloqueo, y las desbloqueadas mostrarán las estadísticas base de las torres y la opción de desbloquear sus mejoras por un precio. Las torres bloqueadas aparecerán como una silueta negra.
 
 **Generación de monedas doradas**: Dependerá del nivel del nexo: 
-- Nivel 1: 1/seg
-- Nivel 2: 5/seg
-- Nivel 3: 20/seg
-- Nivel 4: 50/seg
+- Nivel 1: 2/seg
+- Nivel 2: 4/seg
+- Nivel 3: 7/seg
+- Nivel 4: 10/seg
 
 ## 6. Niveles
 H Defense estará compuesto por 8 niveles distintos entre sí, con diferentes lugares, y con el único objetivo de defender la torre principal.
 
 ### 6.1. Oleadas
 
-Las oleadas están formadas por varios grupos de enemigos. Cada grupo de enemigos tiene un punto de aparición, que debe estar en el borde del mapa, y cuando aparece un grupo se muestra su ruta durante aproximadamente 3 segundos (hay una animación del camino hacia el nexo). El grupo no aparece hasta que la ruta termina de ser dibujada. El jugador debe memorizar la ruta porque al dibujarse desaparecerá. Los enemigos avanzan por su ruta, y tienen un área de detección. Los enemigos atacarán a la primera torre que entre en su rango de detección.
+Las oleadas están formadas por varios grupos de enemigos. Cada grupo de enemigos tiene un punto de aparición, que debe estar en el borde del mapa. Los enemigos avanzan por su ruta, y tienen un área de detección. Los enemigos atacarán a la primera torre que entre en su rango de detección.
 
 Cada oleada termina cuando se eliminan a todos los grupos de enemigos. Al terminar cada oleada, el jugador podrá empezar la siguiente cuando quiera.
 
@@ -308,9 +306,6 @@ Por los caminos aparecerán los diferentes enemigos aumentando la dificultad con
 
 Para pasar de nivel, tendremos en cuenta las oleadas de enemigos que se van superando. En el nivel 1 el jugador deberá defenderse durante 2 oleadas. Al pasarlas, desbloqueará el nivel 2. En el nivel 2 habrá 3 oleadas, en el nivel 3, 4 oleadas y en el nivel 4, 7 oleadas, nivel 5, 12, en el 6 20, en el 7, 33, y por último, en el nivel 8, 55 oleadas. El número de oleadas irá creciendo exponencialmente según el nivel. Al pasar cada nivel aparecerán enemigos más fuertes (sin mejorar stats) y con distintas habilidades.
 
-<!-- ### 6.3 Modo infinito
-
-En este modo el jugador juega hasta que se destruye el nexo. Los enemigos mejoran en 2% el daño y la vida que en los niveles normales, de forma que sea más rentable jugar los niveles y se incentiven. -->
 
 ## 7. Dinámica
 
@@ -326,24 +321,28 @@ El objetivo del juego es pasarse todos los niveles, y para esto el jugador debe 
 
 - **Boceto del mapa principal**:
 <br/>![BocetoMapaPrincipal](ProyectoH/resources/images/Miscelanious/boceto_mapa.png)
+- **Implementación**:
+<br/>![MapaPrincipal](ProyectoH/resources/images/Miscelanious/mapa.png)
 
-    - **Compra de torres**: Los iconos de las torres se encuentran en la parte inferior de la pantalla y se disponen una tras otra. Al mantener el cursor encima de una torre saldrá un pop-up con su información. Además, debajo del icono de las torres se encuentra el precio de estas. Solo aparecerán las desbloqueadas, y si hay huecos sobrantes aparecerán vacíos. Si hay demasiadas torres desbloqueadas para que quepan, el jugador podrá arrastrar la barra como un slider para ver todas.
+    - **Compra de torres**: Los iconos de las torres se encuentran en la parte inferior de la pantalla y se disponen una tras otra. Debajo del icono de las torres se encuentra el precio de estas. Solo aparecerán las desbloqueadas, y si hay huecos sobrantes aparecerán vacíos. 
     - **Indicador de monedas y oleada**: Estará en la parte superior izquierda de la pantalla, e indicará el número de monedas doradas que tiene el jugador y la oleada por la que está.
     - **Información del nexo**: Nivel y puntos de vida.
-    - **Pop-up de información de torre**: Aparecerá al mantener el ratón por encima de una torre o un icono de torre de la barra inferior. Las que estén colocadas en el mapa mostrarán su nivel, sus puntos de vida en función de la vida máxima y su daño por ataque. Las de la barra inferior mostrarán su vida máxima, su daño por ataque y una breve descripción de sus mecánicas.
-    - **Pausa y mayor velocidad**: En la parte superior derecha se hallan 2 iconos, uno que te llevará al menú de pausa y otro que sirve para hacer que la partida vaya más rápido, haciendo que todo el juego se acelere en un 100%.
+    - **Pop-up de información de torre**: Aparecerá al clickar encima de una torre. Mostrarán su nivel, sus puntos de vida en función de la vida máxima y su daño por ataque.
+    - **Pausa y mayor velocidad**: En la parte superior derecha se hallan 2 iconos, uno que te llevará al menú de pausa y otro que sirve para hacer que la partida vaya más rápido, haciendo que todo el juego se acelere un 50% o 100%.
     - **Botón para empezar**: abajo a la derecha está el botón de comenzar la siguiente oleada, teniendo así un tiempo entre oleada y oleada para poner más torres en el campo de juego.
 
 - **Menú externo**:
 <br/>![BocetoME](ProyectoH/resources/images/Miscelanious/boceto_ME.png)
-    - **Parte izquierda**: Nivel del nexo, puntos de vida máximos y botón de mejora del nexo con el precio. Las mejoras del nexo hacen que el jugador tenga más monedas doradas de base al empezar la partida, que se generen más monedas doradas cada cierto tiempo y que el nexo tenga más vida. Hay un máximo de 4 niveles, y en cada nivel cuesta más mejorarlo (posiblemente exponencial).
-    - **Parte Central**: Indicador de cantidad de monedas H, oleada máxima alcanzada por el jugador y libro de enemigos en la parte superior, y en la parte inferior se encuentra el botón para empezar la partida.
-    - **Libro de Enemigos**: <br/>![LibroDeEnemigos](ProyectoH/resources/images/Miscelanious/libro_enemigos.png)
+<br/>![ME](ProyectoH/resources/images/Miscelanious/menuprincipal.png)
+    - **Parte izquierda**: Nivel del nexo, puntos de vida máximos, cantidad de monedas H y botón de mejora del nexo con el precio. Las mejoras del nexo hacen que el jugador tenga más monedas doradas de base al empezar la partida, que se generen más monedas doradas cada cierto tiempo y que el nexo tenga más vida. Hay un máximo de 4 niveles, y en cada nivel cuesta más mejorarlo.
+    - **Parte Central**: Libro de enemigos en la parte superior,  botón para empezar la partida en la parte central y botón de configuración en la parte inferior.
+    - **Libro de Enemigos**: <br/>![LibroDeEnemigos](ProyectoH/resources/images/Miscelanious/libro_enemigos.png)<br/>![LibroDeEnemigos](ProyectoH/resources/images/Miscelanious/libroenemigos.png)
     - **Parte derecha**: Información sobre las torretas, si están bloqueadas o desbloqueadas, precio por desbloquearlas si están bloqueadas y precio por mejorarlas si están desbloqueadas. Información de sus estadísticas y habilidades.
     - **Botón de empezar**: Te lleva a la selección de niveles, una sección parecida al libro de enemigos donde aparecerán tanto los bloqueados como los desbloqueados. Al clicar el nivel deseado, aparecerá el mapa del nivel y empezará.
 - **Menú de pausa**:
 El HUD del menú de pausa presenta 3 botones que sirven para volver al juego, entrar en el menú de opciones y para salir del juego.
 <br/>![MenuPausa](ProyectoH/resources/images/Miscelanious/menu_pausa.png)
+<br/>![MenuPausa](ProyectoH/resources/images/Miscelanious/pausa.png)
 
 - **Flujo de juego**:
 <br/> ![FlujoDeJuego](ProyectoH/resources/images/Miscelanious/flujo_juego.png)
@@ -352,7 +351,7 @@ Al morir o pasar de nivel aparece una ventana que muestra la ronda a la que se h
 
 ## 9. Guardado
 
-El juego guarda automáticamente el estado externo de la partida. Es decir, la cantidad de monedas H que tiene el jugador, el nivel de las torres, el nivel del nexo, la cantidad de enemigos que el jugador ha visto y la oleada máxima alcanzada.
+El juego guarda automáticamente el estado externo de la partida. Es decir, la cantidad de monedas H que tiene el jugador, el nivel de las torres, el nivel del nexo y la cantidad de enemigos que el jugador ha visto.
 
 ## 10. Contenido
 
