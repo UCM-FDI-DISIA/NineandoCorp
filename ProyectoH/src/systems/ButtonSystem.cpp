@@ -637,7 +637,16 @@ void ButtonSystem::sellTower(Entity* twr)
 				if (fi != nullptr)
 				fi->setCurrentFrame(towerLvl - 1);
 				mngr_->getComponent<TextComponent>(bulletMoneyText_)->changeText(std::to_string(price));
-				if (towerLvl == 4)mngr_->getComponent<TextComponent>(bulletMoneyText_)->changeText("MAX");
+				mngr_->getComponent<TextComponent>(bulletLvlText_)->changeText("LVL: " + std::to_string(towerLvl));
+				if (towerLvl == 4) {
+					mngr_->setAlive(bulletMoneyText_, false);
+					mngr_->setAlive(bulletCoin_, false);
+					mngr_->deleteHandler(hdlr_but_id, bulletMoneyText_);
+					mngr_->deleteHandler(hdlr_but_id, bulletCoin_);
+					std::basic_string s = "LVL: MAX.";
+					mngr_->getComponent<TextComponent>(bulletLvlText_)->changeText(s);
+					mngr_->getComponent<Transform>(bulletLvlText_)->setScale({ s.size() * font_size.getX(), font_size.getY() });
+				}
 			}
 			break;
 		case _twr_CLAY:
@@ -648,7 +657,16 @@ void ButtonSystem::sellTower(Entity* twr)
 				if (fi != nullptr)
 				fi->setCurrentFrame(towerLvl - 1);
 				mngr_->getComponent<TextComponent>(dirtMoneyText_)->changeText(std::to_string(price));
-				if (towerLvl == 4)mngr_->getComponent<TextComponent>(dirtMoneyText_)->changeText("MAX");
+				mngr_->getComponent<TextComponent>(dirtLvlText_)->changeText("LVL: " + std::to_string(towerLvl));
+				if (towerLvl == 4) {
+					mngr_->setAlive(dirtMoneyText_, false);	
+					mngr_->setAlive(dirtCoin_, false);
+					mngr_->deleteHandler(hdlr_but_id, dirtMoneyText_);
+					mngr_->deleteHandler(hdlr_but_id, dirtCoin_);
+					std::basic_string s = "LVL: MAX.";
+					mngr_->getComponent<TextComponent>(dirtLvlText_)->changeText(s);
+					mngr_->getComponent<Transform>(dirtLvlText_)->setScale({ s.size() * font_size.getX(), font_size.getY() });
+				}
 			}
 			break;
 		case _twr_CRISTAL:
@@ -663,7 +681,16 @@ void ButtonSystem::sellTower(Entity* twr)
 				if (fi != nullptr)
 				fi->setCurrentFrame(towerLvl - 1);
 				mngr_->getComponent<TextComponent>(cristalMoneyText_)->changeText(std::to_string(price));
-				if (towerLvl == 4)mngr_->getComponent<TextComponent>(cristalMoneyText_)->changeText("MAX");
+				mngr_->getComponent<TextComponent>(cristalLvlText_)->changeText("LVL: " + std::to_string(towerLvl));
+				if (towerLvl == 4) {
+					mngr_->setAlive(cristalMoneyText_, false);
+					mngr_->setAlive(cristalCoin_, false);
+					mngr_->deleteHandler(hdlr_but_id, cristalMoneyText_);
+					mngr_->deleteHandler(hdlr_but_id, cristalCoin_);
+					std::basic_string s = "LVL: MAX.";
+					mngr_->getComponent<TextComponent>(cristalLvlText_)->changeText(s);
+					mngr_->getComponent<Transform>(cristalLvlText_)->setScale({ s.size() * font_size.getX(), font_size.getY() });
+				}
 			}
 			break;
 		case _twr_POWER:
@@ -678,7 +705,16 @@ void ButtonSystem::sellTower(Entity* twr)
 				if(fi != nullptr)
 					fi->setCurrentFrame(towerLvl - 1);
 				mngr_->getComponent<TextComponent>(enhancerMoneyText_)->changeText(std::to_string(price));
-				if (towerLvl == 4)mngr_->getComponent<TextComponent>(enhancerMoneyText_)->changeText("MAX");
+				mngr_->getComponent<TextComponent>(enhancerLvlText_)->changeText("LVL: " + std::to_string(towerLvl));
+				if (towerLvl == 4) {
+					mngr_->setAlive(enhancerMoneyText_, false);
+					mngr_->setAlive(enhancerCoin_, false);
+					mngr_->deleteHandler(hdlr_but_id, enhancerMoneyText_);
+					mngr_->deleteHandler(hdlr_but_id, enhancerCoin_);
+					std::basic_string s = "LVL: MAX.";
+					mngr_->getComponent<TextComponent>(enhancerLvlText_)->changeText(s);
+					mngr_->getComponent<Transform>(enhancerLvlText_)->setScale({ s.size() * font_size.getX(), font_size.getY() });
+				}
 			}
 			break;
 		case _twr_DIEGO:
@@ -693,7 +729,16 @@ void ButtonSystem::sellTower(Entity* twr)
 				if (fi != nullptr)
 				fi->setCurrentFrame(towerLvl - 1);
 				mngr_->getComponent<TextComponent>(diegoMoneyText_)->changeText(std::to_string(price));
-				if (towerLvl == 4)mngr_->getComponent<TextComponent>(diegoMoneyText_)->changeText("MAX");
+				mngr_->getComponent<TextComponent>(diegoLvlText_)->changeText("LVL: " + std::to_string(towerLvl));
+				if (towerLvl == 4) {
+					mngr_->setAlive(diegoMoneyText_, false);
+					mngr_->setAlive(diegoCoin_, false);
+					mngr_->deleteHandler(hdlr_but_id, diegoMoneyText_);
+					mngr_->deleteHandler(hdlr_but_id, diegoCoin_);
+					std::basic_string s = "LVL: MAX.";
+					mngr_->getComponent<TextComponent>(diegoLvlText_)->changeText(s);
+					mngr_->getComponent<Transform>(diegoLvlText_)->setScale({ s.size() * font_size.getX(), font_size.getY() });
+				}
 			}
 			break;
 		case _twr_FENIX:
@@ -708,7 +753,16 @@ void ButtonSystem::sellTower(Entity* twr)
 				if (fi != nullptr)
 				fi->setCurrentFrame(towerLvl - 1);
 				mngr_->getComponent<TextComponent>(fenixMoneyText_)->changeText(std::to_string(price));
-				if(towerLvl == 4)mngr_->getComponent<TextComponent>(fenixMoneyText_)->changeText("MAX");
+				mngr_->getComponent<TextComponent>(fenixLvlText_)->changeText("LVL: " + std::to_string(towerLvl));
+				if (towerLvl == 4) {
+					mngr_->setAlive(fenixMoneyText_, false);
+					mngr_->setAlive(fenixCoin_, false);
+					mngr_->deleteHandler(hdlr_but_id, fenixMoneyText_);
+					mngr_->deleteHandler(hdlr_but_id, fenixCoin_);
+					std::basic_string s = "LVL: MAX.";
+					mngr_->getComponent<TextComponent>(fenixLvlText_)->changeText(s);
+					mngr_->getComponent<Transform>(fenixLvlText_)->setScale({ s.size() * font_size.getX(), font_size.getY() });
+				}
 			}
 			break;
 		case _twr_SLIME:
@@ -723,7 +777,16 @@ void ButtonSystem::sellTower(Entity* twr)
 				if (fi != nullptr)
 				fi->setCurrentFrame(towerLvl - 1);
 				mngr_->getComponent<TextComponent>(slimeMoneyText_)->changeText(std::to_string(price));
-				if(towerLvl == 4)mngr_->getComponent<TextComponent>(slimeMoneyText_)->changeText("MAX");
+				mngr_->getComponent<TextComponent>(slimeLvlText_)->changeText("LVL: " + std::to_string(towerLvl));
+				if (towerLvl == 4) {
+					mngr_->setAlive(slimeMoneyText_, false);
+					mngr_->setAlive(slimeCoin_, false);
+					mngr_->deleteHandler(hdlr_but_id, slimeMoneyText_);
+					mngr_->deleteHandler(hdlr_but_id, slimeCoin_);
+					std::basic_string s = "LVL: MAX.";
+					mngr_->getComponent<TextComponent>(slimeLvlText_)->changeText(s);
+					mngr_->getComponent<Transform>(slimeLvlText_)->setScale({ s.size() * font_size.getX(), font_size.getY() });
+				}
 			}
 			break;
 		case _twr_NEXUS:
@@ -1073,23 +1136,25 @@ void ButtonSystem::generateUpgradeMoneyTexts() {
 			bulletPrice = intAt("precioHBalasLvl4");
 			break;
 	}
-	std::basic_string bulletText = std::to_string(bulletPrice);
- 	if (bullet_lvl == 4)
-		bulletText = "MAX";
-
-	//Crear texto nivel
 	std::basic_string bullet_txt = "LVL: " + to_string(bullet_lvl);
+	if (bullet_lvl == 4) bullet_txt = "LVL: MAX.";
+	//Posicion y escala del nivel
 	Vector2D bP = Vector2D(sdlutils().width() - lvl_separation, (sdlutils().height() / 5.5f));
 	Vector2D bS = Vector2D(bullet_txt.size() * font_size.getX(), font_size.getY());
+	//Creamos el texto del nivel
 	bulletLvlText_ = addText(bullet_txt, color, bP, bS, _grp_BACKGROUND_TEXTS
 	);
-	Vector2D bcP = { bP.getX() + bS.getX() / 2 + 35 , bP.getY() };
-	//Imagen moneda
-	addImage(bcP, { 40.0f, 40.0f }, 0.0f, monedaH, _grp_HUD_FOREGROUND);
-	//Texto coste
-	Vector2D bmP = { bcP.getX() + 40, bP.getY() };
-	Vector2D bmS = { font_size.getX() * bulletText.size(), font_size.getY() };
-	bulletMoneyText_ = addText(bulletText, color, bmP, bmS, _grp_BACKGROUND_TEXTS);
+	if(bullet_lvl != 4) {
+		std::basic_string bulletText = std::to_string(bulletPrice);
+		Vector2D bcP = { bP.getX() + bS.getX() / 2 + 35 , bP.getY() };
+		//Imagen moneda
+		bulletCoin_ = addImage(bcP, { 40.0f, 40.0f }, 0.0f, monedaH, _grp_HUD_FOREGROUND);
+		//Texto coste
+		Vector2D bmP = { bcP.getX() + 40, bP.getY() };
+		Vector2D bmS = { font_size.getX() * bulletText.size(), font_size.getY() };
+		bulletMoneyText_ = addText(bulletText, color, bmP, bmS, _grp_BACKGROUND_TEXTS);
+	}
+
 
 	//CRISTAL PRICE TEXT
 	int cristalPrice;
@@ -1111,22 +1176,25 @@ void ButtonSystem::generateUpgradeMoneyTexts() {
 			cristalPrice = intAt("precioHCristalLvl4");
 			break;
 	}
-	std::basic_string cristalText = std::to_string(cristalPrice);
-	if (cristal_lvl == 4)cristalText = "MAX";
-
-	//Crear texto nivel
 	std::basic_string cristal_txt = "LVL: " + to_string(cristal_lvl);
+	if (cristal_lvl == 4)cristal_txt = "LVL: MAX";
+
+	//Posicion y escala del nivel
 	Vector2D cP = Vector2D(sdlutils().width() - lvl_separation, (sdlutils().height() / 5.5f) + (sdlutils().height() / 8.0f) * 1);
 	Vector2D cS = Vector2D(cristal_txt.size() * font_size.getX(), font_size.getY());
+	//Creamos texto del nivel
 	cristalLvlText_ = addText(cristal_txt, color, cP, cS, _grp_BACKGROUND_TEXTS
 	);
-	Vector2D ccP = { cP.getX() + cS.getX() / 2 + 35 , cP.getY() };
-	//Imagen moneda
-	addImage(ccP, { 40.0f, 40.0f }, 0.0f, monedaH, _grp_HUD_FOREGROUND);
-	//Texto coste
-	Vector2D cmP = { ccP.getX() + 40, cP.getY() };
-	Vector2D cmS = { font_size.getX() * cristalText.size(), font_size.getY() };
-	cristalMoneyText_ = addText(cristalText, color, cmP, cmS, _grp_BACKGROUND_TEXTS);
+	if (cristal_lvl != 4) {
+		std::basic_string cristalText = std::to_string(cristalPrice);
+		Vector2D ccP = { cP.getX() + cS.getX() / 2 + 35 , cP.getY() };
+		//Imagen moneda
+		cristalCoin_ = addImage(ccP, { 40.0f, 40.0f }, 0.0f, monedaH, _grp_HUD_FOREGROUND);
+		//Texto coste
+		Vector2D cmP = { ccP.getX() + 40, cP.getY() };
+		Vector2D cmS = { font_size.getX() * cristalText.size(), font_size.getY() };
+		cristalMoneyText_ = addText(cristalText, color, cmP, cmS, _grp_BACKGROUND_TEXTS);
+	}
 
 	//SLIME PRICE TEXT
 	int slimePrice;
@@ -1148,22 +1216,27 @@ void ButtonSystem::generateUpgradeMoneyTexts() {
 			slimePrice = intAt("precioHSlimeLvl4");
 			break;
 	}
-	string slimeText = std::to_string(slimePrice);
-	if (slime_lvl == 4)slimeText = "MAX";
-
-	//Crear texto nivel
+	
 	std::basic_string slime_txt = "LVL: " + to_string(slime_lvl);
+	if (slime_lvl == 4)slime_txt = "LVL: MAX";
+
+	//Posicion y escala del nivel
 	Vector2D sP = Vector2D(sdlutils().width() - lvl_separation, (sdlutils().height() / 5.5f) + (sdlutils().height() / 8.0f) * 2);
 	Vector2D sS = Vector2D(slime_txt.size() * font_size.getX(), font_size.getY());
+	//Creamos texto del nivel
 	slimeLvlText_ = addText(slime_txt, color, sP, sS, _grp_BACKGROUND_TEXTS
 	);
-	Vector2D scP = { sP.getX() + sS.getX() / 2 + 35 , sP.getY() };
-	//Imagen moneda
-	addImage(scP, { 40.0f, 40.0f }, 0.0f, monedaH, _grp_HUD_FOREGROUND);
-	//Texto coste
-	Vector2D smP = { scP.getX() + 40, sP.getY() };
-	Vector2D smS = { font_size.getX() * slimeText.size(), font_size.getY() };
-	slimeMoneyText_ = addText(slimeText, color, smP, smS, _grp_BACKGROUND_TEXTS);
+
+	if (slime_lvl != 4) {
+		std::basic_string slimeText = std::to_string(slimePrice);
+		Vector2D scP = { sP.getX() + sS.getX() / 2 + 35 , sP.getY() };
+		//Imagen moneda
+		slimeCoin_ = addImage(scP, { 40.0f, 40.0f }, 0.0f, monedaH, _grp_HUD_FOREGROUND);
+		//Texto coste
+		Vector2D smP = { scP.getX() + 40, sP.getY() };
+		Vector2D smS = { font_size.getX() * slimeText.size(), font_size.getY() };
+		slimeMoneyText_ = addText(slimeText, color, smP, smS, _grp_BACKGROUND_TEXTS);
+	}
 
 	//DIEGO PRICE TEXT
 	int diegoPrice;
@@ -1185,23 +1258,25 @@ void ButtonSystem::generateUpgradeMoneyTexts() {
 			diegoPrice = intAt("precioHDiegoLvl4");
 			break;
 	}
-	std::basic_string diegoText = std::to_string(diegoPrice);
-	if (diego_lvl == 4)diegoText = "MAX";
-
-	//Crear texto nivel
 	std::basic_string diego_txt = "LVL: " + to_string(diego_lvl);
+	if (diego_lvl == 4)diego_txt = "LVL: MAX";
+	//Posicion y escala del nivel
 	Vector2D diP = Vector2D(sdlutils().width() - lvl_separation, (sdlutils().height() / 5.5f) + (sdlutils().height() / 8.0f) * 3);
 	Vector2D diS = Vector2D(diego_txt.size() * font_size.getX(), font_size.getY());
+	//Creamos texto del nivel
 	diegoLvlText_ = addText(diego_txt, color, diP, diS, _grp_BACKGROUND_TEXTS
 	);
-	Vector2D dicP = { diP.getX() + diS.getX() / 2 + 35 , diP.getY() };
-	//Imagen moneda
-	addImage(dicP, { 40.0f, 40.0f }, 0.0f, monedaH, _grp_HUD_FOREGROUND);
-	//Texto coste
-	Vector2D dimP = { dicP.getX() + 40, diP.getY() };
-	Vector2D dimS = { font_size.getX() * diegoText.size(), font_size.getY() };
-	diegoMoneyText_ = addText(diegoText, color, dimP, dimS, _grp_BACKGROUND_TEXTS);
 
+	if (diego_lvl != 4) {
+		std::basic_string diegoText = std::to_string(diegoPrice);
+		Vector2D dicP = { diP.getX() + diS.getX() / 2 + 35 , diP.getY() };
+		//Imagen moneda
+		diegoCoin_ = addImage(dicP, { 40.0f, 40.0f }, 0.0f, monedaH, _grp_HUD_FOREGROUND);
+		//Texto coste
+		Vector2D dimP = { dicP.getX() + 40, diP.getY() };
+		Vector2D dimS = { font_size.getX() * diegoText.size(), font_size.getY() };
+		diegoMoneyText_ = addText(diegoText, color, dimP, dimS, _grp_BACKGROUND_TEXTS);
+	}
 	
 	//PHOENIX PRICE TEXT
 	int fenixPrice;
@@ -1223,22 +1298,27 @@ void ButtonSystem::generateUpgradeMoneyTexts() {
 			fenixPrice = intAt("precioHFenixLvl4");
 			break;
 	}
-	std::basic_string fenixText = std::to_string(fenixPrice);
-	if (fenix_lvl == 4)fenixText = "MAX";
-
-	//Crear texto nivel
 	std::basic_string fenix_txt = "LVL: " + to_string(fenix_lvl);
+	if (fenix_lvl == 4)fenix_txt = "LVL: MAX";
+
+	//Posicion y escala del nivel
 	Vector2D fP = Vector2D(sdlutils().width() - lvl_separation, (sdlutils().height() / 5.5f) + (sdlutils().height() / 8.0f) * 4);
-	Vector2D fS = Vector2D(fenix_txt.size() * font_size.getX(), font_size.getY());
+	Vector2D fS = Vector2D(fenix_txt.size() * font_size.getX(), font_size.getY()); 
+	//Creamos texto del nivel
 	fenixLvlText_ = addText(fenix_txt, color, fP, fS, _grp_BACKGROUND_TEXTS
 	);
-	Vector2D fcP = { fP.getX() + fS.getX() / 2 + 35 , fP.getY() };
-	//Imagen moneda
-	addImage(fcP, { 40.0f, 40.0f }, 0.0f, monedaH, _grp_HUD_FOREGROUND);
-	//Texto coste
-	Vector2D fmP = { fcP.getX() + 40, fP.getY() };
-	Vector2D fmS = { font_size.getX() * fenixText.size(), font_size.getY() };
-	fenixMoneyText_ = addText(fenixText, color, fmP, fmS, _grp_BACKGROUND_TEXTS);
+
+	if (fenix_lvl != 4){
+		std::basic_string fenixText = std::to_string(fenixPrice); 
+
+		Vector2D fcP = { fP.getX() + fS.getX() / 2 + 35 , fP.getY() };
+		//Imagen moneda
+		fenixCoin_ = addImage(fcP, { 40.0f, 40.0f }, 0.0f, monedaH, _grp_HUD_FOREGROUND); 
+		//Texto coste
+		Vector2D fmP = { fcP.getX() + 40, fP.getY() }; 
+		Vector2D fmS = { font_size.getX() * fenixText.size(), font_size.getY() }; 
+		fenixMoneyText_ = addText(fenixText, color, fmP, fmS, _grp_BACKGROUND_TEXTS); 
+	}
 
 	//DIRT PRICE TEXT
 	int dirtPrice;
@@ -1261,22 +1341,27 @@ void ButtonSystem::generateUpgradeMoneyTexts() {
 			break;
 
 	}
-	std::basic_string dirtText = std::to_string(dirtPrice);
-	if (dirt_lvl == 4)dirtText = "MAX";
-
-	//Crear texto nivel
+	
 	std::basic_string dirt_txt = "LVL: " + to_string(dirt_lvl);
+	if (dirt_lvl == 4)dirt_txt = "LVL: MAX";
+
+	//Posicion y escala del nivel
 	Vector2D dP = Vector2D(sdlutils().width() - lvl_separation, (sdlutils().height() / 5.5f) + (sdlutils().height() / 8.0f) * 5);
 	Vector2D dS = Vector2D(dirt_txt.size() * font_size.getX(), font_size.getY());
+	//Creamos texto del nivel
 	dirtLvlText_ = addText(dirt_txt, color, dP, dS, _grp_BACKGROUND_TEXTS
 	);
-	Vector2D dcP = { dP.getX() + dS.getX() / 2 + 35 , dP.getY() };
-	//Imagen moneda
-	addImage(dcP, { 40.0f, 40.0f }, 0.0f, monedaH, _grp_HUD_FOREGROUND);
-	//Texto coste
-	Vector2D dmP = { dcP.getX() + 40, dP.getY() };
-	Vector2D dmS = { font_size.getX() * dirtText.size(), font_size.getY() };
-	dirtMoneyText_ = addText(dirtText, color,dmP, dmS, _grp_BACKGROUND_TEXTS);
+
+	if (dirt_lvl != 4) {
+		std::basic_string dirtText = std::to_string(dirtPrice);
+		Vector2D dcP = { dP.getX() + dS.getX() / 2 + 35 , dP.getY() };
+		//Imagen moneda
+		dirtCoin_ = addImage(dcP, { 40.0f, 40.0f }, 0.0f, monedaH, _grp_HUD_FOREGROUND);
+		//Texto coste
+		Vector2D dmP = { dcP.getX() + 40, dP.getY() };
+		Vector2D dmS = { font_size.getX() * dirtText.size(), font_size.getY() };
+		dirtMoneyText_ = addText(dirtText, color,dmP, dmS, _grp_BACKGROUND_TEXTS);
+	}
 
 
 
@@ -1300,22 +1385,26 @@ void ButtonSystem::generateUpgradeMoneyTexts() {
 		enhancerPrice = intAt("precioHPotenciadoraLvl4");
 		break;
 	}
-	std::basic_string enhancerText = std::to_string(enhancerPrice);
-	if (enhancer_lvl == 4)
-		enhancerText = "MAX";
-	//Crear texto nivel
 	std::basic_string enhancer_txt = "LVL: " + to_string(enhancer_lvl);
+	if (enhancer_lvl == 4)
+		enhancer_txt= "LVL: MAX";
+	//Posicion y escala del nivel
 	Vector2D enP = Vector2D(sdlutils().width() - lvl_separation, (sdlutils().height() / 5.5f) + (sdlutils().height() / 8.0f) * 6);
 	Vector2D enS = Vector2D(enhancer_txt.size() * font_size.getX(), font_size.getY());
+	//Creamos texto del nivel
 	enhancerLvlText_ = addText(enhancer_txt,color, enP, enS, _grp_BACKGROUND_TEXTS
-		);
-	Vector2D encP = { enP.getX() + enS.getX() / 2 + 35 , enP.getY() };
-	//Imagen moneda
-	addImage(encP, { 40.0f, 40.0f }, 0.0f, monedaH, _grp_HUD_FOREGROUND);
-	//Texto coste
-	Vector2D enmP = {encP.getX() + 40, enP.getY()};
-	Vector2D enmS = { font_size.getX() * enhancerText.size(), font_size.getY() };
-	enhancerMoneyText_ = addText(enhancerText, color, enmP, enmS, _grp_BACKGROUND_TEXTS);
+	);
+
+	if (enhancer_lvl != 4) {
+		std::basic_string enhancerText = std::to_string(enhancerPrice);
+		Vector2D encP = { enP.getX() + enS.getX() / 2 + 35 , enP.getY() };
+		//Imagen moneda
+		enhancerCoin_ = addImage(encP, { 40.0f, 40.0f }, 0.0f, monedaH, _grp_HUD_FOREGROUND);
+		//Texto coste
+		Vector2D enmP = {encP.getX() + 40, enP.getY()};
+		Vector2D enmS = { font_size.getX() * enhancerText.size(), font_size.getY() };
+		enhancerMoneyText_ = addText(enhancerText, color, enmP, enmS, _grp_BACKGROUND_TEXTS);
+	}
 }
 
 void ButtonSystem::throwUpgradeAnim(const Vector2D& pos) {

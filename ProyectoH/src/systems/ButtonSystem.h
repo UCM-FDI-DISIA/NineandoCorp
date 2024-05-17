@@ -207,6 +207,15 @@ private:
 	Entity* fenixLvlText_;
 	Entity* dirtLvlText_;
 
+	//Imagenes monedas
+	Entity* bulletCoin_;
+	Entity* cristalCoin_;
+	Entity* slimeCoin_;
+	Entity* diegoCoin_;
+	Entity* enhancerCoin_;
+	Entity* fenixCoin_;
+	Entity* dirtCoin_;
+
 	//Imagenes de las torres
 	Entity* bulletImage_;
 	Entity* cristalImage_;
