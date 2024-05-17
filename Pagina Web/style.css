@@ -67,6 +67,7 @@ nav ul li:hover::before {
 }
 
 nav ul li a {
+    text-align: center;
     text-decoration: none;
     color: #fff; /* Enlaces en color blanco */
 }
@@ -98,12 +99,17 @@ nav ul li a:hover{
 }
 
 .section h2 {
+    text-align: center;
     background-color: rgba(81, 65, 65, 0.264);
     padding: 10px;
     border-radius: 10px;
     cursor: pointer;
 }
+.section h3 {
+    text-align: center;
+}
 .section p {
+    text-align: center;
     margin-left: 20px;
     margin-top: 20px;
 }
