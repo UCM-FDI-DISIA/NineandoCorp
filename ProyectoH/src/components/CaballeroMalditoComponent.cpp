@@ -34,7 +34,7 @@ void CaballeroMalditoComponent::generateMalditos(Vector2D pos, int destiny, vect
 		rc->changevelocity(routeAux[destiny]);
 		
 
-		mngr_->addComponent<AttackComponent>(maldito, 10, 1, 20, false);
+		mngr_->addComponent<AttackComponent>(maldito, 100, 1, 20, false);
 		mngr_->addComponent<FramedImage>(maldito, 8, 1, 64, 64, 0, 8, 7);
 		mngr_->addComponent<EnemyTypeComponent>(maldito, _enm_MALDITO);
 
