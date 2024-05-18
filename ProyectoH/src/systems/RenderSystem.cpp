@@ -282,7 +282,7 @@ void RenderSystem::receive(const Message& m) {
 		isOnUpMenu = false;
 		break;
 	case _m_CHANGE_CONTROLS:
-		changeControls();
+		changeControls(m.change_controls.tecla);
 		break;
 	default:
 		break;
@@ -305,28 +305,28 @@ void RenderSystem::update() {
 
 		//Este control tiene que estar en el main control sistem
 		////Control de camara
-		if (ih().isKeyDown(SDLK_UP) || ih().isKeyDown(SDLK_w)) {
+		if (ih().isKeyDown(SDLK_UP) || ih().isKeyDown(Game::instance()->getUp())) {
 			k_up = true;
 		}
-		else if (ih().isKeyUp(SDLK_UP) || ih().isKeyUp(SDLK_w)) {
+		else if (ih().isKeyUp(SDLK_UP) || ih().isKeyUp(Game::instance()->getUp())) {
 			k_up = false;
 		}
-		if (ih().isKeyDown(SDLK_LEFT) || ih().isKeyDown(SDLK_a)) {
+		if (ih().isKeyDown(SDLK_LEFT) || ih().isKeyDown(Game::instance()->getLeft())) {
 			k_left = true;
 		}
-		else if (ih().isKeyUp(SDLK_LEFT) || ih().isKeyUp(SDLK_a)) {
+		else if (ih().isKeyUp(SDLK_LEFT) || ih().isKeyUp(Game::instance()->getLeft())) {
 			k_left = false;
 		}
-		if (ih().isKeyDown(SDLK_RIGHT) || ih().isKeyDown(SDLK_d)) {
+		if (ih().isKeyDown(SDLK_RIGHT) || ih().isKeyDown(Game::instance()->getRight())) {
 			k_right = true;
 		}
-		else if (ih().isKeyUp(SDLK_RIGHT) || ih().isKeyUp(SDLK_d)) {
+		else if (ih().isKeyUp(SDLK_RIGHT) || ih().isKeyUp(Game::instance()->getRight())) {
 			k_right = false;
 		}
-		if (ih().isKeyDown(SDLK_DOWN) || ih().isKeyDown(SDLK_s)) {
+		if (ih().isKeyDown(SDLK_DOWN) || ih().isKeyDown(Game::instance()->getDown())) {
 			k_down = true;
 		}
-		else if (ih().isKeyUp(SDLK_DOWN) || ih().isKeyUp(SDLK_s)) {
+		else if (ih().isKeyUp(SDLK_DOWN) || ih().isKeyUp(Game::instance()->getDown())) {
 			k_down = false;
 		}
 
@@ -631,7 +631,35 @@ void RenderSystem::update() {
 void RenderSystem::onGameOver(Uint8 winner) {
 }
 
-void RenderSystem::changeControls() {
+void RenderSystem::changeControls(int tecla) {
+	// do while-imprimir en pantalla el mensaje de dar a una tecla
+	int t = 0;
+	SDL_Event event;
+	do {
+		while (SDL_PollEvent(&event)) {
+			if (event.type == SDL_KEYDOWN) {
+			t = event.key.keysym.sym;
+			}
+		}
+	} while (t == 0);
+
+	switch (tecla)
+	{
+	case 'a':
+		Game::instance()->setLeft(t);
+		break;
+	case 'd':
+		Game::instance()->setRight(t);
+		break;
+	case 'w':
+		Game::instance()->setUp(t);
+		break;
+	case 's':
+		Game::instance()->setDown(t);
+		break;
+	default:
+		break;
+	}
 
 }
 

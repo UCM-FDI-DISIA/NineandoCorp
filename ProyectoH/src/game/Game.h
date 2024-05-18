@@ -38,6 +38,10 @@ private:
 		float newMinEffects_ = 100;
 		float newMaxEffects_ = 150;
 		bool fullScreen = false;
+		int up = 'w';
+		int down = 's';
+		int right = 'd';
+		int left = 'a';
 	};
 	bool exit;
 	double deltaTime;
@@ -49,7 +53,6 @@ private:
 	Game() : exit(false), deltaTime(0), gameStateMachine(new GameStateMachine()) {
 		SDLUtils::init("Proyect H", WIN_WIDTH, WIN_HEIGHT, "resources/config/towerDefenseResources.json", "resources/config/config.json");
 		auto& sdl = *SDLUtils::instance();
-
 		//show the cursor
 		sdl.showCursor();
 	}
@@ -122,7 +125,16 @@ public:
 	inline void setNewMinEffects(float newMin_) { config_.newMinEffects_ = newMin_; };
 	inline float getNewMaxEffects() const { return config_.newMaxEffects_; };
 	inline void setNewMaxEffects(float newMax_) { config_.newMaxEffects_ = newMax_; };
+	inline int getUp() { return config_.up; };
+	inline int getDown() { return config_.down; };
+	inline int getRight() { return config_.right; };
+	inline int getLeft() { return config_.left; };
+	inline void setUp(int tecla) { config_.up = tecla; };
+	inline void setDown(int tecla) { config_.down = tecla; };
+	inline void setRight(int tecla) { config_.right = tecla; };
+	inline void setLeft(int tecla) { config_.left = tecla; };
 };
+
 
 // Returns reference to game instance
 inline Game& game() { return *Game::instance(); }

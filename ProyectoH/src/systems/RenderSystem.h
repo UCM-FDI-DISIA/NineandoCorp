@@ -63,7 +63,7 @@ private:
 
 	void onGameOver(Uint8 winner);
 
-	void changeControls();
+	void changeControls(int tecla);
 	//si el juego esta en el upgrade menu de una torre
 	bool isOnUpMenu;
 
@@ -100,4 +100,5 @@ private:
 	Texture* textures[gameTextures::gmTxtrSize];
 	Texture* cursorTexture;
 	Texture* cursorTexture2;
+
 };

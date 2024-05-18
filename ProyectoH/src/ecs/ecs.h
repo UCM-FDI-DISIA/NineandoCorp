@@ -543,6 +543,11 @@ struct Message {
 	{
 		int n;
 	}start_enemy_book;
+	//_m_CHANGE_CONTROLS
+	struct
+	{
+		int tecla;
+	}change_controls;
 	//_m_ENEMY_BOOK_BUTTON
 	struct
 	{
