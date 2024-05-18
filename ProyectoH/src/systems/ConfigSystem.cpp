@@ -48,6 +48,9 @@ void ConfigSystem::initSystem() {
 	m.id = _m_CHANGE_CONTROLS;
 	m.change_controls.tecla = 'a';
 	bS->addButton(pAux, sAux, gameTextures::button, gameTextures::button_hover, ButtonTypes::changeControls,0,0,0,m);
+	char aux = 97;
+	std::cout << aux;
+	bS->addText(std::to_string(aux), textColor, pAux, sAux);
 	bS->addText("Move Left", textColor, { sdlutils().width() / 4.0f - 70, sdlutils().height() / 1.85f + 50 }, { 155.0f, 25.0f });
 
 	m.change_controls.tecla = 'd';

@@ -641,7 +641,7 @@ void RenderSystem::changeControls(int tecla) {
 			t = event.key.keysym.sym;
 			}
 		}
-	} while (t == 0);
+	} while (t == 0 || t < 'a' || t > 'z');
 
 	switch (tecla)
 	{
