@@ -166,7 +166,7 @@ footer img {
 
 .social-container {
     display: flex;
-    justify-content: flex-start; /* Alinear elementos a la izquierda */
+    justify-content: center; /* Alinear elementos a la izquierda */
     margin-top: 10px; /* Ajusta el margen superior según sea necesario */
 }
 
