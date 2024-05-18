@@ -646,21 +646,20 @@ void RenderSystem::changeControls(int tecla) {
 	switch (tecla)
 	{
 	case 'a':
-		Game::instance()->setLeft(t);
+		game().setLeft(t);
 		break;
 	case 'd':
-		Game::instance()->setRight(t);
+		game().setRight(t);
 		break;
 	case 'w':
-		Game::instance()->setUp(t);
+		game().setUp(t);
 		break;
 	case 's':
-		Game::instance()->setDown(t);
+		game().setDown(t);
 		break;
 	default:
 		break;
 	}
-
 }
 
 void RenderSystem::drawDiamond(SDL_Renderer* renderer, const SDL_Point& center, int width, int height, const SDL_Color& fillColor)

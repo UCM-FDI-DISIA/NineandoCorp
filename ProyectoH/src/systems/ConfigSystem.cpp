@@ -48,27 +48,38 @@ void ConfigSystem::initSystem() {
 	m.id = _m_CHANGE_CONTROLS;
 	m.change_controls.tecla = 'a';
 	bS->addButton(pAux, sAux, gameTextures::button, gameTextures::button_hover, ButtonTypes::changeControls,0,0,0,m);
-	char aux = 97;
-	std::cout << aux;
-	bS->addText(std::to_string(aux), textColor, pAux, sAux);
+
+	char aux = game().getLeft();
+	string aa[1];
+	aa[0] = aux;
+	bS->addText(aa[0], textColor, pAux, sAux * 0.7);
 	bS->addText("Move Left", textColor, { sdlutils().width() / 4.0f - 70, sdlutils().height() / 1.85f + 50 }, { 155.0f, 25.0f });
 
+	aux = game().getRight();
+	aa[0] = aux;
 	m.change_controls.tecla = 'd';
 	pAux = Vector2D(sdlutils().width() / 4.0f - 180, sdlutils().height() / 1.85f + 110);
 	sAux = { 50.0f, 50.0f };
-	bS->addButton(pAux, sAux, gameTextures::button, gameTextures::button_hover, ButtonTypes::back_selector);
+	bS->addText(aa[0], textColor, pAux, sAux * 0.7);
+	bS->addButton(pAux, sAux, gameTextures::button, gameTextures::button_hover, ButtonTypes::changeControls, 0, 0, 0, m);
 	bS->addText("Move Right", textColor, { sdlutils().width() / 4.0f - 70, sdlutils().height() / 1.85f + 110 }, { 165.0f, 25.0f });
 
+	aux = game().getUp();
+	aa[0] = aux;
 	m.change_controls.tecla = 'w';
 	pAux = Vector2D(sdlutils().width() / 4.0f - 180, sdlutils().height() / 1.85f + 170);
 	sAux = { 50.0f, 50.0f };
-	bS->addButton(pAux, sAux, gameTextures::button, gameTextures::button_hover, ButtonTypes::back_selector);
+	bS->addText(aa[0], textColor, pAux, sAux * 0.7);
+	bS->addButton(pAux, sAux, gameTextures::button, gameTextures::button_hover, ButtonTypes::changeControls, 0, 0, 0, m);
 	bS->addText("Move Up", textColor, { sdlutils().width() / 4.0f -70, sdlutils().height() / 1.85f + 170 }, { 145.0f, 25.0f });
 
+	aux = game().getDown();
+	aa[0] = aux;
 	m.change_controls.tecla = 's';
 	pAux = Vector2D(sdlutils().width() / 4.0f - 180, sdlutils().height() / 1.85f + 230);
 	sAux = { 50.0f, 50.0f };
-	bS->addButton(pAux, sAux, gameTextures::button, gameTextures::button_hover, ButtonTypes::back_selector);
+	bS->addText(aa[0], textColor, pAux, sAux * 0.7);
+	bS->addButton(pAux, sAux, gameTextures::button, gameTextures::button_hover, ButtonTypes::changeControls, 0, 0, 0, m);
 	bS->addText("Move Down", textColor, { sdlutils().width() / 4.0f - 70, sdlutils().height() / 1.85f + 230 }, { 160.0f, 25.0f });
 
 	pAux = Vector2D(sdlutils().width() / 4.0f + 40, sdlutils().height() / 1.85f + 50);
@@ -108,7 +119,6 @@ void ConfigSystem::initSystem() {
 	pAux =  Vector2D(sdlutils().width() / 2.0f + 550.0, sdlutils().height() / 2.0f - 350.0);
 	sAux = { 100.0f, 100.0f };
 	bS->addButton(pAux, sAux, gameTextures::close, gameTextures::close_hover, ButtonTypes::back_selector);
-	
 	
 }
 void ConfigSystem::receive(const Message& m) {
