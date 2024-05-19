@@ -555,10 +555,15 @@ void ButtonSystem::sellTower(Entity* twr)
 				mngr_->deleteAllHandlers(_hdlr_BUTTON_MAIN);
 			}
 			else {
-				for (auto en : mngr_->getHandler(_hdlr_BUTTON_PLAY)) {
+				for (auto en : mngr_->getHandler(_hdlr_BUTTON_PAUSE)) {
 					mngr_->setAlive(en, false);
 				}
 				
+				mngr_->deleteAllHandlers(_hdlr_BUTTON_PAUSE);
+				for (auto en : mngr_->getHandler(_hdlr_BUTTON_PLAY)) {
+					mngr_->setAlive(en, false);
+				}
+
 				mngr_->deleteAllHandlers(_hdlr_BUTTON_PLAY);
 				for (auto en : mngr_->getHandler(_hdlr_BUTTON_ACELERATE)) {
 					mngr_->setAlive(en, false);

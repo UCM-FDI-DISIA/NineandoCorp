@@ -458,12 +458,15 @@ void HUDSystem::receive(const Message& m) {
 void HUDSystem::update() {
 	if (mActive) {
 		auto bC = mngr_->getComponent<ButtonComponent>(twrSel_.roundButton);
-		if (canStartWave) {
-			bC->setActive(false);
+		if (bC != nullptr) {
+			if (canStartWave) {
+				bC->setActive(false);
+			}
+			else {
+				bC->setActive(true);
+			}
 		}
-		else {
-			bC->setActive(true);
-		}
+		
 		if (upMenuIsOn) {
 			if (ih().mouseButtonEvent()) {
 				if (ih().getMouseButtonState(InputHandler::MOUSEBUTTON::LEFT) == 1) {
