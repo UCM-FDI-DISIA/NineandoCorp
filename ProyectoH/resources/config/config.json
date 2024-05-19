@@ -532,7 +532,101 @@
       ]
     }
   ],
-  "descriptions": [
+  "descriptions":
+    [
+        {
+            "id": "soul_master",
+            "value": [
+                "Special ability: Causes blindness to the tower it hits (prevents the tower from attacking for a specific time). The blinded towers will have an icon indicating it."
+            ]
+        },
+        {
+            "id": "electric_stalker",
+            "value": [
+                "Special ability: At a specific time, the troop executes a discharge that boosts the speed of nearby allies (it stays still to do so and then continues running)."
+            ]
+        },
+        {
+            "id": "cursed",
+            "value": [
+                "None"
+            ]
+        },
+        {
+            "id": "golem",
+            "value": [
+                "Special ability: Regenerates 10 health per second."
+            ]
+        },
+        {
+            "id": "winged_demon",
+            "value": [
+                "None"
+            ]
+        },
+        {
+            "id": "goblin",
+            "value": [
+                "None"
+            ]
+        },
+        {
+            "id": "elf",
+            "value": [
+                "None"
+            ]
+        },
+        {
+            "id": "messenger_of_death",
+            "value": [
+                "Special ability: Moves in ghostly form, being invisible to towers. This ability lasts for 3 seconds and takes 5 seconds to recharge. The wall and the nexus also make it appear."
+            ]
+        },
+        {
+            "id": "angel",
+            "value": [
+                "Special ability: In an area around her, she heals her allies by 1% of their health per second. She does not attack and disappears when she reaches the nexus."
+            ]
+        },
+        {
+            "id": "infernal_demon",
+            "value": [
+                "None"
+            ]
+        },
+        {
+            "id": "defender",
+            "value": [
+                "Special ability: Upon death, it creates a force field at the place of death that prevents damage to enemies inside for 5 seconds."
+            ]
+        },
+        {
+            "id": "cursed_one",
+            "value": [
+                "Special ability: Upon death, it spawns 10 cursed ones."
+            ]
+        },
+        {
+            "id": "little_prince",
+            "value": [
+                "Special ability: This boss, once targeting a tower, fires at it with decreasing intervals between shots until a limit. This resets when the tower is destroyed."
+            ]
+        },
+        {
+            "id": "monk",
+            "value": [
+                "Special ability: This ability activates once, causing the Monk to stand still and reflect all incoming damage back to the attackers, taking no damage. However, this ability activates periodically."
+            ]
+        },
+        {
+            "id": "death",
+            "value": [
+                "Special ability: This enemy can throw potions at towers, causing them to attack each other, in addition to its normal attack that damages towers."
+            ]
+        },  
+
+
+
     {
       "id": "cristal_des_general",
       "value": [

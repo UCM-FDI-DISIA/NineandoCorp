@@ -47,7 +47,30 @@ private:
 	};
 	//vector de textos
 	vector<Entity*> texto;
+
+	//Background position and scale
+	Vector2D bPos, bSize;
+
+	//Tamaño de la fuente del texto del cuerpo
+	Vector2D font_size_body;
+	//Posicion inicial en el eje y de las stats
+	float stats_initial_pos_y;
+	//Separacion del cuerpo respecto el titulo
+	float body_separation;
+	//Separacion entre lineas
+	float between_line_offset;
+	//Separacion entre la descripcion general y las mejoras de estadisticas
+	float stats_separation;
+	//Separacion del borde derecho
+	float right_separation;
+	//Color del texto del cuerpo
+	SDL_Color body_c;
+	//Color del testo de titulo y subtitulo
+	SDL_Color title_c;
 	
+	std::vector<std::string> getDescription(basic_string<char> s) {
+		return sdlutils().descriptions().at(s);
+	}
 public:
 	static constexpr sysId_type id = _sys_ENEMYBOOK;
 	virtual ~EnemyBookSystem();
