@@ -513,7 +513,7 @@ void HUDSystem::update() {
 							//mensaje de no colocar
 							Message m;
 							m.id = _m_ADD_TEXT;
-							m.add_text_data.txt = "NO SE PUEDE COLOCAR EN ESTA POSICION";
+							m.add_text_data.txt = "CAN'T BE PUT IN THIS POSITION";
 							m.add_text_data.color = { 255, 0 ,0, 255 };
 							Vector2D txtScale = Vector2D(800.0f, 75.0f);
 							m.add_text_data.pos = Vector2D(sdlutils().width() / 2, sdlutils().height() / 2) - (txtScale / 2);

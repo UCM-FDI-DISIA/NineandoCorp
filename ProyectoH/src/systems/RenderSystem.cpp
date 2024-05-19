@@ -1,6 +1,7 @@
 #include "RenderSystem.h"
 #include "../ecs/Manager.h"
 #include "../components/ShieldComponent.h"
+#include "../components/LimitedTime.h"
 #include "../game/Game.h"
 
 // Constructors
@@ -632,6 +633,30 @@ void RenderSystem::changeControls(int tecla) {
 	// do while-imprimir en pantalla el mensaje de dar a una tecla
 	int t = 0;
 	SDL_Event event;
+	/*Message m;
+	m.id = _m_ADD_TEXT;
+	m.add_text_data.txt = "PRESS ANY KEY TO CONTINUE...";
+	m.add_text_data.color = { 255, 0 ,0, 255 };
+	Vector2D txtScale = Vector2D(800.0f, 75.0f);
+	m.add_text_data.pos = Vector2D(sdlutils().width() / 2, sdlutils().height() / 2) - (txtScale / 2);
+	m.add_text_data.scale = txtScale;
+	m.add_text_data.time = 20;
+	mngr_->send(m);*/
+
+	/*auto text = mngr_->addEntity(_grp_TEXTS);
+	Transform* tr = mngr_->addComponent<Transform>(text);
+	Vector2D scale = Vector2D(800.0f, 75.0f);
+	Vector2D pos = Vector2D(sdlutils().width() / 2, sdlutils().height() / 2) - (scale / 2);
+	string txt = "PRESS ANY KEY TO CONTINUE...";
+	SDL_Color color = { 200, 0, 255, 255 };
+	tr->setPosition(pos);
+	tr->setScale(scale);
+	TextComponent* tc = mngr_->addComponent<TextComponent>(text, txt, color);
+	LimitedTime* lt = mngr_->addComponent<LimitedTime>(text, 30);
+
+	tc->getTexture()->render(tr->getRect(), tr->getRotation());*/
+
+	//Logica para coger la tecla
 	do {
 		while (SDL_PollEvent(&event)) {
 			if (event.type == SDL_KEYDOWN) {
@@ -640,6 +665,7 @@ void RenderSystem::changeControls(int tecla) {
 		}
 	} while (t == 0 || t < 'a' || t > 'z');
 
+	//Cambiar la tecla correspondiente
 	switch (tecla)
 	{
 	case 'a':
@@ -657,6 +683,9 @@ void RenderSystem::changeControls(int tecla) {
 	default:
 		break;
 	}
+
+	//Quitar el mensaje de la pantalla
+	//lt->setCurrTime(31);
 }
 
 void RenderSystem::drawDiamond(SDL_Renderer* renderer, const SDL_Point& center, int width, int height, const SDL_Color& fillColor)
