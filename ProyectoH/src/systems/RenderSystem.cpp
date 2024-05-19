@@ -3,15 +3,15 @@
 #include "../components/ShieldComponent.h"
 #include "../game/Game.h"
 
-// Constructorss
+// Constructors
 RenderSystem::RenderSystem() : winner_(0)
 {
 	mActive = true;
 	isOnUpMenu = false;
-	//Camera offset
+	// Camera offset
 	*offset = build_sdlrect(0, 0, 0, 0);
 
-	//Towers
+	// Towers
 	textures[square] = &sdlutils().images().at("square");
 	textures[tileSet] = &sdlutils().images().at("map");
 	textures[play] = &sdlutils().images().at("play");
@@ -26,7 +26,6 @@ RenderSystem::RenderSystem() : winner_(0)
 	textures[bulletTexture] = &sdlutils().images().at("canon_bullet");
 	textures[sniperBulletTexture] = &sdlutils().images().at("sniper_bullet");
 	textures[slimeBulletTexture] = &sdlutils().images().at("slime_bullet");
-	textures[nexusTexture] = &sdlutils().images().at("nexus_tower");	// Quitar creo
 	textures[box] = &sdlutils().images().at("box");
 	textures[column_box] = &sdlutils().images().at("column_box");
 	textures[box_hover] = &sdlutils().images().at("box_hover");
@@ -53,7 +52,6 @@ RenderSystem::RenderSystem() : winner_(0)
 	textures[phoenix_tower_image] = &sdlutils().images().at("phoenix_tower_image");
 	textures[clay_tower_image] = &sdlutils().images().at("dirt_tower_image");
 	textures[power_tower_image] = &sdlutils().images().at("power_tower_image");
-	textures[nexus_level_3_image] = &sdlutils().images().at("nexus_level_3_image");		// Quitar creo
 	textures[nexus_level_text] = &sdlutils().msgs().at("nexus_level_text");
 	textures[fireTexture] = &sdlutils().images().at("fireball");
 	textures[slimeArea] = &sdlutils().images().at("slime_area");
@@ -83,10 +81,10 @@ RenderSystem::RenderSystem() : winner_(0)
 	textures[mensajero_silueta] = &sdlutils().images().at("mensajero_silueta");
 
 
-	//Nexus
+	// Nexus
 	textures[nexusLvl] = &sdlutils().images().at("nexus");	// Borrados nexos anteriores y cambiar este enombre
 
-	//HUD
+	// HUD
 	cursorTexture = &sdlutils().images().at("cursor");
 	cursorTexture2 = &sdlutils().images().at("cursorpress");
 	textures[monedaH] = &sdlutils().images().at("H_coin");
@@ -105,7 +103,6 @@ RenderSystem::RenderSystem() : winner_(0)
 	textures[logo] = &sdlutils().images().at("logo");
 	textures[play] = &sdlutils().images().at("play");
 	textures[play_hover] = &sdlutils().images().at("play_hover");
-	textures[nexus_level_3_image] = &sdlutils().images().at("nexus_level_3_image");
 	textures[nexus_level_text] = &sdlutils().msgs().at("nexus_level_text");
 	textures[hpIcon] = &sdlutils().images().at("hp_icon");
 	textures[powerIcon] = &sdlutils().images().at("powerup_icon");
@@ -179,7 +176,7 @@ RenderSystem::RenderSystem() : winner_(0)
 	textures[return_button] = &sdlutils().images().at("return_button");
 	textures[return_button_hover] = &sdlutils().images().at("return_button_hover");
 
-	//Explosions
+	// Explosions
 	textures[shieldExp] = &sdlutils().images().at("shieldExp");
 	textures[bulletExplosion] = &sdlutils().images().at("bulletExp");
 	textures[enemyDeath] = &sdlutils().images().at("enemy_death");
@@ -187,11 +184,11 @@ RenderSystem::RenderSystem() : winner_(0)
 	textures[blood] = &sdlutils().images().at("blood");
 	textures[enemy_spawn] = &sdlutils().images().at("spawn_enemy");
 	textures[level_up] = &sdlutils().images().at("level_up");
-	//Miscelanious
+	// Miscelanious
 	textures[square] = &sdlutils().images().at("square");
 	textures[tileSet] = &sdlutils().images().at("map");
 
-	//Enemies
+	// Enemies
 	textures[goblin] = &sdlutils().images().at("goblin");
 	textures[maldito] = &sdlutils().images().at("maldito");
 	textures[elfo] = &sdlutils().images().at("elfo");
@@ -224,7 +221,7 @@ RenderSystem::RenderSystem() : winner_(0)
 	textures[pocion] = &sdlutils().images().at("pocion");
 
 
-	//Enemies Icons
+	// Enemies Icons
 	textures[goblin_icon] = &sdlutils().images().at("goblin_icon");
 	textures[maldito_icon] = &sdlutils().images().at("maldito_icon");
 	textures[elfo_icon] = &sdlutils().images().at("elfo_icon");
@@ -243,7 +240,7 @@ RenderSystem::RenderSystem() : winner_(0)
 
 
 
-	//fenomenos
+	// Fenomenos
 	textures[thunder] = &sdlutils().images().at("thunder");
 	textures[meteorites] = &sdlutils().images().at("meteorites");
 	textures[earthquake] = &sdlutils().images().at("earthquake");
@@ -257,7 +254,7 @@ RenderSystem::RenderSystem() : winner_(0)
 	textures[meteorite_icon] = &sdlutils().images().at("meteorite_icon");
 	textures[rangeCircle] = &sdlutils().images().at("range_circle");
 
-	//texts
+	// Texts
 	textures[general_text] = &sdlutils().msgs().at("general_text");
 	textures[sounds_text] = &sdlutils().msgs().at("sounds_text");
 }

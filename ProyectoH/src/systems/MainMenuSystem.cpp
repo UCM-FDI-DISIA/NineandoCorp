@@ -14,20 +14,19 @@ void MainMenuSystem::receive(const Message& m) {
 	switch (m.id)
 	{
 	case _m_START_MENU:
+		// Inicialización al poner el menú
 		turrentLevels = game().getSaveGame()->getTurretsLevels();
 		createNexusImage();
 		addNexusText();
 		break;
 	case _m_UPDATE_MENU:
+		// Actualización del estado de los elemntos del menú
 		turrentLevels = game().getSaveGame()->getTurretsLevels();
 		updateNexusImage();
 	}
 }
 
 void MainMenuSystem::initSystem() {
-
-	// cleon: creais mucho reuido con las variables locales.
-	// al menos, redefinid cada una por pseparado (no reutiliceis "pAux")
 
 	Vector2D towerImagesSize{ 70.5f, 100.0f };
 
@@ -59,10 +58,6 @@ void MainMenuSystem::initSystem() {
 		90.0, gameTextures::column_box, _grp_HUD_BACKGROUND);
 
 	
-	// 
-	//  IMAGE - CAMBIAR IMAGEN
-
-	
 	//-------------------------------------------//
 
 	// ENEMIES BUTTON
@@ -91,6 +86,7 @@ void MainMenuSystem::initSystem() {
 		gameTextures::upgrade, gameTextures::upgrade_hover, ButtonTypes::upgrade_nexus);
 
 #pragma region TOWER BUTTONS
+
 	float but_separation = 175.0f;
 	float info_separation = 45.0f;
 	Vector2D info_size = { 35.0f, 35.0f };

@@ -9,7 +9,6 @@ public:
 	NexusComponent();
 
 	~NexusComponent();
-	void levelUp(int level);
 	bool isMaxLevel() const { return isMaxLevel_; }
 
 protected:

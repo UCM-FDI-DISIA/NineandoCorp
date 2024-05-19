@@ -348,7 +348,6 @@ enum gameTextures {
 	elfo_silueta, goblin_silueta, golem_silueta, muerte_silueta,
 	maestro_de_almas_silueta, mensajero_silueta,
 
-	nexus_level_3_image,
 	tsunami_icon,meteorite_icon, thunder_icon, tornado_icon, earthquake_icon, 
 	level1,level1_hover,level2,level2_hover,level3,level3_hover,level4,level4_hover,level5,level5_hover,level6,level6_hover,level7,level7_hover,level8,level8_hover,
 	level1_desactive, level2_desactive, level3_desactive, level4_desactive, level5_desactive, level6_desactive, level7_desactive, level8_desactive,

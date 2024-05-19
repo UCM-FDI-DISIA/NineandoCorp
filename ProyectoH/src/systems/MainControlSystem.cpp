@@ -71,6 +71,7 @@ void MainControlSystem::receive(const Message& m) {
 		coinsH += m.money_data.money;
 		break;
 	case _m_PAUSE:
+		// Activación de la generación de monedas dependiendo del contexto de la pausa
 		if (m.start_pause.onPause) {
 			generateCoins = false;
 			pauseAuxElapsedTime_ = elapsedTime_;
@@ -145,6 +146,7 @@ void MainControlSystem::upgradeTower(twrId id) {
 
 void MainControlSystem::update() {
 	elapsedTime_ += game().getDeltaTime();
+	// Generación constante de monedas por nexo
 	if (generateCoins && waveActive) {
 		if (nexusIsAlive_ && elapsedTime_ > generateNexusCoinsTime_) 
 		{

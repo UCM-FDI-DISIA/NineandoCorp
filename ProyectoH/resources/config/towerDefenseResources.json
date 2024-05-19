@@ -282,10 +282,6 @@
       "file": "resources/images/Towers/CannonBallBig.png"
     },
     {
-      "id": "nexus_tower",
-      "file": "resources/images/Towers/nexus_tower.jpeg"
-    },
-    {
       "id": "nexus",
       "file": "resources/images/Nexus/nexusSpritesheet2.png"
     },
@@ -532,10 +528,6 @@
     {
       "id": "power_tower_image",
       "file": "resources/images/towers/1_booster_tower.png"
-    },
-    {
-      "id": "nexus_level_3_image",
-      "file": "resources/images/nexus/nexus_level_3_image.png"
     },
     {
       "id": "fireball",
