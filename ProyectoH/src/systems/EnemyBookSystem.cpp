@@ -12,6 +12,24 @@ EnemyBookSystem::~EnemyBookSystem()
 	mngr_->deleteAllHandlers(_hdlr_BUTTON_ENEMYBOOK);
 }
 void EnemyBookSystem::initSystem() {
+    bPos = Vector2D((float)sdlutils().width() / 1.34, (float)sdlutils().height() / 1.55);
+
+    bSize = Vector2D(sdlutils().width() / 1.5f, sdlutils().height() / 1.5f);
+
+    font_size_body = { 10.0f, 24.0f };
+
+    body_separation = 130.0f;
+
+    between_line_offset = font_size_body.getY() + 10.0f;
+
+    body_c = { 180,180,180,255 };
+
+    title_c = { 255,255,255,255 };
+
+    right_separation = 50.0f;
+
+    stats_separation = 60.0f;
+
 	Vistos = game().getSaveGame()->getEnemiesBook();
 	ButtonSystem* bS = mngr_->getSystem<ButtonSystem>();
 	//BACKGROUND

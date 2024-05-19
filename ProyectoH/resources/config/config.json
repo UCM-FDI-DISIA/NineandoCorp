@@ -537,7 +537,7 @@
         {
             "id": "soul_master",
             "value": [
-                "Special ability: Causes blindness to the tower it hits (prevents the tower from attacking for a specific time). The blinded towers will have an icon indicating it."
+                "Special ability: Causes","blindness to the tower it","hits. The blinded towers will","have an icon indicating it."
             ]
         },
         {
@@ -555,7 +555,7 @@
         {
             "id": "golem",
             "value": [
-                "Special ability: Regenerates 10 health per second."
+                "Special ability: Regenerates","10 health per second."
             ]
         },
         {
