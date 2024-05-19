@@ -1,3 +1,4 @@
+
 #include "EnemySystem.h"
 #include "..//components/MovementComponent.h"
 #include "..//components/MonjeComponent.h"
@@ -421,17 +422,7 @@ void EnemySystem::update()
 				}
 			}
 
-			// acechante
-			if (acc != nullptr) {
-				acc->setTime(game().getDeltaTime() + acc->getElapsed());
-				if (acc->getElapsed() >= acc->getReload() - 0.5) {
-					mc->setStop(true);
-				}
-				if (acc->getElapsed() >= acc->getReload()) {
-					acc->inRange(enemies);
-					acc->setTime(0.0f);
-				}
-			}
+			
 
 			// route
 			if (rc != nullptr) {
@@ -498,6 +489,25 @@ void EnemySystem::update()
 						}
 
 					}
+				}
+			}
+			// acechante
+			if (acc != nullptr) {
+				if (acc->getAtt())
+					mc->setStop(true);
+				acc->setTime(game().getDeltaTime() + acc->getElapsed());
+				if (acc->getElapsed() >= acc->getReload() - 0.7 && !acc->getAtt()) {
+					mc->setStop(true);
+					changeAnimation(true, e);
+					acc->setAtt(true);
+
+				}
+				
+				if (acc->getElapsed() >= acc->getReload()) {
+					acc->inRange(enemies);
+					acc->setTime(0.0f);
+					changeAnimation(false, e);
+					acc->setAtt(false);
 				}
 			}
 
