@@ -6,7 +6,7 @@
 
 body {
     margin: 0;
-    padding: 0;
+    padding: 0 0 75px 0;
     font-family: 'RussoOne', Arial, sans-serif;
     background-color: #f2f0f7; /* Color de fondo de la página */
 }
@@ -147,7 +147,6 @@ footer {
     text-align: center;
     padding: 10px;
     width: 100%;
-    position: fixed;
     bottom: 0;
     left: 0;
 }
@@ -196,4 +195,43 @@ footer img {
         display: inline-block; /* Mostrar el video como bloque en línea */
         vertical-align: middle; /* Alinear verticalmente al centro */
     }
+.section {
+    display: none; /* Ocultar las secciones por defecto */
+    padding: 20px;
+    margin-bottom: 20px;
+    text-align: center; /* Centrar el texto dentro de la sección */
+}
+
+    .section .content {
+        display: block; /* Mostrar el contenido por defecto */
+        animation: slideDown 0.5s forwards; /* Animación de deslizamiento hacia abajo */
+    }
+
+.steps-container {
+    display: flex;
+    justify-content: center; /* Centrar horizontalmente */
+    margin: 0 auto; /* Centrar el contenedor */
+}
+
+    .steps-container ul {
+        list-style-type: none; /* Eliminar el estilo predeterminado de la lista */
+        padding-left: 0; /* Eliminar el padding predeterminado de la lista */
+    }
+
+    .steps-container li {
+        margin-bottom: 15px; /* Espacio entre cada elemento de la lista */
+        display: flex; /* Usar flexbox para alinear el número y el texto */
+        align-items: flex-start; /* Alinear los elementos al centro verticalmente */
+        text-align: left; /* Alinear el texto a la izquierda */
+    }
+
+        .steps-container li strong {
+            display: block; /* Hacer que el texto en negrita ocupe una línea completa */
+            flex: 1; /* Permitir que el texto ocupe el espacio disponible */
+        }
+
+        .steps-container li p {
+            margin: 5px 0 0 0; /* Aumenta el margen superior e indenta el texto */
+            flex: 1; /* Permitir que el texto ocupe el espacio disponible */
+        }
 
