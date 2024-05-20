@@ -101,6 +101,7 @@ void CollisionSystem::removeRect(Entity* rect, rectId id) {
 		break;
 	case _FIELD:
 		fieldRects_.erase(find(fieldRects_.begin(), fieldRects_.end(), rect));
+		mngr_->setAlive(rect, false);
 		break;
 	case _POTIONRECT:
 		potionRects_.erase(find(potionRects_.begin(), potionRects_.end(), rect));
@@ -470,12 +471,15 @@ void CollisionSystem::update() {
 		}
 
 		for (const auto& f: fieldRects_) {
-			LimitedTime* lt = mngr_->getComponent<LimitedTime>(f);
-			lt->setCurrTime(lt->getCurrTime()+game().getDeltaTime());
+			if (mngr_->isAlive(f)) {
+				LimitedTime* lt = mngr_->getComponent<LimitedTime>(f);
+				if (lt != nullptr) {
+					lt->setCurrTime(lt->getCurrTime() + game().getDeltaTime());
 
-			if (lt->getCurrTime() > lt->getLifeTime()) {
-				removeRect(f, _FIELD);
-				mngr_->setAlive(f, false);
+					if (lt->getCurrTime() > lt->getLifeTime()) {
+						removeRect(f, _FIELD);
+					}
+				}
 			}
 		}
 
