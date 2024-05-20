@@ -3,9 +3,10 @@
 #include "../ecs/Manager.h"
 
 HUDSystem::HUDSystem() :
-	buttonsSpace_length_() , // 
+	buttonsSpace_length_(), // 
 	infoSpace_length_(), //
-	upMenuIsOn(false)
+	upMenuIsOn(false), // 
+	cameraOffset_(nullptr)
 {
 	mActive = true;
 }
@@ -412,9 +413,11 @@ void HUDSystem::receive(const Message& m) {
 		break;
 	case _m_SHOW_UPGRADE_TOWER_MENU:
 		if (isOnSelector(m.show_upgrade_twr_menu_data.pos + Vector2D(0, 30))) {
-			showUpgradeMenu(m.show_upgrade_twr_menu_data.twr, m.show_upgrade_twr_menu_data.pos);
-			showSelector(false);
+			if(cameraOffset_ != nullptr) {
+				showUpgradeMenu(m.show_upgrade_twr_menu_data.twr, m.show_upgrade_twr_menu_data.pos);
+				showSelector(false);
 			upMenuIsOn = true;
+			}
 		}
 		break;
 	case _m_UPGRADE_TWR_INGAME: 
@@ -592,6 +595,7 @@ void HUDSystem::showUpgradeMenu(Entity* twr, const Vector2D& pos) {
 	*	Ajuste del menu con los limites de la camara y HUD
 	* 
 	*/
+
 	Vector2D posA = { pos.getX() + 300 + 20 + cameraOffset_->x , pos.getY() + cameraOffset_->y };
 	if (posA.getX() + 250  > sdlutils().width()) {
 	

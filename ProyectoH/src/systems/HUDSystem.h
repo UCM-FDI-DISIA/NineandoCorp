@@ -19,7 +19,7 @@ public:
 
 	bool isOnSelector(const Vector2D& pos) const {
 		if(cameraOffset_ != NULL)
-		return pos.getY() + cameraOffset_->y < sdlutils().height() - twrSel_.selectorHeight;
+			return pos.getY() + cameraOffset_->y < sdlutils().height() - twrSel_.selectorHeight;
 		else { return pos.getY() < sdlutils().height() - twrSel_.selectorHeight; }
 	}
 	/// <summary>
