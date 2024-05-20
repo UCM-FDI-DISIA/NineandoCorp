@@ -431,6 +431,7 @@ void ButtonSystem::sellTower(Entity* twr)
 				upgradeTower(_twr_POWER, "precioHPotenciadoraLvl" + std::to_string(lvl), bC);
 			break;
 		case show_info:
+			sdlutils().soundEffects().at("button").play(0, 1);
 			mngr_->send(mngr_->getComponent<ButtonComponent>(bC)->getMessage());
 			break;
 
