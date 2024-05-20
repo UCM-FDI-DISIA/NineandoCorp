@@ -4,6 +4,10 @@ PauseState::PauseState(Manager* mngr) : GameState(_gmStt_PAUSE, mngr) {
 		mngr_->setAlive(en, false);
 	}
 	mngr_->deleteAllHandlers(_hdlr_BUTTON_PLAY);
+	for (auto en : mngr_->getHandler(_hdlr_BUTTON_ACELERATE)) {
+		mngr_->setAlive(en, false);
+	}
+	mngr_->deleteAllHandlers(_hdlr_BUTTON_ACELERATE);
 	mngr_->removeSystem<HUDSystem>();
 	mngr_->getSystem<ButtonSystem>()->changeButtonsIdHandler(_hdlr_BUTTON_PAUSE);
 	mngr_->addSystem<PauseSystem>();
