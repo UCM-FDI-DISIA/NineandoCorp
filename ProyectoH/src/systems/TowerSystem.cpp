@@ -27,7 +27,7 @@ void TowerSystem::receive(const Message& m) {
 		break;
 	case _m_ENTITY_TO_ATTACK://Mandado por el enemySystem al atacar una torre
 
-		if (m.entity_to_attack.targetId == _hdlr_LOW_TOWERS)onAttackTower(m.entity_to_attack.e, m.entity_to_attack.damage, m.entity_to_attack.src);
+		if (m.entity_to_attack.targetId == _hdlr_LOW_TOWERS || m.entity_to_attack.targetId == _hdlr_HIGH_TOWERS)onAttackTower(m.entity_to_attack.e, m.entity_to_attack.damage, m.entity_to_attack.src);
 		else if (m.entity_to_attack.targetId == _hdlr_BULLETS)mngr_->setAlive(m.entity_to_attack.e, false);
 
 		break;

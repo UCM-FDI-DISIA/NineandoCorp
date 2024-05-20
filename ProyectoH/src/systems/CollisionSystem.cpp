@@ -387,7 +387,7 @@ void CollisionSystem::update() {
 						m.entity_to_attack.targetId = _hdlr_HIGH_TOWERS;
 						m.entity_to_attack.e = t;
 						m.entity_to_attack.damage = 5;
-						mngr_->send(m);
+						mngr_->send(m, true);
 						if (towerState != nullptr) {
 							towerState->setCegado(true, 5.0f);//Ciega
 						}

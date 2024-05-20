@@ -4751,12 +4751,14 @@
                     {
                         "id": "grupo2",
                         "grupo2": {
-                            "spawn": "2",
+                            "spawn": "3",
                             "typeEnemy": [
-                                "goblin"
+                                "goblin",
+                                "elfo"
                             ],
                             "numEnemies": [
-                                2
+                                2,
+                                1
                             ],
                             "timeSpawn": 3
                         }
@@ -4765,14 +4767,12 @@
                     {
                         "id": "grupo3",
                         "grupo3": {
-                            "spawn": "3",
+                            "spawn": "2",
                             "typeEnemy": [
-                                "elfos",
-                                "golem"
+                                "elfos"
                             ],
                             "numEnemies": [
-                                2,
-                                1
+                                2
                             ],
                             "timeSpawn": 3
                         }

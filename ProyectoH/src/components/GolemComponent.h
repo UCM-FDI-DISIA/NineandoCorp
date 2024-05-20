@@ -5,7 +5,7 @@ class GolemComponent: public Component
 {
 public:
 	static const cmpId id = cmpId::_GOLEM;
-	GolemComponent() :cura_(50.0f),reloadTime_(1.0f), elapsedTime_(0.0f){  };
+	GolemComponent() :cura_(10.0f),reloadTime_(1.0f), elapsedTime_(0.0f){  };
 	void Regenera();
 	float getReload() const { return reloadTime_; }
 	void setTime(float t) { elapsedTime_ = t; }
