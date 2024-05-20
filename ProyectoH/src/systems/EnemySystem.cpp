@@ -393,8 +393,9 @@ void EnemySystem::update()
 					auto it = enemies.begin();
 					while (it!=enemies.end()&&!thereIsAngel) {
 						AngelComponent* angel = mngr_->getComponent<AngelComponent>(*it);
-						if (angel != nullptr && angel->getDistance(tr->getPosition()) < angel->getRange() && *it != e) {
-							thereIsAngel = true;
+						if (angel != nullptr ) {
+							if(angel->getDistance(tr->getPosition()) < angel->getRange() && *it != e)
+								thereIsAngel = true;
 						}
 						it++;
 					}
