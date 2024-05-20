@@ -746,7 +746,22 @@ void TowerSystem::generateNexus(int lvlNexus, Cell* cell) {
 	Entity* n = mngr_->addEntity(_grp_TOWERS_AND_ENEMIES);	
 	mngr_->addComponent<Transform>(n);
 	mngr_->addComponent<ShieldComponent>(n, 0);
-	mngr_->addComponent<HealthComponent>(n, 1000);
+	switch (lvlNexus) {
+	case 1:
+		mngr_->addComponent<HealthComponent>(n, sdlutils().intConst().at("NexusVida1"));
+		break;
+	case 2:
+		mngr_->addComponent<HealthComponent>(n, sdlutils().intConst().at("NexusVida2"));
+		break;
+	case 3:
+		mngr_->addComponent<HealthComponent>(n, sdlutils().intConst().at("NexusVida3"));
+		break;
+	case 4:
+		mngr_->addComponent<HealthComponent>(n, sdlutils().intConst().at("NexusVida4"));
+		break;
+	default:
+		break;
+	}
 	mngr_->getComponent<Transform>(n)->setScale({ 150, 150 });
 	mngr_->getComponent<Transform>(n)->setPosition(cell->position);
 	mngr_->addComponent<NexusComponent>(n);

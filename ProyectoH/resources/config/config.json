@@ -1186,6 +1186,22 @@
 
   "intConst": [
     {
+      "id": "NexusVida1",
+      "value": 1000
+    },
+    {
+      "id": "NexusVida2",
+      "value": 2000
+    },
+    {
+      "id": "NexusVida3",
+      "value": 3000
+    },
+    {
+      "id": "NexusVida4",
+      "value": 5000
+    },
+    {
       "id": "MaestroVida",
       "value": 150
     },
@@ -2569,20 +2585,20 @@
       "value": 10
     },
     {
-        "id": "Life1",
-        "value": 1000
+      "id": "Life1",
+      "value": 1000
     },
     {
-        "id": "Life2",
-        "value": 2000
+      "id": "Life2",
+      "value": 2000
     },
     {
-        "id": "Life3",
-        "value": 3000
+      "id": "Life3",
+      "value": 3000
     },
     {
-        "id": "Life4",
-        "value": 5000
+      "id": "Life4",
+      "value": 5000
     }
 
   ],
