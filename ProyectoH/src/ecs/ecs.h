@@ -338,7 +338,7 @@ enum gameTextures {
 	menu_background, upgrade, upgrade_hover, logo,
 	crystal_tower_image, bullet_tower_image, slime_tower_image,
 	sniper_tower_image, phoenix_tower_image, clay_tower_image,
-	power_tower_image,
+	power_tower_image, black_frame,
 					// Siluetas
 	booster_tower_silueta, cristal_tower_silueta, phoenix_tower_silueta,
 	slime_tower_silueta, sniper_tower_silueta,
