@@ -533,7 +533,6 @@ void TowerSystem::update() {
 							}
 							ds->setElapsedTime(0);
 						}
-						if (!mngr_->isAlive(t)) { removeTower(t); };
 
 					}
 
@@ -789,17 +788,16 @@ void TowerSystem::addTower(twrId type, const Vector2D& pos, Height height, int c
 	if(type != _twr_NEXUS)
 		mngr_->addComponent<InteractiveTower>(t, cameraOffset_);
 	mngr_->addComponent<IconComponent>(t);
-
-	if (height == LOW ||height == PATH) {
-		
-		mngr_->setHandler(_hdlr_LOW_TOWERS, t);
-	}
-	else mngr_->setHandler(_hdlr_HIGH_TOWERS, t);
-
 	if (height == BOTH) {
 		mngr_->setHandler(_hdlr_LOW_TOWERS, t);
 		mngr_->setHandler(_hdlr_HIGH_TOWERS, t);
 	}
+	else if (height == LOW ||height == PATH) {
+		
+		mngr_->setHandler(_hdlr_LOW_TOWERS, t);
+	}
+	else if(height == HIGH)mngr_->setHandler(_hdlr_HIGH_TOWERS, t);
+
 
 	sdlutils().soundEffects().at("TorreDeBalasDrop").setChannelVolume(game().CalculoVolumenEfectos(), 1);
 	switch (type)
