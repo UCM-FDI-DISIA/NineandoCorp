@@ -65,7 +65,7 @@ void  EnemySystem::receive(const Message& m) {
 	case _m_ENTITY_TO_ATTACK:
 		if (m.entity_to_attack.targetId == _hdlr_ENEMIES && m.entity_to_attack.e != nullptr && mngr_->isAlive(m.entity_to_attack.e)) {
 			auto mj = mngr_->getComponent<MonjeComponent>(m.entity_to_attack.e);
-			if (mj != nullptr && mj->getDevuelve()) {
+			if (mj != nullptr && mj->getDevuelve() && !mngr_->isAlive(m.entity_to_attack.src)) {
 				Message a;
 				a.id = _m_ENTITY_TO_ATTACK;
 				a.entity_to_attack.e = m.entity_to_attack.src;
@@ -541,7 +541,7 @@ void EnemySystem::update()
 							
 							HealthComponent* hc = mngr_->getComponent<HealthComponent>(enemy);
 							if (hc->getHealth() < hc->getMaxHealth()) {
-								hc->addHealth(hc->getBaseHealth() * 0.20f);
+								hc->addHealth(hc->getBaseHealth() * 0.02f);
 								if(es!=nullptr)es->setIsHealing(true);
 							}
 							

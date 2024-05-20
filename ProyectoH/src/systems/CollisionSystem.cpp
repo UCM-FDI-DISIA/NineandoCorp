@@ -120,149 +120,155 @@ void CollisionSystem::update() {
 		const auto& bullets = mngr_->getEntities(_grp_BULLETS);
 
 		for (const auto& er : enemies) {
-			SDL_Rect enemyRect = mngr_->getComponent<Transform>(er)->getRect();
+			if (mngr_->isAlive(er)) {
+				Transform* etr = mngr_->getComponent<Transform>(er);
+				if(etr!=nullptr){
+					SDL_Rect enemyRect = mngr_->getComponent<Transform>(er)->getRect();
 
-			for (const auto& fr : fenixRects_) {
-				if (mngr_->isAlive(fr)) {
+					for (const auto& fr : fenixRects_) {
+						if (mngr_->isAlive(fr)) {
 
-					Transform* fenixTR = mngr_->getComponent<Transform>(fr);
-					SDL_Rect fenixRect;
-					if (fenixTR != nullptr) fenixRect = fenixTR->getRect();
-					SDL_bool col = SDL_HasIntersection(&fenixRect, &enemyRect);
-					FireComponent* fc = mngr_->getComponent<FireComponent>(fr);
+							Transform* fenixTR = mngr_->getComponent<Transform>(fr);
+							SDL_Rect fenixRect;
+							if (fenixTR != nullptr) fenixRect = fenixTR->getRect();
+							SDL_bool col = SDL_HasIntersection(&fenixRect, &enemyRect);
+							FireComponent* fc = mngr_->getComponent<FireComponent>(fr);
 
-					if (fc != nullptr) {
-						if (!mngr_->isAlive(fc->getMyTower()))removeRect(fr, _FENIX);
-						float dps = fc->getDamage();
-						fc->setElapsedTime(fc->getElapsedTime() + game().getDeltaTime());
-						if (fc->getElapsedTime() > 1.0f) {
-							if (col) {
+							if (fc != nullptr) {
+								if (!mngr_->isAlive(fc->getMyTower()))removeRect(fr, _FENIX);
+								float dps = fc->getDamage();
+								fc->setElapsedTime(fc->getElapsedTime() + game().getDeltaTime());
+								if (fc->getElapsedTime() > 1.0f) {
+									if (col) {
+										Message m;
+										m.id = _m_ENTITY_TO_ATTACK;
+										m.entity_to_attack.targetId = _hdlr_ENEMIES;
+										m.entity_to_attack.e = er;
+										m.entity_to_attack.src = fr;
+										m.entity_to_attack.damage = dps;
+										mngr_->send(m);
+									}
+									fc->setElapsedTime(0);
+								}
+							}
+						}
+
+					}
+
+					for (const auto& mt : meteoriteRects_) {//meteoritos-enemigos
+						if (mngr_->isAlive(er)) {
+							Transform* meteoriteTR = mngr_->getComponent<Transform>(mt);
+							SDL_Rect meteoriteRect;
+							if (meteoriteTR != nullptr) meteoriteRect = meteoriteTR->getRect();
+							if (SDL_HasIntersection(&meteoriteRect, &enemyRect)) {
 								Message m;
 								m.id = _m_ENTITY_TO_ATTACK;
 								m.entity_to_attack.targetId = _hdlr_ENEMIES;
 								m.entity_to_attack.e = er;
-								m.entity_to_attack.src = fr;
-								m.entity_to_attack.damage = dps;
+								m.entity_to_attack.src = mt;
+								m.entity_to_attack.damage = 5;
 								mngr_->send(m);
 							}
-							fc->setElapsedTime(0);
+						}
+					}
+
+
+					for (const auto& t : tornadoRects_) {//tornado-enemigos
+						if (mngr_->isAlive(er)) {
+							Transform* tornadoTR = mngr_->getComponent<Transform>(t);
+							SDL_Rect tornadoRect;
+							if (tornadoTR != nullptr) tornadoRect = tornadoTR->getRect();
+							if (SDL_HasIntersection(&tornadoRect, &enemyRect)) {
+								Message m;
+								m.id = _m_CHANGE_ROUTE;
+								m.change_route.enemy = er;
+								mngr_->send(m);
+							}
+						}
+					}
+
+					for (const auto& th : thunderRects_) {//rayos-enemigos
+						if (mngr_->isAlive(er)) {
+							Transform* thunderTR = mngr_->getComponent<Transform>(th);
+							SDL_Rect thunderRect;
+							bool active = mngr_->hasComponent<Transform>(th);
+							if (active) thunderRect = thunderTR->getRect();
+							if (active && SDL_HasIntersection(&thunderRect, &enemyRect)) {
+								Message m;
+								m.id = _m_ENTITY_TO_ATTACK;
+								m.entity_to_attack.e = er;
+								m.entity_to_attack.targetId = _hdlr_ENEMIES;
+								m.entity_to_attack.src = th;
+								m.entity_to_attack.damage = 5;
+								mngr_->send(m);
+							}
+						}
+					}
+
+
+
+					for (const auto& eq : earthquakeRects_) {//terremoto-enemigos
+						if (mngr_->isAlive(er)) {
+							Transform* earthquakeTR = mngr_->getComponent<Transform>(eq);
+							SDL_Rect earthquakeRect;
+							if (earthquakeTR != nullptr) earthquakeRect = earthquakeTR->getRect();
+							if (SDL_HasIntersection(&earthquakeRect, &enemyRect)) {
+								Message m;
+								m.id = _m_DECREASE_SPEED;
+								m.decrease_speed.e = er;
+								m.decrease_speed.slowPercentage = 0.7f;
+								mngr_->send(m);
+							}
+						}
+
+					}
+					for (const auto& ts : tsunamiRects_) {//tsunami-enemigos
+						if (mngr_->isAlive(er)) {
+							Transform* tsunamiTR = mngr_->getComponent<Transform>(ts);
+							SDL_Rect tsunamiRect;
+							if (tsunamiTR != nullptr) tsunamiRect = tsunamiTR->getRect();
+							if (SDL_HasIntersection(&tsunamiRect, &enemyRect)) {
+								Message m;
+								m.id = _m_ENTITY_TO_ATTACK;
+								m.entity_to_attack.targetId = _hdlr_ENEMIES;
+								m.entity_to_attack.e = er;
+								m.entity_to_attack.src = ts;
+								m.entity_to_attack.damage = 10000;
+								mngr_->send(m);
+							}
+						}
+					}
+
+
+					for (const auto& sr : slimeRects_) {
+
+						SlimeBullet* sb = mngr_->getComponent<SlimeBullet>(sr);
+						if (sb != nullptr) {
+
+							sb->setElapsedTime(sb->getElapsedTime() + game().getDeltaTime());
+							if (sb->getElapsedTime() > timeInterval) {
+								sb->setElapsedTime(0);
+								SDL_Rect slime = mngr_->getComponent<Transform>(sr)->getRect();
+								if (SDL_HasIntersection(&slime, &enemyRect)) {
+									Message m;
+									m.id = _m_ENTITY_TO_ATTACK;
+									m.entity_to_attack.targetId = _hdlr_ENEMIES;
+									m.entity_to_attack.e = er;
+									m.entity_to_attack.src = sr;
+									m.entity_to_attack.damage = sb->getDPS() * timeInterval;
+									mngr_->send(m);
+									Message m1;
+									m1.id = _m_DECREASE_SPEED;
+									m1.decrease_speed.e = er;
+									m1.decrease_speed.slowPercentage = sb->getSpeedDecrease();
+									mngr_->send(m1);
+								}
+							}
 						}
 					}
 				}
-
 			}
-
-			for (const auto& mt : meteoriteRects_) {//meteoritos-enemigos
-				if (mngr_->isAlive(er)) {
-					Transform* meteoriteTR = mngr_->getComponent<Transform>(mt);
-					SDL_Rect meteoriteRect;
-					if (meteoriteTR != nullptr) meteoriteRect = meteoriteTR->getRect();
-					if (SDL_HasIntersection(&meteoriteRect, &enemyRect)) {
-						Message m;
-						m.id = _m_ENTITY_TO_ATTACK;
-						m.entity_to_attack.targetId = _hdlr_ENEMIES;
-						m.entity_to_attack.e = er;
-						m.entity_to_attack.src = mt;
-						m.entity_to_attack.damage = 5;
-						mngr_->send(m);
-					}
-				}
-			}
-
-
-			for (const auto& t : tornadoRects_) {//tornado-enemigos
-				if (mngr_->isAlive(er)) {
-					Transform* tornadoTR = mngr_->getComponent<Transform>(t);
-					SDL_Rect tornadoRect;
-					if (tornadoTR != nullptr) tornadoRect = tornadoTR->getRect();
-					if (SDL_HasIntersection(&tornadoRect, &enemyRect)) {
-						Message m;
-						m.id = _m_CHANGE_ROUTE;
-						m.change_route.enemy = er;
-						mngr_->send(m);
-					}
-				}
-			}
-
-			for (const auto& th : thunderRects_) {//rayos-enemigos
-				if (mngr_->isAlive(er)) {
-					Transform* thunderTR = mngr_->getComponent<Transform>(th);
-					SDL_Rect thunderRect;
-					bool active = mngr_->hasComponent<Transform>(th);
-					if (active) thunderRect = thunderTR->getRect();
-					if (active && SDL_HasIntersection(&thunderRect, &enemyRect)) {
-						Message m;
-						m.id = _m_ENTITY_TO_ATTACK;
-						m.entity_to_attack.e = er;
-						m.entity_to_attack.targetId = _hdlr_ENEMIES;
-						m.entity_to_attack.src = th;
-						m.entity_to_attack.damage = 5;
-						mngr_->send(m);
-					}
-				}
-			}
-
-
-
-			for (const auto& eq : earthquakeRects_) {//terremoto-enemigos
-				if (mngr_->isAlive(er)) {
-					Transform* earthquakeTR = mngr_->getComponent<Transform>(eq);
-					SDL_Rect earthquakeRect;
-					if (earthquakeTR != nullptr) earthquakeRect = earthquakeTR->getRect();
-					if (SDL_HasIntersection(&earthquakeRect, &enemyRect)) {
-						Message m;
-						m.id = _m_DECREASE_SPEED;
-						m.decrease_speed.e = er;
-						m.decrease_speed.slowPercentage = 0.7f;
-						mngr_->send(m);
-					}
-				}
-
-			}
-			for (const auto& ts : tsunamiRects_) {//tsunami-enemigos
-				if (mngr_->isAlive(er)) {
-					Transform* tsunamiTR = mngr_->getComponent<Transform>(ts);
-					SDL_Rect tsunamiRect;
-					if (tsunamiTR != nullptr) tsunamiRect = tsunamiTR->getRect();
-					if (SDL_HasIntersection(&tsunamiRect, &enemyRect)) {
-						Message m;
-						m.id = _m_ENTITY_TO_ATTACK;
-						m.entity_to_attack.targetId = _hdlr_ENEMIES;
-						m.entity_to_attack.e = er;
-						m.entity_to_attack.src = ts;
-						m.entity_to_attack.damage = 10000;
-						mngr_->send(m);
-					}
-				}
-			}
-
-
-			for (const auto& sr : slimeRects_) {
-
-				SlimeBullet* sb = mngr_->getComponent<SlimeBullet>(sr);
-				if (sb != nullptr) {
-
-					sb->setElapsedTime(sb->getElapsedTime() + game().getDeltaTime());
-					if (sb->getElapsedTime() > timeInterval) {
-						sb->setElapsedTime(0);
-						SDL_Rect slime = mngr_->getComponent<Transform>(sr)->getRect();
-						if (SDL_HasIntersection(&slime, &enemyRect)) {
-							Message m;
-							m.id = _m_ENTITY_TO_ATTACK;
-							m.entity_to_attack.targetId = _hdlr_ENEMIES;
-							m.entity_to_attack.e = er;
-							m.entity_to_attack.src = sr;
-							m.entity_to_attack.damage = sb->getDPS() * timeInterval;
-							mngr_->send(m);
-							Message m1;
-							m1.id = _m_DECREASE_SPEED;
-							m1.decrease_speed.e = er;
-							m1.decrease_speed.slowPercentage = sb->getSpeedDecrease();
-							mngr_->send(m1);
-						}
-					}					
-				}
-			}
+			
 		}
 
 		for (auto& t : lowTowers)
