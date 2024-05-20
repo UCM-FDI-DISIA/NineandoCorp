@@ -21,7 +21,7 @@
 
 [UML](UML.jpg)
 
-[QA](QA/INFORME%20QA.docx)
+[QA](QA/INFORME%20QA.pdf)
 
 [GRÁFICA DE DATOS](https://docs.google.com/spreadsheets/d/17VJqKdXs5HxnRE7XhKgaJPYE78I2Osd8cGOCqmh4Tbk/edit?usp=drive_link)
 
