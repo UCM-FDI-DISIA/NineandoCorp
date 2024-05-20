@@ -15,13 +15,13 @@
 ## Enlaces:
 [GDD](#GDD)
 
-[Web del juego](https://pokoli0.github.io/PVLI-Taxistas/)
+[Web del juego](https://ucm-fdi-disia.github.io/NineandoCorp/)
 
 [Presentaciones](#Presentaciones)
 
 [UML](UML.jpg)
 
-[QA](https://docs.google.com/spreadsheets/d/1-hL-Qp4hK3z9xW_LWDS397594ty98PtB/edit#gid=1201438310)
+[QA](QA/INFORME%20QA.docx)
 
 [GRÁFICA DE DATOS](https://docs.google.com/spreadsheets/d/17VJqKdXs5HxnRE7XhKgaJPYE78I2Osd8cGOCqmh4Tbk/edit?usp=drive_link)
 
