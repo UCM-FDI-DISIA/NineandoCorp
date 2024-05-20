@@ -12,7 +12,7 @@ void CaballeroMalditoComponent::generateMalditos(Vector2D pos, int destiny, vect
 	vector<Vector2D> routeAux = route;
 
 
-	for (int i = 0; i < 10; i++) {
+	for (int i = 0; i < 6; i++) {
 		int x = random.nextInt(-40, 41);
 		int y = random.nextInt(-40, 41);
 
