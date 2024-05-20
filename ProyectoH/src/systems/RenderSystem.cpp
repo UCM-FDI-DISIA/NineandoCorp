@@ -176,6 +176,7 @@ RenderSystem::RenderSystem() : winner_(0)
 	textures[info_icon] = &sdlutils().images().at("info_icon");
 	textures[return_button] = &sdlutils().images().at("return_button");
 	textures[return_button_hover] = &sdlutils().images().at("return_button_hover");
+	textures[black_frame] = &sdlutils().images().at("black_frame");
 
 	// Explosions
 	textures[shieldExp] = &sdlutils().images().at("shieldExp");
@@ -280,6 +281,7 @@ void RenderSystem::receive(const Message& m) {
 		isOnUpMenu = false;
 		break;
 	case _m_CHANGE_CONTROLS:
+
 		changeControls(m.change_controls.tecla);
 		break;
 	default:
@@ -633,17 +635,8 @@ void RenderSystem::changeControls(int tecla) {
 	// do while-imprimir en pantalla el mensaje de dar a una tecla
 	int t = 0;
 	SDL_Event event;
-	/*Message m;
-	m.id = _m_ADD_TEXT;
-	m.add_text_data.txt = "PRESS ANY KEY TO CONTINUE...";
-	m.add_text_data.color = { 255, 0 ,0, 255 };
-	Vector2D txtScale = Vector2D(800.0f, 75.0f);
-	m.add_text_data.pos = Vector2D(sdlutils().width() / 2, sdlutils().height() / 2) - (txtScale / 2);
-	m.add_text_data.scale = txtScale;
-	m.add_text_data.time = 20;
-	mngr_->send(m);*/
 
-	/*auto text = mngr_->addEntity(_grp_TEXTS);
+	auto text = mngr_->addEntity(_grp_TEXTS);
 	Transform* tr = mngr_->addComponent<Transform>(text);
 	Vector2D scale = Vector2D(800.0f, 75.0f);
 	Vector2D pos = Vector2D(sdlutils().width() / 2, sdlutils().height() / 2) - (scale / 2);
@@ -652,9 +645,21 @@ void RenderSystem::changeControls(int tecla) {
 	tr->setPosition(pos);
 	tr->setScale(scale);
 	TextComponent* tc = mngr_->addComponent<TextComponent>(text, txt, color);
-	LimitedTime* lt = mngr_->addComponent<LimitedTime>(text, 30);
+	
+	auto black = mngr_->addEntity(_grp_HUD_FOREGROUND);
+	Transform* trB = mngr_->addComponent<Transform>(black);
+	trB->setScale({(float)sdlutils().width(),(float)sdlutils().height()});
+	trB->setPosition({0,0});
 
-	tc->getTexture()->render(tr->getRect(), tr->getRotation());*/
+	RenderComponent* rndComp = mngr_->addComponent<RenderComponent>(black, gameTextures::black_frame);
+	
+	SDL_Texture* blackTex = textures[gameTextures::black_frame]->getSDL_Texture();
+	SDL_SetTextureAlphaMod(blackTex, 200);
+
+	// Forzar renderizado del mensaje
+	textures[gameTextures::black_frame]->render(trB->getRect(), trB->getRotation());
+	tc->getTexture()->render(tr->getRect(), tr->getRotation());
+	SDL_RenderPresent(sdlutils().renderer());
 
 	//Logica para coger la tecla
 	do {
@@ -666,26 +671,35 @@ void RenderSystem::changeControls(int tecla) {
 	} while (t == 0 || t < 'a' || t > 'z');
 
 	//Cambiar la tecla correspondiente
+	string nameControl;
 	switch (tecla)
 	{
 	case 'a':
 		game().setLeft(t);
+		nameControl = "left";
 		break;
 	case 'd':
 		game().setRight(t);
+		nameControl = "right";
 		break;
 	case 'w':
 		game().setUp(t);
+		nameControl = "up";
 		break;
 	case 's':
 		game().setDown(t);
+		nameControl = "down";
 		break;
 	default:
 		break;
 	}
-
-	//Quitar el mensaje de la pantalla
-	//lt->setCurrTime(31);
+	Message m;
+	m.id = _m_CHANGE_TEXT_CONTROLS;
+	m.start_game_data.nameControl = nameControl;
+	mngr_->send(m);
+	mngr_->setAlive(text, false);
+	mngr_->setAlive(black, false);
+	mngr_->deleteAllHandlers(_grp_TEXTS);
 }
 
 void RenderSystem::drawDiamond(SDL_Renderer* renderer, const SDL_Point& center, int width, int height, const SDL_Color& fillColor)

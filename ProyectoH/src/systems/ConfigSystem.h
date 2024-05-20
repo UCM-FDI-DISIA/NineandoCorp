@@ -8,8 +8,13 @@ class ConfigSystem : public System
 {
 private:
 	void createResolutions(int resolutions_);
+	void changeTextControls(std::string name);
 	std::vector<Vector2D> typesResolutions;
 	bool isPlayState;
+	Entity* left;
+	Entity* right;
+	Entity* up;
+	Entity* down;
 public:
 	static constexpr sysId_type id = _sys_ENEMYBOOK;
 	ConfigSystem(bool isPlayState): isPlayState(isPlayState) {}

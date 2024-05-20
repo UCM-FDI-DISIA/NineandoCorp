@@ -245,6 +245,7 @@ enum msgId : msgId_type {
 	_m_ENEMY_DIED,
 	_m_TOWER_DIED,
 	_m_CHANGE_RESOLUTION,
+	_m_CHANGE_TEXT_CONTROLS,
 	_m_ACTIVATE_ATTACK_TOWERS,
 	_m_ISPLAYSTATE,
 	_m_HIDE_UPGRADEBUTTON,
@@ -338,7 +339,7 @@ enum gameTextures {
 	menu_background, upgrade, upgrade_hover, logo,
 	crystal_tower_image, bullet_tower_image, slime_tower_image,
 	sniper_tower_image, phoenix_tower_image, clay_tower_image,
-	power_tower_image,
+	power_tower_image, black_frame,
 					// Siluetas
 	booster_tower_silueta, cristal_tower_silueta, phoenix_tower_silueta,
 	slime_tower_silueta, sniper_tower_silueta,
@@ -524,6 +525,7 @@ struct Message {
 		SDL_Rect* cameraOffset;
 		vector<int> unlockedTwrs;
 		bool isPlayState;
+		string nameControl;
 
 	}start_game_data;
 

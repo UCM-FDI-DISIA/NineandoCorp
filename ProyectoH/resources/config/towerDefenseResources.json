@@ -974,6 +974,10 @@
     {
       "id": "level_up",
       "file": "resources/images/Towers/level_up.png"
+    },
+    {
+      "id": "black_frame",
+      "file": "resources/images/UI/black_frame.png"
     }
   ],
 
