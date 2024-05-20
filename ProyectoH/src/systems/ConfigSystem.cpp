@@ -52,7 +52,7 @@ void ConfigSystem::initSystem() {
 	char aux = game().getLeft();
 	string aa[1];
 	aa[0] = aux;
-	bS->addText(aa[0], textColor, pAux, sAux * 0.7);
+	left = bS->addText(aa[0], textColor, pAux, sAux * 0.7);
 	bS->addText("Move Left", textColor, { sdlutils().width() / 3.0f - 70, sdlutils().height() / 1.85f + 50 }, { 155.0f, 25.0f });
 
 	aux = game().getRight();
@@ -60,7 +60,7 @@ void ConfigSystem::initSystem() {
 	m.change_controls.tecla = 'd';
 	pAux = Vector2D(sdlutils().width() / 3.0f - 180, sdlutils().height() / 1.85f + 110);
 	sAux = { 50.0f, 50.0f };
-	bS->addText(aa[0], textColor, pAux, sAux * 0.7);
+	right=  bS->addText(aa[0], textColor, pAux, sAux * 0.7);
 	bS->addButton(pAux, sAux, gameTextures::button, gameTextures::button_hover, ButtonTypes::changeControls, 0, 0, 0, m);
 	bS->addText("Move Right", textColor, { sdlutils().width() / 3.0f - 70, sdlutils().height() / 1.85f + 110 }, { 165.0f, 25.0f });
 
@@ -69,7 +69,7 @@ void ConfigSystem::initSystem() {
 	m.change_controls.tecla = 'w';
 	pAux = Vector2D(sdlutils().width() / 3.0f - 180, sdlutils().height() / 1.85f + 170);
 	sAux = { 50.0f, 50.0f };
-	bS->addText(aa[0], textColor, pAux, sAux * 0.7);
+	up = bS->addText(aa[0], textColor, pAux, sAux * 0.7);
 	bS->addButton(pAux, sAux, gameTextures::button, gameTextures::button_hover, ButtonTypes::changeControls, 0, 0, 0, m);
 	bS->addText("Move Up", textColor, { sdlutils().width() / 3.0f -70, sdlutils().height() / 1.85f + 170 }, { 145.0f, 25.0f });
 
@@ -78,7 +78,7 @@ void ConfigSystem::initSystem() {
 	m.change_controls.tecla = 's';
 	pAux = Vector2D(sdlutils().width() / 3.0f - 180, sdlutils().height() / 1.85f + 230);
 	sAux = { 50.0f, 50.0f };
-	bS->addText(aa[0], textColor, pAux, sAux * 0.7);
+	down = bS->addText(aa[0], textColor, pAux, sAux * 0.7);
 	bS->addButton(pAux, sAux, gameTextures::button, gameTextures::button_hover, ButtonTypes::changeControls, 0, 0, 0, m);
 	bS->addText("Move Down", textColor, { sdlutils().width() / 3.0f - 70, sdlutils().height() / 1.85f + 230 }, { 160.0f, 25.0f });
 
@@ -107,6 +107,9 @@ void ConfigSystem::receive(const Message& m) {
 	case _m_CHANGE_RESOLUTION:
 		createResolutions(m.settings_data.resolutions);
 		break;
+	case _m_CHANGE_TEXT_CONTROLS:
+		changeTextControls(m.start_game_data.nameControl);
+		break;
 	}
 }
 void ConfigSystem::createResolutions(int resolutions_) {
@@ -133,6 +136,29 @@ void ConfigSystem::createResolutions(int resolutions_) {
 		m.id = _m_ISPLAYSTATE;
 		m.start_game_data.isPlayState = true;
 		mngr_->send(m);
+	}
+}
+void ConfigSystem::changeTextControls(std::string name) {
+	string key1[1];
+	if (name == "left") {
+		char aux = game().getLeft();
+		key1[0] = aux;
+		mngr_->getComponent<TextComponent>(left)->changeText(key1[0]);
+	}
+	else if (name == "right") {
+		char aux = game().getRight();
+		key1[0] = aux;
+		mngr_->getComponent<TextComponent>(right)->changeText(key1[0]);
+	}
+	else if (name == "up") {
+		char aux = game().getUp();
+		key1[0] = aux;
+		mngr_->getComponent<TextComponent>(up)->changeText(key1[0]);
+	}
+	else if (name == "down") {
+		char aux = game().getDown();
+		key1[0] = aux;
+		mngr_->getComponent<TextComponent>(down)->changeText(key1[0]);
 	}
 }
 

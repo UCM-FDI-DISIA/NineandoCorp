@@ -245,6 +245,7 @@ enum msgId : msgId_type {
 	_m_ENEMY_DIED,
 	_m_TOWER_DIED,
 	_m_CHANGE_RESOLUTION,
+	_m_CHANGE_TEXT_CONTROLS,
 	_m_ACTIVATE_ATTACK_TOWERS,
 	_m_ISPLAYSTATE,
 	_m_HIDE_UPGRADEBUTTON,
@@ -524,6 +525,7 @@ struct Message {
 		SDL_Rect* cameraOffset;
 		vector<int> unlockedTwrs;
 		bool isPlayState;
+		string nameControl;
 
 	}start_game_data;
 

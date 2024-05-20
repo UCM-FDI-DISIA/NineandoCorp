@@ -655,6 +655,7 @@ void RenderSystem::changeControls(int tecla) {
 	
 	SDL_Texture* blackTex = textures[gameTextures::black_frame]->getSDL_Texture();
 	SDL_SetTextureAlphaMod(blackTex, 200);
+
 	// Forzar renderizado del mensaje
 	textures[gameTextures::black_frame]->render(trB->getRect(), trB->getRotation());
 	tc->getTexture()->render(tr->getRect(), tr->getRotation());
@@ -670,28 +671,35 @@ void RenderSystem::changeControls(int tecla) {
 	} while (t == 0 || t < 'a' || t > 'z');
 
 	//Cambiar la tecla correspondiente
+	string nameControl;
 	switch (tecla)
 	{
 	case 'a':
 		game().setLeft(t);
+		nameControl = "left";
 		break;
 	case 'd':
 		game().setRight(t);
+		nameControl = "right";
 		break;
 	case 'w':
 		game().setUp(t);
+		nameControl = "up";
 		break;
 	case 's':
 		game().setDown(t);
+		nameControl = "down";
 		break;
 	default:
 		break;
 	}
+	Message m;
+	m.id = _m_CHANGE_TEXT_CONTROLS;
+	m.start_game_data.nameControl = nameControl;
+	mngr_->send(m);
 	mngr_->setAlive(text, false);
 	mngr_->setAlive(black, false);
 	mngr_->deleteAllHandlers(_grp_TEXTS);
-	//Quitar el mensaje de la pantalla
-	//lt->setCurrTime(31);
 }
 
 void RenderSystem::drawDiamond(SDL_Renderer* renderer, const SDL_Point& center, int width, int height, const SDL_Color& fillColor)
