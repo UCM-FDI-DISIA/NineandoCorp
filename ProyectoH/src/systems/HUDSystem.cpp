@@ -13,6 +13,8 @@ HUDSystem::~HUDSystem(){
 }
 
 void HUDSystem::initSystem() {
+	MainControlSystem* mC = mngr_->getSystem<MainControlSystem>();
+	canStartWave = mC->getWaveActive();
 	twrSel_.buttons.resize(twrId::_twr_SIZE - 1);
 
 	ButtonSystem* bS = mngr_->getSystem<ButtonSystem>();
@@ -379,6 +381,7 @@ void HUDSystem::initSystem() {
 	*	/ -- START ROUND BUTTON -- /
 	*
 	*/
+	
 	twrSel_.roundButton = bS->addButton(pAux, sAux, gameTextures::play, gameTextures::play_hover, ButtonTypes::play_wave);
 
 }

@@ -170,7 +170,7 @@ private:
 	float infoSpace_length_;
 
 	bool upMenuIsOn;
-	bool canStartWave = false;
+	bool canStartWave;
 
 	//ofset de la camara al renderizar
 	SDL_Rect* cameraOffset_;

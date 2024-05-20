@@ -17,6 +17,7 @@ public:
 	void receive(const Message& m) override;
 	void update();
 
+	bool getWaveActive() const { return waveActive; };
 protected:
 	bool nexusIsAlive_;
 	bool isPlaying;

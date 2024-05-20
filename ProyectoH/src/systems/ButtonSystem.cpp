@@ -496,7 +496,8 @@ void ButtonSystem::sellTower(Entity* twr)
 	{
 		for (auto but : mngr_->getEntities(bType)) {
 			auto bC = mngr_->getComponent<ButtonComponent>(but);
-			if (bC != nullptr) bC->setActive(b);
+			if (bC != nullptr) 
+				bC->setActive(b);
 		}
 	}
 
@@ -561,11 +562,6 @@ void ButtonSystem::sellTower(Entity* twr)
 				}
 				
 				mngr_->deleteAllHandlers(_hdlr_BUTTON_PAUSE);
-				for (auto en : mngr_->getHandler(_hdlr_BUTTON_PLAY)) {
-					mngr_->setAlive(en, false);
-				}
-
-				mngr_->deleteAllHandlers(_hdlr_BUTTON_PLAY);
 				for (auto en : mngr_->getHandler(_hdlr_BUTTON_ACELERATE)) {
 					mngr_->setAlive(en, false);
 				}
