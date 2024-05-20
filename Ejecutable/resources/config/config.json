@@ -1186,6 +1186,22 @@
 
   "intConst": [
     {
+      "id": "NexusVida1",
+      "value": 1000
+    },
+    {
+      "id": "NexusVida2",
+      "value": 2000
+    },
+    {
+      "id": "NexusVida3",
+      "value": 3000
+    },
+    {
+      "id": "NexusVida4",
+      "value": 5000
+    },
+    {
       "id": "MaestroVida",
       "value": 150
     },
@@ -1355,7 +1371,7 @@
     },
     {
       "id": "GolemVida",
-      "value": 5000
+      "value": 1000
     },
     {
       "id": "GolemRango",
@@ -2027,15 +2043,15 @@
     },
     {
       "id": "precioHNexoLvl1",
-      "value": 50
-    },
-    {
-      "id": "precioHNexoLvl2",
       "value": 150
     },
     {
-      "id": "precioHNexoLvl3",
+      "id": "precioHNexoLvl2",
       "value": 350
+    },
+    {
+      "id": "precioHNexoLvl3",
+      "value": 1000
     },
     {
       "id": "precioHNexoLvl4",
@@ -2047,15 +2063,15 @@
     },
     {
       "id": "precioHBalasLvl1",
-      "value": 50
-    },
-    {
-      "id": "precioHBalasLvl2",
       "value": 100
     },
     {
-      "id": "precioHBalasLvl3",
+      "id": "precioHBalasLvl2",
       "value": 250
+    },
+    {
+      "id": "precioHBalasLvl3",
+      "value": 500
     },
     {
       "id": "precioHBalasLvl4",
@@ -2067,15 +2083,15 @@
     },
     {
       "id": "precioHArcillaLvl1",
-      "value": 50
-    },
-    {
-      "id": "precioHArcillaLvl2",
       "value": 100
     },
     {
-      "id": "precioHArcillaLvl3",
+      "id": "precioHArcillaLvl2",
       "value": 250
+    },
+    {
+      "id": "precioHArcillaLvl3",
+      "value": 500
     },
     {
       "id": "precioHArcillaLvl4",
@@ -2087,15 +2103,15 @@
     },
     {
       "id": "precioHDiegoLvl1",
-      "value": 50
-    },
-    {
-      "id": "precioHDiegoLvl2",
       "value": 150
     },
     {
-      "id": "precioHDiegoLvl3",
+      "id": "precioHDiegoLvl2",
       "value": 350
+    },
+    {
+      "id": "precioHDiegoLvl3",
+      "value": 1000
     },
     {
       "id": "precioHDiegoLvl4",
@@ -2107,15 +2123,15 @@
     },
     {
       "id": "precioHSlimeLvl1",
-      "value": 50
-    },
-    {
-      "id": "precioHSlimeLvl2",
       "value": 150
     },
     {
-      "id": "precioHSlimeLvl3",
+      "id": "precioHSlimeLvl2",
       "value": 350
+    },
+    {
+      "id": "precioHSlimeLvl3",
+      "value": 1000
     },
     {
       "id": "precioHSlimeLvl4",
@@ -2127,15 +2143,15 @@
     },
     {
       "id": "precioHFenixLvl1",
-      "value": 50
-    },
-    {
-      "id": "precioHFenixLvl2",
       "value": 150
     },
     {
-      "id": "precioHFenixLvl3",
+      "id": "precioHFenixLvl2",
       "value": 350
+    },
+    {
+      "id": "precioHFenixLvl3",
+      "value": 1000
     },
     {
       "id": "precioHFenixLvl4",
@@ -2147,15 +2163,15 @@
     },
     {
       "id": "precioHCristalLvl1",
-      "value": 50
-    },
-    {
-      "id": "precioHCristalLvl2",
       "value": 150
     },
     {
-      "id": "precioHCristalLvl3",
+      "id": "precioHCristalLvl2",
       "value": 350
+    },
+    {
+      "id": "precioHCristalLvl3",
+      "value": 1000
     },
     {
       "id": "precioHCristalLvl4",
@@ -2167,15 +2183,15 @@
     },
     {
       "id": "precioHPotenciadoraLvl1",
-      "value": 50
-    },
-    {
-      "id": "precioHPotenciadoraLvl2",
       "value": 150
     },
     {
-      "id": "precioHPotenciadoraLvl3",
+      "id": "precioHPotenciadoraLvl2",
       "value": 350
+    },
+    {
+      "id": "precioHPotenciadoraLvl3",
+      "value": 1000
     },
     {
       "id": "precioHPotenciadoraLvl4",
@@ -2569,20 +2585,20 @@
       "value": 10
     },
     {
-        "id": "Life1",
-        "value": 1000
+      "id": "Life1",
+      "value": 1000
     },
     {
-        "id": "Life2",
-        "value": 2000
+      "id": "Life2",
+      "value": 2000
     },
     {
-        "id": "Life3",
-        "value": 3000
+      "id": "Life3",
+      "value": 3000
     },
     {
-        "id": "Life4",
-        "value": 5000
+      "id": "Life4",
+      "value": 5000
     }
 
   ],
@@ -4735,12 +4751,14 @@
                     {
                         "id": "grupo2",
                         "grupo2": {
-                            "spawn": "2",
+                            "spawn": "3",
                             "typeEnemy": [
-                                "goblin"
+                                "goblin",
+                                "elfo"
                             ],
                             "numEnemies": [
-                                2
+                                2,
+                                1
                             ],
                             "timeSpawn": 3
                         }
@@ -4749,14 +4767,12 @@
                     {
                         "id": "grupo3",
                         "grupo3": {
-                            "spawn": "3",
+                            "spawn": "2",
                             "typeEnemy": [
-                                "elfos",
-                                "golem"
+                                "elfos"
                             ],
                             "numEnemies": [
-                                2,
-                                1
+                                2
                             ],
                             "timeSpawn": 3
                         }
